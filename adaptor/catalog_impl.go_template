@@ -1,0 +1,78 @@
+package adaptor
+
+import (
+	"strings"
+
+	core "github.com/mt1976/ebEstimates/core"
+	logs "github.com/mt1976/ebEstimates/logs"
+    dm "github.com/mt1976/ebEstimates/datamodel"
+)
+// ----------------------------------------------------------------
+// Automatically generated  "/adaptor/catalog.go"
+// ----------------------------------------------------------------
+// Package              : adaptor
+// Object 			    : Catalog (catalog)
+// Endpoint 	        : Catalog (ID)
+// For Project          : github.com/mt1976/ebEstimates/
+// ----------------------------------------------------------------
+// Template Generator   : delinquentDysprosium [r4-21.12.31]
+// Date & Time		    : 28/06/2022 at 16:10:44
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
+// ----------------------------------------------------------------
+
+// The following functions should be created in catalog_impl.go
+
+
+func Catalog_GetList_impl() (int, []dm.Catalog, error) {return 0, nil, nil}
+func Catalog_GetByID_impl(id string) (int, dm.Catalog, error) {return 0, dm.Catalog{}, nil}
+
+
+
+func Catalog_NewID_impl(rec dm.Catalog) (string) { return rec.ID }
+func Catalog_Delete_impl(id string) (error) {return nil}
+
+
+func Catalog_Update_impl(id string,rec dm.Catalog, usr string) (error) {return nil}
+
+	// If there are fields below, create the methods in adaptor\catalog_impl.go
+	// START - GET API/Callout
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END - GET API/Callout
+	//
+	// START - PUT API/Callout
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END - PUT API/Callout
+
+	// START - Validation API/Callout
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+
+	// 
+	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END - Validation API/Callout
+
+func Catalog_ObjectValidation_impl (iAction string, iId string, iRec dm.Catalog) (dm.Catalog, error, string) {
+	logs.Callout("Catalog", "ObjectValidation", VAL +"-"+iAction, iId)
+	switch iAction {
+		case VAL:
+
+		case NEW:
+
+		case PUT:
+
+		case GET:
+
+		default:
+			logs.Warning("Tmpl_TDate_impl" + " - Invalid Action")
+		}
+	return iRec,nil,""
+	}
+	

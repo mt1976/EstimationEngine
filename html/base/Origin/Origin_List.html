@@ -1,0 +1,121 @@
+{{template "header" .}}
+<link rel="stylesheet" type="text/css" href="/assets/DataTables/datatables.min.css"/>
+{{template "bodydefinition" .}}
+
+      <div class="card">
+       
+            <div class="card-header font-weight-bold">
+              <div class="row d-flex">
+                <div class="col d-flex"><h3><i class="fas fa-building me-2"></i>{{.Title}}</h3></div>
+                <div class="col d-flex justify-content-end">
+                  <form action="/home" method="GET">
+                    <div class="btn-group" id="ActionButtonGroup">
+                    <button type="submit" value="" class="btn btn-primary" formaction="/OriginNew" method="GET" title="Create a new Origin"><i class="fas fa-plus me-2"></i>New</button>
+                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="card-body">
+             
+                           
+                    <table id="DataTable" class="table table-hover table-responsive" style="width:100%">
+                      <thead class="table-light">
+                        <tr style="background-color:red;">
+                          
+                          
+                          <th class="text-center">StateID</th>
+                          <th class="text-center">DocTypeID</th>
+                          <th class="text-center">Code</th>
+                          <th class="text-center">FullName</th>
+                          <th class="text-center">Rate</th>
+                          <th class="text-center">Notes</th>
+                          <th class="text-center">StartDate</th>
+                          <th class="text-center">EndDate</th>
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </thead>
+                      <tbody id="filterTable">
+                        {{range .ItemList}}
+                        <tr>
+                          
+                          
+                          <td class="align-middle" >{{.StateID}}</td>
+                          <td class="align-middle" >{{.DocTypeID}}</td>
+                          <td class="align-middle" >{{.Code}}</td>
+                          <td class="align-middle" >{{.FullName}}</td>
+                          <td class="align-middle" >{{.Rate}}</td>
+                          <td class="align-middle" >{{.Notes}}</td>
+                          <td class="align-middle" >{{.StartDate}}</td>
+                          <td class="align-middle" >{{.EndDate}}</td>
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <td class="text-center" style="width:1px;">
+                           <form action="/home" method="POST" class="d-flex justify-content-center">
+                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/OriginView?OriginID={{.OriginID}}" method="POST" title="View Origin"><i class="far fa-eye"></i></button>
+                            <button type="submit" value="" class="btn btn-warning ms-2 btn-floating" formaction="/OriginEdit?OriginID={{.OriginID}}" method="POST" title="Edit Origin"><i class="fas fa-edit"></i></button>
+                            
+                            </form>
+                          </td>
+                        </tr>
+                        {{end}}
+                      </tbody>
+                       <tfoot class="table-light">
+                        <tr style="background-color:red;">
+                          
+                          
+                          <th class="text-center">StateID</th>
+                          <th class="text-center">DocTypeID</th>
+                          <th class="text-center">Code</th>
+                          <th class="text-center">FullName</th>
+                          <th class="text-center">Rate</th>
+                          <th class="text-center">Notes</th>
+                          <th class="text-center">StartDate</th>
+                          <th class="text-center">EndDate</th>
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </tfoot>
+                    </table>
+            
+
+            </div>
+        </form>
+      </div>
+
+
+
+
+{{template "userfooter" .}}
+{{template "exportcontrols" .}}
+{{template "tablecontrols" .}}
+{{template "pagefooter" .}}

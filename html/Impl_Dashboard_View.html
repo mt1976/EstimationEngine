@@ -1,0 +1,137 @@
+{{template "header" .}}
+
+  <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/chart.min.js" integrity="sha512-dnUg2JxjlVoXHVdSMWDYm2Y5xcIrJg1N+juOuRi0yLVkku/g26rwHwysJDAMwahaDfRpr1AxFz43ktuMPr/l1A==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/chart.esm.js" integrity="sha512-4PEc6QLA4NvPsok3JsQ2Ia+m2oSjz1nvbHIGkD1ArGYvt5g2FNhMD0jYMYj9CIGDZDobXUWLkIN6xwfZa6I5Bg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/chart.js" integrity="sha512-n8DscwKN6+Yjr7rI6mL+m9nS4uCEgIrKRFcP0EOkIvzOLUyQgOjWK15hRfoCJQZe0s6XrARyXjpvGFo1w9N3xg==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/helpers.esm.js" integrity="sha512-8iS3Rz6547/u8CMvP6Crp1j0qvq4dHg/TzFMmkdnFs8m3UJtkGG6L6EDFrlsnSSrsoBO7/PViFOGGiZIhGK5og==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/helpers.esm.min.js" integrity="sha512-JC8H/YEABKWyV0Q/pgk3GfyrUCEiESg3ZM8DMdI8XD4zlwgtFyezG2dSenJ9pxAtJU2Bds6YNKYThXaLQrf9bw==" crossorigin="anonymous"></script>
+  <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
+{{template "bodydefinition" .}}
+  <main >
+    <form action="/home" method="POST">
+      <div class="container flex">
+
+        <h2>Dashboard Example</h2>
+
+
+        <div class="row my-4">
+          <div class="col-12 col-md-6 col-lg-3 mb-4 mb-lg-0">
+            <div class="card">
+              <h4 class="card-header">Counterparties</h4>
+              <div class="card-body">
+                <h1 class="display-2">{{.TotCounterparties}}</h1>
+                <p class="card-text"></p>
+                <p class="card-text text-success"></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
+            <div class="card">
+              <h4 class="card-header">GDPR Expirys</h4>
+              <div class="card-body">
+                <h1 class="display-2">{{.NoGDPRExp}}</h1>
+                <p class="card-text"></p>
+                <p class="card-text text-success"></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
+            <div class="card">
+              <h4 class="card-header">LEI Expirys</h4>
+              <div class="card-body">
+                <h1 class="display-2">{{.NoLEIExp}}</h1>
+                <p class="card-text"></p>
+                <p class="card-text text-danger"></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 col-md-6 mb-4 mb-lg-0 col-lg-3">
+            <div class="card">
+              <h4 class="card-header">MiFID Reviews</h4>
+              <div class="card-body">
+                <h1 class="display-2">{{.NoMiFIDRev}}</h1>
+                <p class="card-text"></p>
+                <p class="card-text text-success"></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-6">
+            <div class="card">
+              <h3 class="card-header">Traffic last 6 months</h3>
+              <div class="card-body">
+                <canvas id="myChart" width="400" height="400"></canvas>
+                <script>
+                  var ctx = document.getElementById('myChart').getContext('2d');
+                  var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                      labels: {{.DEPDDataLabels}},
+                      datasets: [{
+                        label: '# Cashflows Per Day',
+                        data: {{.DEPDDataValues}},
+                      }]
+                    },
+                    options: {
+                      scales: {
+                        y: {
+                        }
+                      }
+                    }
+                  });
+                </script>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+
+            <div class="card">
+              <h4 class="card-header">Counteparty/Sectors</h4>
+              <div class="card-body">
+                <canvas id="cptySectorChart" width="300" height="300"></canvas>
+                <script>
+                  var ctx = document.getElementById('cptySectorChart').getContext('2d');
+                  var myChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                      labels: {{.SECTDataLabels}},
+                      datasets: [{
+                        label: 'Sectors',
+                        data: {{.SECTDataValues}},
+                        backgroundColor: [
+                          'rgba(50, 42, 119, 0.2)',
+                          'rgba(54, 162, 235, 0.2)',
+                          'rgba(255, 206, 86, 0.2)',
+                          'rgba(75, 192, 192, 0.2)',
+                          'rgba(153, 102, 255, 0.2)',
+                          'rgba(255, 159, 64, 0.2)'
+                        ],
+                        borderColor: [
+                          'rgba(50, 42, 119, 1)',
+                          'rgba(54, 162, 235, 1)',
+                          'rgba(255, 206, 86, 1)',
+                          'rgba(75, 192, 192, 1)',
+                          'rgba(153, 102, 255, 1)',
+                          'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 1,
+                        hoverOffset: 4
+                      }]
+                    },
+
+                  });
+                </script>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </form>
+  </main>
+
+  {{template "userfooter" .}}
+{{template "pagefooter" .}}

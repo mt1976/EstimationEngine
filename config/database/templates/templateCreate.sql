@@ -1,0 +1,1 @@
+CREATE VIEW [{{!SQL.SCHEMA}}].[{{!SQL.VIEW}}] AS {{!SQL.BODY}}

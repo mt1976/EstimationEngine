@@ -1,0 +1,148 @@
+{{template "header" .}}
+<link rel="stylesheet" type="text/css" href="/assets/DataTables/datatables.min.css"/>
+{{template "bodydefinition" .}}
+
+      <div class="card">
+       
+            <div class="card-header font-weight-bold">
+              <div class="row d-flex">
+                <div class="col d-flex"><h3><i class="fas fa-history me-2"></i>{{.Title}}</h3></div>
+                <div class="col d-flex justify-content-end">
+                  <form action="/home" method="GET">
+                    <div class="btn-group" id="ActionButtonGroup">
+                    
+                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="card-body">
+             
+                           
+                    <table id="DataTable" class="table table-hover table-responsive" style="width:100%">
+                      <thead class="table-light">
+                        <tr style="background-color:red;">
+                          
+                          
+                          <th class="text-center">Apptoken</th>
+                          <th class="text-center">Createdate</th>
+                          <th class="text-center">Createtime</th>
+                          <th class="text-center">Uniqueid</th>
+                          <th class="text-center">Sessiontoken</th>
+                          <th class="text-center">Username</th>
+                          <th class="text-center">Password</th>
+                          <th class="text-center">Userip</th>
+                          <th class="text-center">Userhost</th>
+                          <th class="text-center">Appip</th>
+                          <th class="text-center">Apphost</th>
+                          <th class="text-center">Issued</th>
+                          <th class="text-center">Expiry</th>
+                          <th class="text-center">Expiryraw</th>
+                          <th class="text-center">Expires</th>
+                          <th class="text-center">Brand</th>
+                          <th class="text-center">SessionRole</th>
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </thead>
+                      <tbody id="filterTable">
+                        {{range .ItemList}}
+                        <tr>
+                          
+                          
+                          <td class="align-middle" >{{.Apptoken}}</td>
+                          <td class="align-middle" >{{.Createdate}}</td>
+                          <td class="align-middle" >{{.Createtime}}</td>
+                          <td class="align-middle" >{{.Uniqueid}}</td>
+                          <td class="align-middle" >{{.Sessiontoken}}</td>
+                          <td class="align-middle" >{{.Username}}</td>
+                          <td class="align-middle" >{{.Password}}</td>
+                          <td class="align-middle" >{{.Userip}}</td>
+                          <td class="align-middle" >{{.Userhost}}</td>
+                          <td class="align-middle" >{{.Appip}}</td>
+                          <td class="align-middle" >{{.Apphost}}</td>
+                          <td class="align-middle" >{{.Issued}}</td>
+                          <td class="align-middle" >{{.Expiry}}</td>
+                          <td class="align-middle" >{{.Expiryraw}}</td>
+                          <td class="align-middle" >{{.Expires}}</td>
+                          <td class="align-middle" >{{.Brand}}</td>
+                          <td class="align-middle" >{{.SessionRole}}</td>
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <td class="text-center" style="width:1px;">
+                           <form action="/home" method="POST" class="d-flex justify-content-center">
+                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/SessionView?SessionID={{.Id}}" method="POST" title="View Session"><i class="far fa-eye"></i></button>
+                            
+                            
+                            </form>
+                          </td>
+                        </tr>
+                        {{end}}
+                      </tbody>
+                       <tfoot class="table-light">
+                        <tr style="background-color:red;">
+                          
+                          
+                          <th class="text-center">Apptoken</th>
+                          <th class="text-center">Createdate</th>
+                          <th class="text-center">Createtime</th>
+                          <th class="text-center">Uniqueid</th>
+                          <th class="text-center">Sessiontoken</th>
+                          <th class="text-center">Username</th>
+                          <th class="text-center">Password</th>
+                          <th class="text-center">Userip</th>
+                          <th class="text-center">Userhost</th>
+                          <th class="text-center">Appip</th>
+                          <th class="text-center">Apphost</th>
+                          <th class="text-center">Issued</th>
+                          <th class="text-center">Expiry</th>
+                          <th class="text-center">Expiryraw</th>
+                          <th class="text-center">Expires</th>
+                          <th class="text-center">Brand</th>
+                          <th class="text-center">SessionRole</th>
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </tfoot>
+                    </table>
+            
+
+            </div>
+        </form>
+      </div>
+
+
+
+
+{{template "userfooter" .}}
+
+{{template "tablecontrols" .}}
+{{template "pagefooter" .}}

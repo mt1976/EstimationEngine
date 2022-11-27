@@ -1,0 +1,10 @@
+
+   '{
+      "MenuID": "b30dc3a5-5c16-4a98-9163-45204e477e93",
+      "MenuText": "Estimation Session",
+      "MenuGlyph": "fas fa-calculator",
+      "MenuHREF": "/EstimationSessionList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
+    }
+    

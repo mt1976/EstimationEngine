@@ -1,0 +1,16 @@
+[ req ]
+default_bits       = 2048
+distinguished_name = req_distinguished_name
+req_extensions     = req_ext
+[ req_distinguished_name ]
+countryName                 = Country Name (2 letter code) - USE GB
+stateOrProvinceName         = State or Province Name (full name) - USE LONDON
+localityName               = Locality Name (eg, city) - USE CROYDON
+organizationName           = Organization Name (eg, company) - USE Bionic
+commonName                 = Common Name (e.g. server FQDN or YOUR name) - USE silicon.local
+[ req_ext ]
+subjectAltName = @alt_names
+[alt_names]
+DNS.1   = silicon.local
+DNS.2   = localhost
+DNS.3   = 127.0.0.1

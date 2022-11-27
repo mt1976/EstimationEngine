@@ -1,0 +1,418 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/ProfileEdit/?ProfileID={{.ProfileID}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col h3">
+                    <i class="fas fa-sliders-h me-2" title="ProfileID = {{.ProfileID}}"></i><span class="me-3">{{.Title}}</span>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button type="submit" class="btn btn-warning" method="get" formaction="/ProfileEdit/?ProfileID={{.ProfileID}}"  title="Edit Profile {{.ProfileID}}"><i class="fas fa-pen me-2"></i>Edit</button>
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Profile {{.ProfileID}}"><i class="fas fa-print me-2"></i></i>Print</button>
+                        <button type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSId" aria-describedby="SYSIdHelp" placeholder="0" disabled value="{{.SYSId}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="SYSId">SYSId</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="ProfileID" aria-describedby="ProfileIDHelp" placeholder="" disabled value="{{.ProfileID}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="ProfileID"><i class="fas fa-key me-2"></i>ProfileID</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Code" aria-describedby="CodeHelp" placeholder="" disabled value="{{.Code}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Code">Code</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Name" aria-describedby="NameHelp" placeholder="" disabled value="{{.Name}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Name">Name</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="date" class="form-control" id="StartDate" aria-describedby="StartDateHelp" placeholder="" disabled value="{{.StartDate}}" data-mdb-input-mask="yyyy-mm-dd"></input>
+                        
+                        <label class="form-label" for="StartDate">StartDate</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="date" class="form-control" id="EndDate" aria-describedby="EndDateHelp" placeholder="" disabled value="{{.EndDate}}" data-mdb-input-mask="yyyy-mm-dd"></input>
+                        
+                        <label class="form-label" for="EndDate">EndDate</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="DefaultReleases" aria-describedby="DefaultReleasesHelp" placeholder="" disabled value="{{.DefaultReleases}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="DefaultReleases">DefaultReleases</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="DefaultReleaseHours" aria-describedby="DefaultReleaseHoursHelp" placeholder="" disabled value="{{.DefaultReleaseHours}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="DefaultReleaseHours">DefaultReleaseHours</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="BlendedRate" aria-describedby="BlendedRateHelp" placeholder="" disabled value="{{.BlendedRate}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="BlendedRate">BlendedRate</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Rounding" aria-describedby="RoundingHelp" placeholder="" disabled value="{{.Rounding}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Rounding">Rounding</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="HoursPerDay" aria-describedby="HoursPerDayHelp" placeholder="" disabled value="{{.HoursPerDay}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="HoursPerDay">HoursPerDay</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="REQPerc" aria-describedby="REQPercHelp" placeholder="" disabled value="{{.REQPerc}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="REQPerc">REQPerc</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="ANAPerc" aria-describedby="ANAPercHelp" placeholder="" disabled value="{{.ANAPerc}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="ANAPerc">ANAPerc</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="DOCPerc" aria-describedby="DOCPercHelp" placeholder="" disabled value="{{.DOCPerc}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="DOCPerc">DOCPerc</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="PMPerc" aria-describedby="PMPercHelp" placeholder="" disabled value="{{.PMPerc}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="PMPerc">PMPerc</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="UATPerc" aria-describedby="UATPercHelp" placeholder="" disabled value="{{.UATPerc}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="UATPerc">UATPerc</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="GTMPerc" aria-describedby="GTMPercHelp" placeholder="" disabled value="{{.GTMPerc}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="GTMPerc">GTMPerc</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SupportUplift" aria-describedby="SupportUpliftHelp" placeholder="" disabled value="{{.SupportUplift}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="SupportUplift">SupportUplift</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="ContigencyPerc" aria-describedby="ContigencyPercHelp" placeholder="" disabled value="{{.ContigencyPerc}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="ContigencyPerc">ContigencyPerc</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" disabled value="{{.SYSCreated}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="SYSCreated">SYSCreated</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" disabled value="{{.SYSCreatedBy}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="SYSCreatedBy">SYSCreatedBy</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" disabled value="{{.SYSCreatedHost}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="SYSCreatedHost">SYSCreatedHost</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" disabled value="{{.SYSUpdated}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="SYSUpdated">SYSUpdated</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" disabled value="{{.SYSUpdatedBy}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="SYSUpdatedBy">SYSUpdatedBy</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" disabled value="{{.SYSUpdatedHost}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="SYSUpdatedHost">SYSUpdatedHost</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSDeleted" aria-describedby="SYSDeletedHelp" placeholder="" disabled value="{{.SYSDeleted}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="SYSDeleted">SYSDeleted</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSDeletedBy" aria-describedby="SYSDeletedByHelp" placeholder="" disabled value="{{.SYSDeletedBy}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="SYSDeletedBy">SYSDeletedBy</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSDeletedHost" aria-describedby="SYSDeletedHostHelp" placeholder="" disabled value="{{.SYSDeletedHost}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="SYSDeletedHost">SYSDeletedHost</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        {{template "audit" .}}
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

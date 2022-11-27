@@ -1,0 +1,10 @@
+
+   '{
+      "MenuID": "1db614f0-3d19-4fea-9793-4d2648908249",
+      "MenuText": "Scheduler",
+      "MenuGlyph": "far fa-clock",
+      "MenuHREF": "/ScheduleList",
+      "MenuOnClick": "",
+      "MenuTextClass": "text-info"
+    }
+    

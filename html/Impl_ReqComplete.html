@@ -1,0 +1,92 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1,
+    shrink-to-fit=n">
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+  <!-- Google Fonts Roboto -->
+ <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+    />
+  <link rel="stylesheet" href="/assets/css/mdb.min.css" />
+  <link rel="stylesheet" href="/assets/login.css" />
+
+  <title>{{.AppName}} - Register</title>
+
+  <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
+
+</head>
+<body>
+
+  <!--Hey! This is the original version
+of Simple CSS Waves-->
+
+  <div class="header">
+
+    <!--Content before waves-->
+    <div class="inner-header flex">
+      <!--Just the logo.. Don't mind this-->
+
+      <div class="card shadow-custom col-md-10" style="margin-top:10rem; box-shadow: 0 2px
+        20px 0 rgba(0, 0, 0, .25), 0 3px 14px 16px rgba(0, 0, 0, 0.11)
+        !important;z-index:99; max-width:1rem">
+ <div class="card-header text-center">
+         <h4 class="card-title">{{.AppName}}</h4>
+        </div>
+        <div class="card-body">
+            <p class="card-text h1" role=""><i class="fas fa-check-double me-3"></i><strong>Thanks!</strong></p>
+            <p class="card-text word-wrap fw-light" role="">Thanks for registering. The admin has been contacted and will deal with your registration shortly.</p>
+            <div class="justify-content-start">
+            <p class="card-text">REPORT CODE : <code>INF_NEW_REGISTRATION</code></p>
+            <p class="card-text">SERVER VERSION :<code>{{.WebServerVersion}}</code></p>
+          <p><a href="mailto:someone@example.com?subject={{.AppName}} Support Request&body={{.AppName}} Support Request %0D Test"><i class="far fa-envelope me-2"></i>Contact Support</a></p>
+            </div>
+
+                <form action="/" method="get">
+                <button id="close" type="button" class="btn btn-light me-2" onclick="history.back()"><i class="fa fa-times me-2" ></i>Cancel</button>
+
+                <button type="submit" value="" class="btn btn-primary me-2" onclick="/" method="GET"><i class="fas fa-sign-in-alt me-2"></i>SIGN IN</button>
+                </form>
+                
+                </div>
+                
+      </div>
+
+    </div>
+
+    <!--Waves Container-->
+    <div>
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18
+            88-18 58 18 88 18 v44h-352z" />
+          </defs>
+          <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0"
+              fill="rgba(50,42,119,0.7" />
+              <use xlink:href="#gentle-wave" x="48" y="3"
+                fill="rgba(255,255,255,0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="5"
+                  fill="rgba(255,255,255,0.3)" />
+                  <use xlink:href="#gentle-wave" x="48" y="7"
+                    fill="rgba(255,255,255,1)" />
+                  </g>
+                </svg>
+              </div>
+              <!--Waves end-->
+
+            </div>
+            <!--Header ends-->
+
+
+
+            <!-- MDB -->
+            <script type="text/javascript" src="/assets/js/mdb.min.js"></script>
+            <!-- Custom scripts -->
+            <script type="text/javascript" src="/assets/js/script.js"></script>
+          
+          </body>

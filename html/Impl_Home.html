@@ -1,0 +1,29 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+
+  <div class="container-fluid" style="margin-top: 4.5rem;">
+      <h3 class="text-left">System Details</h3>
+<h4>User</h4>
+<pre>
+Name                    : <strong>{{.UserName}}</strong>
+Known As                : <strong>{{.UserKnowAs}} </strong>
+Role                    : <strong>{{.UserRole}} </strong>
+</pre>
+<h4>Application</h4>
+<pre >
+Server Name             : <strong>{{.AppServerName}}</strong>
+Server Release          : <strong>{{.AppReleaseID}}&nbsp;[<i>r{{.AppReleaseLevel}}-{{.AppReleaseNo}}</i>]</strong>
+Server Date             : <strong>{{.AppServerDate}}</strong>
+Server Mode             : <strong>{{.InstanceState}}</strong>
+</pre>
+<h4>Application Database (MSSQL)</h4>
+<pre >
+Server                  : <strong>{{.AppSQLServer}}</strong>
+Database                : <strong>{{.AppSQLDatabase}}</strong>
+Schema                  : <strong>{{.AppSQLSchema}}</strong>
+Parent Schema           : <strong>{{.AppSQLParentSchema}}</strong>
+</pre>
+    </div>
+  {{template "userfooter" .}}
+{{template "pagefooter" .}}
+

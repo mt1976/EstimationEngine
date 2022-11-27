@@ -1,0 +1,126 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1,
+    shrink-to-fit=n">
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+    />
+  <link rel="stylesheet" href="/assets/css/mdb.min.css" />
+  <link rel="stylesheet" href="/assets/login.css" />
+
+  <title>{{.AppName}} - Sign On</title>
+
+  <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
+
+</head>
+<body>
+
+  <!--Hey! This is the original version
+of Simple CSS Waves-->
+
+  <div class="header">
+
+    <!--Content before waves-->
+    <div class="inner-header flex">
+      <!--Just the logo.. Don't mind this-->
+
+      <div class="card shadow-custom col-md-10" style="margin-top:10rem; box-shadow: 0 2px
+        20px 0 rgba(0, 0, 0, .25), 0 3px 14px 16px rgba(0, 0, 0, 0.11)
+        !important;z-index:99; max-width:1rem">
+        <div class="card-header text-center">
+          <div class="hdrimage"><i class="fas fa-atom"
+              style="font-size:80pt;margin-top:1rem;"></i></div>
+          <h1>{{.AppName}}</h1>
+        </div>
+
+        <div class="card-body">
+
+          <form action="/" method="POST" class="">
+            <!-- UserID -->
+            <div class="form-outline mb-3">
+              <input type="text" class="form-control form-control-lg bg-white"
+                id="username" name="username" required="required">
+              <label class="form-label" for="username"> <i class="fas fa-user me-2 text-application"></i>User ID</label>
+            </div>
+            <!-- Password input -->
+            <div class="form-outline mb-3">
+
+              <input type="password" class="form-control form-control-lg bg-white"
+                id="password" placeholder="Password" name="password"
+                required="required" autocomplete="off">
+              <label class="form-label" for="password"> <i class="fas fa-lock
+                  me-2 text-application"></i>Password</label>
+              <div class="input-group-append">
+              </div>
+            </div>
+            <div class="text text-center text-danger h4" role="alert"><strong>{{.ResponseMessage}}</strong></div>
+            <div class="justify-content-end">
+          
+              <button type="submit" value="" class="btn btn-primary btn-lg ms-3" style="float: right;" formaction="/login" method="GET"><i class="fas fa-sign-in-alt me-2"></i>SIGN IN</button>
+              <button type="submit" value="" class="btn btn-link btn-lg ms-3" style="float: right;" formaction="/request?msg=NEW" method="GET">Request Access</button>
+
+          </div>
+          </form>
+
+        </div>
+
+        <div class="card-footer small text-muted">
+          <center><b>This software is for use by authorised persons only.</b></center>
+          The sofware is protect by the <em>{{.LicenceType}}</em>. For more
+          information, please refer to <a href="{{.LicenceLink}}">{{.LicenceLink}}</a>.
+          <br>
+          <div class="float-right">{{.WebServerVersion}}</div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!--Waves Container-->
+    <div>
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18
+            88-18 58 18 88 18 v44h-352z" />
+          </defs>
+          <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0"
+              fill="rgba(50,42,119,0.7" />
+              <use xlink:href="#gentle-wave" x="48" y="3"
+                fill="rgba(255,255,255,0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="5"
+                  fill="rgba(255,255,255,0.3)" />
+                  <use xlink:href="#gentle-wave" x="48" y="7"
+                    fill="rgba(255,255,255,1)" />
+                  </g>
+                </svg>
+              </div>
+              <!--Waves end-->
+
+            </div>
+            <!--Header ends-->
+
+
+
+            <!-- MDB -->
+            <script type="text/javascript" src="/assets/js/mdb.min.js"></script>
+            <!-- Custom scripts -->
+            <script type="text/javascript" src="/assets/js/script.js"></script>
+            <script>
+    function showPassword(inField) {
+      var x = document.getElementById(inField);
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }
+  </script>
+          </body>

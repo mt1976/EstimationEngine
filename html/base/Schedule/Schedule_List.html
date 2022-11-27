@@ -1,0 +1,118 @@
+{{template "header" .}}
+<link rel="stylesheet" type="text/css" href="/assets/DataTables/datatables.min.css"/>
+{{template "bodydefinition" .}}
+
+      <div class="card">
+       
+            <div class="card-header font-weight-bold">
+              <div class="row d-flex">
+                <div class="col d-flex"><h3><i class="far fa-clock me-2"></i>{{.Title}}</h3></div>
+                <div class="col d-flex justify-content-end">
+                  <form action="/home" method="GET">
+                    <div class="btn-group" id="ActionButtonGroup">
+                    
+                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="card-body">
+             
+                           
+                    <table id="DataTable" class="table table-hover table-responsive" style="width:100%">
+                      <thead class="table-light">
+                        <tr style="background-color:red;">
+                          
+                          
+                          <th class="text-center">Name</th>
+                          <th class="text-center">Description</th>
+                          <th class="text-center">Schedule</th>
+                          <th class="text-center">Started</th>
+                          <th class="text-center">Lastrun</th>
+                          <th class="text-center">Message</th>
+                          
+                          
+                          
+                          
+                          <th class="text-center">Type</th>
+                          
+                          
+                          
+                          
+                          <th class="text-center">Human</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </thead>
+                      <tbody id="filterTable">
+                        {{range .ItemList}}
+                        <tr>
+                          
+                          
+                          <td class="align-middle" >{{.Name}}</td>
+                          <td class="align-middle" >{{.Description}}</td>
+                          <td class="align-middle" >{{.Schedule}}</td>
+                          <td class="align-middle" >{{.Started}}</td>
+                          <td class="align-middle" >{{.Lastrun}}</td>
+                          <td class="align-middle" >{{.Message}}</td>
+                          
+                          
+                          
+                          
+                          <td class="align-middle" >{{.Type}}</td>
+                          
+                          
+                          
+                          
+                          <td class="align-middle" >{{.Human}}</td>
+                          
+                          <td class="text-center" style="width:1px;">
+                           <form action="/home" method="POST" class="d-flex justify-content-center">
+                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/ScheduleView?Schedule={{.Id}}" method="POST" title="View Scheduler"><i class="far fa-eye"></i></button>
+                            
+                            
+                            </form>
+                          </td>
+                        </tr>
+                        {{end}}
+                      </tbody>
+                       <tfoot class="table-light">
+                        <tr style="background-color:red;">
+                          
+                          
+                          <th class="text-center">Name</th>
+                          <th class="text-center">Description</th>
+                          <th class="text-center">Schedule</th>
+                          <th class="text-center">Started</th>
+                          <th class="text-center">Lastrun</th>
+                          <th class="text-center">Message</th>
+                          
+                          
+                          
+                          
+                          <th class="text-center">Type</th>
+                          
+                          
+                          
+                          
+                          <th class="text-center">Human</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </tfoot>
+                    </table>
+            
+
+            </div>
+        </form>
+      </div>
+
+
+
+
+{{template "userfooter" .}}
+{{template "exportcontrols" .}}
+{{template "tablecontrols" .}}
+{{template "pagefooter" .}}

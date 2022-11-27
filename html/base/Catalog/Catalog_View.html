@@ -1,0 +1,95 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/CatalogEdit/?ID={{.ID}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col h3">
+                    <i class="fas fa-cubes me-2" title="ID = {{.ID}}"></i><span class="me-3">{{.Title}}</span>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print API Catalog {{.ID}}"><i class="fas fa-print me-2"></i></i>Print</button>
+                        <button type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="ID" aria-describedby="IDHelp" placeholder="" disabled value="{{.ID}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="ID"><i class="fas fa-key me-2"></i>ID</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Endpoint" aria-describedby="EndpointHelp" placeholder="" disabled value="{{.Endpoint}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Endpoint">Endpoint</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Descr" aria-describedby="DescrHelp" placeholder="" disabled value="{{.Descr}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Descr">Descr</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Query" aria-describedby="QueryHelp" placeholder="" disabled value="{{.Query}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Query">Query</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Source" aria-describedby="SourceHelp" placeholder="" disabled value="{{.Source}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Source">Source</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

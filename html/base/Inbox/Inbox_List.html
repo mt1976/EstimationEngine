@@ -1,0 +1,121 @@
+{{template "header" .}}
+<link rel="stylesheet" type="text/css" href="/assets/DataTables/datatables.min.css"/>
+{{template "bodydefinition" .}}
+
+      <div class="card">
+       
+            <div class="card-header font-weight-bold">
+              <div class="row d-flex">
+                <div class="col d-flex"><h3><i class="fas fa-inbox me-2"></i>{{.Title}}</h3></div>
+                <div class="col d-flex justify-content-end">
+                  <form action="/home" method="GET">
+                    <div class="btn-group" id="ActionButtonGroup">
+                    
+                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="card-body">
+             
+                           
+                    <table id="DataTable" class="table table-hover table-responsive" style="width:100%">
+                      <thead class="table-light">
+                        <tr style="background-color:red;">
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <th class="text-center">MailTo</th>
+                          <th class="text-center">MailFrom</th>
+                          
+                          <th class="text-center">MailSent</th>
+                          <th class="text-center">MailUnread</th>
+                          <th class="text-center">MailSubject</th>
+                          <th class="text-center">MailContent</th>
+                          <th class="text-center">MailAcknowledged</th>
+                          
+                          
+                          
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </thead>
+                      <tbody id="filterTable">
+                        {{range .ItemList}}
+                        <tr>
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <td class="align-middle" >{{.MailTo}}</td>
+                          <td class="align-middle" >{{.MailFrom}}</td>
+                          
+                          <td class="align-middle" >{{.MailSent}}</td>
+                          <td class="align-middle" >{{.MailUnread}}</td>
+                          <td class="align-middle" >{{.MailSubject}}</td>
+                          <td class="align-middle" >{{.MailContent}}</td>
+                          <td class="align-middle" >{{.MailAcknowledged}}</td>
+                          
+                          
+                          
+                          
+                          <td class="text-center" style="width:1px;">
+                           <form action="/home" method="POST" class="d-flex justify-content-center">
+                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/InboxView?Message={{.MailId}}" method="POST" title="View Inbox"><i class="far fa-eye"></i></button>
+                            
+                            <button type="submit" value="" class="btn btn-danger ms-2 btn-floating" formaction="/InboxDelete?Message={{.MailId}}" method="POST" title="Delete Inbox"><i class="fas fa-trash"></i></button>
+                            </form>
+                          </td>
+                        </tr>
+                        {{end}}
+                      </tbody>
+                       <tfoot class="table-light">
+                        <tr style="background-color:red;">
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <th class="text-center">MailTo</th>
+                          <th class="text-center">MailFrom</th>
+                          
+                          <th class="text-center">MailSent</th>
+                          <th class="text-center">MailUnread</th>
+                          <th class="text-center">MailSubject</th>
+                          <th class="text-center">MailContent</th>
+                          <th class="text-center">MailAcknowledged</th>
+                          
+                          
+                          
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </tfoot>
+                    </table>
+            
+
+            </div>
+        </form>
+      </div>
+
+
+
+
+{{template "userfooter" .}}
+{{template "exportcontrols" .}}
+{{template "tablecontrols" .}}
+{{template "pagefooter" .}}

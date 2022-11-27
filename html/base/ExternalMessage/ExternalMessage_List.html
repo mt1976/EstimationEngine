@@ -1,0 +1,157 @@
+{{template "header" .}}
+<link rel="stylesheet" type="text/css" href="/assets/DataTables/datatables.min.css"/>
+{{template "bodydefinition" .}}
+
+      <div class="card">
+       
+            <div class="card-header font-weight-bold">
+              <div class="row d-flex">
+                <div class="col d-flex"><h3><i class="fas fa-mail-bulk me-2"></i>{{.Title}}</h3></div>
+                <div class="col d-flex justify-content-end">
+                  <form action="/home" method="GET">
+                    <div class="btn-group" id="ActionButtonGroup">
+                    
+                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="card-body">
+             
+                           
+                    <table id="DataTable" class="table table-hover table-responsive" style="width:100%">
+                      <thead class="table-light">
+                        <tr style="background-color:red;">
+                          
+                          <th class="text-center"><i class="fas fa-key me-2"></i>MessageID</th>
+                          <th class="text-center">MessageFormat</th>
+                          <th class="text-center">MessageDeliveredTo</th>
+                          <th class="text-center">MessageBody</th>
+                          <th class="text-center">MessageFilename</th>
+                          <th class="text-center">MessageLife</th>
+                          <th class="text-center">MessageDate</th>
+                          <th class="text-center">MessageTime</th>
+                          <th class="text-center">MessageTimeoutAction</th>
+                          <th class="text-center">MessageACKNAK</th>
+                          <th class="text-center">ResponseID</th>
+                          <th class="text-center">ResponseFilename</th>
+                          <th class="text-center">ResponseBody</th>
+                          <th class="text-center">ResponseDate</th>
+                          <th class="text-center">ResponseTime</th>
+                          <th class="text-center">ResponseAdditionalInfo</th>
+                          
+                          
+                          
+                          
+                          
+                          
+                          <th class="text-center">MessageTimeout</th>
+                          <th class="text-center">MessageEmitted</th>
+                          <th class="text-center">ResponseRecieved</th>
+                          <th class="text-center">MessageClass</th>
+                          
+                          
+                          
+                          
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </thead>
+                      <tbody id="filterTable">
+                        {{range .ItemList}}
+                        <tr>
+                          
+                          <td class="align-middle" >{{.MessageID}}</td>
+                          <td class="align-middle" >{{.MessageFormat}}</td>
+                          <td class="align-middle" >{{.MessageDeliveredTo}}</td>
+                          <td class="align-middle" >{{.MessageBody}}</td>
+                          <td class="align-middle" >{{.MessageFilename}}</td>
+                          <td class="align-middle" >{{.MessageLife}}</td>
+                          <td class="align-middle" >{{.MessageDate}}</td>
+                          <td class="align-middle" >{{.MessageTime}}</td>
+                          <td class="align-middle" >{{.MessageTimeoutAction}}</td>
+                          <td class="align-middle" >{{.MessageACKNAK}}</td>
+                          <td class="align-middle" >{{.ResponseID}}</td>
+                          <td class="align-middle" >{{.ResponseFilename}}</td>
+                          <td class="align-middle" >{{.ResponseBody}}</td>
+                          <td class="align-middle" >{{.ResponseDate}}</td>
+                          <td class="align-middle" >{{.ResponseTime}}</td>
+                          <td class="align-middle" >{{.ResponseAdditionalInfo}}</td>
+                          
+                          
+                          
+                          
+                          
+                          
+                          <td class="align-middle" >{{.MessageTimeout}}</td>
+                          <td class="align-middle" >{{.MessageEmitted}}</td>
+                          <td class="align-middle" >{{.ResponseRecieved}}</td>
+                          <td class="align-middle" >{{.MessageClass}}</td>
+                          
+                          
+                          
+                          
+                          
+                          <td class="text-center" style="width:1px;">
+                           <form action="/home" method="POST" class="d-flex justify-content-center">
+                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/ExternalMessageView?Message={{.MessageID}}" method="POST" title="View ExternalMessage"><i class="far fa-eye"></i></button>
+                            <button type="submit" value="" class="btn btn-warning ms-2 btn-floating" formaction="/ExternalMessageEdit?Message={{.MessageID}}" method="POST" title="Edit ExternalMessage"><i class="fas fa-edit"></i></button>
+                            <button type="submit" value="" class="btn btn-danger ms-2 btn-floating" formaction="/ExternalMessageDelete?Message={{.MessageID}}" method="POST" title="Delete ExternalMessage"><i class="fas fa-trash"></i></button>
+                            </form>
+                          </td>
+                        </tr>
+                        {{end}}
+                      </tbody>
+                       <tfoot class="table-light">
+                        <tr style="background-color:red;">
+                          
+                          <th class="text-center"><i class="fas fa-key me-2"></i>MessageID</th>
+                          <th class="text-center">MessageFormat</th>
+                          <th class="text-center">MessageDeliveredTo</th>
+                          <th class="text-center">MessageBody</th>
+                          <th class="text-center">MessageFilename</th>
+                          <th class="text-center">MessageLife</th>
+                          <th class="text-center">MessageDate</th>
+                          <th class="text-center">MessageTime</th>
+                          <th class="text-center">MessageTimeoutAction</th>
+                          <th class="text-center">MessageACKNAK</th>
+                          <th class="text-center">ResponseID</th>
+                          <th class="text-center">ResponseFilename</th>
+                          <th class="text-center">ResponseBody</th>
+                          <th class="text-center">ResponseDate</th>
+                          <th class="text-center">ResponseTime</th>
+                          <th class="text-center">ResponseAdditionalInfo</th>
+                          
+                          
+                          
+                          
+                          
+                          
+                          <th class="text-center">MessageTimeout</th>
+                          <th class="text-center">MessageEmitted</th>
+                          <th class="text-center">ResponseRecieved</th>
+                          <th class="text-center">MessageClass</th>
+                          
+                          
+                          
+                          
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </tfoot>
+                    </table>
+            
+
+            </div>
+        </form>
+      </div>
+
+
+
+
+{{template "userfooter" .}}
+{{template "exportcontrols" .}}
+{{template "tablecontrols" .}}
+{{template "pagefooter" .}}

@@ -1,0 +1,10 @@
+
+   '{
+      "MenuID": "d8ebbec2-23ff-4386-abd7-b2c3493c52d3",
+      "MenuText": "Profile",
+      "MenuGlyph": "fas fa-sliders-h",
+      "MenuHREF": "/ProfileList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
+    }
+    

@@ -1,0 +1,227 @@
+{
+  "MenuHeaderText": "poop",
+  "SectionTrees": [
+    {
+      "SectionID": "0",
+      "SectionName": "Application",
+      "SectionNodes": [
+        {
+          "MenuID": "23f8dae3-0740-49d9-a74b-d31b590c41f3",
+          "MenuText": "Origin",
+          "MenuGlyph": "fas fa-building",
+          "MenuHREF": "/OriginList",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-primary"
+        },
+        {
+          "MenuID": "c1d713c0-179f-442d-b8b5-a3db73010013",
+          "MenuText": "Project",
+          "MenuGlyph": "fas fa-project-diagram",
+          "MenuHREF": "/ProjectList",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-primary"
+        },
+        {
+          "MenuID": "e375bb8f-b2e6-4247-b080-b08437da9b3d",
+          "MenuText": "Estimation Session",
+          "MenuGlyph": "fas fa-calculator",
+          "MenuHREF": "/EstimationSessionList",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-primary"
+        },
+        {
+          "MenuID": "522f8e11-b792-4c16-a0d2-eb9b1b9ab6b7",
+          "MenuText": "Feature",
+          "MenuGlyph": "fas fa-tasks",
+          "MenuHREF": "/FeatureList",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-primary"
+        }
+      ]
+    },
+    {
+      "SectionID": "1",
+      "SectionName": "Configuration",
+      "SectionNodes": [
+        {
+          "MenuID": "80f47cfa-7205-41b3-ac5d-cb760ca3b0b7",
+          "MenuText": "Profile",
+          "MenuGlyph": "fas fa-sliders-h",
+          "MenuHREF": "/ProfileList",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-secondary"
+        },
+        {
+          "MenuID": "97fe0e30-db0c-4327-82c7-6fa1e47e9bb2",
+          "MenuText": "Confidence",
+          "MenuGlyph": "fas fa-thumbs-up",
+          "MenuHREF": "/ConfidenceList",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-secondary"
+        },
+        {
+          "MenuBreak": "true"
+        },
+        {
+          "MenuID": "7c8bc11a-6abb-43a1-82d9-df95df0e5537",
+          "MenuText": "Origin State",
+          "MenuGlyph": "fas fa-cogs",
+          "MenuHREF": "/OriginStateList",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-secondary"
+        },
+        {
+          "MenuID": "90c56611-425f-4c53-be05-4bbfc93bdaa5",
+          "MenuText": "Document Types",
+          "MenuGlyph": "fas fa-file-alt",
+          "MenuHREF": "/DocTypeList",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-secondary"
+        },
+        {
+          "MenuID": "c56896bf-490a-425e-9d24-109145f3b605",
+          "MenuText": "Project State",
+          "MenuGlyph": "fas fa-cogs",
+          "MenuHREF": "/ProjectStateList",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-secondary"
+        },
+        {
+          "MenuID": "3ca5f0d2-3083-4bf9-bdb8-40d36a648935",
+          "MenuText": "Estimation State",
+          "MenuGlyph": "fas fa-cogs",
+          "MenuHREF": "/EstimationStateList",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-secondary"
+        }
+      ]
+    },
+    {
+      "SectionID": "3",
+      "SectionName": "Utilities",
+      "SectionNodes": [
+        {
+          "MenuID": "a71475bc-84e4-41b0-82b5-c1602ef15af0",
+          "MenuText": "Credentials Actions",
+          "MenuGlyph": "fas fa-key",
+          "MenuHREF": "/CredentialsActionEdit",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-warning"
+        },
+        {
+          "MenuID": "sqlinject",
+          "MenuText": "Refresh SQL Views",
+          "MenuGlyph": "fas fa-syringe",
+          "MenuHREF": "/injectSQLViews",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-danger"
+        }
+      ]
+    },
+    {
+      "SectionID": "4",
+      "SectionName": "Admin",
+      "SectionNodes": [
+        {
+          "MenuID": "a71475bc-84e4-41b0-82b5-c1602ef15af0",
+          "MenuText": "Credentials",
+          "MenuGlyph": "fas fa-key",
+          "MenuHREF": "/CredentialsList",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-warning"
+        },
+        {
+          "MenuID": "da98ab1a-9562-4e1a-a6c8-c5b1cee31f67",
+          "MenuText": "Scheduler",
+          "MenuGlyph": "far fa-clock",
+          "MenuHREF": "/ScheduleList",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-info"
+        },
+        {
+          "MenuID": "bf71274d-fba9-410f-af04-eeaae40f5157",
+          "MenuText": "Sessions",
+          "MenuGlyph": "fas fa-history",
+          "MenuHREF": "/SessionList",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-info"
+        },
+        {
+          "MenuID": "da8c7cef-608e-4e44-9028-30b8cb09b401",
+          "MenuText": "Inbox",
+          "MenuGlyph": "fas fa-inbox",
+          "MenuHREF": "/InboxList",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-secondary"
+        },
+        {
+          "MenuID": "da8c7cef-608e-4e44-9028-30b8cb09b401",
+          "MenuText": "My Inbox",
+          "MenuGlyph": "fas fa-inbox",
+          "MenuHREF": "/MyInboxList",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-info"
+        },
+        {
+          "MenuID": "701c1f21-ba5e-4d1c-972b-d3422317d321",
+          "MenuText": "User Roles",
+          "MenuGlyph": "fas fa-users-cog",
+          "MenuHREF": "/UserRoleList",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-warning"
+        },
+        {
+          "MenuBreak": "true"
+        },
+        {
+          "MenuID": "b63ec0d9-bc32-43f4-a922-48a7d63428c9",
+          "MenuText": "ExternalMessage",
+          "MenuGlyph": "fas fa-mail-bulk",
+          "MenuHREF": "/ExternalMessageList",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-info"
+        },
+        {
+          "MenuBreak": "true"
+        },
+
+        {
+          "MenuID": "f80b37b8-f309-4b4a-93fd-b4cecbf33472",
+          "MenuText": "Message Translation",
+          "MenuGlyph": "fas fa-language",
+          "MenuHREF": "/TranslationList",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-info"
+        }
+
+
+
+      ]
+    },
+    {
+      "SectionID": "99",
+      "SectionName": "About",
+      "SectionNodes": [
+        {
+          "MenuID": "23",
+          "MenuText": "App Environment",
+          "MenuGlyph": "fa fa-server",
+          "MenuHREF": "/viewAppConfiguration",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-info"
+        },
+        {
+          "MenuBreak": "true"
+        },
+        {
+          "MenuID": "f4cbafd2-3fca-405f-97fa-66ba105e8152",
+          "MenuText": "API Catalog",
+          "MenuGlyph": "fas fa-cubes",
+          "MenuHREF": "/CatalogList",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-info"
+        }
+      ]
+    }
+  ]
+}

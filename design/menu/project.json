@@ -1,0 +1,10 @@
+
+   '{
+      "MenuID": "c6962bb4-89a1-41e6-89fd-b5ed632e9fe2",
+      "MenuText": "Project",
+      "MenuGlyph": "fas fa-project-diagram",
+      "MenuHREF": "/ProjectList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
+    }
+    

@@ -1,0 +1,288 @@
+package datamodel
+
+// ----------------------------------------------------------------
+// Automatically generated  "/datamodel/feature.go"
+// ----------------------------------------------------------------
+// Package              : application
+// Object 			    : Feature (feature)
+// Endpoint 	        : Feature (FeatureID)
+// For Project          : github.com/mt1976/ebEstimates/
+// ----------------------------------------------------------------
+// Template Generator   : Dysprosium [r4-21.12.31]
+// Date & Time		    : 27/11/2022 at 20:46:14
+// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
+// ----------------------------------------------------------------
+
+//Feature defines the datamolde for the Feature object
+type Feature struct {
+
+
+SYSId       string
+SYSId_props FieldProperties
+FeatureID       string
+FeatureID_props FieldProperties
+EstimationSessionID       string
+EstimationSessionID_props FieldProperties
+ConfidenceID       string
+ConfidenceID_props FieldProperties
+Name       string
+Name_props FieldProperties
+DevEstimate       string
+DevEstimate_props FieldProperties
+DevUplift       string
+DevUplift_props FieldProperties
+Reqs       string
+Reqs_props FieldProperties
+AnalystTest       string
+AnalystTest_props FieldProperties
+Docs       string
+Docs_props FieldProperties
+Mgt       string
+Mgt_props FieldProperties
+UatSupport       string
+UatSupport_props FieldProperties
+Marketing       string
+Marketing_props FieldProperties
+Contingency       string
+Contingency_props FieldProperties
+TrackerID       string
+TrackerID_props FieldProperties
+AdoID       string
+AdoID_props FieldProperties
+FreshdeskID       string
+FreshdeskID_props FieldProperties
+ExtRef       string
+ExtRef_props FieldProperties
+ExtRef2       string
+ExtRef2_props FieldProperties
+SYSCreated       string
+SYSCreated_props FieldProperties
+SYSCreatedBy       string
+SYSCreatedBy_props FieldProperties
+SYSCreatedHost       string
+SYSCreatedHost_props FieldProperties
+SYSUpdated       string
+SYSUpdated_props FieldProperties
+SYSUpdatedBy       string
+SYSUpdatedBy_props FieldProperties
+SYSUpdatedHost       string
+SYSUpdatedHost_props FieldProperties
+SYSDeleted       string
+SYSDeleted_props FieldProperties
+SYSDeletedBy       string
+SYSDeletedBy_props FieldProperties
+SYSDeletedHost       string
+SYSDeletedHost_props FieldProperties
+ // Any lookups will be added below
+
+EstimationSessionID_lookup []Lookup_Item
+ConfidenceID_lookup []Lookup_Item
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+const (
+	Feature_Title       = "Feature"
+	Feature_SQLTable    = "featureStore"
+	Feature_SQLSearchID = "featureID"
+	Feature_QueryString = "FeatureID"
+	///
+	/// Handler Defintions
+	///
+	Feature_Template     = "Feature"
+	Feature_TemplateList = "/Feature/Feature_List"
+	Feature_TemplateView = "/Feature/Feature_View"
+	Feature_TemplateEdit = "/Feature/Feature_Edit"
+	Feature_TemplateNew  = "/Feature/Feature_New"
+	///
+	/// Handler Monitor Paths
+	///
+	Feature_Path       = "/API/Feature/"
+	Feature_PathList   = "/FeatureList/"
+	Feature_PathView   = "/FeatureView/"
+	Feature_PathEdit   = "/FeatureEdit/"
+	Feature_PathNew    = "/FeatureNew/"
+	Feature_PathSave   = "/FeatureSave/"
+	Feature_PathDelete = "/FeatureDelete/"
+	///
+	//Feature_Redirect provides a page to return to aftern an action
+	Feature_Redirect = Feature_PathList
+	
+	///
+	///
+	/// SQL Field Definitions
+	///
+	Feature_SYSId_sql   = "_id" // SYSId is a Int
+	Feature_FeatureID_sql   = "featureID" // FeatureID is a String
+	Feature_EstimationSessionID_sql   = "estimationSessionID" // EstimationSessionID is a String
+	Feature_ConfidenceID_sql   = "confidenceID" // ConfidenceID is a String
+	Feature_Name_sql   = "name" // Name is a String
+	Feature_DevEstimate_sql   = "devEstimate" // DevEstimate is a String
+	Feature_DevUplift_sql   = "devUplift" // DevUplift is a String
+	Feature_Reqs_sql   = "reqs" // Reqs is a String
+	Feature_AnalystTest_sql   = "analystTest" // AnalystTest is a String
+	Feature_Docs_sql   = "docs" // Docs is a String
+	Feature_Mgt_sql   = "mgt" // Mgt is a String
+	Feature_UatSupport_sql   = "uatSupport" // UatSupport is a String
+	Feature_Marketing_sql   = "marketing" // Marketing is a String
+	Feature_Contingency_sql   = "contingency" // Contingency is a String
+	Feature_TrackerID_sql   = "trackerID" // TrackerID is a String
+	Feature_AdoID_sql   = "adoID" // AdoID is a String
+	Feature_FreshdeskID_sql   = "freshdeskID" // FreshdeskID is a String
+	Feature_ExtRef_sql   = "extRef" // ExtRef is a String
+	Feature_ExtRef2_sql   = "extRef2" // ExtRef2 is a String
+	Feature_SYSCreated_sql   = "_created" // SYSCreated is a String
+	Feature_SYSCreatedBy_sql   = "_createdBy" // SYSCreatedBy is a String
+	Feature_SYSCreatedHost_sql   = "_createdHost" // SYSCreatedHost is a String
+	Feature_SYSUpdated_sql   = "_updated" // SYSUpdated is a String
+	Feature_SYSUpdatedBy_sql   = "_updatedBy" // SYSUpdatedBy is a String
+	Feature_SYSUpdatedHost_sql   = "_updatedHost" // SYSUpdatedHost is a String
+	Feature_SYSDeleted_sql   = "_deleted" // SYSDeleted is a String
+	Feature_SYSDeletedBy_sql   = "_deletedBy" // SYSDeletedBy is a String
+	Feature_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
+
+	/// Definitions End
+	///
+	/// Application Field Definitions
+	///
+	Feature_SYSId_scrn   = "SYSId" // SYSId is a Int
+	Feature_FeatureID_scrn   = "FeatureID" // FeatureID is a String
+	Feature_EstimationSessionID_scrn   = "EstimationSessionID" // EstimationSessionID is a String
+	Feature_ConfidenceID_scrn   = "ConfidenceID" // ConfidenceID is a String
+	Feature_Name_scrn   = "Name" // Name is a String
+	Feature_DevEstimate_scrn   = "DevEstimate" // DevEstimate is a String
+	Feature_DevUplift_scrn   = "DevUplift" // DevUplift is a String
+	Feature_Reqs_scrn   = "Reqs" // Reqs is a String
+	Feature_AnalystTest_scrn   = "AnalystTest" // AnalystTest is a String
+	Feature_Docs_scrn   = "Docs" // Docs is a String
+	Feature_Mgt_scrn   = "Mgt" // Mgt is a String
+	Feature_UatSupport_scrn   = "UatSupport" // UatSupport is a String
+	Feature_Marketing_scrn   = "Marketing" // Marketing is a String
+	Feature_Contingency_scrn   = "Contingency" // Contingency is a String
+	Feature_TrackerID_scrn   = "TrackerID" // TrackerID is a String
+	Feature_AdoID_scrn   = "AdoID" // AdoID is a String
+	Feature_FreshdeskID_scrn   = "FreshdeskID" // FreshdeskID is a String
+	Feature_ExtRef_scrn   = "ExtRef" // ExtRef is a String
+	Feature_ExtRef2_scrn   = "ExtRef2" // ExtRef2 is a String
+	Feature_SYSCreated_scrn   = "SYSCreated" // SYSCreated is a String
+	Feature_SYSCreatedBy_scrn   = "SYSCreatedBy" // SYSCreatedBy is a String
+	Feature_SYSCreatedHost_scrn   = "SYSCreatedHost" // SYSCreatedHost is a String
+	Feature_SYSUpdated_scrn   = "SYSUpdated" // SYSUpdated is a String
+	Feature_SYSUpdatedBy_scrn   = "SYSUpdatedBy" // SYSUpdatedBy is a String
+	Feature_SYSUpdatedHost_scrn   = "SYSUpdatedHost" // SYSUpdatedHost is a String
+	Feature_SYSDeleted_scrn   = "SYSDeleted" // SYSDeleted is a String
+	Feature_SYSDeletedBy_scrn   = "SYSDeletedBy" // SYSDeletedBy is a String
+	Feature_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
+
+	/// Definitions End
+	///
+)
+
+//feature_PageList provides the information for the template for a list of Features
+type Feature_PageList struct {
+	SessionInfo      SessionInfo
+	UserMenu         AppMenuItem
+	UserRole         string
+	Title            string
+	PageTitle        string
+	ItemsOnPage 	 int
+	ItemList  		 []Feature
+	Context	 appContext
+}
+
+//feature_Page provides the information for the template for an individual Feature
+type Feature_Page struct {
+	SessionInfo      SessionInfo
+	UserMenu    	 AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
+	// START
+	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//	
+	SYSId         string
+	SYSId_props     FieldProperties
+	FeatureID         string
+	FeatureID_props     FieldProperties
+	EstimationSessionID         string
+	EstimationSessionID_lookup    []Lookup_Item
+	EstimationSessionID_props     FieldProperties
+	ConfidenceID         string
+	ConfidenceID_lookup    []Lookup_Item
+	ConfidenceID_props     FieldProperties
+	Name         string
+	Name_props     FieldProperties
+	DevEstimate         string
+	DevEstimate_props     FieldProperties
+	DevUplift         string
+	DevUplift_props     FieldProperties
+	Reqs         string
+	Reqs_props     FieldProperties
+	AnalystTest         string
+	AnalystTest_props     FieldProperties
+	Docs         string
+	Docs_props     FieldProperties
+	Mgt         string
+	Mgt_props     FieldProperties
+	UatSupport         string
+	UatSupport_props     FieldProperties
+	Marketing         string
+	Marketing_props     FieldProperties
+	Contingency         string
+	Contingency_props     FieldProperties
+	TrackerID         string
+	TrackerID_props     FieldProperties
+	AdoID         string
+	AdoID_props     FieldProperties
+	FreshdeskID         string
+	FreshdeskID_props     FieldProperties
+	ExtRef         string
+	ExtRef_props     FieldProperties
+	ExtRef2         string
+	ExtRef2_props     FieldProperties
+	SYSCreated         string
+	SYSCreated_props     FieldProperties
+	SYSCreatedBy         string
+	SYSCreatedBy_props     FieldProperties
+	SYSCreatedHost         string
+	SYSCreatedHost_props     FieldProperties
+	SYSUpdated         string
+	SYSUpdated_props     FieldProperties
+	SYSUpdatedBy         string
+	SYSUpdatedBy_props     FieldProperties
+	SYSUpdatedHost         string
+	SYSUpdatedHost_props     FieldProperties
+	SYSDeleted         string
+	SYSDeleted_props     FieldProperties
+	SYSDeletedBy         string
+	SYSDeletedBy_props     FieldProperties
+	SYSDeletedHost         string
+	SYSDeletedHost_props     FieldProperties
+	// 
+	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	Context	 appContext
+}

@@ -1,0 +1,10 @@
+
+   '{
+      "MenuID": "1ee5c3f0-c0d7-442a-971c-e7a94e5b8f06",
+      "MenuText": "ExternalMessage",
+      "MenuGlyph": "fas fa-mail-bulk",
+      "MenuHREF": "/ExternalMessageList",
+      "MenuOnClick": "",
+      "MenuTextClass": "text-info"
+    }
+    

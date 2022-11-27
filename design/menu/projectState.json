@@ -1,0 +1,10 @@
+
+   '{
+      "MenuID": "e0f266b2-f182-4d1e-a0de-50319de12c32",
+      "MenuText": "Project State",
+      "MenuGlyph": "fas fa-cogs",
+      "MenuHREF": "/ProjectStateList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
+    }
+    

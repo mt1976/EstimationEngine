@@ -1,0 +1,174 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1,
+    shrink-to-fit=y">
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet"
+    href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
+  <!-- Google Fonts Roboto -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap"
+    />
+  <link rel="stylesheet" href="/assets/css/mdb.min.css" />
+  <link rel="stylesheet" href="/assets/login.css" />
+
+  <title>{{.AppName}} - Access Request</title>
+
+  <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
+
+</head>
+<body>
+
+  <!--Hey! This is the original version
+of Simple CSS Waves-->
+
+  <div class="header">
+
+    <!--Content before waves-->
+    <div class="inner-header flex" style="z-index:-1">
+      <!--Just the logo.. Don't mind this-->
+
+      <div class="card shadow-custom col-md-10" style="margin-top:10rem; box-shadow: 0 2px
+        20px 0 rgba(0, 0, 0, .25), 0 3px 14px 16px rgba(0, 0, 0, 0.11)
+        !important;z-index:99; max-width:1rem";>
+        <div class="card-header text-center"><h4 class="card-title">{{.AppName}}</h4></div>
+        <div class="card-body">
+          <div class="row justify-content-center">
+            <div class="col">
+              <p class="text-center h1  mb-5 mx-1 mx-md-4 mt-4">Access
+                Request</p>
+              <form class="mx-1 mx-md-4" action="/request" method="GET">
+                <div class="d-flex flex-row align-items-center mb-4">
+                  <div class="form-outline flex-fill mb-0 bg-white">
+                    <input type="text" id="firstname" name="firstname" class="form-control"
+                      required />
+                    <label class="form-label" for="firstname"><i class="far
+                        fa-user me-2 text-muted"></i>First Name</label>
+                  </div>
+                </div>
+
+                <div class="d-flex flex-row align-items-center mb-4">
+                  <div class="form-outline flex-fill mb-0 bg-white">
+                    <input type="text" id="lastname" name="lastname" class="form-control"
+                      required />
+                    <label class="form-label" for="lastname"><i class="fas
+                        fa-user me-2 text-muted"></i>Last Name</label>
+                  </div>
+                </div>
+
+                <div class="d-flex flex-row align-items-center mb-4">
+                  <div class="form-outline flex-fill mb-0 bg-white">
+                    <input type="email" id="email" name="email" class="form-control"
+                      required />
+                    <label class="form-label" for="email"><i class="fas
+                        fa-envelope me-2 text-muted"></i>
+                      Your Email</label>
+                  </div>
+                </div>
+
+                <div class="d-flex flex-row align-items-center mb-4">
+                  <div class="form-outline flex-fill mb-0 bg-white">
+                    <input type="password" id="password" name="password"
+                      class="form-control" required />
+                    <label class="form-label" for="password"> <i
+                        class="fas fa-lock me-2 text-muted"></i>
+                      Password</label>
+                  </div>
+                </div>
+
+                <div class="d-flex flex-row align-items-center mb-4">
+                  <div class="form-outline flex-fill mb-0 bg-white">
+                    <input type="password" id="passwordconfirm" name="passwordconfirm"
+                      class="form-control" required />
+                    <label class="form-label" for="passwordconfirm"><i
+                        class="fas fa-key me-2 text-muted"></i>
+                      Repeat your password</label>
+                  </div>
+                </div>
+
+                <div class="form-check d-flex justify-content-center mb-5">
+                  <input class="form-check-input me-2" type="checkbox" value=""
+                    id="toc" name="toc"/>
+                  <label class="form-check-label" for="toc">
+                    I agree all statements in <a href="#!">Terms of service</a>
+                  </label>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-4"><button id="reset" type="reset"
+                      class="btn btn-light me-2"><i class="fas fa-broom me-2"></i>Reset</button></div>
+                  <div class="col-md-4"><button id="submit" type="submit"
+                      class="btn btn-primary me-2" disabled formaction="/request" method="GET"><i class="far fa-paper-plane
+                        me-2"></i>Register</button></div>
+                  <div class="col-md-4"><button id="close" type="button"
+                      class="btn btn-light me-2" onclick="history.back()"><i
+                        class="fas fa-times me-2"></i>Cancel</button></div>
+                </div>
+
+              </form>
+
+            </div>
+
+          </div>
+          <br>
+        <div class="row ms-2 me-2" {{if .ResponseMessage}}{{else}}hidden{{end}}>
+
+          <div class="alert" role="alert" data-mdb-color="danger">
+              <h4 class="alert-heading">Information</h4>
+              <p>{{.ResponseMessage}}</p>
+          </div>
+        </div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+    <!--Waves Container-->
+    <div>
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18
+            88-18 58 18 88 18 v44h-352z" />
+          </defs>
+          <g class="parallax">
+            <use xlink:href="#gentle-wave" x="48" y="0"
+              fill="rgba(50,42,119,0.7" />
+              <use xlink:href="#gentle-wave" x="48" y="3"
+                fill="rgba(255,255,255,0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="5"
+                  fill="rgba(255,255,255,0.3)" />
+                  <use xlink:href="#gentle-wave" x="48" y="7"
+                    fill="rgba(255,255,255,1)" />
+                  </g>
+                </svg>
+              </div>
+              <!--Waves end-->
+
+            </div>
+            <!--Header ends-->
+
+
+
+            <!-- MDB -->
+            <script type="text/javascript" src="/assets/js/mdb.min.js"></script>
+            <!-- Custom scripts -->
+            <script type="text/javascript" src="/assets/js/script.js"></script>
+            <script>
+var checker = document.getElementById('toc');
+ var sendbtn = document.getElementById('submit');
+ // when unchecked or checked, run the function
+ checker.onchange = function(){
+if(this.checked){
+    sendbtn.disabled = false;
+} else {
+    sendbtn.disabled = true;
+}
+
+}  
+            </script>
+          </body>

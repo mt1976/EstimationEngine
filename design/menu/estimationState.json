@@ -1,0 +1,10 @@
+
+   '{
+      "MenuID": "1bba0d9d-762c-48e4-ae84-37b6769c74db",
+      "MenuText": "Estimation State",
+      "MenuGlyph": "fas fa-cogs",
+      "MenuHREF": "/EstimationStateList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
+    }
+    
