@@ -2,7 +2,6 @@ package application
 
 import (
 	"database/sql"
-	"fmt"
 	"html/template"
 	"log"
 	"net/http"
@@ -26,7 +25,7 @@ func setChecked(inValue string) string {
 
 func isChecked(inValue string) string {
 	var outValue string
-	fmt.Println(inValue)
+	//fmt.Println(inValue)
 	outValue = ""
 	if inValue == "true" {
 		outValue = "checked"

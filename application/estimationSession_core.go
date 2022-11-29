@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 27/11/2022 at 20:46:13
+// Date & Time		    : 28/11/2022 at 18:56:33
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -146,7 +146,7 @@ func EstimationSession_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.EstimationSession
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.EstimationSession_SYSId_scrn)
 		item.EstimationSessionID = r.FormValue(dm.EstimationSession_EstimationSessionID_scrn)
@@ -177,9 +177,38 @@ func EstimationSession_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSDeletedBy = r.FormValue(dm.EstimationSession_SYSDeletedBy_scrn)
 		item.SYSDeletedHost = r.FormValue(dm.EstimationSession_SYSDeletedHost_scrn)
 		item.Name = r.FormValue(dm.EstimationSession_Name_scrn)
+		item.AdoID = r.FormValue(dm.EstimationSession_AdoID_scrn)
+		item.FreshdeskID = r.FormValue(dm.EstimationSession_FreshdeskID_scrn)
+		item.TrackerID = r.FormValue(dm.EstimationSession_TrackerID_scrn)
+		item.EstRef = r.FormValue(dm.EstimationSession_EstRef_scrn)
+		item.ExtRef = r.FormValue(dm.EstimationSession_ExtRef_scrn)
+		item.Origin = r.FormValue(dm.EstimationSession_Origin_scrn)
+		item.OriginStateID = r.FormValue(dm.EstimationSession_OriginStateID_scrn)
+		item.OriginState = r.FormValue(dm.EstimationSession_OriginState_scrn)
+		item.OriginDocTypeID = r.FormValue(dm.EstimationSession_OriginDocTypeID_scrn)
+		item.OriginDocType = r.FormValue(dm.EstimationSession_OriginDocType_scrn)
+		item.OriginCode = r.FormValue(dm.EstimationSession_OriginCode_scrn)
+		item.OriginName = r.FormValue(dm.EstimationSession_OriginName_scrn)
+		item.OriginRate = r.FormValue(dm.EstimationSession_OriginRate_scrn)
+		item.ProjectProfileID = r.FormValue(dm.EstimationSession_ProjectProfileID_scrn)
+		item.ProjectProfile = r.FormValue(dm.EstimationSession_ProjectProfile_scrn)
+		item.ProjectDefaultReleases = r.FormValue(dm.EstimationSession_ProjectDefaultReleases_scrn)
+		item.ProjectDefaultReleaseHours = r.FormValue(dm.EstimationSession_ProjectDefaultReleaseHours_scrn)
+		item.ProjectBlendedRate = r.FormValue(dm.EstimationSession_ProjectBlendedRate_scrn)
+		item.ProjectStateID = r.FormValue(dm.EstimationSession_ProjectStateID_scrn)
+		item.ProjectState = r.FormValue(dm.EstimationSession_ProjectState_scrn)
+		item.ProjectName = r.FormValue(dm.EstimationSession_ProjectName_scrn)
+		item.ProjectStartDate = r.FormValue(dm.EstimationSession_ProjectStartDate_scrn)
+		item.ProjectEndDate = r.FormValue(dm.EstimationSession_ProjectEndDate_scrn)
+		item.ProfileSupportUpliftPerc = r.FormValue(dm.EstimationSession_ProfileSupportUpliftPerc_scrn)
+		item.CCY = r.FormValue(dm.EstimationSession_CCY_scrn)
+		item.CCYCode = r.FormValue(dm.EstimationSession_CCYCode_scrn)
+		item.EffortTotal = r.FormValue(dm.EstimationSession_EffortTotal_scrn)
+		item.FreshDeskURI = r.FormValue(dm.EstimationSession_FreshDeskURI_scrn)
+		item.ADOURI = r.FormValue(dm.EstimationSession_ADOURI_scrn)
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.EstimationSession_Store(item,r)	
 	http.Redirect(w, r, dm.EstimationSession_Redirect, http.StatusFound)
@@ -219,7 +248,7 @@ func EstimationSession_HandlerNew(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the EstimationSession Page 
 func estimationsession_PopulatePage(rD dm.EstimationSession, pageDetail dm.EstimationSession_Page) dm.EstimationSession_Page {
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.EstimationSessionID = rD.EstimationSessionID
@@ -250,10 +279,39 @@ func estimationsession_PopulatePage(rD dm.EstimationSession, pageDetail dm.Estim
 	pageDetail.SYSDeletedBy = rD.SYSDeletedBy
 	pageDetail.SYSDeletedHost = rD.SYSDeletedHost
 	pageDetail.Name = rD.Name
+	pageDetail.AdoID = rD.AdoID
+	pageDetail.FreshdeskID = rD.FreshdeskID
+	pageDetail.TrackerID = rD.TrackerID
+	pageDetail.EstRef = rD.EstRef
+	pageDetail.ExtRef = rD.ExtRef
 	
+	pageDetail.Origin = rD.Origin
+	pageDetail.OriginStateID = rD.OriginStateID
+	pageDetail.OriginState = rD.OriginState
+	pageDetail.OriginDocTypeID = rD.OriginDocTypeID
+	pageDetail.OriginDocType = rD.OriginDocType
+	pageDetail.OriginCode = rD.OriginCode
+	pageDetail.OriginName = rD.OriginName
+	pageDetail.OriginRate = rD.OriginRate
+	pageDetail.ProjectProfileID = rD.ProjectProfileID
+	pageDetail.ProjectProfile = rD.ProjectProfile
+	pageDetail.ProjectDefaultReleases = rD.ProjectDefaultReleases
+	pageDetail.ProjectDefaultReleaseHours = rD.ProjectDefaultReleaseHours
+	pageDetail.ProjectBlendedRate = rD.ProjectBlendedRate
+	pageDetail.ProjectStateID = rD.ProjectStateID
+	pageDetail.ProjectState = rD.ProjectState
+	pageDetail.ProjectName = rD.ProjectName
+	pageDetail.ProjectStartDate = rD.ProjectStartDate
+	pageDetail.ProjectEndDate = rD.ProjectEndDate
+	pageDetail.ProfileSupportUpliftPerc = rD.ProfileSupportUpliftPerc
+	pageDetail.CCY = rD.CCY
+	pageDetail.CCYCode = rD.CCYCode
+	pageDetail.EffortTotal = rD.EffortTotal
+	pageDetail.FreshDeskURI = rD.FreshDeskURI
+	pageDetail.ADOURI = rD.ADOURI
 	
 	//
-	// Automatically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -265,6 +323,64 @@ func estimationsession_PopulatePage(rD dm.EstimationSession, pageDetail dm.Estim
 	
 	
 	pageDetail.EstimationStateID_lookup = dao.EstimationState_GetLookup()
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -347,9 +463,38 @@ func estimationsession_PopulatePage(rD dm.EstimationSession, pageDetail dm.Estim
 	pageDetail.SYSDeletedBy_props = rD.SYSDeletedBy_props
 	pageDetail.SYSDeletedHost_props = rD.SYSDeletedHost_props
 	pageDetail.Name_props = rD.Name_props
+	pageDetail.AdoID_props = rD.AdoID_props
+	pageDetail.FreshdeskID_props = rD.FreshdeskID_props
+	pageDetail.TrackerID_props = rD.TrackerID_props
+	pageDetail.EstRef_props = rD.EstRef_props
+	pageDetail.ExtRef_props = rD.ExtRef_props
+	pageDetail.Origin_props = rD.Origin_props
+	pageDetail.OriginStateID_props = rD.OriginStateID_props
+	pageDetail.OriginState_props = rD.OriginState_props
+	pageDetail.OriginDocTypeID_props = rD.OriginDocTypeID_props
+	pageDetail.OriginDocType_props = rD.OriginDocType_props
+	pageDetail.OriginCode_props = rD.OriginCode_props
+	pageDetail.OriginName_props = rD.OriginName_props
+	pageDetail.OriginRate_props = rD.OriginRate_props
+	pageDetail.ProjectProfileID_props = rD.ProjectProfileID_props
+	pageDetail.ProjectProfile_props = rD.ProjectProfile_props
+	pageDetail.ProjectDefaultReleases_props = rD.ProjectDefaultReleases_props
+	pageDetail.ProjectDefaultReleaseHours_props = rD.ProjectDefaultReleaseHours_props
+	pageDetail.ProjectBlendedRate_props = rD.ProjectBlendedRate_props
+	pageDetail.ProjectStateID_props = rD.ProjectStateID_props
+	pageDetail.ProjectState_props = rD.ProjectState_props
+	pageDetail.ProjectName_props = rD.ProjectName_props
+	pageDetail.ProjectStartDate_props = rD.ProjectStartDate_props
+	pageDetail.ProjectEndDate_props = rD.ProjectEndDate_props
+	pageDetail.ProfileSupportUpliftPerc_props = rD.ProfileSupportUpliftPerc_props
+	pageDetail.CCY_props = rD.CCY_props
+	pageDetail.CCYCode_props = rD.CCYCode_props
+	pageDetail.EffortTotal_props = rD.EffortTotal_props
+	pageDetail.FreshDeskURI_props = rD.FreshDeskURI_props
+	pageDetail.ADOURI_props = rD.ADOURI_props
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

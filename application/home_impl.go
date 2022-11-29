@@ -1,11 +1,11 @@
 package application
 
 import (
-	"fmt"
 	"net/http"
 	"time"
 
 	core "github.com/mt1976/ebEstimates/core"
+	"github.com/mt1976/ebEstimates/dao"
 	dm "github.com/mt1976/ebEstimates/datamodel"
 	logs "github.com/mt1976/ebEstimates/logs"
 )
@@ -43,6 +43,8 @@ type homePage struct {
 	AppSQLParentSchema string
 	DateSyncIssue      string
 	SessionInfo        dm.SessionInfo
+	NoOrigins          int
+	OriginList         []dm.Origin
 }
 
 func Home_Publish_Impl(mux http.ServeMux) {
@@ -54,12 +56,12 @@ func Home_Publish_Impl(mux http.ServeMux) {
 // Home_HandlerView
 func Home_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
-	fmt.Printf("Home_HandlerView\n")
+	//fmt.Printf("Home_HandlerView\n")
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
-	fmt.Printf("Home_HandlerView - Session_Validate\n")
+	//fmt.Printf("Home_HandlerView - Session_Validate\n")
 	// Code Continues Below
 
 	//	log.Println("IN HOMEPAGE")
@@ -98,6 +100,8 @@ func Home_HandlerView(w http.ResponseWriter, r *http.Request) {
 		homePage.InstanceState = "Child System"
 		//	homePage.AppSQLDatabase = ApplicationSQLDatabase() + "-" + ApplicationPropertiesDB["instance"]
 	}
+
+	homePage.NoOrigins, homePage.OriginList, _ = dao.Origin_GetList()
 
 	ExecuteTemplate("Impl_Home", w, r, homePage)
 

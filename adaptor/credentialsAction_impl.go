@@ -1,8 +1,6 @@
 package adaptor
 
 import (
-	"fmt"
-
 	dm "github.com/mt1976/ebEstimates/datamodel"
 )
 
@@ -23,7 +21,7 @@ import (
 
 func CredentialsAction_GetList_impl() (int, []dm.CredentialsAction, error) { return 0, nil, nil }
 func CredentialsAction_GetByID_impl(id string) (int, dm.CredentialsAction, error) {
-	fmt.Printf("Get By id: %v\n", id)
+	//fmt.Printf("Get By id: %v\n", id)
 	return 0, dm.CredentialsAction{}, nil
 }
 

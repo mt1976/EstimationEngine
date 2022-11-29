@@ -1,0 +1,37 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+
+  <div class="container-fluid" style="margin-top: 4.5rem;">
+<h1>{{.Origin.FullName}} - {{.Project.Name}} - {{.EstimationSession.Name}} - Features ({{.ItemsOnPage}})</h1>
+<table id="DataTable" class="table  align-middle mb-0 table-hover table-responsive bg-white" style="width:100%">
+  <thead class="table-primary">
+    <tr class="fs-6">
+      <th>Name</th>
+      <th>Confidence</th>
+      <th>Total</th>
+      <th>Who</th>
+      <th>ACTIONS</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{range .ItemList}}
+    <tr class="fs-6">
+      <td class="fw-bold">{{.Name}}</td>
+      <td>{{.ConfidenceID}}</td>
+      <td>{{.DevEstimate}}</td>
+      <td>{{.SYSUpdatedBy}}</td>
+      <td>
+        <a href="/FeatureView/?FeatureID={{.FeatureID}}" class="btn btn-sm btn-outline-info" role="button" aria-pressed="true">Details</a>
+        <a href="/origin/TODO/delete" class="btn btn-sm disabled btn-outline-danger" role="button" aria-pressed="true" disabled>Deactivate</a>
+      </td>
+    </tr>
+    {{end}}
+  </tbody>
+<ol>
+</ol>
+
+    </div>
+
+  {{template "userfooter" .}}
+{{template "pagefooter" .}}
+

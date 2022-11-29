@@ -41,16 +41,16 @@ func Session_HandlerValidateLogin(w http.ResponseWriter, r *http.Request) {
 	appToken := core.ApplicationToken()
 
 	tok := session_ValidateLogin(appToken, uName, uPassword, r)
-	fmt.Printf("appToken: %v\n", appToken)
-	fmt.Printf("tok: %v\n", tok)
-	fmt.Printf("uName: %v\n", uName)
-	fmt.Printf("uPassword: %v\n", uPassword)
+	//fmt.Printf("appToken: %v\n", appToken)
+	//fmt.Printf("tok: %v\n", tok)
+	//fmt.Printf("uName: %v\n", uName)
+	//fmt.Printf("uPassword: %v\n", uPassword)
 
 	if tok.ResponseCode == "200" {
 		core.SecurityViolation = ""
 		core.ServiceMessageAction("ACCESS GRANTED", Session_GetUserName(r), tok.ResponseCode)
 		logs.Result("Redirecting to: /", "/home")
-		fmt.Printf("core.SessionManager.Get(r.Context(), core.SessionUserName): %v\n", core.SessionManager.Get(r.Context(), core.SessionUserName))
+		//fmt.Printf("core.SessionManager.Get(r.Context(), core.SessionUserName): %v\n", core.SessionManager.Get(r.Context(), core.SessionUserName))
 		//spew.Dump(r.Context())
 		http.Redirect(w, r, "/home", http.StatusFound)
 
@@ -105,8 +105,8 @@ func session_ValidateLogin(appToken string, username string, password string, r 
 			return s
 		}
 	}
-	fmt.Printf("now: %v\n", now)
-	fmt.Printf("expiry: %v\n", expiry)
+	//fmt.Printf("now: %v\n", now)
+	//fmt.Printf("expiry: %v\n", expiry)
 	if now.After(expiry) {
 		s.ResponseCode = "512"
 		s.SecurityViolation = "SECURITY VIOLATION"
@@ -129,19 +129,19 @@ func session_ValidateLogin(appToken string, username string, password string, r 
 	core.SessionManager.Put(r.Context(), core.SessionSecurityViolation, "")
 	core.SessionManager.Put(r.Context(), core.SessionTokenID, Session_CreateToken(r))
 
-	fmt.Printf("cred.RoleType: %v\n", cred.RoleType)
-	fmt.Printf("core.GetNavigationID(cred.RoleType): %v\n", core.GetNavigationID(cred.RoleType))
-	fmt.Printf("cred.Knownas: %v\n", cred.Knownas)
-	fmt.Printf("cred.Username: %v\n", cred.Username)
-	fmt.Printf("core.ApplicationToken(): %v\n", core.ApplicationToken())
-	fmt.Printf("cred.Id: %v\n", cred.Id)
-	//fmt.Printf("Session_CreateToken(r): %v\n", Session_CreateToken(r))
+	//fmt.Printf("cred.RoleType: %v\n", cred.RoleType)
+	//fmt.Printf("core.GetNavigationID(cred.RoleType): %v\n", core.GetNavigationID(cred.RoleType))
+	//fmt.Printf("cred.Knownas: %v\n", cred.Knownas)
+	//fmt.Printf("cred.Username: %v\n", cred.Username)
+	//fmt.Printf("core.ApplicationToken(): %v\n", core.ApplicationToken())
+	//fmt.Printf("cred.Id: %v\n", cred.Id)
+	////fmt.Printf("Session_CreateToken(r): %v\n", Session_CreateToken(r))
 
-	fmt.Printf("s: %v\n", s)
-	fmt.Printf("core.SessionManager: %v\n", core.SessionManager)
-	fmt.Printf("r.Context(): %v\n", r.Context())
+	//fmt.Printf("s: %v\n", s)
+	//fmt.Printf("core.SessionManager: %v\n", core.SessionManager)
+	//fmt.Printf("r.Context(): %v\n", r.Context())
 
-	fmt.Printf("core.SessionManager.Get(r.Context(), core.SessionUserName): %v\n", core.SessionManager.Get(r.Context(), core.SessionUserName))
+	//fmt.Printf("core.SessionManager.Get(r.Context(), core.SessionUserName): %v\n", core.SessionManager.Get(r.Context(), core.SessionUserName))
 
 	return s
 }
@@ -152,17 +152,17 @@ func Session_Validate(w http.ResponseWriter, r *http.Request) bool {
 	///TODO FIX Somewhere the context is getting lost!
 	s.SecurityViolation = ""
 	s.ResponseCode = ""
-	fmt.Printf("Session_GetUserName(r): %v\n", Session_GetUserName(r))
-	fmt.Printf("Session_GetUserSessionToken(r): %v\n", Session_GetUserSessionToken(r))
+	//fmt.Printf("Session_GetUserName(r): %v\n", Session_GetUserName(r))
+	//fmt.Printf("Session_GetUserSessionToken(r): %v\n", Session_GetUserSessionToken(r))
 	session_uuid := Session_GetUserUUID(r)
-	fmt.Printf("session_uuid: %v\n", session_uuid)
+	//fmt.Printf("session_uuid: %v\n", session_uuid)
 
 	cookie_UserName := core.SessionManager.GetString(r.Context(), core.SessionUserName)
 	cookie_UserUUID := core.SessionManager.GetString(r.Context(), core.SessionUUID)
 
-	fmt.Printf("cookie_UserName: %v\n", cookie_UserName)
-	fmt.Printf("cookie_UserUUID: %v\n", cookie_UserUUID)
-	fmt.Printf("session_uuid: %v\n", session_uuid)
+	//fmt.Printf("cookie_UserName: %v\n", cookie_UserName)
+	//fmt.Printf("cookie_UserUUID: %v\n", cookie_UserUUID)
+	//fmt.Printf("session_uuid: %v\n", session_uuid)
 	_, cred, err := dao.Credentials_GetByUUID(session_uuid)
 	if err != nil {
 		log.Panicf("ERROR %e", err)
@@ -295,9 +295,9 @@ func Session_CreateToken(req *http.Request) string {
 
 	dao.Session_Store(r, req)
 
-	fmt.Printf("id: %v\n", id)
-	fmt.Printf("r: %v\n", r)
-	fmt.Printf("id: %v\n", id)
+	//fmt.Printf("id: %v\n", id)
+	//fmt.Printf("r: %v\n", r)
+	//fmt.Printf("id: %v\n", id)
 
 	return id
 }
@@ -324,9 +324,9 @@ func Session_GetSessionInfo(r *http.Request) (dm.SessionInfo, error) {
 	if urMessages > 0 {
 		s.UnreadMessages = strconv.Itoa(urMessages)
 	}
-	//fmt.Printf("s: %v\n", s)
+	////fmt.Printf("s: %v\n", s)
 	//spew.Dump(s)
-	fmt.Printf("s: %v\n", s)
+	//fmt.Printf("s: %v\n", s)
 	return s, nil
 }
 
@@ -364,7 +364,7 @@ func Session_HandlerRegister(w http.ResponseWriter, r *http.Request) {
 	if message != "" {
 		loginPageContent.ResponseMessage = message
 	}
-	//fmt.Println("Page Data", loginPageContent)
+	////fmt.Println("Page Data", loginPageContent)
 
 	//t, _ := template.ParseFiles(core.GetTemplateID(tmpl, core.SessionManager.GetString(r.Context(), core.SessionRole)))
 	// Does not user ExecuteTemplate because this is a special case
@@ -375,13 +375,13 @@ func Session_HandlerRegister(w http.ResponseWriter, r *http.Request) {
 		if message == "NEW" {
 			loginPageContent.ResponseMessage = ""
 		}
-		fmt.Printf("message: %v\n", message)
+		//fmt.Printf("message: %v\n", message)
 		ExecuteTemplate(tmpl, w, r, loginPageContent)
 
 	} else {
 
 		message = processRequest(r)
-		fmt.Printf("message: %v\n", message)
+		//fmt.Printf("message: %v\n", message)
 		message := html.EscapeString(message)
 		if message != "" {
 			http.Redirect(w, r, "/request?msg="+message, http.StatusFound)
@@ -393,8 +393,8 @@ func Session_HandlerRegister(w http.ResponseWriter, r *http.Request) {
 }
 
 func processRequest(r *http.Request) string {
-	fmt.Printf("r.ParseForm(): %v\n", r.ParseForm())
-	fmt.Println("Process Registration Request")
+	//fmt.Printf("r.ParseForm(): %v\n", r.ParseForm())
+	//fmt.Println("Process Registration Request")
 	firstName := r.FormValue("firstname")
 	lastName := r.FormValue("lastname")
 	email := r.FormValue("email")
@@ -402,12 +402,12 @@ func processRequest(r *http.Request) string {
 	password := r.FormValue("password")
 	passwordConfirm := r.FormValue("passwordconfirm")
 
-	fmt.Printf("firstName: %v\n", firstName)
-	fmt.Printf("lastName: %v\n", lastName)
-	fmt.Printf("email: %v\n", email)
-	fmt.Printf("username: %v\n", username)
-	fmt.Printf("password: %v\n", password)
-	fmt.Printf("passwordConfirm: %v\n", passwordConfirm)
+	//fmt.Printf("firstName: %v\n", firstName)
+	//fmt.Printf("lastName: %v\n", lastName)
+	//fmt.Printf("email: %v\n", email)
+	//fmt.Printf("username: %v\n", username)
+	//fmt.Printf("password: %v\n", password)
+	//fmt.Printf("passwordConfirm: %v\n", passwordConfirm)
 
 	if password != passwordConfirm {
 		return "Password and Confirm Password do not match"

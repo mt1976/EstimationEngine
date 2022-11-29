@@ -75,13 +75,17 @@ func main() {
 	application.Confidence_Publish(*mux)
 	application.DocType_Publish(*mux)
 	application.EstimationSession_Publish(*mux)
+	application.EstimationSession_Publish_Impl(*mux)
 	application.EstimationState_Publish(*mux)
 	application.ExternalMessage_Publish(*mux)
 	application.Feature_Publish(*mux)
+	application.Feature_Publish_Impl(*mux)
 	application.Origin_Publish(*mux)
+
 	application.OriginState_Publish(*mux)
 	application.Profile_Publish(*mux)
 	application.Project_Publish(*mux)
+	application.Project_Publish_Impl(*mux)
 	application.ProjectState_Publish(*mux)
 
 	// End of Endpoints

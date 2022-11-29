@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 27/11/2022 at 20:46:13
+// Date & Time		    : 28/11/2022 at 18:56:33
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -75,10 +75,97 @@ SYSDeletedHost       string
 SYSDeletedHost_props FieldProperties
 Name       string
 Name_props FieldProperties
+AdoID       string
+AdoID_props FieldProperties
+FreshdeskID       string
+FreshdeskID_props FieldProperties
+TrackerID       string
+TrackerID_props FieldProperties
+EstRef       string
+EstRef_props FieldProperties
+ExtRef       string
+ExtRef_props FieldProperties
+Origin       string
+Origin_props FieldProperties
+OriginStateID       string
+OriginStateID_props FieldProperties
+OriginState       string
+OriginState_props FieldProperties
+OriginDocTypeID       string
+OriginDocTypeID_props FieldProperties
+OriginDocType       string
+OriginDocType_props FieldProperties
+OriginCode       string
+OriginCode_props FieldProperties
+OriginName       string
+OriginName_props FieldProperties
+OriginRate       string
+OriginRate_props FieldProperties
+ProjectProfileID       string
+ProjectProfileID_props FieldProperties
+ProjectProfile       string
+ProjectProfile_props FieldProperties
+ProjectDefaultReleases       string
+ProjectDefaultReleases_props FieldProperties
+ProjectDefaultReleaseHours       string
+ProjectDefaultReleaseHours_props FieldProperties
+ProjectBlendedRate       string
+ProjectBlendedRate_props FieldProperties
+ProjectStateID       string
+ProjectStateID_props FieldProperties
+ProjectState       string
+ProjectState_props FieldProperties
+ProjectName       string
+ProjectName_props FieldProperties
+ProjectStartDate       string
+ProjectStartDate_props FieldProperties
+ProjectEndDate       string
+ProjectEndDate_props FieldProperties
+ProfileSupportUpliftPerc       string
+ProfileSupportUpliftPerc_props FieldProperties
+CCY       string
+CCY_props FieldProperties
+CCYCode       string
+CCYCode_props FieldProperties
+EffortTotal       string
+EffortTotal_props FieldProperties
+FreshDeskURI       string
+FreshDeskURI_props FieldProperties
+ADOURI       string
+ADOURI_props FieldProperties
  // Any lookups will be added below
 
 ProjectID_lookup []Lookup_Item
 EstimationStateID_lookup []Lookup_Item
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -167,6 +254,35 @@ const (
 	EstimationSession_SYSDeletedBy_sql   = "_deletedBy" // SYSDeletedBy is a String
 	EstimationSession_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
 	EstimationSession_Name_sql   = "name" // Name is a String
+	EstimationSession_AdoID_sql   = "adoID" // AdoID is a String
+	EstimationSession_FreshdeskID_sql   = "freshdeskID" // FreshdeskID is a String
+	EstimationSession_TrackerID_sql   = "trackerID" // TrackerID is a String
+	EstimationSession_EstRef_sql   = "estRef" // EstRef is a String
+	EstimationSession_ExtRef_sql   = "extRef" // ExtRef is a String
+	EstimationSession_Origin_sql   = "Origin" // Origin is a String
+	EstimationSession_OriginStateID_sql   = "OriginStateID" // OriginStateID is a String
+	EstimationSession_OriginState_sql   = "OriginState" // OriginState is a String
+	EstimationSession_OriginDocTypeID_sql   = "OriginDocTypeID" // OriginDocTypeID is a String
+	EstimationSession_OriginDocType_sql   = "OriginDocType" // OriginDocType is a String
+	EstimationSession_OriginCode_sql   = "OriginCode" // OriginCode is a String
+	EstimationSession_OriginName_sql   = "OriginName" // OriginName is a String
+	EstimationSession_OriginRate_sql   = "OriginRate" // OriginRate is a String
+	EstimationSession_ProjectProfileID_sql   = "ProjectProfileID" // ProjectProfileID is a String
+	EstimationSession_ProjectProfile_sql   = "ProjectProfile" // ProjectProfile is a String
+	EstimationSession_ProjectDefaultReleases_sql   = "ProjectDefaultReleases" // ProjectDefaultReleases is a String
+	EstimationSession_ProjectDefaultReleaseHours_sql   = "ProjectDefaultReleaseHours" // ProjectDefaultReleaseHours is a String
+	EstimationSession_ProjectBlendedRate_sql   = "ProjectBlendedRate" // ProjectBlendedRate is a String
+	EstimationSession_ProjectStateID_sql   = "ProjectStateID" // ProjectStateID is a String
+	EstimationSession_ProjectState_sql   = "ProjectState" // ProjectState is a String
+	EstimationSession_ProjectName_sql   = "ProjectName" // ProjectName is a String
+	EstimationSession_ProjectStartDate_sql   = "ProjectStartDate" // ProjectStartDate is a String
+	EstimationSession_ProjectEndDate_sql   = "ProjectEndDate" // ProjectEndDate is a String
+	EstimationSession_ProfileSupportUpliftPerc_sql   = "ProfileSupportUpliftPerc" // ProfileSupportUpliftPerc is a String
+	EstimationSession_CCY_sql   = "CCY" // CCY is a String
+	EstimationSession_CCYCode_sql   = "CCYCode" // CCYCode is a String
+	EstimationSession_EffortTotal_sql   = "EffortTotal" // EffortTotal is a String
+	EstimationSession_FreshDeskURI_sql   = "FreshDeskURI" // FreshDeskURI is a String
+	EstimationSession_ADOURI_sql   = "ADOURI" // ADOURI is a String
 
 	/// Definitions End
 	///
@@ -201,6 +317,35 @@ const (
 	EstimationSession_SYSDeletedBy_scrn   = "SYSDeletedBy" // SYSDeletedBy is a String
 	EstimationSession_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
 	EstimationSession_Name_scrn   = "Name" // Name is a String
+	EstimationSession_AdoID_scrn   = "AdoID" // AdoID is a String
+	EstimationSession_FreshdeskID_scrn   = "FreshdeskID" // FreshdeskID is a String
+	EstimationSession_TrackerID_scrn   = "TrackerID" // TrackerID is a String
+	EstimationSession_EstRef_scrn   = "EstRef" // EstRef is a String
+	EstimationSession_ExtRef_scrn   = "ExtRef" // ExtRef is a String
+	EstimationSession_Origin_scrn   = "Origin" // Origin is a String
+	EstimationSession_OriginStateID_scrn   = "OriginStateID" // OriginStateID is a String
+	EstimationSession_OriginState_scrn   = "OriginState" // OriginState is a String
+	EstimationSession_OriginDocTypeID_scrn   = "OriginDocTypeID" // OriginDocTypeID is a String
+	EstimationSession_OriginDocType_scrn   = "OriginDocType" // OriginDocType is a String
+	EstimationSession_OriginCode_scrn   = "OriginCode" // OriginCode is a String
+	EstimationSession_OriginName_scrn   = "OriginName" // OriginName is a String
+	EstimationSession_OriginRate_scrn   = "OriginRate" // OriginRate is a String
+	EstimationSession_ProjectProfileID_scrn   = "ProjectProfileID" // ProjectProfileID is a String
+	EstimationSession_ProjectProfile_scrn   = "ProjectProfile" // ProjectProfile is a String
+	EstimationSession_ProjectDefaultReleases_scrn   = "ProjectDefaultReleases" // ProjectDefaultReleases is a String
+	EstimationSession_ProjectDefaultReleaseHours_scrn   = "ProjectDefaultReleaseHours" // ProjectDefaultReleaseHours is a String
+	EstimationSession_ProjectBlendedRate_scrn   = "ProjectBlendedRate" // ProjectBlendedRate is a String
+	EstimationSession_ProjectStateID_scrn   = "ProjectStateID" // ProjectStateID is a String
+	EstimationSession_ProjectState_scrn   = "ProjectState" // ProjectState is a String
+	EstimationSession_ProjectName_scrn   = "ProjectName" // ProjectName is a String
+	EstimationSession_ProjectStartDate_scrn   = "ProjectStartDate" // ProjectStartDate is a String
+	EstimationSession_ProjectEndDate_scrn   = "ProjectEndDate" // ProjectEndDate is a String
+	EstimationSession_ProfileSupportUpliftPerc_scrn   = "ProfileSupportUpliftPerc" // ProfileSupportUpliftPerc is a String
+	EstimationSession_CCY_scrn   = "CCY" // CCY is a String
+	EstimationSession_CCYCode_scrn   = "CCYCode" // CCYCode is a String
+	EstimationSession_EffortTotal_scrn   = "EffortTotal" // EffortTotal is a String
+	EstimationSession_FreshDeskURI_scrn   = "FreshDeskURI" // FreshDeskURI is a String
+	EstimationSession_ADOURI_scrn   = "ADOURI" // ADOURI is a String
 
 	/// Definitions End
 	///
@@ -226,7 +371,7 @@ type EstimationSession_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -288,8 +433,66 @@ type EstimationSession_Page struct {
 	SYSDeletedHost_props     FieldProperties
 	Name         string
 	Name_props     FieldProperties
+	AdoID         string
+	AdoID_props     FieldProperties
+	FreshdeskID         string
+	FreshdeskID_props     FieldProperties
+	TrackerID         string
+	TrackerID_props     FieldProperties
+	EstRef         string
+	EstRef_props     FieldProperties
+	ExtRef         string
+	ExtRef_props     FieldProperties
+	Origin         string
+	Origin_props     FieldProperties
+	OriginStateID         string
+	OriginStateID_props     FieldProperties
+	OriginState         string
+	OriginState_props     FieldProperties
+	OriginDocTypeID         string
+	OriginDocTypeID_props     FieldProperties
+	OriginDocType         string
+	OriginDocType_props     FieldProperties
+	OriginCode         string
+	OriginCode_props     FieldProperties
+	OriginName         string
+	OriginName_props     FieldProperties
+	OriginRate         string
+	OriginRate_props     FieldProperties
+	ProjectProfileID         string
+	ProjectProfileID_props     FieldProperties
+	ProjectProfile         string
+	ProjectProfile_props     FieldProperties
+	ProjectDefaultReleases         string
+	ProjectDefaultReleases_props     FieldProperties
+	ProjectDefaultReleaseHours         string
+	ProjectDefaultReleaseHours_props     FieldProperties
+	ProjectBlendedRate         string
+	ProjectBlendedRate_props     FieldProperties
+	ProjectStateID         string
+	ProjectStateID_props     FieldProperties
+	ProjectState         string
+	ProjectState_props     FieldProperties
+	ProjectName         string
+	ProjectName_props     FieldProperties
+	ProjectStartDate         string
+	ProjectStartDate_props     FieldProperties
+	ProjectEndDate         string
+	ProjectEndDate_props     FieldProperties
+	ProfileSupportUpliftPerc         string
+	ProfileSupportUpliftPerc_props     FieldProperties
+	CCY         string
+	CCY_props     FieldProperties
+	CCYCode         string
+	CCYCode_props     FieldProperties
+	EffortTotal         string
+	EffortTotal_props     FieldProperties
+	FreshDeskURI         string
+	FreshDeskURI_props     FieldProperties
+	ADOURI         string
+	ADOURI_props     FieldProperties
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

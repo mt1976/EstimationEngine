@@ -72,7 +72,36 @@ SQL Table Key | **estimationSessionID**
 |**SYSDeleted**|String|false|true|false|false|||||NH|_deleted||false|false|true|text||
 |**SYSDeletedBy**|String|false|true|false|false|||||NH|_deletedBy||false|false|true|text||
 |**SYSDeletedHost**|String|false|true|false|false|||||NH|_deletedHost||false|false|true|text||
-|**Name**|String|false|true|false|false|||||Y|name||false|false|false|text||
+|**Name**|String|true|true|false|true|||||Y|name||true|false|false|text||
+|**AdoID**|String|false|true|false|false|||||Y|adoID||false|false|false|text||
+|**FreshdeskID**|String|false|true|false|false|||||Y|freshdeskID||false|false|false|text||
+|**TrackerID**|String|false|true|false|false|||||Y|trackerID||false|false|false|text||
+|**EstRef**|String|false|true|false|false|||||Y|estRef||false|false|false|text||
+|**ExtRef**|String|false|true|false|false|||||Y|extRef||false|false|false|text||
+|**Origin**|String|false|false|true|false|||||N|||false|true|false|text||
+|**OriginStateID**|String|false|false|true|false|||||N|||false|true|false|text||
+|**OriginState**|String|false|false|true|false|||||N|||false|true|false|text||
+|**OriginDocTypeID**|String|false|false|true|false|||||N|||false|true|false|text||
+|**OriginDocType**|String|false|false|true|false|||||N|||false|true|false|text||
+|**OriginCode**|String|false|false|true|false|||||N|||false|true|false|text||
+|**OriginName**|String|false|false|true|false|||||N|||false|true|false|text||
+|**OriginRate**|String|false|false|true|false|||||N|||false|true|false|text||
+|**ProjectProfileID**|String|false|false|true|false|||||N|||false|true|false|text||
+|**ProjectProfile**|String|false|false|true|false|||||N|||false|true|false|text||
+|**ProjectDefaultReleases**|String|false|false|true|false|||||N|||false|true|false|text||
+|**ProjectDefaultReleaseHours**|String|false|false|true|false|||||N|||false|true|false|text||
+|**ProjectBlendedRate**|String|false|false|true|false|||||N|||false|true|false|text||
+|**ProjectStateID**|String|false|false|true|false|||||N|||false|true|false|text||
+|**ProjectState**|String|false|false|true|false|||||N|||false|true|false|text||
+|**ProjectName**|String|false|false|true|false|||||N|||false|true|false|text||
+|**ProjectStartDate**|String|false|false|true|false|||||N|||false|true|false|text||
+|**ProjectEndDate**|String|false|false|true|false|||||N|||false|true|false|text||
+|**ProfileSupportUpliftPerc**|String|false|false|true|false|||||N|||false|true|false|text||
+|**CCY**|String|false|false|true|false|||||N|||false|true|false|text||
+|**CCYCode**|String|false|false|true|false|||||N|||false|true|false|text||
+|**EffortTotal**|String|false|false|true|false|||||N|||false|true|false|text||
+|**FreshDeskURI**|String|false|false|true|false|||||N|||false|true|false|text||
+|**ADOURI**|String|false|false|true|false|||||N|||false|true|false|text||
 
 
 ##  Artifacts Generated
@@ -94,7 +123,7 @@ SQL Table Key | **estimationSessionID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **27/11/2022** at **20:46:13**
+Date & Time		     | **28/11/2022** at **18:56:33**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

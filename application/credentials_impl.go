@@ -102,7 +102,7 @@ func Credentials_NewRequest(firstName string, lastName string, email string, use
 	rec.Username = username
 	rec.State = "REQD"
 	rec.Password = core.EncodeString(password)
-	fmt.Printf("rec: %v\n", rec)
+	//fmt.Printf("rec: %v\n", rec)
 	//spew.Dump(rec)
 
 	return dao.Credentials_StoreSystem(rec)
@@ -136,7 +136,7 @@ func credentials_UpdateStatus(userID string, state string) (error, dm.Credential
 		return err, rec
 	}
 	rec.State = state
-	fmt.Printf("rec: %v\n", rec)
+	//fmt.Printf("rec: %v\n", rec)
 	//spew.Dump(rec)
 	dao.Credentials_StoreSystem(rec)
 

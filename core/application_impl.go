@@ -1,7 +1,6 @@
 package core
 
 import (
-	"fmt"
 	"os"
 	"time"
 
@@ -51,7 +50,7 @@ func Initialise() {
 	//
 
 	SessionManager = scs.New()
-	fmt.Printf("ApplicationSessionLife(): %v\n", ApplicationSessionLife())
+	//fmt.Printf("ApplicationSessionLife(): %v\n", ApplicationSessionLife())
 	life, err := time.ParseDuration(ApplicationSessionLife())
 	if err != nil {
 		logs.Fatal("No Session Life Found", err)
@@ -64,6 +63,6 @@ func Initialise() {
 	//SessionManager.Cookie.SameSite = http.SameSiteStrictMode
 	SessionManager.Cookie.Secure = false
 	//spew.Dump(SessionManager)
-	fmt.Printf("SessionManager: %v\n", SessionManager)
+	//fmt.Printf("SessionManager: %v\n", SessionManager)
 	logs.Information("Initialisation", "Vroooom Vrooooom! "+Bike+Bike)
 }

@@ -129,7 +129,7 @@ func StubLists_Get(listName string) []dm.Lookup_Item {
 	logs.Success("List=" + ctList)
 	// Turn comma-separated string into a slice of strings
 	ctSlice := strings.Split(ctList, core.ListSeperator)
-	fmt.Printf("ctSlice: %v\n", ctSlice)
+	//fmt.Printf("ctSlice: %v\n", ctSlice)
 	// Create a lookup list of all CounterpartyType items
 	ctLookup := make([]dm.Lookup_Item, len(ctSlice))
 	for i := 0; i < len(ctSlice); i++ {
@@ -144,6 +144,6 @@ func StubLists_Get(listName string) []dm.Lookup_Item {
 
 		ctLookup[i] = dm.Lookup_Item{ID: listID, Name: listItem}
 	}
-	fmt.Printf("ctLookup: %v\n", ctLookup)
+	//fmt.Printf("ctLookup: %v\n", ctLookup)
 	return ctLookup
 }

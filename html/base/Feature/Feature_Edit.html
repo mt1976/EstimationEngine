@@ -358,6 +358,42 @@
             </div>
         
         </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            
+            <select id="Developer" name="Developer" class="select" data-mdb-filter="true"  >
+                {{range .Developer_lookup}}<option value="{{.ID}}" {{if eq .ID $.Developer}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="Developer" >Developer</label>
+            <div class="{{.Developer_props.MsgFeedBackType}}">{{.Developer_props.MsgMessage}}</div>
+            
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            
+            <select id="Approver" name="Approver" class="select" data-mdb-filter="true"  >
+                {{range .Approver_lookup}}<option value="{{.ID}}" {{if eq .ID $.Approver}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="Approver" >Approver</label>
+            <div class="{{.Approver_props.MsgFeedBackType}}">{{.Approver_props.MsgMessage}}</div>
+            
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <textarea class="form-control {{.Notes_props.MsgType}}" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder=""   value="{{.Notes}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Notes}}</textarea>
+              
+              <label class="form-label" for="Notes" >Notes</label>
+              <div class="{{.Notes_props.MsgFeedBackType}}">{{.Notes_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
       
       
     </div>
