@@ -76,6 +76,8 @@ func main() {
 	application.DocType_Publish(*mux)
 	application.EstimationSession_Publish(*mux)
 	application.EstimationSession_Publish_Impl(*mux)
+	application.EstimationSessionAction_Publish(*mux)
+	application.EstimationSessionAction_Publish_Impl(*mux)
 	application.EstimationState_Publish(*mux)
 	application.ExternalMessage_Publish(*mux)
 	application.Feature_Publish(*mux)
