@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 27/11/2022 at 20:46:13
+// Date & Time		    : 01/12/2022 at 09:40:01
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -146,7 +146,7 @@ func ExternalMessage_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.ExternalMessage
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.ExternalMessage_SYSId_scrn)
 		item.MessageID = r.FormValue(dm.ExternalMessage_MessageID_scrn)
@@ -181,7 +181,7 @@ func ExternalMessage_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSDeletedHost = r.FormValue(dm.ExternalMessage_SYSDeletedHost_scrn)
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.ExternalMessage_Store(item,r)	
 	http.Redirect(w, r, dm.ExternalMessage_Redirect, http.StatusFound)
@@ -210,7 +210,7 @@ func ExternalMessage_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the ExternalMessage Page 
 func externalmessage_PopulatePage(rD dm.ExternalMessage, pageDetail dm.ExternalMessage_Page) dm.ExternalMessage_Page {
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.MessageID = rD.MessageID
@@ -246,7 +246,7 @@ func externalmessage_PopulatePage(rD dm.ExternalMessage, pageDetail dm.ExternalM
 	
 	
 	//
-	// Automatically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -348,7 +348,7 @@ func externalmessage_PopulatePage(rD dm.ExternalMessage, pageDetail dm.ExternalM
 	pageDetail.SYSDeletedHost_props = rD.SYSDeletedHost_props
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

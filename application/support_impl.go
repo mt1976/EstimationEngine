@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"time"
 
 	core "github.com/mt1976/ebEstimates/core"
 )
@@ -81,4 +82,17 @@ func ExecuteTemplate(tname string, w http.ResponseWriter, r *http.Request, data 
 	if err != nil {
 		log.Println("Error executing template: " + err.Error())
 	}
+}
+
+func addActivity(in string, what string, r *http.Request) string {
+	//fmt.Println("addActivity")
+	//fmt.Println(in)
+	//fmt.Println("addActivity")
+	if what == "" {
+		return in
+	}
+
+	tm := time.Now().Format("02/01/2006 15:04:05")
+	out := in + "\n" + tm + " " + Session_GetUserName(r) + ":" + what
+	return out
 }

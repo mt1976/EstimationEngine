@@ -20,6 +20,8 @@ const (
 	///
 	EstimationSession_ByProject_TemplateList = "/EstimationSession/EstimationSession_ByProjectList_impl"
 	EstimationSession_Formatted_TemplateView = "/EstimationSession/EstimationSession_FormattedView_impl"
+	EstimationSession_TemplateSetup          = "/EstimationSession/EstimationSession_Setup_impl"
+	EstimationSession_TemplateCreate         = "/EstimationSession/EstimationSession_View_impl"
 	///
 	/// Handler Monitor Paths
 	///
@@ -27,6 +29,9 @@ const (
 	EstimationSession_ByProject_QueryString = "ProjectID"
 	EstimationSession_Formatted_PathView    = "/EstimationSessionFormatted/"
 	EstimationSession_Formatted_QueryString = EstimationSession_QueryString
+
+	EstimationSession_PathSetup  = "/EstimationSessionSetup/"
+	EstimationSession_PathCreate = "/EstimationSessionCreate/"
 	///
 
 )

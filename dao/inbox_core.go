@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 27/11/2022 at 20:46:14
+// Date & Time		    : 01/12/2022 at 09:40:01
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -46,10 +46,10 @@ func Inbox_GetByID(id string) (int, dm.Inbox, error) {
 	_, _, inboxItem, _ := inbox_Fetch(tsql)
 
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, inboxItem, nil
 }
@@ -120,10 +120,10 @@ func Inbox_StoreSystem(r dm.Inbox) error {
 func Inbox_Validate(r dm.Inbox) (error,dm.Inbox) {
 	var err error
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -181,7 +181,7 @@ logs.Storing("Inbox",fmt.Sprintf("%s", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Inbox_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Inbox_SYSCreated_sql, r.SYSCreated)
@@ -204,7 +204,7 @@ logs.Storing("Inbox",fmt.Sprintf("%s", r))
 	ts = addData(ts, dm.Inbox_SYSDeletedHost_sql, r.SYSDeletedHost)
 		
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Inbox_SQLTable)
@@ -237,7 +237,7 @@ func inbox_Fetch(tsql string) (int, []dm.Inbox, dm.Inbox, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Inbox_SYSId_sql, "0")
 	   recItem.SYSCreated  = get_String(rec, dm.Inbox_SYSCreated_sql, "")
@@ -281,7 +281,7 @@ func inbox_Fetch(tsql string) (int, []dm.Inbox, dm.Inbox, error) {
 	
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -311,10 +311,10 @@ func Inbox_New() (int, []dm.Inbox, dm.Inbox, error) {
 	
 
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

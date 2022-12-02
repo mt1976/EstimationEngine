@@ -1,0 +1,10 @@
+
+   '{
+      "MenuID": "2db95c1f-298c-4671-ae35-2322dbf32f1c",
+      "MenuText": "Resource",
+      "MenuGlyph": "fas fa-cogs",
+      "MenuHREF": "/ResourceList",
+      "MenuOnClick": "",
+      "MenuTextClass": ""
+    }
+    

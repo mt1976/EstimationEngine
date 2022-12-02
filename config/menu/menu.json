@@ -44,6 +44,17 @@
       "SectionName": "Configuration",
       "SectionNodes": [
         {
+          "MenuID": "b8db9941-bf2a-426e-9d35-e03790ed266e",
+          "MenuText": "Resources",
+          "MenuGlyph": "fas fa-cogs",
+          "MenuHREF": "/ResourceList",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-secondary"
+        },
+        {
+          "MenuBreak": "true"
+        },
+        {
           "MenuID": "80f47cfa-7205-41b3-ac5d-cb760ca3b0b7",
           "MenuText": "Profile",
           "MenuGlyph": "fas fa-sliders-h",

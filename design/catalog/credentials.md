@@ -57,8 +57,6 @@ SQL Table Key | **id**
 |**RoleType**|String|false|true|false|false|OL|UserRole|||Y|RoleType||false|false|false|text||
 |**Brand**|String|false|true|false|true|||||H|Brand||false|false|false|text||
 |**SYSCreated**|String|false|true|false|false|||||NH|_created||false|false|true|text||
-|**SYSWho**|String|false|true|false|false|||||NH|_who||false|false|true|text||
-|**SYSHost**|String|false|true|false|false|||||NH|_host||false|false|true|text||
 |**SYSUpdated**|String|false|true|false|false|||||NH|_updated||false|false|true|text||
 |**SYSCreatedBy**|String|false|true|false|false|||||NH|_createdBy||false|false|true|text||
 |**SYSCreatedHost**|String|false|true|false|false|||||NH|_createdHost||false|false|true|text||
@@ -66,6 +64,10 @@ SQL Table Key | **id**
 |**SYSUpdatedHost**|String|false|true|false|false|||||NH|_updatedHost||false|false|true|text||
 |**State**|String|false|true|false|true|LL|credentialStates|||Y|State||false|true|false|text||
 |**Notes**|String|false|true|false|true|||||Y|Notes||false|false|false|textarea||
+|**SYSDeleted**|String|false|true|false|false|||||NH|_deleted||false|false|true|text||
+|**SYSDeletedBy**|String|false|true|false|false|||||NH|_deletedBy||false|false|true|text||
+|**SYSDeletedHost**|String|false|true|false|false|||||NH|_deletedHost||false|false|true|text||
+|**SYSActivity**|String|false|true|false|false|||||NH|_activity||false|false|true|text||
 
 
 ##  Artifacts Generated
@@ -87,7 +89,7 @@ SQL Table Key | **id**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **27/11/2022** at **20:46:13**
+Date & Time		     | **01/12/2022** at **09:40:00**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

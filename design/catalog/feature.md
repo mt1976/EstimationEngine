@@ -75,6 +75,9 @@ SQL Table Key | **featureID**
 |**Developer**|String|false|true|false|false|OL|Credentials|Credentials_Id||Y|developer||false|false|false|text||
 |**Approver**|String|false|true|false|false|OL|Credentials|Credentials_Id||Y|approver||false|false|false|text||
 |**Notes**|String|false|true|false|true|||||Y|notes||false|false|false|textarea||
+|**OffProfile**|String|false|true|false|false|||||Y|offProfile||false|false|false|text||
+|**OffProfileJustification**|String|false|true|false|false|||||Y|offProfileJustification||false|false|false|text||
+|**SYSActivity**|String|false|true|false|false|||||NH|_activity||false|false|true|text||
 
 
 ##  Artifacts Generated
@@ -96,7 +99,7 @@ SQL Table Key | **featureID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **28/11/2022** at **14:32:48**
+Date & Time		     | **01/12/2022** at **09:40:01**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

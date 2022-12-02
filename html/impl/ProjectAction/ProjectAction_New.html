@@ -1,0 +1,284 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+    <form action="/ProjectActionSave" method="GET" class="form">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+             <div class="col h3">
+                    <i class="fas fa-project-diagram me-2" title="ProjectID = NEW"></i><span class="me-3">Create a new project</span>
+                </div>
+            <div class="col d-flex justify-content-end">
+              <div class="btn-group float-right">
+              
+                <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/ProjectActionSave" onclick="/ProjectActionSave" title="Save ProjectAction"><i class="fas fa-plus-square me-2"></i>Create</button>
+              
+                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print ProjectAction"><i class="fas fa-print me-2"></i></i>Print</button>
+                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+      
+            <div class="row mb-3" hidden hidden><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.SYSId_props.MsgType}}" id="SYSId" name="SYSId" aria-describedby="SYSIdHelp" placeholder="0" hidden value="new" required data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="SYSId" hidden>SYSId</label>
+              <div class="{{.SYSId_props.MsgFeedBackType}}">{{.SYSId_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  hidden><div class="col">
+         
+            <div class="form-outline">
+
+
+            
+                <input type="text" class="form-control {{.ProjectID_props.MsgType}}" id="ProjectID" name="ProjectID" aria-describedby="ProjectIDHelp" placeholder=""  value="{{.ProjectID}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="ProjectID" ><i class="fas fa-key me-2"></i>ProjectID</label>
+              <div class="{{.ProjectID_props.MsgFeedBackType}}">{{.ProjectID_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+            
+            <input type="text" class="form-control" id="OriginID" name="OriginID" aria-describedby="NameHelp" placeholder=""  value="{{.OriginID}}" required data-mdb-input-mask="" hidden>
+
+            <select id="OriginIDDisplay" name="OriginIDDisplay" class="select" data-mdb-filter="true"  required disabled>
+                {{range .OriginID_lookup}}<option value="{{.ID}}" {{if eq .ID $.OriginID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="OriginIDDisplay" >Origin</label>
+            <div class="{{.OriginID_props.MsgFeedBackType}}">{{.OriginID_props.MsgMessage}}</div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <select id="ProjectStateID" name="ProjectStateID" class="select" data-mdb-filter="true"  >
+                {{range .ProjectStateID_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectStateID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ProjectStateID" >Status</label>
+            <div class="{{.ProjectStateID_props.MsgFeedBackType}}">{{.ProjectStateID_props.MsgMessage}}</div>
+                  
+          </div>
+          <div class="col">
+         
+            <select id="ProfileID" name="ProfileID" class="select" data-mdb-filter="true"  >
+                {{range .ProfileID_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProfileID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ProfileID" >Estimation Profile</label>
+            <div class="{{.ProfileID_props.MsgFeedBackType}}">{{.ProfileID_props.MsgMessage}}</div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.Name_props.MsgType}}" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""  value="{{.Name}}" required data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="Name" >Name</label>
+              <div class="{{.Name_props.MsgFeedBackType}}">{{.Name_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <textarea class="form-control {{.Description_props.MsgType}}" id="Description" name="Description" aria-describedby="DescriptionHelp" placeholder=""   value="{{.Description}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Description}}</textarea>
+            
+           
+           
+              <label class="form-label" for="Description" >Description</label>
+              <div class="{{.Description_props.MsgFeedBackType}}">{{.Description_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="date" class="form-control {{.StartDate_props.MsgType}}" id="StartDate" name="StartDate" aria-describedby="StartDateHelp" placeholder=""  value="{{.StartDate}}"  data-mdb-input-mask="yyyy-mm-dd">
+            
+           
+           
+              <label class="form-label" for="StartDate" >Project Start Date</label>
+              <div class="{{.StartDate_props.MsgFeedBackType}}">{{.StartDate_props.MsgMessage}}</div>
+            </div>
+                  
+          </div><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="date" class="form-control {{.EndDate_props.MsgType}}" id="EndDate" name="EndDate" aria-describedby="EndDateHelp" placeholder=""  value="{{.EndDate}}"  data-mdb-input-mask="yyyy-mm-dd">
+            
+           
+           
+              <label class="form-label" for="EndDate" >Project End Date</label>
+              <div class="{{.EndDate_props.MsgFeedBackType}}">{{.EndDate_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" hidden hidden><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.SYSCreated_props.MsgType}}" id="SYSCreated" name="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" hidden value="{{.SYSCreated}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="SYSCreated" hidden>SYSCreated</label>
+              <div class="{{.SYSCreated_props.MsgFeedBackType}}">{{.SYSCreated_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" hidden hidden><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.SYSCreatedBy_props.MsgType}}" id="SYSCreatedBy" name="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" hidden value="{{.SYSCreatedBy}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="SYSCreatedBy" hidden>SYSCreatedBy</label>
+              <div class="{{.SYSCreatedBy_props.MsgFeedBackType}}">{{.SYSCreatedBy_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" hidden hidden><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.SYSCreatedHost_props.MsgType}}" id="SYSCreatedHost" name="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" hidden value="{{.SYSCreatedHost}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="SYSCreatedHost" hidden>SYSCreatedHost</label>
+              <div class="{{.SYSCreatedHost_props.MsgFeedBackType}}">{{.SYSCreatedHost_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" hidden hidden><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.SYSUpdated_props.MsgType}}" id="SYSUpdated" name="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" hidden value="{{.SYSUpdated}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="SYSUpdated" hidden>SYSUpdated</label>
+              <div class="{{.SYSUpdated_props.MsgFeedBackType}}">{{.SYSUpdated_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" hidden hidden><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.SYSUpdatedBy_props.MsgType}}" id="SYSUpdatedBy" name="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" hidden value="{{.SYSUpdatedBy}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="SYSUpdatedBy" hidden>SYSUpdatedBy</label>
+              <div class="{{.SYSUpdatedBy_props.MsgFeedBackType}}">{{.SYSUpdatedBy_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" hidden hidden><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.SYSUpdatedHost_props.MsgType}}" id="SYSUpdatedHost" name="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" hidden value="{{.SYSUpdatedHost}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="SYSUpdatedHost" hidden>SYSUpdatedHost</label>
+              <div class="{{.SYSUpdatedHost_props.MsgFeedBackType}}">{{.SYSUpdatedHost_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" hidden hidden><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.SYSDeleted_props.MsgType}}" id="SYSDeleted" name="SYSDeleted" aria-describedby="SYSDeletedHelp" placeholder="" hidden value="{{.SYSDeleted}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="SYSDeleted" hidden>SYSDeleted</label>
+              <div class="{{.SYSDeleted_props.MsgFeedBackType}}">{{.SYSDeleted_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" hidden hidden><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.SYSDeletedBy_props.MsgType}}" id="SYSDeletedBy" name="SYSDeletedBy" aria-describedby="SYSDeletedByHelp" placeholder="" hidden value="{{.SYSDeletedBy}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="SYSDeletedBy" hidden>SYSDeletedBy</label>
+              <div class="{{.SYSDeletedBy_props.MsgFeedBackType}}">{{.SYSDeletedBy_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" hidden hidden><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.SYSDeletedHost_props.MsgType}}" id="SYSDeletedHost" name="SYSDeletedHost" aria-describedby="SYSDeletedHostHelp" placeholder="" hidden value="{{.SYSDeletedHost}}"  data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="SYSDeletedHost" hidden>SYSDeletedHost</label>
+              <div class="{{.SYSDeletedHost_props.MsgFeedBackType}}">{{.SYSDeletedHost_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+     
+        </div>
+      </div>
+    </form>
+  
+{{template "userfooter" .}}
+{{template "pagefooter" .}}

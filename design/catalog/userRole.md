@@ -6,6 +6,7 @@
 |Object         |**UserRole** (userrole) |
 |Endpoint 	    |**/UserRole...** [^1]|
 |Endpoint Query |**Id**|
+|REST API|**/API/UserRole/**|
 Glyph|**fas fa-users-cog** ()
 Friendly Name|**User Roles**|
 |For Project    |github.com/mt1976/ebEstimates/|
@@ -61,6 +62,7 @@ SQL Table Key | **Id**
 | Type | Artifact | Path|
 | :--: | -- | -- |
 | code | **application** | /application/userRole_core.go |
+| code | **api** | /application/userRole_api.go |
 | code | **dao** | /dao/userRole_core.go |
 | code | **datamodel** | /datamodel/userRole_core.go |
 | code | **menu** | /design/menu/userRole.json |
@@ -74,7 +76,7 @@ SQL Table Key | **Id**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **27/11/2022** at **20:46:15**
+Date & Time		     | **01/12/2022** at **09:40:04**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

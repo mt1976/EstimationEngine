@@ -78,6 +78,7 @@ SQL Table Key | **estimationSessionID**
 |**TrackerID**|String|false|true|false|false|||||Y|trackerID||false|false|false|text||
 |**EstRef**|String|false|true|false|false|||||Y|estRef||false|false|false|text||
 |**ExtRef**|String|false|true|false|false|||||Y|extRef||false|false|false|text||
+|**SYSActivity**|String|false|true|false|false|||||NH|_activity||false|false|true|text||
 |**Origin**|String|false|false|true|false|||||N|||false|true|false|text||
 |**OriginStateID**|String|false|false|true|false|||||N|||false|true|false|text||
 |**OriginState**|String|false|false|true|false|||||N|||false|true|false|text||
@@ -123,7 +124,7 @@ SQL Table Key | **estimationSessionID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **28/11/2022** at **18:56:33**
+Date & Time		     | **01/12/2022** at **09:40:00**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

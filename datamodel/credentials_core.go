@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 27/11/2022 at 20:46:13
+// Date & Time		    : 01/12/2022 at 09:40:00
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -43,10 +43,6 @@ Brand       string
 Brand_props FieldProperties
 SYSCreated       string
 SYSCreated_props FieldProperties
-SYSWho       string
-SYSWho_props FieldProperties
-SYSHost       string
-SYSHost_props FieldProperties
 SYSUpdated       string
 SYSUpdated_props FieldProperties
 SYSCreatedBy       string
@@ -61,6 +57,14 @@ State       string
 State_props FieldProperties
 Notes       string
 Notes_props FieldProperties
+SYSDeleted       string
+SYSDeleted_props FieldProperties
+SYSDeletedBy       string
+SYSDeletedBy_props FieldProperties
+SYSDeletedHost       string
+SYSDeletedHost_props FieldProperties
+SYSActivity       string
+SYSActivity_props FieldProperties
  // Any lookups will be added below
 
 
@@ -79,9 +83,11 @@ RoleType_lookup []Lookup_Item
 
 
 
-
-
 State_lookup []Lookup_Item
+
+
+
+
 
 
 }
@@ -130,8 +136,6 @@ const (
 	Credentials_RoleType_sql   = "RoleType" // RoleType is a String
 	Credentials_Brand_sql   = "Brand" // Brand is a String
 	Credentials_SYSCreated_sql   = "_created" // SYSCreated is a String
-	Credentials_SYSWho_sql   = "_who" // SYSWho is a String
-	Credentials_SYSHost_sql   = "_host" // SYSHost is a String
 	Credentials_SYSUpdated_sql   = "_updated" // SYSUpdated is a String
 	Credentials_SYSCreatedBy_sql   = "_createdBy" // SYSCreatedBy is a String
 	Credentials_SYSCreatedHost_sql   = "_createdHost" // SYSCreatedHost is a String
@@ -139,6 +143,10 @@ const (
 	Credentials_SYSUpdatedHost_sql   = "_updatedHost" // SYSUpdatedHost is a String
 	Credentials_State_sql   = "State" // State is a String
 	Credentials_Notes_sql   = "Notes" // Notes is a String
+	Credentials_SYSDeleted_sql   = "_deleted" // SYSDeleted is a String
+	Credentials_SYSDeletedBy_sql   = "_deletedBy" // SYSDeletedBy is a String
+	Credentials_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
+	Credentials_SYSActivity_sql   = "_activity" // SYSActivity is a String
 
 	/// Definitions End
 	///
@@ -157,8 +165,6 @@ const (
 	Credentials_RoleType_scrn   = "RoleType" // RoleType is a String
 	Credentials_Brand_scrn   = "Brand" // Brand is a String
 	Credentials_SYSCreated_scrn   = "SYSCreated" // SYSCreated is a String
-	Credentials_SYSWho_scrn   = "SYSWho" // SYSWho is a String
-	Credentials_SYSHost_scrn   = "SYSHost" // SYSHost is a String
 	Credentials_SYSUpdated_scrn   = "SYSUpdated" // SYSUpdated is a String
 	Credentials_SYSCreatedBy_scrn   = "SYSCreatedBy" // SYSCreatedBy is a String
 	Credentials_SYSCreatedHost_scrn   = "SYSCreatedHost" // SYSCreatedHost is a String
@@ -166,6 +172,10 @@ const (
 	Credentials_SYSUpdatedHost_scrn   = "SYSUpdatedHost" // SYSUpdatedHost is a String
 	Credentials_State_scrn   = "State" // State is a String
 	Credentials_Notes_scrn   = "Notes" // Notes is a String
+	Credentials_SYSDeleted_scrn   = "SYSDeleted" // SYSDeleted is a String
+	Credentials_SYSDeletedBy_scrn   = "SYSDeletedBy" // SYSDeletedBy is a String
+	Credentials_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
+	Credentials_SYSActivity_scrn   = "SYSActivity" // SYSActivity is a String
 
 	/// Definitions End
 	///
@@ -191,7 +201,7 @@ type Credentials_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -220,10 +230,6 @@ type Credentials_Page struct {
 	Brand_props     FieldProperties
 	SYSCreated         string
 	SYSCreated_props     FieldProperties
-	SYSWho         string
-	SYSWho_props     FieldProperties
-	SYSHost         string
-	SYSHost_props     FieldProperties
 	SYSUpdated         string
 	SYSUpdated_props     FieldProperties
 	SYSCreatedBy         string
@@ -239,8 +245,16 @@ type Credentials_Page struct {
 	State_props     FieldProperties
 	Notes         string
 	Notes_props     FieldProperties
+	SYSDeleted         string
+	SYSDeleted_props     FieldProperties
+	SYSDeletedBy         string
+	SYSDeletedBy_props     FieldProperties
+	SYSDeletedHost         string
+	SYSDeletedHost_props     FieldProperties
+	SYSActivity         string
+	SYSActivity_props     FieldProperties
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

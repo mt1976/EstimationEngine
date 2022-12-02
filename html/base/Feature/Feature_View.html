@@ -439,6 +439,48 @@
                 
                 </div>
             </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="OffProfile" aria-describedby="OffProfileHelp" placeholder="" disabled value="{{.OffProfile}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="OffProfile">OffProfile</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="OffProfileJustification" aria-describedby="OffProfileJustificationHelp" placeholder="" disabled value="{{.OffProfileJustification}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="OffProfileJustification">OffProfileJustification</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSActivity" aria-describedby="SYSActivityHelp" placeholder="" disabled value="{{.SYSActivity}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="SYSActivity">SYSActivity</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
             
         </div>
         {{template "audit" .}}

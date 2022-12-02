@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 27/11/2022 at 20:46:13
+// Date & Time		    : 01/12/2022 at 09:40:00
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -146,7 +146,7 @@ func DocType_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.DocType
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.DocType_SYSId_scrn)
 		item.DocTypeID = r.FormValue(dm.DocType_DocTypeID_scrn)
@@ -163,7 +163,7 @@ func DocType_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSDeletedHost = r.FormValue(dm.DocType_SYSDeletedHost_scrn)
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.DocType_Store(item,r)	
 	http.Redirect(w, r, dm.DocType_Redirect, http.StatusFound)
@@ -203,7 +203,7 @@ func DocType_HandlerNew(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the DocType Page 
 func doctype_PopulatePage(rD dm.DocType, pageDetail dm.DocType_Page) dm.DocType_Page {
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.DocTypeID = rD.DocTypeID
@@ -221,7 +221,7 @@ func doctype_PopulatePage(rD dm.DocType, pageDetail dm.DocType_Page) dm.DocType_
 	
 	
 	//
-	// Automatically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -265,7 +265,7 @@ func doctype_PopulatePage(rD dm.DocType, pageDetail dm.DocType_Page) dm.DocType_
 	pageDetail.SYSDeletedHost_props = rD.SYSDeletedHost_props
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

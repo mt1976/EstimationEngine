@@ -58,6 +58,7 @@ SQL Table Key | **confidenceID**
 |**SYSDeleted**|String|false|true|false|false|||||NH|_deleted||false|false|true|text||
 |**SYSDeletedBy**|String|false|true|false|false|||||NH|_deletedBy||false|false|true|text||
 |**SYSDeletedHost**|String|false|true|false|false|||||NH|_deletedHost||false|false|true|text||
+|**Notes**|String|false|true|false|false|||||Y|notes||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -79,7 +80,7 @@ SQL Table Key | **confidenceID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **27/11/2022** at **20:46:12**
+Date & Time		     | **01/12/2022** at **09:40:00**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

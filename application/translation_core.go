@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 27/11/2022 at 20:46:15
+// Date & Time		    : 01/12/2022 at 09:40:03
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -28,7 +28,7 @@ import (
 
 //Translation_Publish annouces the endpoints available for this object
 func Translation_Publish(mux http.ServeMux) {
-	//No API
+	mux.HandleFunc(dm.Translation_Path, Translation_Handler)
 	mux.HandleFunc(dm.Translation_PathList, Translation_HandlerList)
 	mux.HandleFunc(dm.Translation_PathView, Translation_HandlerView)
 	mux.HandleFunc(dm.Translation_PathEdit, Translation_HandlerEdit)
@@ -36,7 +36,7 @@ func Translation_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Translation_PathSave, Translation_HandlerSave)
 	//Cannot Delete via GUI
 	logs.Publish("Application", dm.Translation_Title)
-    //No API
+    core.Catalog_Add(dm.Translation_Title, dm.Translation_Path, "", dm.Translation_QueryString, "Application")
 }
 
 
@@ -146,7 +146,7 @@ func Translation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Translation
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Translation_SYSId_scrn)
 		item.Id = r.FormValue(dm.Translation_Id_scrn)
@@ -164,7 +164,7 @@ func Translation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSDeletedHost = r.FormValue(dm.Translation_SYSDeletedHost_scrn)
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Translation_Store(item,r)	
 	http.Redirect(w, r, dm.Translation_Redirect, http.StatusFound)
@@ -176,7 +176,7 @@ func Translation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Translation Page 
 func translation_PopulatePage(rD dm.Translation, pageDetail dm.Translation_Page) dm.Translation_Page {
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -195,7 +195,7 @@ func translation_PopulatePage(rD dm.Translation, pageDetail dm.Translation_Page)
 	
 	
 	//
-	// Automatically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -242,7 +242,7 @@ func translation_PopulatePage(rD dm.Translation, pageDetail dm.Translation_Page)
 	pageDetail.SYSDeletedHost_props = rD.SYSDeletedHost_props
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

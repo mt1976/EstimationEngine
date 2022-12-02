@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 27/11/2022 at 20:46:14
+// Date & Time		    : 01/12/2022 at 09:40:01
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -146,7 +146,7 @@ func OriginState_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.OriginState
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.OriginState_SYSId_scrn)
 		item.OriginStateID = r.FormValue(dm.OriginState_OriginStateID_scrn)
@@ -163,7 +163,7 @@ func OriginState_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSDeletedHost = r.FormValue(dm.OriginState_SYSDeletedHost_scrn)
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.OriginState_Store(item,r)	
 	http.Redirect(w, r, dm.OriginState_Redirect, http.StatusFound)
@@ -203,7 +203,7 @@ func OriginState_HandlerNew(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the OriginState Page 
 func originstate_PopulatePage(rD dm.OriginState, pageDetail dm.OriginState_Page) dm.OriginState_Page {
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.OriginStateID = rD.OriginStateID
@@ -221,7 +221,7 @@ func originstate_PopulatePage(rD dm.OriginState, pageDetail dm.OriginState_Page)
 	
 	
 	//
-	// Automatically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -265,7 +265,7 @@ func originstate_PopulatePage(rD dm.OriginState, pageDetail dm.OriginState_Page)
 	pageDetail.SYSDeletedHost_props = rD.SYSDeletedHost_props
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

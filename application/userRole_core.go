@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 27/11/2022 at 20:46:15
+// Date & Time		    : 01/12/2022 at 09:40:04
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -28,7 +28,7 @@ import (
 
 //UserRole_Publish annouces the endpoints available for this object
 func UserRole_Publish(mux http.ServeMux) {
-	//No API
+	mux.HandleFunc(dm.UserRole_Path, UserRole_Handler)
 	mux.HandleFunc(dm.UserRole_PathList, UserRole_HandlerList)
 	mux.HandleFunc(dm.UserRole_PathView, UserRole_HandlerView)
 	mux.HandleFunc(dm.UserRole_PathEdit, UserRole_HandlerEdit)
@@ -36,7 +36,7 @@ func UserRole_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.UserRole_PathSave, UserRole_HandlerSave)
 	mux.HandleFunc(dm.UserRole_PathDelete, UserRole_HandlerDelete)
 	logs.Publish("Application", dm.UserRole_Title)
-    //No API
+    core.Catalog_Add(dm.UserRole_Title, dm.UserRole_Path, "", dm.UserRole_QueryString, "Application")
 }
 
 
@@ -146,7 +146,7 @@ func UserRole_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.UserRole
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.UserRole_SYSId_scrn)
 		item.Id = r.FormValue(dm.UserRole_Id_scrn)
@@ -162,7 +162,7 @@ func UserRole_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSDeletedHost = r.FormValue(dm.UserRole_SYSDeletedHost_scrn)
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.UserRole_Store(item,r)	
 	http.Redirect(w, r, dm.UserRole_Redirect, http.StatusFound)
@@ -219,7 +219,7 @@ func UserRole_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the UserRole Page 
 func userrole_PopulatePage(rD dm.UserRole, pageDetail dm.UserRole_Page) dm.UserRole_Page {
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -236,7 +236,7 @@ func userrole_PopulatePage(rD dm.UserRole, pageDetail dm.UserRole_Page) dm.UserR
 	
 	
 	//
-	// Automatically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -277,7 +277,7 @@ func userrole_PopulatePage(rD dm.UserRole, pageDetail dm.UserRole_Page) dm.UserR
 	pageDetail.SYSDeletedHost_props = rD.SYSDeletedHost_props
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

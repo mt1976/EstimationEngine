@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 28/11/2022 at 14:32:48
+// Date & Time		    : 01/12/2022 at 09:40:01
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -79,6 +79,12 @@ Approver       string
 Approver_props FieldProperties
 Notes       string
 Notes_props FieldProperties
+OffProfile       string
+OffProfile_props FieldProperties
+OffProfileJustification       string
+OffProfileJustification_props FieldProperties
+SYSActivity       string
+SYSActivity_props FieldProperties
  // Any lookups will be added below
 
 EstimationSessionID_lookup []Lookup_Item
@@ -109,6 +115,9 @@ ConfidenceID_lookup []Lookup_Item
 
 Developer_lookup []Lookup_Item
 Approver_lookup []Lookup_Item
+
+
+
 
 
 }
@@ -175,6 +184,9 @@ const (
 	Feature_Developer_sql   = "developer" // Developer is a String
 	Feature_Approver_sql   = "approver" // Approver is a String
 	Feature_Notes_sql   = "notes" // Notes is a String
+	Feature_OffProfile_sql   = "offProfile" // OffProfile is a String
+	Feature_OffProfileJustification_sql   = "offProfileJustification" // OffProfileJustification is a String
+	Feature_SYSActivity_sql   = "_activity" // SYSActivity is a String
 
 	/// Definitions End
 	///
@@ -211,6 +223,9 @@ const (
 	Feature_Developer_scrn   = "Developer" // Developer is a String
 	Feature_Approver_scrn   = "Approver" // Approver is a String
 	Feature_Notes_scrn   = "Notes" // Notes is a String
+	Feature_OffProfile_scrn   = "OffProfile" // OffProfile is a String
+	Feature_OffProfileJustification_scrn   = "OffProfileJustification" // OffProfileJustification is a String
+	Feature_SYSActivity_scrn   = "SYSActivity" // SYSActivity is a String
 
 	/// Definitions End
 	///
@@ -236,7 +251,7 @@ type Feature_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -304,8 +319,14 @@ type Feature_Page struct {
 	Approver_props     FieldProperties
 	Notes         string
 	Notes_props     FieldProperties
+	OffProfile         string
+	OffProfile_props     FieldProperties
+	OffProfileJustification         string
+	OffProfileJustification_props     FieldProperties
+	SYSActivity         string
+	SYSActivity_props     FieldProperties
 	// 
-	// Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

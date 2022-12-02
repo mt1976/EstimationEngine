@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 27/11/2022 at 20:46:14
+// Date & Time		    : 01/12/2022 at 09:40:02
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -146,7 +146,7 @@ func Profile_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Profile
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Profile_SYSId_scrn)
 		item.ProfileID = r.FormValue(dm.Profile_ProfileID_scrn)
@@ -176,9 +176,11 @@ func Profile_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSDeleted = r.FormValue(dm.Profile_SYSDeleted_scrn)
 		item.SYSDeletedBy = r.FormValue(dm.Profile_SYSDeletedBy_scrn)
 		item.SYSDeletedHost = r.FormValue(dm.Profile_SYSDeletedHost_scrn)
+		item.SYSActivity = r.FormValue(dm.Profile_SYSActivity_scrn)
+		item.Notes = r.FormValue(dm.Profile_Notes_scrn)
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Profile_Store(item,r)	
 	http.Redirect(w, r, dm.Profile_Redirect, http.StatusFound)
@@ -218,7 +220,7 @@ func Profile_HandlerNew(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Profile Page 
 func profile_PopulatePage(rD dm.Profile, pageDetail dm.Profile_Page) dm.Profile_Page {
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.ProfileID = rD.ProfileID
@@ -248,11 +250,17 @@ func profile_PopulatePage(rD dm.Profile, pageDetail dm.Profile_Page) dm.Profile_
 	pageDetail.SYSDeleted = rD.SYSDeleted
 	pageDetail.SYSDeletedBy = rD.SYSDeletedBy
 	pageDetail.SYSDeletedHost = rD.SYSDeletedHost
+	pageDetail.SYSActivity = rD.SYSActivity
+	pageDetail.Notes = rD.Notes
 	
 	
 	//
-	// Automatically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
+	
+	
+	
+	
 	
 	
 	
@@ -338,9 +346,11 @@ func profile_PopulatePage(rD dm.Profile, pageDetail dm.Profile_Page) dm.Profile_
 	pageDetail.SYSDeleted_props = rD.SYSDeleted_props
 	pageDetail.SYSDeletedBy_props = rD.SYSDeletedBy_props
 	pageDetail.SYSDeletedHost_props = rD.SYSDeletedHost_props
+	pageDetail.SYSActivity_props = rD.SYSActivity_props
+	pageDetail.Notes_props = rD.Notes_props
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

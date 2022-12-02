@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 27/11/2022 at 20:46:15
+// Date & Time		    : 01/12/2022 at 09:40:03
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -56,10 +56,10 @@ func ProjectState_GetByID(id string) (int, dm.ProjectState, error) {
 	_, _, projectstateItem, _ := projectstate_Fetch(tsql)
 
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, projectstateItem, nil
 }
@@ -140,10 +140,10 @@ func ProjectState_StoreSystem(r dm.ProjectState) error {
 func ProjectState_Validate(r dm.ProjectState) (error,dm.ProjectState) {
 	var err error
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -195,7 +195,7 @@ logs.Storing("ProjectState",fmt.Sprintf("%s", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.ProjectState_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.ProjectState_ProjectStateID_sql, r.ProjectStateID)
@@ -212,7 +212,7 @@ logs.Storing("ProjectState",fmt.Sprintf("%s", r))
 	ts = addData(ts, dm.ProjectState_SYSDeletedHost_sql, r.SYSDeletedHost)
 		
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.ProjectState_SQLTable)
@@ -245,7 +245,7 @@ func projectstate_Fetch(tsql string) (int, []dm.ProjectState, dm.ProjectState, e
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.ProjectState_SYSId_sql, "0")
 	   recItem.ProjectStateID  = get_String(rec, dm.ProjectState_ProjectStateID_sql, "")
@@ -277,7 +277,7 @@ func projectstate_Fetch(tsql string) (int, []dm.ProjectState, dm.ProjectState, e
 	
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -307,10 +307,10 @@ func ProjectState_New() (int, []dm.ProjectState, dm.ProjectState, error) {
 	
 
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

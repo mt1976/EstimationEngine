@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 28/11/2022 at 18:56:33
+// Date & Time		    : 01/12/2022 at 09:40:00
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -85,6 +85,8 @@ EstRef       string
 EstRef_props FieldProperties
 ExtRef       string
 ExtRef_props FieldProperties
+SYSActivity       string
+SYSActivity_props FieldProperties
 Origin       string
 Origin_props FieldProperties
 OriginStateID       string
@@ -137,6 +139,7 @@ ADOURI_props FieldProperties
 
 ProjectID_lookup []Lookup_Item
 EstimationStateID_lookup []Lookup_Item
+
 
 
 
@@ -259,6 +262,7 @@ const (
 	EstimationSession_TrackerID_sql   = "trackerID" // TrackerID is a String
 	EstimationSession_EstRef_sql   = "estRef" // EstRef is a String
 	EstimationSession_ExtRef_sql   = "extRef" // ExtRef is a String
+	EstimationSession_SYSActivity_sql   = "_activity" // SYSActivity is a String
 	EstimationSession_Origin_sql   = "Origin" // Origin is a String
 	EstimationSession_OriginStateID_sql   = "OriginStateID" // OriginStateID is a String
 	EstimationSession_OriginState_sql   = "OriginState" // OriginState is a String
@@ -322,6 +326,7 @@ const (
 	EstimationSession_TrackerID_scrn   = "TrackerID" // TrackerID is a String
 	EstimationSession_EstRef_scrn   = "EstRef" // EstRef is a String
 	EstimationSession_ExtRef_scrn   = "ExtRef" // ExtRef is a String
+	EstimationSession_SYSActivity_scrn   = "SYSActivity" // SYSActivity is a String
 	EstimationSession_Origin_scrn   = "Origin" // Origin is a String
 	EstimationSession_OriginStateID_scrn   = "OriginStateID" // OriginStateID is a String
 	EstimationSession_OriginState_scrn   = "OriginState" // OriginState is a String
@@ -371,7 +376,7 @@ type EstimationSession_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -443,6 +448,8 @@ type EstimationSession_Page struct {
 	EstRef_props     FieldProperties
 	ExtRef         string
 	ExtRef_props     FieldProperties
+	SYSActivity         string
+	SYSActivity_props     FieldProperties
 	Origin         string
 	Origin_props     FieldProperties
 	OriginStateID         string
@@ -492,7 +499,7 @@ type EstimationSession_Page struct {
 	ADOURI         string
 	ADOURI_props     FieldProperties
 	// 
-	// Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

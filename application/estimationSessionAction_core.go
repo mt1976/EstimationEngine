@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 29/11/2022 at 13:02:22
+// Date & Time		    : 01/12/2022 at 09:40:01
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -116,7 +116,7 @@ func EstimationSessionAction_HandlerSave(w http.ResponseWriter, r *http.Request)
 
 	var item dm.EstimationSessionAction
 	// START
-	// Dynamically generated 29/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.ID = r.FormValue(dm.EstimationSessionAction_ID_scrn)
 		item.EstimationSession = r.FormValue(dm.EstimationSessionAction_EstimationSession_scrn)
@@ -124,7 +124,7 @@ func EstimationSessionAction_HandlerSave(w http.ResponseWriter, r *http.Request)
 		item.Notes = r.FormValue(dm.EstimationSessionAction_Notes_scrn)
 	
 	// 
-	// Dynamically generated 29/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.EstimationSessionAction_Store(item,r)	
 	http.Redirect(w, r, dm.EstimationSessionAction_Redirect, http.StatusFound)
@@ -164,7 +164,7 @@ func EstimationSessionAction_HandlerNew(w http.ResponseWriter, r *http.Request) 
 // Builds/Popuplates the EstimationSessionAction Page 
 func estimationsessionaction_PopulatePage(rD dm.EstimationSessionAction, pageDetail dm.EstimationSessionAction_Page) dm.EstimationSessionAction_Page {
 	// START
-	// Dynamically generated 29/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.ID = rD.ID
 	pageDetail.EstimationSession = rD.EstimationSession
@@ -173,7 +173,7 @@ func estimationsessionaction_PopulatePage(rD dm.EstimationSessionAction, pageDet
 	
 	
 	//
-	// Automatically generated 29/11/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -194,7 +194,7 @@ func estimationsessionaction_PopulatePage(rD dm.EstimationSessionAction, pageDet
 	pageDetail.Notes_props = rD.Notes_props
 	
 	// 
-	// Dynamically generated 29/11/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

@@ -6,6 +6,7 @@
 |Object         |**Translation** (translation) |
 |Endpoint 	    |**/Translation...** [^1]|
 |Endpoint Query |**Message**|
+|REST API|**/API/Translation/**|
 Glyph|**fas fa-language** ()
 Friendly Name|**Message Translation**|
 |For Project    |github.com/mt1976/ebEstimates/|
@@ -63,6 +64,7 @@ SQL Table Key | **Id**
 | Type | Artifact | Path|
 | :--: | -- | -- |
 | code | **application** | /application/translation_core.go |
+| code | **api** | /application/translation_api.go |
 | code | **dao** | /dao/translation_core.go |
 | code | **datamodel** | /datamodel/translation_core.go |
 | code | **menu** | /design/menu/translation.json |
@@ -75,7 +77,7 @@ SQL Table Key | **Id**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **27/11/2022** at **20:46:15**
+Date & Time		     | **01/12/2022** at **09:40:03**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

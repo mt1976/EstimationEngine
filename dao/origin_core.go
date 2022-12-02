@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 27/11/2022 at 20:46:14
+// Date & Time		    : 01/12/2022 at 09:40:01
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -56,10 +56,10 @@ func Origin_GetByID(id string) (int, dm.Origin, error) {
 	_, _, originItem, _ := origin_Fetch(tsql)
 
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, originItem, nil
 }
@@ -140,10 +140,10 @@ func Origin_StoreSystem(r dm.Origin) error {
 func Origin_Validate(r dm.Origin) (error,dm.Origin) {
 	var err error
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -187,6 +187,7 @@ func origin_Save(r dm.Origin,usr string) error {
 
 
 
+
 	
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
@@ -201,7 +202,7 @@ logs.Storing("Origin",fmt.Sprintf("%s", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Origin_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Origin_OriginID_sql, r.OriginID)
@@ -222,9 +223,10 @@ logs.Storing("Origin",fmt.Sprintf("%s", r))
 	ts = addData(ts, dm.Origin_SYSDeleted_sql, r.SYSDeleted)
 	ts = addData(ts, dm.Origin_SYSDeletedBy_sql, r.SYSDeletedBy)
 	ts = addData(ts, dm.Origin_SYSDeletedHost_sql, r.SYSDeletedHost)
+	ts = addData(ts, dm.Origin_SYSActivity_sql, r.SYSActivity)
 		
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Origin_SQLTable)
@@ -257,7 +259,7 @@ func origin_Fetch(tsql string) (int, []dm.Origin, dm.Origin, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Origin_SYSId_sql, "0")
 	   recItem.OriginID  = get_String(rec, dm.Origin_OriginID_sql, "")
@@ -278,6 +280,7 @@ func origin_Fetch(tsql string) (int, []dm.Origin, dm.Origin, error) {
 	   recItem.SYSDeleted  = get_String(rec, dm.Origin_SYSDeleted_sql, "")
 	   recItem.SYSDeletedBy  = get_String(rec, dm.Origin_SYSDeletedBy_sql, "")
 	   recItem.SYSDeletedHost  = get_String(rec, dm.Origin_SYSDeletedHost_sql, "")
+	   recItem.SYSActivity  = get_String(rec, dm.Origin_SYSActivity_sql, "")
 	
 	// If there are fields below, create the methods in adaptor\Origin_impl.go
 	
@@ -300,8 +303,9 @@ func origin_Fetch(tsql string) (int, []dm.Origin, dm.Origin, error) {
 	
 	
 	
+	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -331,10 +335,10 @@ func Origin_New() (int, []dm.Origin, dm.Origin, error) {
 	
 
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

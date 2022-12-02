@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 28/11/2022 at 18:56:33
+// Date & Time		    : 01/12/2022 at 09:40:00
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -146,7 +146,7 @@ func EstimationSession_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.EstimationSession
 	// START
-	// Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.EstimationSession_SYSId_scrn)
 		item.EstimationSessionID = r.FormValue(dm.EstimationSession_EstimationSessionID_scrn)
@@ -182,6 +182,7 @@ func EstimationSession_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.TrackerID = r.FormValue(dm.EstimationSession_TrackerID_scrn)
 		item.EstRef = r.FormValue(dm.EstimationSession_EstRef_scrn)
 		item.ExtRef = r.FormValue(dm.EstimationSession_ExtRef_scrn)
+		item.SYSActivity = r.FormValue(dm.EstimationSession_SYSActivity_scrn)
 		item.Origin = r.FormValue(dm.EstimationSession_Origin_scrn)
 		item.OriginStateID = r.FormValue(dm.EstimationSession_OriginStateID_scrn)
 		item.OriginState = r.FormValue(dm.EstimationSession_OriginState_scrn)
@@ -208,7 +209,7 @@ func EstimationSession_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.ADOURI = r.FormValue(dm.EstimationSession_ADOURI_scrn)
 	
 	// 
-	// Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.EstimationSession_Store(item,r)	
 	http.Redirect(w, r, dm.EstimationSession_Redirect, http.StatusFound)
@@ -248,7 +249,7 @@ func EstimationSession_HandlerNew(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the EstimationSession Page 
 func estimationsession_PopulatePage(rD dm.EstimationSession, pageDetail dm.EstimationSession_Page) dm.EstimationSession_Page {
 	// START
-	// Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.EstimationSessionID = rD.EstimationSessionID
@@ -284,6 +285,7 @@ func estimationsession_PopulatePage(rD dm.EstimationSession, pageDetail dm.Estim
 	pageDetail.TrackerID = rD.TrackerID
 	pageDetail.EstRef = rD.EstRef
 	pageDetail.ExtRef = rD.ExtRef
+	pageDetail.SYSActivity = rD.SYSActivity
 	
 	pageDetail.Origin = rD.Origin
 	pageDetail.OriginStateID = rD.OriginStateID
@@ -311,7 +313,7 @@ func estimationsession_PopulatePage(rD dm.EstimationSession, pageDetail dm.Estim
 	pageDetail.ADOURI = rD.ADOURI
 	
 	//
-	// Automatically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -323,6 +325,8 @@ func estimationsession_PopulatePage(rD dm.EstimationSession, pageDetail dm.Estim
 	
 	
 	pageDetail.EstimationStateID_lookup = dao.EstimationState_GetLookup()
+	
+	
 	
 	
 	
@@ -468,6 +472,7 @@ func estimationsession_PopulatePage(rD dm.EstimationSession, pageDetail dm.Estim
 	pageDetail.TrackerID_props = rD.TrackerID_props
 	pageDetail.EstRef_props = rD.EstRef_props
 	pageDetail.ExtRef_props = rD.ExtRef_props
+	pageDetail.SYSActivity_props = rD.SYSActivity_props
 	pageDetail.Origin_props = rD.Origin_props
 	pageDetail.OriginStateID_props = rD.OriginStateID_props
 	pageDetail.OriginState_props = rD.OriginState_props
@@ -494,7 +499,7 @@ func estimationsession_PopulatePage(rD dm.EstimationSession, pageDetail dm.Estim
 	pageDetail.ADOURI_props = rD.ADOURI_props
 	
 	// 
-	// Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

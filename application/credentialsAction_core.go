@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 27/11/2022 at 20:46:13
+// Date & Time		    : 01/12/2022 at 09:40:00
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -116,7 +116,7 @@ func CredentialsAction_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.CredentialsAction
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.ID = r.FormValue(dm.CredentialsAction_ID_scrn)
 		item.User = r.FormValue(dm.CredentialsAction_User_scrn)
@@ -124,7 +124,7 @@ func CredentialsAction_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Notes = r.FormValue(dm.CredentialsAction_Notes_scrn)
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.CredentialsAction_Store(item,r)	
 	http.Redirect(w, r, dm.CredentialsAction_Redirect, http.StatusFound)
@@ -164,7 +164,7 @@ func CredentialsAction_HandlerNew(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the CredentialsAction Page 
 func credentialsaction_PopulatePage(rD dm.CredentialsAction, pageDetail dm.CredentialsAction_Page) dm.CredentialsAction_Page {
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.ID = rD.ID
 	pageDetail.User = rD.User
@@ -173,7 +173,7 @@ func credentialsaction_PopulatePage(rD dm.CredentialsAction, pageDetail dm.Crede
 	
 	
 	//
-	// Automatically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -194,7 +194,7 @@ func credentialsaction_PopulatePage(rD dm.CredentialsAction, pageDetail dm.Crede
 	pageDetail.Notes_props = rD.Notes_props
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

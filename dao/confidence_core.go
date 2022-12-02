@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 27/11/2022 at 20:46:12
+// Date & Time		    : 01/12/2022 at 09:40:00
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -56,10 +56,10 @@ func Confidence_GetByID(id string) (int, dm.Confidence, error) {
 	_, _, confidenceItem, _ := confidence_Fetch(tsql)
 
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, confidenceItem, nil
 }
@@ -140,10 +140,10 @@ func Confidence_StoreSystem(r dm.Confidence) error {
 func Confidence_Validate(r dm.Confidence) (error,dm.Confidence) {
 	var err error
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -182,6 +182,7 @@ func confidence_Save(r dm.Confidence,usr string) error {
 
 
 
+
 	
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
@@ -196,7 +197,7 @@ logs.Storing("Confidence",fmt.Sprintf("%s", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Confidence_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Confidence_ConfidenceID_sql, r.ConfidenceID)
@@ -212,9 +213,10 @@ logs.Storing("Confidence",fmt.Sprintf("%s", r))
 	ts = addData(ts, dm.Confidence_SYSDeleted_sql, r.SYSDeleted)
 	ts = addData(ts, dm.Confidence_SYSDeletedBy_sql, r.SYSDeletedBy)
 	ts = addData(ts, dm.Confidence_SYSDeletedHost_sql, r.SYSDeletedHost)
+	ts = addData(ts, dm.Confidence_Notes_sql, r.Notes)
 		
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Confidence_SQLTable)
@@ -247,7 +249,7 @@ func confidence_Fetch(tsql string) (int, []dm.Confidence, dm.Confidence, error) 
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Confidence_SYSId_sql, "0")
 	   recItem.ConfidenceID  = get_String(rec, dm.Confidence_ConfidenceID_sql, "")
@@ -263,6 +265,7 @@ func confidence_Fetch(tsql string) (int, []dm.Confidence, dm.Confidence, error) 
 	   recItem.SYSDeleted  = get_String(rec, dm.Confidence_SYSDeleted_sql, "")
 	   recItem.SYSDeletedBy  = get_String(rec, dm.Confidence_SYSDeletedBy_sql, "")
 	   recItem.SYSDeletedHost  = get_String(rec, dm.Confidence_SYSDeletedHost_sql, "")
+	   recItem.Notes  = get_String(rec, dm.Confidence_Notes_sql, "")
 	
 	// If there are fields below, create the methods in adaptor\Confidence_impl.go
 	
@@ -280,8 +283,9 @@ func confidence_Fetch(tsql string) (int, []dm.Confidence, dm.Confidence, error) 
 	
 	
 	
+	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -311,10 +315,10 @@ func Confidence_New() (int, []dm.Confidence, dm.Confidence, error) {
 	
 
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

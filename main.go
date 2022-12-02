@@ -72,6 +72,7 @@ func main() {
 	application.Inbox_Publish_Impl(*mux)
 	application.UserRole_Publish(*mux)
 	// User Defined EndPoints
+	application.Resource_Publish(*mux)
 	application.Confidence_Publish(*mux)
 	application.DocType_Publish(*mux)
 	application.EstimationSession_Publish(*mux)
@@ -82,6 +83,8 @@ func main() {
 	application.ExternalMessage_Publish(*mux)
 	application.Feature_Publish(*mux)
 	application.Feature_Publish_Impl(*mux)
+	application.FeatureNew_Publish(*mux)
+	application.FeatureNew_Publish_Impl(*mux)
 	application.Origin_Publish(*mux)
 
 	application.OriginState_Publish(*mux)
@@ -89,6 +92,7 @@ func main() {
 	application.Project_Publish(*mux)
 	application.Project_Publish_Impl(*mux)
 	application.ProjectState_Publish(*mux)
+	application.ProjectAction_Publish_Impl(*mux)
 
 	// End of Endpoints
 

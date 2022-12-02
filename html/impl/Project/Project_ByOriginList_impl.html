@@ -1,38 +1,82 @@
-{{template "header" .}}
-{{template "bodydefinition" .}}
+{{template "header" .}} {{template "bodydefinition" .}}
 
-  <div class="container-fluid" style="margin-top: 4.5rem;">
-<h1>{{.Origin.FullName}} - Active Projects ({{.ItemsOnPage}})</h1>
-<table id="DataTable" class="table  align-middle mb-0 table-hover table-responsive bg-white" style="width:100%">
-  <thead class="table-primary">
-    <tr class="fs-6">
-      <th>Name</th>
-      <th>State</th>
-      <th>Profile</th>
-      <th>State</th>
-      <th>ACTIONS</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{range .ItemList}}
-    <tr class="fs-6">
-      <td class="fw-bold">{{.Name}}</td>
-      <td>{{.ProjectStateID}}</td>
-      <td>{{.ProfileID}}</td>
-      <td></td>
-      <td>
-        <a href="/EstimationSessionByProject/?ProjectID={{.ProjectID}}" class="btn btn-sm btn-outline-primary" role="button" aria-pressed="true">Estimates</a>
-        <a href="/ProjectView/?ProjectID={{.ProjectID}}" class="btn btn-sm btn-outline-info" role="button" aria-pressed="true">Details</a>
-        <a href="/origin/{{.ProjectID}}/delete" class="btn btn-sm btn-outline-danger" role="button" aria-pressed="true" disabled>Deactivate</a>
-      </td>
-    </tr>
-    {{end}}
-  </tbody>
-<ol>
-</ol>
+<div class="container-fluid" style="margin-top: 4.5rem">
+  <h1>{{.Origin.FullName}} - Active Projects ({{.ItemsOnPage}})</h1>
+
+  <form
+    action="/ProjectActionNew?OriginID={{.Origin.Code}}"
+    method="POST"
+    class="form"
+  >
+    <div class="float-end mb-3">
+      <button
+        type="submit"
+        value=""
+        class="btn btn-danger"
+        method="GET"
+        formaction="/ProjectActionNew?OriginID={{.Origin.Code}}"
+        onclick="/ProjectActionNew?OriginID={{.Origin.Code}}"
+        title="Create a New Feature"
+      >
+        <i class="fas fa-plus-square me-2"></i>Project
+      </button>
+                          <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
 
     </div>
 
-  {{template "userfooter" .}}
-{{template "pagefooter" .}}
+    <table
+      id="DataTable"
+      class="table table-sm align-middle mb-0 table-hover table-responsive bg-white"
+      style="width: 100%"
+    >
+      <thead class="table-primary text-center">
+        <tr class="fs-6">
+          <th>Name</th>
+          <th>Status</th>
+          <th>Profile</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>ACTIONS</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{range .ItemList}}
+        <tr class="fs-6">
+          <td class="text-primary">{{.Name}}</td>
+          <td class="text-center">{{.ProjectStateID}}</td>
+          <td class="text-center">{{.ProfileID}}</td>
+          <td class="text-center"><input type="date" id="" name="" value="" min="" max="{{.StartDate}}" disabled></td>
+          <td class="text-center"><input type="date" id="" name="" value="" min="" max="{{.EndDate}}" disabled></td>
+          <td class="text-center">
 
+
+      <div class="dropdown">
+  <a
+    class="btn btn-outline-primary dropdown-toggle"
+    href="#"
+    role="button"
+    id="dropdownMenuLink"
+    data-mdb-toggle="dropdown"
+    aria-expanded="false"
+  >
+    ...
+  </a>
+
+
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li>        <a href="/EstimationSessionByProject/?ProjectID={{.ProjectID}}" class="dropdown-item text-primary" role="button" aria-pressed="true"><i class="fas fa-calculator text-primary fa-fw me-2"></i>Estimates</a></li>
+    <li>        <a href="/ProjectView/?ProjectID={{.ProjectID}}" class="dropdown-item text-info" role="button" aria-pressed="true"><i class="fas fa-eye text-info fa-fw me-2"></i>Details</a> </li>
+    <li>        <a href="/origin/---/delete" class="dropdown-item text-warning" role="button" aria-pressed="true" disabled><i class="fas fa-trash text-warning fa-fw me-2"></i>Remove</a></li>
+  </ul>
+
+</div>
+
+
+          </td>
+        </tr>
+        {{end}}
+      </tbody>
+    </table>
+  </form>
+  {{template "userfooter" .}} {{template "pagefooter" .}}
+</div>

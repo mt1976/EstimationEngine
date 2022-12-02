@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 27/11/2022 at 20:46:14
+// Date & Time		    : 01/12/2022 at 09:40:01
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -146,7 +146,7 @@ func Origin_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Origin
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Origin_SYSId_scrn)
 		item.OriginID = r.FormValue(dm.Origin_OriginID_scrn)
@@ -167,9 +167,10 @@ func Origin_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSDeleted = r.FormValue(dm.Origin_SYSDeleted_scrn)
 		item.SYSDeletedBy = r.FormValue(dm.Origin_SYSDeletedBy_scrn)
 		item.SYSDeletedHost = r.FormValue(dm.Origin_SYSDeletedHost_scrn)
+		item.SYSActivity = r.FormValue(dm.Origin_SYSActivity_scrn)
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Origin_Store(item,r)	
 	http.Redirect(w, r, dm.Origin_Redirect, http.StatusFound)
@@ -209,7 +210,7 @@ func Origin_HandlerNew(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Origin Page 
 func origin_PopulatePage(rD dm.Origin, pageDetail dm.Origin_Page) dm.Origin_Page {
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.OriginID = rD.OriginID
@@ -230,10 +231,11 @@ func origin_PopulatePage(rD dm.Origin, pageDetail dm.Origin_Page) dm.Origin_Page
 	pageDetail.SYSDeleted = rD.SYSDeleted
 	pageDetail.SYSDeletedBy = rD.SYSDeletedBy
 	pageDetail.SYSDeletedHost = rD.SYSDeletedHost
+	pageDetail.SYSActivity = rD.SYSActivity
 	
 	
 	//
-	// Automatically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -245,6 +247,8 @@ func origin_PopulatePage(rD dm.Origin, pageDetail dm.Origin_Page) dm.Origin_Page
 	
 	
 	pageDetail.DocTypeID_lookup = dao.DocType_GetLookup()
+	
+	
 	
 	
 	
@@ -297,9 +301,10 @@ func origin_PopulatePage(rD dm.Origin, pageDetail dm.Origin_Page) dm.Origin_Page
 	pageDetail.SYSDeleted_props = rD.SYSDeleted_props
 	pageDetail.SYSDeletedBy_props = rD.SYSDeletedBy_props
 	pageDetail.SYSDeletedHost_props = rD.SYSDeletedHost_props
+	pageDetail.SYSActivity_props = rD.SYSActivity_props
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

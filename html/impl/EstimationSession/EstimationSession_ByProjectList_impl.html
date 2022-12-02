@@ -1,0 +1,72 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+
+  <div class="container-fluid" style="margin-top: 4.5rem;">
+<h1>{{.Origin.FullName}} - {{.Project.Name}} - Estimations ({{.ItemsOnPage}})</h1>
+
+<form action="/EstimationSessionSetup/?ProjectID={{.Project.ProjectID}}" method="POST" class="form">
+<div class="float-end mb-3">
+  <button type="submit" value="" class="btn btn-danger me-1" method="GET" formaction="/EstimationSessionSetup/?ProjectID={{.Project.ProjectID}}" onclick="/EstimationSessionSetup/?ProjectID={{.Project.ProjectID}}" title="Create a Estimate"><i class="fas fa-plus-square me-2"></i>Estimation</button>
+                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
+
+</div>
+
+<table id="DataTable" class="table table-sm align-middle mb-0 table-hover table-responsive bg-white" style="width:100%">
+  <thead class="table-primary">
+    <tr class="fs-6">
+      <th>Name</th>
+      <th>State</th>
+      <th>Support Uplift</th>
+      <th>Total</th>
+      <th>LINKS</th>
+      <th>ACTIONS</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{range .ItemList}}
+    <tr class="fs-6">
+      <td class="text-primary">{{.Name}}</td>
+      <td>{{.EstimationStateID}}</td>
+      <td>&#163;&nbsp;{{.SupportUplift}}</td>
+      <td>&#163;&nbsp;{{.Total}}</td>
+      <td>        <a href="/EstimationSessionView/?EstimationSessionID={{.EstimationSessionID}}" class="btn btn-sm btn-outline-dark disabled" role="button" aria-pressed="true"><i class="fab fa-microsoft me-1" aria-hidden="true"></i>Devops</a>
+        <a href="/EstimationSessionView/?EstimationSessionID={{.EstimationSessionID}}" class="btn btn-sm btn-outline-dark disabled" role="button" aria-pressed="true"><i class="fas fa-ticket me-1"></i>Freshdesk</a>
+        </td>
+      <td>
+
+      <div class="dropdown">
+  <a
+    class="btn btn-outline-primary dropdown-toggle"
+    href="#"
+    role="button"
+    id="dropdownMenuLink"
+    data-mdb-toggle="dropdown"
+    aria-expanded="false"
+  >
+    ...
+  </a>
+
+  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <li>        <a href="/FeatureByEstimationSession/?EstimationSessionID={{.EstimationSessionID}}" class="dropdown-item text-primary" role="button" aria-pressed="true"><i class="fas fa-tasks text-primary fa-fw me-2"></i>Features</a>
+</li>
+    <li>        <a href="/EstimationSessionView/?EstimationSessionID={{.EstimationSessionID}}" class="dropdown-item text-info" role="button" aria-pressed="true"><i class="fas fa-eye text-info fa-fw me-2"></i>Details</a>
+</li>
+    <li>        <a href="/EstimationSessionFormatted/?EstimationSessionID={{.EstimationSessionID}}" class="dropdown-item text-info" role="button" aria-pressed="true"><i class="fas fa-file-invoice-dollar text-info fa-fw me-2"></i>RSC View</a>
+</li>
+    <li>        <a href="/origin/TODO/delete" class="dropdown-item text-warning" role="button" aria-pressed="true" disabled><i class="fas fa-trash text-warning fa-fw me-2"></i>Remove</a>
+</li>
+  </ul>
+</div>
+
+      </td>
+
+    </tr>
+    {{end}}
+  </tbody>
+</table>
+
+    </div>
+
+  {{template "userfooter" .}}
+{{template "pagefooter" .}}
+

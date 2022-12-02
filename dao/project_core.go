@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 27/11/2022 at 20:46:14
+// Date & Time		    : 01/12/2022 at 09:40:02
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -56,10 +56,10 @@ func Project_GetByID(id string) (int, dm.Project, error) {
 	_, _, projectItem, _ := project_Fetch(tsql)
 
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, projectItem, nil
 }
@@ -140,10 +140,10 @@ func Project_StoreSystem(r dm.Project) error {
 func Project_Validate(r dm.Project) (error,dm.Project) {
 	var err error
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -186,6 +186,7 @@ func project_Save(r dm.Project,usr string) error {
 
 
 
+
 	
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
@@ -200,7 +201,7 @@ logs.Storing("Project",fmt.Sprintf("%s", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Project_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Project_ProjectID_sql, r.ProjectID)
@@ -220,9 +221,10 @@ logs.Storing("Project",fmt.Sprintf("%s", r))
 	ts = addData(ts, dm.Project_SYSDeleted_sql, r.SYSDeleted)
 	ts = addData(ts, dm.Project_SYSDeletedBy_sql, r.SYSDeletedBy)
 	ts = addData(ts, dm.Project_SYSDeletedHost_sql, r.SYSDeletedHost)
+	ts = addData(ts, dm.Project_SYSActivity_sql, r.SYSActivity)
 		
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Project_SQLTable)
@@ -255,7 +257,7 @@ func project_Fetch(tsql string) (int, []dm.Project, dm.Project, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Project_SYSId_sql, "0")
 	   recItem.ProjectID  = get_String(rec, dm.Project_ProjectID_sql, "")
@@ -275,6 +277,7 @@ func project_Fetch(tsql string) (int, []dm.Project, dm.Project, error) {
 	   recItem.SYSDeleted  = get_String(rec, dm.Project_SYSDeleted_sql, "")
 	   recItem.SYSDeletedBy  = get_String(rec, dm.Project_SYSDeletedBy_sql, "")
 	   recItem.SYSDeletedHost  = get_String(rec, dm.Project_SYSDeletedHost_sql, "")
+	   recItem.SYSActivity  = get_String(rec, dm.Project_SYSActivity_sql, "")
 	
 	// If there are fields below, create the methods in adaptor\Project_impl.go
 	
@@ -296,8 +299,9 @@ func project_Fetch(tsql string) (int, []dm.Project, dm.Project, error) {
 	
 	
 	
+	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -327,10 +331,10 @@ func Project_New() (int, []dm.Project, dm.Project, error) {
 	
 
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

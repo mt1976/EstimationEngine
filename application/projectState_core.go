@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 27/11/2022 at 20:46:15
+// Date & Time		    : 01/12/2022 at 09:40:03
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -146,7 +146,7 @@ func ProjectState_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.ProjectState
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.ProjectState_SYSId_scrn)
 		item.ProjectStateID = r.FormValue(dm.ProjectState_ProjectStateID_scrn)
@@ -163,7 +163,7 @@ func ProjectState_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSDeletedHost = r.FormValue(dm.ProjectState_SYSDeletedHost_scrn)
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.ProjectState_Store(item,r)	
 	http.Redirect(w, r, dm.ProjectState_Redirect, http.StatusFound)
@@ -203,7 +203,7 @@ func ProjectState_HandlerNew(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the ProjectState Page 
 func projectstate_PopulatePage(rD dm.ProjectState, pageDetail dm.ProjectState_Page) dm.ProjectState_Page {
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.ProjectStateID = rD.ProjectStateID
@@ -221,7 +221,7 @@ func projectstate_PopulatePage(rD dm.ProjectState, pageDetail dm.ProjectState_Pa
 	
 	
 	//
-	// Automatically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -265,7 +265,7 @@ func projectstate_PopulatePage(rD dm.ProjectState, pageDetail dm.ProjectState_Pa
 	pageDetail.SYSDeletedHost_props = rD.SYSDeletedHost_props
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

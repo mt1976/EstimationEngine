@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 27/11/2022 at 20:46:13
+// Date & Time		    : 01/12/2022 at 09:40:00
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -146,7 +146,7 @@ func Credentials_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Credentials
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Credentials_SYSId_scrn)
 		item.Id = r.FormValue(dm.Credentials_Id_scrn)
@@ -161,8 +161,6 @@ func Credentials_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.RoleType = r.FormValue(dm.Credentials_RoleType_scrn)
 		item.Brand = r.FormValue(dm.Credentials_Brand_scrn)
 		item.SYSCreated = r.FormValue(dm.Credentials_SYSCreated_scrn)
-		item.SYSWho = r.FormValue(dm.Credentials_SYSWho_scrn)
-		item.SYSHost = r.FormValue(dm.Credentials_SYSHost_scrn)
 		item.SYSUpdated = r.FormValue(dm.Credentials_SYSUpdated_scrn)
 		item.SYSCreatedBy = r.FormValue(dm.Credentials_SYSCreatedBy_scrn)
 		item.SYSCreatedHost = r.FormValue(dm.Credentials_SYSCreatedHost_scrn)
@@ -170,9 +168,13 @@ func Credentials_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSUpdatedHost = r.FormValue(dm.Credentials_SYSUpdatedHost_scrn)
 		item.State = r.FormValue(dm.Credentials_State_scrn)
 		item.Notes = r.FormValue(dm.Credentials_Notes_scrn)
+		item.SYSDeleted = r.FormValue(dm.Credentials_SYSDeleted_scrn)
+		item.SYSDeletedBy = r.FormValue(dm.Credentials_SYSDeletedBy_scrn)
+		item.SYSDeletedHost = r.FormValue(dm.Credentials_SYSDeletedHost_scrn)
+		item.SYSActivity = r.FormValue(dm.Credentials_SYSActivity_scrn)
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Credentials_Store(item,r)	
 	http.Redirect(w, r, dm.Credentials_Redirect, http.StatusFound)
@@ -229,7 +231,7 @@ func Credentials_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Credentials Page 
 func credentials_PopulatePage(rD dm.Credentials, pageDetail dm.Credentials_Page) dm.Credentials_Page {
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -244,8 +246,6 @@ func credentials_PopulatePage(rD dm.Credentials, pageDetail dm.Credentials_Page)
 	pageDetail.RoleType = rD.RoleType
 	pageDetail.Brand = rD.Brand
 	pageDetail.SYSCreated = rD.SYSCreated
-	pageDetail.SYSWho = rD.SYSWho
-	pageDetail.SYSHost = rD.SYSHost
 	pageDetail.SYSUpdated = rD.SYSUpdated
 	pageDetail.SYSCreatedBy = rD.SYSCreatedBy
 	pageDetail.SYSCreatedHost = rD.SYSCreatedHost
@@ -253,10 +253,14 @@ func credentials_PopulatePage(rD dm.Credentials, pageDetail dm.Credentials_Page)
 	pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
 	pageDetail.State = rD.State
 	pageDetail.Notes = rD.Notes
+	pageDetail.SYSDeleted = rD.SYSDeleted
+	pageDetail.SYSDeletedBy = rD.SYSDeletedBy
+	pageDetail.SYSDeletedHost = rD.SYSDeletedHost
+	pageDetail.SYSActivity = rD.SYSActivity
 	
 	
 	//
-	// Automatically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -298,11 +302,15 @@ func credentials_PopulatePage(rD dm.Credentials, pageDetail dm.Credentials_Page)
 	
 	
 	
-	
-	
-	
-	
 	pageDetail.State_lookup = dao.StubLists_Get("credentialStates")
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -320,8 +328,6 @@ func credentials_PopulatePage(rD dm.Credentials, pageDetail dm.Credentials_Page)
 	pageDetail.RoleType_props = rD.RoleType_props
 	pageDetail.Brand_props = rD.Brand_props
 	pageDetail.SYSCreated_props = rD.SYSCreated_props
-	pageDetail.SYSWho_props = rD.SYSWho_props
-	pageDetail.SYSHost_props = rD.SYSHost_props
 	pageDetail.SYSUpdated_props = rD.SYSUpdated_props
 	pageDetail.SYSCreatedBy_props = rD.SYSCreatedBy_props
 	pageDetail.SYSCreatedHost_props = rD.SYSCreatedHost_props
@@ -329,9 +335,13 @@ func credentials_PopulatePage(rD dm.Credentials, pageDetail dm.Credentials_Page)
 	pageDetail.SYSUpdatedHost_props = rD.SYSUpdatedHost_props
 	pageDetail.State_props = rD.State_props
 	pageDetail.Notes_props = rD.Notes_props
+	pageDetail.SYSDeleted_props = rD.SYSDeleted_props
+	pageDetail.SYSDeletedBy_props = rD.SYSDeletedBy_props
+	pageDetail.SYSDeletedHost_props = rD.SYSDeletedHost_props
+	pageDetail.SYSActivity_props = rD.SYSActivity_props
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

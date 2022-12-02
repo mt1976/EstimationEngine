@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 27/11/2022 at 20:46:14
+// Date & Time		    : 01/12/2022 at 09:40:02
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -73,7 +73,13 @@ SYSDeletedBy       string
 SYSDeletedBy_props FieldProperties
 SYSDeletedHost       string
 SYSDeletedHost_props FieldProperties
+SYSActivity       string
+SYSActivity_props FieldProperties
+Notes       string
+Notes_props FieldProperties
  // Any lookups will be added below
+
+
 
 
 
@@ -163,6 +169,8 @@ const (
 	Profile_SYSDeleted_sql   = "_deleted" // SYSDeleted is a String
 	Profile_SYSDeletedBy_sql   = "_deletedBy" // SYSDeletedBy is a String
 	Profile_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
+	Profile_SYSActivity_sql   = "_activity" // SYSActivity is a String
+	Profile_Notes_sql   = "notes" // Notes is a String
 
 	/// Definitions End
 	///
@@ -196,6 +204,8 @@ const (
 	Profile_SYSDeleted_scrn   = "SYSDeleted" // SYSDeleted is a String
 	Profile_SYSDeletedBy_scrn   = "SYSDeletedBy" // SYSDeletedBy is a String
 	Profile_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
+	Profile_SYSActivity_scrn   = "SYSActivity" // SYSActivity is a String
+	Profile_Notes_scrn   = "Notes" // Notes is a String
 
 	/// Definitions End
 	///
@@ -221,7 +231,7 @@ type Profile_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -279,8 +289,12 @@ type Profile_Page struct {
 	SYSDeletedBy_props     FieldProperties
 	SYSDeletedHost         string
 	SYSDeletedHost_props     FieldProperties
+	SYSActivity         string
+	SYSActivity_props     FieldProperties
+	Notes         string
+	Notes_props     FieldProperties
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

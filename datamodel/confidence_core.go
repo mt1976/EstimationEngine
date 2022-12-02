@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 27/11/2022 at 20:46:12
+// Date & Time		    : 01/12/2022 at 09:40:00
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,10 @@ SYSDeletedBy       string
 SYSDeletedBy_props FieldProperties
 SYSDeletedHost       string
 SYSDeletedHost_props FieldProperties
+Notes       string
+Notes_props FieldProperties
  // Any lookups will be added below
+
 
 
 
@@ -107,6 +110,7 @@ const (
 	Confidence_SYSDeleted_sql   = "_deleted" // SYSDeleted is a String
 	Confidence_SYSDeletedBy_sql   = "_deletedBy" // SYSDeletedBy is a String
 	Confidence_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
+	Confidence_Notes_sql   = "notes" // Notes is a String
 
 	/// Definitions End
 	///
@@ -126,6 +130,7 @@ const (
 	Confidence_SYSDeleted_scrn   = "SYSDeleted" // SYSDeleted is a String
 	Confidence_SYSDeletedBy_scrn   = "SYSDeletedBy" // SYSDeletedBy is a String
 	Confidence_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
+	Confidence_Notes_scrn   = "Notes" // Notes is a String
 
 	/// Definitions End
 	///
@@ -151,7 +156,7 @@ type Confidence_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -181,8 +186,10 @@ type Confidence_Page struct {
 	SYSDeletedBy_props     FieldProperties
 	SYSDeletedHost         string
 	SYSDeletedHost_props     FieldProperties
+	Notes         string
+	Notes_props     FieldProperties
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

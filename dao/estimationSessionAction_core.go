@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 29/11/2022 at 13:02:22
+// Date & Time		    : 01/12/2022 at 09:40:01
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -41,10 +41,10 @@ func EstimationSessionAction_GetByID(id string) (int, dm.EstimationSessionAction
 	 _, estimationsessionactionItem, _ := adaptor.EstimationSessionAction_GetByID_impl(id)
 	
 	// START
-	// Dynamically generated 29/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 29/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, estimationsessionactionItem, nil
 }
@@ -106,10 +106,10 @@ func EstimationSessionAction_StoreSystem(r dm.EstimationSessionAction) error {
 func EstimationSessionAction_Validate(r dm.EstimationSessionAction) (error,dm.EstimationSessionAction) {
 	var err error
 	// START
-	// Dynamically generated 29/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 29/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -179,10 +179,10 @@ func EstimationSessionAction_New() (int, []dm.EstimationSessionAction, dm.Estima
 	
 
 	// START
-	// Dynamically generated 29/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 29/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

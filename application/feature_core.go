@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 28/11/2022 at 14:32:48
+// Date & Time		    : 01/12/2022 at 09:40:01
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -146,7 +146,7 @@ func Feature_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Feature
 	// START
-	// Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Feature_SYSId_scrn)
 		item.FeatureID = r.FormValue(dm.Feature_FeatureID_scrn)
@@ -179,9 +179,12 @@ func Feature_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.Developer = r.FormValue(dm.Feature_Developer_scrn)
 		item.Approver = r.FormValue(dm.Feature_Approver_scrn)
 		item.Notes = r.FormValue(dm.Feature_Notes_scrn)
+		item.OffProfile = r.FormValue(dm.Feature_OffProfile_scrn)
+		item.OffProfileJustification = r.FormValue(dm.Feature_OffProfileJustification_scrn)
+		item.SYSActivity = r.FormValue(dm.Feature_SYSActivity_scrn)
 	
 	// 
-	// Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Feature_Store(item,r)	
 	http.Redirect(w, r, dm.Feature_Redirect, http.StatusFound)
@@ -221,7 +224,7 @@ func Feature_HandlerNew(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Feature Page 
 func feature_PopulatePage(rD dm.Feature, pageDetail dm.Feature_Page) dm.Feature_Page {
 	// START
-	// Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.FeatureID = rD.FeatureID
@@ -254,10 +257,13 @@ func feature_PopulatePage(rD dm.Feature, pageDetail dm.Feature_Page) dm.Feature_
 	pageDetail.Developer = rD.Developer
 	pageDetail.Approver = rD.Approver
 	pageDetail.Notes = rD.Notes
+	pageDetail.OffProfile = rD.OffProfile
+	pageDetail.OffProfileJustification = rD.OffProfileJustification
+	pageDetail.SYSActivity = rD.SYSActivity
 	
 	
 	//
-	// Automatically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -330,6 +336,12 @@ func feature_PopulatePage(rD dm.Feature, pageDetail dm.Feature_Page) dm.Feature_
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	pageDetail.SYSId_props = rD.SYSId_props
 	pageDetail.FeatureID_props = rD.FeatureID_props
 	pageDetail.EstimationSessionID_props = rD.EstimationSessionID_props
@@ -361,9 +373,12 @@ func feature_PopulatePage(rD dm.Feature, pageDetail dm.Feature_Page) dm.Feature_
 	pageDetail.Developer_props = rD.Developer_props
 	pageDetail.Approver_props = rD.Approver_props
 	pageDetail.Notes_props = rD.Notes_props
+	pageDetail.OffProfile_props = rD.OffProfile_props
+	pageDetail.OffProfileJustification_props = rD.OffProfileJustification_props
+	pageDetail.SYSActivity_props = rD.SYSActivity_props
 	
 	// 
-	// Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

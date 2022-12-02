@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 27/11/2022 at 20:46:12
+// Date & Time		    : 01/12/2022 at 09:40:00
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -146,7 +146,7 @@ func Confidence_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Confidence
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Confidence_SYSId_scrn)
 		item.ConfidenceID = r.FormValue(dm.Confidence_ConfidenceID_scrn)
@@ -162,9 +162,10 @@ func Confidence_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSDeleted = r.FormValue(dm.Confidence_SYSDeleted_scrn)
 		item.SYSDeletedBy = r.FormValue(dm.Confidence_SYSDeletedBy_scrn)
 		item.SYSDeletedHost = r.FormValue(dm.Confidence_SYSDeletedHost_scrn)
+		item.Notes = r.FormValue(dm.Confidence_Notes_scrn)
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Confidence_Store(item,r)	
 	http.Redirect(w, r, dm.Confidence_Redirect, http.StatusFound)
@@ -204,7 +205,7 @@ func Confidence_HandlerNew(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Confidence Page 
 func confidence_PopulatePage(rD dm.Confidence, pageDetail dm.Confidence_Page) dm.Confidence_Page {
 	// START
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.ConfidenceID = rD.ConfidenceID
@@ -220,11 +221,14 @@ func confidence_PopulatePage(rD dm.Confidence, pageDetail dm.Confidence_Page) dm
 	pageDetail.SYSDeleted = rD.SYSDeleted
 	pageDetail.SYSDeletedBy = rD.SYSDeletedBy
 	pageDetail.SYSDeletedHost = rD.SYSDeletedHost
+	pageDetail.Notes = rD.Notes
 	
 	
 	//
-	// Automatically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
+	
+	
 	
 	
 	
@@ -268,9 +272,10 @@ func confidence_PopulatePage(rD dm.Confidence, pageDetail dm.Confidence_Page) dm
 	pageDetail.SYSDeleted_props = rD.SYSDeleted_props
 	pageDetail.SYSDeletedBy_props = rD.SYSDeletedBy_props
 	pageDetail.SYSDeletedHost_props = rD.SYSDeletedHost_props
+	pageDetail.Notes_props = rD.Notes_props
 	
 	// 
-	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail
