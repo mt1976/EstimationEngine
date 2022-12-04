@@ -24,6 +24,9 @@ const (
 	///
 	Feature_ByEstimationSession_PathList    = "/FeatureByEstimationSession/"
 	Feature_ByEstimationSession_QueryString = "EstimationSessionID"
+
+	Feature_SoftDelete_Path        = "/FeatureRemove/"
+	Feature_SoftDelete_QueryString = Feature_QueryString
 	///
 
 )

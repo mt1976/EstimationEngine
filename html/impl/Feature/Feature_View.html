@@ -1,0 +1,566 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/FeatureEdit/?FeatureID={{.FeatureID}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header">
+            <div class="row">
+                <div class="col h3">
+                    <i class="fas fa-tasks me-2" title="FeatureID = {{.FeatureID}}"></i><span class="me-3">{{.Title}}</span>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button type="submit" class="btn btn-warning" method="get" formaction="/FeatureEdit/?FeatureID={{.FeatureID}}"  title="Edit Feature {{.FeatureID}}"><i class="fas fa-pen me-2"></i>Edit</button>
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Feature {{.FeatureID}}"><i class="fas fa-print me-2"></i></i>Print</button>
+                        <button type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSId" aria-describedby="SYSIdHelp" placeholder="0" disabled value="{{.SYSId}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="SYSId">SYSId</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="FeatureID" aria-describedby="FeatureIDHelp" placeholder="" disabled value="{{.FeatureID}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="FeatureID"><i class="fas fa-key me-2"></i>FeatureID</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                  <select id="EstimationSessionID" name="EstimationSessionID" class="select" data-mdb-filter="true" disabled>
+                  {{range .EstimationSessionID_lookup}}<option value="{{.ID}}" {{if eq .ID $.EstimationSessionID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="EstimationSessionID" disabled>Estimate</label>
+                
+                </div>
+       
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Name" aria-describedby="NameHelp" placeholder="" disabled value="{{.Name}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Name">Name</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+
+ <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="DevEstimate" aria-describedby="DevEstimateHelp" placeholder="" disabled value="{{.DevEstimate}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="DevEstimate">Developer Estimate</label>
+                        
+                    </div>
+                
+                </div>
+
+                <div class="col">
+                
+                  <select id="ConfidenceID" name="ConfidenceID" class="select" data-mdb-filter="true" disabled>
+                  {{range .ConfidenceID_lookup}}<option value="{{.ID}}" {{if eq .ID $.ConfidenceID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="ConfidenceID" disabled>Confidence in Developer Estimate</label>
+                
+                </div>
+        
+                <div class="col">
+                
+                  <select id="Developer" name="Developer" class="select" data-mdb-filter="true" disabled>
+                  {{range .Developer_lookup}}<option value="{{.ID}}" {{if eq .ID $.Developer}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="Developer" disabled>Developer</label>
+                
+                </div>
+            </div>  
+
+            <h4>Links</h4>
+                       <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="AdoID" aria-describedby="AdoIDHelp" placeholder="" disabled value="{{.AdoID}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="AdoID">Azure DevOps ID</label>
+                        
+                    </div>
+                
+                </div>
+
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="FreshdeskID" aria-describedby="FreshdeskIDHelp" placeholder="" disabled value="{{.FreshdeskID}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="FreshdeskID">FreshDesk ID</label>
+                        
+                    </div>
+                
+                </div>
+     
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="TrackerID" aria-describedby="TrackerIDHelp" placeholder="" disabled value="{{.TrackerID}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="TrackerID">Tracker ID</label>
+                        
+                    </div>
+                
+                </div>
+   
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="ExtRef" aria-describedby="ExtRefHelp" placeholder="" disabled value="{{.ExtRef}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="ExtRef">Other Ref</label>
+                        
+                    </div>
+                
+                </div>
+  
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="ExtRef2" aria-describedby="ExtRef2Help" placeholder="" disabled value="{{.ExtRef2}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="ExtRef2">Other Ref 2</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+
+      <hr>
+
+<h4>Default Estimate</h4>
+
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.DevUplift_props.MsgType}}" id="DefaultDevUplift" name="DefaultDevUplift" aria-describedby="DefaultDevUpliftHelp" placeholder=""  readonly value="{{.DevUplift}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="DefaultDevUplift" >Development + Uplift</label>
+              <div class="{{.DevUplift_props.MsgFeedBackType}}">{{.DevUplift_props.MsgMessage}}</div>
+            </div>
+        
+        </div>
+        
+        <div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Reqs_props.MsgType}}" id="DefaultReqs" name="DefaultReqs" aria-describedby="DefaultReqsHelp" placeholder="" readonly  value="{{.Reqs}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="DefaultReqs" >Requirements</label>
+              <div class="{{.Reqs_props.MsgFeedBackType}}">{{.Reqs_props.MsgMessage}}</div>
+            </div>
+        
+        </div>
+        
+        <div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.AnalystTest_props.MsgType}}" id="DefaultAnalystTest" name="DefaultAnalystTest" aria-describedby="DefaultAnalystTestHelp" placeholder=""  readonly value="{{.AnalystTest}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="DefaultAnalystTest" >Analyst & Test</label>
+              <div class="{{.AnalystTest_props.MsgFeedBackType}}">{{.AnalystTest_props.MsgMessage}}</div>
+            </div>
+        
+        </div>
+        
+        <div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Docs_props.MsgType}}" id="DefaultDocs" name="DefaultDocs" aria-describedby="DefaultDocsHelp" placeholder="" readonly  value="{{.Docs}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="DefaultDocs" >Documentation</label>
+              <div class="{{.Docs_props.MsgFeedBackType}}">{{.Docs_props.MsgMessage}}</div>
+            </div>
+        
+        </div>
+        
+        <div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Mgt_props.MsgType}}" id="DefaultMgt" name="DefaultMgt" aria-describedby="DefaultMgtHelp" placeholder="" readonly  value="{{.Mgt}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="DefaultMgt" >Management</label>
+              <div class="{{.Mgt_props.MsgFeedBackType}}">{{.Mgt_props.MsgMessage}}</div>
+            </div>
+        
+        </div>
+        
+        <div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.UatSupport_props.MsgType}}" id="DefaultUatSupport" name="DefaultUatSupport" aria-describedby="DefaultUatSupportHelp" placeholder="" readonly  value="{{.UatSupport}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="DefaultUatSupport" >UAT Support</label>
+              <div class="{{.UatSupport_props.MsgFeedBackType}}">{{.UatSupport_props.MsgMessage}}</div>
+            </div>
+        
+        </div>
+        
+        <div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Marketing_props.MsgType}}" id="DefaultMarketing" name="DefaultMarketing" aria-describedby="DefaultMarketingHelp" placeholder="" readonly  value="{{.Marketing}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="DefaultMarketing" >Marketing</label>
+              <div class="{{.Marketing_props.MsgFeedBackType}}">{{.Marketing_props.MsgMessage}}</div>
+            </div>
+        
+        </div>
+        
+        <div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Contingency_props.MsgType}}" id="DefaultContingency" name="DefaultContingency" aria-describedby="DefaultContingencyHelp" placeholder="" readonly  value="{{.Contingency}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="DefaultContingency" >Contingency</label>
+              <div class="{{.Contingency_props.MsgFeedBackType}}">{{.Contingency_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+  <h4>Refined Estimate</h4> 
+
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="DevUplift" aria-describedby="DevUpliftHelp" placeholder="" disabled value="{{.DevUplift}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="DevUplift">Development</label>
+                        
+                    </div>
+                
+                </div>
+      
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Reqs" aria-describedby="ReqsHelp" placeholder="" disabled value="{{.Reqs}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Reqs">Requirements</label>
+                        
+                    </div>
+                
+                </div>
+        
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="AnalystTest" aria-describedby="AnalystTestHelp" placeholder="" disabled value="{{.AnalystTest}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="AnalystTest">Analyst & Test</label>
+                        
+                    </div>
+                
+                </div>
+  
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Docs" aria-describedby="DocsHelp" placeholder="" disabled value="{{.Docs}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Docs">Documentation</label>
+                        
+                    </div>
+                
+                </div>
+     
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Mgt" aria-describedby="MgtHelp" placeholder="" disabled value="{{.Mgt}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Mgt">Management</label>
+                        
+                    </div>
+                
+                </div>
+  
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="UatSupport" aria-describedby="UatSupportHelp" placeholder="" disabled value="{{.UatSupport}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="UatSupport">UAT Support</label>
+                        
+                    </div>
+                
+                </div>
+           
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Marketing" aria-describedby="MarketingHelp" placeholder="" disabled value="{{.Marketing}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Marketing">Marketing</label>
+                        
+                    </div>
+                
+                </div>
+   
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Contingency" aria-describedby="ContingencyHelp" placeholder="" disabled value="{{.Contingency}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Contingency">Contingency</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" disabled value="{{.SYSCreated}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="SYSCreated">SYSCreated</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" disabled value="{{.SYSCreatedBy}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="SYSCreatedBy">SYSCreatedBy</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" disabled value="{{.SYSCreatedHost}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="SYSCreatedHost">SYSCreatedHost</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" disabled value="{{.SYSUpdated}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="SYSUpdated">SYSUpdated</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" disabled value="{{.SYSUpdatedBy}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="SYSUpdatedBy">SYSUpdatedBy</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" disabled value="{{.SYSUpdatedHost}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="SYSUpdatedHost">SYSUpdatedHost</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSDeleted" aria-describedby="SYSDeletedHelp" placeholder="" disabled value="{{.SYSDeleted}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="SYSDeleted">SYSDeleted</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSDeletedBy" aria-describedby="SYSDeletedByHelp" placeholder="" disabled value="{{.SYSDeletedBy}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="SYSDeletedBy">SYSDeletedBy</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSDeletedHost" aria-describedby="SYSDeletedHostHelp" placeholder="" disabled value="{{.SYSDeletedHost}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="SYSDeletedHost">SYSDeletedHost</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+
+             
+ <hr>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <textarea class="form-control" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder=""  disabled value="{{.Notes}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Notes}}</textarea>
+                        
+                        <label class="form-label" for="Notes">Notes</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+            <h4>Approvals</h4>
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                  <select id="Approver" name="Approver" class="select" data-mdb-filter="true" disabled>
+                  {{range .Approver_lookup}}<option value="{{.ID}}" {{if eq .ID $.Approver}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="Approver" disabled>Approver</label>
+                
+                </div>
+       
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="OffProfile" aria-describedby="OffProfileHelp" placeholder="" disabled value="{{.OffProfile}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="OffProfile">Off Profile?</label>
+                        
+                    </div>
+                
+                </div>
+         
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="OffProfileJustification" aria-describedby="OffProfileJustificationHelp" placeholder="" disabled value="{{.OffProfileJustification}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="OffProfileJustification">Justification</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSActivity" aria-describedby="SYSActivityHelp" placeholder="" disabled value="{{.SYSActivity}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="SYSActivity">SYSActivity</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        {{template "audit" .}}
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

@@ -8,12 +8,12 @@
       <div class="row">
         <div class="col h3">
           <i class="fas fa-building me-2"
-            title="OriginID={{.OriginID}}"></i><span class="me-3">{{.Title}}</span>
+            title="OriginID={{.OriginID}}"></i><span class="me-3">Edit Origin {{.Code}}</span>
         </div>
         <div class="col d-flex justify-content-end">
           <div class="btn-group">
             
-            <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/OriginSave/?OriginID={{.OriginID}}" onclick="/OriginSave/?OriginID={{.OriginID}}" title="Save Origin"><i class="fas fa-save me-2"></i>Save</button>
+            <button type="submit" value="" class="btn btn-warning" method="GET" formaction="/OriginSave/?OriginID={{.OriginID}}" onclick="/OriginSave/?OriginID={{.OriginID}}" title="Save Origin"><i class="fas fa-save me-2"></i>Create</button>
             
             <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Origin"><i class="fas fa-print me-2"></i></i>Print</button>
             <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>

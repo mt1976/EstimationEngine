@@ -2,13 +2,28 @@
 {{template "bodydefinition" .}}
 
   <div class="container-fluid" style="margin-top: 4.5rem;">
-<h1>{{.Origin.FullName}} - {{.Project.Name}} - {{.EstimationSession.Name}} - Features ({{.ItemsOnPage}})</h1>
-<form action="/FeatureSetup?EstimationSessionID={{.EstimationSession.EstimationSessionID}}" method="POST" class="form">
-<div class="float-end mb-3">
-  <button type="submit" value="" class="btn btn-danger me-1" method="GET" formaction="/FeatureSetup?EstimationSessionID={{.EstimationSession.EstimationSessionID}}" onclick="/FeatureSetup?EstimationSessionID={{.EstimationSession.EstimationSessionID}}" title="Create a New Feature"><i class="fas fa-plus-square me-2"></i>Feature</button>
-                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
 
-</div>
+<form action="/FeatureSetup?EstimationSessionID={{.EstimationSession.EstimationSessionID}}" method="POST" class="form">
+  <div class="row note note-light bg-white shadow-4 mb-3">
+
+    <div class="col">
+    <nav aria-label="breadcrumb"> 
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item "><a href="/home">Home</a></li>
+        <li class="breadcrumb-item"><a href="/ProjectsByOrigin/?OriginID={{.Origin.OriginID}}">{{.Origin.FullName}}</a></li>
+        <li class="breadcrumb-item"><a href="/EstimationSessionByProject/?ProjectID={{.Project.ProjectID}}">{{.Project.Name}}</a></li>
+        <li class="breadcrumb-item active"><a href="#" class="me-2">{{.EstimationSession.Name}} - Features</a><span class="badge badge-primary">{{.ItemsOnPage}}</span></li>
+      </ol>
+    </nav>
+    </div>
+    <div class="col">
+      <div class="float-end">
+        <button type="submit" value="" class="btn btn-primary me-1" method="GET" formaction="/FeatureSetup?EstimationSessionID={{.EstimationSession.EstimationSessionID}}" onclick="/FeatureSetup?EstimationSessionID={{.EstimationSession.EstimationSessionID}}" title="Create a New Feature"><i class="fas fa-plus-square me-2"></i>Feature</button>
+        <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
+      </div>
+    </div>
+    </div>
+  </div>
 <table id="DataTable" class="table table-sm align-middle mb-0 table-hover   bg-white" style="width:100%">
   <thead class="table-primary">
     <tr class="fs-6">
@@ -44,7 +59,7 @@
   <tbody>
     {{range .ItemList}}
     <tr class="fs-6">
-      <td class="text-primary">{{.Name}}</td>
+      <td class="text-primary"><a href="/FeatureView/?FeatureID={{.FeatureID}}" class="" role="button" aria-pressed="true">{{.Name}}</a></td>
             <td>{{.DevEstimate}}</td>
             <td>{{.Developer}}</td>
       <td>{{.ConfidenceID}}</td>
@@ -62,7 +77,7 @@
 
 <div class="dropdown">
   <a
-    class="btn btn-outline-primary dropdown-toggle"
+    class="btn btn-light btn-sm dropdown-toggle"
     href="#"
     role="button"
     id="dropdownMenuLink"
@@ -74,7 +89,9 @@
 
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
     <li><a href="/FeatureView/?FeatureID={{.FeatureID}}" class="dropdown-item text-info" role="button" aria-pressed="true"><i class="fas fa-eye fa-fw me-1"></i>Details</a></li>
-    <li><a href="/origin/TODO/delete" class="dropdown-item text-warning" role="button" aria-pressed="true" disabled><i class="fas fa-trash fa-fw me-1"></i>Remove</a></li>
+        <li><hr class="dropdown-divider" /></li>
+
+    <li><a href="/FeatureRemove/?FeatureID={{.FeatureID}}" class="dropdown-item text-warning" role="button" aria-pressed="true" disabled><i class="fas fa-trash fa-fw me-1"></i>Remove</a></li>
   </ul>
 </div>
 

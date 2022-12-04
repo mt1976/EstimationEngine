@@ -25,6 +25,7 @@ import (
 // Project_Publish annouces the endpoints available for this object
 func Project_Publish_Impl(mux http.ServeMux) {
 	mux.HandleFunc(dm.Project_Origin_PathList, Project_ByOrigin_HandlerList)
+	mux.HandleFunc(dm.Project_PathRemove, Project_HandlerRemove)
 	logs.Publish("Implementation", dm.Project_Title)
 
 }
@@ -63,4 +64,47 @@ func Project_ByOrigin_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Project_Origin_TemplateList, w, r, pageDetail)
 
+}
+
+func Project_HandlerRemove(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(Session_Validate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	projectID := core.GetURLparam(r, dm.Project_QueryString)
+
+	_, projectREC, _ := dao.ProjectAction_GetByID(projectID)
+
+	dao.Project_SoftDelete(projectID)
+
+	err := EstimationSession_SoftDeleteByProjectID(projectID)
+	if err != nil {
+		logs.Panic("Cannot SoftDelete Estimates {"+projectID+"}", err)
+	}
+
+	_, originREC, _ := dao.Origin_GetByCode(projectREC.OriginID)
+
+	REDR := dm.Project_Origin_PathList + "?" + dm.Project_Origin_QueryString + "=" + originREC.OriginID
+	http.Redirect(w, r, REDR, http.StatusFound)
+}
+
+func Project_SoftDeleteByOriginCode(originCODE string) error {
+	var returnList []dm.Project
+	noItems, returnList, _ := dao.Project_ByOrigin_Active_GetList(originCODE)
+	if noItems > 0 {
+		for _, projectREC := range returnList {
+			dao.Project_SoftDelete(projectREC.ProjectID)
+			err := EstimationSession_SoftDeleteByProjectID(projectREC.ProjectID)
+			if err != nil {
+				logs.Panic("Cannot SoftDelete Estimates {"+projectREC.ProjectID+"}", err)
+			}
+		}
+	}
+	return nil
 }

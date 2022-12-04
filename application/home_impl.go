@@ -101,7 +101,7 @@ func Home_HandlerView(w http.ResponseWriter, r *http.Request) {
 		//	homePage.AppSQLDatabase = ApplicationSQLDatabase() + "-" + ApplicationPropertiesDB["instance"]
 	}
 
-	homePage.NoOrigins, homePage.OriginList, _ = dao.Origin_GetList()
+	homePage.NoOrigins, homePage.OriginList, _ = dao.Origin_GetActiveList()
 
 	ExecuteTemplate("Impl_Home", w, r, homePage)
 

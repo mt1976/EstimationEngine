@@ -25,6 +25,7 @@ import (
 // Project_Publish annouces the endpoints available for this object
 func Feature_Publish_Impl(mux http.ServeMux) {
 	mux.HandleFunc(dm.Feature_ByEstimationSession_PathList, Feature_ByEstimationSession_HandlerList)
+	mux.HandleFunc(dm.Feature_SoftDelete_Path, Feature_SoftDelete_Handler)
 	logs.Publish("Implementation", dm.Feature_Title)
 
 }
@@ -68,4 +69,36 @@ func Feature_ByEstimationSession_HandlerList(w http.ResponseWriter, r *http.Requ
 
 	ExecuteTemplate(dm.Feature_ByEstimationSession_TemplateList, w, r, pageDetail)
 
+}
+
+// Project_HandlerList is the handler for the list page
+func Feature_SoftDelete_Handler(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(Session_Validate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	featureID := core.GetURLparam(r, dm.Feature_SoftDelete_QueryString)
+
+	_, featureREC, _ := dao.Feature_GetByID(featureID)
+
+	dao.Feature_SoftDelete(featureID)
+
+	REDR := dm.Feature_ByEstimationSession_PathList + "?" + dm.Feature_ByEstimationSession_QueryString + "=" + featureREC.EstimationSessionID
+	http.Redirect(w, r, REDR, http.StatusFound)
+	//ExecuteTemplate(dm.Feature_ByEstimationSession_TemplateList, w, r, pageDetail)
+
+}
+
+func Feature_SoftDeleteByEstimationSessionID(esID string) error {
+	_, featureList, err := dao.Feature_Active_ByEstimationSession_GetList(esID)
+	for _, feature := range featureList {
+		dao.Feature_SoftDelete(feature.FeatureID)
+	}
+	return err
 }

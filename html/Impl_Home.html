@@ -2,7 +2,23 @@
 {{template "bodydefinition" .}}
 
   <div class="container-fluid" style="margin-top: 4.5rem;">
-<h1>Origins ({{.NoOrigins}})</h1>
+
+  <div class="row note note-light bg-white shadow-4 mb-3">
+
+  <div class="col">
+      <nav aria-label="breadcrumb"> 
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item active"><a href="/home" class="me-2">Home - Origins</a><span class="badge badge-primary">{{.NoOrigins}}</span></li>
+      </ol>
+    </nav>
+  </div>
+
+    <div class="col">
+          <div class="float-end">
+           <a href="/OriginNew" class="btn btn-primary" role="button" aria-pressed="true"><i class="fas fa-plus-square me-2"></i>Origin</a>
+      </div>
+      </div>
+  </div>
 <table id="DataTable" class="table table-sm align-middle mb-0 table-hover table-responsive bg-white" style="width:100%">
   <thead class="table-primary text-center">
     <tr class="fs-6">
@@ -18,7 +34,7 @@
   <tbody>
     {{range .OriginList}}
     <tr class="fs-6">
-      <td class="text-primary">{{.Code}}</td>
+      <td class="text-primary text-center"><a href="/ProjectsByOrigin/?OriginID={{.OriginID}}" class="text-primary" role="button" aria-pressed="true">{{.Code}}</a></td>
       <td>{{.FullName}}</td>
       <td class="text-center">{{.StateID}}</td>
       <td>{{.Notes}}</td>
@@ -28,7 +44,7 @@
 
       <div class="dropdown">
   <a
-    class="btn btn-outline-primary dropdown-toggle"
+    class="btn btn-light btn-sm dropdown-toggle"
     href="#"
     role="button"
     id="dropdownMenuLink"
@@ -41,8 +57,12 @@
 
   <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
     <li>        <a href="/ProjectsByOrigin/?OriginID={{.OriginID}}" class="dropdown-item text-primary" role="button" aria-pressed="true"><i class="fas fa-project-diagram text-primary fa-fw me-2"></i>Projects</a></li>
+        <li><hr class="dropdown-divider" /></li>
+
     <li>        <a href="/OriginView/?OriginID={{.OriginID}}" class="dropdown-item text-info" role="button" aria-pressed="true"><i class="fas fa-eye text-info fa-fw me-2"></i>Details</a> </li>
-    <li>        <a href="/origin/{{.Code}}/delete" class="dropdown-item text-warning" role="button" aria-pressed="true" disabled><i class="fas fa-trash text-warning fa-fw me-2"></i>Remove</a></li>
+        <li><hr class="dropdown-divider" /></li>
+
+    <li>        <a href="/OriginRemove/?OriginID={{.OriginID}}" class="dropdown-item text-warning" role="button" aria-pressed="true" disabled><i class="fas fa-trash text-warning fa-fw me-2"></i>Remove</a></li>
   </ul>
 
 </div>

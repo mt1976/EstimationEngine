@@ -86,6 +86,7 @@ func main() {
 	application.FeatureNew_Publish(*mux)
 	application.FeatureNew_Publish_Impl(*mux)
 	application.Origin_Publish(*mux)
+	application.Origin_Publish_Impl(*mux)
 
 	application.OriginState_Publish(*mux)
 	application.Profile_Publish(*mux)

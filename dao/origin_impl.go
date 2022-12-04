@@ -34,3 +34,14 @@ func Origin_GetByCode(id string) (int, dm.Origin, error) {
 	// END
 	return 1, originItem, nil
 }
+
+// Origin_GetList() returns a list of all Origin records
+func Origin_GetActiveList() (int, []dm.Origin, error) {
+
+	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Origin_SQLTable)
+	tsql = tsql + " WHERE datalength(" + dm.Project_SYSDeleted_sql + ") = 0"
+	tsql = tsql + " ORDER BY " + dm.Origin_Code_sql
+	count, originList, _, _ := origin_Fetch(tsql)
+
+	return count, originList, nil
+}

@@ -14,6 +14,7 @@ package application
 // ----------------------------------------------------------------
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
 
@@ -29,6 +30,7 @@ func EstimationSession_Publish_Impl(mux http.ServeMux) {
 	mux.HandleFunc(dm.EstimationSession_Formatted_PathView, EstimationSession_HandlerFormatted)
 	mux.HandleFunc(dm.EstimationSession_PathSetup, EstimationSession_HandlerSetup)
 	mux.HandleFunc(dm.EstimationSession_PathCreate, EstimationSession_HandlerCreate)
+	mux.HandleFunc(dm.EstimationSession_PathRemove, EstimationSession_HandlerRemove)
 	logs.Publish("Implementation", dm.EstimationSession_Title)
 
 }
@@ -86,7 +88,9 @@ func EstimationSession_HandlerFormatted(w http.ResponseWriter, r *http.Request) 
 	logs.Servicing(r.URL.Path)
 
 	searchID := core.GetURLparam(r, dm.EstimationSession_QueryString)
-	_, rD, _ := dao.EstimationSession_GetByID(searchID)
+	//_, rD, _ := dao.EstimationSession_GetByID(searchID)
+
+	rD := Estimationsession_Calculate(searchID)
 
 	pageDetail := dm.EstimationSession_Page{
 		Title:     CardTitle(dm.EstimationSession_Title, core.Action_View),
@@ -270,4 +274,177 @@ func EstimationSession_HandlerSetup(w http.ResponseWriter, r *http.Request) {
 	pageDetail.Name = proj.Name
 
 	ExecuteTemplate(dm.EstimationSession_TemplateSetup, w, r, pageDetail)
+}
+
+func Estimationsession_Calculate(searchID string) dm.EstimationSession {
+
+	logs.Processing("estimationsession_ReCalculate-->" + searchID)
+
+	_, esRecord, _ := dao.EstimationSession_GetByID(searchID)
+
+	// Get the list of all Features for this EstimationSession
+	foundFeatures, featureList, _ := dao.Feature_Active_ByEstimationSession_GetList(searchID)
+	logs.Information("Found Features: ", strconv.Itoa(foundFeatures))
+	// Get the current projiect id
+	_, proj, _ := dao.Project_GetByID(esRecord.ProjectID)
+
+	//Get the current profile
+	profileID := proj.ProfileID
+	originID := proj.OriginID
+	logs.Information("ProjectUI: ", esRecord.ProjectID)
+	logs.Information("ProfileID: ", profileID)
+	logs.Information("OriginID: ", originID)
+
+	_, profile, _ := dao.Profile_GetByCode(profileID)
+	//Get the current rate from the origin
+	_, origin, _ := dao.Origin_GetByCode(originID)
+
+	HoursInDay := stf(profile.HoursPerDay)
+	Rate := stf(origin.Rate)
+
+	logs.Information("HoursInDay: ", fts(HoursInDay))
+	logs.Information("Rate: ", fts(Rate))
+
+	Total_Reqs := 0.00
+	Total_AnaTest := 0.00
+	Total_Docs := 0.00
+	Total_Mgt := 0.00
+	Total_UAT := 0.00
+	Total_MKT := 0.00
+	Total_Contingency := 0.00
+	Total_DevEstimate := 0.00
+	Total_DevUplift := 0.00
+	// Range through the list of Features
+	for thisFeature, feature := range featureList {
+		// Sum up the estimates in this featre
+		// convert feature.Reqs to INT
+		logs.Information("Feature: ", strconv.Itoa(thisFeature))
+		logs.Information("Feature.Reqs: ", feature.Reqs)
+
+		Total_Reqs += stf(feature.Reqs)
+		Total_AnaTest += stf(feature.AnalystTest)
+		Total_Docs += stf(feature.Docs)
+		Total_Mgt += stf(feature.Mgt)
+		Total_UAT += stf(feature.UatSupport)
+		Total_MKT += stf(feature.Marketing)
+		Total_Contingency += stf(feature.Contingency)
+		Total_DevUplift += stf(feature.DevUplift)
+		Total_DevEstimate += stf(feature.DevEstimate)
+	}
+
+	logs.Information("Total_Reqs: ", fmt.Sprintf("%.2f", Total_Reqs))
+
+	RelHours := stf(esRecord.Releases) * HoursInDay
+
+	// Convert Hours to Days
+
+	Total_Reqs_Days, Total_Reqs_Cost := calculate(Total_Reqs, HoursInDay, Rate)
+	Total_AnaTest_Days, Total_AnaTest_Cost := calculate(Total_AnaTest, HoursInDay, Rate)
+	Total_Docs_Days, Total_Docs_Cost := calculate(Total_Docs, HoursInDay, Rate)
+	Total_Mgt_Days, Total_Mgt_Cost := calculate(Total_Mgt, HoursInDay, Rate)
+	Total_UAT_Days, Total_UAT_Cost := calculate(Total_UAT, HoursInDay, Rate)
+	Total_MKT_Days, Total_MKT_Cost := calculate(Total_MKT, HoursInDay, Rate)
+	//Total_Contingency_Days, Total_Contingency_Cost := calculate(Total_Contingency, HoursInDay, Rate)
+	//Total_DevEstimate_Days, Total_DevEstimate_Cost := calculate(Total_DevEstimate, HoursInDay, Rate)
+	Total_DevUplift_Days, Total_DevUplift_Cost := calculate(Total_DevUplift, HoursInDay, Rate)
+	Total_Rel_Days, Total_Rel_Cost := calculate(RelHours, HoursInDay, Rate)
+
+	Total_Days := Total_Reqs_Days + Total_AnaTest_Days + Total_Docs_Days + Total_Mgt_Days + Total_UAT_Days + Total_MKT_Days + Total_DevUplift_Days + Total_Rel_Days
+	Total_Cost := Total_Reqs_Cost + Total_AnaTest_Cost + Total_Docs_Cost + Total_Mgt_Cost + Total_UAT_Cost + Total_MKT_Cost + Total_DevUplift_Cost + Total_Rel_Cost
+
+	SupportUplift := Total_Cost * (stf(profile.SupportUplift) / 100)
+
+	esRecord.ReqDays = fts(Total_Reqs_Days + Total_AnaTest_Days + Total_Docs_Days + Total_MKT_Days)
+	esRecord.RegCost = fts(Total_Reqs_Cost + Total_AnaTest_Cost + Total_Docs_Cost + Total_MKT_Cost)
+	esRecord.ImpDays = fts(Total_DevUplift_Days)
+	esRecord.ImpCost = fts(Total_DevUplift_Cost)
+	esRecord.UatDays = fts(Total_UAT_Days)
+	esRecord.UatCost = fts(Total_UAT_Cost)
+	esRecord.MgtDays = fts(Total_Mgt_Days)
+	esRecord.MgtCost = fts(Total_Mgt_Cost)
+	esRecord.RelDays = fts(Total_Rel_Days)
+	esRecord.RelCost = fts(Total_Rel_Cost)
+
+	esRecord.SupportUplift = fts(SupportUplift)
+	esRecord.EffortTotal = fts(Total_Days)
+	esRecord.Total = fts(Total_Cost)
+
+	dao.EstimationSession_StoreSystem(esRecord)
+
+	return esRecord
+}
+
+func EstimationSession_HandlerRemove(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(Session_Validate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+
+	inUTL := r.URL.Path
+	w.Header().Set("Content-Type", "text/html")
+	core.ServiceMessage(inUTL)
+
+	esID := core.GetURLparam(r, dm.EstimationSession_QueryString)
+
+	_, esREC, _ := dao.EstimationSession_GetByID(esID)
+
+	estimationSession_SoftDelete(esID)
+
+	REDR := dm.EstimationSession_ByProject_PathList + "?" + dm.EstimationSession_ByProject_QueryString + "=" + esREC.ProjectID
+	http.Redirect(w, r, REDR, http.StatusFound)
+}
+
+func estimationSession_SoftDelete(esID string) error {
+	dao.EstimationSession_SoftDelete(esID)
+
+	err := Feature_SoftDeleteByEstimationSessionID(esID)
+	if err != nil {
+		logs.Panic("Cannot SoftDelete Features {"+esID+"}", err)
+		return err
+	}
+	return nil
+}
+
+func EstimationSession_SoftDeleteByProjectID(projectID string) error {
+	// Get the list of Estimation Sessions
+	_, esList, _ := dao.EstimationSession_Active_ByProject_GetList(projectID)
+
+	for _, es := range esList {
+		err := estimationSession_SoftDelete(es.EstimationSessionID)
+		if err != nil {
+			logs.Panic("Cannot SoftDelete Estimation Session {"+es.EstimationSessionID+"}", err)
+			return err
+		}
+	}
+	return nil
+}
+
+func stf(in string) float64 {
+	out, _ := strconv.ParseFloat(in, 64)
+	return out
+}
+
+func fts(in float64) string {
+	out := strconv.FormatFloat(in, 'f', 2, 64)
+	return out
+}
+
+func calculate(hrs float64, hrsInDay float64, rate float64) (float64, float64) {
+
+	days := 0.00
+	cost := 0.00
+
+	if hrs != 0 {
+
+		if hrsInDay != 0 {
+			days = hrs / hrsInDay
+		}
+
+		if rate != 0 {
+			cost = hrs * rate
+		}
+	}
+
+	return days, cost
 }

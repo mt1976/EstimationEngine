@@ -114,7 +114,7 @@ func FeatureNew_HandlerCreate(w http.ResponseWriter, r *http.Request) {
 
 	dao.Feature_Store(item, r)
 
-	REDR := dm.Feature_PathView + "?" + dm.Feature_QueryString + "=" + newID
+	REDR := dm.Feature_ByEstimationSession_PathList + "?" + dm.Feature_ByEstimationSession_QueryString + "=" + item.EstimationSessionID
 	http.Redirect(w, r, REDR, http.StatusFound)
 }
 
