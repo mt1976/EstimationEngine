@@ -15,9 +15,11 @@ package application
 
 import (
 	"fmt"
+	"math"
 	"net/http"
 	"strconv"
 
+	currency "github.com/bojanz/currency"
 	core "github.com/mt1976/ebEstimates/core"
 	dao "github.com/mt1976/ebEstimates/dao"
 	dm "github.com/mt1976/ebEstimates/datamodel"
@@ -31,6 +33,7 @@ func EstimationSession_Publish_Impl(mux http.ServeMux) {
 	mux.HandleFunc(dm.EstimationSession_PathSetup, EstimationSession_HandlerSetup)
 	mux.HandleFunc(dm.EstimationSession_PathCreate, EstimationSession_HandlerCreate)
 	mux.HandleFunc(dm.EstimationSession_PathRemove, EstimationSession_HandlerRemove)
+	mux.HandleFunc(dm.EstimationSession_PathClone, EstimationSession_HandlerClone)
 	logs.Publish("Implementation", dm.EstimationSession_Title)
 
 }
@@ -51,6 +54,7 @@ func EstimationSession_ByProject_HandlerList(w http.ResponseWriter, r *http.Requ
 
 	_, Project, _ := dao.Project_GetByID(searchID)
 	_, Origin, _ := dao.Origin_GetByCode(Project.OriginID)
+
 	var returnList []dm.EstimationSession
 	noItems, returnList, _ := dao.EstimationSession_Active_ByProject_GetList(searchID)
 
@@ -66,8 +70,14 @@ func EstimationSession_ByProject_HandlerList(w http.ResponseWriter, r *http.Requ
 	pageDetail.Origin = Origin
 	pageDetail.Project = Project
 
-	pageDetail.CCY = "GBP"
-	pageDetail.CCYCode = "£"
+	symbol := "£"
+	if Origin.Currency != "" {
+		locale := currency.NewLocale("en")
+		symbol, _ = currency.GetSymbol(Origin.Currency, locale)
+	}
+
+	pageDetail.CCY = symbol
+	pageDetail.CCYCode = symbol
 
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
@@ -129,8 +139,14 @@ func EstimationSession_HandlerFormatted(w http.ResponseWriter, r *http.Request) 
 	pageDetail.ProjectStartDate = thisProject.StartDate
 	pageDetail.ProjectEndDate = thisProject.EndDate
 	pageDetail.ProfileSupportUpliftPerc = thisProjectProfile.SupportUplift
-	pageDetail.CCY = "£"
-	pageDetail.CCYCode = "GBP"
+
+	symbol := "£"
+	if thisOrigin.Currency != "" {
+		locale := currency.NewLocale("en")
+		symbol, _ = currency.GetSymbol(thisOrigin.Currency, locale)
+	}
+	pageDetail.CCY = symbol
+	pageDetail.CCYCode = symbol
 	pageDetail.EffortTotal = "00.00"
 
 	var totEffort float64
@@ -299,6 +315,8 @@ func Estimationsession_Calculate(searchID string) dm.EstimationSession {
 	//Get the current rate from the origin
 	_, origin, _ := dao.Origin_GetByCode(originID)
 
+	RoundingFactor := stf(profile.Rounding)
+
 	HoursInDay := stf(profile.HoursPerDay)
 	Rate := stf(origin.Rate)
 
@@ -334,44 +352,68 @@ func Estimationsession_Calculate(searchID string) dm.EstimationSession {
 
 	logs.Information("Total_Reqs: ", fmt.Sprintf("%.2f", Total_Reqs))
 
-	RelHours := stf(esRecord.Releases) * HoursInDay
+	ReleaseHoursInDay := stf(profile.DefaultReleaseHours)
+	RelHours := stf(profile.DefaultReleases) * ReleaseHoursInDay
 
 	// Convert Hours to Days
 
-	Total_Reqs_Days, Total_Reqs_Cost := calculate(Total_Reqs, HoursInDay, Rate)
-	Total_AnaTest_Days, Total_AnaTest_Cost := calculate(Total_AnaTest, HoursInDay, Rate)
-	Total_Docs_Days, Total_Docs_Cost := calculate(Total_Docs, HoursInDay, Rate)
-	Total_Mgt_Days, Total_Mgt_Cost := calculate(Total_Mgt, HoursInDay, Rate)
-	Total_UAT_Days, Total_UAT_Cost := calculate(Total_UAT, HoursInDay, Rate)
-	Total_MKT_Days, Total_MKT_Cost := calculate(Total_MKT, HoursInDay, Rate)
+	Total_Reqs_Days, _ := calculate(Total_Reqs, HoursInDay, Rate)
+	Total_AnaTest_Days, _ := calculate(Total_AnaTest, HoursInDay, Rate)
+	Total_Docs_Days, _ := calculate(Total_Docs, HoursInDay, Rate)
+	Total_Mgt_Days, _ := calculate(Total_Mgt, HoursInDay, Rate)
+	Total_UAT_Days, _ := calculate(Total_UAT, HoursInDay, Rate)
+	Total_MKT_Days, _ := calculate(Total_MKT, HoursInDay, Rate)
 	//Total_Contingency_Days, Total_Contingency_Cost := calculate(Total_Contingency, HoursInDay, Rate)
 	//Total_DevEstimate_Days, Total_DevEstimate_Cost := calculate(Total_DevEstimate, HoursInDay, Rate)
-	Total_DevUplift_Days, Total_DevUplift_Cost := calculate(Total_DevUplift, HoursInDay, Rate)
-	Total_Rel_Days, Total_Rel_Cost := calculate(RelHours, HoursInDay, Rate)
+	Total_DevUplift_Days, _ := calculate(Total_DevUplift, HoursInDay, Rate)
+	Total_Rel_Days, _ := calculate(RelHours, ReleaseHoursInDay, Rate)
 
-	Total_Days := Total_Reqs_Days + Total_AnaTest_Days + Total_Docs_Days + Total_Mgt_Days + Total_UAT_Days + Total_MKT_Days + Total_DevUplift_Days + Total_Rel_Days
-	Total_Cost := Total_Reqs_Cost + Total_AnaTest_Cost + Total_Docs_Cost + Total_Mgt_Cost + Total_UAT_Cost + Total_MKT_Cost + Total_DevUplift_Cost + Total_Rel_Cost
+	TReqs, _ := rtn(Total_Reqs_Days+Total_AnaTest_Days+Total_Docs_Days+Total_MKT_Days, RoundingFactor)
+
+	// Requirement Days
+	esRecord.ReqDays = fts(TReqs)
+	esRecord.RegCost = fts((TReqs * HoursInDay) * Rate)
+	Timps, _ := rtn(Total_DevUplift_Days, RoundingFactor)
+	// Implementaion Days
+	esRecord.ImpDays = fts(Timps)
+	esRecord.ImpCost = fts((Timps * HoursInDay) * Rate)
+	// UAT Days
+	Tuat, _ := rtn(Total_UAT_Days, RoundingFactor)
+	esRecord.UatDays = fts(Tuat)
+	esRecord.UatCost = fts((Tuat * HoursInDay) * Rate)
+	// Management Days
+	Tman, _ := rtn(Total_Mgt_Days, RoundingFactor)
+	esRecord.MgtDays = fts(Tman)
+	esRecord.MgtCost = fts((Tman * HoursInDay) * Rate)
+	// Contingency Days
+	//Tcon,_ := rtn(Total_Contingency, RoundingFactor)
+	//esRecord.ConDays = fts(Tcon)
+	//esRecord.ConCost = fts((Tcon * HoursInDay) * Rate)
+
+	// Release Days
+	Trel, _ := rtn(Total_Rel_Days, RoundingFactor)
+	esRecord.RelDays = fts(Trel)
+	esRecord.RelCost = fts((Trel * ReleaseHoursInDay) * Rate)
+
+	Total_Days := TReqs + Timps + Tuat + Tman + Trel
+	Total_Cost := Total_Days * HoursInDay * Rate
 
 	SupportUplift := Total_Cost * (stf(profile.SupportUplift) / 100)
-
-	esRecord.ReqDays = fts(Total_Reqs_Days + Total_AnaTest_Days + Total_Docs_Days + Total_MKT_Days)
-	esRecord.RegCost = fts(Total_Reqs_Cost + Total_AnaTest_Cost + Total_Docs_Cost + Total_MKT_Cost)
-	esRecord.ImpDays = fts(Total_DevUplift_Days)
-	esRecord.ImpCost = fts(Total_DevUplift_Cost)
-	esRecord.UatDays = fts(Total_UAT_Days)
-	esRecord.UatCost = fts(Total_UAT_Cost)
-	esRecord.MgtDays = fts(Total_Mgt_Days)
-	esRecord.MgtCost = fts(Total_Mgt_Cost)
-	esRecord.RelDays = fts(Total_Rel_Days)
-	esRecord.RelCost = fts(Total_Rel_Cost)
-
 	esRecord.SupportUplift = fts(SupportUplift)
+
 	esRecord.EffortTotal = fts(Total_Days)
 	esRecord.Total = fts(Total_Cost)
 
 	dao.EstimationSession_StoreSystem(esRecord)
 
 	return esRecord
+}
+
+// rtn Rounds a number to the nearest multiple of the RoundingFactor
+func rtn(number float64, RoundingFactor float64) (float64, error) {
+	// Round to the nearest multiple of the RoundingFactor
+
+	return math.Round(number/RoundingFactor) * RoundingFactor, nil
 }
 
 func EstimationSession_HandlerRemove(w http.ResponseWriter, r *http.Request) {
@@ -414,6 +456,70 @@ func EstimationSession_SoftDeleteByProjectID(projectID string) error {
 		err := estimationSession_SoftDelete(es.EstimationSessionID)
 		if err != nil {
 			logs.Panic("Cannot SoftDelete Estimation Session {"+es.EstimationSessionID+"}", err)
+			return err
+		}
+	}
+	return nil
+}
+
+func EstimationSession_HandlerClone(w http.ResponseWriter, r *http.Request) {
+	// Mandatory Security Validation
+	if !(Session_Validate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	w.Header().Set("Content-Type", "text/html")
+	logs.Servicing(r.URL.Path + r.FormValue("EstimationSessionID"))
+
+	esID := core.GetURLparam(r, dm.EstimationSession_QueryString)
+
+	//var item dm.EstimationSession
+	// START
+	// Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local
+	//
+	//
+	// Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
+	// Clone Features
+	err := EstimationSession_Clone(esID, r)
+	if err != nil {
+		logs.Panic("Cannot Clone Estimation Session {"+esID+"}", err)
+		return
+	}
+
+	REDR := dm.EstimationSession_PathEdit + "/?" + dm.EstimationSession_QueryString + "=" + esID
+	http.Redirect(w, r, REDR, http.StatusFound)
+}
+
+func EstimationSession_Clone(esID string, r *http.Request) error {
+	_, esREC, _ := dao.EstimationSession_GetByID(esID)
+
+	esREC.SYSId = ""
+	cloneID := dao.EstimationSession_NewID(esREC)
+	esREC.EstimationSessionID = cloneID
+	esREC.Notes = r.FormValue(dm.EstimationSession_Notes_scrn)
+
+	esREC.SYSCreated = r.FormValue(dm.EstimationSession_SYSCreated_scrn)
+	esREC.SYSCreatedBy = r.FormValue(dm.EstimationSession_SYSCreatedBy_scrn)
+	esREC.SYSCreatedHost = r.FormValue(dm.EstimationSession_SYSCreatedHost_scrn)
+	esREC.SYSUpdated = r.FormValue(dm.EstimationSession_SYSUpdated_scrn)
+	esREC.SYSUpdatedBy = r.FormValue(dm.EstimationSession_SYSUpdatedBy_scrn)
+	esREC.SYSUpdatedHost = r.FormValue(dm.EstimationSession_SYSUpdatedHost_scrn)
+	esREC.SYSDeleted = r.FormValue(dm.EstimationSession_SYSDeleted_scrn)
+	esREC.SYSDeletedBy = r.FormValue(dm.EstimationSession_SYSDeletedBy_scrn)
+	esREC.SYSDeletedHost = r.FormValue(dm.EstimationSession_SYSDeletedHost_scrn)
+
+	esREC.Notes = addActivity(esREC.Notes, "CLONED -> "+esREC.EstimationStateID, r)
+
+	dao.EstimationSession_Store(esREC, r)
+
+	_, featureList, _ := dao.Feature_Active_ByEstimationSession_GetList(esID)
+	for _, feature := range featureList {
+		err := Feature_Clone(feature, cloneID, r)
+		if err != nil {
+			logs.Panic("Cannot Clone Feature {"+feature.FeatureID+"}", err)
 			return err
 		}
 	}

@@ -102,7 +102,7 @@ func FeatureNew_HandlerCreate(w http.ResponseWriter, r *http.Request) {
 	item.ConfidenceID = r.FormValue(dm.FeatureNew_Confidence_scrn)
 	item.Developer = r.FormValue(dm.FeatureNew_Developer_scrn)
 
-	item = Feature_Recalculate(item)
+	item = Feature_CalcDefaults(item)
 	//
 	// Dynamically generated 29/11/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
@@ -118,7 +118,7 @@ func FeatureNew_HandlerCreate(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, REDR, http.StatusFound)
 }
 
-func Feature_Recalculate(item dm.Feature) dm.Feature {
+func Feature_CalcDefaults(item dm.Feature) dm.Feature {
 	// START
 	// Dynamically generated 29/11/2022 by matttownsend (Matt Townsend) on silicon.local
 	//
@@ -159,24 +159,31 @@ func Feature_Recalculate(item dm.Feature) dm.Feature {
 	}
 
 	item.DevUplift = strconv.FormatFloat(coreEstimate, 'f', 2, 64)
+	item.DfdevUplift = item.DevUplift
 
 	reqEstimate := coreEstimate * (reqPerc / 100)
 	item.Reqs = strconv.FormatFloat(reqEstimate, 'f', 2, 64)
+	item.DfReqs = item.Reqs
 
 	anaEstimate := coreEstimate * (anaPerc / 100)
 	item.AnalystTest = strconv.FormatFloat(anaEstimate, 'f', 2, 64)
+	item.DfAnalystTest = item.AnalystTest
 
 	docEstimate := coreEstimate * (docPerc / 100)
 	item.Docs = strconv.FormatFloat(docEstimate, 'f', 2, 64)
+	item.DfDocs = item.Docs
 
 	pmEstimate := coreEstimate * (pmPerc / 100)
 	item.Mgt = strconv.FormatFloat(pmEstimate, 'f', 2, 64)
+	item.Dfmgt = item.Mgt
 
 	uatEstimate := coreEstimate * (uatPerc / 100)
 	item.UatSupport = strconv.FormatFloat(uatEstimate, 'f', 2, 64)
+	item.DfuatSupport = item.UatSupport
 
 	gtmEstimate := coreEstimate * (gtmPerc / 100)
 	item.Marketing = strconv.FormatFloat(gtmEstimate, 'f', 2, 64)
+	item.Dfmarketing = item.Marketing
 
 	//totalEstimate := coreEstimate + reqEstimate + anaEstimate + docEstimate + pmEstimate + uatEstimate + gtmEstimate
 

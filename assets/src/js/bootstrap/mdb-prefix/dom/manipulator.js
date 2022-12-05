@@ -1,36 +1,28 @@
 /**
  * --------------------------------------------------------------------------
- * Bootstrap (v5.2.2): dom/manipulator.js
+ * Bootstrap (v5.1.3): dom/manipulator.js
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  * --------------------------------------------------------------------------
  */
 
-function normalizeData(value) {
-  if (value === 'true') {
+function normalizeData(val) {
+  if (val === 'true') {
     return true;
   }
 
-  if (value === 'false') {
+  if (val === 'false') {
     return false;
   }
 
-  if (value === Number(value).toString()) {
-    return Number(value);
+  if (val === Number(val).toString()) {
+    return Number(val);
   }
 
-  if (value === '' || value === 'null') {
+  if (val === '' || val === 'null') {
     return null;
   }
 
-  if (typeof value !== 'string') {
-    return value;
-  }
-
-  try {
-    return JSON.parse(decodeURIComponent(value));
-  } catch {
-    return value;
-  }
+  return val;
 }
 
 function normalizeDataKey(key) {
@@ -52,21 +44,36 @@ const Manipulator = {
     }
 
     const attributes = {};
-    const mdbKeys = Object.keys(element.dataset).filter(
-      (key) => key.startsWith('mdb') && !key.startsWith('mdbConfig')
-    );
 
-    for (const key of mdbKeys) {
-      let pureKey = key.replace(/^mdb/, '');
-      pureKey = pureKey.charAt(0).toLowerCase() + pureKey.slice(1, pureKey.length);
-      attributes[pureKey] = normalizeData(element.dataset[key]);
-    }
+    Object.keys(element.dataset)
+      .filter((key) => key.startsWith('mdb'))
+      .forEach((key) => {
+        let pureKey = key.replace(/^mdb/, '');
+        pureKey = pureKey.charAt(0).toLowerCase() + pureKey.slice(1, pureKey.length);
+        attributes[pureKey] = normalizeData(element.dataset[key]);
+      });
 
     return attributes;
   },
 
   getDataAttribute(element, key) {
     return normalizeData(element.getAttribute(`data-mdb-${normalizeDataKey(key)}`));
+  },
+
+  offset(element) {
+    const rect = element.getBoundingClientRect();
+
+    return {
+      top: rect.top + window.pageYOffset,
+      left: rect.left + window.pageXOffset,
+    };
+  },
+
+  position(element) {
+    return {
+      top: element.offsetTop,
+      left: element.offsetLeft,
+    };
   },
 };
 

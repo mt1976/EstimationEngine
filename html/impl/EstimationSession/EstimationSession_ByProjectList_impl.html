@@ -1,4 +1,5 @@
 {{template "header" .}}
+<link rel="stylesheet" type="text/css" href="/assets/DataTables/datatables.min.css"/>
 {{template "bodydefinition" .}}
 
   <div class="container-fluid" style="margin-top: 4.5rem;">
@@ -32,56 +33,49 @@
   <thead class="table-primary">
     <tr class="fs-6">
       <th>Name</th>
-      <th>State</th>
-      <th>Support Uplift</th>
-      <th>Total</th>
+      <th class="text-center">State</th>
+      <th class="text-center">Azure DevOps ID</th>
+      <th class="text-center">FreshDesk ID</th>
+      <th class="text-end">Support Uplift</th>
+      <th class="text-end">Total</th>
       
-      <th>ACTIONS</th>
+      <th class="text-center">ACTIONS</th>
     </tr>
   </thead>
   <tbody>
     {{range .ItemList}}
     <tr class="fs-6">
       <td class="text-primary"><a href="/FeatureByEstimationSession/?EstimationSessionID={{.EstimationSessionID}}" class="" role="button" aria-pressed="true">{{.Name}}</a></td>
-      <td>{{.EstimationStateID}}</td>
-      <td>&#163;&nbsp;{{.SupportUplift}}</td>
-      <td>&#163;&nbsp;{{.Total}}</td>
+      <td class="text-center">{{.EstimationStateID}}</td>
+      <td class="text-center"><a href="{{.ADOURI}}" class="text-dark" role="button" aria-pressed="true">{{.AdoID}}</a></td>
+      <td class="text-center"><a href="{{.FreshDeskURI}}" class="text-dark text-center" role="button" aria-pressed="true">{{.FreshdeskID}}</a></td>
+      <td class="text-end">{{$.CCY}}&nbsp;{{.SupportUplift}}</td>
+      <td class="text-end">{{$.CCY}}&nbsp;{{.Total}}</td>
 
       <td>
-
-      <div class="dropdown">
-  <a
-    class="btn btn-light btn-sm dropdown-toggle"
-    href="#"
-    role="button"
-    id="dropdownMenuLink"
-    data-mdb-toggle="dropdown"
-    aria-expanded="false"
-  >
-    ...
-  </a>
-
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <li>        <a href="/FeatureByEstimationSession/?EstimationSessionID={{.EstimationSessionID}}" class="dropdown-item text-primary" role="button" aria-pressed="true"><i class="fas fa-tasks text-primary fa-fw me-2"></i>Features</a>
-</li>
-    <li><hr class="dropdown-divider" /></li>
-
-    <li>        <a href="/EstimationSessionView/?EstimationSessionID={{.EstimationSessionID}}" class="dropdown-item text-info" role="button" aria-pressed="true"><i class="fas fa-eye text-info fa-fw me-2"></i>Details</a>
-</li>
-    <li>        <a href="/EstimationSessionFormatted/?EstimationSessionID={{.EstimationSessionID}}" class="dropdown-item text-info" role="button" aria-pressed="true"><i class="fas fa-file-invoice-dollar text-info fa-fw me-2"></i>RSC View</a>
-</li>
-    <li><hr class="dropdown-divider" /></li>
-
-    <li>        <a href="{{.ADOURI}}" class="dropdown-item text-secondary" role="button" aria-pressed="true"><i class="fab fa-microsoft text-secondary fa-fw me-2"></i>Azure DevOps</a>
-</li>
-    <li>        <a href="{{.FreshDeskURI}}" class="dropdown-item text-secondary" role="button" aria-pressed="true"><i class="fas fa-ticket text-secondary fa-fw me-2"></i>Freshdesk</a>
-</li>
-    <li><hr class="dropdown-divider" /></li>
+<div class="btn-group float-end" role="group" aria-label="Basic example">
 
 
-    <li>        <a href="/EstimationSessionRemove/?EstimationSessionID={{.EstimationSessionID}}" class="dropdown-item text-warning" role="button" aria-pressed="true" disabled><i class="fas fa-trash text-warning fa-fw me-2"></i>Remove</a>
-</li>
-  </ul>
+            <a href="/FeatureByEstimationSession/?EstimationSessionID={{.EstimationSessionID}}" class="btn btn-sm btn-primary" role="button" aria-pressed="true"><i class="fas fa-tasks fa-fw me-1"></i>Features</a>
+
+ 
+
+
+
+            <a href="/EstimationSessionFormatted/?EstimationSessionID={{.EstimationSessionID}}" class="btn btn-sm btn-info" role="button" aria-pressed="true"><i class="fas fa-file-invoice-dollar fa-fw me-1"></i>Details</a>
+
+
+
+            <a href="{{.ADOURI}}" class="btn btn-sm btn-secondary" role="button" aria-pressed="true"><i class="fab fa-microsoft fa-fw me-1"></i>DevOps</a>
+
+            <a href="{{.FreshDeskURI}}" class="btn btn-sm btn-secondary" role="button" aria-pressed="true"><i class="fas fa-ticket  fa-fw me-1"></i>Freshdesk</a>
+
+
+          <a href="/EstimationSessionClone/?EstimationSessionID={{.EstimationSessionID}}" class="btn btn-sm btn-warning" role="button" aria-pressed="true"><i class="far fa-copy  fa-fw me-1"></i>Clone</a>
+
+
+           <a href="/EstimationSessionRemove/?EstimationSessionID={{.EstimationSessionID}}" class="btn btn-sm btn-warning" role="button" aria-pressed="true" disabled><i class="fas fa-trash t fa-fw me-1"></i>Remove</a>
+
 </div>
 
       </td>
@@ -89,10 +83,26 @@
     </tr>
     {{end}}
   </tbody>
+      <caption>
+      &nbsp;
+      <button
+  type="button"
+  class="btn btn-sm btn-light me-2"
+  data-mdb-toggle="popover"
+  data-mdb-trigger="focus"
+  title="About this Table"
+  data-mdb-content="&#8224;This table can be sorted by clicking on the column headings. &#8224;You can also filter the table by entering a search term in the search box.&#8224;You can export the data from this table.">
+ <i class="fas fa-info"></i>
+</button>
+  The table above shows the list of estimates being prepared for {{.Origin.FullName}}<br>
+
+  </caption>
 </table>
 
     </div>
 
   {{template "userfooter" .}}
+    {{template "exportcontrols" .}}
+{{template "tablecontrols" .}}
 {{template "pagefooter" .}}
 

@@ -1,68 +1,43 @@
-//
-// List group styles
-//
-
-.list-group {
-  --#{$prefix}list-group-item-transition-time: #{$list-group-item-transition-time};
-}
+// List group
 
 .list-group-item-action {
-  transition: var(--#{$prefix}list-group-item-transition-time);
+  transition: 0.5s;
 
   // Hover state
   &:hover {
-    transition: var(--#{$prefix}list-group-item-transition-time);
+    transition: 0.5s;
   }
 }
 
 .list-group-light {
-  --#{$prefix}list-group-light-item-py: #{$list-group-light-item-py};
-  --#{$prefix}list-group-light-item-border: #{$list-group-light-item-border};
-  --#{$prefix}list-group-light-item-border-width: #{$list-group-light-item-border-width};
-  --#{$prefix}list-group-light-active-border-radius: #{$list-group-light-active-border-radius};
-  --#{$prefix}list-group-light-active-bg: #{$list-group-light-active-bg};
-  --#{$prefix}list-group-light-active-color: #{$list-group-light-active-color};
-
   .list-group-item {
-    padding: var(--#{$prefix}list-group-light-item-py) 0;
-    border: var(--#{$prefix}list-group-light-item-border);
+    padding: 1rem 0;
+    border: 2px solid hsl(0, 0%, 96%);
   }
   > .list-group-item {
-    border-width: 0 0 var(--#{$prefix}list-group-light-item-border-width);
+    border-width: 0 0 2px;
     &:last-of-type {
       border: none;
     }
   }
   .active {
     border: none;
-    border-radius: var(--#{$prefix}list-group-light-active-border-radius);
-    background-color: var(--#{$prefix}list-group-light-active-bg);
-    color: var(--#{$prefix}list-group-light-active-color);
+    border-radius: 0.5rem;
+    background-color: hsl(217, 88.2%, 90%);
+    color: hsl(217, 88.8%, 35.1%);
   }
   .list-group-item-action {
     &:hover {
-      border-radius: var(--#{$prefix}list-group-light-active-border-radius);
+      border-radius: 0.5rem;
     }
     &:focus {
-      border-radius: var(--#{$prefix}list-group-light-active-border-radius);
+      border-radius: 0.5rem;
     }
   }
 }
 
 .list-group-small {
-  --#{$prefix}list-group-small-item-py: #{$list-group-small-item-py};
   .list-group-item {
-    padding: var(--#{$prefix}list-group-small-item-py) 0;
-  }
-}
-
-@each $color, $value in $alerts {
-  .list-group-item-#{$color} {
-    background-color: map-get($value, background-color);
-    color: map-get($value, text-color);
-
-    i {
-      color: map-get($value, icon-color);
-    }
+    padding: 0.5rem 0;
   }
 }

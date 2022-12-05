@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 01/12/2022 at 09:40:01
+// Date & Time		    : 05/12/2022 at 20:49:56
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -146,7 +146,7 @@ func Feature_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Feature
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Feature_SYSId_scrn)
 		item.FeatureID = r.FormValue(dm.Feature_FeatureID_scrn)
@@ -182,9 +182,17 @@ func Feature_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.OffProfile = r.FormValue(dm.Feature_OffProfile_scrn)
 		item.OffProfileJustification = r.FormValue(dm.Feature_OffProfileJustification_scrn)
 		item.SYSActivity = r.FormValue(dm.Feature_SYSActivity_scrn)
+		item.DfReqs = r.FormValue(dm.Feature_DfReqs_scrn)
+		item.DfAnalystTest = r.FormValue(dm.Feature_DfAnalystTest_scrn)
+		item.DfDocs = r.FormValue(dm.Feature_DfDocs_scrn)
+		item.Dfmgt = r.FormValue(dm.Feature_Dfmgt_scrn)
+		item.DfuatSupport = r.FormValue(dm.Feature_DfuatSupport_scrn)
+		item.Dfmarketing = r.FormValue(dm.Feature_Dfmarketing_scrn)
+		item.Dfcontingency = r.FormValue(dm.Feature_Dfcontingency_scrn)
+		item.DfdevUplift = r.FormValue(dm.Feature_DfdevUplift_scrn)
 	
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Feature_Store(item,r)	
 	http.Redirect(w, r, dm.Feature_Redirect, http.StatusFound)
@@ -224,7 +232,7 @@ func Feature_HandlerNew(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Feature Page 
 func feature_PopulatePage(rD dm.Feature, pageDetail dm.Feature_Page) dm.Feature_Page {
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.FeatureID = rD.FeatureID
@@ -260,10 +268,18 @@ func feature_PopulatePage(rD dm.Feature, pageDetail dm.Feature_Page) dm.Feature_
 	pageDetail.OffProfile = rD.OffProfile
 	pageDetail.OffProfileJustification = rD.OffProfileJustification
 	pageDetail.SYSActivity = rD.SYSActivity
+	pageDetail.DfReqs = rD.DfReqs
+	pageDetail.DfAnalystTest = rD.DfAnalystTest
+	pageDetail.DfDocs = rD.DfDocs
+	pageDetail.Dfmgt = rD.Dfmgt
+	pageDetail.DfuatSupport = rD.DfuatSupport
+	pageDetail.Dfmarketing = rD.Dfmarketing
+	pageDetail.Dfcontingency = rD.Dfcontingency
+	pageDetail.DfdevUplift = rD.DfdevUplift
 	
 	
 	//
-	// Automatically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -326,11 +342,27 @@ func feature_PopulatePage(rD dm.Feature, pageDetail dm.Feature_Page) dm.Feature_
 	
 	
 	
-	pageDetail.Developer_lookup = dao.Credentials_GetLookup()
+	pageDetail.Developer_lookup = dao.Resource_GetLookup()
 	
 	
 	
-	pageDetail.Approver_lookup = dao.Credentials_GetLookup()
+	pageDetail.Approver_lookup = dao.Resource_GetLookup()
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -376,9 +408,17 @@ func feature_PopulatePage(rD dm.Feature, pageDetail dm.Feature_Page) dm.Feature_
 	pageDetail.OffProfile_props = rD.OffProfile_props
 	pageDetail.OffProfileJustification_props = rD.OffProfileJustification_props
 	pageDetail.SYSActivity_props = rD.SYSActivity_props
+	pageDetail.DfReqs_props = rD.DfReqs_props
+	pageDetail.DfAnalystTest_props = rD.DfAnalystTest_props
+	pageDetail.DfDocs_props = rD.DfDocs_props
+	pageDetail.Dfmgt_props = rD.Dfmgt_props
+	pageDetail.DfuatSupport_props = rD.DfuatSupport_props
+	pageDetail.Dfmarketing_props = rD.Dfmarketing_props
+	pageDetail.Dfcontingency_props = rD.Dfcontingency_props
+	pageDetail.DfdevUplift_props = rD.DfdevUplift_props
 	
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail

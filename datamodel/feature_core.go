@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 01/12/2022 at 09:40:01
+// Date & Time		    : 05/12/2022 at 20:49:56
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -85,6 +85,22 @@ OffProfileJustification       string
 OffProfileJustification_props FieldProperties
 SYSActivity       string
 SYSActivity_props FieldProperties
+DfReqs       string
+DfReqs_props FieldProperties
+DfAnalystTest       string
+DfAnalystTest_props FieldProperties
+DfDocs       string
+DfDocs_props FieldProperties
+Dfmgt       string
+Dfmgt_props FieldProperties
+DfuatSupport       string
+DfuatSupport_props FieldProperties
+Dfmarketing       string
+Dfmarketing_props FieldProperties
+Dfcontingency       string
+Dfcontingency_props FieldProperties
+DfdevUplift       string
+DfdevUplift_props FieldProperties
  // Any lookups will be added below
 
 EstimationSessionID_lookup []Lookup_Item
@@ -115,6 +131,14 @@ ConfidenceID_lookup []Lookup_Item
 
 Developer_lookup []Lookup_Item
 Approver_lookup []Lookup_Item
+
+
+
+
+
+
+
+
 
 
 
@@ -187,6 +211,14 @@ const (
 	Feature_OffProfile_sql   = "offProfile" // OffProfile is a String
 	Feature_OffProfileJustification_sql   = "offProfileJustification" // OffProfileJustification is a String
 	Feature_SYSActivity_sql   = "_activity" // SYSActivity is a String
+	Feature_DfReqs_sql   = "dfReqs" // DfReqs is a String
+	Feature_DfAnalystTest_sql   = "dfAnalystTest" // DfAnalystTest is a String
+	Feature_DfDocs_sql   = "dfDocs" // DfDocs is a String
+	Feature_Dfmgt_sql   = "dfmgt" // Dfmgt is a String
+	Feature_DfuatSupport_sql   = "dfuatSupport" // DfuatSupport is a String
+	Feature_Dfmarketing_sql   = "dfmarketing" // Dfmarketing is a String
+	Feature_Dfcontingency_sql   = "dfcontingency" // Dfcontingency is a String
+	Feature_DfdevUplift_sql   = "dfdevUplift" // DfdevUplift is a String
 
 	/// Definitions End
 	///
@@ -226,6 +258,14 @@ const (
 	Feature_OffProfile_scrn   = "OffProfile" // OffProfile is a String
 	Feature_OffProfileJustification_scrn   = "OffProfileJustification" // OffProfileJustification is a String
 	Feature_SYSActivity_scrn   = "SYSActivity" // SYSActivity is a String
+	Feature_DfReqs_scrn   = "DfReqs" // DfReqs is a String
+	Feature_DfAnalystTest_scrn   = "DfAnalystTest" // DfAnalystTest is a String
+	Feature_DfDocs_scrn   = "DfDocs" // DfDocs is a String
+	Feature_Dfmgt_scrn   = "Dfmgt" // Dfmgt is a String
+	Feature_DfuatSupport_scrn   = "DfuatSupport" // DfuatSupport is a String
+	Feature_Dfmarketing_scrn   = "Dfmarketing" // Dfmarketing is a String
+	Feature_Dfcontingency_scrn   = "Dfcontingency" // Dfcontingency is a String
+	Feature_DfdevUplift_scrn   = "DfdevUplift" // DfdevUplift is a String
 
 	/// Definitions End
 	///
@@ -251,7 +291,7 @@ type Feature_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -325,8 +365,24 @@ type Feature_Page struct {
 	OffProfileJustification_props     FieldProperties
 	SYSActivity         string
 	SYSActivity_props     FieldProperties
+	DfReqs         string
+	DfReqs_props     FieldProperties
+	DfAnalystTest         string
+	DfAnalystTest_props     FieldProperties
+	DfDocs         string
+	DfDocs_props     FieldProperties
+	Dfmgt         string
+	Dfmgt_props     FieldProperties
+	DfuatSupport         string
+	DfuatSupport_props     FieldProperties
+	Dfmarketing         string
+	Dfmarketing_props     FieldProperties
+	Dfcontingency         string
+	Dfcontingency_props     FieldProperties
+	DfdevUplift         string
+	DfdevUplift_props     FieldProperties
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

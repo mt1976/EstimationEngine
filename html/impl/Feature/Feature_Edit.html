@@ -49,12 +49,12 @@
        
         <div class="row mb-3"  ><div class="col">
         
-             <input type="text" class="form-control {{.FeatureID_props.MsgType}}" id="FeatureID" name="FeatureID" aria-describedby="FeatureIDHelp" placeholder=""   value="{{.EstimationSessionID}}"  data-mdb-input-mask="" hidden/>
+             <input type="text" class="form-control {{.FeatureID_props.MsgType}}" id="EstimationSessionID" name="EstimationSessionID" aria-describedby="EstimationSessionIDHelp" placeholder=""   value="{{.EstimationSessionID}}"  data-mdb-input-mask="" hidden/>
 
-            <select id="EstimationSessionIDDisplay" name="EstimationSessionID" class="select" data-mdb-filter="true" disabled>
+            <select id="EstimationSessionIDDisplay" name="EstimationSessionIDDisplay" class="select" data-mdb-filter="true" disabled>
                 {{range .EstimationSessionID_lookup}}<option value="{{.ID}}" {{if eq .ID $.EstimationSessionID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
             </select>
-            <label class="form-label select-label" for="EstimationSessionID" >Estimate</label>
+            <label class="form-label select-label" for="EstimationSessionIDDisplay" >Estimate</label>
             <div class="{{.EstimationSessionID_props.MsgFeedBackType}}">{{.EstimationSessionID_props.MsgMessage}}</div>
             
         
@@ -177,10 +177,10 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.DevUplift_props.MsgType}}" id="DefaultDevUplift" name="DefaultDevUplift" aria-describedby="DefaultDevUpliftHelp" placeholder=""  readonly value="{{.DevUplift}}"  data-mdb-input-mask="" />
-              
-              <label class="form-label" for="DefaultDevUplift" >Development + Uplift</label>
-              <div class="{{.DevUplift_props.MsgFeedBackType}}">{{.DevUplift_props.MsgMessage}}</div>
+              <input type="text" class="form-control {{.DfdevUplift_props.MsgType}}" id="DfdevUplift" name="DfdevUplift" aria-describedby="DfdevUpliftHelp" placeholder=""  readonly value="{{.DfdevUplift}}"  data-mdb-input-mask="" />
+
+              <label class="form-label" for="DfdevUplift" >Development + Uplift</label>
+              <div class="{{.DevUplift_props.MsgFeedBackType}}">{{.DfdevUplift_props.MsgMessage}}</div>
             </div>
         
         </div>
@@ -189,10 +189,10 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.Reqs_props.MsgType}}" id="DefaultReqs" name="DefaultReqs" aria-describedby="DefaultReqsHelp" placeholder="" readonly  value="{{.Reqs}}"  data-mdb-input-mask="" />
+              <input type="text" class="form-control {{.DfReqs_props.MsgType}}" id="DfReqs" name="DfReqs" aria-describedby="DfReqsHelp" placeholder="" readonly  value="{{.DfReqs}}"  data-mdb-input-mask="" />
               
-              <label class="form-label" for="DefaultReqs" >Requirements</label>
-              <div class="{{.Reqs_props.MsgFeedBackType}}">{{.Reqs_props.MsgMessage}}</div>
+              <label class="form-label" for="DfReqs" >Requirements</label>
+              <div class="{{.DfReqs_props.MsgFeedBackType}}">{{.DfReqs_props.MsgMessage}}</div>
             </div>
         
         </div>
@@ -201,10 +201,10 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.AnalystTest_props.MsgType}}" id="DefaultAnalystTest" name="DefaultAnalystTest" aria-describedby="DefaultAnalystTestHelp" placeholder=""  readonly value="{{.AnalystTest}}"  data-mdb-input-mask="" />
+              <input type="text" class="form-control {{.DfAnalystTest_props.MsgType}}" id="DfAnalystTest" name="DfAnalystTest" aria-describedby="DfAnalystTestHelp" placeholder=""  readonly value="{{.DfAnalystTest}}"  data-mdb-input-mask="" />
               
-              <label class="form-label" for="DefaultAnalystTest" >Analyst & Test</label>
-              <div class="{{.AnalystTest_props.MsgFeedBackType}}">{{.AnalystTest_props.MsgMessage}}</div>
+              <label class="form-label" for="DfAnalystTest" >Analyst & Test</label>
+              <div class="{{.DfAnalystTest_props.MsgFeedBackType}}">{{.DfAnalystTest_props.MsgMessage}}</div>
             </div>
         
         </div>
@@ -213,10 +213,10 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.Docs_props.MsgType}}" id="DefaultDocs" name="DefaultDocs" aria-describedby="DefaultDocsHelp" placeholder="" readonly  value="{{.Docs}}"  data-mdb-input-mask="" />
+              <input type="text" class="form-control {{.DfDocs_props.MsgType}}" id="DfDocs" name="DfDocs" aria-describedby="DfDocsHelp" placeholder="" readonly  value="{{.DfDocs}}"  data-mdb-input-mask="" />
               
-              <label class="form-label" for="DefaultDocs" >Documentation</label>
-              <div class="{{.Docs_props.MsgFeedBackType}}">{{.Docs_props.MsgMessage}}</div>
+              <label class="form-label" for="DfDocs" >Documentation</label>
+              <div class="{{.DfDocs_props.MsgFeedBackType}}">{{.DfDocs_props.MsgMessage}}</div>
             </div>
         
         </div>
@@ -225,10 +225,10 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.Mgt_props.MsgType}}" id="DefaultMgt" name="DefaultMgt" aria-describedby="DefaultMgtHelp" placeholder="" readonly  value="{{.Mgt}}"  data-mdb-input-mask="" />
+              <input type="text" class="form-control {{.Dfmgt_props.MsgType}}" id="Dfmgt" name="Dfmgt" aria-describedby="DfmgtHelp" placeholder="" readonly  value="{{.Dfmgt}}"  data-mdb-input-mask="" />
               
-              <label class="form-label" for="DefaultMgt" >Management</label>
-              <div class="{{.Mgt_props.MsgFeedBackType}}">{{.Mgt_props.MsgMessage}}</div>
+              <label class="form-label" for="Dfmgt" >Management</label>
+              <div class="{{.Dfmgt_props.MsgFeedBackType}}">{{.Dfmgt_props.MsgMessage}}</div>
             </div>
         
         </div>
@@ -237,10 +237,10 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.UatSupport_props.MsgType}}" id="DefaultUatSupport" name="DefaultUatSupport" aria-describedby="DefaultUatSupportHelp" placeholder="" readonly  value="{{.UatSupport}}"  data-mdb-input-mask="" />
+              <input type="text" class="form-control {{.DfuatSupport_props.MsgType}}" id="DfuatSupport" name="DfuatSupport" aria-describedby="DfuatSupportHelp" placeholder="" readonly  value="{{.DfuatSupport}}"  data-mdb-input-mask="" />
               
-              <label class="form-label" for="DefaultUatSupport" >UAT Support</label>
-              <div class="{{.UatSupport_props.MsgFeedBackType}}">{{.UatSupport_props.MsgMessage}}</div>
+              <label class="form-label" for="DfuatSupport" >UAT Support</label>
+              <div class="{{.DfuatSupport_props.MsgFeedBackType}}">{{.DfuatSupport_props.MsgMessage}}</div>
             </div>
         
         </div>
@@ -249,10 +249,10 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.Marketing_props.MsgType}}" id="DefaultMarketing" name="DefaultMarketing" aria-describedby="DefaultMarketingHelp" placeholder="" readonly  value="{{.Marketing}}"  data-mdb-input-mask="" />
+              <input type="text" class="form-control {{.DfuatSupport_props.MsgType}}" id="DfuatSupport" name="DfuatSupport" aria-describedby="DfuatSupportHelp" placeholder="" readonly  value="{{.DfuatSupport}}"  data-mdb-input-mask="" />
               
-              <label class="form-label" for="DefaultMarketing" >Marketing</label>
-              <div class="{{.Marketing_props.MsgFeedBackType}}">{{.Marketing_props.MsgMessage}}</div>
+              <label class="form-label" for="DfuatSupport" >Marketing</label>
+              <div class="{{.DfuatSupport_props.MsgFeedBackType}}">{{.DfuatSupport_props.MsgMessage}}</div>
             </div>
         
         </div>
@@ -261,10 +261,10 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.Contingency_props.MsgType}}" id="DefaultContingency" name="DefaultContingency" aria-describedby="DefaultContingencyHelp" placeholder="" readonly  value="{{.Contingency}}"  data-mdb-input-mask="" />
+              <input type="text" class="form-control {{.Dfcontingency_props.MsgType}}" id="Dfcontingency" name="Dfcontingency" aria-describedby="DfcontingencyHelp" placeholder="" readonly  value="{{.Dfcontingency}}"  data-mdb-input-mask="" />
               
-              <label class="form-label" for="DefaultContingency" >Contingency</label>
-              <div class="{{.Contingency_props.MsgFeedBackType}}">{{.Contingency_props.MsgMessage}}</div>
+              <label class="form-label" for="Dfcontingency" >Contingency</label>
+              <div class="{{.Dfcontingency_props.MsgFeedBackType}}">{{.Dfcontingency_props.MsgMessage}}</div>
             </div>
         
         </div></div>
@@ -273,7 +273,7 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.DevUplift_props.MsgType}}" id="DevUplift" name="DevUplift" aria-describedby="DevUpliftHelp" placeholder=""   value="{{.DevUplift}}" readonly data-mdb-input-mask="" />
+              <input type="text" class="form-control {{.DevUplift_props.MsgType}}" id="DevUplift" name="DevUplift" aria-describedby="DevUpliftHelp" placeholder=""   value="{{.DevUplift}}"  data-mdb-input-mask="" />
               
               <label class="form-label" for="DevUplift" >Development + Uplift</label>
               <div class="{{.DevUplift_props.MsgFeedBackType}}">{{.DevUplift_props.MsgMessage}}</div>

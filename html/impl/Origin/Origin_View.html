@@ -88,7 +88,14 @@
                   <label class="form-label select-label" for="DocTypeID" disabled>Type of Document</label>
                 
                 </div>
-
+         <div class="col">
+                
+                  <select id="Currency" name="Currency" class="select" data-mdb-filter="true" disabled>
+                  {{range .Currency_lookup}}<option value="{{.ID}}" {{if eq .ID $.Currency}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="Currency" disabled>Currency</label>
+                
+                </div>
                 <div class="col">
                 
                     <div class="form-outline">

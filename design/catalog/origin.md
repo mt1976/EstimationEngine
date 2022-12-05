@@ -64,6 +64,8 @@ SQL Table Key | **originID**
 |**SYSDeletedBy**|String|false|true|false|false|||||NH|_deletedBy||false|false|true|text||
 |**SYSDeletedHost**|String|false|true|false|false|||||NH|_deletedHost||false|false|true|text||
 |**SYSActivity**|String|false|true|false|false|||||NH|_activity||false|false|true|text||
+|**Currency**|String|true|true|false|false|LL|ccy|||Y|currency||false|false|false|text||
+|**NoActiveProjects**|String|false|false|true|false|||||N|||false|true|false|text||
 
 
 ##  Artifacts Generated
@@ -85,7 +87,7 @@ SQL Table Key | **originID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **01/12/2022** at **09:40:01**
+Date & Time		     | **05/12/2022** at **21:52:44**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

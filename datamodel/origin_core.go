@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 01/12/2022 at 09:40:01
+// Date & Time		    : 05/12/2022 at 21:52:44
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -57,6 +57,10 @@ SYSDeletedHost       string
 SYSDeletedHost_props FieldProperties
 SYSActivity       string
 SYSActivity_props FieldProperties
+Currency       string
+Currency_props FieldProperties
+NoActiveProjects       string
+NoActiveProjects_props FieldProperties
  // Any lookups will be added below
 
 StateID_lookup []Lookup_Item
@@ -76,6 +80,8 @@ DocTypeID_lookup []Lookup_Item
 
 
 
+
+Currency_lookup []Lookup_Item
 
 
 }
@@ -131,6 +137,8 @@ const (
 	Origin_SYSDeletedBy_sql   = "_deletedBy" // SYSDeletedBy is a String
 	Origin_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
 	Origin_SYSActivity_sql   = "_activity" // SYSActivity is a String
+	Origin_Currency_sql   = "currency" // Currency is a String
+	Origin_NoActiveProjects_sql   = "NoActiveProjects" // NoActiveProjects is a String
 
 	/// Definitions End
 	///
@@ -156,6 +164,8 @@ const (
 	Origin_SYSDeletedBy_scrn   = "SYSDeletedBy" // SYSDeletedBy is a String
 	Origin_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
 	Origin_SYSActivity_scrn   = "SYSActivity" // SYSActivity is a String
+	Origin_Currency_scrn   = "Currency" // Currency is a String
+	Origin_NoActiveProjects_scrn   = "NoActiveProjects" // NoActiveProjects is a String
 
 	/// Definitions End
 	///
@@ -181,7 +191,7 @@ type Origin_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -225,8 +235,13 @@ type Origin_Page struct {
 	SYSDeletedHost_props     FieldProperties
 	SYSActivity         string
 	SYSActivity_props     FieldProperties
+	Currency         string
+	Currency_lookup    []Lookup_Item
+	Currency_props     FieldProperties
+	NoActiveProjects         string
+	NoActiveProjects_props     FieldProperties
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

@@ -1,97 +1,97 @@
 //
-// Button base styles
+// Base styles
 //
 
 .btn {
-  // scss-docs-start btn-css-vars
-  --#{$prefix}btn-padding-top: #{$btn-padding-top};
-  --#{$prefix}btn-padding-bottom: #{$btn-padding-bottom};
-  --#{$prefix}btn-border-width: 0;
-  --#{$prefix}btn-border-color: none;
-  --#{$prefix}btn-border-radius: #{$btn-border-radius};
-  --#{$prefix}btn-box-shadow: #{$btn-box-shadow};
-  --#{$prefix}btn-hover-box-shadow: #{$btn-hover-box-shadow};
-  --#{$prefix}btn-focus-box-shadow: #{$btn-focus-box-shadow};
-  --#{$prefix}btn-active-box-shadow: #{$btn-active-box-shadow};
-  // scss-docs-end btn-css-vars
-
-  padding-top: var(--#{$prefix}btn-padding-top);
-  padding-bottom: var(--#{$prefix}btn-padding-bottom);
+  font-family: $btn-font-family;
   text-transform: uppercase;
   vertical-align: bottom;
   border: 0;
-  @include border-radius(var(--#{$prefix}btn-border-radius));
-  box-shadow: var(--#{$prefix}btn-box-shadow);
+  box-shadow: $btn-box-shadow;
+  font-weight: $btn-font-weight;
+  @include button-size-mdb(
+    $btn-padding-top,
+    $btn-padding-right,
+    $btn-padding-bottom,
+    $btn-padding-left,
+    $btn-font-size,
+    $btn-line-height
+  );
 
-  :not(.btn-check) + &:hover,
-  &:first-child:hover,
-  &:focus-visible,
   &:hover {
-    box-shadow: var(--#{$prefix}btn-hover-box-shadow);
+    box-shadow: $btn-hover-box-shadow;
   }
 
-  .btn-check:focus-visible + &,
-  .btn-check:focus + &,
-  &:focus {
-    box-shadow: var(--#{$prefix}btn-focus-box-shadow);
+  &:focus,
+  &.focus {
+    box-shadow: $btn-focus-box-shadow;
   }
 
-  .btn-check:checked + &,
-  .btn-check:active + &,
   &:active,
-  &.active,
-  &.show {
-    box-shadow: var(--#{$prefix}btn-active-box-shadow);
+  &.active {
+    box-shadow: $btn-hover-box-shadow;
 
     &:focus {
-      box-shadow: var(--#{$prefix}btn-focus-box-shadow);
+      box-shadow: $btn-hover-box-shadow;
     }
   }
 
   &:disabled,
   &.disabled,
   fieldset:disabled & {
-    box-shadow: var(--#{$prefix}btn-box-shadow);
+    box-shadow: $btn-box-shadow;
+    border: 0;
+  }
+
+  .btn-check:focus + &,
+  &:focus {
+    outline: 0;
+    box-shadow: $btn-focus-box-shadow;
   }
 }
 
 //
-// Outline styles
+// Button block
+//
+
+.btn-block {
+  display: block;
+  width: 100%;
+
+  // Vertically space out multiple block buttons
+  + .btn-block {
+    margin-top: $btn-block-spacing-y;
+  }
+}
+
+//
+// Outline option
 //
 
 [class*='btn-outline-'] {
-  // scss-docs-start btn-outline-css-vars
-  --#{$prefix}btn-padding-top: #{$btn-outline-padding-top};
-  --#{$prefix}btn-padding-bottom: #{$btn-outline-padding-bottom};
-  --#{$prefix}btn-padding-x: #{$btn-outline-padding-x};
-  --#{$prefix}btn-border-width: #{$btn-outline-border-width};
-  --#{$prefix}btn-line-height: #{$btn-line-height};
-  // scss-docs-end btn-outline-css-vars
-
-  padding: var(--#{$prefix}btn-padding-top) var(--#{$prefix}btn-padding-x)
-    var(--#{$prefix}btn-padding-bottom);
-  border-width: var(--#{$prefix}btn-border-width);
+  border-width: $btn-border-width;
   border-style: solid;
   box-shadow: none;
+  @include button-outline-size-mdb(
+    $btn-outline-padding-top,
+    $btn-outline-padding-right,
+    $btn-outline-padding-bottom,
+    $btn-outline-padding-left
+  );
 
-  :not(.btn-check) + &:hover,
-  &:first-child:hover,
-  &:focus-visible,
   &:hover {
     box-shadow: none;
+    text-decoration: none;
   }
 
-  .btn-check:focus-visible + &,
-  .btn-check:focus + &,
-  &:focus {
+  &:focus,
+  &.focus {
     box-shadow: none;
+    text-decoration: none;
   }
 
-  .btn-check:checked + &,
-  .btn-check:active + &,
   &:active,
-  &.active,
-  &.show {
+  &.active {
     box-shadow: none;
 
     &:focus {
@@ -106,22 +106,20 @@
   }
 
   &.btn-lg {
-    @include button-outline-size(
+    @include button-outline-size-mdb(
       $btn-outline-padding-top-lg,
+      $btn-outline-padding-right-lg,
       $btn-outline-padding-bottom-lg,
-      $btn-outline-padding-x-lg,
-      $btn-outline-font-size-lg,
-      $btn-outline-line-height-lg
+      $btn-outline-padding-left-lg
     );
   }
 
   &.btn-sm {
-    @include button-outline-size(
+    @include button-outline-size-mdb(
       $btn-outline-padding-top-sm,
+      $btn-outline-padding-right-sm,
       $btn-outline-padding-bottom-sm,
-      $btn-outline-padding-x-sm,
-      $btn-outline-font-size-sm,
-      $btn-outline-line-height-sm
+      $btn-outline-padding-left-sm
     );
   }
 }
@@ -130,259 +128,25 @@
 // Alternate buttons
 //
 
-// scss-docs-start btn-secondary
-.btn-secondary {
-  box-shadow: none;
-
-  :not(.btn-check) + &:hover,
-  &:first-child:hover,
-  &:focus-visible,
-  &:hover {
-    box-shadow: none !important;
-  }
-
-  .btn-check:focus-visible + &,
-  .btn-check:focus + &,
-  &:focus {
-    box-shadow: none;
-  }
-
-  .btn-check:checked + &,
-  .btn-check:active + &,
-  &:active,
-  &.active,
-  &.show {
-    box-shadow: none;
-
-    &:focus {
-      box-shadow: none;
-    }
-  }
-
-  &:disabled,
-  &.disabled,
-  fieldset:disabled & {
-    box-shadow: none;
-  }
-}
-// scss-docs-end btn-secondary
-
-// scss-docs-start btn-variant-loop
-@each $color, $value in $buttons {
+@each $color, $value in $theme-colors {
   .btn-#{$color} {
-    @include button-variant(
-      map-get($value, 'background-color'),
-      map-get($value, 'text-color'),
-      $btn-contextual-box-shadow map-get($value, 'shadow-color'),
-      shade-color(map-get($value, 'background-color'), $btn-hover-bg-shade-amount),
-      map-get($value, 'text-color'),
-      shade-color(map-get($value, 'background-color'), $btn-focus-bg-shade-amount),
-      map-get($value, 'text-color'),
-      shade-color(map-get($value, 'background-color'), $btn-active-bg-shade-amount),
-      map-get($value, 'text-color')
-    );
-
-    :not(.btn-check) + &:hover,
-    &:first-child:hover,
-    &:focus-visible,
-    &:hover {
-      box-shadow: $btn-contextual-box-shadow-state-first-part
-          rgba(map-get($value, shadow-color), 0.3),
-        $btn-contextual-box-shadow-state-second-part rgba(map-get($value, shadow-color), 0.2);
-    }
-
-    .btn-check:focus-visible + &,
-    .btn-check:focus + &,
-    &:focus {
-      box-shadow: $btn-contextual-box-shadow-state-first-part
-          rgba(map-get($value, shadow-color), 0.3),
-        $btn-contextual-box-shadow-state-second-part rgba(map-get($value, shadow-color), 0.2);
-      background-color: shade-color(
-        map-get($value, 'background-color'),
-        $btn-focus-bg-shade-amount
-      );
-    }
-
-    .btn-check:checked + &,
-    .btn-check:active + &,
-    &:active,
-    &.active,
-    &.show {
-      box-shadow: $btn-contextual-box-shadow-state-first-part
-          rgba(map-get($value, shadow-color), 0.3),
-        $btn-contextual-box-shadow-state-second-part rgba(map-get($value, shadow-color), 0.2);
-
-      &:focus {
-        box-shadow: $btn-contextual-box-shadow-state-first-part
-            rgba(map-get($value, shadow-color), 0.3),
-          $btn-contextual-box-shadow-state-second-part rgba(map-get($value, shadow-color), 0.2);
-      }
-
-      &:hover {
-        background-color: shade-color(
-          map-get($value, 'background-color'),
-          $btn-active-bg-shade-amount
-        );
-      }
-    }
-
-    &:disabled,
-    &.disabled,
-    fieldset:disabled & {
-      box-shadow: $btn-contextual-box-shadow map-get($value, shadow-color);
-    }
+    @include button-variant-mdb($value);
   }
 }
-// scss-docs-end btn-variant-loop
 
-// scss-docs-start btn-outline-variant-loop
-@each $color, $value in $buttons-outline {
+//
+// Alternate buttons outline
+//
+
+@each $color, $value in $theme-colors {
   .btn-outline-#{$color} {
-    @include button-outline-variant(
-      map-get($value, 'text-color'),
-      shade-color(map-get($value, 'text-color'), $btn-hover-bg-shade-amount),
-      shade-color(map-get($value, 'text-color'), $btn-focus-bg-shade-amount),
-      shade-color(map-get($value, 'text-color'), $btn-active-bg-shade-amount)
-    );
-
-    border-color: map-get(map-get($buttons-outline, $color), 'border-color');
-
-    :not(.btn-check) + &:hover,
-    &:first-child:hover,
-    &:focus-visible,
-    &:hover {
-      border-color: shade-color(map-get($value, 'border-color'), $btn-hover-bg-shade-amount);
-    }
-
-    .btn-check:focus-visible + &,
-    .btn-check:focus + &,
-    &:focus {
-      border-color: shade-color(map-get($value, 'border-color'), $btn-focus-bg-shade-amount);
-    }
+    @include button-outline-variant-mdb($value);
 
     .btn-check:checked + &,
-    .btn-check:active + &,
-    &:active,
-    &.active,
-    &.show {
-      border-color: shade-color(map-get($value, 'border-color'), $btn-active-bg-shade-amount);
-
-      &:focus {
-        border-color: shade-color(map-get($value, 'border-color'), $btn-focus-bg-shade-amount);
-      }
+    .btn-check:active + & {
+      color: set-notification-text-color($value);
+      background-color: $value;
     }
-
-    &:disabled,
-    &.disabled,
-    fieldset:disabled & {
-      border-color: map-get(map-get($buttons-outline, $color), 'border-color');
-    }
-  }
-}
-// scss-docs-end btn-outline-variant-loop
-
-//
-// Link buttons
-//
-
-// Make a button look and behave like a link
-.btn-link {
-  --#{$prefix}btn-font-weight: #{$font-weight-medium};
-  --#{$prefix}btn-color: #{$btn-link-color};
-  --#{$prefix}btn-hover-color: #{$btn-link-hover-color};
-  --#{$prefix}btn-hover-bg: #{$btn-link-hover-bg};
-  --#{$prefix}btn-focus-color: #{$btn-link-focus-color};
-  --#{$prefix}btn-active-color: #{$btn-link-active-color};
-  --#{$prefix}btn-disabled-color: #{$btn-link-disabled-color};
-  --#{$prefix}btn-box-shadow: none;
-
-  text-decoration: $link-decoration;
-  box-shadow: var(--#{$prefix}btn-box-shadow);
-
-  :not(.btn-check) + &:hover,
-  &:first-child:hover,
-  &:focus-visible,
-  &:hover {
-    text-decoration: $link-hover-decoration;
-    box-shadow: var(--#{$prefix}btn-box-shadow);
-  }
-
-  .btn-check:focus-visible + &,
-  .btn-check:focus + &,
-  &:focus {
-    color: var(--#{$prefix}btn-focus-color);
-    box-shadow: var(--#{$prefix}btn-box-shadow);
-  }
-
-  .btn-check:checked + &,
-  .btn-check:active + &,
-  &:active,
-  &.active,
-  &.show {
-    color: var(--#{$prefix}btn-active-color);
-    box-shadow: var(--#{$prefix}btn-box-shadow);
-
-    &:focus {
-      color: var(--#{$prefix}btn-focus-color);
-      box-shadow: var(--#{$prefix}btn-box-shadow);
-    }
-  }
-
-  &:disabled,
-  &.disabled,
-  fieldset:disabled & {
-    box-shadow: var(--#{$prefix}btn-box-shadow);
-  }
-}
-
-.btn-tertiary {
-  --#{$prefix}btn-font-weight: #{$font-weight-medium};
-  --#{$prefix}btn-color: #{$btn-link-color};
-  --#{$prefix}btn-hover-color: #{$btn-link-hover-color};
-  --#{$prefix}btn-hover-bg: transparent;
-  --#{$prefix}btn-focus-color: #{$btn-link-focus-color};
-  --#{$prefix}btn-active-color: #{$btn-link-active-color};
-  --#{$prefix}btn-disabled-color: #{$btn-link-disabled-color};
-  --#{$prefix}btn-box-shadow: none;
-
-  padding-left: 0px;
-  padding-right: 0px;
-  text-decoration: $link-decoration;
-  box-shadow: var(--#{$prefix}btn-box-shadow);
-
-  :not(.btn-check) + &:hover,
-  &:first-child:hover,
-  &:focus-visible,
-  &:hover {
-    text-decoration: $link-hover-decoration;
-    box-shadow: var(--#{$prefix}btn-box-shadow);
-  }
-
-  .btn-check:focus-visible + &,
-  .btn-check:focus + &,
-  &:focus {
-    color: var(--#{$prefix}btn-focus-color);
-    box-shadow: var(--#{$prefix}btn-box-shadow);
-  }
-
-  .btn-check:checked + &,
-  .btn-check:active + &,
-  &:active,
-  &.active,
-  &.show {
-    color: var(--#{$prefix}btn-active-color);
-    box-shadow: var(--#{$prefix}btn-box-shadow);
-
-    &:focus {
-      color: var(--#{$prefix}btn-focus-color);
-      box-shadow: var(--#{$prefix}btn-box-shadow);
-    }
-  }
-
-  &:disabled,
-  &.disabled,
-  fieldset:disabled & {
-    box-shadow: var(--#{$prefix}btn-box-shadow);
   }
 }
 
@@ -391,23 +155,64 @@
 //
 
 .btn-lg {
-  @include button-size(
+  @include button-size-mdb(
     $btn-padding-top-lg,
+    $btn-padding-right-lg,
     $btn-padding-bottom-lg,
-    $btn-padding-x-lg,
+    $btn-padding-left-lg,
     $btn-font-size-lg,
     $btn-line-height-lg
   );
 }
 
 .btn-sm {
-  @include button-size(
+  @include button-size-mdb(
     $btn-padding-top-sm,
+    $btn-padding-right-sm,
     $btn-padding-bottom-sm,
-    $btn-padding-x-sm,
+    $btn-padding-left-sm,
     $btn-font-size-sm,
     $btn-line-height-sm
   );
+}
+
+// Link buttons
+//
+// Make a button look and behave like a link
+
+.btn-link {
+  box-shadow: none;
+  text-decoration: none;
+
+  &:hover {
+    box-shadow: none;
+    text-decoration: none;
+    background-color: $btn-link-bgc;
+  }
+
+  &:focus,
+  &.focus {
+    box-shadow: none;
+    text-decoration: none;
+    background-color: $btn-link-bgc;
+  }
+
+  &:active,
+  &.active {
+    box-shadow: none;
+    background-color: $btn-link-bgc;
+
+    &:focus {
+      box-shadow: none;
+      background-color: $btn-link-bgc;
+    }
+  }
+
+  &:disabled,
+  &.disabled,
+  fieldset:disabled & {
+    box-shadow: none;
+  }
 }
 
 //
@@ -415,9 +220,7 @@
 //
 
 .btn-rounded {
-  --#{$prefix}btn-border-radius: #{$btn-rounded-border-radius};
-
-  border-radius: var(--#{$prefix}btn-border-radius);
+  border-radius: $btn-rounded-border-radius;
 }
 
 //
@@ -426,83 +229,61 @@
 
 .btn-floating,
 [class*='btn-outline-'].btn-floating {
-  --#{$prefix}btn-border-radius: #{$btn-floating-border-radius};
-
-  border-radius: var(--#{$prefix}btn-border-radius);
+  border-radius: $btn-floating-border-radius;
   padding: 0;
   position: relative;
 }
 
 .btn-floating {
-  --#{$prefix}btn-width: #{$btn-floating-width};
-  --#{$prefix}btn-height: #{$btn-floating-height};
-  --#{$prefix}btn-icon-width: #{$btn-floating-icon-width};
-  --#{$prefix}btn-icon-line-height: #{$btn-floating-icon-line-height};
-  --#{$prefix}btn-width-lg: #{$btn-floating-width-lg};
-  --#{$prefix}btn-height-lg: #{$btn-floating-height-lg};
-  --#{$prefix}btn-icon-width-lg: #{$btn-floating-icon-width-lg};
-  --#{$prefix}btn-icon-line-height-lg: #{$btn-floating-icon-line-height-lg};
-  --#{$prefix}btn-width-sm: #{$btn-floating-width-sm};
-  --#{$prefix}btn-height-sm: #{$btn-floating-height-sm};
-  --#{$prefix}btn-icon-width-sm: #{$btn-floating-icon-width-sm};
-  --#{$prefix}btn-icon-line-height-sm: #{$btn-floating-icon-line-height-sm};
-
-  width: var(--#{$prefix}btn-width);
-  height: var(--#{$prefix}btn-height);
+  width: $btn-floating-width;
+  height: $btn-floating-height;
 
   .fas,
   .far,
   .fab {
-    width: var(--#{$prefix}btn-icon-width);
-    line-height: var(--#{$prefix}btn-icon-line-height);
+    width: $btn-floating-icon-width;
+    line-height: $btn-floating-icon-line-height;
   }
 
   &.btn-lg {
-    width: var(--#{$prefix}btn-width-lg);
-    height: var(--#{$prefix}btn-height-lg);
+    width: $btn-floating-width-lg;
+    height: $btn-floating-height-lg;
 
     .fas,
     .far,
     .fab {
-      width: var(--#{$prefix}btn-icon-width-lg);
-      line-height: var(--#{$prefix}btn-icon-line-height-lg);
+      width: $btn-floating-icon-width-lg;
+      line-height: $btn-floating-icon-line-height-lg;
     }
   }
 
   &.btn-sm {
-    width: var(--#{$prefix}btn-width-sm);
-    height: var(--#{$prefix}btn-height-sm);
+    width: $btn-floating-width-sm;
+    height: $btn-floating-height-sm;
 
     .fas,
     .far,
     .fab {
-      width: var(--#{$prefix}btn-icon-width-sm);
-      line-height: var(--#{$prefix}btn-icon-line-height-sm);
+      width: $btn-floating-icon-width-sm;
+      line-height: $btn-floating-icon-line-height-sm;
     }
   }
 }
 
 [class*='btn-outline-'].btn-floating {
-  --#{$prefix}btn-icon-width: #{$btn-outline-floating-icon-width};
-  --#{$prefix}btn-icon-width-lg: #{$btn-outline-floating-icon-width-lg};
-  --#{$prefix}btn-icon-width-sm: #{$btn-outline-floating-icon-width-sm};
-  --#{$prefix}btn-icon-line-height: #{$btn-outline-floating-icon-line-height};
-  --#{$prefix}btn-icon-line-height-lg: #{$btn-outline-floating-icon-line-height-lg};
-  --#{$prefix}btn-icon-line-height-sm: #{$btn-outline-floating-icon-line-height-sm};
-
   .fas,
   .far,
   .fab {
-    width: var(--#{$prefix}btn-icon-width);
-    line-height: var(--#{$prefix}btn-icon-line-height);
+    width: $btn-outline-floating-icon-width;
+    line-height: $btn-outline-floating-icon-line-height;
   }
 
   &.btn-lg {
     .fas,
     .far,
     .fab {
-      width: var(--#{$prefix}btn-icon-width-lg);
-      line-height: var(--#{$prefix}btn-icon-line-height-lg);
+      width: $btn-outline-floating-icon-width-lg;
+      line-height: $btn-outline-floating-icon-line-height-lg;
     }
   }
 
@@ -510,8 +291,8 @@
     .fas,
     .far,
     .fab {
-      width: var(--#{$prefix}btn-icon-width-sm);
-      line-height: var(--#{$prefix}btn-icon-line-height-sm);
+      width: $btn-outline-floating-icon-width-sm;
+      line-height: $btn-outline-floating-icon-line-height-sm;
     }
   }
 }
@@ -521,23 +302,14 @@
 //
 
 .fixed-action-btn {
-  --#{$prefix}btn-right: #{$fixed-action-btn-right};
-  --#{$prefix}btn-bottom: #{$fixed-action-btn-bottom};
-  --#{$prefix}btn-zindex: #{$fixed-action-button-zindex};
-  --#{$prefix}btn-padding-top: #{$fixed-action-btn-padding-top};
-  --#{$prefix}btn-padding-bottom: #{$fixed-action-btn-padding-bottom};
-  --#{$prefix}btn-padding-x: #{$fixed-action-btn-padding-x};
-  --#{$prefix}btn-margin-bottom: #{$fixed-action-btn-li-margin-bottom};
-
   position: fixed;
-  right: var(--#{$prefix}btn-right);
-  bottom: var(--#{$prefix}btn-bottom);
-  z-index: var(--#{$prefix}btn-zindex);
+  right: $fixed-action-btn-right;
+  bottom: $fixed-action-btn-bottom;
+  z-index: $zindex-fixed-action-button;
   display: flex;
   flex-flow: column-reverse nowrap;
   align-items: center;
-  padding: var(--#{$prefix}btn-padding-top) var(--#{$prefix}btn-padding-x)
-    var(--#{$prefix}btn-padding-bottom);
+  padding: $fixed-action-btn-padding-top 20px 20px 20px;
   margin-bottom: 0;
   height: auto;
   overflow: hidden;
@@ -562,48 +334,27 @@
     opacity: 0;
     transition: transform 0.4s, opacity 0.4s;
     z-index: -1;
-
     li {
       z-index: 0;
       display: flex;
       margin-right: auto;
-      margin-bottom: var(--#{$prefix}btn-margin-bottom);
+      margin-bottom: $fixed-action-btn-li-margin-bottom;
       margin-left: auto;
-
       &:first-of-type {
-        margin-top: calc(var(--#{$prefix}btn-margin-bottom) * 0.5);
+        margin-top: $fixed-action-btn-li-margin-bottom * 0.5;
       }
     }
-
     a {
       &.btn {
         opacity: 0;
         transition: opacity 0.4s ease-in;
-
         &.shown {
           opacity: 1;
         }
       }
     }
   }
-
   &.active ul {
     opacity: 1;
-  }
-}
-
-//
-// Button block
-//
-
-.btn-block {
-  --#{$prefix}btn-margin-top: #{$btn-block-margin-top};
-
-  display: block;
-  width: 100%;
-
-  // Vertically space out multiple block buttons
-  + .btn-block {
-    margin-top: var(--#{$prefix}btn-margin-top);
   }
 }

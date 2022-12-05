@@ -102,3 +102,32 @@ func Feature_SoftDeleteByEstimationSessionID(esID string) error {
 	}
 	return err
 }
+
+func Feature_Clone(feature dm.Feature, esID string, r *http.Request) error {
+	// START
+
+	newID := dao.Feature_NewID(feature)
+
+	feature.SYSId = ""
+	feature.EstimationSessionID = esID
+	feature.FeatureID = newID
+	feature.SYSCreated = ""
+	feature.SYSCreatedBy = ""
+	feature.SYSCreatedHost = ""
+	feature.SYSUpdated = ""
+	feature.SYSUpdatedBy = ""
+	feature.SYSUpdatedHost = ""
+	feature.SYSDeleted = ""
+	feature.SYSDeletedBy = ""
+	feature.SYSDeletedHost = ""
+	feature.Notes = addActivity(feature.Notes, "CLONED -> "+feature.FeatureID, r)
+
+	err := dao.Feature_Store(feature, r)
+	if err != nil {
+		logs.Panic("Cannot Store Feature {"+feature.FeatureID+"}", err)
+		return err
+	}
+	// END
+
+	return nil
+}

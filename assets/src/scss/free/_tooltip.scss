@@ -1,8 +1,6 @@
 // Tooltip
 
 .tooltip {
-  --#{$prefix}tooltip-font-size: #{$tooltip-font-size};
-
   &.show {
     opacity: 1;
   }
@@ -13,5 +11,9 @@
 }
 
 .tooltip-inner {
-  font-size: var(--#{$prefix}tooltip-font-size);
+  color: $tooltip-inner-color;
+  padding: $tooltip-inner-padding-y $tooltip-inner-padding-x;
+  font-size: $tooltip-inner-font-size;
+  background-color: $tooltip-inner-background-color;
+  border-radius: $tooltip-inner-border-radius;
 }

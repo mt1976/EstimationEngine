@@ -1,14 +1,8 @@
-//
-// Navbar styles
-//
+// Navbar
 
 .navbar {
-  --#{$prefix}navbar-box-shadow: #{$navbar-box-shadow};
-  --#{$prefix}navbar-padding-top: #{$navbar-padding-top};
-  --#{$prefix}navbar-brand-img-margin-right: #{$navbar-brand-img-margin-right};
-
-  box-shadow: var(--#{$prefix}navbar-box-shadow);
-  padding-top: var(--#{$prefix}navbar-padding-top);
+  box-shadow: $navbar-box-shadow;
+  padding-top: $navbar-padding-top;
 }
 
 .navbar-toggler {
@@ -28,7 +22,7 @@
   display: flex;
   align-items: center;
   img {
-    margin-right: var(--#{$prefix}navbar-brand-img-margin-right);
+    margin-right: $navbar-brand-img-margin-right;
   }
 }
 
@@ -36,7 +30,6 @@
   position: absolute;
 }
 
-// Navbar themes
 .navbar-light {
   .navbar-toggler-icon {
     background-image: none;

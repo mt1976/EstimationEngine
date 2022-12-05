@@ -3,17 +3,18 @@
 //
 
 .table {
-  --#{$prefix}table-font-size: #{$table-font-size};
-  --#{$prefix}table-divider-color: #{$table-divider-color};
+  font-size: $table-font-size;
 
-  font-size: var(--#{$prefix}table-font-size);
+  > :not(caption) > * > * {
+    padding: $table-cell-padding-y $table-cell-padding-x;
+  }
 
   th {
-    font-weight: $font-weight-medium;
+    font-weight: 500;
   }
 
   tbody {
-    font-weight: $font-weight-normal;
+    font-weight: 400;
   }
 
   > :not(:last-child) > :last-child > * {
@@ -21,8 +22,14 @@
   }
 }
 
+.table-sm {
+  > :not(caption) > * > * {
+    padding: $table-cell-padding-y-sm $table-cell-padding-x-sm;
+  }
+}
+
 @each $color, $value in $table-variants {
-  @include table-variant($color, $value);
+  @include table-variant-mdb($color, $value);
 }
 
 .table-hover {
@@ -30,8 +37,8 @@
     transition: $table-hover-transition;
   }
   > tbody > tr:hover {
-    --#{$prefix}table-accent-bg: transparent;
-    background-color: var(--#{$prefix}table-hover-bg);
+    --#{$variable-prefix}table-accent-bg: transparent;
+    background-color: var(--#{$variable-prefix}table-hover-bg);
   }
 }
 
@@ -41,5 +48,5 @@
 }
 
 .table-divider-color {
-  border-top-color: var(--#{$prefix}table-divider-color);
+  border-top-color: rgba(0, 0, 0, 0.1);
 }

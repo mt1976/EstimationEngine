@@ -14,6 +14,7 @@ package dao
 // ----------------------------------------------------------------
 
 import (
+	"github.com/bojanz/currency"
 	core "github.com/mt1976/ebEstimates/core"
 
 	dm "github.com/mt1976/ebEstimates/datamodel"
@@ -42,6 +43,21 @@ func Origin_GetActiveList() (int, []dm.Origin, error) {
 	tsql = tsql + " WHERE datalength(" + dm.Project_SYSDeleted_sql + ") = 0"
 	tsql = tsql + " ORDER BY " + dm.Origin_Code_sql
 	count, originList, _, _ := origin_Fetch(tsql)
+
+	for i := 0; i < count; i++ {
+		// START
+		// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local
+		//
+		symbol := "£"
+		if originList[i].Currency != "" {
+			locale := currency.NewLocale("en")
+			symbol, _ = currency.GetSymbol(originList[i].Currency, locale)
+		}
+		originList[i].Currency = symbol
+		//
+		// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local
+		// END
+	}
 
 	return count, originList, nil
 }

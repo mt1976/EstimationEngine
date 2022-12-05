@@ -93,6 +93,6 @@ func addActivity(in string, what string, r *http.Request) string {
 	}
 
 	tm := time.Now().Format("02/01/2006 15:04:05")
-	out := in + "\n" + tm + " " + Session_GetUserName(r) + ":" + what
+	out := in + "\n" + tm + " " + Session_GetUserName(r) + " : " + what
 	return out
 }

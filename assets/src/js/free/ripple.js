@@ -14,7 +14,6 @@ const NAME = 'ripple';
 const DATA_KEY = 'mdb.ripple';
 const CLASSNAME_RIPPLE = 'ripple-surface';
 const CLASSNAME_RIPPLE_WAVE = 'ripple-wave';
-const CLASSNAME_RIPPLE_WRAPPER = 'input-wrapper';
 const SELECTOR_COMPONENT = ['.btn', '.ripple'];
 
 const CLASSNAME_UNBOUND = 'ripple-surface-unbound';
@@ -71,7 +70,6 @@ class Ripple {
     this._clickHandler = this._createRipple.bind(this);
     this._rippleTimer = null;
     this._isMinWidthSet = false;
-    this._rippleInSpan = false;
 
     this.init();
   }
@@ -105,52 +103,13 @@ class Ripple {
       }
     });
 
-    this._options = this._getConfig();
-
-    if (this._element.tagName.toLowerCase() === 'input') {
-      const parent = this._element.parentNode;
-
-      this._rippleInSpan = true;
-
-      if (parent.tagName.toLowerCase() === 'span' && parent.classList.contains(CLASSNAME_RIPPLE)) {
-        this._element = parent;
-      } else {
-        const shadow = getComputedStyle(this._element).boxShadow;
-        const btn = this._element;
-        const wrapper = document.createElement('span');
-
-        if (btn.classList.contains('btn-block')) {
-          wrapper.style.display = 'block';
-        }
-
-        EventHandler.one(wrapper, 'mouseup', (e) => {
-          // prevent submit on click other than LMB, ripple still triggered, but submit is blocked
-          if (e.button === 0) {
-            btn.click();
-          }
-        });
-
-        wrapper.classList.add(CLASSNAME_RIPPLE, CLASSNAME_RIPPLE_WRAPPER);
-
-        Manipulator.addStyle(wrapper, {
-          border: 0,
-          'box-shadow': shadow,
-        });
-
-        // Put element as child
-        parent.replaceChild(wrapper, this._element);
-        wrapper.appendChild(this._element);
-        this._element = wrapper;
-      }
-      this._element.focus();
-    }
-
     if (!this._element.style.minWidth) {
-      Manipulator.style(this._element, { 'min-width': `${getComputedStyle(this._element).width}` });
+      Manipulator.style(this._element, { 'min-width': `${this._element.offsetWidth}px` });
       this._isMinWidthSet = true;
     }
 
     Manipulator.addClass(this._element, CLASSNAME_RIPPLE);
+    this._options = this._getConfig();
     this._createRipple(event);
   }
 
@@ -158,18 +117,12 @@ class Ripple {
     EventHandler.on(target, 'mousedown', this._clickHandler);
   }
 
-  _getEventLayer(event) {
-    const x = Math.round(event.clientX - event.target.getBoundingClientRect().x);
-    const y = Math.round(event.clientY - event.target.getBoundingClientRect().y);
-    return { layerX: x, layerY: y };
-  }
-
   _createRipple(event) {
     if (!Manipulator.hasClass(this._element, CLASSNAME_RIPPLE)) {
       Manipulator.addClass(this._element, CLASSNAME_RIPPLE);
     }
 
-    const { layerX, layerY } = this._getEventLayer(event);
+    const { layerX, layerY } = event;
     const offsetX = layerX;
     const offsetY = layerY;
     const height = this._element.offsetHeight;
@@ -236,23 +189,10 @@ class Ripple {
             Manipulator.style(this._element, { 'min-width': '' });
             this._isMinWidthSet = false;
           }
-          if (this._rippleInSpan && this._element.classList.contains(CLASSNAME_RIPPLE_WRAPPER)) {
-            this._removeWrapperSpan();
-          } else {
-            Manipulator.removeClass(this._element, CLASSNAME_RIPPLE);
-          }
+          Manipulator.removeClass(this._element, CLASSNAME_RIPPLE);
         }
       }
     }, duration);
-  }
-
-  _removeWrapperSpan() {
-    const child = this._element.firstChild;
-
-    this._element.replaceWith(child);
-    this._element = child;
-    this._element.focus();
-    this._rippleInSpan = false;
   }
 
   _durationToMsNumber(time) {

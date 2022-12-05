@@ -72,12 +72,20 @@ SQL Table Key | **featureID**
 |**SYSDeleted**|String|false|true|false|false|||||NH|_deleted||false|false|true|text||
 |**SYSDeletedBy**|String|false|true|false|false|||||NH|_deletedBy||false|false|true|text||
 |**SYSDeletedHost**|String|false|true|false|false|||||NH|_deletedHost||false|false|true|text||
-|**Developer**|String|false|true|false|false|OL|Credentials|Credentials_Id||Y|developer||false|false|false|text||
-|**Approver**|String|false|true|false|false|OL|Credentials|Credentials_Id||Y|approver||false|false|false|text||
+|**Developer**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|developer||false|false|false|text||
+|**Approver**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|approver||false|false|false|text||
 |**Notes**|String|false|true|false|true|||||Y|notes||false|false|false|textarea||
 |**OffProfile**|String|false|true|false|false|||||Y|offProfile||false|false|false|text||
 |**OffProfileJustification**|String|false|true|false|false|||||Y|offProfileJustification||false|false|false|text||
 |**SYSActivity**|String|false|true|false|false|||||NH|_activity||false|false|true|text||
+|**DfReqs**|String|false|true|false|false|||||Y|dfReqs||false|false|false|text||
+|**DfAnalystTest**|String|false|true|false|false|||||Y|dfAnalystTest||false|false|false|text||
+|**DfDocs**|String|false|true|false|false|||||Y|dfDocs||false|false|false|text||
+|**Dfmgt**|String|false|true|false|false|||||Y|dfmgt||false|false|false|text||
+|**DfuatSupport**|String|false|true|false|false|||||Y|dfuatSupport||false|false|false|text||
+|**Dfmarketing**|String|false|true|false|false|||||Y|dfmarketing||false|false|false|text||
+|**Dfcontingency**|String|false|true|false|false|||||Y|dfcontingency||false|false|false|text||
+|**DfdevUplift**|String|false|true|false|false|||||Y|dfdevUplift||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -99,7 +107,7 @@ SQL Table Key | **featureID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **01/12/2022** at **09:40:01**
+Date & Time		     | **05/12/2022** at **20:49:56**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

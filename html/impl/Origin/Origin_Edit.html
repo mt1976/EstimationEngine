@@ -91,7 +91,17 @@
             
         
         </div>
+                     <div class="col">
         
+            
+            <select id="Currency" name="Currency" class="select" data-mdb-filter="true"  required>
+                {{range .Currency_lookup}}<option value="{{.ID}}" {{if eq .ID $.Currency}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="Currency" >Currency</label>
+            <div class="{{.Currency_props.MsgFeedBackType}}">{{.Currency_props.MsgMessage}}</div>
+            
+        
+        </div>
         <div class="col">
         
             <div class="form-outline">

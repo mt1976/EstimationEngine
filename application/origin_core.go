@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 01/12/2022 at 09:40:01
+// Date & Time		    : 05/12/2022 at 21:52:44
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -146,7 +146,7 @@ func Origin_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 	var item dm.Origin
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Origin_SYSId_scrn)
 		item.OriginID = r.FormValue(dm.Origin_OriginID_scrn)
@@ -168,9 +168,11 @@ func Origin_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		item.SYSDeletedBy = r.FormValue(dm.Origin_SYSDeletedBy_scrn)
 		item.SYSDeletedHost = r.FormValue(dm.Origin_SYSDeletedHost_scrn)
 		item.SYSActivity = r.FormValue(dm.Origin_SYSActivity_scrn)
+		item.Currency = r.FormValue(dm.Origin_Currency_scrn)
+		item.NoActiveProjects = r.FormValue(dm.Origin_NoActiveProjects_scrn)
 	
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	dao.Origin_Store(item,r)	
 	http.Redirect(w, r, dm.Origin_Redirect, http.StatusFound)
@@ -210,7 +212,7 @@ func Origin_HandlerNew(w http.ResponseWriter, r *http.Request) {
 // Builds/Popuplates the Origin Page 
 func origin_PopulatePage(rD dm.Origin, pageDetail dm.Origin_Page) dm.Origin_Page {
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.OriginID = rD.OriginID
@@ -232,10 +234,12 @@ func origin_PopulatePage(rD dm.Origin, pageDetail dm.Origin_Page) dm.Origin_Page
 	pageDetail.SYSDeletedBy = rD.SYSDeletedBy
 	pageDetail.SYSDeletedHost = rD.SYSDeletedHost
 	pageDetail.SYSActivity = rD.SYSActivity
+	pageDetail.Currency = rD.Currency
 	
+	pageDetail.NoActiveProjects = rD.NoActiveProjects
 	
 	//
-	// Automatically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -282,6 +286,12 @@ func origin_PopulatePage(rD dm.Origin, pageDetail dm.Origin_Page) dm.Origin_Page
 	
 	
 	
+	
+	pageDetail.Currency_lookup = dao.StubLists_Get("ccy")
+	
+	
+	
+	
 	pageDetail.SYSId_props = rD.SYSId_props
 	pageDetail.OriginID_props = rD.OriginID_props
 	pageDetail.StateID_props = rD.StateID_props
@@ -302,9 +312,11 @@ func origin_PopulatePage(rD dm.Origin, pageDetail dm.Origin_Page) dm.Origin_Page
 	pageDetail.SYSDeletedBy_props = rD.SYSDeletedBy_props
 	pageDetail.SYSDeletedHost_props = rD.SYSDeletedHost_props
 	pageDetail.SYSActivity_props = rD.SYSActivity_props
+	pageDetail.Currency_props = rD.Currency_props
+	pageDetail.NoActiveProjects_props = rD.NoActiveProjects_props
 	
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//spew.Dump(pageDetail)
 return pageDetail
