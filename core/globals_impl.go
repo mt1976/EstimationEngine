@@ -56,6 +56,10 @@ type DateItem struct {
 	PICKEpoch string
 }
 
+func GetApplicationProperty(inProperty string) string {
+	return ApplicationProperties[inProperty]
+}
+
 // Load a Properties File
 func getProperties(inPropertiesFile string) map[string]string {
 	wctProperties := make(map[string]string)

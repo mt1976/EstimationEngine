@@ -13,7 +13,7 @@
         <div class="col d-flex justify-content-end">
           <div class="btn-group">
             
-            <button type="submit" value="" class="btn btn-warning" method="GET" formaction="/FeatureSave/?FeatureID={{.FeatureID}}" onclick="/FeatureSave/?FeatureID={{.FeatureID}}" title="Save Feature"><i class="fas fa-save me-2"></i>Save</button>
+            <button type="submit" value="" class="btn btn-warning" method="GET" formaction="/FeatureStore/?FeatureID={{.FeatureID}}" onclick="/FeatureStore/?FeatureID={{.FeatureID}}" title="Save Feature"><i class="fas fa-save me-2"></i>Save</button>
             
             <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Feature"><i class="fas fa-print me-2"></i></i>Print</button>
             <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
@@ -249,10 +249,10 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.DfuatSupport_props.MsgType}}" id="DfuatSupport" name="DfuatSupport" aria-describedby="DfuatSupportHelp" placeholder="" readonly  value="{{.DfuatSupport}}"  data-mdb-input-mask="" />
+              <input type="text" class="form-control {{.DfuatSupport_props.MsgType}}" id="Dfmarketing" name="Dfmarketing" aria-describedby="DfmarketingHelp" placeholder="" readonly  value="{{.Dfmarketing}}"  data-mdb-input-mask="" />
               
-              <label class="form-label" for="DfuatSupport" >Marketing</label>
-              <div class="{{.DfuatSupport_props.MsgFeedBackType}}">{{.DfuatSupport_props.MsgMessage}}</div>
+              <label class="form-label" for="Dfmarketing" >Marketing</label>
+              <div class="{{.Dfmarketing_props.MsgFeedBackType}}">{{.Dfmarketing_props.MsgMessage}}</div>
             </div>
         
         </div>
@@ -472,7 +472,7 @@
         
             <div class="form-outline">
               
-              <textarea class="form-control {{.Notes_props.MsgType}}" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder=""   value="{{.Notes}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Notes}}</textarea>
+              <textarea class="form-control {{.Notes_props.MsgType}}" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder="" readonly  value="{{.Notes}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Notes}}</textarea>
               
               <label class="form-label" for="Notes" >Notes</label>
               <div class="{{.Notes_props.MsgFeedBackType}}">{{.Notes_props.MsgMessage}}</div>

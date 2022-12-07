@@ -8,6 +8,7 @@ import (
 	"time"
 
 	core "github.com/mt1976/ebEstimates/core"
+	"github.com/mt1976/ebEstimates/dao"
 )
 
 var sqlSYSDToday sql.NullString
@@ -42,8 +43,8 @@ func PageTitle(
 	pageTitle string,
 	pageSubTitle string) string {
 
-	pt := Translation_Lookup("Page", pageTitle)
-	pst := Translation_Lookup("Action", pageSubTitle)
+	pt := dao.Translate("Page", pageTitle)
+	pst := dao.Translate("Action", pageSubTitle)
 	appName := core.ApplicationName()
 	if len(appName) == 0 {
 		appName = "Application Name"
@@ -60,7 +61,7 @@ func CardTitle(
 	cardTitle string,
 	pageSubTitle string) string {
 
-	pt := Translation_Lookup("CardTitle", cardTitle+" - "+pageSubTitle)
+	pt := dao.Translate("CardTitle", cardTitle+" - "+pageSubTitle)
 
 	cardTitle = pt
 
@@ -94,5 +95,18 @@ func addActivity(in string, what string, r *http.Request) string {
 
 	tm := time.Now().Format("02/01/2006 15:04:05")
 	out := in + "\n" + tm + " " + Session_GetUserName(r) + " : " + what
+	return out
+}
+
+func addActivitySystem(in string, what string) string {
+	//fmt.Println("addActivity")
+	//fmt.Println(in)
+	//fmt.Println("addActivity")
+	if what == "" {
+		return in
+	}
+
+	tm := time.Now().Format("02/01/2006 15:04:05")
+	out := in + "\n" + tm + " " + dao.Audit_Host() + " : " + what
 	return out
 }

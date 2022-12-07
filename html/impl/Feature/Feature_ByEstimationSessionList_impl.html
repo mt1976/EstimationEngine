@@ -3,110 +3,99 @@
 {{template "bodydefinition" .}}
 
   <div class="container-fluid" style="margin-top: 4.5rem;">
-
-<form action="/FeatureSetup?EstimationSessionID={{.EstimationSession.EstimationSessionID}}" method="POST" class="form">
-  <div class="row note note-light bg-white shadow-4 mb-3">
-
-    <div class="col">
-    <nav aria-label="breadcrumb"> 
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item "><a href="/home">Home</a>
-        <li class="breadcrumb-item"><a href="/ProjectsByOrigin/?OriginID={{.Origin.OriginID}}">{{.Origin.FullName}}</a>
-        <li class="breadcrumb-item"><a href="/EstimationSessionByProject/?ProjectID={{.Project.ProjectID}}">{{.Project.Name}}</a>
-        <li class="breadcrumb-item active"><a href="#" class="me-2">{{.EstimationSession.Name}} - Features</a><span class="badge badge-primary">{{.ItemsOnPage}}</span>
-      </ol>
-    </nav>
-    </div>
-    <div class="col">
-      <div class="float-end">
-        <button type="submit" value="" class="btn btn-primary me-1" method="GET" formaction="/FeatureSetup?EstimationSessionID={{.EstimationSession.EstimationSessionID}}" onclick="/FeatureSetup?EstimationSessionID={{.EstimationSession.EstimationSessionID}}" title="Create a New Feature"><i class="fas fa-plus-square me-2"></i>Feature</button>
-        <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
+    <form action="/FeatureSetup?EstimationSessionID={{.EstimationSession.EstimationSessionID}}" method="POST" class="form">
+      <div class="d-flex row note note-light bg-white shadow-4 mb-3 align-items-center">
+        <div class="d-flex col h-100  align-items-right">
+          <nav aria-label="breadcrumb" class="align-items-center"> 
+            <ol class="breadcrumb  h-100 align-items-center">
+              <li class="breadcrumb-item "><a href="/home" class="lead">Home</a></li>
+              <li class="breadcrumb-item"><a href="/ProjectsByOrigin/?OriginID={{.Origin.OriginID}}" class="lead">{{.Origin.FullName}}</a></li>
+              <li class="breadcrumb-item"><a href="/EstimationSessionByProject/?ProjectID={{.Project.ProjectID}}" class="lead">{{.Project.Name}}</a></li>
+              <li class="breadcrumb-item active"><a href="#" class="lead">{{.EstimationSession.Name}} - Features</a></li>
+            </ol>
+          </nav>
+        </div>
+        <div class="col">
+          <div class="float-end">
+            <button type="submit" value="" class="btn btn-primary me-1" method="GET" formaction="/FeatureSetup?EstimationSessionID={{.EstimationSession.EstimationSessionID}}" onclick="/FeatureSetup?EstimationSessionID={{.EstimationSession.EstimationSessionID}}" title="Create a New Feature"><i class="fas fa-plus-square me-2"></i>Feature</button>
+            <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
+          </div>
+        </div>
       </div>
-    </div>
-    </div>
+      <div class="card " style="padding:1rem;">
+        <table id="DataTable" class="table table-sm bg-light align-middle mb-0 table-hover table-responsive" style="width:100%">
+          <thead class="table-primary">
+            <tr class="fs-6 text-center">
+              <th>Name</th>
+              <th>Estimate</th>
+              <th>Who</th>
+              <th>Confidence</th>
+              <th>Uplift</th>
+              <th class="text-center table-info">Requirements</th>
+              <th class="text-center table-info">Analyst/Test</th>
+              <th class="text-center table-info">Documentation</th>
+              <th>UAT Support</th>
+              <th>Management</th>
+
+              <th>Marketing</th>
+              <th class="text-center table-info">Contingency</th>
+              <th class="text-center table-info">Total</th>
+              <th class="text-center">ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{range .ItemList}}
+            <tr class="fs-6">
+              <td class="text-primary"><a href="/FeatureView/?FeatureID={{.FeatureID}}" class="" style="font-weight:bolder;" role="button" aria-pressed="true">{{.Name}}</a></td>
+              <td>{{.DevEstimate}}</td>
+              <td>{{.Developer}}</td>
+              <td>{{.ConfidenceID}}</td>
+              <td>{{.DevUplift}}</td>
+              <td class="bg-info" style="--mdb-bg-opacity: 0.1;">{{.Reqs}}</td>
+              <td class="bg-info" style="--mdb-bg-opacity: 0.1;">{{.AnalystTest}}</td>
+              <td class="bg-info" style="--mdb-bg-opacity: 0.1;">{{.Docs}}</td>
+              <td>{{.Mgt}}</td>
+              <td>{{.UatSupport}}</td>
+              <td>{{.Marketing}}</td>
+              <td class="bg-info" style="--mdb-bg-opacity: 0.1;">{{.Contingency}}</td>
+              <td class="bg-info" style="--mdb-bg-opacity: 0.1;"></td>
+
+              <td class="float-right">
+                <div class="btn-group float-end" role="group" aria-label="Basic example">
+                    <a href="/FeatureView/?FeatureID={{.FeatureID}}" class="             btn btn-sm btn-info" role="button" aria-pressed="true"><i class="fas fa-eye fa-fw me-1"></i>Details</a>
+                    <a href="/FeatureRemove/?FeatureID={{.FeatureID}}" class="             btn btn-sm btn-warning" role="button" aria-pressed="true" disabled><i class="fas fa-trash fa-fw me-1"></i>Remove</a>
+                </div>
+              </td>
+            </tr>
+            {{end}}
+          </tbody>
+          <tfoot class="table-primary">
+            <tr class="fs-6">
+              <th></th>
+              <th colspan="4" class="text-center ">Engineering</th>
+              <th colspan="3" class="text-center table-info">Product</th>
+              <th colspan="3" class="text-center">General</th>
+              <th colspan="2" class="text-center table-info">Management</th>
+              <th></th>
+            </tr>
+          </tfoot>
+          <caption>
+            &nbsp;
+            <button
+              type="button"
+              class="btn btn-sm btn-light btn-floating me-1"
+              data-mdb-toggle="popover"
+              data-mdb-trigger="focus"
+              title="About this Table"
+              data-mdb-content="&#8224;This table can be sorted by clicking on the column headings. &#8224;You can also filter the table by entering a search term in the search box.&#8224;You can export the data from this table.">
+              <i class="fas fa-info"></i>
+            </button>
+            The table above shows the list of features for the {{.Origin.FullName}} estimate of {{.EstimationSession.Name}}. 
+          </caption>
+        </table>
+      </div>
+    </form>
   </div>
-<table id="DataTable" class="table table-sm align-middle mb-0 table-hover   bg-white" style="width:100%">
-
-  <thead class="table-primary">
-    <tr class="fs-6 text-center">
-      <th>Name</th>
-      <th>Estimate</th>
-      <th>Who</th>
-      <th>Confidence</th>
-      <th>Uplift</th>
-      <th class="text-center table-info">Requirements</th>
-      <th class="text-center table-info">Analyst/Test</th>
-      <th class="text-center table-info">Documentation</th>
-      <th>UAT Support</th>
-      <th>Management</th>
-
-      <th>Marketing</th>
-      <th class="text-center table-info">Contingency</th>
-      <th class="text-center table-info">Total</th>
-      <th class="text-center">ACTIONS</th>
-    </tr>
-  </thead>
-  <tbody>
-    {{range .ItemList}}
-    <tr class="fs-6">
-      <td class="text-primary"><a href="/FeatureView/?FeatureID={{.FeatureID}}" class="" role="button" aria-pressed="true">{{.Name}}</a></td>
-            <td>{{.DevEstimate}}</td>
-            <td>{{.Developer}}</td>
-      <td>{{.ConfidenceID}}</td>
-      <td>{{.DevUplift}}</td>
-      <td class="bg-info" style="--mdb-bg-opacity: 0.1;">{{.Reqs}}</td>
-      <td class="bg-info" style="--mdb-bg-opacity: 0.1;">{{.AnalystTest}}</td>
-      <td class="bg-info" style="--mdb-bg-opacity: 0.1;">{{.Docs}}</td>
-      <td>{{.Mgt}}</td>
-      <td>{{.UatSupport}}</td>
-      <td>{{.Marketing}}</td>
-      <td class="bg-info" style="--mdb-bg-opacity: 0.1;">{{.Contingency}}</td>
-      <td class="bg-info" style="--mdb-bg-opacity: 0.1;"></td>
-
-      <td class="float-center">
-
-<div class="btn-group" role="group" aria-label="Basic example">
-
-    <a href="/FeatureView/?FeatureID={{.FeatureID}}" class="             btn btn-sm btn-info" role="button" aria-pressed="true"><i class="fas fa-eye fa-fw me-1"></i>Details</a>
-  
-
-    <a href="/FeatureRemove/?FeatureID={{.FeatureID}}" class="             btn btn-sm btn-warning" role="button" aria-pressed="true" disabled><i class="fas fa-trash fa-fw me-1"></i>Remove</a>
-
- </div>
-          </td>
-    </tr>
-    {{end}}
-  </tbody>
-      <tfoot class="table-primary">
-    <tr class="fs-6">
-      <th></th>
-      <th colspan="4" class="text-center ">Engineering</th>
-      <th colspan="3" class="text-center table-info">Product</th>
-      <th colspan="3" class="text-center">General</th>
-      <th colspan="2" class="text-center table-info">Management</th>
-
-      <th></th>
-
-    </tr>
-  </tfoot>
-    <caption>
-      &nbsp;
-      <button
-  type="button"
-  class="btn btn-sm btn-light me-2"
-  data-mdb-toggle="popover"
-  data-mdb-trigger="focus"
-  title="About this Table"
-  data-mdb-content="&#8224;This table can be sorted by clicking on the column headings. &#8224;You can also filter the table by entering a search term in the search box.&#8224;You can export the data from this table.">
- <i class="fas fa-info"></i>
-</button>
-  The table above shows the list of features for the {{.Origin.FullName}} estimate of {{.EstimationSession.Name}}. 
-  </caption>
-</table>
-
-
-    </div>
-</form>
   {{template "userfooter" .}}
     {{template "exportcontrols" .}}
 {{template "tablecontrols" .}}

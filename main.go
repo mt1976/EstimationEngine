@@ -120,7 +120,8 @@ func main() {
 	//core.Notification_Test()
 	//scheduler.RatesCrypto_Run()
 	//logs.Success("Rates Rebuilt")
-
+	logs.Header("Contacts")
+	logs.Information("Admin", core.GetApplicationProperty("admin"))
 	logs.Header("READY STEADY GO!!!")
 	logs.Information("Initialisation", "Vrooom, Vrooooom, Vroooooooo..."+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike)
 	logs.Break()

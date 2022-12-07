@@ -10,96 +10,93 @@
     method="POST"
     class="form"
   >
-    <div class="row note note-light bg-white shadow-4 mb-3">
-    <div class="col">
+    <div class="d-flex row note note-light bg-white shadow-4 mb-3 align-items-center">
+      <div class="d-flex col h-100  align-items-right"> 
+          <nav aria-label="breadcrumb" class="align-items-center"> 
+            <ol class="breadcrumb  h-100 align-items-center">
+              <li class="breadcrumb-item "><a href="/home" class="lead">Home</a></li>
+              <li class="breadcrumb-item active"><a href="#" class="lead">{{.Origin.FullName}} - Projects</a><span class="badge badge-primary"></span></li>
+            </ol>
+          </nav>
+      </div>
     
-        <nav aria-label="breadcrumb"> 
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item "><a href="/home">Home</a></li>
-        <li class="breadcrumb-item active"><a href="#" class="me-2">{{.Origin.FullName}} - Projects</a><span class="badge badge-primary">{{.ItemsOnPage}}</span></a></li>
-      </ol>
-    </nav>
-    
+      <div class="col h-100 ">
+        <div class="float-end">
+          <button
+            type="submit"
+            value=""
+            class="btn btn-primary me-1"
+            method="GET"
+            formaction="/ProjectActionNew?OriginID={{.Origin.Code}}"
+            onclick="/ProjectActionNew?OriginID={{.Origin.Code}}"
+            title="Create a New Feature"
+          >
+            <i class="fas fa-plus-square me-1"></i>Project
+          </button>
+          <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
+
+        </div>
+      </div>
     </div>
-    
-    <div class="col">
-    <div class="float-end">
-      <button
-        type="submit"
-        value=""
-        class="btn btn-primary me-1"
-        method="GET"
-        formaction="/ProjectActionNew?OriginID={{.Origin.Code}}"
-        onclick="/ProjectActionNew?OriginID={{.Origin.Code}}"
-        title="Create a New Feature"
-      >
-        <i class="fas fa-plus-square me-1"></i>Project
-      </button>
-                          <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
+    <div class="card " style="padding:1rem;">
+      <table
+        id="DataTable"
+        class="table table-sm bg-light align-middle mb-0 table-hover table-responsive"
+        style="width: 100%">
+        <thead class="table-primary text-center">
+          <tr class="">
+            <th>Name</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Profile</th>
+            <th class="text-center">Start Date</th>
+            <th class="text-center">End Date</th>
+            <th class="text-end">ACTIONS</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{range .ItemList}}
+          <tr class="">
+            <td class="text-primary"><a href="/EstimationSessionByProject/?ProjectID={{.ProjectID}}" class="" style="font-weight:bolder;" role="button" aria-pressed="true">{{.Name}}</a></td>
+            <td class="text-center">{{.ProjectStateID}}</td>
+            <td class="text-center">{{.ProfileID}}</td>
+            <td class="text-center">{{.StartDate}}</td>
+            <td class="text-center">{{.EndDate}}</td>
+            <td class="text-end">
 
+
+              <div class="btn-group" role="group" aria-label="Basic example">
+
+                          <a href="/EstimationSessionByProject/?ProjectID={{.ProjectID}}" class="btn btn-sm btn-primary" role="button" aria-pressed="true"><i class="fas fa-calculator  fa-fw me-1"></i>Estimates</a>
+
+                          <a href="/ProjectView/?ProjectID={{.ProjectID}}" class="btn btn-sm btn-info" role="button" aria-pressed="true"><i class="fas fa-eye  fa-fw me-1"></i>Details</a> 
+
+                          <a href="/ProjectRemove/?ProjectID={{.ProjectID}}" class="btn btn-sm btn-warning" role="button" aria-pressed="true" disabled><i class="fas fa-trash  fa-fw me-1"></i>Remove</a>
+              </div>
+
+
+            </td>
+          </tr>
+          {{end}}
+        </tbody>
+        <caption>
+          &nbsp;
+          <button
+            type="button"
+            class="btn btn-sm btn-light btn-floating me-1"
+            data-mdb-toggle="popover"
+            data-mdb-trigger="focus"
+            title="About this Table"
+            data-mdb-content="&#8224;This table can be sorted by clicking on the column headings. &#8224;You can also filter the table by entering a search term in the search box.&#8224;You can export the data from this table.">
+            <i class="fas fa-info"></i>
+          </button>
+          The table above shows the list of projects for {{.Origin.FullName}}.
+        </caption>
+      </table>
     </div>
-    </div>
-  </div>
-
-    <table
-      id="DataTable"
-      class="table table-sm align-middle mb-0 table-hover table-responsive bg-white"
-      style="width: 100%"
-    >
-      <thead class="table-primary text-center">
-        <tr class="">
-          <th>Name</th>
-          <th class="text-center">Status</th>
-          <th class="text-center">Profile</th>
-          <th class="text-center">Start Date</th>
-          <th class="text-center">End Date</th>
-          <th class="text-end">ACTIONS</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{range .ItemList}}
-        <tr class="">
-          <td class="text-primary"><a href="/EstimationSessionByProject/?ProjectID={{.ProjectID}}" class="" role="button" aria-pressed="true">{{.Name}}</a></td>
-          <td class="text-center">{{.ProjectStateID}}</td>
-          <td class="text-center">{{.ProfileID}}</td>
-          <td class="text-center">{{.StartDate}}</td>
-          <td class="text-center">{{.EndDate}}</td>
-          <td class="text-end">
-
-
-<div class="btn-group" role="group" aria-label="Basic example">
-
-            <a href="/EstimationSessionByProject/?ProjectID={{.ProjectID}}" class="btn btn-sm btn-primary" role="button" aria-pressed="true"><i class="fas fa-calculator  fa-fw me-1"></i>Estimates</a>
-
-            <a href="/ProjectView/?ProjectID={{.ProjectID}}" class="btn btn-sm btn-info" role="button" aria-pressed="true"><i class="fas fa-eye  fa-fw me-1"></i>Details</a> 
-
-            <a href="/ProjectRemove/?ProjectID={{.ProjectID}}" class="btn btn-sm btn-warning" role="button" aria-pressed="true" disabled><i class="fas fa-trash  fa-fw me-1"></i>Remove</a>
-</div>
-
-
-          </td>
-        </tr>
-        {{end}}
-      </tbody>
-  <caption>
-    &nbsp;
-         <button
-  type="button"
-  class="btn btn-sm btn-light me-2"
-  data-mdb-toggle="popover"
-  data-mdb-trigger="focus"
-  title="About this Table"
-  data-mdb-content="&#8224;This table can be sorted by clicking on the column headings. &#8224;You can also filter the table by entering a search term in the search box.&#8224;You can export the data from this table.">
- <i class="fas fa-info"></i>
-</button>
-  The table above shows the list of projects for {{.Origin.FullName}}.
-  </caption>
-    </table>
-
   </form>
-
+</div>
   {{template "userfooter" .}}
     {{template "exportcontrols" .}}
 {{template "tablecontrols" .}}
  {{template "pagefooter" .}}
-</div>
+

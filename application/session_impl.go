@@ -428,8 +428,13 @@ func processRequest(r *http.Request) string {
 		return err.Error()
 	}
 
-	mailMessage := fmt.Sprintf("A registration request has been received from %s %s for %s. Please review the request and approve or reject it.", firstName, lastName, username)
-	err = Inbox_SendMailSystem("mt76@gmx.com", "Registration Request", mailMessage)
+	adminID := core.GetApplicationProperty("admin")
+
+	msgTXT := "A registration request has been received from %s %s for %s. Please review the request and approve or reject it."
+	msgTXT = dao.Translate("Message", msgTXT)
+
+	mailMessage := fmt.Sprintf(msgTXT, firstName, lastName, username)
+	err = Inbox_SendMailSystem(adminID, "Registration Request", mailMessage)
 	if err != nil {
 		return err.Error()
 	}

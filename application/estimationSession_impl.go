@@ -404,6 +404,11 @@ func Estimationsession_Calculate(searchID string) dm.EstimationSession {
 	esRecord.EffortTotal = fts(Total_Days)
 	esRecord.Total = fts(Total_Cost)
 
+	// Update the Estimation Session Record
+	estUpdateTXT := dao.Translate("AuditMessage", "ESTIMATE UPDATE")
+
+	esRecord.Notes = addActivitySystem(esRecord.Notes, estUpdateTXT)
+
 	dao.EstimationSession_StoreSystem(esRecord)
 
 	return esRecord
