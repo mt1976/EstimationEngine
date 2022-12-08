@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2022 at 20:49:56
+// Date & Time		    : 07/12/2022 at 16:35:46
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -56,10 +56,10 @@ func Feature_GetByID(id string) (int, dm.Feature, error) {
 	_, _, featureItem, _ := feature_Fetch(tsql)
 
 	// START
-	// Dynamically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, featureItem, nil
 }
@@ -140,10 +140,10 @@ func Feature_StoreSystem(r dm.Feature) error {
 func Feature_Validate(r dm.Feature) (error,dm.Feature) {
 	var err error
 	// START
-	// Dynamically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -210,6 +210,7 @@ func feature_Save(r dm.Feature,usr string) error {
 
 
 
+
 	
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
@@ -224,7 +225,7 @@ logs.Storing("Feature",fmt.Sprintf("%s", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Feature_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Feature_FeatureID_sql, r.FeatureID)
@@ -268,9 +269,10 @@ logs.Storing("Feature",fmt.Sprintf("%s", r))
 	ts = addData(ts, dm.Feature_Dfmarketing_sql, r.Dfmarketing)
 	ts = addData(ts, dm.Feature_Dfcontingency_sql, r.Dfcontingency)
 	ts = addData(ts, dm.Feature_DfdevUplift_sql, r.DfdevUplift)
+	ts = addData(ts, dm.Feature_Total_sql, r.Total)
 		
 	// 
-	// Dynamically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Feature_SQLTable)
@@ -303,7 +305,7 @@ func feature_Fetch(tsql string) (int, []dm.Feature, dm.Feature, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Feature_SYSId_sql, "0")
 	   recItem.FeatureID  = get_String(rec, dm.Feature_FeatureID_sql, "")
@@ -347,6 +349,7 @@ func feature_Fetch(tsql string) (int, []dm.Feature, dm.Feature, error) {
 	   recItem.Dfmarketing  = get_String(rec, dm.Feature_Dfmarketing_sql, "")
 	   recItem.Dfcontingency  = get_String(rec, dm.Feature_Dfcontingency_sql, "")
 	   recItem.DfdevUplift  = get_String(rec, dm.Feature_DfdevUplift_sql, "")
+	   recItem.Total  = get_String(rec, dm.Feature_Total_sql, "")
 	
 	// If there are fields below, create the methods in adaptor\Feature_impl.go
 	
@@ -392,8 +395,9 @@ func feature_Fetch(tsql string) (int, []dm.Feature, dm.Feature, error) {
 	
 	
 	
+	
 	// 
-	// Dynamically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -423,10 +427,10 @@ func Feature_New() (int, []dm.Feature, dm.Feature, error) {
 	
 
 	// START
-	// Dynamically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

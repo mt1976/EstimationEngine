@@ -25,13 +25,14 @@
       <table id="DataTable" class="table table-sm bg-light align-middle mb-0 table-hover table-responsive" style="width:100%;">
         <thead class="table-primary text-center">
           <tr class="fs-6">
-            <th>Origin</th>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Description</th>
-            <th>Current Rate</th>
-            <th>Contract Ends</th>
-            <th class="text-end">ACTIONS</th>
+            <td class="text-center fw-bolder">ORIGIN</th>
+            <th class="fw-bolder">NAME</th>
+            <td class="text-center fw-bolder">STATUS</th>
+            <td class="text-center fw-bolder">TYPE</th>
+            <td class="text-center fw-bolder">DESCRIPTION</th>
+            <td class="text-end fw-bolder">CURRENT RATE</th>
+            <td class="text-center fw-bolder">CONTRACT ENDS</th>
+            <th class="text-end fw-bolder">ACTIONS</th>
           </tr>
         </thead>
         <tbody>
@@ -40,6 +41,7 @@
             <td class="text-primary text-center"><a href="/ProjectsByOrigin/?OriginID={{.OriginID}}" class="text-primary" style="font-weight:bolder;" role="button" aria-pressed="true">{{.Code}}</a></td>
             <td>{{.FullName}}</td>
             <td class="text-center">{{.StateID}}</td>
+            <td class="text-center">{{.DocTypeID}}</td>
             <td>{{ printf "%.100s" .Notes}}</td>
             <td class="text-end">{{.Currency}}&nbsp;{{.Rate}}</td>
             <td class="text-center">{{.EndDate}}</td>

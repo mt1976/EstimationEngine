@@ -13,7 +13,7 @@
         <div class="col d-flex justify-content-end">
           <div class="btn-group">
             
-            <button type="submit" value="" class="btn btn-warning" method="GET" formaction="/EstimationSessionSave/?EstimationSessionID={{.EstimationSessionID}}" onclick="/EstimationSessionSave/?EstimationSessionID={{.EstimationSessionID}}" title="Save Estimation Session"><i class="fas fa-save me-2"></i>Save</button>
+            <button type="submit" value="" class="btn btn-warning" method="GET" formaction="/EstimationSessionStore/?EstimationSessionID={{.EstimationSessionID}}" onclick="/EstimationSessionStore/?EstimationSessionID={{.EstimationSessionID}}" title="Store Estimation Session"><i class="fas fa-save me-2"></i>Save</button>
             
             <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Estimation Session"><i class="fas fa-print me-2"></i></i>Print</button>
             <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
@@ -401,7 +401,7 @@
               
               <input type="text" class="form-control {{.TrackerID_props.MsgType}}" id="TrackerID" name="TrackerID" aria-describedby="TrackerIDHelp" placeholder=""   value="{{.TrackerID}}"  data-mdb-input-mask="" />
               
-              <label class="form-label" for="TrackerID" >Tracker ID</label>
+              <label class="form-label" for="TrackerID" >RSC/NC No.</label>
               <div class="{{.TrackerID_props.MsgFeedBackType}}">{{.TrackerID_props.MsgMessage}}</div>
             </div>
         

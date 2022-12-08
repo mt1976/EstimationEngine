@@ -34,6 +34,7 @@ const (
 	EstimationSession_PathCreate = "/EstimationSessionCreate/"
 	EstimationSession_PathRemove = "/EstimationSessionRemove/"
 	EstimationSession_PathClone  = "/EstimationSessionClone/"
+	EstimationSession_PathStore  = "/EstimationSessionStore/"
 	///
 
 )

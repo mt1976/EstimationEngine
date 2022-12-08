@@ -93,6 +93,8 @@ func Feature_SoftDelete_Handler(w http.ResponseWriter, r *http.Request) {
 
 	dao.Feature_SoftDelete(featureID)
 
+	Estimationsession_Calculate(featureREC.EstimationSessionID)
+
 	REDR := dm.Feature_ByEstimationSession_PathList + "?" + dm.Feature_ByEstimationSession_QueryString + "=" + featureREC.EstimationSessionID
 	http.Redirect(w, r, REDR, http.StatusFound)
 	//ExecuteTemplate(dm.Feature_ByEstimationSession_TemplateList, w, r, pageDetail)
@@ -124,13 +126,19 @@ func Feature_Clone(feature dm.Feature, esID string, r *http.Request) error {
 	feature.SYSDeleted = ""
 	feature.SYSDeletedBy = ""
 	feature.SYSDeletedHost = ""
-	feature.Notes = addActivity(feature.Notes, "CLONED -> "+feature.FeatureID, r)
+
+	msgTXT := "CLONED -> %s"
+	msgTXT = dao.Translate("AuditMessage", msgTXT)
+	feature.Notes = addActivity(feature.Notes, fmt.Sprintf(msgTXT, feature.FeatureID), r)
 
 	err := dao.Feature_Store(feature, r)
 	if err != nil {
 		logs.Panic("Cannot Store Feature {"+feature.FeatureID+"}", err)
 		return err
 	}
+
+	Estimationsession_Calculate(esID)
+
 	// END
 
 	return nil
@@ -210,6 +218,8 @@ func Feature_HandlerStore(w http.ResponseWriter, r *http.Request) {
 	offProfile, item.Notes = checkEstimate(item.Marketing, item.Dfmarketing, offProfile, item.Notes, "Marketing")
 	offProfile, item.Notes = checkEstimate(item.Contingency, item.Dfcontingency, offProfile, item.Notes, "Contingency")
 
+	item.Total = calculateTotal(item)
+
 	if offProfile {
 		item.OffProfile = "true"
 	}
@@ -233,6 +243,7 @@ func Feature_HandlerStore(w http.ResponseWriter, r *http.Request) {
 	mTXT_4 := dao.Translate("AuditMessage", "UPDATED BY [%s]")
 	mTXT_4 = fmt.Sprintf(mTXT_4, Session_GetUserName(r))
 	item.Notes = addActivity(item.Notes, mTXT_4, r)
+
 	dao.Feature_Store(item, r)
 
 	esREC := Estimationsession_Calculate(item.EstimationSessionID)
@@ -241,6 +252,18 @@ func Feature_HandlerStore(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, REDR, http.StatusFound)
 }
 
+func calculateTotal(item dm.Feature) string {
+	total := 0.0
+	total += stf(item.DevUplift)
+	total += stf(item.Reqs)
+	total += stf(item.AnalystTest)
+	total += stf(item.Docs)
+	total += stf(item.Mgt)
+	total += stf(item.UatSupport)
+	total += stf(item.Marketing)
+	total += stf(item.Contingency)
+	return fts(total)
+}
 func checkEstimate(baseEstimate string, userEstimate string, mismatch bool, notes string, info string) (bool, string) {
 	//if mismatch {
 	//	return mismatch, notes

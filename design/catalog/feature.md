@@ -86,6 +86,7 @@ SQL Table Key | **featureID**
 |**Dfmarketing**|String|false|true|false|false|||||Y|dfmarketing||false|false|false|text||
 |**Dfcontingency**|String|false|true|false|false|||||Y|dfcontingency||false|false|false|text||
 |**DfdevUplift**|String|false|true|false|false|||||Y|dfdevUplift||false|false|false|text||
+|**Total**|String|false|true|false|false|||||Y|total||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -107,7 +108,7 @@ SQL Table Key | **featureID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **05/12/2022** at **20:49:56**
+Date & Time		     | **07/12/2022** at **16:35:46**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

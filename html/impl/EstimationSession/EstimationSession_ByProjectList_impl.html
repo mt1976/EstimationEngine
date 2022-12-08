@@ -28,14 +28,15 @@
     <table id="DataTable" class="table table-sm bg-light align-middle mb-0 table-hover table-responsive" style="width:100%">
       <thead class="table-primary">
         <tr class="fs-6">
-          <th>Name</th>
-          <th class="text-center">State</th>
-          <th class="text-center">Azure DevOps ID</th>
-          <th class="text-center">FreshDesk ID</th>
-          <th class="text-end">Support Uplift</th>
-          <th class="text-end">Total</th>
+          <th class="fw-bolder">NAME</th>
+          <th class="text-center fw-bolder">STATUS</th>
+          <th class="text-center fw-bolder">AZURE DEVOPS ID</th>
+          <th class="text-center fw-bolder">FRESHDESK ID</th>
+          <th class="text-center fw-bolder">RSC/NC NO.</th>
+          <th class="text-end fw-bolder">SUPPORT UPLIFT</th>
+          <th class="text-end fw-bolder">TOTAL</th>
           
-          <th class="text-center">ACTIONS</th>
+          <th class="text-end fw-bolder">ACTIONS</th>
         </tr>
       </thead>
       <tbody>
@@ -45,6 +46,7 @@
           <td class="text-center">{{.EstimationStateID}}</td>
           <td class="text-center"><a href="{{.ADOURI}}" class="text-link" role="button" aria-pressed="true">{{.AdoID}}</a></td>
           <td class="text-center"><a href="{{.FreshDeskURI}}" class="text-link" role="button" aria-pressed="true">{{.FreshdeskID}}</a></td>
+          <td class="text-center">{{.TrackerID}}</td>
           <td class="text-end">{{$.CCY}}&nbsp;{{.SupportUplift}}</td>
           <td class="text-end">{{$.CCY}}&nbsp;{{.Total}}</td>
           <td>

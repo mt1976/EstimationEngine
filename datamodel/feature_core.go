@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 05/12/2022 at 20:49:56
+// Date & Time		    : 07/12/2022 at 16:35:46
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -101,6 +101,8 @@ Dfcontingency       string
 Dfcontingency_props FieldProperties
 DfdevUplift       string
 DfdevUplift_props FieldProperties
+Total       string
+Total_props FieldProperties
  // Any lookups will be added below
 
 EstimationSessionID_lookup []Lookup_Item
@@ -131,6 +133,7 @@ ConfidenceID_lookup []Lookup_Item
 
 Developer_lookup []Lookup_Item
 Approver_lookup []Lookup_Item
+
 
 
 
@@ -219,6 +222,7 @@ const (
 	Feature_Dfmarketing_sql   = "dfmarketing" // Dfmarketing is a String
 	Feature_Dfcontingency_sql   = "dfcontingency" // Dfcontingency is a String
 	Feature_DfdevUplift_sql   = "dfdevUplift" // DfdevUplift is a String
+	Feature_Total_sql   = "total" // Total is a String
 
 	/// Definitions End
 	///
@@ -266,6 +270,7 @@ const (
 	Feature_Dfmarketing_scrn   = "Dfmarketing" // Dfmarketing is a String
 	Feature_Dfcontingency_scrn   = "Dfcontingency" // Dfcontingency is a String
 	Feature_DfdevUplift_scrn   = "DfdevUplift" // DfdevUplift is a String
+	Feature_Total_scrn   = "Total" // Total is a String
 
 	/// Definitions End
 	///
@@ -291,7 +296,7 @@ type Feature_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -381,8 +386,10 @@ type Feature_Page struct {
 	Dfcontingency_props     FieldProperties
 	DfdevUplift         string
 	DfdevUplift_props     FieldProperties
+	Total         string
+	Total_props     FieldProperties
 	// 
-	// Dynamically generated 05/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }
