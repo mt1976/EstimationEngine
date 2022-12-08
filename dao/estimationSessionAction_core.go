@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 01/12/2022 at 09:40:01
+// Date & Time		    : 08/12/2022 at 13:31:30
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -16,9 +16,9 @@ import (
 
 	"fmt"
 	"net/http"
-
-"github.com/google/uuid"
-
+	
+	"github.com/google/uuid"
+	
 	 adaptor   "github.com/mt1976/ebEstimates/adaptor"
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
@@ -41,10 +41,10 @@ func EstimationSessionAction_GetByID(id string) (int, dm.EstimationSessionAction
 	 _, estimationsessionactionItem, _ := adaptor.EstimationSessionAction_GetByID_impl(id)
 	
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, estimationsessionactionItem, nil
 }
@@ -79,7 +79,7 @@ func EstimationSessionAction_Delete(id string) {
 // EstimationSessionAction_Store() saves/stores a EstimationSessionAction record to the database
 func EstimationSessionAction_Store(r dm.EstimationSessionAction,req *http.Request) error {
 
-	err, r := EstimationSessionAction_Validate(r)
+	r, err := EstimationSessionAction_Validate(r)
 	if err == nil {
 		err = estimationsessionaction_Save(r, Audit_User(req))
 	} else {
@@ -92,7 +92,7 @@ func EstimationSessionAction_Store(r dm.EstimationSessionAction,req *http.Reques
 // EstimationSessionAction_StoreSystem() saves/stores a EstimationSessionAction record to the database
 func EstimationSessionAction_StoreSystem(r dm.EstimationSessionAction) error {
 	
-	err, r := EstimationSessionAction_Validate(r)
+	r, err := EstimationSessionAction_Validate(r)
 	if err == nil {
 		err = estimationsessionaction_Save(r, Audit_Host())
 	} else {
@@ -103,18 +103,18 @@ func EstimationSessionAction_StoreSystem(r dm.EstimationSessionAction) error {
 }
 
 // EstimationSessionAction_Validate() validates for saves/stores a EstimationSessionAction record to the database
-func EstimationSessionAction_Validate(r dm.EstimationSessionAction) (error,dm.EstimationSessionAction) {
+func EstimationSessionAction_Validate(r dm.EstimationSessionAction) (dm.EstimationSessionAction, error) {
 	var err error
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
 
-	return err,r
+	return r,err
 }
 //
 
@@ -139,7 +139,7 @@ func estimationsessionaction_Save(r dm.EstimationSessionAction,usr string) error
 
 
 	
-logs.Storing("EstimationSessionAction",fmt.Sprintf("%s", r))
+logs.Storing("EstimationSessionAction",fmt.Sprintf("%v", r))
 
 // Please Create Functions Below in the adaptor/EstimationSessionAction_impl.go file
 	err1 := adaptor.EstimationSessionAction_Delete_impl(r.ID)
@@ -179,10 +179,10 @@ func EstimationSessionAction_New() (int, []dm.EstimationSessionAction, dm.Estima
 	
 
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

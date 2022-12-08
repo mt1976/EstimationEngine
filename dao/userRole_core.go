@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 01/12/2022 at 09:40:04
+// Date & Time		    : 08/12/2022 at 13:31:32
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -16,11 +16,11 @@ import (
 
 	"fmt"
 	"net/http"
-core "github.com/mt1976/ebEstimates/core"
-"github.com/google/uuid"
-das  "github.com/mt1976/ebEstimates/das"
+	core "github.com/mt1976/ebEstimates/core"
+	"github.com/google/uuid"
+	das  "github.com/mt1976/ebEstimates/das"
 	
-	
+		
 	
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
@@ -56,10 +56,10 @@ func UserRole_GetByID(id string) (int, dm.UserRole, error) {
 	_, _, userroleItem, _ := userrole_Fetch(tsql)
 
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, userroleItem, nil
 }
@@ -103,7 +103,7 @@ func UserRole_Delete(id string) {
 // UserRole_Store() saves/stores a UserRole record to the database
 func UserRole_Store(r dm.UserRole,req *http.Request) error {
 
-	err, r := UserRole_Validate(r)
+	r, err := UserRole_Validate(r)
 	if err == nil {
 		err = userrole_Save(r, Audit_User(req))
 	} else {
@@ -116,7 +116,7 @@ func UserRole_Store(r dm.UserRole,req *http.Request) error {
 // UserRole_StoreSystem() saves/stores a UserRole record to the database
 func UserRole_StoreSystem(r dm.UserRole) error {
 	
-	err, r := UserRole_Validate(r)
+	r, err := UserRole_Validate(r)
 	if err == nil {
 		err = userrole_Save(r, Audit_Host())
 	} else {
@@ -127,18 +127,18 @@ func UserRole_StoreSystem(r dm.UserRole) error {
 }
 
 // UserRole_Validate() validates for saves/stores a UserRole record to the database
-func UserRole_Validate(r dm.UserRole) (error,dm.UserRole) {
+func UserRole_Validate(r dm.UserRole) (dm.UserRole, error) {
 	var err error
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
 
-	return err,r
+	return r,err
 }
 //
 
@@ -178,13 +178,13 @@ func userrole_Save(r dm.UserRole,usr string) error {
 	r.SYSUpdatedBy = Audit_Update("",usr)
 	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
 	
-logs.Storing("UserRole",fmt.Sprintf("%s", r))
+logs.Storing("UserRole",fmt.Sprintf("%v", r))
 
 //Deal with the if its Application or null add this bit, otherwise dont.
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.UserRole_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.UserRole_Id_sql, r.Id)
@@ -200,7 +200,7 @@ logs.Storing("UserRole",fmt.Sprintf("%s", r))
 	ts = addData(ts, dm.UserRole_SYSDeletedHost_sql, r.SYSDeletedHost)
 		
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.UserRole_SQLTable)
@@ -233,7 +233,7 @@ func userrole_Fetch(tsql string) (int, []dm.UserRole, dm.UserRole, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.UserRole_SYSId_sql, "0")
 	   recItem.Id  = get_String(rec, dm.UserRole_Id_sql, "")
@@ -263,7 +263,7 @@ func userrole_Fetch(tsql string) (int, []dm.UserRole, dm.UserRole, error) {
 	
 	
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -293,10 +293,10 @@ func UserRole_New() (int, []dm.UserRole, dm.UserRole, error) {
 	
 
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

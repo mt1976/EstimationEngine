@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 01/12/2022 at 09:40:03
+// Date & Time		    : 08/12/2022 at 13:31:31
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -16,11 +16,11 @@ import (
 
 	"fmt"
 	"net/http"
-core "github.com/mt1976/ebEstimates/core"
-"github.com/google/uuid"
-das  "github.com/mt1976/ebEstimates/das"
+	core "github.com/mt1976/ebEstimates/core"
+	"github.com/google/uuid"
+	das  "github.com/mt1976/ebEstimates/das"
 	
-	
+		
 	
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
@@ -46,10 +46,10 @@ func Schedule_GetByID(id string) (int, dm.Schedule, error) {
 	_, _, scheduleItem, _ := schedule_Fetch(tsql)
 
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, scheduleItem, nil
 }
@@ -93,7 +93,7 @@ func Schedule_Delete(id string) {
 // Schedule_Store() saves/stores a Schedule record to the database
 func Schedule_Store(r dm.Schedule,req *http.Request) error {
 
-	err, r := Schedule_Validate(r)
+	r, err := Schedule_Validate(r)
 	if err == nil {
 		err = schedule_Save(r, Audit_User(req))
 	} else {
@@ -106,7 +106,7 @@ func Schedule_Store(r dm.Schedule,req *http.Request) error {
 // Schedule_StoreSystem() saves/stores a Schedule record to the database
 func Schedule_StoreSystem(r dm.Schedule) error {
 	
-	err, r := Schedule_Validate(r)
+	r, err := Schedule_Validate(r)
 	if err == nil {
 		err = schedule_Save(r, Audit_Host())
 	} else {
@@ -117,18 +117,18 @@ func Schedule_StoreSystem(r dm.Schedule) error {
 }
 
 // Schedule_Validate() validates for saves/stores a Schedule record to the database
-func Schedule_Validate(r dm.Schedule) (error,dm.Schedule) {
+func Schedule_Validate(r dm.Schedule) (dm.Schedule, error) {
 	var err error
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
 
-	return err,r
+	return r,err
 }
 //
 
@@ -174,13 +174,13 @@ func schedule_Save(r dm.Schedule,usr string) error {
 	r.SYSUpdatedBy = Audit_Update("",usr)
 	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
 	
-logs.Storing("Schedule",fmt.Sprintf("%s", r))
+logs.Storing("Schedule",fmt.Sprintf("%v", r))
 
 //Deal with the if its Application or null add this bit, otherwise dont.
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Schedule_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Schedule_Id_sql, r.Id)
@@ -202,7 +202,7 @@ logs.Storing("Schedule",fmt.Sprintf("%s", r))
 	ts = addData(ts, dm.Schedule_Human_sql, r.Human)
 		
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Schedule_SQLTable)
@@ -235,7 +235,7 @@ func schedule_Fetch(tsql string) (int, []dm.Schedule, dm.Schedule, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Schedule_SYSId_sql, "0")
 	   recItem.Id  = get_String(rec, dm.Schedule_Id_sql, "")
@@ -277,7 +277,7 @@ func schedule_Fetch(tsql string) (int, []dm.Schedule, dm.Schedule, error) {
 	
 	
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -307,10 +307,10 @@ func Schedule_New() (int, []dm.Schedule, dm.Schedule, error) {
 	
 
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

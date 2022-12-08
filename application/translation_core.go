@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 01/12/2022 at 09:40:03
+// Date & Time		    : 08/12/2022 at 13:31:32
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,12 +22,12 @@ import (
 	logs    "github.com/mt1976/ebEstimates/logs"
 )
 
-
-
-
-
 //Translation_Publish annouces the endpoints available for this object
+//Translation_Publish - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
 func Translation_Publish(mux http.ServeMux) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// 
 	mux.HandleFunc(dm.Translation_Path, Translation_Handler)
 	mux.HandleFunc(dm.Translation_PathList, Translation_HandlerList)
 	mux.HandleFunc(dm.Translation_PathView, Translation_HandlerView)
@@ -37,16 +37,26 @@ func Translation_Publish(mux http.ServeMux) {
 	//Cannot Delete via GUI
 	logs.Publish("Application", dm.Translation_Title)
     core.Catalog_Add(dm.Translation_Title, dm.Translation_Path, "", dm.Translation_QueryString, "Application")
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 }
 
 
 //Translation_HandlerList is the handler for the list page
+//Allows Listing of Translation records
+//Translation_HandlerList - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
 func Translation_HandlerList(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// 
 	// Mandatory Security Validation
+	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
+	// Code Continues Below
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -67,13 +77,22 @@ func Translation_HandlerList(w http.ResponseWriter, r *http.Request) {
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 	
 	ExecuteTemplate(dm.Translation_TemplateList, w, r, pageDetail)
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 
 }
 
 
 //Translation_HandlerView is the handler used to View a page
+//Allows Viewing for an existing Translation record
+//Translation_HandlerView - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 func Translation_HandlerView(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// 
 	// Mandatory Security Validation
+	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
@@ -98,13 +117,21 @@ func Translation_HandlerView(w http.ResponseWriter, r *http.Request) {
 	pageDetail = translation_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Translation_TemplateView, w, r, pageDetail)
-
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 }
 
 
 //Translation_HandlerEdit is the handler used generate the Edit page
+//Allows Editing for an existing Translation record and then allows the user to save the changes
+//Translation_HandlerEdit - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 func Translation_HandlerEdit(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 	// Mandatory Security Validation
+	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
@@ -129,12 +156,21 @@ func Translation_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	pageDetail = translation_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Translation_TemplateEdit, w, r, pageDetail)
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 }
 
 
 //Translation_HandlerSave is the handler used process the saving of an Translation
+//It is called from the Edit and New pages
+//Translation_HandlerSave  - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 func Translation_HandlerSave(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// 
 	// Mandatory Security Validation
+	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
@@ -144,39 +180,22 @@ func Translation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path+r.FormValue("Id"))
 
-	var item dm.Translation
-	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//
-		item.SYSId = r.FormValue(dm.Translation_SYSId_scrn)
-		item.Id = r.FormValue(dm.Translation_Id_scrn)
-		item.Class = r.FormValue(dm.Translation_Class_scrn)
-		item.Message = r.FormValue(dm.Translation_Message_scrn)
-		item.Translation = r.FormValue(dm.Translation_Translation_scrn)
-		item.SYSCreated = r.FormValue(dm.Translation_SYSCreated_scrn)
-		item.SYSUpdated = r.FormValue(dm.Translation_SYSUpdated_scrn)
-		item.SYSCreatedBy = r.FormValue(dm.Translation_SYSCreatedBy_scrn)
-		item.SYSCreatedHost = r.FormValue(dm.Translation_SYSCreatedHost_scrn)
-		item.SYSUpdatedBy = r.FormValue(dm.Translation_SYSUpdatedBy_scrn)
-		item.SYSUpdatedHost = r.FormValue(dm.Translation_SYSUpdatedHost_scrn)
-		item.SYSDeleted = r.FormValue(dm.Translation_SYSDeleted_scrn)
-		item.SYSDeletedBy = r.FormValue(dm.Translation_SYSDeletedBy_scrn)
-		item.SYSDeletedHost = r.FormValue(dm.Translation_SYSDeletedHost_scrn)
+	item := translation_DataFromRequest(r)
 	
-	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
 	dao.Translation_Store(item,r)	
 	http.Redirect(w, r, dm.Translation_Redirect, http.StatusFound)
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 }
 
 
 
 
-// Builds/Popuplates the Translation Page 
+//translation_PopulatePage Builds/Populates the Translation Page 
 func translation_PopulatePage(rD dm.Translation, pageDetail dm.Translation_Page) dm.Translation_Page {
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -195,7 +214,7 @@ func translation_PopulatePage(rD dm.Translation, pageDetail dm.Translation_Page)
 	
 	
 	//
-	// Automatically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -242,8 +261,38 @@ func translation_PopulatePage(rD dm.Translation, pageDetail dm.Translation_Page)
 	pageDetail.SYSDeletedHost_props = rD.SYSDeletedHost_props
 	
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
-	//spew.Dump(pageDetail)
 return pageDetail
 }	
+
+
+//translation_DataFromRequest is used process the content of an HTTP Request and return an instance of an Translation
+func translation_DataFromRequest(r *http.Request) dm.Translation {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	var item dm.Translation
+	// FIELD SET START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+		item.SYSId = r.FormValue(dm.Translation_SYSId_scrn)
+		item.Id = r.FormValue(dm.Translation_Id_scrn)
+		item.Class = r.FormValue(dm.Translation_Class_scrn)
+		item.Message = r.FormValue(dm.Translation_Message_scrn)
+		item.Translation = r.FormValue(dm.Translation_Translation_scrn)
+		item.SYSCreated = r.FormValue(dm.Translation_SYSCreated_scrn)
+		item.SYSUpdated = r.FormValue(dm.Translation_SYSUpdated_scrn)
+		item.SYSCreatedBy = r.FormValue(dm.Translation_SYSCreatedBy_scrn)
+		item.SYSCreatedHost = r.FormValue(dm.Translation_SYSCreatedHost_scrn)
+		item.SYSUpdatedBy = r.FormValue(dm.Translation_SYSUpdatedBy_scrn)
+		item.SYSUpdatedHost = r.FormValue(dm.Translation_SYSUpdatedHost_scrn)
+		item.SYSDeleted = r.FormValue(dm.Translation_SYSDeleted_scrn)
+		item.SYSDeletedBy = r.FormValue(dm.Translation_SYSDeletedBy_scrn)
+		item.SYSDeletedHost = r.FormValue(dm.Translation_SYSDeletedHost_scrn)
+	
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return item
+}

@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 01/12/2022 at 09:40:02
+// Date & Time		    : 08/12/2022 at 13:31:31
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,12 +22,12 @@ import (
 	logs    "github.com/mt1976/ebEstimates/logs"
 )
 
-
-
-
-
 //Profile_Publish annouces the endpoints available for this object
+//Profile_Publish - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
 func Profile_Publish(mux http.ServeMux) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// 
 	mux.HandleFunc(dm.Profile_Path, Profile_Handler)
 	mux.HandleFunc(dm.Profile_PathList, Profile_HandlerList)
 	mux.HandleFunc(dm.Profile_PathView, Profile_HandlerView)
@@ -37,16 +37,26 @@ func Profile_Publish(mux http.ServeMux) {
 	//Cannot Delete via GUI
 	logs.Publish("Application", dm.Profile_Title)
     core.Catalog_Add(dm.Profile_Title, dm.Profile_Path, "", dm.Profile_QueryString, "Application")
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 }
 
 
 //Profile_HandlerList is the handler for the list page
+//Allows Listing of Profile records
+//Profile_HandlerList - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
 func Profile_HandlerList(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// 
 	// Mandatory Security Validation
+	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
+	// Code Continues Below
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -67,13 +77,22 @@ func Profile_HandlerList(w http.ResponseWriter, r *http.Request) {
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 	
 	ExecuteTemplate(dm.Profile_TemplateList, w, r, pageDetail)
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 
 }
 
 
 //Profile_HandlerView is the handler used to View a page
+//Allows Viewing for an existing Profile record
+//Profile_HandlerView - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 func Profile_HandlerView(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// 
 	// Mandatory Security Validation
+	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
@@ -98,13 +117,21 @@ func Profile_HandlerView(w http.ResponseWriter, r *http.Request) {
 	pageDetail = profile_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Profile_TemplateView, w, r, pageDetail)
-
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 }
 
 
 //Profile_HandlerEdit is the handler used generate the Edit page
+//Allows Editing for an existing Profile record and then allows the user to save the changes
+//Profile_HandlerEdit - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 func Profile_HandlerEdit(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 	// Mandatory Security Validation
+	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
@@ -129,12 +156,21 @@ func Profile_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	pageDetail = profile_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Profile_TemplateEdit, w, r, pageDetail)
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 }
 
 
 //Profile_HandlerSave is the handler used process the saving of an Profile
+//It is called from the Edit and New pages
+//Profile_HandlerSave  - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 func Profile_HandlerSave(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// 
 	// Mandatory Security Validation
+	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
@@ -144,52 +180,25 @@ func Profile_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path+r.FormValue("ProfileID"))
 
-	var item dm.Profile
-	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//
-		item.SYSId = r.FormValue(dm.Profile_SYSId_scrn)
-		item.ProfileID = r.FormValue(dm.Profile_ProfileID_scrn)
-		item.Code = r.FormValue(dm.Profile_Code_scrn)
-		item.Name = r.FormValue(dm.Profile_Name_scrn)
-		item.StartDate = r.FormValue(dm.Profile_StartDate_scrn)
-		item.EndDate = r.FormValue(dm.Profile_EndDate_scrn)
-		item.DefaultReleases = r.FormValue(dm.Profile_DefaultReleases_scrn)
-		item.DefaultReleaseHours = r.FormValue(dm.Profile_DefaultReleaseHours_scrn)
-		item.BlendedRate = r.FormValue(dm.Profile_BlendedRate_scrn)
-		item.Rounding = r.FormValue(dm.Profile_Rounding_scrn)
-		item.HoursPerDay = r.FormValue(dm.Profile_HoursPerDay_scrn)
-		item.REQPerc = r.FormValue(dm.Profile_REQPerc_scrn)
-		item.ANAPerc = r.FormValue(dm.Profile_ANAPerc_scrn)
-		item.DOCPerc = r.FormValue(dm.Profile_DOCPerc_scrn)
-		item.PMPerc = r.FormValue(dm.Profile_PMPerc_scrn)
-		item.UATPerc = r.FormValue(dm.Profile_UATPerc_scrn)
-		item.GTMPerc = r.FormValue(dm.Profile_GTMPerc_scrn)
-		item.SupportUplift = r.FormValue(dm.Profile_SupportUplift_scrn)
-		item.ContigencyPerc = r.FormValue(dm.Profile_ContigencyPerc_scrn)
-		item.SYSCreated = r.FormValue(dm.Profile_SYSCreated_scrn)
-		item.SYSCreatedBy = r.FormValue(dm.Profile_SYSCreatedBy_scrn)
-		item.SYSCreatedHost = r.FormValue(dm.Profile_SYSCreatedHost_scrn)
-		item.SYSUpdated = r.FormValue(dm.Profile_SYSUpdated_scrn)
-		item.SYSUpdatedBy = r.FormValue(dm.Profile_SYSUpdatedBy_scrn)
-		item.SYSUpdatedHost = r.FormValue(dm.Profile_SYSUpdatedHost_scrn)
-		item.SYSDeleted = r.FormValue(dm.Profile_SYSDeleted_scrn)
-		item.SYSDeletedBy = r.FormValue(dm.Profile_SYSDeletedBy_scrn)
-		item.SYSDeletedHost = r.FormValue(dm.Profile_SYSDeletedHost_scrn)
-		item.SYSActivity = r.FormValue(dm.Profile_SYSActivity_scrn)
-		item.Notes = r.FormValue(dm.Profile_Notes_scrn)
+	item := profile_DataFromRequest(r)
 	
-	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
 	dao.Profile_Store(item,r)	
 	http.Redirect(w, r, dm.Profile_Redirect, http.StatusFound)
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 }
 
 
 //Profile_HandlerNew is the handler used process the creation of an Profile
+//It will create a new Profile and then redirect to the Edit page
+//Profile_HandlerNew  - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 func Profile_HandlerNew(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
 	// Mandatory Security Validation
+	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
@@ -212,15 +221,17 @@ func Profile_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	pageDetail = profile_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Profile_TemplateNew, w, r, pageDetail)
-
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 }	
 
 
 
-// Builds/Popuplates the Profile Page 
+//profile_PopulatePage Builds/Populates the Profile Page 
 func profile_PopulatePage(rD dm.Profile, pageDetail dm.Profile_Page) dm.Profile_Page {
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.ProfileID = rD.ProfileID
@@ -255,7 +266,7 @@ func profile_PopulatePage(rD dm.Profile, pageDetail dm.Profile_Page) dm.Profile_
 	
 	
 	//
-	// Automatically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -350,8 +361,54 @@ func profile_PopulatePage(rD dm.Profile, pageDetail dm.Profile_Page) dm.Profile_
 	pageDetail.Notes_props = rD.Notes_props
 	
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
-	//spew.Dump(pageDetail)
 return pageDetail
 }	
+
+
+//profile_DataFromRequest is used process the content of an HTTP Request and return an instance of an Profile
+func profile_DataFromRequest(r *http.Request) dm.Profile {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	var item dm.Profile
+	// FIELD SET START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+		item.SYSId = r.FormValue(dm.Profile_SYSId_scrn)
+		item.ProfileID = r.FormValue(dm.Profile_ProfileID_scrn)
+		item.Code = r.FormValue(dm.Profile_Code_scrn)
+		item.Name = r.FormValue(dm.Profile_Name_scrn)
+		item.StartDate = r.FormValue(dm.Profile_StartDate_scrn)
+		item.EndDate = r.FormValue(dm.Profile_EndDate_scrn)
+		item.DefaultReleases = r.FormValue(dm.Profile_DefaultReleases_scrn)
+		item.DefaultReleaseHours = r.FormValue(dm.Profile_DefaultReleaseHours_scrn)
+		item.BlendedRate = r.FormValue(dm.Profile_BlendedRate_scrn)
+		item.Rounding = r.FormValue(dm.Profile_Rounding_scrn)
+		item.HoursPerDay = r.FormValue(dm.Profile_HoursPerDay_scrn)
+		item.REQPerc = r.FormValue(dm.Profile_REQPerc_scrn)
+		item.ANAPerc = r.FormValue(dm.Profile_ANAPerc_scrn)
+		item.DOCPerc = r.FormValue(dm.Profile_DOCPerc_scrn)
+		item.PMPerc = r.FormValue(dm.Profile_PMPerc_scrn)
+		item.UATPerc = r.FormValue(dm.Profile_UATPerc_scrn)
+		item.GTMPerc = r.FormValue(dm.Profile_GTMPerc_scrn)
+		item.SupportUplift = r.FormValue(dm.Profile_SupportUplift_scrn)
+		item.ContigencyPerc = r.FormValue(dm.Profile_ContigencyPerc_scrn)
+		item.SYSCreated = r.FormValue(dm.Profile_SYSCreated_scrn)
+		item.SYSCreatedBy = r.FormValue(dm.Profile_SYSCreatedBy_scrn)
+		item.SYSCreatedHost = r.FormValue(dm.Profile_SYSCreatedHost_scrn)
+		item.SYSUpdated = r.FormValue(dm.Profile_SYSUpdated_scrn)
+		item.SYSUpdatedBy = r.FormValue(dm.Profile_SYSUpdatedBy_scrn)
+		item.SYSUpdatedHost = r.FormValue(dm.Profile_SYSUpdatedHost_scrn)
+		item.SYSDeleted = r.FormValue(dm.Profile_SYSDeleted_scrn)
+		item.SYSDeletedBy = r.FormValue(dm.Profile_SYSDeletedBy_scrn)
+		item.SYSDeletedHost = r.FormValue(dm.Profile_SYSDeletedHost_scrn)
+		item.SYSActivity = r.FormValue(dm.Profile_SYSActivity_scrn)
+		item.Notes = r.FormValue(dm.Profile_Notes_scrn)
+	
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return item
+}

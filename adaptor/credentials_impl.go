@@ -84,7 +84,7 @@ func getExpiryDate() string {
 	return expiryDate.Format(core.DATETIMEFORMATUSER)
 }
 
-func Credentials_ObjectValidation_impl(iAction string, iId string, iRec dm.Credentials) (dm.Credentials, error, string) {
+func Credentials_ObjectValidation_impl(iAction string, iId string, iRec dm.Credentials) (dm.Credentials, string, error) {
 	logs.Callout("Credentials", "ObjectValidation", VAL+"-"+iAction, iId)
 	switch iAction {
 	case VAL:
@@ -117,5 +117,5 @@ func Credentials_ObjectValidation_impl(iAction string, iId string, iRec dm.Crede
 	default:
 		logs.Warning("Tmpl_TDate_impl" + " - Invalid Action")
 	}
-	return iRec, nil, ""
+	return iRec, "", nil
 }

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 01/12/2022 at 09:40:03
+// Date & Time		    : 08/12/2022 at 13:31:32
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -16,11 +16,11 @@ import (
 
 	"fmt"
 	"net/http"
-core "github.com/mt1976/ebEstimates/core"
-"github.com/google/uuid"
-das  "github.com/mt1976/ebEstimates/das"
+	core "github.com/mt1976/ebEstimates/core"
+	"github.com/google/uuid"
+	das  "github.com/mt1976/ebEstimates/das"
 	
-	
+		
 	
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
@@ -46,10 +46,10 @@ func Session_GetByID(id string) (int, dm.Session, error) {
 	_, _, sessionItem, _ := session_Fetch(tsql)
 
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, sessionItem, nil
 }
@@ -93,7 +93,7 @@ func Session_Delete(id string) {
 // Session_Store() saves/stores a Session record to the database
 func Session_Store(r dm.Session,req *http.Request) error {
 
-	err, r := Session_Validate(r)
+	r, err := Session_Validate(r)
 	if err == nil {
 		err = session_Save(r, Audit_User(req))
 	} else {
@@ -106,7 +106,7 @@ func Session_Store(r dm.Session,req *http.Request) error {
 // Session_StoreSystem() saves/stores a Session record to the database
 func Session_StoreSystem(r dm.Session) error {
 	
-	err, r := Session_Validate(r)
+	r, err := Session_Validate(r)
 	if err == nil {
 		err = session_Save(r, Audit_Host())
 	} else {
@@ -117,18 +117,18 @@ func Session_StoreSystem(r dm.Session) error {
 }
 
 // Session_Validate() validates for saves/stores a Session record to the database
-func Session_Validate(r dm.Session) (error,dm.Session) {
+func Session_Validate(r dm.Session) (dm.Session, error) {
 	var err error
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
 
-	return err,r
+	return r,err
 }
 //
 
@@ -184,13 +184,13 @@ func session_Save(r dm.Session,usr string) error {
 	r.SYSUpdatedBy = Audit_Update("",usr)
 	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
 	
-logs.Storing("Session",fmt.Sprintf("%s", r))
+logs.Storing("Session",fmt.Sprintf("%v", r))
 
 //Deal with the if its Application or null add this bit, otherwise dont.
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Session_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Session_Id_sql, r.Id)
@@ -222,7 +222,7 @@ logs.Storing("Session",fmt.Sprintf("%s", r))
 	ts = addData(ts, dm.Session_SYSDeletedHost_sql, r.SYSDeletedHost)
 		
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Session_SQLTable)
@@ -255,7 +255,7 @@ func session_Fetch(tsql string) (int, []dm.Session, dm.Session, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Session_SYSId_sql, "0")
 	   recItem.Id  = get_String(rec, dm.Session_Id_sql, "")
@@ -317,7 +317,7 @@ func session_Fetch(tsql string) (int, []dm.Session, dm.Session, error) {
 	
 	
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -347,10 +347,10 @@ func Session_New() (int, []dm.Session, dm.Session, error) {
 	
 
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

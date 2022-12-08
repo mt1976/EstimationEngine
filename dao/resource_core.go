@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 01/12/2022 at 09:40:03
+// Date & Time		    : 08/12/2022 at 13:31:31
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -16,11 +16,11 @@ import (
 
 	"fmt"
 	"net/http"
-core "github.com/mt1976/ebEstimates/core"
-"github.com/google/uuid"
-das  "github.com/mt1976/ebEstimates/das"
+	core "github.com/mt1976/ebEstimates/core"
+	"github.com/google/uuid"
+	das  "github.com/mt1976/ebEstimates/das"
 	
-	
+		
 	
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
@@ -56,10 +56,10 @@ func Resource_GetByID(id string) (int, dm.Resource, error) {
 	_, _, resourceItem, _ := resource_Fetch(tsql)
 
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, resourceItem, nil
 }
@@ -113,7 +113,7 @@ func Resource_SoftDelete(id string) {
 // Resource_Store() saves/stores a Resource record to the database
 func Resource_Store(r dm.Resource,req *http.Request) error {
 
-	err, r := Resource_Validate(r)
+	r, err := Resource_Validate(r)
 	if err == nil {
 		err = resource_Save(r, Audit_User(req))
 	} else {
@@ -126,7 +126,7 @@ func Resource_Store(r dm.Resource,req *http.Request) error {
 // Resource_StoreSystem() saves/stores a Resource record to the database
 func Resource_StoreSystem(r dm.Resource) error {
 	
-	err, r := Resource_Validate(r)
+	r, err := Resource_Validate(r)
 	if err == nil {
 		err = resource_Save(r, Audit_Host())
 	} else {
@@ -137,18 +137,18 @@ func Resource_StoreSystem(r dm.Resource) error {
 }
 
 // Resource_Validate() validates for saves/stores a Resource record to the database
-func Resource_Validate(r dm.Resource) (error,dm.Resource) {
+func Resource_Validate(r dm.Resource) (dm.Resource, error) {
 	var err error
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
 
-	return err,r
+	return r,err
 }
 //
 
@@ -194,13 +194,13 @@ func resource_Save(r dm.Resource,usr string) error {
 	r.SYSUpdatedBy = Audit_Update("",usr)
 	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
 	
-logs.Storing("Resource",fmt.Sprintf("%s", r))
+logs.Storing("Resource",fmt.Sprintf("%v", r))
 
 //Deal with the if its Application or null add this bit, otherwise dont.
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Resource_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Resource_ResourceID_sql, r.ResourceID)
@@ -222,7 +222,7 @@ logs.Storing("Resource",fmt.Sprintf("%s", r))
 	ts = addData(ts, dm.Resource_Notes_sql, r.Notes)
 		
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Resource_SQLTable)
@@ -255,7 +255,7 @@ func resource_Fetch(tsql string) (int, []dm.Resource, dm.Resource, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Resource_SYSId_sql, "0")
 	   recItem.ResourceID  = get_String(rec, dm.Resource_ResourceID_sql, "")
@@ -297,7 +297,7 @@ func resource_Fetch(tsql string) (int, []dm.Resource, dm.Resource, error) {
 	
 	
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -327,10 +327,10 @@ func Resource_New() (int, []dm.Resource, dm.Resource, error) {
 	
 
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

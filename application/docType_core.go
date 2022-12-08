@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 01/12/2022 at 09:40:00
+// Date & Time		    : 08/12/2022 at 13:31:29
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,12 +22,12 @@ import (
 	logs    "github.com/mt1976/ebEstimates/logs"
 )
 
-
-
-
-
 //DocType_Publish annouces the endpoints available for this object
+//DocType_Publish - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
 func DocType_Publish(mux http.ServeMux) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// 
 	mux.HandleFunc(dm.DocType_Path, DocType_Handler)
 	mux.HandleFunc(dm.DocType_PathList, DocType_HandlerList)
 	mux.HandleFunc(dm.DocType_PathView, DocType_HandlerView)
@@ -37,16 +37,26 @@ func DocType_Publish(mux http.ServeMux) {
 	//Cannot Delete via GUI
 	logs.Publish("Application", dm.DocType_Title)
     core.Catalog_Add(dm.DocType_Title, dm.DocType_Path, "", dm.DocType_QueryString, "Application")
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 }
 
 
 //DocType_HandlerList is the handler for the list page
+//Allows Listing of DocType records
+//DocType_HandlerList - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
 func DocType_HandlerList(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// 
 	// Mandatory Security Validation
+	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
+	// Code Continues Below
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -67,13 +77,22 @@ func DocType_HandlerList(w http.ResponseWriter, r *http.Request) {
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 	
 	ExecuteTemplate(dm.DocType_TemplateList, w, r, pageDetail)
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 
 }
 
 
 //DocType_HandlerView is the handler used to View a page
+//Allows Viewing for an existing DocType record
+//DocType_HandlerView - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 func DocType_HandlerView(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// 
 	// Mandatory Security Validation
+	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
@@ -98,13 +117,21 @@ func DocType_HandlerView(w http.ResponseWriter, r *http.Request) {
 	pageDetail = doctype_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.DocType_TemplateView, w, r, pageDetail)
-
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 }
 
 
 //DocType_HandlerEdit is the handler used generate the Edit page
+//Allows Editing for an existing DocType record and then allows the user to save the changes
+//DocType_HandlerEdit - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 func DocType_HandlerEdit(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 	// Mandatory Security Validation
+	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
@@ -129,12 +156,21 @@ func DocType_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	pageDetail = doctype_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.DocType_TemplateEdit, w, r, pageDetail)
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 }
 
 
 //DocType_HandlerSave is the handler used process the saving of an DocType
+//It is called from the Edit and New pages
+//DocType_HandlerSave  - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 func DocType_HandlerSave(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// 
 	// Mandatory Security Validation
+	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
@@ -144,35 +180,25 @@ func DocType_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path+r.FormValue("DocTypeID"))
 
-	var item dm.DocType
-	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//
-		item.SYSId = r.FormValue(dm.DocType_SYSId_scrn)
-		item.DocTypeID = r.FormValue(dm.DocType_DocTypeID_scrn)
-		item.Code = r.FormValue(dm.DocType_Code_scrn)
-		item.Name = r.FormValue(dm.DocType_Name_scrn)
-		item.SYSCreated = r.FormValue(dm.DocType_SYSCreated_scrn)
-		item.SYSCreatedBy = r.FormValue(dm.DocType_SYSCreatedBy_scrn)
-		item.SYSCreatedHost = r.FormValue(dm.DocType_SYSCreatedHost_scrn)
-		item.SYSUpdated = r.FormValue(dm.DocType_SYSUpdated_scrn)
-		item.SYSUpdatedBy = r.FormValue(dm.DocType_SYSUpdatedBy_scrn)
-		item.SYSUpdatedHost = r.FormValue(dm.DocType_SYSUpdatedHost_scrn)
-		item.SYSDeleted = r.FormValue(dm.DocType_SYSDeleted_scrn)
-		item.SYSDeletedBy = r.FormValue(dm.DocType_SYSDeletedBy_scrn)
-		item.SYSDeletedHost = r.FormValue(dm.DocType_SYSDeletedHost_scrn)
+	item := doctype_DataFromRequest(r)
 	
-	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
 	dao.DocType_Store(item,r)	
 	http.Redirect(w, r, dm.DocType_Redirect, http.StatusFound)
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 }
 
 
 //DocType_HandlerNew is the handler used process the creation of an DocType
+//It will create a new DocType and then redirect to the Edit page
+//DocType_HandlerNew  - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 func DocType_HandlerNew(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
 	// Mandatory Security Validation
+	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
@@ -195,15 +221,17 @@ func DocType_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	pageDetail = doctype_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.DocType_TemplateNew, w, r, pageDetail)
-
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 }	
 
 
 
-// Builds/Popuplates the DocType Page 
+//doctype_PopulatePage Builds/Populates the DocType Page 
 func doctype_PopulatePage(rD dm.DocType, pageDetail dm.DocType_Page) dm.DocType_Page {
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.DocTypeID = rD.DocTypeID
@@ -221,7 +249,7 @@ func doctype_PopulatePage(rD dm.DocType, pageDetail dm.DocType_Page) dm.DocType_
 	
 	
 	//
-	// Automatically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -265,8 +293,37 @@ func doctype_PopulatePage(rD dm.DocType, pageDetail dm.DocType_Page) dm.DocType_
 	pageDetail.SYSDeletedHost_props = rD.SYSDeletedHost_props
 	
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
-	//spew.Dump(pageDetail)
 return pageDetail
 }	
+
+
+//doctype_DataFromRequest is used process the content of an HTTP Request and return an instance of an DocType
+func doctype_DataFromRequest(r *http.Request) dm.DocType {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	var item dm.DocType
+	// FIELD SET START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+		item.SYSId = r.FormValue(dm.DocType_SYSId_scrn)
+		item.DocTypeID = r.FormValue(dm.DocType_DocTypeID_scrn)
+		item.Code = r.FormValue(dm.DocType_Code_scrn)
+		item.Name = r.FormValue(dm.DocType_Name_scrn)
+		item.SYSCreated = r.FormValue(dm.DocType_SYSCreated_scrn)
+		item.SYSCreatedBy = r.FormValue(dm.DocType_SYSCreatedBy_scrn)
+		item.SYSCreatedHost = r.FormValue(dm.DocType_SYSCreatedHost_scrn)
+		item.SYSUpdated = r.FormValue(dm.DocType_SYSUpdated_scrn)
+		item.SYSUpdatedBy = r.FormValue(dm.DocType_SYSUpdatedBy_scrn)
+		item.SYSUpdatedHost = r.FormValue(dm.DocType_SYSUpdatedHost_scrn)
+		item.SYSDeleted = r.FormValue(dm.DocType_SYSDeleted_scrn)
+		item.SYSDeletedBy = r.FormValue(dm.DocType_SYSDeletedBy_scrn)
+		item.SYSDeletedHost = r.FormValue(dm.DocType_SYSDeletedHost_scrn)
+	
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return item
+}

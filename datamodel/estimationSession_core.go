@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 01/12/2022 at 09:40:00
+// Date & Time		    : 08/12/2022 at 13:31:29
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -135,10 +135,13 @@ FreshDeskURI       string
 FreshDeskURI_props FieldProperties
 ADOURI       string
 ADOURI_props FieldProperties
+NoActiveFeatures       string
+NoActiveFeatures_props FieldProperties
  // Any lookups will be added below
 
 ProjectID_lookup []Lookup_Item
 EstimationStateID_lookup []Lookup_Item
+
 
 
 
@@ -287,6 +290,7 @@ const (
 	EstimationSession_EffortTotal_sql   = "EffortTotal" // EffortTotal is a String
 	EstimationSession_FreshDeskURI_sql   = "FreshDeskURI" // FreshDeskURI is a String
 	EstimationSession_ADOURI_sql   = "ADOURI" // ADOURI is a String
+	EstimationSession_NoActiveFeatures_sql   = "NoActiveFeatures" // NoActiveFeatures is a String
 
 	/// Definitions End
 	///
@@ -351,6 +355,7 @@ const (
 	EstimationSession_EffortTotal_scrn   = "EffortTotal" // EffortTotal is a String
 	EstimationSession_FreshDeskURI_scrn   = "FreshDeskURI" // FreshDeskURI is a String
 	EstimationSession_ADOURI_scrn   = "ADOURI" // ADOURI is a String
+	EstimationSession_NoActiveFeatures_scrn   = "NoActiveFeatures" // NoActiveFeatures is a String
 
 	/// Definitions End
 	///
@@ -376,7 +381,7 @@ type EstimationSession_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -498,8 +503,10 @@ type EstimationSession_Page struct {
 	FreshDeskURI_props     FieldProperties
 	ADOURI         string
 	ADOURI_props     FieldProperties
+	NoActiveFeatures         string
+	NoActiveFeatures_props     FieldProperties
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

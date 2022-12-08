@@ -120,6 +120,10 @@ func EstimationSession_ADOURI_OnStore_impl(fieldval string, rec dm.EstimationSes
 	logs.Callout("EstimationSession", "ADOURI", PUT, rec.EstimationSessionID)
 	return fieldval, nil
 }
+func EstimationSession_NoActiveFeatures_OnStore_impl(fieldval string, rec dm.EstimationSession, usr string) (string, error) {
+	logs.Callout("EstimationSession", "NoActiveFeatures", PUT, rec.EstimationSessionID)
+	return fieldval, nil
+}
 
 // Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local
 // END - GET API/Callout
@@ -226,6 +230,10 @@ func EstimationSession_ADOURI_OnFetch_impl(rec dm.EstimationSession) string {
 	rtn := core.ApplicationProperties["adoticketuri"]
 	rtn = core.ReplaceWildcard(rtn, "ID", rec.AdoID)
 	return rtn
+}
+func EstimationSession_NoActiveFeatures_OnFetch_impl(rec dm.EstimationSession) string {
+	logs.Callout("EstimationSession", "NoActiveFeatures", GET, rec.EstimationSessionID)
+	return rec.NoActiveFeatures
 }
 
 //
@@ -379,11 +387,17 @@ func EstimationSession_ADOURI_impl(iAction string, iId string, iValue string, iR
 	return iValue, fP
 }
 
+// EstimationSession_NoActiveFeatures_impl provides validation/actions for NoActiveFeatures
+func EstimationSession_NoActiveFeatures_impl(iAction string, iId string, iValue string, iRec dm.EstimationSession, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("EstimationSession", "NoActiveFeatures", VAL+"-"+iAction, iId)
+	return iValue, fP
+}
+
 //
 // Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local
 // END - Validation API/Callout
 
-func EstimationSession_ObjectValidation_impl(iAction string, iId string, iRec dm.EstimationSession) (dm.EstimationSession, error, string) {
+func EstimationSession_ObjectValidation_impl(iAction string, iId string, iRec dm.EstimationSession) (dm.EstimationSession, string, error) {
 	logs.Callout("EstimationSession", "ObjectValidation", VAL+"-"+iAction, iId)
 	switch iAction {
 	case VAL:
@@ -397,5 +411,5 @@ func EstimationSession_ObjectValidation_impl(iAction string, iId string, iRec dm
 	default:
 		logs.Warning("Tmpl_TDate_impl" + " - Invalid Action")
 	}
-	return iRec, nil, ""
+	return iRec, "", nil
 }

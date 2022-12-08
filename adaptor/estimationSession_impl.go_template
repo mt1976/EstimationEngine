@@ -16,7 +16,7 @@ import (
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 01/12/2022 at 09:40:00
+// Date & Time		    : 08/12/2022 at 13:31:29
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -27,7 +27,7 @@ import (
 
 	// If there are fields below, create the methods in adaptor\estimationsession_impl.go
 	// START - GET API/Callout
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 func EstimationSession_Origin_OnStore_impl (fieldval string,rec dm.EstimationSession,usr string) (string,error)  {
 	logs.Callout("EstimationSession", "Origin", PUT, rec.EstimationSessionID)
@@ -125,13 +125,17 @@ func EstimationSession_ADOURI_OnStore_impl (fieldval string,rec dm.EstimationSes
 	logs.Callout("EstimationSession", "ADOURI", PUT, rec.EstimationSessionID)
 	return fieldval,nil
 	}
+func EstimationSession_NoActiveFeatures_OnStore_impl (fieldval string,rec dm.EstimationSession,usr string) (string,error)  {
+	logs.Callout("EstimationSession", "NoActiveFeatures", PUT, rec.EstimationSessionID)
+	return fieldval,nil
+	}
 
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END - GET API/Callout
 	//
 	// START - PUT API/Callout
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 func EstimationSession_Origin_OnFetch_impl (rec dm.EstimationSession)(string) {
 	logs.Callout("EstimationSession", "Origin", GET, rec.EstimationSessionID)
@@ -229,13 +233,17 @@ func EstimationSession_ADOURI_OnFetch_impl (rec dm.EstimationSession)(string) {
 	logs.Callout("EstimationSession", "ADOURI", GET, rec.EstimationSessionID)
 	return rec.ADOURI
 	}
+func EstimationSession_NoActiveFeatures_OnFetch_impl (rec dm.EstimationSession)(string) {
+	logs.Callout("EstimationSession", "NoActiveFeatures", GET, rec.EstimationSessionID)
+	return rec.NoActiveFeatures
+	}
 
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END - PUT API/Callout
 
 	// START - Validation API/Callout
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// EstimationSession_Origin_impl provides validation/actions for Origin
 	func EstimationSession_Origin_impl (iAction string, iId string, iValue string, iRec dm.EstimationSession, fP dm.FieldProperties) (string, dm.FieldProperties) {
@@ -357,12 +365,17 @@ func EstimationSession_ADOURI_OnFetch_impl (rec dm.EstimationSession)(string) {
 	logs.Callout("EstimationSession", "ADOURI", VAL +"-"+iAction, iId)
 	return iValue,fP
 	}
+	// EstimationSession_NoActiveFeatures_impl provides validation/actions for NoActiveFeatures
+	func EstimationSession_NoActiveFeatures_impl (iAction string, iId string, iValue string, iRec dm.EstimationSession, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("EstimationSession", "NoActiveFeatures", VAL +"-"+iAction, iId)
+	return iValue,fP
+	}
 
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END - Validation API/Callout
 
-func EstimationSession_ObjectValidation_impl (iAction string, iId string, iRec dm.EstimationSession) (dm.EstimationSession, error, string) {
+func EstimationSession_ObjectValidation_impl (iAction string, iId string, iRec dm.EstimationSession) (dm.EstimationSession, string, error) {
 	logs.Callout("EstimationSession", "ObjectValidation", VAL +"-"+iAction, iId)
 	switch iAction {
 		case VAL:
@@ -376,6 +389,6 @@ func EstimationSession_ObjectValidation_impl (iAction string, iId string, iRec d
 		default:
 			logs.Warning("Tmpl_TDate_impl" + " - Invalid Action")
 		}
-	return iRec,nil,""
+	return iRec,"",nil
 	}
 	

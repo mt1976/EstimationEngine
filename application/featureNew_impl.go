@@ -192,54 +192,54 @@ func Feature_CalcDefaults(item dm.Feature) dm.Feature {
 	item.Dfmarketing = item.Marketing
 
 	//totalEstimate := coreEstimate + reqEstimate + anaEstimate + docEstimate + pmEstimate + uatEstimate + gtmEstimate
-	item.Total = calculateTotal(item)
+	item.Total = feature_CalculateTotal(item)
 	//supportUplift := totalEstimate * (supportUpliftPerc / 100)
 	//item.SupportUplift = strconv.FormatFloat(supportUplift, 'f', 2, 64)
 	msgTXT := "Recalculated"
-	item.Notes = addActivitySystem(item.Notes, msgTXT)
+	item.Notes = addActivity_System(item.Notes, msgTXT)
 
 	//item.Notes = item.Notes + "\nBase Estimate: " + strconv.FormatFloat(baseEstimate, 'f', 2, 64)
 	msgTXT = "Base Estimate: %s"
 	msgTXT = dao.Translate("AuditMessage", msgTXT)
 	msgTXT = fmt.Sprintf(msgTXT, fts(baseEstimate))
-	item.Notes = addActivitySystem(item.Notes, msgTXT)
+	item.Notes = addActivity_System(item.Notes, msgTXT)
 
 	//item.Notes = item.Notes + "\nDev Confidence: " + strconv.FormatFloat(devConfPerc, 'f', 2, 64)
 	msgTXT = "Dev Confidence: %s"
 	msgTXT = dao.Translate("AuditMessage", msgTXT)
 	msgTXT = fmt.Sprintf(msgTXT, fts(devConfPerc))
-	item.Notes = addActivitySystem(item.Notes, msgTXT)
+	item.Notes = addActivity_System(item.Notes, msgTXT)
 
 	//item.Notes = item.Notes + "\nCore Estimate: " + strconv.FormatFloat(coreEstimate, 'f', 2, 64)
 	msgTXT = "Core Estimate: %s"
 	msgTXT = dao.Translate("AuditMessage", msgTXT)
 	msgTXT = fmt.Sprintf(msgTXT, fts(coreEstimate))
-	item.Notes = addActivitySystem(item.Notes, msgTXT)
+	item.Notes = addActivity_System(item.Notes, msgTXT)
 
 	//item.Notes = item.Notes + "\nDev: " + item.DevEstimate + " | " + "Conf: " + item.ConfidenceID + " | " + "DevUplift: " + item.DevUplift + " | " + "Req: " + item.Reqs + " | " + "Ana: " + item.AnalystTest + " | " + "Doc: " + item.Docs + " | " + "PM: " + item.Mgt + " | " + "UAT: " + item.UatSupport + " | " + "GTM: " + item.Marketing
 	msgTXT = "Dev: %s | Conf: %s | DevUplift: %s | Req: %s | Ana: %s | Doc: %s | PM: %s | UAT: %s | GTM: %s"
 	msgTXT = dao.Translate("AuditMessage", msgTXT)
 	msgTXT = fmt.Sprintf(msgTXT, item.DevEstimate, item.ConfidenceID, item.DevUplift, item.Reqs, item.AnalystTest, item.Docs, item.Mgt, item.UatSupport, item.Marketing)
-	item.Notes = addActivitySystem(item.Notes, msgTXT)
+	item.Notes = addActivity_System(item.Notes, msgTXT)
 
 	//item.Notes = item.Notes + "\nDevConf: " + cf.Perc + " | " + "ReqPerc: " + pp.REQPerc + " | " + "AnaPerc: " + pp.ANAPerc + " | " + "DocPerc: " + pp.DOCPerc + " | " + "PMPerc: " + pp.PMPerc + " | " + "UATPerc: " + pp.UATPerc + " | " + "GTM: " + pp.GTMPerc + " | " + "SupportUplift: " + pp.SupportUplift
 	msgTXT = "DevConf: %s | ReqPerc: %s | AnaPerc: %s | DocPerc: %s | PMPerc: %s | UATPerc: %s | GTM: %s | SupportUplift: %s"
 	msgTXT = dao.Translate("AuditMessage", msgTXT)
 	msgTXT = fmt.Sprintf(msgTXT, cf.Perc, pp.REQPerc, pp.ANAPerc, pp.DOCPerc, pp.PMPerc, pp.UATPerc, pp.GTMPerc, pp.SupportUplift)
-	item.Notes = addActivitySystem(item.Notes, msgTXT)
+	item.Notes = addActivity_System(item.Notes, msgTXT)
 
 	//Total
 	//item.Notes = item.Notes + "\nTotal: " + item.Total
 	msgTXT = "Total: %s"
 	msgTXT = dao.Translate("AuditMessage", msgTXT)
 	msgTXT = fmt.Sprintf(msgTXT, item.Total)
-	item.Notes = addActivitySystem(item.Notes, msgTXT)
+	item.Notes = addActivity_System(item.Notes, msgTXT)
 
 	//item.Notes = item.Notes + "\nUpdated: " + time.Now().Format("2006-01-02 at 15:04:05")
 	msgTXT = "Updated: %s"
 	msgTXT = dao.Translate("AuditMessage", msgTXT)
 	msgTXT = fmt.Sprintf(msgTXT, time.Now().Format("2006-01-02 at 15:04:05"))
-	item.Notes = addActivitySystem(item.Notes, msgTXT)
+	item.Notes = addActivity_System(item.Notes, msgTXT)
 	// Call Feature_RefreshEstimates(item)
 	//
 	// Dynamically generated 29/11/2022 by matttownsend (Matt Townsend) on silicon.local

@@ -180,74 +180,12 @@ func EstimationSession_HandlerCreate(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path + r.FormValue("EstimationSessionID"))
 
-	var item dm.EstimationSession
-	// START
-	// Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local
-	//
-	item.SYSId = r.FormValue(dm.EstimationSession_SYSId_scrn)
-	item.EstimationSessionID = r.FormValue(dm.EstimationSession_EstimationSessionID_scrn)
-	item.ProjectID = r.FormValue(dm.EstimationSession_ProjectID_scrn)
-	item.EstimationStateID = r.FormValue(dm.EstimationSession_EstimationStateID_scrn)
-	item.Notes = r.FormValue(dm.EstimationSession_Notes_scrn)
-	// item.Releases = r.FormValue(dm.EstimationSession_Releases_scrn)
-	// item.Total = r.FormValue(dm.EstimationSession_Total_scrn)
-	// item.Contingency = r.FormValue(dm.EstimationSession_Contingency_scrn)
-	// item.ReqDays = r.FormValue(dm.EstimationSession_ReqDays_scrn)
-	// item.RegCost = r.FormValue(dm.EstimationSession_RegCost_scrn)
-	// item.ImpDays = r.FormValue(dm.EstimationSession_ImpDays_scrn)
-	// item.ImpCost = r.FormValue(dm.EstimationSession_ImpCost_scrn)
-	// item.UatDays = r.FormValue(dm.EstimationSession_UatDays_scrn)
-	// item.UatCost = r.FormValue(dm.EstimationSession_UatCost_scrn)
-	// item.MgtDays = r.FormValue(dm.EstimationSession_MgtDays_scrn)
-	// item.MgtCost = r.FormValue(dm.EstimationSession_MgtCost_scrn)
-	// item.RelDays = r.FormValue(dm.EstimationSession_RelDays_scrn)
-	// item.RelCost = r.FormValue(dm.EstimationSession_RelCost_scrn)
-	//item.SupportUplift = r.FormValue(dm.EstimationSession_SupportUplift_scrn)
-	// item.SYSCreated = r.FormValue(dm.EstimationSession_SYSCreated_scrn)
-	// item.SYSCreatedBy = r.FormValue(dm.EstimationSession_SYSCreatedBy_scrn)
-	// item.SYSCreatedHost = r.FormValue(dm.EstimationSession_SYSCreatedHost_scrn)
-	// item.SYSUpdated = r.FormValue(dm.EstimationSession_SYSUpdated_scrn)
-	// item.SYSUpdatedBy = r.FormValue(dm.EstimationSession_SYSUpdatedBy_scrn)
-	// item.SYSUpdatedHost = r.FormValue(dm.EstimationSession_SYSUpdatedHost_scrn)
-	// item.SYSDeleted = r.FormValue(dm.EstimationSession_SYSDeleted_scrn)
-	// item.SYSDeletedBy = r.FormValue(dm.EstimationSession_SYSDeletedBy_scrn)
-	// item.SYSDeletedHost = r.FormValue(dm.EstimationSession_SYSDeletedHost_scrn)
-	item.Name = r.FormValue(dm.EstimationSession_Name_scrn)
-	item.AdoID = r.FormValue(dm.EstimationSession_AdoID_scrn)
-	item.FreshdeskID = r.FormValue(dm.EstimationSession_FreshdeskID_scrn)
-	item.TrackerID = r.FormValue(dm.EstimationSession_TrackerID_scrn)
-	item.EstRef = r.FormValue(dm.EstimationSession_EstRef_scrn)
-	item.ExtRef = r.FormValue(dm.EstimationSession_ExtRef_scrn)
-	// item.Origin = r.FormValue(dm.EstimationSession_Origin_scrn)
-	// item.OriginStateID = r.FormValue(dm.EstimationSession_OriginStateID_scrn)
-	// item.OriginState = r.FormValue(dm.EstimationSession_OriginState_scrn)
-	// item.OriginDocTypeID = r.FormValue(dm.EstimationSession_OriginDocTypeID_scrn)
-	// item.OriginDocType = r.FormValue(dm.EstimationSession_OriginDocType_scrn)
-	// item.OriginCode = r.FormValue(dm.EstimationSession_OriginCode_scrn)
-	// item.OriginName = r.FormValue(dm.EstimationSession_OriginName_scrn)
-	// item.OriginRate = r.FormValue(dm.EstimationSession_OriginRate_scrn)
-	// item.ProjectProfileID = r.FormValue(dm.EstimationSession_ProjectProfileID_scrn)
-	// item.ProjectProfile = r.FormValue(dm.EstimationSession_ProjectProfile_scrn)
-	// item.ProjectDefaultReleases = r.FormValue(dm.EstimationSession_ProjectDefaultReleases_scrn)
-	// item.ProjectDefaultReleaseHours = r.FormValue(dm.EstimationSession_ProjectDefaultReleaseHours_scrn)
-	// item.ProjectBlendedRate = r.FormValue(dm.EstimationSession_ProjectBlendedRate_scrn)
-	// item.ProjectStateID = r.FormValue(dm.EstimationSession_ProjectStateID_scrn)
-	// item.ProjectState = r.FormValue(dm.EstimationSession_ProjectState_scrn)
-	// item.ProjectName = r.FormValue(dm.EstimationSession_ProjectName_scrn)
-	// item.ProjectStartDate = r.FormValue(dm.EstimationSession_ProjectStartDate_scrn)
-	// item.ProjectEndDate = r.FormValue(dm.EstimationSession_ProjectEndDate_scrn)
-	// item.ProfileSupportUpliftPerc = r.FormValue(dm.EstimationSession_ProfileSupportUpliftPerc_scrn)
-	// item.CCY = r.FormValue(dm.EstimationSession_CCY_scrn)
-	// item.CCYCode = r.FormValue(dm.EstimationSession_CCYCode_scrn)
-	// item.EffortTotal = r.FormValue(dm.EstimationSession_EffortTotal_scrn)
-	// item.FreshDeskURI = r.FormValue(dm.EstimationSession_FreshDeskURI_scrn)
-	// item.ADOURI = r.FormValue(dm.EstimationSession_ADOURI_scrn)
+	item := estimationsession_DataFromRequest(r)
 
-	//
-	// Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local
-	// END
-
-	item.Notes = addActivity(item.Notes, "CREATED -> "+item.EstimationStateID, r)
+	msg_TXT := "CREATED -> %s"
+	msg_TXT = dao.Translate("AuditMessage", msg_TXT)
+	msg_TXT = fmt.Sprintf(msg_TXT, item.EstimationStateID)
+	item.Notes = addActivity(item.Notes, msg_TXT, r)
 
 	dao.EstimationSession_Store(item, r)
 	REDR := dm.EstimationSession_ByProject_PathList + "/?" + dm.Project_QueryString + "=" + item.ProjectID
@@ -330,7 +268,7 @@ func Estimationsession_Calculate(searchID string) dm.EstimationSession {
 	Total_Mgt := 0.00
 	Total_UAT := 0.00
 	Total_MKT := 0.00
-	Total_Contingency := 0.00
+	//Total_Contingency := 0.00
 	Total_DevEstimate := 0.00
 	Total_DevUplift := 0.00
 	// Range through the list of Features
@@ -346,7 +284,7 @@ func Estimationsession_Calculate(searchID string) dm.EstimationSession {
 		Total_Mgt += stf(feature.Mgt)
 		Total_UAT += stf(feature.UatSupport)
 		Total_MKT += stf(feature.Marketing)
-		Total_Contingency += stf(feature.Contingency)
+		//Total_Contingency += stf(feature.Contingency)
 		Total_DevUplift += stf(feature.DevUplift)
 		Total_DevEstimate += stf(feature.DevEstimate)
 	}
@@ -356,6 +294,9 @@ func Estimationsession_Calculate(searchID string) dm.EstimationSession {
 	ReleaseHoursInDay := stf(profile.DefaultReleaseHours)
 	RelHours := stf(profile.DefaultReleases) * ReleaseHoursInDay
 
+	if esRecord.Releases != "" {
+		RelHours = stf(esRecord.Releases) * ReleaseHoursInDay
+	}
 	// Convert Hours to Days
 
 	Total_Reqs_Days, _ := calculate(Total_Reqs, HoursInDay, Rate)
@@ -364,7 +305,7 @@ func Estimationsession_Calculate(searchID string) dm.EstimationSession {
 	Total_Mgt_Days, _ := calculate(Total_Mgt, HoursInDay, Rate)
 	Total_UAT_Days, _ := calculate(Total_UAT, HoursInDay, Rate)
 	Total_MKT_Days, _ := calculate(Total_MKT, HoursInDay, Rate)
-	//Total_Contingency_Days, Total_Contingency_Cost := calculate(Total_Contingency, HoursInDay, Rate)
+	//Total_Contingency_Days, _ := calculate(Total_Contingency, HoursInDay, Rate)
 	//Total_DevEstimate_Days, Total_DevEstimate_Cost := calculate(Total_DevEstimate, HoursInDay, Rate)
 	Total_DevUplift_Days, _ := calculate(Total_DevUplift, HoursInDay, Rate)
 	Total_Rel_Days, _ := calculate(RelHours, ReleaseHoursInDay, Rate)
@@ -387,8 +328,8 @@ func Estimationsession_Calculate(searchID string) dm.EstimationSession {
 	esRecord.MgtDays = fts(Tman)
 	esRecord.MgtCost = fts((Tman * HoursInDay) * Rate)
 	// Contingency Days
-	//Tcon,_ := rtn(Total_Contingency, RoundingFactor)
-	//esRecord.ConDays = fts(Tcon)
+	//Tcon, _ := rtn(Total_Contingency_Days, RoundingFactor)
+	//esRecord.Contingency = fts(Tcon)
 	//esRecord.ConCost = fts((Tcon * HoursInDay) * Rate)
 
 	// Release Days
@@ -406,9 +347,9 @@ func Estimationsession_Calculate(searchID string) dm.EstimationSession {
 	esRecord.Total = fts(Total_Cost)
 
 	// Update the Estimation Session Record
-	estUpdateTXT := dao.Translate("AuditMessage", "ESTIMATE UPDATE")
+	estUpdateTXT := dao.Translate("AuditMessage", "ESTIMATE UPDATED")
 
-	esRecord.Notes = addActivitySystem(esRecord.Notes, estUpdateTXT)
+	esRecord.Notes = addActivity_System(esRecord.Notes, estUpdateTXT)
 
 	dao.EstimationSession_StoreSystem(esRecord)
 
@@ -573,73 +514,8 @@ func EstimationSession_HandlerStore(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path + r.FormValue("EstimationSessionID"))
 
-	var item dm.EstimationSession
-	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local
-	//
-	item.SYSId = r.FormValue(dm.EstimationSession_SYSId_scrn)
-	item.EstimationSessionID = r.FormValue(dm.EstimationSession_EstimationSessionID_scrn)
-	item.ProjectID = r.FormValue(dm.EstimationSession_ProjectID_scrn)
-	item.EstimationStateID = r.FormValue(dm.EstimationSession_EstimationStateID_scrn)
-	item.Notes = r.FormValue(dm.EstimationSession_Notes_scrn)
-	item.Releases = r.FormValue(dm.EstimationSession_Releases_scrn)
-	item.Total = r.FormValue(dm.EstimationSession_Total_scrn)
-	item.Contingency = r.FormValue(dm.EstimationSession_Contingency_scrn)
-	item.ReqDays = r.FormValue(dm.EstimationSession_ReqDays_scrn)
-	item.RegCost = r.FormValue(dm.EstimationSession_RegCost_scrn)
-	item.ImpDays = r.FormValue(dm.EstimationSession_ImpDays_scrn)
-	item.ImpCost = r.FormValue(dm.EstimationSession_ImpCost_scrn)
-	item.UatDays = r.FormValue(dm.EstimationSession_UatDays_scrn)
-	item.UatCost = r.FormValue(dm.EstimationSession_UatCost_scrn)
-	item.MgtDays = r.FormValue(dm.EstimationSession_MgtDays_scrn)
-	item.MgtCost = r.FormValue(dm.EstimationSession_MgtCost_scrn)
-	item.RelDays = r.FormValue(dm.EstimationSession_RelDays_scrn)
-	item.RelCost = r.FormValue(dm.EstimationSession_RelCost_scrn)
-	item.SupportUplift = r.FormValue(dm.EstimationSession_SupportUplift_scrn)
-	item.SYSCreated = r.FormValue(dm.EstimationSession_SYSCreated_scrn)
-	item.SYSCreatedBy = r.FormValue(dm.EstimationSession_SYSCreatedBy_scrn)
-	item.SYSCreatedHost = r.FormValue(dm.EstimationSession_SYSCreatedHost_scrn)
-	item.SYSUpdated = r.FormValue(dm.EstimationSession_SYSUpdated_scrn)
-	item.SYSUpdatedBy = r.FormValue(dm.EstimationSession_SYSUpdatedBy_scrn)
-	item.SYSUpdatedHost = r.FormValue(dm.EstimationSession_SYSUpdatedHost_scrn)
-	item.SYSDeleted = r.FormValue(dm.EstimationSession_SYSDeleted_scrn)
-	item.SYSDeletedBy = r.FormValue(dm.EstimationSession_SYSDeletedBy_scrn)
-	item.SYSDeletedHost = r.FormValue(dm.EstimationSession_SYSDeletedHost_scrn)
-	item.Name = r.FormValue(dm.EstimationSession_Name_scrn)
-	item.AdoID = r.FormValue(dm.EstimationSession_AdoID_scrn)
-	item.FreshdeskID = r.FormValue(dm.EstimationSession_FreshdeskID_scrn)
-	item.TrackerID = r.FormValue(dm.EstimationSession_TrackerID_scrn)
-	item.EstRef = r.FormValue(dm.EstimationSession_EstRef_scrn)
-	item.ExtRef = r.FormValue(dm.EstimationSession_ExtRef_scrn)
-	item.SYSActivity = r.FormValue(dm.EstimationSession_SYSActivity_scrn)
-	item.Origin = r.FormValue(dm.EstimationSession_Origin_scrn)
-	item.OriginStateID = r.FormValue(dm.EstimationSession_OriginStateID_scrn)
-	item.OriginState = r.FormValue(dm.EstimationSession_OriginState_scrn)
-	item.OriginDocTypeID = r.FormValue(dm.EstimationSession_OriginDocTypeID_scrn)
-	item.OriginDocType = r.FormValue(dm.EstimationSession_OriginDocType_scrn)
-	item.OriginCode = r.FormValue(dm.EstimationSession_OriginCode_scrn)
-	item.OriginName = r.FormValue(dm.EstimationSession_OriginName_scrn)
-	item.OriginRate = r.FormValue(dm.EstimationSession_OriginRate_scrn)
-	item.ProjectProfileID = r.FormValue(dm.EstimationSession_ProjectProfileID_scrn)
-	item.ProjectProfile = r.FormValue(dm.EstimationSession_ProjectProfile_scrn)
-	item.ProjectDefaultReleases = r.FormValue(dm.EstimationSession_ProjectDefaultReleases_scrn)
-	item.ProjectDefaultReleaseHours = r.FormValue(dm.EstimationSession_ProjectDefaultReleaseHours_scrn)
-	item.ProjectBlendedRate = r.FormValue(dm.EstimationSession_ProjectBlendedRate_scrn)
-	item.ProjectStateID = r.FormValue(dm.EstimationSession_ProjectStateID_scrn)
-	item.ProjectState = r.FormValue(dm.EstimationSession_ProjectState_scrn)
-	item.ProjectName = r.FormValue(dm.EstimationSession_ProjectName_scrn)
-	item.ProjectStartDate = r.FormValue(dm.EstimationSession_ProjectStartDate_scrn)
-	item.ProjectEndDate = r.FormValue(dm.EstimationSession_ProjectEndDate_scrn)
-	item.ProfileSupportUpliftPerc = r.FormValue(dm.EstimationSession_ProfileSupportUpliftPerc_scrn)
-	item.CCY = r.FormValue(dm.EstimationSession_CCY_scrn)
-	item.CCYCode = r.FormValue(dm.EstimationSession_CCYCode_scrn)
-	item.EffortTotal = r.FormValue(dm.EstimationSession_EffortTotal_scrn)
-	item.FreshDeskURI = r.FormValue(dm.EstimationSession_FreshDeskURI_scrn)
-	item.ADOURI = r.FormValue(dm.EstimationSession_ADOURI_scrn)
+	item := estimationsession_DataFromRequest(r)
 
-	//
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local
-	// END
 	dao.EstimationSession_Store(item, r)
 	REDR := dm.EstimationSession_ByProject_PathList + "?" + dm.EstimationSession_ByProject_QueryString + "=" + item.ProjectID
 	http.Redirect(w, r, REDR, http.StatusFound)

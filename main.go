@@ -67,7 +67,7 @@ func main() {
 
 	application.SQLInjection_Publish(*mux)
 
-	application.Catalog_Publish(*mux)
+	application.Catalog_Publish_impl(*mux)
 	application.Inbox_Publish(*mux)
 	application.Inbox_Publish_Impl(*mux)
 	application.UserRole_Publish(*mux)

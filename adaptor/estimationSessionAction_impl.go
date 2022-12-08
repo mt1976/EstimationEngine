@@ -59,7 +59,7 @@ func EstimationSessionAction_Update_impl(id string, rec dm.EstimationSessionActi
 // Dynamically generated 29/11/2022 by matttownsend (Matt Townsend) on silicon.local
 // END - Validation API/Callout
 
-func EstimationSessionAction_ObjectValidation_impl(iAction string, iId string, iRec dm.EstimationSessionAction) (dm.EstimationSessionAction, error, string) {
+func EstimationSessionAction_ObjectValidation_impl(iAction string, iId string, iRec dm.EstimationSessionAction) (dm.EstimationSessionAction, string, error) {
 	logs.Callout("EstimationSessionAction", "ObjectValidation", VAL+"-"+iAction, iId)
 	switch iAction {
 	case VAL:
@@ -73,5 +73,5 @@ func EstimationSessionAction_ObjectValidation_impl(iAction string, iId string, i
 	default:
 		logs.Warning("Tmpl_TDate_impl" + " - Invalid Action")
 	}
-	return iRec, nil, ""
+	return iRec, "", nil
 }

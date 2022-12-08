@@ -81,18 +81,8 @@ func EstimationSessionAction_HandlerStore(w http.ResponseWriter, r *http.Request
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path + r.FormValue("ID"))
 
-	var item dm.EstimationSessionAction
-	// START
-	// Dynamically generated 29/11/2022 by matttownsend (Matt Townsend) on silicon.local
-	//
-	item.ID = r.FormValue(dm.EstimationSessionAction_ID_scrn)
-	item.EstimationSession = r.FormValue(dm.EstimationSessionAction_EstimationSession_scrn)
-	item.Action = r.FormValue(dm.EstimationSessionAction_Action_scrn)
-	item.Notes = r.FormValue(dm.EstimationSessionAction_Notes_scrn)
+	item := estimationsessionaction_DataFromRequest(r)
 
-	//
-	// Dynamically generated 29/11/2022 by matttownsend (Matt Townsend) on silicon.local
-	// END
 	logs.Information("EstimationSessionID", item.EstimationSession)
 	noRet, es, _ := dao.EstimationSession_GetByID(item.EstimationSession)
 	logs.Information("NoFound", strconv.Itoa(noRet))

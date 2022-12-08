@@ -114,7 +114,7 @@ func message_Save(r dm.Message, usr string) error {
 
 	// If there are fields below, create the methods in dao\message_impl.go
 
-	logs.Storing("Message", fmt.Sprintf("%s", r))
+	logs.Storing("Message", fmt.Sprintf("%v", r))
 
 	//Deal with the if its Application or null add this bit, otherwise dont.
 

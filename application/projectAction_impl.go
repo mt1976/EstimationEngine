@@ -48,32 +48,8 @@ func ProjectAction_HandlerSave_Impl(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path + r.FormValue("ProjectID"))
 
-	var item dm.Project
-	// START
-	// Dynamically generated 30/11/2022 by matttownsend (Matt Townsend) on silicon.local
-	//
-	item.SYSId = r.FormValue(dm.ProjectAction_SYSId_scrn)
-	item.ProjectID = r.FormValue(dm.ProjectAction_ProjectID_scrn)
-	item.OriginID = r.FormValue(dm.ProjectAction_OriginID_scrn)
-	item.ProjectStateID = r.FormValue(dm.ProjectAction_ProjectStateID_scrn)
-	item.ProfileID = r.FormValue(dm.ProjectAction_ProfileID_scrn)
-	item.Name = r.FormValue(dm.ProjectAction_Name_scrn)
-	item.Description = r.FormValue(dm.ProjectAction_Description_scrn)
-	item.StartDate = r.FormValue(dm.ProjectAction_StartDate_scrn)
-	item.EndDate = r.FormValue(dm.ProjectAction_EndDate_scrn)
-	item.SYSCreated = r.FormValue(dm.ProjectAction_SYSCreated_scrn)
-	item.SYSCreatedBy = r.FormValue(dm.ProjectAction_SYSCreatedBy_scrn)
-	item.SYSCreatedHost = r.FormValue(dm.ProjectAction_SYSCreatedHost_scrn)
-	item.SYSUpdated = r.FormValue(dm.ProjectAction_SYSUpdated_scrn)
-	item.SYSUpdatedBy = r.FormValue(dm.ProjectAction_SYSUpdatedBy_scrn)
-	item.SYSUpdatedHost = r.FormValue(dm.ProjectAction_SYSUpdatedHost_scrn)
-	item.SYSDeleted = r.FormValue(dm.ProjectAction_SYSDeleted_scrn)
-	item.SYSDeletedBy = r.FormValue(dm.ProjectAction_SYSDeletedBy_scrn)
-	item.SYSDeletedHost = r.FormValue(dm.ProjectAction_SYSDeletedHost_scrn)
+	item := project_DataFromRequest(r)
 
-	//
-	// Dynamically generated 30/11/2022 by matttownsend (Matt Townsend) on silicon.local
-	// END
 	dao.Project_Store(item, r)
 	// Get Origin by Code
 	_, origin, _ := dao.Origin_GetByCode(item.OriginID)

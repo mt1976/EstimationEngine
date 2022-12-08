@@ -8,24 +8,30 @@ package datamodel
 // Endpoint 	        : Catalog (ID)
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
-// Template Generator   : delinquentDysprosium [r4-21.12.31]
-// Date & Time		    : 28/06/2022 at 16:10:44
+// Template Generator   : Dysprosium [r4-21.12.31]
+// Date & Time		    : 08/12/2022 at 13:37:49
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-// Catalog defines the datamolde for the Catalog object
+//Catalog defines the datamolde for the Catalog object
 type Catalog struct {
-	ID             string
-	ID_props       FieldProperties
-	Endpoint       string
-	Endpoint_props FieldProperties
-	Descr          string
-	Descr_props    FieldProperties
-	Query          string
-	Query_props    FieldProperties
-	Source         string
-	Source_props   FieldProperties
-	// Any lookups will be added below
+
+
+ID       string
+ID_props FieldProperties
+Endpoint       string
+Endpoint_props FieldProperties
+Descr       string
+Descr_props FieldProperties
+Query       string
+Query_props FieldProperties
+Source       string
+Source_props FieldProperties
+ // Any lookups will be added below
+
+
+
+
 
 }
 
@@ -55,65 +61,65 @@ const (
 	///
 	//Catalog_Redirect provides a page to return to aftern an action
 	Catalog_Redirect = Catalog_PathList
-
+	
 	///
 	///
 	/// SQL Field Definitions
 	///
-	Catalog_ID_sql       = "ID"       // ID is a String
-	Catalog_Endpoint_sql = "Endpoint" // Endpoint is a String
-	Catalog_Descr_sql    = "Descr"    // Descr is a String
-	Catalog_Query_sql    = "Query"    // Query is a String
-	Catalog_Source_sql   = "Source"   // Source is a String
+	Catalog_ID_sql   = "ID" // ID is a String
+	Catalog_Endpoint_sql   = "Endpoint" // Endpoint is a String
+	Catalog_Descr_sql   = "Descr" // Descr is a String
+	Catalog_Query_sql   = "Query" // Query is a String
+	Catalog_Source_sql   = "Source" // Source is a String
 
 	/// Definitions End
 	///
 	/// Application Field Definitions
 	///
-	Catalog_ID_scrn       = "ID"       // ID is a String
-	Catalog_Endpoint_scrn = "Endpoint" // Endpoint is a String
-	Catalog_Descr_scrn    = "Descr"    // Descr is a String
-	Catalog_Query_scrn    = "Query"    // Query is a String
-	Catalog_Source_scrn   = "Source"   // Source is a String
+	Catalog_ID_scrn   = "ID" // ID is a String
+	Catalog_Endpoint_scrn   = "Endpoint" // Endpoint is a String
+	Catalog_Descr_scrn   = "Descr" // Descr is a String
+	Catalog_Query_scrn   = "Query" // Query is a String
+	Catalog_Source_scrn   = "Source" // Source is a String
 
 	/// Definitions End
 	///
 )
 
-// catalog_PageList provides the information for the template for a list of Catalogs
+//catalog_PageList provides the information for the template for a list of Catalogs
 type Catalog_PageList struct {
-	SessionInfo SessionInfo
-	UserMenu    AppMenuItem
-	UserRole    string
-	Title       string
-	PageTitle   string
-	ItemsOnPage int
-	ItemList    []Catalog
-	Context     appContext
+	SessionInfo      SessionInfo
+	UserMenu         AppMenuItem
+	UserRole         string
+	Title            string
+	PageTitle        string
+	ItemsOnPage 	 int
+	ItemList  		 []Catalog
+	Context	 appContext
 }
 
-// catalog_Page provides the information for the template for an individual Catalog
+//catalog_Page provides the information for the template for an individual Catalog
 type Catalog_Page struct {
-	SessionInfo SessionInfo
-	UserMenu    AppMenuItem
-	UserRole    string
-	Title       string
-	PageTitle   string
+	SessionInfo      SessionInfo
+	UserMenu    	 AppMenuItem
+	UserRole    	 string
+	Title       	 string
+	PageTitle   	 string
 	// START
-	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
-	//
-	ID             string
-	ID_props       FieldProperties
-	Endpoint       string
-	Endpoint_props FieldProperties
-	Descr          string
-	Descr_props    FieldProperties
-	Query          string
-	Query_props    FieldProperties
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//	
+	ID         string
+	ID_props     FieldProperties
+	Endpoint         string
+	Endpoint_props     FieldProperties
+	Descr         string
+	Descr_props     FieldProperties
+	Query         string
+	Query_props     FieldProperties
 	Source         string
-	Source_props   FieldProperties
-	//
-	// Dynamically generated 28/06/2022 by matttownsend (Matt Townsend) on silicon.local
+	Source_props     FieldProperties
+	// 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-	Context appContext
+	Context	 appContext
 }

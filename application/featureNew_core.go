@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 01/12/2022 at 09:40:01
+// Date & Time		    : 08/12/2022 at 13:31:30
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,12 +22,12 @@ import (
 	logs    "github.com/mt1976/ebEstimates/logs"
 )
 
-
-
-
-
 //FeatureNew_Publish annouces the endpoints available for this object
+//FeatureNew_Publish - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
 func FeatureNew_Publish(mux http.ServeMux) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// 
 	mux.HandleFunc(dm.FeatureNew_Path, FeatureNew_Handler)
 	//Cannot List via GUI
 	mux.HandleFunc(dm.FeatureNew_PathView, FeatureNew_HandlerView)
@@ -37,13 +37,22 @@ func FeatureNew_Publish(mux http.ServeMux) {
 	//Cannot Delete via GUI
 	logs.Publish("Application", dm.FeatureNew_Title)
     core.Catalog_Add(dm.FeatureNew_Title, dm.FeatureNew_Path, "", dm.FeatureNew_QueryString, "Application")
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 }
 
 
 
 //FeatureNew_HandlerView is the handler used to View a page
+//Allows Viewing for an existing FeatureNew record
+//FeatureNew_HandlerView - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 func FeatureNew_HandlerView(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// 
 	// Mandatory Security Validation
+	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
@@ -68,13 +77,21 @@ func FeatureNew_HandlerView(w http.ResponseWriter, r *http.Request) {
 	pageDetail = featurenew_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.FeatureNew_TemplateView, w, r, pageDetail)
-
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 }
 
 
 //FeatureNew_HandlerEdit is the handler used generate the Edit page
+//Allows Editing for an existing FeatureNew record and then allows the user to save the changes
+//FeatureNew_HandlerEdit - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 func FeatureNew_HandlerEdit(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 	// Mandatory Security Validation
+	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
@@ -99,12 +116,21 @@ func FeatureNew_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	pageDetail = featurenew_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.FeatureNew_TemplateEdit, w, r, pageDetail)
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 }
 
 
 //FeatureNew_HandlerSave is the handler used process the saving of an FeatureNew
+//It is called from the Edit and New pages
+//FeatureNew_HandlerSave  - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 func FeatureNew_HandlerSave(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// 
 	// Mandatory Security Validation
+	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
@@ -114,28 +140,25 @@ func FeatureNew_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path+r.FormValue("ID"))
 
-	var item dm.FeatureNew
-	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//
-		item.ID = r.FormValue(dm.FeatureNew_ID_scrn)
-		item.EstimationSession = r.FormValue(dm.FeatureNew_EstimationSession_scrn)
-		item.Name = r.FormValue(dm.FeatureNew_Name_scrn)
-		item.DevEstimate = r.FormValue(dm.FeatureNew_DevEstimate_scrn)
-		item.Confidence = r.FormValue(dm.FeatureNew_Confidence_scrn)
-		item.Developer = r.FormValue(dm.FeatureNew_Developer_scrn)
+	item := featurenew_DataFromRequest(r)
 	
-	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
 	dao.FeatureNew_Store(item,r)	
 	http.Redirect(w, r, dm.FeatureNew_Redirect, http.StatusFound)
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 }
 
 
 //FeatureNew_HandlerNew is the handler used process the creation of an FeatureNew
+//It will create a new FeatureNew and then redirect to the Edit page
+//FeatureNew_HandlerNew  - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 func FeatureNew_HandlerNew(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
 	// Mandatory Security Validation
+	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
@@ -158,15 +181,17 @@ func FeatureNew_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	pageDetail = featurenew_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.FeatureNew_TemplateNew, w, r, pageDetail)
-
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 }	
 
 
 
-// Builds/Popuplates the FeatureNew Page 
+//featurenew_PopulatePage Builds/Populates the FeatureNew Page 
 func featurenew_PopulatePage(rD dm.FeatureNew, pageDetail dm.FeatureNew_Page) dm.FeatureNew_Page {
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.ID = rD.ID
 	pageDetail.EstimationSession = rD.EstimationSession
@@ -177,7 +202,7 @@ func featurenew_PopulatePage(rD dm.FeatureNew, pageDetail dm.FeatureNew_Page) dm
 	
 	
 	//
-	// Automatically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -206,8 +231,30 @@ func featurenew_PopulatePage(rD dm.FeatureNew, pageDetail dm.FeatureNew_Page) dm
 	pageDetail.Developer_props = rD.Developer_props
 	
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
-	//spew.Dump(pageDetail)
 return pageDetail
 }	
+
+
+//featurenew_DataFromRequest is used process the content of an HTTP Request and return an instance of an FeatureNew
+func featurenew_DataFromRequest(r *http.Request) dm.FeatureNew {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	var item dm.FeatureNew
+	// FIELD SET START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+		item.ID = r.FormValue(dm.FeatureNew_ID_scrn)
+		item.EstimationSession = r.FormValue(dm.FeatureNew_EstimationSession_scrn)
+		item.Name = r.FormValue(dm.FeatureNew_Name_scrn)
+		item.DevEstimate = r.FormValue(dm.FeatureNew_DevEstimate_scrn)
+		item.Confidence = r.FormValue(dm.FeatureNew_Confidence_scrn)
+		item.Developer = r.FormValue(dm.FeatureNew_Developer_scrn)
+	
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return item
+}

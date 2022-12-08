@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 01/12/2022 at 09:40:00
+// Date & Time		    : 08/12/2022 at 13:31:29
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -16,9 +16,9 @@ import (
 
 	"fmt"
 	"net/http"
-
-"github.com/google/uuid"
-
+	
+	"github.com/google/uuid"
+	
 	 adaptor   "github.com/mt1976/ebEstimates/adaptor"
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
@@ -41,10 +41,10 @@ func CredentialsAction_GetByID(id string) (int, dm.CredentialsAction, error) {
 	 _, credentialsactionItem, _ := adaptor.CredentialsAction_GetByID_impl(id)
 	
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, credentialsactionItem, nil
 }
@@ -79,7 +79,7 @@ func CredentialsAction_Delete(id string) {
 // CredentialsAction_Store() saves/stores a CredentialsAction record to the database
 func CredentialsAction_Store(r dm.CredentialsAction,req *http.Request) error {
 
-	err, r := CredentialsAction_Validate(r)
+	r, err := CredentialsAction_Validate(r)
 	if err == nil {
 		err = credentialsaction_Save(r, Audit_User(req))
 	} else {
@@ -92,7 +92,7 @@ func CredentialsAction_Store(r dm.CredentialsAction,req *http.Request) error {
 // CredentialsAction_StoreSystem() saves/stores a CredentialsAction record to the database
 func CredentialsAction_StoreSystem(r dm.CredentialsAction) error {
 	
-	err, r := CredentialsAction_Validate(r)
+	r, err := CredentialsAction_Validate(r)
 	if err == nil {
 		err = credentialsaction_Save(r, Audit_Host())
 	} else {
@@ -103,18 +103,18 @@ func CredentialsAction_StoreSystem(r dm.CredentialsAction) error {
 }
 
 // CredentialsAction_Validate() validates for saves/stores a CredentialsAction record to the database
-func CredentialsAction_Validate(r dm.CredentialsAction) (error,dm.CredentialsAction) {
+func CredentialsAction_Validate(r dm.CredentialsAction) (dm.CredentialsAction, error) {
 	var err error
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
 
-	return err,r
+	return r,err
 }
 //
 
@@ -139,7 +139,7 @@ func credentialsaction_Save(r dm.CredentialsAction,usr string) error {
 
 
 	
-logs.Storing("CredentialsAction",fmt.Sprintf("%s", r))
+logs.Storing("CredentialsAction",fmt.Sprintf("%v", r))
 
 // Please Create Functions Below in the adaptor/CredentialsAction_impl.go file
 	err1 := adaptor.CredentialsAction_Delete_impl(r.ID)
@@ -179,10 +179,10 @@ func CredentialsAction_New() (int, []dm.CredentialsAction, dm.CredentialsAction,
 	
 
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

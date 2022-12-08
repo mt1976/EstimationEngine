@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 01/12/2022 at 09:40:00
+// Date & Time		    : 08/12/2022 at 13:31:29
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -16,11 +16,11 @@ import (
 
 	"fmt"
 	"net/http"
-core "github.com/mt1976/ebEstimates/core"
-"github.com/google/uuid"
-das  "github.com/mt1976/ebEstimates/das"
+	core "github.com/mt1976/ebEstimates/core"
+	"github.com/google/uuid"
+	das  "github.com/mt1976/ebEstimates/das"
 	
-	
+		
 	
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
@@ -56,10 +56,10 @@ func DocType_GetByID(id string) (int, dm.DocType, error) {
 	_, _, doctypeItem, _ := doctype_Fetch(tsql)
 
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, doctypeItem, nil
 }
@@ -113,7 +113,7 @@ func DocType_SoftDelete(id string) {
 // DocType_Store() saves/stores a DocType record to the database
 func DocType_Store(r dm.DocType,req *http.Request) error {
 
-	err, r := DocType_Validate(r)
+	r, err := DocType_Validate(r)
 	if err == nil {
 		err = doctype_Save(r, Audit_User(req))
 	} else {
@@ -126,7 +126,7 @@ func DocType_Store(r dm.DocType,req *http.Request) error {
 // DocType_StoreSystem() saves/stores a DocType record to the database
 func DocType_StoreSystem(r dm.DocType) error {
 	
-	err, r := DocType_Validate(r)
+	r, err := DocType_Validate(r)
 	if err == nil {
 		err = doctype_Save(r, Audit_Host())
 	} else {
@@ -137,18 +137,18 @@ func DocType_StoreSystem(r dm.DocType) error {
 }
 
 // DocType_Validate() validates for saves/stores a DocType record to the database
-func DocType_Validate(r dm.DocType) (error,dm.DocType) {
+func DocType_Validate(r dm.DocType) (dm.DocType, error) {
 	var err error
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
 
-	return err,r
+	return r,err
 }
 //
 
@@ -189,13 +189,13 @@ func doctype_Save(r dm.DocType,usr string) error {
 	r.SYSUpdatedBy = Audit_Update("",usr)
 	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
 	
-logs.Storing("DocType",fmt.Sprintf("%s", r))
+logs.Storing("DocType",fmt.Sprintf("%v", r))
 
 //Deal with the if its Application or null add this bit, otherwise dont.
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.DocType_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.DocType_DocTypeID_sql, r.DocTypeID)
@@ -212,7 +212,7 @@ logs.Storing("DocType",fmt.Sprintf("%s", r))
 	ts = addData(ts, dm.DocType_SYSDeletedHost_sql, r.SYSDeletedHost)
 		
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.DocType_SQLTable)
@@ -245,7 +245,7 @@ func doctype_Fetch(tsql string) (int, []dm.DocType, dm.DocType, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.DocType_SYSId_sql, "0")
 	   recItem.DocTypeID  = get_String(rec, dm.DocType_DocTypeID_sql, "")
@@ -277,7 +277,7 @@ func doctype_Fetch(tsql string) (int, []dm.DocType, dm.DocType, error) {
 	
 	
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -307,10 +307,10 @@ func DocType_New() (int, []dm.DocType, dm.DocType, error) {
 	
 
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

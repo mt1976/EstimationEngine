@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 01/12/2022 at 09:40:01
+// Date & Time		    : 08/12/2022 at 13:31:30
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -16,11 +16,11 @@ import (
 
 	"fmt"
 	"net/http"
-core "github.com/mt1976/ebEstimates/core"
-"github.com/google/uuid"
-das  "github.com/mt1976/ebEstimates/das"
+	core "github.com/mt1976/ebEstimates/core"
+	"github.com/google/uuid"
+	das  "github.com/mt1976/ebEstimates/das"
 	
-	
+		
 	
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
@@ -46,10 +46,10 @@ func Inbox_GetByID(id string) (int, dm.Inbox, error) {
 	_, _, inboxItem, _ := inbox_Fetch(tsql)
 
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, inboxItem, nil
 }
@@ -93,7 +93,7 @@ func Inbox_Delete(id string) {
 // Inbox_Store() saves/stores a Inbox record to the database
 func Inbox_Store(r dm.Inbox,req *http.Request) error {
 
-	err, r := Inbox_Validate(r)
+	r, err := Inbox_Validate(r)
 	if err == nil {
 		err = inbox_Save(r, Audit_User(req))
 	} else {
@@ -106,7 +106,7 @@ func Inbox_Store(r dm.Inbox,req *http.Request) error {
 // Inbox_StoreSystem() saves/stores a Inbox record to the database
 func Inbox_StoreSystem(r dm.Inbox) error {
 	
-	err, r := Inbox_Validate(r)
+	r, err := Inbox_Validate(r)
 	if err == nil {
 		err = inbox_Save(r, Audit_Host())
 	} else {
@@ -117,18 +117,18 @@ func Inbox_StoreSystem(r dm.Inbox) error {
 }
 
 // Inbox_Validate() validates for saves/stores a Inbox record to the database
-func Inbox_Validate(r dm.Inbox) (error,dm.Inbox) {
+func Inbox_Validate(r dm.Inbox) (dm.Inbox, error) {
 	var err error
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
 
-	return err,r
+	return r,err
 }
 //
 
@@ -175,13 +175,13 @@ func inbox_Save(r dm.Inbox,usr string) error {
 	r.SYSUpdatedBy = Audit_Update("",usr)
 	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
 	
-logs.Storing("Inbox",fmt.Sprintf("%s", r))
+logs.Storing("Inbox",fmt.Sprintf("%v", r))
 
 //Deal with the if its Application or null add this bit, otherwise dont.
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Inbox_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Inbox_SYSCreated_sql, r.SYSCreated)
@@ -204,7 +204,7 @@ logs.Storing("Inbox",fmt.Sprintf("%s", r))
 	ts = addData(ts, dm.Inbox_SYSDeletedHost_sql, r.SYSDeletedHost)
 		
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Inbox_SQLTable)
@@ -237,7 +237,7 @@ func inbox_Fetch(tsql string) (int, []dm.Inbox, dm.Inbox, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Inbox_SYSId_sql, "0")
 	   recItem.SYSCreated  = get_String(rec, dm.Inbox_SYSCreated_sql, "")
@@ -281,7 +281,7 @@ func inbox_Fetch(tsql string) (int, []dm.Inbox, dm.Inbox, error) {
 	
 	
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -311,10 +311,10 @@ func Inbox_New() (int, []dm.Inbox, dm.Inbox, error) {
 	
 
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

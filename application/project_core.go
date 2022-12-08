@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 01/12/2022 at 09:40:02
+// Date & Time		    : 08/12/2022 at 13:31:31
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -22,12 +22,12 @@ import (
 	logs    "github.com/mt1976/ebEstimates/logs"
 )
 
-
-
-
-
 //Project_Publish annouces the endpoints available for this object
+//Project_Publish - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
 func Project_Publish(mux http.ServeMux) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// 
 	mux.HandleFunc(dm.Project_Path, Project_Handler)
 	mux.HandleFunc(dm.Project_PathList, Project_HandlerList)
 	mux.HandleFunc(dm.Project_PathView, Project_HandlerView)
@@ -37,16 +37,26 @@ func Project_Publish(mux http.ServeMux) {
 	//Cannot Delete via GUI
 	logs.Publish("Application", dm.Project_Title)
     core.Catalog_Add(dm.Project_Title, dm.Project_Path, "", dm.Project_QueryString, "Application")
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 }
 
 
 //Project_HandlerList is the handler for the list page
+//Allows Listing of Project records
+//Project_HandlerList - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
 func Project_HandlerList(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// 
 	// Mandatory Security Validation
+	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
+	// Code Continues Below
 
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
@@ -67,13 +77,22 @@ func Project_HandlerList(w http.ResponseWriter, r *http.Request) {
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 	
 	ExecuteTemplate(dm.Project_TemplateList, w, r, pageDetail)
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 
 }
 
 
 //Project_HandlerView is the handler used to View a page
+//Allows Viewing for an existing Project record
+//Project_HandlerView - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 func Project_HandlerView(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// 
 	// Mandatory Security Validation
+	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
@@ -98,13 +117,21 @@ func Project_HandlerView(w http.ResponseWriter, r *http.Request) {
 	pageDetail = project_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Project_TemplateView, w, r, pageDetail)
-
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 }
 
 
 //Project_HandlerEdit is the handler used generate the Edit page
+//Allows Editing for an existing Project record and then allows the user to save the changes
+//Project_HandlerEdit - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 func Project_HandlerEdit(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 	// Mandatory Security Validation
+	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
@@ -129,12 +156,21 @@ func Project_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	pageDetail = project_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Project_TemplateEdit, w, r, pageDetail)
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 }
 
 
 //Project_HandlerSave is the handler used process the saving of an Project
+//It is called from the Edit and New pages
+//Project_HandlerSave  - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 func Project_HandlerSave(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// 
 	// Mandatory Security Validation
+	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
@@ -144,41 +180,25 @@ func Project_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path+r.FormValue("ProjectID"))
 
-	var item dm.Project
-	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
-	//
-		item.SYSId = r.FormValue(dm.Project_SYSId_scrn)
-		item.ProjectID = r.FormValue(dm.Project_ProjectID_scrn)
-		item.OriginID = r.FormValue(dm.Project_OriginID_scrn)
-		item.ProjectStateID = r.FormValue(dm.Project_ProjectStateID_scrn)
-		item.ProfileID = r.FormValue(dm.Project_ProfileID_scrn)
-		item.Name = r.FormValue(dm.Project_Name_scrn)
-		item.Description = r.FormValue(dm.Project_Description_scrn)
-		item.StartDate = r.FormValue(dm.Project_StartDate_scrn)
-		item.EndDate = r.FormValue(dm.Project_EndDate_scrn)
-		item.SYSCreated = r.FormValue(dm.Project_SYSCreated_scrn)
-		item.SYSCreatedBy = r.FormValue(dm.Project_SYSCreatedBy_scrn)
-		item.SYSCreatedHost = r.FormValue(dm.Project_SYSCreatedHost_scrn)
-		item.SYSUpdated = r.FormValue(dm.Project_SYSUpdated_scrn)
-		item.SYSUpdatedBy = r.FormValue(dm.Project_SYSUpdatedBy_scrn)
-		item.SYSUpdatedHost = r.FormValue(dm.Project_SYSUpdatedHost_scrn)
-		item.SYSDeleted = r.FormValue(dm.Project_SYSDeleted_scrn)
-		item.SYSDeletedBy = r.FormValue(dm.Project_SYSDeletedBy_scrn)
-		item.SYSDeletedHost = r.FormValue(dm.Project_SYSDeletedHost_scrn)
-		item.SYSActivity = r.FormValue(dm.Project_SYSActivity_scrn)
+	item := project_DataFromRequest(r)
 	
-	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
-	// END
 	dao.Project_Store(item,r)	
 	http.Redirect(w, r, dm.Project_Redirect, http.StatusFound)
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 }
 
 
 //Project_HandlerNew is the handler used process the creation of an Project
+//It will create a new Project and then redirect to the Edit page
+//Project_HandlerNew  - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 func Project_HandlerNew(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
 	// Mandatory Security Validation
+	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
@@ -201,15 +221,17 @@ func Project_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	pageDetail = project_PopulatePage(rD , pageDetail) 
 
 	ExecuteTemplate(dm.Project_TemplateNew, w, r, pageDetail)
-
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 }	
 
 
 
-// Builds/Popuplates the Project Page 
+//project_PopulatePage Builds/Populates the Project Page 
 func project_PopulatePage(rD dm.Project, pageDetail dm.Project_Page) dm.Project_Page {
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.ProjectID = rD.ProjectID
@@ -231,9 +253,10 @@ func project_PopulatePage(rD dm.Project, pageDetail dm.Project_Page) dm.Project_
 	pageDetail.SYSDeletedHost = rD.SYSDeletedHost
 	pageDetail.SYSActivity = rD.SYSActivity
 	
+	pageDetail.NoEstimationSessions = rD.NoEstimationSessions
 	
 	//
-	// Automatically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -249,6 +272,8 @@ func project_PopulatePage(rD dm.Project, pageDetail dm.Project_Page) dm.Project_
 	
 	
 	pageDetail.ProfileID_lookup = dao.Profile_GetLookup()
+	
+	
 	
 	
 	
@@ -299,10 +324,47 @@ func project_PopulatePage(rD dm.Project, pageDetail dm.Project_Page) dm.Project_
 	pageDetail.SYSDeletedBy_props = rD.SYSDeletedBy_props
 	pageDetail.SYSDeletedHost_props = rD.SYSDeletedHost_props
 	pageDetail.SYSActivity_props = rD.SYSActivity_props
+	pageDetail.NoEstimationSessions_props = rD.NoEstimationSessions_props
 	
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
-	//spew.Dump(pageDetail)
 return pageDetail
 }	
+
+
+//project_DataFromRequest is used process the content of an HTTP Request and return an instance of an Project
+func project_DataFromRequest(r *http.Request) dm.Project {
+	// START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	var item dm.Project
+	// FIELD SET START
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+		item.SYSId = r.FormValue(dm.Project_SYSId_scrn)
+		item.ProjectID = r.FormValue(dm.Project_ProjectID_scrn)
+		item.OriginID = r.FormValue(dm.Project_OriginID_scrn)
+		item.ProjectStateID = r.FormValue(dm.Project_ProjectStateID_scrn)
+		item.ProfileID = r.FormValue(dm.Project_ProfileID_scrn)
+		item.Name = r.FormValue(dm.Project_Name_scrn)
+		item.Description = r.FormValue(dm.Project_Description_scrn)
+		item.StartDate = r.FormValue(dm.Project_StartDate_scrn)
+		item.EndDate = r.FormValue(dm.Project_EndDate_scrn)
+		item.SYSCreated = r.FormValue(dm.Project_SYSCreated_scrn)
+		item.SYSCreatedBy = r.FormValue(dm.Project_SYSCreatedBy_scrn)
+		item.SYSCreatedHost = r.FormValue(dm.Project_SYSCreatedHost_scrn)
+		item.SYSUpdated = r.FormValue(dm.Project_SYSUpdated_scrn)
+		item.SYSUpdatedBy = r.FormValue(dm.Project_SYSUpdatedBy_scrn)
+		item.SYSUpdatedHost = r.FormValue(dm.Project_SYSUpdatedHost_scrn)
+		item.SYSDeleted = r.FormValue(dm.Project_SYSDeleted_scrn)
+		item.SYSDeletedBy = r.FormValue(dm.Project_SYSDeletedBy_scrn)
+		item.SYSDeletedHost = r.FormValue(dm.Project_SYSDeletedHost_scrn)
+		item.SYSActivity = r.FormValue(dm.Project_SYSActivity_scrn)
+		item.NoEstimationSessions = r.FormValue(dm.Project_NoEstimationSessions_scrn)
+	
+	// 
+	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return item
+}

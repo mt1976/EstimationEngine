@@ -103,6 +103,7 @@ SQL Table Key | **estimationSessionID**
 |**EffortTotal**|String|false|false|true|false|||||N|||false|true|false|text||
 |**FreshDeskURI**|String|false|false|true|false|||||N|||false|true|false|text||
 |**ADOURI**|String|false|false|true|false|||||N|||false|true|false|text||
+|**NoActiveFeatures**|String|false|false|true|false|||||N||0|false|true|false|text||
 
 
 ##  Artifacts Generated
@@ -124,7 +125,7 @@ SQL Table Key | **estimationSessionID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **01/12/2022** at **09:40:00**
+Date & Time		     | **08/12/2022** at **13:31:29**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

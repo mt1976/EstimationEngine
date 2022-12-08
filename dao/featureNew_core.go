@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 01/12/2022 at 09:40:01
+// Date & Time		    : 08/12/2022 at 13:31:30
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -16,9 +16,9 @@ import (
 
 	"fmt"
 	"net/http"
-
-"github.com/google/uuid"
-
+	
+	"github.com/google/uuid"
+	
 	 adaptor   "github.com/mt1976/ebEstimates/adaptor"
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
@@ -41,10 +41,10 @@ func FeatureNew_GetByID(id string) (int, dm.FeatureNew, error) {
 	 _, featurenewItem, _ := adaptor.FeatureNew_GetByID_impl(id)
 	
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, featurenewItem, nil
 }
@@ -79,7 +79,7 @@ func FeatureNew_Delete(id string) {
 // FeatureNew_Store() saves/stores a FeatureNew record to the database
 func FeatureNew_Store(r dm.FeatureNew,req *http.Request) error {
 
-	err, r := FeatureNew_Validate(r)
+	r, err := FeatureNew_Validate(r)
 	if err == nil {
 		err = featurenew_Save(r, Audit_User(req))
 	} else {
@@ -92,7 +92,7 @@ func FeatureNew_Store(r dm.FeatureNew,req *http.Request) error {
 // FeatureNew_StoreSystem() saves/stores a FeatureNew record to the database
 func FeatureNew_StoreSystem(r dm.FeatureNew) error {
 	
-	err, r := FeatureNew_Validate(r)
+	r, err := FeatureNew_Validate(r)
 	if err == nil {
 		err = featurenew_Save(r, Audit_Host())
 	} else {
@@ -103,18 +103,18 @@ func FeatureNew_StoreSystem(r dm.FeatureNew) error {
 }
 
 // FeatureNew_Validate() validates for saves/stores a FeatureNew record to the database
-func FeatureNew_Validate(r dm.FeatureNew) (error,dm.FeatureNew) {
+func FeatureNew_Validate(r dm.FeatureNew) (dm.FeatureNew, error) {
 	var err error
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
 
-	return err,r
+	return r,err
 }
 //
 
@@ -141,7 +141,7 @@ func featurenew_Save(r dm.FeatureNew,usr string) error {
 
 
 	
-logs.Storing("FeatureNew",fmt.Sprintf("%s", r))
+logs.Storing("FeatureNew",fmt.Sprintf("%v", r))
 
 // Please Create Functions Below in the adaptor/FeatureNew_impl.go file
 	err1 := adaptor.FeatureNew_Delete_impl(r.ID)
@@ -181,10 +181,10 @@ func FeatureNew_New() (int, []dm.FeatureNew, dm.FeatureNew, error) {
 	
 
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

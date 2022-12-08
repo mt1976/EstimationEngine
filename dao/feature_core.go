@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 07/12/2022 at 16:35:46
+// Date & Time		    : 08/12/2022 at 13:31:30
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -16,11 +16,13 @@ import (
 
 	"fmt"
 	"net/http"
-core "github.com/mt1976/ebEstimates/core"
-"github.com/google/uuid"
-das  "github.com/mt1976/ebEstimates/das"
+	core "github.com/mt1976/ebEstimates/core"
+	"github.com/google/uuid"
+	das  "github.com/mt1976/ebEstimates/das"
 	
-	
+		 
+		// Does Lookup
+		adaptor   "github.com/mt1976/ebEstimates/adaptor"
 	
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
@@ -56,10 +58,10 @@ func Feature_GetByID(id string) (int, dm.Feature, error) {
 	_, _, featureItem, _ := feature_Fetch(tsql)
 
 	// START
-	// Dynamically generated 07/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, featureItem, nil
 }
@@ -113,7 +115,7 @@ func Feature_SoftDelete(id string) {
 // Feature_Store() saves/stores a Feature record to the database
 func Feature_Store(r dm.Feature,req *http.Request) error {
 
-	err, r := Feature_Validate(r)
+	r, err := Feature_Validate(r)
 	if err == nil {
 		err = feature_Save(r, Audit_User(req))
 	} else {
@@ -126,7 +128,7 @@ func Feature_Store(r dm.Feature,req *http.Request) error {
 // Feature_StoreSystem() saves/stores a Feature record to the database
 func Feature_StoreSystem(r dm.Feature) error {
 	
-	err, r := Feature_Validate(r)
+	r, err := Feature_Validate(r)
 	if err == nil {
 		err = feature_Save(r, Audit_Host())
 	} else {
@@ -137,18 +139,26 @@ func Feature_StoreSystem(r dm.Feature) error {
 }
 
 // Feature_Validate() validates for saves/stores a Feature record to the database
-func Feature_Validate(r dm.Feature) (error,dm.Feature) {
+func Feature_Validate(r dm.Feature) (dm.Feature, error) {
 	var err error
 	// START
-	// Dynamically generated 07/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
+	// START
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	r, _, err = adaptor.Feature_ObjectValidation_impl(adaptor.PUT, r.FeatureID, r)
+	// 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	
 
-	return err,r
+	return r,err
 }
 //
 
@@ -219,13 +229,13 @@ func feature_Save(r dm.Feature,usr string) error {
 	r.SYSUpdatedBy = Audit_Update("",usr)
 	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
 	
-logs.Storing("Feature",fmt.Sprintf("%s", r))
+logs.Storing("Feature",fmt.Sprintf("%v", r))
 
 //Deal with the if its Application or null add this bit, otherwise dont.
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 07/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Feature_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Feature_FeatureID_sql, r.FeatureID)
@@ -272,7 +282,7 @@ logs.Storing("Feature",fmt.Sprintf("%s", r))
 	ts = addData(ts, dm.Feature_Total_sql, r.Total)
 		
 	// 
-	// Dynamically generated 07/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Feature_SQLTable)
@@ -305,7 +315,7 @@ func feature_Fetch(tsql string) (int, []dm.Feature, dm.Feature, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 07/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Feature_SYSId_sql, "0")
 	   recItem.FeatureID  = get_String(rec, dm.Feature_FeatureID_sql, "")
@@ -397,7 +407,7 @@ func feature_Fetch(tsql string) (int, []dm.Feature, dm.Feature, error) {
 	
 	
 	// 
-	// Dynamically generated 07/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -427,10 +437,10 @@ func Feature_New() (int, []dm.Feature, dm.Feature, error) {
 	
 
 	// START
-	// Dynamically generated 07/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

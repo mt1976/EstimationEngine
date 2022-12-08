@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 01/12/2022 at 09:40:02
+// Date & Time		    : 08/12/2022 at 13:31:31
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -16,11 +16,13 @@ import (
 
 	"fmt"
 	"net/http"
-core "github.com/mt1976/ebEstimates/core"
-"github.com/google/uuid"
-das  "github.com/mt1976/ebEstimates/das"
+	core "github.com/mt1976/ebEstimates/core"
+	"github.com/google/uuid"
+	das  "github.com/mt1976/ebEstimates/das"
 	
-	
+		 
+		// Does Lookup
+		adaptor   "github.com/mt1976/ebEstimates/adaptor"
 	
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
@@ -56,10 +58,11 @@ func Project_GetByID(id string) (int, dm.Project, error) {
 	_, _, projectItem, _ := project_Fetch(tsql)
 
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
+	projectItem.NoEstimationSessions,projectItem.NoEstimationSessions_props = adaptor.Project_NoEstimationSessions_impl (adaptor.GET,id,projectItem.NoEstimationSessions,projectItem,projectItem.NoEstimationSessions_props)
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, projectItem, nil
 }
@@ -113,7 +116,7 @@ func Project_SoftDelete(id string) {
 // Project_Store() saves/stores a Project record to the database
 func Project_Store(r dm.Project,req *http.Request) error {
 
-	err, r := Project_Validate(r)
+	r, err := Project_Validate(r)
 	if err == nil {
 		err = project_Save(r, Audit_User(req))
 	} else {
@@ -126,7 +129,7 @@ func Project_Store(r dm.Project,req *http.Request) error {
 // Project_StoreSystem() saves/stores a Project record to the database
 func Project_StoreSystem(r dm.Project) error {
 	
-	err, r := Project_Validate(r)
+	r, err := Project_Validate(r)
 	if err == nil {
 		err = project_Save(r, Audit_Host())
 	} else {
@@ -137,18 +140,19 @@ func Project_StoreSystem(r dm.Project) error {
 }
 
 // Project_Validate() validates for saves/stores a Project record to the database
-func Project_Validate(r dm.Project) (error,dm.Project) {
+func Project_Validate(r dm.Project) (dm.Project, error) {
 	var err error
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
+	r.NoEstimationSessions,r.NoEstimationSessions_props = adaptor.Project_NoEstimationSessions_impl (adaptor.PUT,r.ProjectID,r.NoEstimationSessions,r,r.NoEstimationSessions_props)
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
 
-	return err,r
+	return r,err
 }
 //
 
@@ -185,6 +189,7 @@ func project_Save(r dm.Project,usr string) error {
 
 
 
+  r.NoEstimationSessions,err = adaptor.Project_NoEstimationSessions_OnStore_impl (r.NoEstimationSessions,r,usr)
 
 
 	
@@ -195,13 +200,13 @@ func project_Save(r dm.Project,usr string) error {
 	r.SYSUpdatedBy = Audit_Update("",usr)
 	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
 	
-logs.Storing("Project",fmt.Sprintf("%s", r))
+logs.Storing("Project",fmt.Sprintf("%v", r))
 
 //Deal with the if its Application or null add this bit, otherwise dont.
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Project_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Project_ProjectID_sql, r.ProjectID)
@@ -222,9 +227,10 @@ logs.Storing("Project",fmt.Sprintf("%s", r))
 	ts = addData(ts, dm.Project_SYSDeletedBy_sql, r.SYSDeletedBy)
 	ts = addData(ts, dm.Project_SYSDeletedHost_sql, r.SYSDeletedHost)
 	ts = addData(ts, dm.Project_SYSActivity_sql, r.SYSActivity)
+	
 		
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := "INSERT INTO " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Project_SQLTable)
@@ -257,7 +263,7 @@ func project_Fetch(tsql string) (int, []dm.Project, dm.Project, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Project_SYSId_sql, "0")
 	   recItem.ProjectID  = get_String(rec, dm.Project_ProjectID_sql, "")
@@ -279,6 +285,7 @@ func project_Fetch(tsql string) (int, []dm.Project, dm.Project, error) {
 	   recItem.SYSDeletedHost  = get_String(rec, dm.Project_SYSDeletedHost_sql, "")
 	   recItem.SYSActivity  = get_String(rec, dm.Project_SYSActivity_sql, "")
 	
+	
 	// If there are fields below, create the methods in adaptor\Project_impl.go
 	
 	
@@ -299,9 +306,10 @@ func project_Fetch(tsql string) (int, []dm.Project, dm.Project, error) {
 	
 	
 	
+	   recItem.NoEstimationSessions  = adaptor.Project_NoEstimationSessions_OnFetch_impl (recItem)
 	
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -331,10 +339,11 @@ func Project_New() (int, []dm.Project, dm.Project, error) {
 	
 
 	// START
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
+	r.NoEstimationSessions,r.NoEstimationSessions_props = adaptor.Project_NoEstimationSessions_impl (adaptor.NEW,r.ProjectID,r.NoEstimationSessions,r,r.NoEstimationSessions_props)
 	// 
-	// Dynamically generated 01/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 
