@@ -1,0 +1,21 @@
+---
+version: '3.3'
+services:
+  estimation_engine:
+    image: mt1976/estimation_engine:latest
+    container_name: estimation_engine
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - CONTEXT_PATH=url-base
+    ports:
+      - 5050:5050
+    networks:
+      - estEngNetwork
+    restart: unless-stopped
+networks:
+  estEngNetwork:{}
+logging:
+  options:
+    max-size: 1g
