@@ -1,7 +1,11 @@
 ## We specify the base image we need for our
 ## go application
-FROM golang:1.18.3-buster
-MAINTAINER "Matt Townsend"
+FROM golang:1.19
+LABEL "version"="0.0.1"
+LABEL "description"="This tool is used to estimate the cost of a Eurobase project."
+LABEL "maintainer"="Matt Townsend"
+LABEL "email"="email@email.com"
+LABEL "name"="Estimation Engine"
 ## We create an /app directory within our
 ## image that will hold our application source
 ## files

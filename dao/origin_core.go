@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2022 at 13:31:30
+// Date & Time		    : 09/12/2022 at 08:55:09
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -28,10 +28,15 @@ import (
 	logs   "github.com/mt1976/ebEstimates/logs"
 )
 
+var Origin_SQLbase string
+func init(){
+	Origin_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Origin_SQLTable)
+}
+
 // Origin_GetList() returns a list of all Origin records
 func Origin_GetList() (int, []dm.Origin, error) {
 	
-	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Origin_SQLTable)
+	tsql := Origin_SQLbase
 	count, originList, _, _ := origin_Fetch(tsql)
 	
 	return count, originList, nil
@@ -53,16 +58,16 @@ func Origin_GetLookup() []dm.Lookup_Item {
 func Origin_GetByID(id string) (int, dm.Origin, error) {
 
 
-	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Origin_SQLTable)
-	tsql = tsql + " WHERE " + dm.Origin_SQLSearchID + "='" + id + "'"
+	tsql := Origin_SQLbase
+	tsql = tsql + " " + core.DB_WHERE + " " + dm.Origin_SQLSearchID + core.DB_EQ + "'" + id + "'"
 	_, _, originItem, _ := origin_Fetch(tsql)
 
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 09/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	originItem.NoActiveProjects,originItem.NoActiveProjects_props = adaptor.Origin_NoActiveProjects_impl (adaptor.GET,id,originItem.NoActiveProjects,originItem,originItem.NoActiveProjects_props)
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 09/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, originItem, nil
 }
@@ -77,8 +82,8 @@ func Origin_Delete(id string) {
 
 // Uses Hard Delete
 	object_Table := core.GetSQLSchema(core.ApplicationPropertiesDB) + "." + dm.Origin_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.Origin_SQLSearchID + " = '" + id + "'"
+	tsql := core.DB_DELETE+" "+core.DB_FROM+" " + object_Table
+	tsql = tsql + " " + core.DB_WHERE + " " + dm.Origin_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
 	
@@ -143,11 +148,11 @@ func Origin_StoreSystem(r dm.Origin) error {
 func Origin_Validate(r dm.Origin) (dm.Origin, error) {
 	var err error
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 09/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.NoActiveProjects,r.NoActiveProjects_props = adaptor.Origin_NoActiveProjects_impl (adaptor.PUT,r.OriginID,r.NoActiveProjects,r,r.NoActiveProjects_props)
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 09/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -208,7 +213,7 @@ logs.Storing("Origin",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 09/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Origin_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Origin_OriginID_sql, r.OriginID)
@@ -234,12 +239,12 @@ logs.Storing("Origin",fmt.Sprintf("%v", r))
 	
 		
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 09/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
-	tsql := "INSERT INTO " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Origin_SQLTable)
+	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Origin_SQLTable)
 	tsql = tsql + " (" + fields(ts) + ")"
-	tsql = tsql + " VALUES (" + values(ts) + ")"
+	tsql = tsql + " "+core.DB_VALUES +" (" + values(ts) + ")"
 
 	Origin_Delete(r.OriginID)
 	das.Execute(tsql)
@@ -267,7 +272,7 @@ func origin_Fetch(tsql string) (int, []dm.Origin, dm.Origin, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 09/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Origin_SYSId_sql, "0")
 	   recItem.OriginID  = get_String(rec, dm.Origin_OriginID_sql, "")
@@ -317,7 +322,7 @@ func origin_Fetch(tsql string) (int, []dm.Origin, dm.Origin, error) {
 	   recItem.NoActiveProjects  = adaptor.Origin_NoActiveProjects_OnFetch_impl (recItem)
 	
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 09/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -347,11 +352,11 @@ func Origin_New() (int, []dm.Origin, dm.Origin, error) {
 	
 
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 09/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.NoActiveProjects,r.NoActiveProjects_props = adaptor.Origin_NoActiveProjects_impl (adaptor.NEW,r.OriginID,r.NoActiveProjects,r,r.NoActiveProjects_props)
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 09/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

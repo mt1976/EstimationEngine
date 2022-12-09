@@ -10,6 +10,27 @@ import (
 	logs "github.com/mt1976/ebEstimates/logs"
 )
 
+const (
+	DB_SELECT = "SELECT"
+	DB_INSERT = "INSERT"
+	DB_UPDATE = "UPDATE"
+	DB_DELETE = "DELETE"
+	DB_WHERE  = "WHERE"
+	DB_FROM   = "FROM"
+	DB_INTO   = "INTO"
+	DB_VALUES = "VALUES"
+	DB_AND    = "AND"
+	DB_OR     = "OR"
+	DB_IN     = "IN"
+	DB_NOT    = "NOT"
+	DB_ALL    = "*"
+	DB_SORTBY = "ORDER BY"
+	DB_ASC    = "ASC"
+	DB_DESC   = "DESC"
+	DB_LIKE   = "LIKE"
+	DB_EQ     = "="
+)
+
 type Connection struct {
 	//	count int
 	Pool []ConnectionItem
