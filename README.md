@@ -30,7 +30,33 @@ logging:
 ```
 ---
 # Data Model
-Object Information can be found [here](design/catalog) 
+Object Information can be found [here](design/catalog)
+- __design__
+   - __catalog__
+     - [catalog.md](catalog/catalog.md)
+     - [confidence.md](catalog/confidence.md)
+     - [credentials.md](catalog/credentials.md)
+     - [credentialsAction.md](catalog/credentialsAction.md)
+     - [docType.md](catalog/docType.md)
+     - [estimationSession.md](catalog/estimationSession.md)
+     - [estimationSessionAction.md](catalog/estimationSessionAction.md)
+     - [estimationState.md](catalog/estimationState.md)
+     - [externalMessage.md](catalog/externalMessage.md)
+     - [feature.md](catalog/feature.md)
+     - [featureNew.md](catalog/featureNew.md)
+     - [inbox.md](catalog/inbox.md)
+     - [origin.md](catalog/origin.md)
+     - [originState.md](catalog/originState.md)
+     - [profile.md](catalog/profile.md)
+     - [project.md](catalog/project.md)
+     - [projectAction.md](catalog/projectAction.md)
+     - [projectState.md](catalog/projectState.md)
+     - [resource.md](catalog/resource.md)
+     - [schedule.md](catalog/schedule.md)
+     - [session.md](catalog/session.md)
+     - [translation.md](catalog/translation.md)
+     - [userRole.md](catalog/userRole.md)
+
 ---
 [![forthebadge made-with-go](http://ForTheBadge.com/images/badges/made-with-go.svg)](https://go.dev/)
 
