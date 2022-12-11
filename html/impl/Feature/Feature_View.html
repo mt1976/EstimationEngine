@@ -45,7 +45,7 @@
                 
                 </div>
             </div>
-             
+             <h4>Identification</h4>
             <div class="row mb-3"  >
                 <div class="col">
                 
@@ -62,46 +62,30 @@
                         
                             <input type="text" class="form-control" id="Name" aria-describedby="NameHelp" placeholder="" disabled value="{{.Name}}" data-mdb-input-mask=""></input>
                         
-                        <label class="form-label" for="Name">Name</label>
+                        <label class="form-label" for="Name">Feature Name</label>
                         
                     </div>
                 
                 </div>
             </div>
 
- <div class="row mb-3"  >
+            <div class="row mb-3"  >
                 <div class="col">
                 
                     <div class="form-outline">
                         
-                            <input type="text" class="form-control" id="DevEstimate" aria-describedby="DevEstimateHelp" placeholder="" disabled value="{{.DevEstimate}}" data-mdb-input-mask=""></input>
+                            <textarea class="form-control" id="Description" name="Description" aria-describedby="DescriptionHelp" placeholder=""  disabled value="{{.Description}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Description}}</textarea>
                         
-                        <label class="form-label" for="DevEstimate">Developer Estimate</label>
+                        <label class="form-label" for="Description">Description</label>
                         
                     </div>
                 
                 </div>
+            </div>
 
-                <div class="col">
-                
-                  <select id="ConfidenceID" name="ConfidenceID" class="select" data-mdb-filter="true" disabled>
-                  {{range .ConfidenceID_lookup}}<option value="{{.ID}}" {{if eq .ID $.ConfidenceID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
-                  </select>
-                  <label class="form-label select-label" for="ConfidenceID" disabled>Confidence in Developer Estimate</label>
-                
-                </div>
-        
-                <div class="col">
-                
-                  <select id="Developer" name="Developer" class="select" data-mdb-filter="true" disabled>
-                  {{range .Developer_lookup}}<option value="{{.ID}}" {{if eq .ID $.Developer}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
-                  </select>
-                  <label class="form-label select-label" for="Developer" disabled>Developer</label>
-                
-                </div>
-            </div>  
 
-            <h4>Links</h4>
+
+  <h4>Links</h4>
                        <div class="row mb-3"  >
                 <div class="col">
                 
@@ -164,9 +148,48 @@
                 </div>
             </div>
 
-      <hr>
 
-<h4>Default Estimate</h4>
+
+
+
+ 
+          
+      <hr>
+<h4>Estimates</h4>
+<h5>Developer Estimate</h5>
+<div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="DevEstimate" aria-describedby="DevEstimateHelp" placeholder="" disabled value="{{.DevEstimate}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="DevEstimate">Developer Estimate</label>
+                        
+                    </div>
+                
+                </div>
+
+                <div class="col">
+                
+                  <select id="ConfidenceID" name="ConfidenceID" class="select" data-mdb-filter="true" disabled>
+                  {{range .ConfidenceID_lookup}}<option value="{{.ID}}" {{if eq .ID $.ConfidenceID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="ConfidenceID" disabled>Confidence in Developer Estimate</label>
+                
+                </div>
+        
+                <div class="col">
+                
+                  <select id="Developer" name="Developer" class="select" data-mdb-filter="true" disabled>
+                  {{range .Developer_lookup}}<option value="{{.ID}}" {{if eq .ID $.Developer}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="Developer" disabled>Developer</label>
+                
+                </div>
+            </div>  
+
+<h5>Default Estimate</h5>
 
         <div class="row mb-3"  ><div class="col">
         
@@ -253,7 +276,7 @@
         </div>
         
 </div>
-  <h4>Refined Estimate</h4> 
+  <h5>Refined Estimate</h5> 
 
             <div class="row mb-3"  >
                 <div class="col">
@@ -473,21 +496,21 @@
              
 
              
- <hr>
-             
-            <div class="row mb-3"  >
-                <div class="col">
-                
-                    <div class="form-outline">
-                        
-                            <textarea class="form-control" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder=""  disabled value="{{.Notes}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Notes}}</textarea>
-                        
-                        <label class="form-label" for="Notes">Notes</label>
-                        
-                    </div>
-                
-                </div>
+<h4>Comments</h4>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <textarea class="form-control {{.Comments_props.MsgType}}" id="Comments" name="Comments" aria-describedby="CommentsHelp" placeholder=""  readonly value="{{.Comments}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Comments}}</textarea>
+              
+              <label class="form-label" for="Comments" >Comments</label>
+              <div class="{{.Comments_props.MsgFeedBackType}}">{{.Comments_props.MsgMessage}}</div>
             </div>
+        
+        </div></div>
+             
+         
             <h4>Approvals</h4>
             <div class="row mb-3"  >
                 <div class="col">
@@ -523,7 +546,22 @@
                 
                 </div>
             </div>
-             
+           <h4>Notes</h4>  
+   <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <textarea class="form-control" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder=""  disabled value="{{.Notes}}"  data-mdb-input-mask="" rows="10" maxlength="255">{{.Notes}}</textarea>
+                        
+                        <label class="form-label" for="Notes">Notes</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+
+
             <div class="row mb-3" hidden hidden>
                 <div class="col">
                 

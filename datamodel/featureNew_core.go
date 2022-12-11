@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2022 at 13:31:30
+// Date & Time		    : 10/12/2022 at 21:40:38
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -110,7 +110,7 @@ type FeatureNew_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	ID         string
 	ID_props     FieldProperties
@@ -128,7 +128,7 @@ type FeatureNew_Page struct {
 	Developer_lookup    []Lookup_Item
 	Developer_props     FieldProperties
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

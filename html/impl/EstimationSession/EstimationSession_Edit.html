@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col h3">
           <i class="fas fa-calculator me-2"
-            title="EstimationSessionID={{.EstimationSessionID}}"></i><span class="me-3">{{.Title}}</span>
+            title="EstimationSessionID={{.EstimationSessionID}}"></i><span class="me-3">Edit an estimate</span>
         </div>
         <div class="col d-flex justify-content-end">
           <div class="btn-group">
@@ -46,7 +46,7 @@
             </div>
         
         </div></div>
-       
+       <h4>Identification</h4>
         <div class="row mb-3"  ><div class="col">
         
             <input type="text" class="form-control" id="ProjectID" name="ProjectID" aria-describedby="NameHelp" placeholder=""  readonly="true"  value="{{.ProjectID}}" required data-mdb-input-mask="" hidden/>
@@ -81,19 +81,19 @@
             
         
         </div></div>
-       
+       <h4>Comments</h4>
         <div class="row mb-3"  ><div class="col">
         
             <div class="form-outline">
               
-              <textarea class="form-control {{.Notes_props.MsgType}}" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder=""  readonly value="{{.Notes}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Notes}}</textarea>
+              <textarea class="form-control {{.Comments_props.MsgType}}" id="Comments" name="Comments" aria-describedby="CommentsHelp" placeholder=""   value="{{.Comments}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Comments}}</textarea>
               
-              <label class="form-label" for="Notes" >Notes</label>
-              <div class="{{.Notes_props.MsgFeedBackType}}">{{.Notes_props.MsgMessage}}</div>
+              <label class="form-label" for="Comments" >Comments</label>
+              <div class="{{.Comments_props.MsgFeedBackType}}">{{.Comments_props.MsgMessage}}</div>
             </div>
         
         </div></div>
-       
+       <h4>Releases</h4>
         <div class="row mb-3"  ><div class="col">
         
             <div class="form-outline">
@@ -105,7 +105,7 @@
             </div>
         
         </div></div>
-       
+
         <div class="row mb-3 hidden"  hidden><div class="col">
         
             <div class="form-outline" >
@@ -429,7 +429,18 @@
             </div>
         
         </div></div>
-       
+              <h4>Notes</h4>
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <textarea class="form-control {{.Notes_props.MsgType}}" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder=""  readonly value="{{.Notes}}"  data-mdb-input-mask="" rows="10" maxlength="255">{{.Notes}}</textarea>
+              
+              <label class="form-label" for="Notes" >Notes</label>
+              <div class="{{.Notes_props.MsgFeedBackType}}">{{.Notes_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
         <div class="row mb-3" hidden hidden><div class="col">
         
             <div class="form-outline">

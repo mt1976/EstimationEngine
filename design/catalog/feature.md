@@ -74,7 +74,7 @@ SQL Table Key | **featureID**
 |**SYSDeletedHost**|String|false|true|false|false|||||NH|_deletedHost||false|false|true|text||
 |**Developer**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|developer||false|false|false|text||
 |**Approver**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|approver||false|false|false|text||
-|**Notes**|String|false|true|false|true|||||Y|notes||false|false|false|textarea||
+|**Notes**|String|false|true|false|true|||||N|notes||false|false|false|textarea||
 |**OffProfile**|String|false|true|false|false|||||Y|offProfile||false|false|false|text||
 |**OffProfileJustification**|String|false|true|false|false|||||Y|offProfileJustification||false|false|false|text||
 |**SYSActivity**|String|false|true|false|false|||||NH|_activity||false|false|true|text||
@@ -87,6 +87,9 @@ SQL Table Key | **featureID**
 |**Dfcontingency**|String|false|true|false|false|||||Y|dfcontingency||false|false|false|text||
 |**DfdevUplift**|String|false|true|false|false|||||Y|dfdevUplift||false|false|false|text||
 |**Total**|String|false|true|false|false|||||Y|total||false|false|false|text||
+|**SYSDbVersion**|String|false|true|false|false|||||NH|_dbVersion||false|false|true|text||
+|**Comments**|String|false|true|false|true|||||Y|comments||false|false|false|textarea||
+|**Description**|String|false|true|false|true|||||Y|description||false|false|false|textarea||
 
 
 ##  Artifacts Generated
@@ -108,7 +111,7 @@ SQL Table Key | **featureID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **08/12/2022** at **13:31:30**
+Date & Time		     | **11/12/2022** at **14:15:46**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

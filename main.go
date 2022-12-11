@@ -240,7 +240,8 @@ func Application_Info() {
 	logs.Information("Host Name", core.ApplicationHostname())
 	logs.Information("Server Release", core.ReleaseIdentityVerbose())
 	logs.Information("Server Date", time.Now().Format(core.DATEFORMATUSER))
-	if core.IsChildInstance {
+	logs.Information("Server Time", time.Now().Format(core.TIMEHMS))
+	if !core.IsChildInstance {
 		logs.Information("Server Mode", "Primary System")
 	} else {
 		logs.Information("Server Mode", "Secondary System")
@@ -255,6 +256,7 @@ func Application_Info() {
 	logs.Information("Database", core.ApplicationSQLDatabase())
 	logs.Information("Schema", core.ApplicationSQLSchema())
 	logs.Information("Parent Schema", core.ApplicationSQLSchemaParent())
+	logs.Information("DB Model Version", core.DB_Version())
 
 	logs.Header("Sessions")
 	logs.Information("Session Life", core.ApplicationSessionLife())

@@ -65,6 +65,8 @@ SQL Table Key | **originID**
 |**SYSDeletedHost**|String|false|true|false|false|||||NH|_deletedHost||false|false|true|text||
 |**SYSActivity**|String|false|true|false|false|||||NH|_activity||false|false|true|text||
 |**Currency**|String|true|true|false|false|LL|ccy|||Y|currency||false|false|false|text||
+|**SYSDbVersion**|String|false|true|false|false|||||NH|_dbVersion||false|false|true|text||
+|**Comments**|String|false|true|false|false|||||Y|comments||false|false|false|text||
 |**NoActiveProjects**|String|false|false|true|false|||||N|||false|true|false|text||
 
 
@@ -87,7 +89,7 @@ SQL Table Key | **originID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **09/12/2022** at **08:55:09**
+Date & Time		     | **10/12/2022** at **21:40:39**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

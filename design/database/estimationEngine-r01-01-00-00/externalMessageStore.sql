@@ -30,6 +30,7 @@ CREATE TABLE [dbo].[externalMessageStore] (
     [_deleted]               NVARCHAR (MAX) NULL,
     [_deletedBy]             NVARCHAR (MAX) NULL,
     [_deletedHost]           NVARCHAR (MAX) NULL,
+    [_dbVersion]             NVARCHAR (MAX) NULL,
     CONSTRAINT [PK_externalMessageStore] PRIMARY KEY CLUSTERED ([_id] ASC)
 );
 

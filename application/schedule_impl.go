@@ -18,7 +18,6 @@ import (
 	"log"
 	"net/http"
 	"os"
-	"os/user"
 	"time"
 
 	"github.com/lnquy/cron"
@@ -45,10 +44,7 @@ func Schedule_Register(thisJob dm.JobDefinition) {
 	s.Lastrun = ""
 	s.Message = ""
 	s.SYSCreated = time.Now().Format(core.DATETIMEFORMATUSER)
-	currentUserID, _ := user.Current()
-	host, _ := os.Hostname()
-	s.SYSWho = currentUserID.Name
-	s.SYSHost = host
+
 	s.SYSUpdated = time.Now().Format(core.DATETIMEFORMATUSER)
 	s.Type = thisJob.Type
 	//log.Println("STORE", s)

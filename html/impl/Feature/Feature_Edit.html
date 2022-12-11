@@ -46,8 +46,9 @@
             </div>
         
         </div></div>
-       
-        <div class="row mb-3"  ><div class="col">
+       <h4>Identification</h4>
+        <div class="row mb-3">
+          <div class="col">
         
              <input type="text" class="form-control {{.FeatureID_props.MsgType}}" id="EstimationSessionID" name="EstimationSessionID" aria-describedby="EstimationSessionIDHelp" placeholder=""   value="{{.EstimationSessionID}}"  data-mdb-input-mask="" hidden/>
 
@@ -66,47 +67,22 @@
               
               <input type="text" class="form-control {{.Name_props.MsgType}}" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""   value="{{.Name}}" required data-mdb-input-mask="" />
               
-              <label class="form-label" for="Name" >Name</label>
+              <label class="form-label" for="Name" >Feature Name</label>
               <div class="{{.Name_props.MsgFeedBackType}}">{{.Name_props.MsgMessage}}</div>
             </div>
         
         </div></div>
-
-
-                <div class="row mb-3"  ><div class="col">
+        <div class="row mb-3"  ><div class="col">
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.DevEstimate_props.MsgType}}" id="DevEstimate" name="DevEstimate" aria-describedby="DevEstimateHelp" placeholder="" readonly  value="{{.DevEstimate}}" required data-mdb-input-mask="" />
+              <textarea class="form-control {{.Description_props.MsgType}}" id="Description" name="Description" aria-describedby="DescriptionHelp" placeholder=""   value="{{.Description}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Description}}</textarea>
               
-              <label class="form-label" for="DevEstimate" >Developer Estimate</label>
-              <div class="{{.DevEstimate_props.MsgFeedBackType}}">{{.DevEstimate_props.MsgMessage}}</div>
+              <label class="form-label" for="Description" >Description</label>
+              <div class="{{.Description_props.MsgFeedBackType}}">{{.Description_props.MsgMessage}}</div>
             </div>
         
-        </div><div class="col">
-        
-              <input type="text" class="form-control {{.DevEstimate_props.MsgType}}" id="ConfidenceID" name="ConfidenceID" aria-describedby="DevEstimateHelp" placeholder="" hidden  value="{{.ConfidenceID}}" required data-mdb-input-mask="" />
-            
-            <select id="ConfidenceIDDisplay" name="ConfidenceIDDisplay" class="select" data-mdb-filter="true" disabled >
-                {{range .ConfidenceID_lookup}}<option value="{{.ID}}" {{if eq .ID $.ConfidenceID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
-            </select>
-            <label class="form-label select-label" for="ConfidenceIDDisplay" >Confidence in Developer Estimate</label>
-            <div class="{{.ConfidenceID_props.MsgFeedBackType}}">{{.ConfidenceID_props.MsgMessage}}</div>
-            
-        
-        </div>
-        <div class="col">
-        
-            
-            <select id="Developer" name="Developer" class="select" data-mdb-filter="true"  >
-                {{range .Developer_lookup}}<option value="{{.ID}}" {{if eq .ID $.Developer}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
-            </select>
-            <label class="form-label select-label" for="Developer" >Developer</label>
-            <div class="{{.Developer_props.MsgFeedBackType}}">{{.Developer_props.MsgMessage}}</div>
-            
-        
         </div></div>
-
 <h4>Links</h4>
 
        
@@ -169,9 +145,47 @@
         
         </div></div>
 
-<hr>
 
-<h4>Default Estimate</h4>
+
+
+<H4>Estimates</H4>
+<H5>Developer Estimate</h5>
+            <div class="row mb-3"  ><div class="col">
+            
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.DevEstimate_props.MsgType}}" id="DevEstimate" name="DevEstimate" aria-describedby="DevEstimateHelp" placeholder="" readonly  value="{{.DevEstimate}}" required data-mdb-input-mask="" />
+              
+              <label class="form-label" for="DevEstimate" >Developer Estimate</label>
+              <div class="{{.DevEstimate_props.MsgFeedBackType}}">{{.DevEstimate_props.MsgMessage}}</div>
+            </div>
+        
+        </div><div class="col">
+        
+              <input type="text" class="form-control {{.DevEstimate_props.MsgType}}" id="ConfidenceID" name="ConfidenceID" aria-describedby="DevEstimateHelp" placeholder="" hidden  value="{{.ConfidenceID}}" required data-mdb-input-mask="" />
+            
+            <select id="ConfidenceIDDisplay" name="ConfidenceIDDisplay" class="select" data-mdb-filter="true" disabled >
+                {{range .ConfidenceID_lookup}}<option value="{{.ID}}" {{if eq .ID $.ConfidenceID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ConfidenceIDDisplay" >Confidence in Developer Estimate</label>
+            <div class="{{.ConfidenceID_props.MsgFeedBackType}}">{{.ConfidenceID_props.MsgMessage}}</div>
+            
+        
+        </div>
+        <div class="col">
+        
+            
+            <select id="Developer" name="Developer" class="select" data-mdb-filter="true"  >
+                {{range .Developer_lookup}}<option value="{{.ID}}" {{if eq .ID $.Developer}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="Developer" >Developer</label>
+            <div class="{{.Developer_props.MsgFeedBackType}}">{{.Developer_props.MsgMessage}}</div>
+            
+        
+        </div></div>
+
+
+<h5>Default Estimate</h5>
 
         <div class="row mb-3"  ><div class="col">
         
@@ -258,7 +272,7 @@
         </div>
         
  </div>
-  <h4>Refined Estimate</h4>     
+  <h5>Refined Estimate</h5>     
         <div class="row mb-3"  ><div class="col">
         
             <div class="form-outline">
@@ -344,8 +358,20 @@
         </div>
         
 </div>
-       
-       <hr>
+       <h4>Comments</h4>
+        <div class="row mb-3"  >
+          <div class="col">
+        
+            <div class="form-outline">
+              
+              <textarea class="form-control {{.Comments_props.MsgType}}" id="Comments" name="Comments" aria-describedby="CommentsHelp" placeholder=""   value="{{.Comments}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Comments}}</textarea>
+              
+              <label class="form-label" for="Comments" >Comments</label>
+              <div class="{{.Comments_props.MsgFeedBackType}}">{{.Comments_props.MsgMessage}}</div>
+            </div>
+        
+            </div>
+        </div>
        
         <div class="row mb-3" hidden hidden><div class="col">
         
@@ -448,17 +474,7 @@
 
 
        
-        <div class="row mb-3"  ><div class="col">
-        
-            <div class="form-outline">
-              
-              <textarea class="form-control {{.Notes_props.MsgType}}" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder="" readonly  value="{{.Notes}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Notes}}</textarea>
-              
-              <label class="form-label" for="Notes" >Notes</label>
-              <div class="{{.Notes_props.MsgFeedBackType}}">{{.Notes_props.MsgMessage}}</div>
-            </div>
-        
-        </div></div>
+
 
 
 
@@ -512,6 +528,20 @@
         
         </div></div>
        
+      <h4>Notes</h4>
+              <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <textarea class="form-control {{.Notes_props.MsgType}}" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder="" readonly  value="{{.Notes}}"  data-mdb-input-mask="" rows="10" maxlength="255">{{.Notes}}</textarea>
+              
+              <label class="form-label" for="Notes" >Notes</label>
+              <div class="{{.Notes_props.MsgFeedBackType}}">{{.Notes_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+
+
         <div class="row mb-3" hidden hidden><div class="col">
         
             <div class="form-outline">

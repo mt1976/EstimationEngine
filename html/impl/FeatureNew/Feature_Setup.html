@@ -7,7 +7,7 @@
     <div class="card-header">
       <div class="row">
         <div class="col h3">
-          <i class="far fa-plus-square me-2"
+          <i class="fas fa-tasks me-2"
             title="ID={{.ID}}"></i><span class="me-2">Create a new feature</span>
         </div>
         <div class="col d-flex justify-content-end">
@@ -34,7 +34,7 @@
             </div>
         
         </div></div>
-       
+       <h4>Identification</h4>
         <div class="row mb-3"  ><div class="col">
         
              <input type="text" class="form-control" id="EstimationSession" name="EstimationSession" aria-describedby="NameHelp" placeholder=""  hidden value="{{.EstimationSession}}" required data-mdb-input-mask="" />
@@ -47,9 +47,8 @@
             <div class="{{.EstimationSession_props.MsgFeedBackType}}">{{.EstimationSession_props.MsgMessage}}</div>
             
         
-        </div></div>
-       
-        <div class="row mb-3"  ><div class="col">
+        </div>
+        <div class="col">
         
             <div class="form-outline">
               
@@ -60,7 +59,83 @@
             </div>
         
         </div></div>
+           <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <textarea class="form-control" id="Description" name="Notes" aria-describedby="NotesHelp" placeholder=""   value="placeholder"  data-mdb-input-mask="" rows="4" maxlength="255">placeholder</textarea>
+                        
+                        <label class="form-label" for="Description">Description</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+            <h4>Links</h4>
+
        
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control " id="AdoID" name="AdoID" aria-describedby="AdoIDHelp" placeholder=""   value=""  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="AdoID" >Azure DevOps ID</label>
+              <div class=""></div>
+            </div>
+        
+        </div>
+        
+        <div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control " id="FreshdeskID" name="FreshdeskID" aria-describedby="FreshdeskIDHelp" placeholder=""   value=""  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="FreshdeskID" >FreshDesk ID</label>
+              <div class=""></div>
+            </div>
+        
+        </div>
+        
+        <div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control " id="TrackerID" name="TrackerID" aria-describedby="TrackerIDHelp" placeholder=""   value=""  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="TrackerID" >RSC/NC No.</label>
+              <div class=""></div>
+            </div>
+        
+        </div>
+        
+        <div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control " id="ExtRef" name="ExtRef" aria-describedby="ExtRefHelp" placeholder=""   value=""  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="ExtRef" >Other Ref</label>
+              <div class=""></div>
+            </div>
+        
+        </div>
+        <div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control " id="ExtRef2" name="ExtRef2" aria-describedby="ExtRef2Help" placeholder=""   value=""  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="ExtRef2" >Other Ref 2</label>
+              <div class=""></div>
+            </div>
+        
+        </div></div>
+        <hr>
+       <h4>Estimates</h4>
+       <h5>Developer Estimate</h5>
         <div class="row mb-3"  ><div class="col">
         
             <div class="form-outline">
@@ -96,7 +171,20 @@
             
         
         </div></div>
-      
+        <h4>Comments</h4>
+          <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <textarea class="form-control" id="Description" name="Comments" aria-describedby="CommentsHelp" placeholder=""   value="placeholder"  data-mdb-input-mask="" rows="4" maxlength="255">placeholder</textarea>
+                        
+                        <label class="form-label" for="Description">Comments</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
       
     </div>
     

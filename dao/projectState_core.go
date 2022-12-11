@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2022 at 13:31:31
+// Date & Time		    : 10/12/2022 at 21:40:43
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -26,10 +26,15 @@ import (
 	logs   "github.com/mt1976/ebEstimates/logs"
 )
 
+var ProjectState_SQLbase string
+func init(){
+	ProjectState_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.ProjectState_SQLTable)
+}
+
 // ProjectState_GetList() returns a list of all ProjectState records
 func ProjectState_GetList() (int, []dm.ProjectState, error) {
 	
-	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.ProjectState_SQLTable)
+	tsql := ProjectState_SQLbase
 	count, projectstateList, _, _ := projectstate_Fetch(tsql)
 	
 	return count, projectstateList, nil
@@ -51,15 +56,15 @@ func ProjectState_GetLookup() []dm.Lookup_Item {
 func ProjectState_GetByID(id string) (int, dm.ProjectState, error) {
 
 
-	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.ProjectState_SQLTable)
-	tsql = tsql + " WHERE " + dm.ProjectState_SQLSearchID + "='" + id + "'"
+	tsql := ProjectState_SQLbase
+	tsql = tsql + " " + core.DB_WHERE + " " + dm.ProjectState_SQLSearchID + core.DB_EQ + "'" + id + "'"
 	_, _, projectstateItem, _ := projectstate_Fetch(tsql)
 
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, projectstateItem, nil
 }
@@ -74,8 +79,8 @@ func ProjectState_Delete(id string) {
 
 // Uses Hard Delete
 	object_Table := core.GetSQLSchema(core.ApplicationPropertiesDB) + "." + dm.ProjectState_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.ProjectState_SQLSearchID + " = '" + id + "'"
+	tsql := core.DB_DELETE+" "+core.DB_FROM+" " + object_Table
+	tsql = tsql + " " + core.DB_WHERE + " " + dm.ProjectState_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
 	
@@ -140,10 +145,10 @@ func ProjectState_StoreSystem(r dm.ProjectState) error {
 func ProjectState_Validate(r dm.ProjectState) (dm.ProjectState, error) {
 	var err error
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -181,6 +186,7 @@ func projectstate_Save(r dm.ProjectState,usr string) error {
 
 
 
+
 	
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
@@ -188,6 +194,7 @@ func projectstate_Save(r dm.ProjectState,usr string) error {
 	r.SYSUpdated = Audit_Update("", Audit_TimeStamp())
 	r.SYSUpdatedBy = Audit_Update("",usr)
 	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
+	r.SYSDbVersion = core.DB_Version()
 	
 logs.Storing("ProjectState",fmt.Sprintf("%v", r))
 
@@ -195,7 +202,7 @@ logs.Storing("ProjectState",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.ProjectState_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.ProjectState_ProjectStateID_sql, r.ProjectStateID)
@@ -210,14 +217,15 @@ logs.Storing("ProjectState",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.ProjectState_SYSDeleted_sql, r.SYSDeleted)
 	ts = addData(ts, dm.ProjectState_SYSDeletedBy_sql, r.SYSDeletedBy)
 	ts = addData(ts, dm.ProjectState_SYSDeletedHost_sql, r.SYSDeletedHost)
+	ts = addData(ts, dm.ProjectState_SYSDbVersion_sql, r.SYSDbVersion)
 		
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
-	tsql := "INSERT INTO " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.ProjectState_SQLTable)
+	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.ProjectState_SQLTable)
 	tsql = tsql + " (" + fields(ts) + ")"
-	tsql = tsql + " VALUES (" + values(ts) + ")"
+	tsql = tsql + " "+core.DB_VALUES +" (" + values(ts) + ")"
 
 	ProjectState_Delete(r.ProjectStateID)
 	das.Execute(tsql)
@@ -245,7 +253,7 @@ func projectstate_Fetch(tsql string) (int, []dm.ProjectState, dm.ProjectState, e
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.ProjectState_SYSId_sql, "0")
 	   recItem.ProjectStateID  = get_String(rec, dm.ProjectState_ProjectStateID_sql, "")
@@ -260,6 +268,7 @@ func projectstate_Fetch(tsql string) (int, []dm.ProjectState, dm.ProjectState, e
 	   recItem.SYSDeleted  = get_String(rec, dm.ProjectState_SYSDeleted_sql, "")
 	   recItem.SYSDeletedBy  = get_String(rec, dm.ProjectState_SYSDeletedBy_sql, "")
 	   recItem.SYSDeletedHost  = get_String(rec, dm.ProjectState_SYSDeletedHost_sql, "")
+	   recItem.SYSDbVersion  = get_String(rec, dm.ProjectState_SYSDbVersion_sql, "")
 	
 	// If there are fields below, create the methods in adaptor\ProjectState_impl.go
 	
@@ -276,8 +285,9 @@ func projectstate_Fetch(tsql string) (int, []dm.ProjectState, dm.ProjectState, e
 	
 	
 	
+	
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -307,10 +317,10 @@ func ProjectState_New() (int, []dm.ProjectState, dm.ProjectState, error) {
 	
 
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

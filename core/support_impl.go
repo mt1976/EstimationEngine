@@ -347,7 +347,7 @@ func ReadDataFileAbsolute(fileName string, path string) ([]byte, string, error) 
 	path = strings.Replace(path, ".", pwd, 1)
 
 	absFileName := path + "/" + fileName
-	logs.Accessing(absFileName)
+	//logs.Accessing(absFileName)
 	// Check it exists - If not create it
 	if !(FileExists(absFileName)) {
 		FileSystem_WriteData_Absolute(fileName, path, "")

@@ -18,6 +18,7 @@ CREATE TABLE [dbo].[inboxMessages] (
     [_deleted]         NVARCHAR (MAX) NULL,
     [_deletedBy]       NVARCHAR (MAX) NULL,
     [_deletedHost]     NVARCHAR (MAX) NULL,
+    [_dbVersion]       NVARCHAR (MAX) NULL,
     CONSTRAINT [PK_inboxMessages] PRIMARY KEY CLUSTERED ([_id] ASC)
 );
 

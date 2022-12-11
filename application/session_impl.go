@@ -63,10 +63,10 @@ func Session_HandlerValidateLogin(w http.ResponseWriter, r *http.Request) {
 
 func session_ValidateLogin(appToken string, username string, password string, r *http.Request) sessionToken {
 
-	logs.Accessing("Session_ValidateLogin")
-	logs.Processing("appToken: " + appToken)
-	logs.Processing("username: " + username)
-	logs.Processing("password: " + password)
+	//logs.Accessing("Session_ValidateLogin")
+	//logs.Processing("appToken: " + appToken)
+	//logs.Processing("username: " + username)
+	//logs.Processing("password: " + password)
 
 	var s sessionToken
 	s.SecurityViolation = ""
@@ -257,12 +257,12 @@ func Session_GetUserSessionToken(r *http.Request) string {
 
 // getappMenuData
 func Session_GetUserUUID(r *http.Request) string {
-	logs.Accessing("Session_GetUserUUID")
+	//logs.Accessing("Session_GetUserUUID")
 	return core.SessionManager.GetString(r.Context(), core.SessionUUID)
 }
 
 func Session_CreateToken(req *http.Request) string {
-	logs.Accessing("Session_CreateToken")
+	//logs.Accessing("Session_CreateToken")
 	id := uuid.New().String()
 	now := time.Now()
 	//currentUserID, _ := user.Current()
@@ -303,7 +303,7 @@ func Session_CreateToken(req *http.Request) string {
 }
 
 func Session_GetSessionInfo(r *http.Request) (dm.SessionInfo, error) {
-	logs.Accessing("Session_GetSessionInfo")
+	//logs.Accessing("Session_GetSessionInfo")
 	var s dm.SessionInfo
 	s.UserName = Session_GetUserName(r)
 	s.AppDB = core.ApplicationSQLDatabase()

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2022 at 13:31:29
+// Date & Time		    : 10/12/2022 at 21:40:34
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -28,10 +28,15 @@ import (
 	logs   "github.com/mt1976/ebEstimates/logs"
 )
 
+var Credentials_SQLbase string
+func init(){
+	Credentials_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Credentials_SQLTable)
+}
+
 // Credentials_GetList() returns a list of all Credentials records
 func Credentials_GetList() (int, []dm.Credentials, error) {
 	
-	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Credentials_SQLTable)
+	tsql := Credentials_SQLbase
 	count, credentialsList, _, _ := credentials_Fetch(tsql)
 	
 	return count, credentialsList, nil
@@ -53,16 +58,16 @@ func Credentials_GetLookup() []dm.Lookup_Item {
 func Credentials_GetByID(id string) (int, dm.Credentials, error) {
 
 
-	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Credentials_SQLTable)
-	tsql = tsql + " WHERE " + dm.Credentials_SQLSearchID + "='" + id + "'"
+	tsql := Credentials_SQLbase
+	tsql = tsql + " " + core.DB_WHERE + " " + dm.Credentials_SQLSearchID + core.DB_EQ + "'" + id + "'"
 	_, _, credentialsItem, _ := credentials_Fetch(tsql)
 
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	credentialsItem.State,credentialsItem.State_props = adaptor.Credentials_State_impl (adaptor.GET,id,credentialsItem.State,credentialsItem,credentialsItem.State_props)
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, credentialsItem, nil
 }
@@ -77,8 +82,8 @@ func Credentials_Delete(id string) {
 
 // Uses Hard Delete
 	object_Table := core.GetSQLSchema(core.ApplicationPropertiesDB) + "." + dm.Credentials_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.Credentials_SQLSearchID + " = '" + id + "'"
+	tsql := core.DB_DELETE+" "+core.DB_FROM+" " + object_Table
+	tsql = tsql + " " + core.DB_WHERE + " " + dm.Credentials_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
 	
@@ -133,20 +138,20 @@ func Credentials_StoreSystem(r dm.Credentials) error {
 func Credentials_Validate(r dm.Credentials) (dm.Credentials, error) {
 	var err error
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.State,r.State_props = adaptor.Credentials_State_impl (adaptor.PUT,r.Id,r.State,r,r.State_props)
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r, _, err = adaptor.Credentials_ObjectValidation_impl(adaptor.PUT, r.Id, r)
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	
 
@@ -194,6 +199,7 @@ func credentials_Save(r dm.Credentials,usr string) error {
 
 
 
+
 	
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
@@ -201,6 +207,7 @@ func credentials_Save(r dm.Credentials,usr string) error {
 	r.SYSUpdated = Audit_Update("", Audit_TimeStamp())
 	r.SYSUpdatedBy = Audit_Update("",usr)
 	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
+	r.SYSDbVersion = core.DB_Version()
 	
 logs.Storing("Credentials",fmt.Sprintf("%v", r))
 
@@ -208,7 +215,7 @@ logs.Storing("Credentials",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Credentials_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Credentials_Id_sql, r.Id)
@@ -234,14 +241,15 @@ logs.Storing("Credentials",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Credentials_SYSDeletedBy_sql, r.SYSDeletedBy)
 	ts = addData(ts, dm.Credentials_SYSDeletedHost_sql, r.SYSDeletedHost)
 	ts = addData(ts, dm.Credentials_SYSActivity_sql, r.SYSActivity)
+	ts = addData(ts, dm.Credentials_SYSDbVersion_sql, r.SYSDbVersion)
 		
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
-	tsql := "INSERT INTO " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Credentials_SQLTable)
+	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Credentials_SQLTable)
 	tsql = tsql + " (" + fields(ts) + ")"
-	tsql = tsql + " VALUES (" + values(ts) + ")"
+	tsql = tsql + " "+core.DB_VALUES +" (" + values(ts) + ")"
 
 	Credentials_Delete(r.Id)
 	das.Execute(tsql)
@@ -269,7 +277,7 @@ func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, erro
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Credentials_SYSId_sql, "0")
 	   recItem.Id  = get_String(rec, dm.Credentials_Id_sql, "")
@@ -295,6 +303,7 @@ func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, erro
 	   recItem.SYSDeletedBy  = get_String(rec, dm.Credentials_SYSDeletedBy_sql, "")
 	   recItem.SYSDeletedHost  = get_String(rec, dm.Credentials_SYSDeletedHost_sql, "")
 	   recItem.SYSActivity  = get_String(rec, dm.Credentials_SYSActivity_sql, "")
+	   recItem.SYSDbVersion  = get_String(rec, dm.Credentials_SYSDbVersion_sql, "")
 	
 	// If there are fields below, create the methods in adaptor\Credentials_impl.go
 	
@@ -322,8 +331,9 @@ func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, erro
 	
 	
 	
+	
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -353,11 +363,11 @@ func Credentials_New() (int, []dm.Credentials, dm.Credentials, error) {
 	
 
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.State,r.State_props = adaptor.Credentials_State_impl (adaptor.NEW,r.Id,r.State,r,r.State_props)
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

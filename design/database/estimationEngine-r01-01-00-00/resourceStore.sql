@@ -17,6 +17,8 @@ CREATE TABLE [dbo].[resourceStore] (
     [userActive]   NVARCHAR (MAX) NULL,
     [_activity]    NVARCHAR (MAX) NULL,
     [notes]        NVARCHAR (MAX) NULL,
+    [_dbVersion]   NVARCHAR (MAX) NULL,
+    [comments]     NVARCHAR (MAX) NULL,
     CONSTRAINT [PK_resourceStore] PRIMARY KEY CLUSTERED ([_id] ASC)
 );
 

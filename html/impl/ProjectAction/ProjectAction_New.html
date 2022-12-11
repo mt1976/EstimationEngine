@@ -5,7 +5,7 @@
         <div class="card-header">
           <div class="row">
              <div class="col h3">
-                    <i class="fas fa-project-diagram me-2" title="ProjectID = NEW"></i><span class="me-3">Create a new project</span>
+                    <i class="fas fa-project-diagram me-2" title="ProjectID = NEW"></i><span class="me-3">{{.OriginID}} - Create a new project</span>
                 </div>
             <div class="col d-flex justify-content-end">
               <div class="btn-group float-right">
@@ -34,7 +34,6 @@
             </div>
                   
           </div></div>
-
             <div class="row mb-3"  hidden><div class="col">
          
             <div class="form-outline">
@@ -50,6 +49,7 @@
             </div>
                   
           </div></div>
+<h4>Identification</h4>
 
             <div class="row mb-3"  ><div class="col">
             
@@ -61,8 +61,21 @@
             <label class="form-label select-label" for="OriginIDDisplay" >Origin</label>
             <div class="{{.OriginID_props.MsgFeedBackType}}">{{.OriginID_props.MsgMessage}}</div>
                   
-          </div></div>
+          </div><div class="col">
+         
+            <div class="form-outline">
 
+            
+                <input type="text" class="form-control {{.Name_props.MsgType}}" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""  value="{{.Name}}" required data-mdb-input-mask="">
+            
+           
+           
+              <label class="form-label" for="Name" >Name</label>
+              <div class="{{.Name_props.MsgFeedBackType}}">{{.Name_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+<h4>Properties</h4>
             <div class="row mb-3"  ><div class="col">
          
             <select id="ProjectStateID" name="ProjectStateID" class="select" data-mdb-filter="true"  >
@@ -80,39 +93,7 @@
             <label class="form-label select-label" for="ProfileID" >Estimation Profile</label>
             <div class="{{.ProfileID_props.MsgFeedBackType}}">{{.ProfileID_props.MsgMessage}}</div>
                   
-          </div></div>
-
-            <div class="row mb-3"  ><div class="col">
-         
-            <div class="form-outline">
-
-            
-                <input type="text" class="form-control {{.Name_props.MsgType}}" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""  value="{{.Name}}" required data-mdb-input-mask="">
-            
-           
-           
-              <label class="form-label" for="Name" >Name</label>
-              <div class="{{.Name_props.MsgFeedBackType}}">{{.Name_props.MsgMessage}}</div>
-            </div>
-                  
-          </div></div>
-
-            <div class="row mb-3"  ><div class="col">
-         
-            <div class="form-outline">
-
-            
-                <textarea class="form-control {{.Description_props.MsgType}}" id="Description" name="Description" aria-describedby="DescriptionHelp" placeholder=""   value="{{.Description}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Description}}</textarea>
-            
-           
-           
-              <label class="form-label" for="Description" >Description</label>
-              <div class="{{.Description_props.MsgFeedBackType}}">{{.Description_props.MsgMessage}}</div>
-            </div>
-                  
-          </div></div>
-
-            <div class="row mb-3"  ><div class="col">
+          </div><div class="col">
          
             <div class="form-outline">
 
@@ -136,6 +117,22 @@
            
               <label class="form-label" for="EndDate" >Project End Date</label>
               <div class="{{.EndDate_props.MsgFeedBackType}}">{{.EndDate_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+<h4>Project Description</h4>
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <textarea class="form-control {{.Description_props.MsgType}}" id="Description" name="Description" aria-describedby="DescriptionHelp" placeholder=""   value="{{.Description}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Description}}</textarea>
+            
+           
+           
+              <label class="form-label" for="Description" >Description</label>
+              <div class="{{.Description_props.MsgFeedBackType}}">{{.Description_props.MsgMessage}}</div>
             </div>
                   
           </div></div>

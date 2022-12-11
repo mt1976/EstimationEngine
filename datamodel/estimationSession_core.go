@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2022 at 13:31:29
+// Date & Time		    : 11/12/2022 at 14:24:08
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -87,6 +87,10 @@ ExtRef       string
 ExtRef_props FieldProperties
 SYSActivity       string
 SYSActivity_props FieldProperties
+SYSDbVersion       string
+SYSDbVersion_props FieldProperties
+Comments       string
+Comments_props FieldProperties
 Origin       string
 Origin_props FieldProperties
 OriginStateID       string
@@ -141,6 +145,8 @@ NoActiveFeatures_props FieldProperties
 
 ProjectID_lookup []Lookup_Item
 EstimationStateID_lookup []Lookup_Item
+
+
 
 
 
@@ -266,6 +272,8 @@ const (
 	EstimationSession_EstRef_sql   = "estRef" // EstRef is a String
 	EstimationSession_ExtRef_sql   = "extRef" // ExtRef is a String
 	EstimationSession_SYSActivity_sql   = "_activity" // SYSActivity is a String
+	EstimationSession_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
+	EstimationSession_Comments_sql   = "comments" // Comments is a String
 	EstimationSession_Origin_sql   = "Origin" // Origin is a String
 	EstimationSession_OriginStateID_sql   = "OriginStateID" // OriginStateID is a String
 	EstimationSession_OriginState_sql   = "OriginState" // OriginState is a String
@@ -331,6 +339,8 @@ const (
 	EstimationSession_EstRef_scrn   = "EstRef" // EstRef is a String
 	EstimationSession_ExtRef_scrn   = "ExtRef" // ExtRef is a String
 	EstimationSession_SYSActivity_scrn   = "SYSActivity" // SYSActivity is a String
+	EstimationSession_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
+	EstimationSession_Comments_scrn   = "Comments" // Comments is a String
 	EstimationSession_Origin_scrn   = "Origin" // Origin is a String
 	EstimationSession_OriginStateID_scrn   = "OriginStateID" // OriginStateID is a String
 	EstimationSession_OriginState_scrn   = "OriginState" // OriginState is a String
@@ -381,7 +391,7 @@ type EstimationSession_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -455,6 +465,10 @@ type EstimationSession_Page struct {
 	ExtRef_props     FieldProperties
 	SYSActivity         string
 	SYSActivity_props     FieldProperties
+	SYSDbVersion         string
+	SYSDbVersion_props     FieldProperties
+	Comments         string
+	Comments_props     FieldProperties
 	Origin         string
 	Origin_props     FieldProperties
 	OriginStateID         string
@@ -506,7 +520,7 @@ type EstimationSession_Page struct {
 	NoActiveFeatures         string
 	NoActiveFeatures_props     FieldProperties
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

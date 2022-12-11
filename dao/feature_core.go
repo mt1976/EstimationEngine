@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2022 at 13:31:30
+// Date & Time		    : 11/12/2022 at 14:15:46
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -28,10 +28,15 @@ import (
 	logs   "github.com/mt1976/ebEstimates/logs"
 )
 
+var Feature_SQLbase string
+func init(){
+	Feature_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Feature_SQLTable)
+}
+
 // Feature_GetList() returns a list of all Feature records
 func Feature_GetList() (int, []dm.Feature, error) {
 	
-	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Feature_SQLTable)
+	tsql := Feature_SQLbase
 	count, featureList, _, _ := feature_Fetch(tsql)
 	
 	return count, featureList, nil
@@ -53,15 +58,15 @@ func Feature_GetLookup() []dm.Lookup_Item {
 func Feature_GetByID(id string) (int, dm.Feature, error) {
 
 
-	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Feature_SQLTable)
-	tsql = tsql + " WHERE " + dm.Feature_SQLSearchID + "='" + id + "'"
+	tsql := Feature_SQLbase
+	tsql = tsql + " " + core.DB_WHERE + " " + dm.Feature_SQLSearchID + core.DB_EQ + "'" + id + "'"
 	_, _, featureItem, _ := feature_Fetch(tsql)
 
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, featureItem, nil
 }
@@ -76,8 +81,8 @@ func Feature_Delete(id string) {
 
 // Uses Hard Delete
 	object_Table := core.GetSQLSchema(core.ApplicationPropertiesDB) + "." + dm.Feature_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.Feature_SQLSearchID + " = '" + id + "'"
+	tsql := core.DB_DELETE+" "+core.DB_FROM+" " + object_Table
+	tsql = tsql + " " + core.DB_WHERE + " " + dm.Feature_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
 	
@@ -142,19 +147,19 @@ func Feature_StoreSystem(r dm.Feature) error {
 func Feature_Validate(r dm.Feature) (dm.Feature, error) {
 	var err error
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r, _, err = adaptor.Feature_ObjectValidation_impl(adaptor.PUT, r.FeatureID, r)
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	
 
@@ -221,6 +226,9 @@ func feature_Save(r dm.Feature,usr string) error {
 
 
 
+
+
+
 	
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
@@ -228,6 +236,7 @@ func feature_Save(r dm.Feature,usr string) error {
 	r.SYSUpdated = Audit_Update("", Audit_TimeStamp())
 	r.SYSUpdatedBy = Audit_Update("",usr)
 	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
+	r.SYSDbVersion = core.DB_Version()
 	
 logs.Storing("Feature",fmt.Sprintf("%v", r))
 
@@ -235,7 +244,7 @@ logs.Storing("Feature",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Feature_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Feature_FeatureID_sql, r.FeatureID)
@@ -280,14 +289,17 @@ logs.Storing("Feature",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Feature_Dfcontingency_sql, r.Dfcontingency)
 	ts = addData(ts, dm.Feature_DfdevUplift_sql, r.DfdevUplift)
 	ts = addData(ts, dm.Feature_Total_sql, r.Total)
+	ts = addData(ts, dm.Feature_SYSDbVersion_sql, r.SYSDbVersion)
+	ts = addData(ts, dm.Feature_Comments_sql, r.Comments)
+	ts = addData(ts, dm.Feature_Description_sql, r.Description)
 		
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
-	tsql := "INSERT INTO " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Feature_SQLTable)
+	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Feature_SQLTable)
 	tsql = tsql + " (" + fields(ts) + ")"
-	tsql = tsql + " VALUES (" + values(ts) + ")"
+	tsql = tsql + " "+core.DB_VALUES +" (" + values(ts) + ")"
 
 	Feature_Delete(r.FeatureID)
 	das.Execute(tsql)
@@ -315,7 +327,7 @@ func feature_Fetch(tsql string) (int, []dm.Feature, dm.Feature, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Feature_SYSId_sql, "0")
 	   recItem.FeatureID  = get_String(rec, dm.Feature_FeatureID_sql, "")
@@ -360,6 +372,9 @@ func feature_Fetch(tsql string) (int, []dm.Feature, dm.Feature, error) {
 	   recItem.Dfcontingency  = get_String(rec, dm.Feature_Dfcontingency_sql, "")
 	   recItem.DfdevUplift  = get_String(rec, dm.Feature_DfdevUplift_sql, "")
 	   recItem.Total  = get_String(rec, dm.Feature_Total_sql, "")
+	   recItem.SYSDbVersion  = get_String(rec, dm.Feature_SYSDbVersion_sql, "")
+	   recItem.Comments  = get_String(rec, dm.Feature_Comments_sql, "")
+	   recItem.Description  = get_String(rec, dm.Feature_Description_sql, "")
 	
 	// If there are fields below, create the methods in adaptor\Feature_impl.go
 	
@@ -406,8 +421,11 @@ func feature_Fetch(tsql string) (int, []dm.Feature, dm.Feature, error) {
 	
 	
 	
+	
+	
+	
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -437,10 +455,10 @@ func Feature_New() (int, []dm.Feature, dm.Feature, error) {
 	
 
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

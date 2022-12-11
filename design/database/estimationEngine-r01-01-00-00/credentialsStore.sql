@@ -23,6 +23,7 @@ CREATE TABLE [dbo].[credentialsStore] (
     [_deletedBy]   NVARCHAR (MAX) NULL,
     [_deletedHost] NVARCHAR (MAX) NULL,
     [_activity]    NVARCHAR (MAX) NULL,
+    [_dbVersion]   NVARCHAR (MAX) NULL,
     CONSTRAINT [PK_credentialsStore] PRIMARY KEY CLUSTERED ([_id] ASC)
 );
 

@@ -56,6 +56,7 @@ SQL Table Key | **Id**
 |**SYSDeleted**|String|false|true|false|false|||||NH|_deleted||false|false|true|text||
 |**SYSDeletedBy**|String|false|true|false|false|||||NH|_deletedBy||false|false|true|text||
 |**SYSDeletedHost**|String|false|true|false|false|||||NH|_deletedHost||false|false|true|text||
+|**SYSDbVersion**|String|false|true|false|false|||||NH|_dbVersion||false|false|true|text||
 
 
 ##  Artifacts Generated
@@ -76,7 +77,7 @@ SQL Table Key | **Id**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **08/12/2022** at **13:31:32**
+Date & Time		     | **10/12/2022** at **21:40:47**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

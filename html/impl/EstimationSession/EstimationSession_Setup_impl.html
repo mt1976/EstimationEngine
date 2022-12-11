@@ -49,7 +49,7 @@
             </div>
                   
           </div></div>
-
+            <h4>Identification</h4>
             <div class="row mb-3"  ><div class="col">
               <input type="text" class="form-control" id="ProjectID" name="ProjectID" aria-describedby="ProjectIDHelp" placeholder=""  value="{{.ProjectID}}" required data-mdb-input-mask="" hidden>
 
@@ -59,8 +59,7 @@
             <label class="form-label select-label" for="ProjectIDDisplay" >Project</label>
             <div class="{{.ProjectID_props.MsgFeedBackType}}">{{.ProjectID_props.MsgMessage}}</div>
                   
-          </div></div>
-            <div class="row mb-3"  ><div class="col">
+          </div><div class="col">
          
             <div class="form-outline">
 
@@ -83,21 +82,33 @@
                   
           </div></div>
 
-            <div class="row mb-3"  ><div class="col">
-         
+
+       <h4>Comments</h4>
+        <div class="row mb-3"  ><div class="col">
+        
             <div class="form-outline">
-
-            
-                <textarea class="form-control {{.Notes_props.MsgType}}" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder=""   value="{{.Notes}}"  data-mdb-input-mask="" rows="4" maxlength="255" hidden>{{.Notes}}</textarea>
-                <textarea class="form-control {{.Notes_props.MsgType}}" id="NotesDisplay" name="NotesDisplay" aria-describedby="NotesDisplayHelp" placeholder=""   value="{{.Notes}}"  data-mdb-input-mask="" rows="4" maxlength="255" disabled>{{.Notes}}</textarea>
-
-           
-           
-              <label class="form-label" for="Notes" >Notes</label>
-              <div class="{{.Notes_props.MsgFeedBackType}}">{{.Notes_props.MsgMessage}}</div>
+              
+              <textarea class="form-control {{.Comments_props.MsgType}}" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder=""   value="{{.Comments}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Comments}}</textarea>
+              
+              <label class="form-label" for="Notes" >Comments</label>
+              <div class="{{.Comments_props.MsgFeedBackType}}">{{.Comments_props.MsgMessage}}</div>
             </div>
-                  
-          </div></div>
+        
+        </div></div>
+       <h4>Releases</h4>
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Releases_props.MsgType}}" id="Releases" name="Releases" readonly aria-describedby="ReleasesHelp" placeholder=""   value="{{.Releases}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="Releases" >Releases</label>
+              <div class="{{.Releases_props.MsgFeedBackType}}">{{.Releases_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+
+
 
 
 
@@ -237,6 +248,7 @@
           </div></div>
 
 
+<h4>Links</h4>
 
             <div class="row mb-3"  ><div class="col">
          
@@ -304,7 +316,6 @@
             </div>
                   
           </div></div>
-
 
 
 

@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2022 at 13:31:31
+// Date & Time		    : 10/12/2022 at 21:40:42
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -25,10 +25,16 @@ import (
 	logs "github.com/mt1976/ebEstimates/logs"
 )
 
+var ProjectAction_SQLbase string
+
+func init() {
+	ProjectAction_SQLbase = core.DB_SELECT + " " + core.DB_ALL + " " + core.DB_FROM + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.ProjectAction_SQLTable)
+}
+
 // ProjectAction_GetList() returns a list of all ProjectAction records
 func ProjectAction_GetList() (int, []dm.ProjectAction, error) {
 
-	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.ProjectAction_SQLTable)
+	tsql := ProjectAction_SQLbase
 	count, projectactionList, _, _ := projectaction_Fetch(tsql)
 
 	return count, projectactionList, nil
@@ -47,15 +53,15 @@ func ProjectAction_GetLookup() []dm.Lookup_Item {
 // ProjectAction_GetByID() returns a single ProjectAction record
 func ProjectAction_GetByID(id string) (int, dm.ProjectAction, error) {
 
-	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.ProjectAction_SQLTable)
-	tsql = tsql + " WHERE " + dm.ProjectAction_SQLSearchID + "='" + id + "'"
+	tsql := ProjectAction_SQLbase
+	tsql = tsql + " " + core.DB_WHERE + " " + dm.ProjectAction_SQLSearchID + core.DB_EQ + "'" + id + "'"
 	_, _, projectactionItem, _ := projectaction_Fetch(tsql)
 
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	//
 	//
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	return 1, projectactionItem, nil
 }
@@ -65,8 +71,8 @@ func ProjectAction_Delete(id string) {
 
 	// Uses Hard Delete
 	object_Table := core.GetSQLSchema(core.ApplicationPropertiesDB) + "." + dm.ProjectAction_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.ProjectAction_SQLSearchID + " = '" + id + "'"
+	tsql := core.DB_DELETE + " " + core.DB_FROM + " " + object_Table
+	tsql = tsql + " " + core.DB_WHERE + " " + dm.ProjectAction_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
 
@@ -102,10 +108,10 @@ func ProjectAction_StoreSystem(r dm.ProjectAction) error {
 func ProjectAction_Validate(r dm.ProjectAction) (dm.ProjectAction, error) {
 	var err error
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	//
 	//
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//
 
@@ -131,6 +137,7 @@ func projectaction_Save(r dm.ProjectAction, usr string) error {
 	r.SYSUpdated = Audit_Update("", Audit_TimeStamp())
 	r.SYSUpdatedBy = Audit_Update("", usr)
 	r.SYSUpdatedHost = Audit_Update("", Audit_Host())
+	r.SYSDbVersion = core.DB_Version()
 
 	logs.Storing("ProjectAction", fmt.Sprintf("%v", r))
 
@@ -138,7 +145,7 @@ func projectaction_Save(r dm.ProjectAction, usr string) error {
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	//
 	ts = addData(ts, dm.ProjectAction_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.ProjectAction_ProjectID_sql, r.ProjectID)
@@ -159,14 +166,16 @@ func projectaction_Save(r dm.ProjectAction, usr string) error {
 	ts = addData(ts, dm.ProjectAction_SYSDeletedBy_sql, r.SYSDeletedBy)
 	ts = addData(ts, dm.ProjectAction_SYSDeletedHost_sql, r.SYSDeletedHost)
 	ts = addData(ts, dm.ProjectAction_SYSActivity_sql, r.SYSActivity)
+	ts = addData(ts, dm.ProjectAction_SYSDbVersion_sql, r.SYSDbVersion)
+	ts = addData(ts, dm.ProjectAction_Comments_sql, r.Comments)
 
 	//
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
-	tsql := "INSERT INTO " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.ProjectAction_SQLTable)
+	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.ProjectAction_SQLTable)
 	tsql = tsql + " (" + fields(ts) + ")"
-	tsql = tsql + " VALUES (" + values(ts) + ")"
+	tsql = tsql + " " + core.DB_VALUES + " (" + values(ts) + ")"
 
 	ProjectAction_Delete(r.ProjectID)
 	das.Execute(tsql)
@@ -190,7 +199,7 @@ func projectaction_Fetch(tsql string) (int, []dm.ProjectAction, dm.ProjectAction
 
 		rec := returnList[i]
 		// START
-		// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 		//
 		recItem.SYSId = get_Int(rec, dm.ProjectAction_SYSId_sql, "0")
 		recItem.ProjectID = get_String(rec, dm.ProjectAction_ProjectID_sql, "")
@@ -211,11 +220,13 @@ func projectaction_Fetch(tsql string) (int, []dm.ProjectAction, dm.ProjectAction
 		recItem.SYSDeletedBy = get_String(rec, dm.ProjectAction_SYSDeletedBy_sql, "")
 		recItem.SYSDeletedHost = get_String(rec, dm.ProjectAction_SYSDeletedHost_sql, "")
 		recItem.SYSActivity = get_String(rec, dm.ProjectAction_SYSActivity_sql, "")
+		recItem.SYSDbVersion = get_String(rec, dm.ProjectAction_SYSDbVersion_sql, "")
+		recItem.Comments = get_String(rec, dm.ProjectAction_Comments_sql, "")
 
 		// If there are fields below, create the methods in adaptor\ProjectAction_impl.go
 
 		//
-		// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 		// END
 		///
 		//Add to the list
@@ -240,10 +251,10 @@ func ProjectAction_New() (int, []dm.ProjectAction, dm.ProjectAction, error) {
 	var rList []dm.ProjectAction
 
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	//
 	//
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 	rList = append(rList, r)

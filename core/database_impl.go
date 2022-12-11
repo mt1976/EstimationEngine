@@ -91,7 +91,7 @@ func connect(mssqlConfig map[string]string) (*sql.DB, error) {
 		logs.Error("Connection attempt with "+database+connString+" failed:", err)
 	}
 	if database != "master" {
-		logs.Success("Connected to " + server + " " + database)
+		//logs.Success("Connected to " + server + " " + database)
 		//	log.Println("Information   : Connected to " + server + " " + database)
 	}
 	keepalive, _ := time.ParseDuration("-1h")
@@ -150,22 +150,22 @@ func Database_Connect(mssqlConfig map[string]string) (*sql.DB, error) {
 	err2 = dbCheck.Scan(&result2)
 	if err2 != nil {
 
-		logs.Warning("Database " + dbName + " does not exists. GENERATING")
-		Database_Create(dbInstance, ApplicationPropertiesDB, dbName)
+		logs.Fatal("Database "+dbName+" does not exists. Please Create "+dbName+" and run again. - ", err2)
+		// Database_Create(dbInstance, ApplicationPropertiesDB, dbName)
 
-		SetApplicationSQLDatabase(dbName)
-		//Connect to the specific instance
-		newDBInstance, errReCon := connect(ApplicationPropertiesDB)
-		if errReCon != nil {
-			log.Panicln(errReCon.Error())
-		}
+		// //SetApplicationSQLDatabase(dbName)
+		// //Connect to the specific instance
+		// newDBInstance, errReCon := connect(ApplicationPropertiesDB)
+		// if errReCon != nil {
+		// 	log.Panicln(errReCon.Error())
+		// }
 
-		if len(instance) != 0 {
-			SetApplicationSQLDatabase(database + "-" + instance)
-		}
-		Database_CreateObjects(newDBInstance, ApplicationPropertiesDB, "/config/database/appdb/tables", true)
-		Database_CreateObjects(newDBInstance, ApplicationPropertiesDB, "/config/database/appdb/views", true)
-		returnDB = newDBInstance
+		// if len(instance) != 0 {
+		// 	SetApplicationSQLDatabase(database + "-" + instance)
+		// }
+		// Database_CreateObjects(newDBInstance, ApplicationPropertiesDB, "/config/database/appdb/tables", true)
+		// Database_CreateObjects(newDBInstance, ApplicationPropertiesDB, "/config/database/appdb/views", true)
+		// returnDB = newDBInstance
 	} else {
 		logs.Success("Database " + dbName + " exists Created: " + result2)
 		if len(mssqlConfig["instance"]) != 0 {
@@ -330,4 +330,9 @@ func Database_CreateObjects(DB *sql.DB, dbConfig map[string]string, sourcePath s
 			logs.Skipping(view)
 		}
 	}
+}
+
+func DB_Version() string {
+	version := ApplicationPropertiesDB["version"]
+	return version
 }

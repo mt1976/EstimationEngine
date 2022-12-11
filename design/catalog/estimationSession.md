@@ -48,7 +48,7 @@ SQL Table Key | **estimationSessionID**
 |**EstimationSessionID**|String|false|true|false|true|||||H|estimationSessionID||true|false|false|text||
 |**ProjectID**|String|false|true|false|false|OL|Project|Project_ProjectID|Project_Name|Y|projectID||false|false|false|text||
 |**EstimationStateID**|String|false|true|false|false|OL|EstimationState|EstimationState_EstimationStateID||Y|estimationStateID||false|false|false|text||
-|**Notes**|String|false|true|false|true|||||Y|notes||false|false|false|textarea||
+|**Notes**|String|false|true|false|true|||||N|notes||false|false|false|textarea||
 |**Releases**|String|false|true|false|false|||||Y|releases||false|false|false|text||
 |**Total**|String|false|true|false|false|||||Y|total||false|false|false|text||
 |**Contingency**|String|false|true|false|false|||||Y|contingency||false|false|false|text||
@@ -79,6 +79,8 @@ SQL Table Key | **estimationSessionID**
 |**EstRef**|String|false|true|false|false|||||Y|estRef||false|false|false|text||
 |**ExtRef**|String|false|true|false|false|||||Y|extRef||false|false|false|text||
 |**SYSActivity**|String|false|true|false|false|||||NH|_activity||false|false|true|text||
+|**SYSDbVersion**|String|false|true|false|false|||||NH|_dbVersion||false|false|true|text||
+|**Comments**|String|false|true|false|true|||||Y|comments||false|false|false|textarea||
 |**Origin**|String|false|false|true|false|||||N|||false|true|false|text||
 |**OriginStateID**|String|false|false|true|false|||||N|||false|true|false|text||
 |**OriginState**|String|false|false|true|false|||||N|||false|true|false|text||
@@ -125,7 +127,7 @@ SQL Table Key | **estimationSessionID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **08/12/2022** at **13:31:29**
+Date & Time		     | **11/12/2022** at **14:24:08**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

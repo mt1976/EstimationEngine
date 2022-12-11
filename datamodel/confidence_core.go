@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2022 at 13:31:29
+// Date & Time		    : 10/12/2022 at 21:40:33
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -47,7 +47,13 @@ SYSDeletedHost       string
 SYSDeletedHost_props FieldProperties
 Notes       string
 Notes_props FieldProperties
+SYSDbVersion       string
+SYSDbVersion_props FieldProperties
+Comments       string
+Comments_props FieldProperties
  // Any lookups will be added below
+
+
 
 
 
@@ -111,6 +117,8 @@ const (
 	Confidence_SYSDeletedBy_sql   = "_deletedBy" // SYSDeletedBy is a String
 	Confidence_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
 	Confidence_Notes_sql   = "notes" // Notes is a String
+	Confidence_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
+	Confidence_Comments_sql   = "comments" // Comments is a String
 
 	/// Definitions End
 	///
@@ -131,6 +139,8 @@ const (
 	Confidence_SYSDeletedBy_scrn   = "SYSDeletedBy" // SYSDeletedBy is a String
 	Confidence_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
 	Confidence_Notes_scrn   = "Notes" // Notes is a String
+	Confidence_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
+	Confidence_Comments_scrn   = "Comments" // Comments is a String
 
 	/// Definitions End
 	///
@@ -156,7 +166,7 @@ type Confidence_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -188,8 +198,12 @@ type Confidence_Page struct {
 	SYSDeletedHost_props     FieldProperties
 	Notes         string
 	Notes_props     FieldProperties
+	SYSDbVersion         string
+	SYSDbVersion_props     FieldProperties
+	Comments         string
+	Comments_props     FieldProperties
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

@@ -2,8 +2,8 @@
 <Project DefaultTargets="Build">
   <Sdk Name="Microsoft.Build.Sql" Version="0.1.3-preview" />
   <PropertyGroup>
-    <Name>DatabaseProjectEST</Name>
-    <ProjectGuid>{BF30DC16-F191-4507-9D2E-536E6DCC027F}</ProjectGuid>
+    <Name>estimationEngine-r01-01-00-00</Name>
+    <ProjectGuid>{3373F660-B68F-44D9-A53A-35E492CD7613}</ProjectGuid>
     <DSP>Microsoft.Data.Tools.Schema.Sql.Sql150DatabaseSchemaProvider</DSP>
     <ModelCollation>1033, CI</ModelCollation>
   </PropertyGroup>

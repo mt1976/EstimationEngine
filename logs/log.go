@@ -156,14 +156,17 @@ func Servicing(w string) {
 
 func Menu(w string) {
 	//msg_info(w, v)
-	msg_raw(log_Menu, w, "", colour.Cyan)
+	if CFG.VerboseMode {
 
+		msg_raw(log_Menu, w, "", colour.Cyan)
+	}
 }
 
 func Template(w string) {
 	//msg_info(w, v)
-	msg_raw(log_Template, w, "", colour.Cyan)
-
+	if CFG.VerboseMode {
+		msg_raw(log_Template, w, "", colour.Cyan)
+	}
 }
 
 func Accessing(w string) {

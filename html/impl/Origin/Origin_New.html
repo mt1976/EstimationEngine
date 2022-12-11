@@ -51,7 +51,7 @@
           </div></div>
 
 
-
+<h4>Identification</h4>
             <div class="row mb-3"  ><div class="col">
          
             <div class="form-outline">
@@ -80,6 +80,7 @@
             </div>
                   
           </div></div>
+          <h4>Properties</h4>
             <div class="row mb-3"  ><div class="col">
          
             <select id="StateID" name="StateID" class="select" data-mdb-filter="true"  >
@@ -130,20 +131,6 @@
                   
           </div></div>
 
-            <div class="row mb-3"  ><div class="col">
-         
-            <div class="form-outline">
-
-            
-                <textarea class="form-control {{.Notes_props.MsgType}}" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder=""   value="{{.Notes}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Notes}}</textarea>
-            
-           
-           
-              <label class="form-label" for="Notes" >Notes</label>
-              <div class="{{.Notes_props.MsgFeedBackType}}">{{.Notes_props.MsgMessage}}</div>
-            </div>
-                  
-          </div></div>
 
             <div class="row mb-3"  ><div class="col">
          
@@ -172,7 +159,21 @@
             </div>
                   
           </div></div>
+<h4>Comments</h4>
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
 
+            
+                <textarea class="form-control {{.Comments_props.MsgType}}" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder=""   value="{{.Comments}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Comments}}</textarea>
+            
+           
+           
+              <label class="form-label" for="Notes" >Comments</label>
+              <div class="{{.Comments_props.MsgFeedBackType}}">{{.Comments_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
             <div class="row mb-3" hidden hidden><div class="col">
          
             <div class="form-outline">

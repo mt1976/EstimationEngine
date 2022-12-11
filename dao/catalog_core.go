@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2022 at 13:37:49
+// Date & Time		    : 10/12/2022 at 21:40:33
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -24,10 +24,15 @@ import (
 	logs   "github.com/mt1976/ebEstimates/logs"
 )
 
+var Catalog_SQLbase string
+func init(){
+	Catalog_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Catalog_SQLTable)
+}
+
 // Catalog_GetList() returns a list of all Catalog records
 func Catalog_GetList() (int, []dm.Catalog, error) {
 	
-	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Catalog_SQLTable)
+	tsql := Catalog_SQLbase
 	count, catalogList, _, _ := catalog_Fetch(tsql)
 	
 	return count, catalogList, nil
@@ -39,15 +44,15 @@ func Catalog_GetList() (int, []dm.Catalog, error) {
 func Catalog_GetByID(id string) (int, dm.Catalog, error) {
 
 
-	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Catalog_SQLTable)
-	tsql = tsql + " WHERE " + dm.Catalog_SQLSearchID + "='" + id + "'"
+	tsql := Catalog_SQLbase
+	tsql = tsql + " " + core.DB_WHERE + " " + dm.Catalog_SQLSearchID + core.DB_EQ + "'" + id + "'"
 	_, _, catalogItem, _ := catalog_Fetch(tsql)
 
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, catalogItem, nil
 }
@@ -109,10 +114,10 @@ func Catalog_StoreSystem(r dm.Catalog) error {
 func Catalog_Validate(r dm.Catalog) (dm.Catalog, error) {
 	var err error
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -177,7 +182,7 @@ func catalog_Fetch(tsql string) (int, []dm.Catalog, dm.Catalog, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.ID  = get_String(rec, dm.Catalog_ID_sql, "")
 	   recItem.Endpoint  = get_String(rec, dm.Catalog_Endpoint_sql, "")
@@ -193,7 +198,7 @@ func catalog_Fetch(tsql string) (int, []dm.Catalog, dm.Catalog, error) {
 	
 	
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -223,10 +228,10 @@ func Catalog_New() (int, []dm.Catalog, dm.Catalog, error) {
 	
 
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

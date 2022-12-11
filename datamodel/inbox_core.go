@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2022 at 13:31:30
+// Date & Time		    : 10/12/2022 at 21:40:38
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -55,6 +55,8 @@ SYSDeletedBy       string
 SYSDeletedBy_props FieldProperties
 SYSDeletedHost       string
 SYSDeletedHost_props FieldProperties
+SYSDbVersion       string
+SYSDbVersion_props FieldProperties
  // Any lookups will be added below
 
 
@@ -71,6 +73,7 @@ MailUnread_lookup []Lookup_Item
 
 
 MailAcknowledged_lookup []Lookup_Item
+
 
 
 
@@ -127,6 +130,7 @@ const (
 	Inbox_SYSDeleted_sql   = "_deleted" // SYSDeleted is a String
 	Inbox_SYSDeletedBy_sql   = "_deletedBy" // SYSDeletedBy is a String
 	Inbox_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
+	Inbox_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
 
 	/// Definitions End
 	///
@@ -151,6 +155,7 @@ const (
 	Inbox_SYSDeleted_scrn   = "SYSDeleted" // SYSDeleted is a String
 	Inbox_SYSDeletedBy_scrn   = "SYSDeletedBy" // SYSDeletedBy is a String
 	Inbox_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
+	Inbox_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
 
 	/// Definitions End
 	///
@@ -176,7 +181,7 @@ type Inbox_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -218,8 +223,10 @@ type Inbox_Page struct {
 	SYSDeletedBy_props     FieldProperties
 	SYSDeletedHost         string
 	SYSDeletedHost_props     FieldProperties
+	SYSDbVersion         string
+	SYSDbVersion_props     FieldProperties
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

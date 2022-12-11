@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 09/12/2022 at 08:55:09
+// Date & Time		    : 10/12/2022 at 21:40:39
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -63,11 +63,11 @@ func Origin_GetByID(id string) (int, dm.Origin, error) {
 	_, _, originItem, _ := origin_Fetch(tsql)
 
 	// START
-	// Dynamically generated 09/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	originItem.NoActiveProjects,originItem.NoActiveProjects_props = adaptor.Origin_NoActiveProjects_impl (adaptor.GET,id,originItem.NoActiveProjects,originItem,originItem.NoActiveProjects_props)
 	// 
-	// Dynamically generated 09/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, originItem, nil
 }
@@ -148,11 +148,11 @@ func Origin_StoreSystem(r dm.Origin) error {
 func Origin_Validate(r dm.Origin) (dm.Origin, error) {
 	var err error
 	// START
-	// Dynamically generated 09/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.NoActiveProjects,r.NoActiveProjects_props = adaptor.Origin_NoActiveProjects_impl (adaptor.PUT,r.OriginID,r.NoActiveProjects,r,r.NoActiveProjects_props)
 	// 
-	// Dynamically generated 09/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -196,6 +196,8 @@ func origin_Save(r dm.Origin,usr string) error {
 
 
 
+
+
   r.NoActiveProjects,err = adaptor.Origin_NoActiveProjects_OnStore_impl (r.NoActiveProjects,r,usr)
 
 
@@ -206,6 +208,7 @@ func origin_Save(r dm.Origin,usr string) error {
 	r.SYSUpdated = Audit_Update("", Audit_TimeStamp())
 	r.SYSUpdatedBy = Audit_Update("",usr)
 	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
+	r.SYSDbVersion = core.DB_Version()
 	
 logs.Storing("Origin",fmt.Sprintf("%v", r))
 
@@ -213,7 +216,7 @@ logs.Storing("Origin",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 09/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Origin_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Origin_OriginID_sql, r.OriginID)
@@ -236,10 +239,12 @@ logs.Storing("Origin",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Origin_SYSDeletedHost_sql, r.SYSDeletedHost)
 	ts = addData(ts, dm.Origin_SYSActivity_sql, r.SYSActivity)
 	ts = addData(ts, dm.Origin_Currency_sql, r.Currency)
+	ts = addData(ts, dm.Origin_SYSDbVersion_sql, r.SYSDbVersion)
+	ts = addData(ts, dm.Origin_Comments_sql, r.Comments)
 	
 		
 	// 
-	// Dynamically generated 09/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Origin_SQLTable)
@@ -272,7 +277,7 @@ func origin_Fetch(tsql string) (int, []dm.Origin, dm.Origin, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 09/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Origin_SYSId_sql, "0")
 	   recItem.OriginID  = get_String(rec, dm.Origin_OriginID_sql, "")
@@ -295,6 +300,8 @@ func origin_Fetch(tsql string) (int, []dm.Origin, dm.Origin, error) {
 	   recItem.SYSDeletedHost  = get_String(rec, dm.Origin_SYSDeletedHost_sql, "")
 	   recItem.SYSActivity  = get_String(rec, dm.Origin_SYSActivity_sql, "")
 	   recItem.Currency  = get_String(rec, dm.Origin_Currency_sql, "")
+	   recItem.SYSDbVersion  = get_String(rec, dm.Origin_SYSDbVersion_sql, "")
+	   recItem.Comments  = get_String(rec, dm.Origin_Comments_sql, "")
 	
 	
 	// If there are fields below, create the methods in adaptor\Origin_impl.go
@@ -319,10 +326,12 @@ func origin_Fetch(tsql string) (int, []dm.Origin, dm.Origin, error) {
 	
 	
 	
+	
+	
 	   recItem.NoActiveProjects  = adaptor.Origin_NoActiveProjects_OnFetch_impl (recItem)
 	
 	// 
-	// Dynamically generated 09/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -352,11 +361,11 @@ func Origin_New() (int, []dm.Origin, dm.Origin, error) {
 	
 
 	// START
-	// Dynamically generated 09/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.NoActiveProjects,r.NoActiveProjects_props = adaptor.Origin_NoActiveProjects_impl (adaptor.NEW,r.OriginID,r.NoActiveProjects,r,r.NoActiveProjects_props)
 	// 
-	// Dynamically generated 09/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

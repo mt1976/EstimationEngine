@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2022 at 13:31:29
+// Date & Time		    : 10/12/2022 at 21:40:35
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -26,10 +26,15 @@ import (
 	logs   "github.com/mt1976/ebEstimates/logs"
 )
 
+var DocType_SQLbase string
+func init(){
+	DocType_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.DocType_SQLTable)
+}
+
 // DocType_GetList() returns a list of all DocType records
 func DocType_GetList() (int, []dm.DocType, error) {
 	
-	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.DocType_SQLTable)
+	tsql := DocType_SQLbase
 	count, doctypeList, _, _ := doctype_Fetch(tsql)
 	
 	return count, doctypeList, nil
@@ -51,15 +56,15 @@ func DocType_GetLookup() []dm.Lookup_Item {
 func DocType_GetByID(id string) (int, dm.DocType, error) {
 
 
-	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.DocType_SQLTable)
-	tsql = tsql + " WHERE " + dm.DocType_SQLSearchID + "='" + id + "'"
+	tsql := DocType_SQLbase
+	tsql = tsql + " " + core.DB_WHERE + " " + dm.DocType_SQLSearchID + core.DB_EQ + "'" + id + "'"
 	_, _, doctypeItem, _ := doctype_Fetch(tsql)
 
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, doctypeItem, nil
 }
@@ -74,8 +79,8 @@ func DocType_Delete(id string) {
 
 // Uses Hard Delete
 	object_Table := core.GetSQLSchema(core.ApplicationPropertiesDB) + "." + dm.DocType_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.DocType_SQLSearchID + " = '" + id + "'"
+	tsql := core.DB_DELETE+" "+core.DB_FROM+" " + object_Table
+	tsql = tsql + " " + core.DB_WHERE + " " + dm.DocType_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
 	
@@ -140,10 +145,10 @@ func DocType_StoreSystem(r dm.DocType) error {
 func DocType_Validate(r dm.DocType) (dm.DocType, error) {
 	var err error
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -181,6 +186,8 @@ func doctype_Save(r dm.DocType,usr string) error {
 
 
 
+
+
 	
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
@@ -188,6 +195,7 @@ func doctype_Save(r dm.DocType,usr string) error {
 	r.SYSUpdated = Audit_Update("", Audit_TimeStamp())
 	r.SYSUpdatedBy = Audit_Update("",usr)
 	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
+	r.SYSDbVersion = core.DB_Version()
 	
 logs.Storing("DocType",fmt.Sprintf("%v", r))
 
@@ -195,7 +203,7 @@ logs.Storing("DocType",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.DocType_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.DocType_DocTypeID_sql, r.DocTypeID)
@@ -210,14 +218,16 @@ logs.Storing("DocType",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.DocType_SYSDeleted_sql, r.SYSDeleted)
 	ts = addData(ts, dm.DocType_SYSDeletedBy_sql, r.SYSDeletedBy)
 	ts = addData(ts, dm.DocType_SYSDeletedHost_sql, r.SYSDeletedHost)
+	ts = addData(ts, dm.DocType_SYSDbVersion_sql, r.SYSDbVersion)
+	ts = addData(ts, dm.DocType_Comments_sql, r.Comments)
 		
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
-	tsql := "INSERT INTO " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.DocType_SQLTable)
+	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.DocType_SQLTable)
 	tsql = tsql + " (" + fields(ts) + ")"
-	tsql = tsql + " VALUES (" + values(ts) + ")"
+	tsql = tsql + " "+core.DB_VALUES +" (" + values(ts) + ")"
 
 	DocType_Delete(r.DocTypeID)
 	das.Execute(tsql)
@@ -245,7 +255,7 @@ func doctype_Fetch(tsql string) (int, []dm.DocType, dm.DocType, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.DocType_SYSId_sql, "0")
 	   recItem.DocTypeID  = get_String(rec, dm.DocType_DocTypeID_sql, "")
@@ -260,6 +270,8 @@ func doctype_Fetch(tsql string) (int, []dm.DocType, dm.DocType, error) {
 	   recItem.SYSDeleted  = get_String(rec, dm.DocType_SYSDeleted_sql, "")
 	   recItem.SYSDeletedBy  = get_String(rec, dm.DocType_SYSDeletedBy_sql, "")
 	   recItem.SYSDeletedHost  = get_String(rec, dm.DocType_SYSDeletedHost_sql, "")
+	   recItem.SYSDbVersion  = get_String(rec, dm.DocType_SYSDbVersion_sql, "")
+	   recItem.Comments  = get_String(rec, dm.DocType_Comments_sql, "")
 	
 	// If there are fields below, create the methods in adaptor\DocType_impl.go
 	
@@ -276,8 +288,10 @@ func doctype_Fetch(tsql string) (int, []dm.DocType, dm.DocType, error) {
 	
 	
 	
+	
+	
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -307,10 +321,10 @@ func DocType_New() (int, []dm.DocType, dm.DocType, error) {
 	
 
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2022 at 13:31:29
+// Date & Time		    : 11/12/2022 at 14:24:08
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -28,10 +28,15 @@ import (
 	logs   "github.com/mt1976/ebEstimates/logs"
 )
 
+var EstimationSession_SQLbase string
+func init(){
+	EstimationSession_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.EstimationSession_SQLTable)
+}
+
 // EstimationSession_GetList() returns a list of all EstimationSession records
 func EstimationSession_GetList() (int, []dm.EstimationSession, error) {
 	
-	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.EstimationSession_SQLTable)
+	tsql := EstimationSession_SQLbase
 	count, estimationsessionList, _, _ := estimationsession_Fetch(tsql)
 	
 	return count, estimationsessionList, nil
@@ -53,12 +58,12 @@ func EstimationSession_GetLookup() []dm.Lookup_Item {
 func EstimationSession_GetByID(id string) (int, dm.EstimationSession, error) {
 
 
-	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.EstimationSession_SQLTable)
-	tsql = tsql + " WHERE " + dm.EstimationSession_SQLSearchID + "='" + id + "'"
+	tsql := EstimationSession_SQLbase
+	tsql = tsql + " " + core.DB_WHERE + " " + dm.EstimationSession_SQLSearchID + core.DB_EQ + "'" + id + "'"
 	_, _, estimationsessionItem, _ := estimationsession_Fetch(tsql)
 
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	estimationsessionItem.Origin,estimationsessionItem.Origin_props = adaptor.EstimationSession_Origin_impl (adaptor.GET,id,estimationsessionItem.Origin,estimationsessionItem,estimationsessionItem.Origin_props)
 	estimationsessionItem.OriginStateID,estimationsessionItem.OriginStateID_props = adaptor.EstimationSession_OriginStateID_impl (adaptor.GET,id,estimationsessionItem.OriginStateID,estimationsessionItem,estimationsessionItem.OriginStateID_props)
@@ -86,7 +91,7 @@ func EstimationSession_GetByID(id string) (int, dm.EstimationSession, error) {
 	estimationsessionItem.ADOURI,estimationsessionItem.ADOURI_props = adaptor.EstimationSession_ADOURI_impl (adaptor.GET,id,estimationsessionItem.ADOURI,estimationsessionItem,estimationsessionItem.ADOURI_props)
 	estimationsessionItem.NoActiveFeatures,estimationsessionItem.NoActiveFeatures_props = adaptor.EstimationSession_NoActiveFeatures_impl (adaptor.GET,id,estimationsessionItem.NoActiveFeatures,estimationsessionItem,estimationsessionItem.NoActiveFeatures_props)
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, estimationsessionItem, nil
 }
@@ -101,8 +106,8 @@ func EstimationSession_Delete(id string) {
 
 // Uses Hard Delete
 	object_Table := core.GetSQLSchema(core.ApplicationPropertiesDB) + "." + dm.EstimationSession_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.EstimationSession_SQLSearchID + " = '" + id + "'"
+	tsql := core.DB_DELETE+" "+core.DB_FROM+" " + object_Table
+	tsql = tsql + " " + core.DB_WHERE + " " + dm.EstimationSession_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
 	
@@ -167,7 +172,7 @@ func EstimationSession_StoreSystem(r dm.EstimationSession) error {
 func EstimationSession_Validate(r dm.EstimationSession) (dm.EstimationSession, error) {
 	var err error
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.Origin,r.Origin_props = adaptor.EstimationSession_Origin_impl (adaptor.PUT,r.EstimationSessionID,r.Origin,r,r.Origin_props)
 	r.OriginStateID,r.OriginStateID_props = adaptor.EstimationSession_OriginStateID_impl (adaptor.PUT,r.EstimationSessionID,r.OriginStateID,r,r.OriginStateID_props)
@@ -195,16 +200,16 @@ func EstimationSession_Validate(r dm.EstimationSession) (dm.EstimationSession, e
 	r.ADOURI,r.ADOURI_props = adaptor.EstimationSession_ADOURI_impl (adaptor.PUT,r.EstimationSessionID,r.ADOURI,r,r.ADOURI_props)
 	r.NoActiveFeatures,r.NoActiveFeatures_props = adaptor.EstimationSession_NoActiveFeatures_impl (adaptor.PUT,r.EstimationSessionID,r.NoActiveFeatures,r,r.NoActiveFeatures_props)
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r, _, err = adaptor.EstimationSession_ObjectValidation_impl(adaptor.PUT, r.EstimationSessionID, r)
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	
 
@@ -226,6 +231,8 @@ func estimationsession_Save(r dm.EstimationSession,usr string) error {
 	}
 
 // If there are fields below, create the methods in dao\estimationsession_impl.go
+
+
 
 
 
@@ -295,6 +302,7 @@ func estimationsession_Save(r dm.EstimationSession,usr string) error {
 	r.SYSUpdated = Audit_Update("", Audit_TimeStamp())
 	r.SYSUpdatedBy = Audit_Update("",usr)
 	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
+	r.SYSDbVersion = core.DB_Version()
 	
 logs.Storing("EstimationSession",fmt.Sprintf("%v", r))
 
@@ -302,7 +310,7 @@ logs.Storing("EstimationSession",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.EstimationSession_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.EstimationSession_EstimationSessionID_sql, r.EstimationSessionID)
@@ -339,6 +347,8 @@ logs.Storing("EstimationSession",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.EstimationSession_EstRef_sql, r.EstRef)
 	ts = addData(ts, dm.EstimationSession_ExtRef_sql, r.ExtRef)
 	ts = addData(ts, dm.EstimationSession_SYSActivity_sql, r.SYSActivity)
+	ts = addData(ts, dm.EstimationSession_SYSDbVersion_sql, r.SYSDbVersion)
+	ts = addData(ts, dm.EstimationSession_Comments_sql, r.Comments)
 	
 	
 	
@@ -366,12 +376,12 @@ logs.Storing("EstimationSession",fmt.Sprintf("%v", r))
 	
 		
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
-	tsql := "INSERT INTO " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.EstimationSession_SQLTable)
+	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.EstimationSession_SQLTable)
 	tsql = tsql + " (" + fields(ts) + ")"
-	tsql = tsql + " VALUES (" + values(ts) + ")"
+	tsql = tsql + " "+core.DB_VALUES +" (" + values(ts) + ")"
 
 	EstimationSession_Delete(r.EstimationSessionID)
 	das.Execute(tsql)
@@ -399,7 +409,7 @@ func estimationsession_Fetch(tsql string) (int, []dm.EstimationSession, dm.Estim
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.EstimationSession_SYSId_sql, "0")
 	   recItem.EstimationSessionID  = get_String(rec, dm.EstimationSession_EstimationSessionID_sql, "")
@@ -436,6 +446,8 @@ func estimationsession_Fetch(tsql string) (int, []dm.EstimationSession, dm.Estim
 	   recItem.EstRef  = get_String(rec, dm.EstimationSession_EstRef_sql, "")
 	   recItem.ExtRef  = get_String(rec, dm.EstimationSession_ExtRef_sql, "")
 	   recItem.SYSActivity  = get_String(rec, dm.EstimationSession_SYSActivity_sql, "")
+	   recItem.SYSDbVersion  = get_String(rec, dm.EstimationSession_SYSDbVersion_sql, "")
+	   recItem.Comments  = get_String(rec, dm.EstimationSession_Comments_sql, "")
 	
 	
 	
@@ -498,6 +510,8 @@ func estimationsession_Fetch(tsql string) (int, []dm.EstimationSession, dm.Estim
 	
 	
 	
+	
+	
 	   recItem.Origin  = adaptor.EstimationSession_Origin_OnFetch_impl (recItem)
 	   recItem.OriginStateID  = adaptor.EstimationSession_OriginStateID_OnFetch_impl (recItem)
 	   recItem.OriginState  = adaptor.EstimationSession_OriginState_OnFetch_impl (recItem)
@@ -525,7 +539,7 @@ func estimationsession_Fetch(tsql string) (int, []dm.EstimationSession, dm.Estim
 	   recItem.NoActiveFeatures  = adaptor.EstimationSession_NoActiveFeatures_OnFetch_impl (recItem)
 	
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -555,7 +569,7 @@ func EstimationSession_New() (int, []dm.EstimationSession, dm.EstimationSession,
 	
 
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.Origin,r.Origin_props = adaptor.EstimationSession_Origin_impl (adaptor.NEW,r.EstimationSessionID,r.Origin,r,r.Origin_props)
 	r.OriginStateID,r.OriginStateID_props = adaptor.EstimationSession_OriginStateID_impl (adaptor.NEW,r.EstimationSessionID,r.OriginStateID,r,r.OriginStateID_props)
@@ -583,7 +597,7 @@ func EstimationSession_New() (int, []dm.EstimationSession, dm.EstimationSession,
 	r.ADOURI,r.ADOURI_props = adaptor.EstimationSession_ADOURI_impl (adaptor.NEW,r.EstimationSessionID,r.ADOURI,r,r.ADOURI_props)
 	r.NoActiveFeatures,r.NoActiveFeatures_props = adaptor.EstimationSession_NoActiveFeatures_impl (adaptor.NEW,r.EstimationSessionID,r.NoActiveFeatures,r,r.NoActiveFeatures_props)
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

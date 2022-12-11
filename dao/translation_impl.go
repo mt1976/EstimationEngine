@@ -21,7 +21,7 @@ func Translation_BuildID(class string, message string) string {
 // Translation_Lookup  will translate a string from its source version to user-defined version.
 func Translate(class string, message string) string {
 	translation_ID := Translation_BuildID(class, message)
-	logs.Accessing("translationStoreID" + translation_ID)
+	//logs.Accessing("translationStoreID" + translation_ID)
 	_, t, err := Translation_GetByID(translation_ID)
 	// //spew.Dump(translationItem)
 	if err != nil {

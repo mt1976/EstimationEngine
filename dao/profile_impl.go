@@ -23,7 +23,7 @@ import (
 func Profile_GetByCode(id string) (int, dm.Profile, error) {
 
 	tsql := core.DB_SELECT + " " + core.DB_ALL + " " + core.DB_FROM + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Profile_SQLTable)
-	tsql = tsql + " WHERE " + dm.Profile_Code_sql + "='" + id + "'"
+	tsql = tsql + " " + core.DB_WHERE + " " + dm.Profile_Code_sql + "='" + id + "'"
 	_, _, profileItem, _ := profile_Fetch(tsql)
 
 	// START

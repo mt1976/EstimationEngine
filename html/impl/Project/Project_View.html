@@ -4,7 +4,7 @@
         <div class="card-header">
             <div class="row">
                 <div class="col h3">
-                    <i class="fas fa-project-diagram me-2" title="ProjectID = {{.ProjectID}}"></i><span class="me-3">{{.Title}}</span>
+                    <i class="fas fa-project-diagram me-2" title="ProjectID = {{.ProjectID}}"></i><span class="me-3">{{.OriginID}} - Project {{.Name}}</span>
                 </div>
                 <div class="col d-flex justify-content-end">
                     <div class="btn-group float-right">
@@ -45,7 +45,7 @@
                 
                 </div>
             </div>
-             
+             <h4>Identification</h4>
             <div class="row mb-3"  >
                 <div class="col">
                 
@@ -55,8 +55,21 @@
                   <label class="form-label select-label" for="OriginID" disabled>Origin</label>
                 
                 </div>
+
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Name" aria-describedby="NameHelp" placeholder="" disabled value="{{.Name}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Name">Project Name</label>
+                        
+                    </div>
+                
+                </div>
             </div>
              
+             <h4>Properties</h4>
             <div class="row mb-3"  >
                 <div class="col">
                 
@@ -75,37 +88,7 @@
                   <label class="form-label select-label" for="ProfileID" disabled>Estimation Profile</label>
                 
                 </div>
-            </div>
-             
-            <div class="row mb-3"  >
-                <div class="col">
-                
-                    <div class="form-outline">
-                        
-                            <input type="text" class="form-control" id="Name" aria-describedby="NameHelp" placeholder="" disabled value="{{.Name}}" data-mdb-input-mask=""></input>
-                        
-                        <label class="form-label" for="Name">Name</label>
-                        
-                    </div>
-                
-                </div>
-            </div>
-             
-            <div class="row mb-3"  >
-                <div class="col">
-                
-                    <div class="form-outline">
-                        
-                            <textarea class="form-control" id="Description" name="Description" aria-describedby="DescriptionHelp" placeholder=""  disabled value="{{.Description}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Description}}</textarea>
-                        
-                        <label class="form-label" for="Description">Description</label>
-                        
-                    </div>
-                
-                </div>
-            </div>
-             
-            <div class="row mb-3"  >
+
                 <div class="col">
                 
                     <div class="form-outline">
@@ -117,6 +100,8 @@
                     </div>
                 
                 </div>
+
+
 
                 <div class="col">
                 
@@ -130,7 +115,34 @@
                 
                 </div>
             </div>
-             
+            <h4>Project Description</h4>
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <textarea class="form-control" id="Description" name="Description" aria-describedby="DescriptionHelp" placeholder=""  disabled value="{{.Description}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Description}}</textarea>
+                        
+                        <label class="form-label" for="Description">Description</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+            <h4>Comments</h4>
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <textarea class="form-control" id="Comments" name="Comments" aria-describedby="CommentsHelp" placeholder=""  disabled value="{{.Comments}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Comments}}</textarea>
+                        
+                        <label class="form-label" for="Comments">Comments</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
             <div class="row mb-3" hidden hidden>
                 <div class="col">
                 

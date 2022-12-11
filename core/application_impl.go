@@ -37,15 +37,17 @@ func Initialise() {
 
 	IsChildInstance = false
 	if len(ApplicationPropertiesDB["instance"]) != 0 {
+		//	logs.Information("Initialisation", fmt.Sprintf("Child Instance Detected %v", len(ApplicationPropertiesDB["instance"])))
 		IsChildInstance = true
 	}
+	//logs.Information("Initialisation", fmt.Sprintf("IsChildInstance: %v", IsChildInstance))
 	//
 
 	logs.Information("Connecting to application databases...", "")
 
 	ApplicationDB, _ = Database_Connect(ApplicationPropertiesDB) //log.Printf("Initialisation", ApplicationDB.Stats())
 
-	logs.Success("Connection(s) established")
+	logs.Success("Connection established")
 
 	//
 

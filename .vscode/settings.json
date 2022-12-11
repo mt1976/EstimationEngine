@@ -1,6 +1,7 @@
 {
     "dataworkspace.excludedProjects": [
         "sql/ebEstimates/ebEstimates.sqlproj",
-        "sql/DatabaseProjectEST/DatabaseProjectEST.sqlproj"
+        "sql/DatabaseProjectEST/DatabaseProjectEST.sqlproj",
+        "design/database/estimationEngine/estimationEngine.sqlproj"
     ]
 }

@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2022 at 13:31:30
+// Date & Time		    : 11/12/2022 at 14:15:46
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -103,6 +103,12 @@ DfdevUplift       string
 DfdevUplift_props FieldProperties
 Total       string
 Total_props FieldProperties
+SYSDbVersion       string
+SYSDbVersion_props FieldProperties
+Comments       string
+Comments_props FieldProperties
+Description       string
+Description_props FieldProperties
  // Any lookups will be added below
 
 EstimationSessionID_lookup []Lookup_Item
@@ -133,6 +139,9 @@ ConfidenceID_lookup []Lookup_Item
 
 Developer_lookup []Lookup_Item
 Approver_lookup []Lookup_Item
+
+
+
 
 
 
@@ -223,6 +232,9 @@ const (
 	Feature_Dfcontingency_sql   = "dfcontingency" // Dfcontingency is a String
 	Feature_DfdevUplift_sql   = "dfdevUplift" // DfdevUplift is a String
 	Feature_Total_sql   = "total" // Total is a String
+	Feature_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
+	Feature_Comments_sql   = "comments" // Comments is a String
+	Feature_Description_sql   = "description" // Description is a String
 
 	/// Definitions End
 	///
@@ -271,6 +283,9 @@ const (
 	Feature_Dfcontingency_scrn   = "Dfcontingency" // Dfcontingency is a String
 	Feature_DfdevUplift_scrn   = "DfdevUplift" // DfdevUplift is a String
 	Feature_Total_scrn   = "Total" // Total is a String
+	Feature_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
+	Feature_Comments_scrn   = "Comments" // Comments is a String
+	Feature_Description_scrn   = "Description" // Description is a String
 
 	/// Definitions End
 	///
@@ -296,7 +311,7 @@ type Feature_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -388,8 +403,14 @@ type Feature_Page struct {
 	DfdevUplift_props     FieldProperties
 	Total         string
 	Total_props     FieldProperties
+	SYSDbVersion         string
+	SYSDbVersion_props     FieldProperties
+	Comments         string
+	Comments_props     FieldProperties
+	Description         string
+	Description_props     FieldProperties
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

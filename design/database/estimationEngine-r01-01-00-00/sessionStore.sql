@@ -27,6 +27,7 @@ CREATE TABLE [dbo].[sessionStore] (
     [_deleted]     NVARCHAR (MAX) NULL,
     [_deletedBy]   NVARCHAR (MAX) NULL,
     [_deletedHost] NVARCHAR (MAX) NULL,
+    [_dbVersion]   NVARCHAR (MAX) NULL,
     PRIMARY KEY CLUSTERED ([_id] ASC)
 );
 

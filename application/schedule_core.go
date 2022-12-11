@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2022 at 13:31:31
+// Date & Time		    : 10/12/2022 at 21:40:45
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //Schedule_Publish annouces the endpoints available for this object
-//Schedule_Publish - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+//Schedule_Publish - Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 func Schedule_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.Schedule_Path, Schedule_Handler)
 	mux.HandleFunc(dm.Schedule_PathList, Schedule_HandlerList)
@@ -38,17 +38,17 @@ func Schedule_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.Schedule_Title)
     core.Catalog_Add(dm.Schedule_Title, dm.Schedule_Path, "", dm.Schedule_QueryString, "Application")
 	// 
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Schedule_HandlerList is the handler for the list page
 //Allows Listing of Schedule records
-//Schedule_HandlerList - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+//Schedule_HandlerList - Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 func Schedule_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -78,7 +78,7 @@ func Schedule_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	ExecuteTemplate(dm.Schedule_TemplateList, w, r, pageDetail)
 	// 
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -86,10 +86,10 @@ func Schedule_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //Schedule_HandlerView is the handler used to View a page
 //Allows Viewing for an existing Schedule record
-//Schedule_HandlerView - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+//Schedule_HandlerView - Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 func Schedule_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -118,7 +118,7 @@ func Schedule_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Schedule_TemplateView, w, r, pageDetail)
 	// 
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
@@ -126,10 +126,10 @@ func Schedule_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 //Schedule_HandlerSave is the handler used process the saving of an Schedule
 //It is called from the Edit and New pages
-//Schedule_HandlerSave  - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+//Schedule_HandlerSave  - Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 func Schedule_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -147,7 +147,7 @@ func Schedule_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	dao.Schedule_Store(item,r)	
 	http.Redirect(w, r, dm.Schedule_Redirect, http.StatusFound)
 	// 
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
@@ -157,7 +157,7 @@ func Schedule_HandlerSave(w http.ResponseWriter, r *http.Request) {
 //schedule_PopulatePage Builds/Populates the Schedule Page 
 func schedule_PopulatePage(rD dm.Schedule, pageDetail dm.Schedule_Page) dm.Schedule_Page {
 	// START
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -167,21 +167,27 @@ func schedule_PopulatePage(rD dm.Schedule, pageDetail dm.Schedule_Page) dm.Sched
 	pageDetail.Started = rD.Started
 	pageDetail.Lastrun = rD.Lastrun
 	pageDetail.Message = rD.Message
-	pageDetail.SYSCreated = rD.SYSCreated
-	pageDetail.SYSWho = rD.SYSWho
-	pageDetail.SYSHost = rD.SYSHost
-	pageDetail.SYSUpdated = rD.SYSUpdated
 	pageDetail.Type = rD.Type
+	pageDetail.Human = rD.Human
+	pageDetail.SYSCreated = rD.SYSCreated
 	pageDetail.SYSCreatedBy = rD.SYSCreatedBy
 	pageDetail.SYSCreatedHost = rD.SYSCreatedHost
+	pageDetail.SYSUpdated = rD.SYSUpdated
 	pageDetail.SYSUpdatedBy = rD.SYSUpdatedBy
 	pageDetail.SYSUpdatedHost = rD.SYSUpdatedHost
-	pageDetail.Human = rD.Human
+	pageDetail.SYSDeleted = rD.SYSDeleted
+	pageDetail.SYSDeletedBy = rD.SYSDeletedBy
+	pageDetail.SYSDeletedHost = rD.SYSDeletedHost
+	pageDetail.SYSDbVersion = rD.SYSDbVersion
 	
 	
 	//
-	// Automatically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
+	
+	
+	
+	
 	
 	
 	
@@ -227,19 +233,21 @@ func schedule_PopulatePage(rD dm.Schedule, pageDetail dm.Schedule_Page) dm.Sched
 	pageDetail.Started_props = rD.Started_props
 	pageDetail.Lastrun_props = rD.Lastrun_props
 	pageDetail.Message_props = rD.Message_props
-	pageDetail.SYSCreated_props = rD.SYSCreated_props
-	pageDetail.SYSWho_props = rD.SYSWho_props
-	pageDetail.SYSHost_props = rD.SYSHost_props
-	pageDetail.SYSUpdated_props = rD.SYSUpdated_props
 	pageDetail.Type_props = rD.Type_props
+	pageDetail.Human_props = rD.Human_props
+	pageDetail.SYSCreated_props = rD.SYSCreated_props
 	pageDetail.SYSCreatedBy_props = rD.SYSCreatedBy_props
 	pageDetail.SYSCreatedHost_props = rD.SYSCreatedHost_props
+	pageDetail.SYSUpdated_props = rD.SYSUpdated_props
 	pageDetail.SYSUpdatedBy_props = rD.SYSUpdatedBy_props
 	pageDetail.SYSUpdatedHost_props = rD.SYSUpdatedHost_props
-	pageDetail.Human_props = rD.Human_props
+	pageDetail.SYSDeleted_props = rD.SYSDeleted_props
+	pageDetail.SYSDeletedBy_props = rD.SYSDeletedBy_props
+	pageDetail.SYSDeletedHost_props = rD.SYSDeletedHost_props
+	pageDetail.SYSDbVersion_props = rD.SYSDbVersion_props
 	
 	// 
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	
@@ -248,11 +256,11 @@ return pageDetail
 //schedule_DataFromRequest is used process the content of an HTTP Request and return an instance of an Schedule
 func schedule_DataFromRequest(r *http.Request) dm.Schedule {
 	// START
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	var item dm.Schedule
 	// FIELD SET START
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Schedule_SYSId_scrn)
 		item.Id = r.FormValue(dm.Schedule_Id_scrn)
@@ -262,19 +270,21 @@ func schedule_DataFromRequest(r *http.Request) dm.Schedule {
 		item.Started = r.FormValue(dm.Schedule_Started_scrn)
 		item.Lastrun = r.FormValue(dm.Schedule_Lastrun_scrn)
 		item.Message = r.FormValue(dm.Schedule_Message_scrn)
-		item.SYSCreated = r.FormValue(dm.Schedule_SYSCreated_scrn)
-		item.SYSWho = r.FormValue(dm.Schedule_SYSWho_scrn)
-		item.SYSHost = r.FormValue(dm.Schedule_SYSHost_scrn)
-		item.SYSUpdated = r.FormValue(dm.Schedule_SYSUpdated_scrn)
 		item.Type = r.FormValue(dm.Schedule_Type_scrn)
+		item.Human = r.FormValue(dm.Schedule_Human_scrn)
+		item.SYSCreated = r.FormValue(dm.Schedule_SYSCreated_scrn)
 		item.SYSCreatedBy = r.FormValue(dm.Schedule_SYSCreatedBy_scrn)
 		item.SYSCreatedHost = r.FormValue(dm.Schedule_SYSCreatedHost_scrn)
+		item.SYSUpdated = r.FormValue(dm.Schedule_SYSUpdated_scrn)
 		item.SYSUpdatedBy = r.FormValue(dm.Schedule_SYSUpdatedBy_scrn)
 		item.SYSUpdatedHost = r.FormValue(dm.Schedule_SYSUpdatedHost_scrn)
-		item.Human = r.FormValue(dm.Schedule_Human_scrn)
+		item.SYSDeleted = r.FormValue(dm.Schedule_SYSDeleted_scrn)
+		item.SYSDeletedBy = r.FormValue(dm.Schedule_SYSDeletedBy_scrn)
+		item.SYSDeletedHost = r.FormValue(dm.Schedule_SYSDeletedHost_scrn)
+		item.SYSDbVersion = r.FormValue(dm.Schedule_SYSDbVersion_scrn)
 	
 	// 
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return item
 }

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2022 at 13:31:31
+// Date & Time		    : 10/12/2022 at 21:40:45
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -26,10 +26,15 @@ import (
 	logs   "github.com/mt1976/ebEstimates/logs"
 )
 
+var Schedule_SQLbase string
+func init(){
+	Schedule_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Schedule_SQLTable)
+}
+
 // Schedule_GetList() returns a list of all Schedule records
 func Schedule_GetList() (int, []dm.Schedule, error) {
 	
-	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Schedule_SQLTable)
+	tsql := Schedule_SQLbase
 	count, scheduleList, _, _ := schedule_Fetch(tsql)
 	
 	return count, scheduleList, nil
@@ -41,15 +46,15 @@ func Schedule_GetList() (int, []dm.Schedule, error) {
 func Schedule_GetByID(id string) (int, dm.Schedule, error) {
 
 
-	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Schedule_SQLTable)
-	tsql = tsql + " WHERE " + dm.Schedule_SQLSearchID + "='" + id + "'"
+	tsql := Schedule_SQLbase
+	tsql = tsql + " " + core.DB_WHERE + " " + dm.Schedule_SQLSearchID + core.DB_EQ + "'" + id + "'"
 	_, _, scheduleItem, _ := schedule_Fetch(tsql)
 
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, scheduleItem, nil
 }
@@ -64,8 +69,8 @@ func Schedule_Delete(id string) {
 
 // Uses Hard Delete
 	object_Table := core.GetSQLSchema(core.ApplicationPropertiesDB) + "." + dm.Schedule_SQLTable
-	tsql := "DELETE FROM " + object_Table
-	tsql = tsql + " WHERE " + dm.Schedule_SQLSearchID + " = '" + id + "'"
+	tsql := core.DB_DELETE+" "+core.DB_FROM+" " + object_Table
+	tsql = tsql + " " + core.DB_WHERE + " " + dm.Schedule_SQLSearchID + " = '" + id + "'"
 
 	das.Execute(tsql)
 	
@@ -120,10 +125,10 @@ func Schedule_StoreSystem(r dm.Schedule) error {
 func Schedule_Validate(r dm.Schedule) (dm.Schedule, error) {
 	var err error
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -166,6 +171,8 @@ func schedule_Save(r dm.Schedule,usr string) error {
 
 
 
+
+
 	
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
@@ -173,6 +180,7 @@ func schedule_Save(r dm.Schedule,usr string) error {
 	r.SYSUpdated = Audit_Update("", Audit_TimeStamp())
 	r.SYSUpdatedBy = Audit_Update("",usr)
 	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
+	r.SYSDbVersion = core.DB_Version()
 	
 logs.Storing("Schedule",fmt.Sprintf("%v", r))
 
@@ -180,7 +188,7 @@ logs.Storing("Schedule",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Schedule_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Schedule_Id_sql, r.Id)
@@ -190,24 +198,26 @@ logs.Storing("Schedule",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Schedule_Started_sql, r.Started)
 	ts = addData(ts, dm.Schedule_Lastrun_sql, r.Lastrun)
 	ts = addData(ts, dm.Schedule_Message_sql, r.Message)
-	ts = addData(ts, dm.Schedule_SYSCreated_sql, r.SYSCreated)
-	ts = addData(ts, dm.Schedule_SYSWho_sql, r.SYSWho)
-	ts = addData(ts, dm.Schedule_SYSHost_sql, r.SYSHost)
-	ts = addData(ts, dm.Schedule_SYSUpdated_sql, r.SYSUpdated)
 	ts = addData(ts, dm.Schedule_Type_sql, r.Type)
+	ts = addData(ts, dm.Schedule_Human_sql, r.Human)
+	ts = addData(ts, dm.Schedule_SYSCreated_sql, r.SYSCreated)
 	ts = addData(ts, dm.Schedule_SYSCreatedBy_sql, r.SYSCreatedBy)
 	ts = addData(ts, dm.Schedule_SYSCreatedHost_sql, r.SYSCreatedHost)
+	ts = addData(ts, dm.Schedule_SYSUpdated_sql, r.SYSUpdated)
 	ts = addData(ts, dm.Schedule_SYSUpdatedBy_sql, r.SYSUpdatedBy)
 	ts = addData(ts, dm.Schedule_SYSUpdatedHost_sql, r.SYSUpdatedHost)
-	ts = addData(ts, dm.Schedule_Human_sql, r.Human)
+	ts = addData(ts, dm.Schedule_SYSDeleted_sql, r.SYSDeleted)
+	ts = addData(ts, dm.Schedule_SYSDeletedBy_sql, r.SYSDeletedBy)
+	ts = addData(ts, dm.Schedule_SYSDeletedHost_sql, r.SYSDeletedHost)
+	ts = addData(ts, dm.Schedule_SYSDbVersion_sql, r.SYSDbVersion)
 		
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
-	tsql := "INSERT INTO " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Schedule_SQLTable)
+	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Schedule_SQLTable)
 	tsql = tsql + " (" + fields(ts) + ")"
-	tsql = tsql + " VALUES (" + values(ts) + ")"
+	tsql = tsql + " "+core.DB_VALUES +" (" + values(ts) + ")"
 
 	Schedule_Delete(r.Id)
 	das.Execute(tsql)
@@ -235,7 +245,7 @@ func schedule_Fetch(tsql string) (int, []dm.Schedule, dm.Schedule, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Schedule_SYSId_sql, "0")
 	   recItem.Id  = get_String(rec, dm.Schedule_Id_sql, "")
@@ -245,16 +255,18 @@ func schedule_Fetch(tsql string) (int, []dm.Schedule, dm.Schedule, error) {
 	   recItem.Started  = get_String(rec, dm.Schedule_Started_sql, "")
 	   recItem.Lastrun  = get_String(rec, dm.Schedule_Lastrun_sql, "")
 	   recItem.Message  = get_String(rec, dm.Schedule_Message_sql, "")
-	   recItem.SYSCreated  = get_String(rec, dm.Schedule_SYSCreated_sql, "")
-	   recItem.SYSWho  = get_String(rec, dm.Schedule_SYSWho_sql, "")
-	   recItem.SYSHost  = get_String(rec, dm.Schedule_SYSHost_sql, "")
-	   recItem.SYSUpdated  = get_String(rec, dm.Schedule_SYSUpdated_sql, "")
 	   recItem.Type  = get_String(rec, dm.Schedule_Type_sql, "")
+	   recItem.Human  = get_String(rec, dm.Schedule_Human_sql, "")
+	   recItem.SYSCreated  = get_String(rec, dm.Schedule_SYSCreated_sql, "")
 	   recItem.SYSCreatedBy  = get_String(rec, dm.Schedule_SYSCreatedBy_sql, "")
 	   recItem.SYSCreatedHost  = get_String(rec, dm.Schedule_SYSCreatedHost_sql, "")
+	   recItem.SYSUpdated  = get_String(rec, dm.Schedule_SYSUpdated_sql, "")
 	   recItem.SYSUpdatedBy  = get_String(rec, dm.Schedule_SYSUpdatedBy_sql, "")
 	   recItem.SYSUpdatedHost  = get_String(rec, dm.Schedule_SYSUpdatedHost_sql, "")
-	   recItem.Human  = get_String(rec, dm.Schedule_Human_sql, "")
+	   recItem.SYSDeleted  = get_String(rec, dm.Schedule_SYSDeleted_sql, "")
+	   recItem.SYSDeletedBy  = get_String(rec, dm.Schedule_SYSDeletedBy_sql, "")
+	   recItem.SYSDeletedHost  = get_String(rec, dm.Schedule_SYSDeletedHost_sql, "")
+	   recItem.SYSDbVersion  = get_String(rec, dm.Schedule_SYSDbVersion_sql, "")
 	
 	// If there are fields below, create the methods in adaptor\Schedule_impl.go
 	
@@ -276,8 +288,10 @@ func schedule_Fetch(tsql string) (int, []dm.Schedule, dm.Schedule, error) {
 	
 	
 	
+	
+	
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -307,10 +321,10 @@ func Schedule_New() (int, []dm.Schedule, dm.Schedule, error) {
 	
 
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

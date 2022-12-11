@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2022 at 13:31:31
+// Date & Time		    : 10/12/2022 at 21:40:44
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //Resource_Publish annouces the endpoints available for this object
-//Resource_Publish - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+//Resource_Publish - Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 func Resource_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.Resource_Path, Resource_Handler)
 	mux.HandleFunc(dm.Resource_PathList, Resource_HandlerList)
@@ -38,17 +38,17 @@ func Resource_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.Resource_Title)
     core.Catalog_Add(dm.Resource_Title, dm.Resource_Path, "", dm.Resource_QueryString, "Application")
 	// 
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Resource_HandlerList is the handler for the list page
 //Allows Listing of Resource records
-//Resource_HandlerList - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+//Resource_HandlerList - Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 func Resource_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -78,7 +78,7 @@ func Resource_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	ExecuteTemplate(dm.Resource_TemplateList, w, r, pageDetail)
 	// 
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -86,10 +86,10 @@ func Resource_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //Resource_HandlerView is the handler used to View a page
 //Allows Viewing for an existing Resource record
-//Resource_HandlerView - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+//Resource_HandlerView - Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 func Resource_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -118,17 +118,17 @@ func Resource_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Resource_TemplateView, w, r, pageDetail)
 	// 
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Resource_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing Resource record and then allows the user to save the changes
-//Resource_HandlerEdit - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+//Resource_HandlerEdit - Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 func Resource_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -157,17 +157,17 @@ func Resource_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Resource_TemplateEdit, w, r, pageDetail)
 	// 
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Resource_HandlerSave is the handler used process the saving of an Resource
 //It is called from the Edit and New pages
-//Resource_HandlerSave  - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+//Resource_HandlerSave  - Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 func Resource_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -185,17 +185,17 @@ func Resource_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	dao.Resource_Store(item,r)	
 	http.Redirect(w, r, dm.Resource_Redirect, http.StatusFound)
 	// 
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Resource_HandlerNew is the handler used process the creation of an Resource
 //It will create a new Resource and then redirect to the Edit page
-//Resource_HandlerNew  - Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+//Resource_HandlerNew  - Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 func Resource_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -222,7 +222,7 @@ func Resource_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Resource_TemplateNew, w, r, pageDetail)
 	// 
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }	
 
@@ -231,7 +231,7 @@ func Resource_HandlerNew(w http.ResponseWriter, r *http.Request) {
 //resource_PopulatePage Builds/Populates the Resource Page 
 func resource_PopulatePage(rD dm.Resource, pageDetail dm.Resource_Page) dm.Resource_Page {
 	// START
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.ResourceID = rD.ResourceID
@@ -251,10 +251,12 @@ func resource_PopulatePage(rD dm.Resource, pageDetail dm.Resource_Page) dm.Resou
 	pageDetail.UserActive = rD.UserActive
 	pageDetail.SYSActivity = rD.SYSActivity
 	pageDetail.Notes = rD.Notes
+	pageDetail.SYSDbVersion = rD.SYSDbVersion
+	pageDetail.Comments = rD.Comments
 	
 	
 	//
-	// Automatically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -297,6 +299,10 @@ func resource_PopulatePage(rD dm.Resource, pageDetail dm.Resource_Page) dm.Resou
 	
 	
 	
+	
+	
+	
+	
 	pageDetail.SYSId_props = rD.SYSId_props
 	pageDetail.ResourceID_props = rD.ResourceID_props
 	pageDetail.Code_props = rD.Code_props
@@ -315,9 +321,11 @@ func resource_PopulatePage(rD dm.Resource, pageDetail dm.Resource_Page) dm.Resou
 	pageDetail.UserActive_props = rD.UserActive_props
 	pageDetail.SYSActivity_props = rD.SYSActivity_props
 	pageDetail.Notes_props = rD.Notes_props
+	pageDetail.SYSDbVersion_props = rD.SYSDbVersion_props
+	pageDetail.Comments_props = rD.Comments_props
 	
 	// 
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	
@@ -326,11 +334,11 @@ return pageDetail
 //resource_DataFromRequest is used process the content of an HTTP Request and return an instance of an Resource
 func resource_DataFromRequest(r *http.Request) dm.Resource {
 	// START
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	var item dm.Resource
 	// FIELD SET START
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Resource_SYSId_scrn)
 		item.ResourceID = r.FormValue(dm.Resource_ResourceID_scrn)
@@ -350,9 +358,11 @@ func resource_DataFromRequest(r *http.Request) dm.Resource {
 		item.UserActive = r.FormValue(dm.Resource_UserActive_scrn)
 		item.SYSActivity = r.FormValue(dm.Resource_SYSActivity_scrn)
 		item.Notes = r.FormValue(dm.Resource_Notes_scrn)
+		item.SYSDbVersion = r.FormValue(dm.Resource_SYSDbVersion_scrn)
+		item.Comments = r.FormValue(dm.Resource_Comments_scrn)
 	
 	// 
-	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return item
 }

@@ -1,5 +1,0 @@
-CREATE USER [EBESTENGINE] FOR LOGIN [ebestengine];
-
-
-GO
-

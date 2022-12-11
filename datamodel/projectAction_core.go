@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2022 at 13:31:31
+// Date & Time		    : 10/12/2022 at 21:40:42
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -55,11 +55,17 @@ SYSDeletedHost       string
 SYSDeletedHost_props FieldProperties
 SYSActivity       string
 SYSActivity_props FieldProperties
+SYSDbVersion       string
+SYSDbVersion_props FieldProperties
+Comments       string
+Comments_props FieldProperties
  // Any lookups will be added below
 
 OriginID_lookup []Lookup_Item
 ProjectStateID_lookup []Lookup_Item
 ProfileID_lookup []Lookup_Item
+
+
 
 
 
@@ -126,6 +132,8 @@ const (
 	ProjectAction_SYSDeletedBy_sql   = "_deletedBy" // SYSDeletedBy is a String
 	ProjectAction_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
 	ProjectAction_SYSActivity_sql   = "_activity" // SYSActivity is a String
+	ProjectAction_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
+	ProjectAction_Comments_sql   = "comments" // Comments is a String
 
 	/// Definitions End
 	///
@@ -150,6 +158,8 @@ const (
 	ProjectAction_SYSDeletedBy_scrn   = "SYSDeletedBy" // SYSDeletedBy is a String
 	ProjectAction_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
 	ProjectAction_SYSActivity_scrn   = "SYSActivity" // SYSActivity is a String
+	ProjectAction_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
+	ProjectAction_Comments_scrn   = "Comments" // Comments is a String
 
 	/// Definitions End
 	///
@@ -175,7 +185,7 @@ type ProjectAction_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -218,8 +228,12 @@ type ProjectAction_Page struct {
 	SYSDeletedHost_props     FieldProperties
 	SYSActivity         string
 	SYSActivity_props     FieldProperties
+	SYSDbVersion         string
+	SYSDbVersion_props     FieldProperties
+	Comments         string
+	Comments_props     FieldProperties
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

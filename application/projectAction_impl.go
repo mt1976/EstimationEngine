@@ -16,7 +16,6 @@ package application
 import (
 	"net/http"
 
-	"github.com/davecgh/go-spew/spew"
 	core "github.com/mt1976/ebEstimates/core"
 	dao "github.com/mt1976/ebEstimates/dao"
 	dm "github.com/mt1976/ebEstimates/datamodel"
@@ -92,7 +91,7 @@ func ProjectAction_HandlerNew_Impl(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail.OriginID = originID
 
-	spew.Dump(pageDetail)
+	//spew.Dump(pageDetail)
 
 	ExecuteTemplate(dm.ProjectAction_TemplateNew, w, r, pageDetail)
 

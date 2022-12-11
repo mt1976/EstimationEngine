@@ -47,7 +47,7 @@
             </div>
 
     
-
+<h4>Identification</h4>
              
                     <div class="row mb-3"  >
                 <div class="col">
@@ -56,7 +56,7 @@
                         
                             <input type="text" class="form-control" id="OriginName" aria-describedby="OriginNameHelp" placeholder="" disabled value="({{.OriginCode}}) {{.OriginName}}" data-mdb-input-mask=""></input>
                         
-                        <label class="form-label" for="OriginName">Origin Name</label>
+                        <label class="form-label" for="OriginName">Origin</label>
                         
                     </div>
                 
@@ -100,7 +100,7 @@
             </div>
              
 
-
+<h4>Project</h4>
         
             
             <div class="row mb-3"  >
@@ -227,6 +227,20 @@
                 </tbody>
             </table>
 
+<h4>Comments</h4>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <textarea class="form-control {{.Comments_props.MsgType}}" id="Comments" name="Comments" aria-describedby="CommentsHelp" placeholder=""  readonly value="{{.Comments}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Comments}}</textarea>
+              
+              <label class="form-label" for="Comments" >Comments</label>
+              <div class="{{.Comments_props.MsgFeedBackType}}">{{.Comments_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+
             <h4>Links</h2>
 <div class="row mb-3"  >
                 <div class="col">
@@ -256,7 +270,7 @@
                         
                             <input type="text" class="form-control" id="TrackerID" aria-describedby="TrackerIDHelp" placeholder="" disabled value="{{.TrackerID}}" data-mdb-input-mask=""></input>
                         
-                        <label class="form-label" for="TrackerID">TrackerID</label>
+                        <label class="form-label" for="TrackerID">RSC/NC No.</label>
                         
                     </div>
                 
@@ -297,7 +311,7 @@
                 
                     <div class="form-outline">
                         
-                            <textarea class="form-control" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder=""  disabled value="{{.Notes}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Notes}}</textarea>
+                            <textarea class="form-control" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder=""  disabled value="{{.Notes}}"  data-mdb-input-mask="" rows="10" maxlength="255">{{.Notes}}</textarea>
                         
                         <label class="form-label" for="Notes">Notes</label>
                         

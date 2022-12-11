@@ -8,7 +8,7 @@
       <div class="row">
         <div class="col h3">
           <i class="fas fa-building me-2"
-            title="OriginID={{.OriginID}}"></i><span class="me-3">Edit Origin {{.Code}}</span>
+            title="OriginID={{.OriginID}}"></i><span class="me-3">Origin {{.Code}} - Edit</span>
         </div>
         <div class="col d-flex justify-content-end">
           <div class="btn-group">
@@ -46,6 +46,7 @@
             </div>
         
         </div></div>
+        <h4>Identification</h4>
                <div class="row mb-3"  ><div class="col">
         
             <div class="form-outline">
@@ -68,6 +69,7 @@
             </div>
         
         </div></div>
+        <h4>Properties</h4>
         <div class="row mb-3"  ><div class="col">
         
             
@@ -113,18 +115,7 @@
             </div>
         
         </div></div>
-       
-        <div class="row mb-3"  ><div class="col">
-        
-            <div class="form-outline">
-              
-              <textarea class="form-control {{.Notes_props.MsgType}}" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder=""   value="{{.Notes}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Notes}}</textarea>
-              
-              <label class="form-label" for="Notes" >Notes</label>
-              <div class="{{.Notes_props.MsgFeedBackType}}">{{.Notes_props.MsgMessage}}</div>
-            </div>
-        
-        </div></div>
+
        
         <div class="row mb-3"  ><div class="col">
         
@@ -149,7 +140,18 @@
             </div>
         
         </div></div>
-       
+              <h4>Comments</h4>
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <textarea class="form-control {{.Comments_props.MsgType}}" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder=""   value="{{.Comments}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Comments}}</textarea>
+              
+              <label class="form-label" for="Notes" >Comments</label>
+              <div class="{{.Comments_props.MsgFeedBackType}}">{{.Comments_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
         <div class="row mb-3" hidden hidden><div class="col">
         
             <div class="form-outline">

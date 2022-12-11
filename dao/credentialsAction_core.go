@@ -1,4 +1,5 @@
 package dao
+
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/credentialsaction.go"
 // ----------------------------------------------------------------
@@ -8,76 +9,58 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2022 at 13:31:29
+// Date & Time		    : 10/12/2022 at 21:40:35
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-
 	"fmt"
 	"net/http"
-	
+
 	"github.com/google/uuid"
-	
-	 adaptor   "github.com/mt1976/ebEstimates/adaptor"
-	dm   "github.com/mt1976/ebEstimates/datamodel"
-	logs   "github.com/mt1976/ebEstimates/logs"
+	adaptor "github.com/mt1976/ebEstimates/adaptor"
+	core "github.com/mt1976/ebEstimates/core"
+	dm "github.com/mt1976/ebEstimates/datamodel"
+	logs "github.com/mt1976/ebEstimates/logs"
 )
+
+var CredentialsAction_SQLbase string
+
+func init() {
+	CredentialsAction_SQLbase = core.DB_SELECT + " " + core.DB_ALL + " " + core.DB_FROM + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.CredentialsAction_SQLTable)
+}
 
 // CredentialsAction_GetList() returns a list of all CredentialsAction records
 func CredentialsAction_GetList() (int, []dm.CredentialsAction, error) {
-	
+
 	count, credentialsactionList, _ := adaptor.CredentialsAction_GetList_impl()
-	
+
 	return count, credentialsactionList, nil
 }
-
-
 
 // CredentialsAction_GetByID() returns a single CredentialsAction record
 func CredentialsAction_GetByID(id string) (int, dm.CredentialsAction, error) {
 
+	_, credentialsactionItem, _ := adaptor.CredentialsAction_GetByID_impl(id)
 
-	 _, credentialsactionItem, _ := adaptor.CredentialsAction_GetByID_impl(id)
-	
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	//
-	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	return 1, credentialsactionItem, nil
 }
 
-
-
 // CredentialsAction_DeleteByID() deletes a single CredentialsAction record
 func CredentialsAction_Delete(id string) {
 
-
 	adaptor.CredentialsAction_Delete_impl(id)
-	
-	
+
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-
-
 // CredentialsAction_Store() saves/stores a CredentialsAction record to the database
-func CredentialsAction_Store(r dm.CredentialsAction,req *http.Request) error {
+func CredentialsAction_Store(r dm.CredentialsAction, req *http.Request) error {
 
 	r, err := CredentialsAction_Validate(r)
 	if err == nil {
@@ -91,7 +74,7 @@ func CredentialsAction_Store(r dm.CredentialsAction,req *http.Request) error {
 
 // CredentialsAction_StoreSystem() saves/stores a CredentialsAction record to the database
 func CredentialsAction_StoreSystem(r dm.CredentialsAction) error {
-	
+
 	r, err := CredentialsAction_Validate(r)
 	if err == nil {
 		err = credentialsaction_Save(r, Audit_Host())
@@ -106,44 +89,34 @@ func CredentialsAction_StoreSystem(r dm.CredentialsAction) error {
 func CredentialsAction_Validate(r dm.CredentialsAction) (dm.CredentialsAction, error) {
 	var err error
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	//
-	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//
-	
 
-	return r,err
+	return r, err
 }
+
 //
 
 // credentialsaction_Save() saves/stores a CredentialsAction record to the database
-func credentialsaction_Save(r dm.CredentialsAction,usr string) error {
+func credentialsaction_Save(r dm.CredentialsAction, usr string) error {
 
-    var err error
-
-
-
-	
+	var err error
 
 	if len(r.ID) == 0 {
 		r.ID = CredentialsAction_NewID(r)
 	}
 
-// If there are fields below, create the methods in dao\credentialsaction_impl.go
+	// If there are fields below, create the methods in dao\credentialsaction_impl.go
 
+	logs.Storing("CredentialsAction", fmt.Sprintf("%v", r))
 
-
-
-
-
-	
-logs.Storing("CredentialsAction",fmt.Sprintf("%v", r))
-
-// Please Create Functions Below in the adaptor/CredentialsAction_impl.go file
+	// Please Create Functions Below in the adaptor/CredentialsAction_impl.go file
 	err1 := adaptor.CredentialsAction_Delete_impl(r.ID)
-	err2 := adaptor.CredentialsAction_Update_impl(r.ID,r,usr)
+	err2 := adaptor.CredentialsAction_Update_impl(r.ID, r, usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -151,40 +124,31 @@ logs.Storing("CredentialsAction",fmt.Sprintf("%v", r))
 		err = err2
 	}
 
-
 	return err
 
 }
 
-
-
 // credentialsaction_Fetch is not required as GetByID, GetAll etc... have been diverted to _impl
-	
-
 
 func CredentialsAction_NewID(r dm.CredentialsAction) string {
-	
-			id := uuid.New().String()
-	
+
+	id := uuid.New().String()
+
 	return id
 }
-
-
 
 // credentialsaction_Fetch read all CredentialsAction's
 func CredentialsAction_New() (int, []dm.CredentialsAction, dm.CredentialsAction, error) {
 
 	var r = dm.CredentialsAction{}
 	var rList []dm.CredentialsAction
-	
 
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	//
-	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
-
 
 	rList = append(rList, r)
 

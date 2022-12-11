@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 08/12/2022 at 13:31:31
+// Date & Time		    : 10/12/2022 at 21:40:44
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -53,6 +53,10 @@ SYSActivity       string
 SYSActivity_props FieldProperties
 Notes       string
 Notes_props FieldProperties
+SYSDbVersion       string
+SYSDbVersion_props FieldProperties
+Comments       string
+Comments_props FieldProperties
  // Any lookups will be added below
 
 
@@ -69,6 +73,8 @@ Class_lookup []Lookup_Item
 
 
 UserActive_lookup []Lookup_Item
+
+
 
 
 
@@ -123,6 +129,8 @@ const (
 	Resource_UserActive_sql   = "userActive" // UserActive is a String
 	Resource_SYSActivity_sql   = "_activity" // SYSActivity is a String
 	Resource_Notes_sql   = "notes" // Notes is a String
+	Resource_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
+	Resource_Comments_sql   = "comments" // Comments is a String
 
 	/// Definitions End
 	///
@@ -146,6 +154,8 @@ const (
 	Resource_UserActive_scrn   = "UserActive" // UserActive is a String
 	Resource_SYSActivity_scrn   = "SYSActivity" // SYSActivity is a String
 	Resource_Notes_scrn   = "Notes" // Notes is a String
+	Resource_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
+	Resource_Comments_scrn   = "Comments" // Comments is a String
 
 	/// Definitions End
 	///
@@ -171,7 +181,7 @@ type Resource_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -211,8 +221,12 @@ type Resource_Page struct {
 	SYSActivity_props     FieldProperties
 	Notes         string
 	Notes_props     FieldProperties
+	SYSDbVersion         string
+	SYSDbVersion_props     FieldProperties
+	Comments         string
+	Comments_props     FieldProperties
 	// 
-	// Dynamically generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }
