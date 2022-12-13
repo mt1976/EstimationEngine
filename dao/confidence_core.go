@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 10/12/2022 at 21:40:33
+// Date & Time		    : 11/12/2022 at 19:23:59
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -27,8 +27,10 @@ import (
 )
 
 var Confidence_SQLbase string
+var Confidence_QualifiedName string
 func init(){
-	Confidence_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Confidence_SQLTable)
+	Confidence_QualifiedName = get_TableName(core.ApplicationSQLSchema(), dm.Confidence_SQLTable)
+	Confidence_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + Confidence_QualifiedName
 }
 
 // Confidence_GetList() returns a list of all Confidence records
@@ -61,10 +63,10 @@ func Confidence_GetByID(id string) (int, dm.Confidence, error) {
 	_, _, confidenceItem, _ := confidence_Fetch(tsql)
 
 	// START
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, confidenceItem, nil
 }
@@ -78,7 +80,7 @@ func Confidence_Delete(id string) {
 
 
 // Uses Hard Delete
-	object_Table := core.GetSQLSchema(core.ApplicationPropertiesDB) + "." + dm.Confidence_SQLTable
+	object_Table := Confidence_QualifiedName
 	tsql := core.DB_DELETE+" "+core.DB_FROM+" " + object_Table
 	tsql = tsql + " " + core.DB_WHERE + " " + dm.Confidence_SQLSearchID + " = '" + id + "'"
 
@@ -145,10 +147,10 @@ func Confidence_StoreSystem(r dm.Confidence) error {
 func Confidence_Validate(r dm.Confidence) (dm.Confidence, error) {
 	var err error
 	// START
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -205,7 +207,7 @@ logs.Storing("Confidence",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Confidence_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Confidence_ConfidenceID_sql, r.ConfidenceID)
@@ -226,10 +228,10 @@ logs.Storing("Confidence",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Confidence_Comments_sql, r.Comments)
 		
 	// 
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
-	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Confidence_SQLTable)
+	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + Confidence_QualifiedName
 	tsql = tsql + " (" + fields(ts) + ")"
 	tsql = tsql + " "+core.DB_VALUES +" (" + values(ts) + ")"
 
@@ -259,7 +261,7 @@ func confidence_Fetch(tsql string) (int, []dm.Confidence, dm.Confidence, error) 
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Confidence_SYSId_sql, "0")
 	   recItem.ConfidenceID  = get_String(rec, dm.Confidence_ConfidenceID_sql, "")
@@ -299,7 +301,7 @@ func confidence_Fetch(tsql string) (int, []dm.Confidence, dm.Confidence, error) 
 	
 	
 	// 
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -329,10 +331,10 @@ func Confidence_New() (int, []dm.Confidence, dm.Confidence, error) {
 	
 
 	// START
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

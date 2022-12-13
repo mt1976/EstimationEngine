@@ -17,6 +17,7 @@ const (
 	DATETIMEFORMATSQLSERVER = "2006-01-02 15:04:05"
 	DATETIMEFORMATUSER      = DATEFORMATUSER + " 15:04:05"
 	TIMEHMS                 = "15:04:05"
+	DATEMSG                 = "2006-01-02 at 15:04:05"
 )
 const (
 	APPCONFIG       = "application.cfg"

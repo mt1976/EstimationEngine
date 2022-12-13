@@ -43,32 +43,36 @@ const (
 	log_Save          = "Writing"
 	log_Event         = "Event"
 	log_Callout       = "Callout"
+	log_Override      = "Override"
+	log_Expired       = "Expired"
 
-	ColorReset        = "\033[0m"
-	ColorRed          = "\033[31m"
-	ColorGreen        = "\033[32m"
-	ColorYellow       = "\033[33m"
-	ColorBlue         = "\033[34m"
-	ColourMagenta     = "\033[35m"
-	ColorCyan         = "\033[36m"
-	ColorWhite        = "\033[37m"
-	ColorBoldYellow   = "\033[1m\033[33m"
-	Character_MapTo   = "⇄"
-	Character_Job     = "⚙️"
-	Character_Heart   = "🫀"
-	Character_Poke    = "👉"
-	Character_Time    = "🕒"
-	Character_Break   = "≫"
-	Character_Tick    = "☑️"
-	Character_Warning = "⚠️"
-	Character_Bike    = "🚴‍♂️"
-	Character_Skip    = "⏭️"
-	Character_Created = "💾"
-	Character_Query   = "🔎"
-	Character_Result  = "?"
-	Character_Storing = "📀"
-	Character_Event   = "🗂"
-	Character_Callout = "📞"
+	ColorReset         = "\033[0m"
+	ColorRed           = "\033[31m"
+	ColorGreen         = "\033[32m"
+	ColorYellow        = "\033[33m"
+	ColorBlue          = "\033[34m"
+	ColourMagenta      = "\033[35m"
+	ColorCyan          = "\033[36m"
+	ColorWhite         = "\033[37m"
+	ColorBoldYellow    = "\033[1m\033[33m"
+	Character_MapTo    = "⇄"
+	Character_Job      = "⚙️"
+	Character_Heart    = "🫀"
+	Character_Poke     = "👉"
+	Character_Time     = "🕒"
+	Character_Break    = "≫"
+	Character_Tick     = "☑️"
+	Character_Warning  = "⚠️"
+	Character_Bike     = "🚴‍♂️"
+	Character_Skip     = "⏭️"
+	Character_Created  = "💾"
+	Character_Query    = "🔎"
+	Character_Result   = "?"
+	Character_Storing  = "📀"
+	Character_Event    = "🗂"
+	Character_Callout  = "📞"
+	Character_Override = "🔧"
+	Character_Expired  = "🕰"
 )
 
 type Config struct {
@@ -87,9 +91,19 @@ func Poke(w string, v string) {
 	msg_raw(log_Poke, w, v, colour.Yellow)
 }
 
+func Override(inProp string, inVal string, inEnv string, inEnvVal string) {
+	msgTXT := "Config Property " + inProp + " " + dq(inVal) + " => Enviro Var " + inEnv + " " + dq(inEnvVal)
+	msg_raw(log_Override, msgTXT, Character_Override, colour.Yellow)
+}
+
 func Success(s string) {
 	//msg_done(s)
 	msg_raw(log_Success, s, Character_Tick, colour.Green)
+}
+
+func Expired(s string) {
+	//msg_done(s)
+	msg_raw(log_Expired, s, Character_Expired, colour.Green)
 }
 
 func Event(s string) {
@@ -340,4 +354,8 @@ func isRunningInDockerContainer() bool {
 	}
 
 	return false
+}
+
+func dq(in string) string {
+	return fmt.Sprintf("%q", in)
 }

@@ -14,6 +14,7 @@ import (
 
 	application "github.com/mt1976/ebEstimates/application"
 	core "github.com/mt1976/ebEstimates/core"
+	"github.com/mt1976/ebEstimates/dao"
 	"github.com/mt1976/ebEstimates/jobs"
 	logs "github.com/mt1976/ebEstimates/logs"
 )
@@ -96,9 +97,9 @@ func main() {
 	application.ProjectAction_Publish_Impl(*mux)
 
 	// End of Endpoints
-
+	logs.Break()
 	logs.Header("Publish API")
-
+	logs.Break()
 	core.Catalog_List()
 
 	logs.Success("Endpoints Published")
@@ -125,6 +126,11 @@ func main() {
 	logs.Header("READY STEADY GO!!!")
 	logs.Information("Initialisation", "Vrooom, Vrooooom, Vroooooooo..."+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike)
 	logs.Break()
+
+	MSG_BODY := "System Online <br><br> %s Started %s at %s on %s"
+	MSG_BODY = dao.Translate("Email", MSG_BODY)
+	MSG_BODY = fmt.Sprintf(MSG_BODY, core.ApplicationName(), time.Now().Format("15:04:05"), time.Now().Format("02/01/2006"), core.ApplicationHostname())
+	core.SendEmail(core.GetApplicationProperty("admin"), "Admin", "System Online - "+core.ApplicationName(), MSG_BODY)
 
 	httpProtocol := core.ApplicationHTTPProtocol()
 	logs.URI(httpProtocol + "://localhost:" + core.ApplicationHTTPPort())
@@ -210,7 +216,7 @@ func application_HandlerClearQueues(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err2)
 	}
 	//fmt.Println("procPath", wctProperties["processedpath"])
-	err3 := core.RemoveContents(core.ApplicationProperties["processedpath"])
+	err3 := core.RemoveContents(core.GetApplicationProperty("processedpath"))
 	if err3 != nil {
 		fmt.Println(err3)
 	}
@@ -260,4 +266,8 @@ func Application_Info() {
 
 	logs.Header("Sessions")
 	logs.Information("Session Life", core.ApplicationSessionLife())
+
+	core.GetApplicationProperty("admin")
+	core.GetDatabaseProperty("admin")
+
 }

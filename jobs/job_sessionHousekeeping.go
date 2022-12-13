@@ -11,7 +11,7 @@ import (
 func SessionHouseKeeping_Job() dm.JobDefinition {
 	var j dm.JobDefinition
 	j.ID = "SESSION"
-	j.Name = "SESSION"
+	j.Name = "Session"
 	j.Period = "*/15 * * * *"
 	j.Description = "Session Management"
 	j.Type = core.HouseKeeping

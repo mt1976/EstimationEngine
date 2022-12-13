@@ -98,7 +98,7 @@ func Home_HandlerView(w http.ResponseWriter, r *http.Request) {
 	homePage.SessionInfo, _ = Session_GetSessionInfo(r)
 	if core.IsChildInstance {
 		homePage.InstanceState = "Child System"
-		//	homePage.AppSQLDatabase = ApplicationSQLDatabase() + "-" + ApplicationPropertiesDB["instance"]
+		//	homePage.AppSQLDatabase = ApplicationSQLDatabase() + "-" + core.GetDatabaseProperty("instance")
 	}
 
 	homePage.NoOrigins, homePage.OriginList, _ = dao.Origin_GetActiveList()

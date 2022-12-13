@@ -16,7 +16,7 @@ import (
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 10/12/2022 at 21:40:39
+// Date & Time		    : 11/12/2022 at 19:53:20
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -27,7 +27,7 @@ import (
 
 	// If there are fields below, create the methods in adaptor\origin_impl.go
 	// START - GET API/Callout
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 func Origin_NoActiveProjects_OnStore_impl (fieldval string,rec dm.Origin,usr string) (string,error)  {
 	logs.Callout("Origin", "NoActiveProjects", PUT, rec.OriginID)
@@ -35,11 +35,11 @@ func Origin_NoActiveProjects_OnStore_impl (fieldval string,rec dm.Origin,usr str
 	}
 
 	// 
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END - GET API/Callout
 	//
 	// START - PUT API/Callout
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 func Origin_NoActiveProjects_OnFetch_impl (rec dm.Origin)(string) {
 	logs.Callout("Origin", "NoActiveProjects", GET, rec.OriginID)
@@ -47,11 +47,11 @@ func Origin_NoActiveProjects_OnFetch_impl (rec dm.Origin)(string) {
 	}
 
 	// 
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END - PUT API/Callout
 
 	// START - Validation API/Callout
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Origin_NoActiveProjects_impl provides validation/actions for NoActiveProjects
 	func Origin_NoActiveProjects_impl (iAction string, iId string, iValue string, iRec dm.Origin, fP dm.FieldProperties) (string, dm.FieldProperties) {
@@ -60,7 +60,7 @@ func Origin_NoActiveProjects_OnFetch_impl (rec dm.Origin)(string) {
 	}
 
 	// 
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END - Validation API/Callout
 
 func Origin_ObjectValidation_impl (iAction string, iId string, iRec dm.Origin) (dm.Origin, string, error) {

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 10/12/2022 at 21:40:46
+// Date & Time		    : 11/12/2022 at 19:24:03
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -27,8 +27,10 @@ import (
 )
 
 var Translation_SQLbase string
+var Translation_QualifiedName string
 func init(){
-	Translation_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Translation_SQLTable)
+	Translation_QualifiedName = get_TableName(core.ApplicationSQLSchema(), dm.Translation_SQLTable)
+	Translation_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + Translation_QualifiedName
 }
 
 // Translation_GetList() returns a list of all Translation records
@@ -51,10 +53,10 @@ func Translation_GetByID(id string) (int, dm.Translation, error) {
 	_, _, translationItem, _ := translation_Fetch(tsql)
 
 	// START
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, translationItem, nil
 }
@@ -68,7 +70,7 @@ func Translation_Delete(id string) {
 
 
 // Uses Hard Delete
-	object_Table := core.GetSQLSchema(core.ApplicationPropertiesDB) + "." + dm.Translation_SQLTable
+	object_Table := Translation_QualifiedName
 	tsql := core.DB_DELETE+" "+core.DB_FROM+" " + object_Table
 	tsql = tsql + " " + core.DB_WHERE + " " + dm.Translation_SQLSearchID + " = '" + id + "'"
 
@@ -125,10 +127,10 @@ func Translation_StoreSystem(r dm.Translation) error {
 func Translation_Validate(r dm.Translation) (dm.Translation, error) {
 	var err error
 	// START
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -183,7 +185,7 @@ logs.Storing("Translation",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Translation_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Translation_Id_sql, r.Id)
@@ -202,10 +204,10 @@ logs.Storing("Translation",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Translation_SYSDbVersion_sql, r.SYSDbVersion)
 		
 	// 
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
-	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Translation_SQLTable)
+	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + Translation_QualifiedName
 	tsql = tsql + " (" + fields(ts) + ")"
 	tsql = tsql + " "+core.DB_VALUES +" (" + values(ts) + ")"
 
@@ -235,7 +237,7 @@ func translation_Fetch(tsql string) (int, []dm.Translation, dm.Translation, erro
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Translation_SYSId_sql, "0")
 	   recItem.Id  = get_String(rec, dm.Translation_Id_sql, "")
@@ -271,7 +273,7 @@ func translation_Fetch(tsql string) (int, []dm.Translation, dm.Translation, erro
 	
 	
 	// 
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -301,10 +303,10 @@ func Translation_New() (int, []dm.Translation, dm.Translation, error) {
 	
 
 	// START
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

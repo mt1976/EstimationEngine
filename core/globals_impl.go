@@ -4,11 +4,13 @@ import (
 	"database/sql"
 	"io/ioutil"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/alexedwards/scs/v2"
 	"github.com/jimlawless/cfg"
 	"github.com/mt1976/ebEstimates/logs"
+	"gopkg.in/gomail.v2"
 )
 
 var startTime = time.Now()
@@ -29,6 +31,7 @@ var MasterPropertiesDB map[string]string
 var MasterDB *sql.DB
 
 var SessionManager *scs.SessionManager
+var Emailer *gomail.Dialer
 
 var IsChildInstance bool
 
@@ -56,11 +59,41 @@ type DateItem struct {
 }
 
 func GetApplicationProperty(inProperty string) string {
-	return ApplicationProperties[inProperty]
+	low_var := strings.ToLower(inProperty)
+	rtn_var := ApplicationProperties[low_var]
+	env_var := "APP_" + strings.ToUpper(inProperty)
+
+	logs.Accessing("GetApplicationProperty : " + inProperty + " " + env_var)
+
+	xxx := os.Getenv(env_var)
+	if xxx != "" {
+		logs.Override(inProperty, rtn_var, env_var, xxx)
+		return xxx
+	}
+
+	logs.Information("GetApplicationProperty", rtn_var)
+	return rtn_var
+}
+
+func GetDatabaseProperty(inProperty string) string {
+
+	rtn_var := ApplicationPropertiesDB[inProperty]
+	env_var := "DB_" + strings.ToUpper(inProperty)
+
+	//logs.Accessing("GetDBProperty : " + inProperty + " " + env_var)
+
+	xxx := os.Getenv(env_var)
+	if xxx != "" {
+		logs.Override(inProperty, rtn_var, env_var, xxx)
+		return xxx
+	}
+
+	//logs.Information("GetDBProperty :", ApplicationPropertiesDB[inProperty])
+	return rtn_var
 }
 
 // Load a Properties File
-func getProperties(inPropertiesFile string) map[string]string {
+func getPropertiesFromFile(inPropertiesFile string) map[string]string {
 	wctProperties := make(map[string]string)
 	//machineName, _ := os.Hostname()
 	// For docker - if can't find properties file (create one from the template properties file)

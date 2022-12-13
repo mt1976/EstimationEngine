@@ -70,7 +70,7 @@ func Schedule_Register(thisJob dm.JobDefinition) {
 		case core.Dispatcher:
 			icon = core.Character_Dispatcher
 		}
-		op := fmt.Sprintf("%s %-18s %-18s %q", icon, s.Name, s.Schedule, Schedule_GetCronHuman(s.Schedule))
+		op := fmt.Sprintf("%s  %-18s %-18s %q", icon, s.Name, s.Schedule, Schedule_GetCronHuman(s.Schedule))
 		logs.Schedule(op)
 	}
 }

@@ -69,6 +69,7 @@ SQL Table Key | **id**
 |**SYSDeletedHost**|String|false|true|false|false|||||NH|_deletedHost||false|false|true|text||
 |**SYSActivity**|String|false|true|false|false|||||NH|_activity||false|false|true|text||
 |**SYSDbVersion**|String|false|true|false|false|||||NH|_dbVersion||false|false|true|text||
+|**EmailNotifications**|String|false|true|false|false|||||Y|emailNotifications||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -79,6 +80,7 @@ SQL Table Key | **id**
 | code | **api** | /application/credentials_api.go |
 | code | **dao** | /dao/credentials_core.go |
 | code | **datamodel** | /datamodel/credentials_core.go |
+| code | **job** | /jobs/credentials_core.go |
 | code | **menu** | /design/menu/credentials.json |
 | html | **list** | /Credentials_List.html |
 | html | **view** | /Credentials_View.html |
@@ -90,7 +92,7 @@ SQL Table Key | **id**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **10/12/2022** at **21:40:34**
+Date & Time		     | **12/12/2022** at **12:17:25**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

@@ -452,23 +452,23 @@ func GetCookieIdentity() string {
 }
 
 func ReleaseID() string {
-	return ApplicationProperties["releaseid"]
+	return GetApplicationProperty("releaseid")
 }
 
 func ProjectID() string {
-	return ApplicationProperties["project"]
+	return GetApplicationProperty("project")
 }
 
 func ReleaseLevel() string {
-	return ApplicationProperties["releaselevel"]
+	return GetApplicationProperty("releaselevel")
 }
 
 func ReleaseNumber() string {
-	return ApplicationProperties["releasenumber"]
+	return GetApplicationProperty("releasenumber")
 }
 
 func ApplicationName() string {
-	return ApplicationProperties["appname"]
+	return GetApplicationProperty("appname")
 }
 
 func ApplicationHostname() string {
@@ -477,62 +477,63 @@ func ApplicationHostname() string {
 }
 
 func ApplicationSQLServer() string {
-	return ApplicationPropertiesDB["server"]
+	return GetDatabaseProperty("server")
 }
 
 func ApplicationSQLSchemaParent() string {
-	return ApplicationPropertiesDB["parentschema"]
+	return GetDatabaseProperty("parentschema")
 }
 
 func GetSQLSchema(in map[string]string) string {
-	return in["schema"]
+	return GetDatabaseProperty("schema")
 }
+
 func ApplicationSQLSchema() string {
-	return GetSQLSchema(ApplicationPropertiesDB)
+	return GetDatabaseProperty("schema")
 }
 
 func ApplicationSQLDatabase() string {
-	return ApplicationPropertiesDB["database"]
+	return GetDatabaseProperty("database")
 }
 
 func ApplicationSessionLife() string {
-	return ApplicationProperties["sessionlife"]
+	return GetApplicationProperty("sessionlife")
 }
 
 func ApplicationHTTPProtocol() string {
-	return ApplicationProperties["protocol"]
+	return GetApplicationProperty("protocol")
 }
 
 func ApplicationHTTPPort() string {
-	return ApplicationProperties["port"]
+	return GetApplicationProperty("port")
 }
 
 func ApplicationEnvironment() string {
-	return ApplicationProperties["environment"]
+	return GetApplicationProperty("environment")
 }
 
 func ApplicationCertificatePath() string {
-	return ApplicationProperties["certpath"]
+	return GetApplicationProperty("certpath")
 }
 
 func ApplicationCertificateName() string {
-	return ApplicationProperties["certname"]
+	return GetApplicationProperty("certname")
 }
 
 func ApplicationCredentialsLife() string {
-	return ApplicationProperties["credentialslife"]
+	return GetApplicationProperty("credentialslife")
 }
 
 func ApplicationGetLicenseName() string {
-	return ApplicationProperties["licname"]
+	return GetApplicationProperty("licname")
 }
 
 func ApplicationGetLicenseLink() string {
-	return ApplicationProperties["liclink"]
+	return GetApplicationProperty("liclink")
 }
 
 func ApplicationToken() string {
-	return ApplicationProperties["applicationtoken"]
+	return GetApplicationProperty("applicationtoken")
 }
 
 func SetApplicationSQLDatabase(db string) {
@@ -544,13 +545,31 @@ func DataLoaderArtifactRepository() string {
 }
 
 func OBSOLETE_MessageQueueDeliveryPath() string {
-	return ApplicationProperties["deliverpath"]
+	return ""
 }
 
 func OBSOLETE_MessageQueueRecievePath() string {
-	return ApplicationProperties["receivepath"]
+	return ""
 }
 
 func OBSOLETE_MessageQueueProcessedPath() string {
-	return ApplicationProperties["processedpath"]
+	return ""
+}
+
+func AddActivity(in string, what string) string {
+	return AddActivity_ForUser(in, what, "System")
+}
+
+func AddActivity_ForProcess(in string, what string, process string) string {
+	return AddActivity_ForUser(in, what, process)
+}
+
+func AddActivity_ForUser(in string, what string, un string) string {
+	if what == "" {
+		return in
+	}
+
+	tm := time.Now().Format("02/01/2006 15:04:05")
+	out := in + "\n" + tm + " " + un + " : " + what
+	return out
 }

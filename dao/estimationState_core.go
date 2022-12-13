@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 10/12/2022 at 21:40:36
+// Date & Time		    : 11/12/2022 at 19:24:00
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -27,8 +27,10 @@ import (
 )
 
 var EstimationState_SQLbase string
+var EstimationState_QualifiedName string
 func init(){
-	EstimationState_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.EstimationState_SQLTable)
+	EstimationState_QualifiedName = get_TableName(core.ApplicationSQLSchema(), dm.EstimationState_SQLTable)
+	EstimationState_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + EstimationState_QualifiedName
 }
 
 // EstimationState_GetList() returns a list of all EstimationState records
@@ -61,10 +63,10 @@ func EstimationState_GetByID(id string) (int, dm.EstimationState, error) {
 	_, _, estimationstateItem, _ := estimationstate_Fetch(tsql)
 
 	// START
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, estimationstateItem, nil
 }
@@ -78,7 +80,7 @@ func EstimationState_Delete(id string) {
 
 
 // Uses Hard Delete
-	object_Table := core.GetSQLSchema(core.ApplicationPropertiesDB) + "." + dm.EstimationState_SQLTable
+	object_Table := EstimationState_QualifiedName
 	tsql := core.DB_DELETE+" "+core.DB_FROM+" " + object_Table
 	tsql = tsql + " " + core.DB_WHERE + " " + dm.EstimationState_SQLSearchID + " = '" + id + "'"
 
@@ -145,10 +147,10 @@ func EstimationState_StoreSystem(r dm.EstimationState) error {
 func EstimationState_Validate(r dm.EstimationState) (dm.EstimationState, error) {
 	var err error
 	// START
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -202,7 +204,7 @@ logs.Storing("EstimationState",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.EstimationState_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.EstimationState_EstimationStateID_sql, r.EstimationStateID)
@@ -220,10 +222,10 @@ logs.Storing("EstimationState",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.EstimationState_SYSDbVersion_sql, r.SYSDbVersion)
 		
 	// 
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
-	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.EstimationState_SQLTable)
+	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + EstimationState_QualifiedName
 	tsql = tsql + " (" + fields(ts) + ")"
 	tsql = tsql + " "+core.DB_VALUES +" (" + values(ts) + ")"
 
@@ -253,7 +255,7 @@ func estimationstate_Fetch(tsql string) (int, []dm.EstimationState, dm.Estimatio
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.EstimationState_SYSId_sql, "0")
 	   recItem.EstimationStateID  = get_String(rec, dm.EstimationState_EstimationStateID_sql, "")
@@ -287,7 +289,7 @@ func estimationstate_Fetch(tsql string) (int, []dm.EstimationState, dm.Estimatio
 	
 	
 	// 
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -317,10 +319,10 @@ func EstimationState_New() (int, []dm.EstimationState, dm.EstimationState, error
 	
 
 	// START
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

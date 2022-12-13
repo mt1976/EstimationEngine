@@ -5,6 +5,7 @@ import (
 
 	application "github.com/mt1976/ebEstimates/application"
 	core "github.com/mt1976/ebEstimates/core"
+	"github.com/mt1976/ebEstimates/dao"
 	dm "github.com/mt1976/ebEstimates/datamodel"
 	"github.com/mt1976/ebEstimates/logs"
 	"github.com/robfig/cron/v3"
@@ -12,10 +13,10 @@ import (
 
 func HeartBeat_Job() dm.JobDefinition {
 	var j dm.JobDefinition
-	j.ID = "HEARTBEAT"
-	j.Name = "HEARTBEAT"
-	j.Period = "*/5 * * * *"
-	j.Description = "System Heartbeat"
+	j.ID = "Heartbeat"
+	j.Name = "Heartbeat"
+	j.Period = "*/15 * * * *"
+	j.Description = "System Heartbeat, Uptime, etc"
 	j.Type = core.HouseKeeping
 	return j
 }
@@ -30,9 +31,9 @@ func HeartBeat_Run() {
 
 	logs.StartJob(HeartBeat_Job().Name)
 	core.Log_uptime()
-	core.ApplicationDB = core.Database_Poke(core.ApplicationDB, core.ApplicationPropertiesDB)
 
-	message := fmt.Sprintf("Uptime = %v", core.Uptime())
+	MSG_TXT := dao.Translate("JobMessage", "Uptime = %v")
+	message := fmt.Sprintf(MSG_TXT, core.Uptime())
 
 	application.Schedule_Update(HeartBeat_Job(), message)
 	logs.EndJob(HeartBeat_Job().Name)

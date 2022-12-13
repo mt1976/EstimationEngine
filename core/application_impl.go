@@ -30,13 +30,13 @@ func Initialise() {
 
 	PreInitialise()
 
-	ApplicationProperties = getProperties(APPCONFIG)
-	ApplicationPropertiesDB = getProperties(DATASTORECONFIG)
-	InstanceProperties = getProperties(INSTANCECONFIG)
-	ApplicationStubLists = getProperties(APPSTUBLISTS)
+	ApplicationProperties = getPropertiesFromFile(APPCONFIG)
+	ApplicationPropertiesDB = getPropertiesFromFile(DATASTORECONFIG)
+	InstanceProperties = getPropertiesFromFile(INSTANCECONFIG)
+	ApplicationStubLists = getPropertiesFromFile(APPSTUBLISTS)
 
 	IsChildInstance = false
-	if len(ApplicationPropertiesDB["instance"]) != 0 {
+	if len(GetDatabaseProperty("instance")) != 0 {
 		//	logs.Information("Initialisation", fmt.Sprintf("Child Instance Detected %v", len(ApplicationPropertiesDB["instance"])))
 		IsChildInstance = true
 	}
@@ -66,5 +66,8 @@ func Initialise() {
 	SessionManager.Cookie.Secure = false
 	//spew.Dump(SessionManager)
 	//fmt.Printf("SessionManager: %v\n", SessionManager)
+
+	Emailer = Email_init()
+
 	logs.Information("Initialisation", "Vroooom Vrooooom! "+Bike+Bike)
 }

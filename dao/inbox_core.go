@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 10/12/2022 at 21:40:38
+// Date & Time		    : 11/12/2022 at 19:24:01
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -27,8 +27,10 @@ import (
 )
 
 var Inbox_SQLbase string
+var Inbox_QualifiedName string
 func init(){
-	Inbox_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Inbox_SQLTable)
+	Inbox_QualifiedName = get_TableName(core.ApplicationSQLSchema(), dm.Inbox_SQLTable)
+	Inbox_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + Inbox_QualifiedName
 }
 
 // Inbox_GetList() returns a list of all Inbox records
@@ -51,10 +53,10 @@ func Inbox_GetByID(id string) (int, dm.Inbox, error) {
 	_, _, inboxItem, _ := inbox_Fetch(tsql)
 
 	// START
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, inboxItem, nil
 }
@@ -68,7 +70,7 @@ func Inbox_Delete(id string) {
 
 
 // Uses Hard Delete
-	object_Table := core.GetSQLSchema(core.ApplicationPropertiesDB) + "." + dm.Inbox_SQLTable
+	object_Table := Inbox_QualifiedName
 	tsql := core.DB_DELETE+" "+core.DB_FROM+" " + object_Table
 	tsql = tsql + " " + core.DB_WHERE + " " + dm.Inbox_SQLSearchID + " = '" + id + "'"
 
@@ -125,10 +127,10 @@ func Inbox_StoreSystem(r dm.Inbox) error {
 func Inbox_Validate(r dm.Inbox) (dm.Inbox, error) {
 	var err error
 	// START
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -188,7 +190,7 @@ logs.Storing("Inbox",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Inbox_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Inbox_SYSCreated_sql, r.SYSCreated)
@@ -212,10 +214,10 @@ logs.Storing("Inbox",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Inbox_SYSDbVersion_sql, r.SYSDbVersion)
 		
 	// 
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
-	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Inbox_SQLTable)
+	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + Inbox_QualifiedName
 	tsql = tsql + " (" + fields(ts) + ")"
 	tsql = tsql + " "+core.DB_VALUES +" (" + values(ts) + ")"
 
@@ -245,7 +247,7 @@ func inbox_Fetch(tsql string) (int, []dm.Inbox, dm.Inbox, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Inbox_SYSId_sql, "0")
 	   recItem.SYSCreated  = get_String(rec, dm.Inbox_SYSCreated_sql, "")
@@ -291,7 +293,7 @@ func inbox_Fetch(tsql string) (int, []dm.Inbox, dm.Inbox, error) {
 	
 	
 	// 
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -321,10 +323,10 @@ func Inbox_New() (int, []dm.Inbox, dm.Inbox, error) {
 	
 
 	// START
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

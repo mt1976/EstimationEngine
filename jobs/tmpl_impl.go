@@ -16,9 +16,7 @@ package jobs
 // ----------------------------------------------------------------
 
 import (
-	application "github.com/mt1976/ebEstimates/application"
 	dm "github.com/mt1976/ebEstimates/datamodel"
-	logs "github.com/mt1976/ebEstimates/logs"
 )
 
 func Tmpl_Job_impl(j dm.JobDefinition) dm.JobDefinition {
@@ -27,12 +25,9 @@ func Tmpl_Job_impl(j dm.JobDefinition) dm.JobDefinition {
 
 // RunJobRollover is a Rollover function
 func Tmpl_Run_impl() (string, error) {
-	logs.StartJob(Tmpl_Job().Name)
 	message := ""
 	/// CONTENT STARTS
 
 	/// CONTENT ENDS
-	application.Schedule_Update(Tmpl_Job(), message)
-	logs.EndJob(Tmpl_Job().Name)
 	return message, nil
 }

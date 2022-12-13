@@ -1,6 +1,8 @@
 package adaptor
 
 import (
+	"fmt"
+
 	"github.com/mt1976/ebEstimates/core"
 	dm "github.com/mt1976/ebEstimates/datamodel"
 	logs "github.com/mt1976/ebEstimates/logs"
@@ -26,6 +28,20 @@ import (
 // Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local
 func EstimationSession_Origin_OnStore_impl(fieldval string, rec dm.EstimationSession, usr string) (string, error) {
 	logs.Callout("EstimationSession", "Origin", PUT, rec.EstimationSessionID)
+	status := rec.EstimationStateID
+	switch status {
+	case "RFR":
+		MSG_TXT := "Estimation %s has been Referred"
+		MSG_TXT = fmt.Sprintf(MSG_TXT, rec.Name)
+		MSG_BODY := "Estimation %s has been Referred. Please review and take appropriate action. %s"
+		// Get the Estimation from the database
+		MSG_BODY = fmt.Sprintf(MSG_BODY, rec.Name, rec.Comments)
+		//core.Notification_Normal(MSG_TXT, MSG_BODY)
+		URI := "/EstimationSessionFormatted/?EstimationSessionID=" + rec.EstimationSessionID
+		core.Notification_URL(MSG_TXT, MSG_BODY, URI)
+	default:
+	}
+
 	return fieldval, nil
 }
 func EstimationSession_OriginStateID_OnStore_impl(fieldval string, rec dm.EstimationSession, usr string) (string, error) {

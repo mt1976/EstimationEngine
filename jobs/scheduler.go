@@ -29,13 +29,16 @@ func Start() {
 
 	//logit("cron Locale", c.Location().String())
 
-	//HeartBeat_Register(c)
+	HeartBeat_Register(c)
 
 	if !core.IsChildInstance {
 		//		RatesFXSpot_Register(c)
-
+		Origin_Register(c)
 	}
-
+	//ExternalMessage_Register(c)
+	SessionHouseKeeping_Register(c)
+	Credentials_Register(c)
+	Database_Register(c)
 	//ExternalMessage_Register(c)
 
 	//SessionHouseKeeping_Register(c)

@@ -333,6 +333,5 @@ func Database_CreateObjects(DB *sql.DB, dbConfig map[string]string, sourcePath s
 }
 
 func DB_Version() string {
-	version := ApplicationPropertiesDB["version"]
-	return version
+	return GetDatabaseProperty("version")
 }

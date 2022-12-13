@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 11/12/2022 at 14:15:46
+// Date & Time		    : 11/12/2022 at 19:24:01
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -29,8 +29,10 @@ import (
 )
 
 var Feature_SQLbase string
+var Feature_QualifiedName string
 func init(){
-	Feature_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Feature_SQLTable)
+	Feature_QualifiedName = get_TableName(core.ApplicationSQLSchema(), dm.Feature_SQLTable)
+	Feature_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + Feature_QualifiedName
 }
 
 // Feature_GetList() returns a list of all Feature records
@@ -80,7 +82,7 @@ func Feature_Delete(id string) {
 
 
 // Uses Hard Delete
-	object_Table := core.GetSQLSchema(core.ApplicationPropertiesDB) + "." + dm.Feature_SQLTable
+	object_Table := Feature_QualifiedName
 	tsql := core.DB_DELETE+" "+core.DB_FROM+" " + object_Table
 	tsql = tsql + " " + core.DB_WHERE + " " + dm.Feature_SQLSearchID + " = '" + id + "'"
 
@@ -297,7 +299,7 @@ logs.Storing("Feature",fmt.Sprintf("%v", r))
 	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
-	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Feature_SQLTable)
+	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + Feature_QualifiedName
 	tsql = tsql + " (" + fields(ts) + ")"
 	tsql = tsql + " "+core.DB_VALUES +" (" + values(ts) + ")"
 

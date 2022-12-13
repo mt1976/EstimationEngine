@@ -5,7 +5,6 @@ import (
 	"html/template"
 	"log"
 	"net/http"
-	"time"
 
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/mt1976/ebEstimates/dao"
@@ -87,11 +86,5 @@ func addActivity_System(in string, what string) string {
 }
 
 func addActivity_ForUser(in string, what string, un string) string {
-	if what == "" {
-		return in
-	}
-
-	tm := time.Now().Format("02/01/2006 15:04:05")
-	out := in + "\n" + tm + " " + un + " : " + what
-	return out
+	return core.AddActivity_ForUser(in, what, un)
 }

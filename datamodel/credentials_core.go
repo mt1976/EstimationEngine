@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 10/12/2022 at 21:40:34
+// Date & Time		    : 12/12/2022 at 12:17:25
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -67,6 +67,8 @@ SYSActivity       string
 SYSActivity_props FieldProperties
 SYSDbVersion       string
 SYSDbVersion_props FieldProperties
+EmailNotifications       string
+EmailNotifications_props FieldProperties
  // Any lookups will be added below
 
 
@@ -86,6 +88,7 @@ RoleType_lookup []Lookup_Item
 
 
 State_lookup []Lookup_Item
+
 
 
 
@@ -151,6 +154,7 @@ const (
 	Credentials_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
 	Credentials_SYSActivity_sql   = "_activity" // SYSActivity is a String
 	Credentials_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
+	Credentials_EmailNotifications_sql   = "emailNotifications" // EmailNotifications is a String
 
 	/// Definitions End
 	///
@@ -181,6 +185,7 @@ const (
 	Credentials_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
 	Credentials_SYSActivity_scrn   = "SYSActivity" // SYSActivity is a String
 	Credentials_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
+	Credentials_EmailNotifications_scrn   = "EmailNotifications" // EmailNotifications is a String
 
 	/// Definitions End
 	///
@@ -206,7 +211,7 @@ type Credentials_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 12/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -260,8 +265,10 @@ type Credentials_Page struct {
 	SYSActivity_props     FieldProperties
 	SYSDbVersion         string
 	SYSDbVersion_props     FieldProperties
+	EmailNotifications         string
+	EmailNotifications_props     FieldProperties
 	// 
-	// Dynamically generated 10/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 12/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

@@ -79,9 +79,9 @@ func Configuration_HandlerView(w http.ResponseWriter, r *http.Request) {
 		OS:        runtime.GOOS,
 	}
 	pageAppConfigView.AppDBServer = core.ApplicationSQLServer()
-	pageAppConfigView.AppDBPort = core.ApplicationPropertiesDB["port"]
-	pageAppConfigView.AppDBUser = core.ApplicationPropertiesDB["user"]
-	pageAppConfigView.AppDBPassword = strings.Repeat("*", len(core.ApplicationPropertiesDB["password"]))
+	pageAppConfigView.AppDBPort = core.GetDatabaseProperty("port")
+	pageAppConfigView.AppDBUser = core.GetDatabaseProperty("user")
+	pageAppConfigView.AppDBPassword = strings.Repeat("*", len(core.GetApplicationProperty("password")))
 	pageAppConfigView.AppDBDatabase = core.ApplicationSQLDatabase()
 	pageAppConfigView.AppDBSchema = core.ApplicationSQLSchema()
 	pageAppConfigView.AppCredentialsLife = core.ApplicationCredentialsLife()
