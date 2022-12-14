@@ -26,7 +26,9 @@ func Credentials_Run_impl() (string, error) {
 	message := ""
 	/// CONTENT STARTS
 	logs.Information("Credentials Housekeeping", "Expired credentials removed/warned")
-
+	// ------------------
+	// Get the credentials prompt period
+	// ------------------
 	period, err0 := strconv.Atoi(core.GetApplicationProperty("credentialsprompt"))
 	warn := period
 	if err0 != nil {
@@ -35,63 +37,116 @@ func Credentials_Run_impl() (string, error) {
 	}
 
 	notifyDate := time.Now().AddDate(0, 0, warn)
-
 	logs.Information("Credentials Expiry Notice", notifyDate.Format(core.DATEFORMATUSER))
 
+	// ------------------
+	// Get the credentials list
+	// ------------------
 	_, creds, err := dao.Credentials_GetList()
 	if err != nil {
 		logs.Error("Credentials Housekeeping", err)
 		return message, err
 	}
+	// ------------------
+	// Scan the credentials
+	// ------------------
 	for _, c := range creds {
-		expiry, err2 := time.Parse(c.Expiry, core.DATETIMEFORMATSQLSERVER)
+		expiry, err2 := time.Parse(c.Expiry, core.DATETIMEFORMATUSER)
 		if err2 != nil {
 			logs.Error("Credentials Housekeeping", err2)
 			return message, err2
 		}
-
+		// ------------------
+		// Check for expired credentials
+		// ------------------
 		if expiry.Before(time.Now()) {
-			c.State = "EXPD"
-			c.EmailNotifications = "false"
-			MSG_TXT := "Your credentials %s for %s have expired. Please contact the administrator for %s to renew them."
-			dao.Translate("Credentials", MSG_TXT)
-			MSG_TXT = fmt.Sprintf(MSG_TXT, c.Username, core.ApplicationName(), core.ApplicationHostname())
-			c.Notes = core.AddActivity_ForProcess(c.Notes, MSG_TXT, "Credentials Housekeeping")
-			err3 := dao.Credentials_StoreSystem(c)
-			if err3 != nil {
-				logs.Error("Credentials Housekeeping", err3)
-				return message, err3
+			shouldReturn, returnValue, returnErr := expireCredentials(c, message)
+			if shouldReturn {
+				return returnValue, returnErr
 			}
-			logs.Expired("Credentials " + c.Username + " expired " + c.Email)
-			MSG_BODY := "Your credentials %s have expired. <br><br>Please contact the administrator for %s to renew them"
-			MSG_BODY = dao.Translate("Credentials", MSG_BODY)
-			MSG_BODY = fmt.Sprintf(MSG_BODY, c.Username, core.ApplicationHostname())
-			core.SendEmail(c.Email, c.Firstname, core.ApplicationName()+" Credentials Expired", MSG_BODY)
 		}
-
+		// ------------------
+		// Check for credentials due to expire
+		// ------------------
 		if expiry.Before(notifyDate) && c.State != "EXPD" {
-			MSG_TXT := "Your credentials %s for %s will expire in %v days at %s. Please contact the administrator for %s to renew them."
-			dao.Translate("Credentials", MSG_TXT)
-			MSG_TXT = fmt.Sprintf(MSG_TXT, c.Username, core.ApplicationName(), period, c.Expiry, core.ApplicationHostname())
-			c.Notes = core.AddActivity_ForProcess(c.Notes, MSG_TXT, "Credentials Housekeeping")
-			err4 := application.Inbox_SendMailSystem(c.Email, MSG_TXT, "Credentials Housekeeping")
-			if err4 != nil {
-				logs.Error("Credentials Housekeeping", err4)
-				return message, err4
+			shouldReturn, returnValue, returnErr1 := warnExpiryOfCredentials(c, period, message)
+			if shouldReturn {
+				return returnValue, returnErr1
 			}
-			err3 := dao.Credentials_StoreSystem(c)
-			if err3 != nil {
-				logs.Error("Credentials Housekeeping", err3)
-				return message, err3
-			}
-			MSG_BODY := "Your credentials %s will expire in %v days at %s. <br><br>Please contact the administrator for %s to renew them"
-			MSG_BODY = dao.Translate("Credentials", MSG_BODY)
-			MSG_BODY = fmt.Sprintf(MSG_BODY, c.Username, period, c.Expiry, core.ApplicationHostname())
-			core.SendEmail(c.Email, c.Firstname, core.ApplicationName()+" Credentials Due to Expire", MSG_BODY)
 		}
 	}
 	/// CONTENT ENDS
 
 	return message, nil
 
+}
+
+// warnExpiryOfCredentials sends a warning to the user that their credentials are due to expire
+func warnExpiryOfCredentials(c dm.Credentials, period int, message string) (bool, string, error) {
+	logs.Information("Credentials Housekeeping", "Credentials due to expire : "+c.Username)
+	// ------------------
+	// Add a note to the credentials
+	// ------------------
+	MSG_TXT := "Credentials will expire in %v days on %s."
+	dao.Translate("Credentials", MSG_TXT)
+	MSG_TXT = fmt.Sprintf(MSG_TXT, period, c.Expiry)
+	c.Notes = core.AddActivity_ForProcess(c.Notes, MSG_TXT, "Credentials Housekeeping")
+	// ------------------
+	// Send a message to the inbox
+	// ------------------
+	MSG_INBX := "Your credentials %s will expire in %v days at %s. <br><br>Please contact the administrator for %s to renew them"
+	MSG_INBX = dao.Translate("Credentials", MSG_INBX)
+	MSG_INBX = fmt.Sprintf(MSG_INBX, c.Username, core.ApplicationName(), core.ApplicationHostname())
+	err4 := application.Inbox_SendMailSystem(c.Email, MSG_INBX, "Credentials Housekeeping")
+	if err4 != nil {
+		logs.Error("Credentials Housekeeping", err4)
+		return true, message, err4
+	}
+	// ------------------
+	// Update the credentials
+	// ------------------
+	err3 := dao.Credentials_StoreSystem(c)
+	if err3 != nil {
+		logs.Error("Credentials Housekeeping", err3)
+		return true, message, err3
+	}
+	// ------------------
+	// Email the user
+	// ------------------
+	MSG_BODY := "Your credentials %s will expire in %v days at %s. <br><br>Please contact the administrator for %s to renew them"
+	MSG_BODY = dao.Translate("Credentials", MSG_BODY)
+	MSG_BODY = fmt.Sprintf(MSG_BODY, c.Username, period, c.Expiry, core.ApplicationHostname())
+	core.SendEmail(c.Email, c.Firstname, core.ApplicationName()+" Credentials Due to Expire", MSG_BODY)
+	return false, "", nil
+}
+
+// expireCredentials expires the credentials
+func expireCredentials(c dm.Credentials, message string) (bool, string, error) {
+	logs.Information("Credentials Housekeeping", "Expired credentials removed/warned : "+c.Username)
+	// ------------------
+	// Add a note to the credentials
+	// ------------------
+	MSG_TXT := "Credentials %s have expired"
+	dao.Translate("Credentials", MSG_TXT)
+	MSG_TXT = fmt.Sprintf(MSG_TXT, c.Username)
+	c.Notes = core.AddActivity_ForProcess(c.Notes, MSG_TXT, "Credentials Housekeeping")
+	// ------------------
+	// Update the credentials
+	// ------------------
+	c.State = "EXPD"
+	c.EmailNotifications = "false"
+	err3 := dao.Credentials_StoreSystem(c)
+	if err3 != nil {
+		logs.Error("Credentials Housekeeping", err3)
+		return true, message, err3
+	}
+	logs.Expired("Credentials " + c.Username + " expired " + c.Email)
+	// ------------------
+	// Email the user
+	// ------------------
+	MSG_BODY := "Your credentials %s have expired. <br><br>Please contact the administrator for %s to renew them"
+	MSG_BODY = dao.Translate("Credentials", MSG_BODY)
+	MSG_BODY = fmt.Sprintf(MSG_BODY, c.Username, core.ApplicationHostname())
+	core.SendEmail(c.Email, c.Firstname, core.ApplicationName()+" Credentials Expired", MSG_BODY)
+	return false, "", nil
 }
