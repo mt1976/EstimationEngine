@@ -19,8 +19,11 @@
   <link rel="stylesheet" href="/assets/css/mdb.min.css" />
   <link rel="stylesheet" href="/assets/login.css" />
 
+  {{if .CompanyName  }}
+  <title>{{.CompanyName}} - {{.AppName}} - Sign On</title>
+  {{else}}
   <title>{{.AppName}} - Sign On</title>
-
+  {{end}}
   <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
 </head>
 <body>
@@ -35,7 +38,7 @@ of Simple CSS Waves-->
       <div
         class="card shadow-custom col-md-10"
         style="
-          margin-top: 10rem;
+          margin-top: 20rem;
           box-shadow: 0 2px 20px 0 rgba(0, 0, 0, 0.25),
             0 3px 14px 16px rgba(0, 0, 0, 0.11) !important;
           z-index: 99;
@@ -43,17 +46,32 @@ of Simple CSS Waves-->
         "
       >
         <div class="card-header text-center">
+        {{if .CompanyName  }}
+        <div class="hdrimage">
+            <img
+              src="/assets/company.png"
+              class="img-fluid"
+              style="
+                max-height: 300px;
+                max-width: 300px;
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+              "
+              alt="{{.CompanyName}} logo"
+            />
+          </div>
+          {{end}}
           <div class="hdrimage">
             <img
               src="/assets/logo.png"
               class="img-fluid"
               style="
-                max-height: 150px;
-                max-width: 150px;
+                max-height: 100px;
+                max-width: 100px;
                 margin-top: 1rem;
                 margin-bottom: 1rem;
               "
-              alt="Los Angeles Skyscrapers"
+              alt="{{.AppName}} logo, a pair of scales"
             />
           </div>
           <h1 class="fw-light text-application">{{.AppName}}</h1>
@@ -120,7 +138,7 @@ of Simple CSS Waves-->
 
         <div class="card-footer small text-muted">
           <center>
-            <b>This software is for use by authorised persons only.</b>
+            <b>This software is for use by authorised {{if .CompanyName  }}{{.CompanyName}}{{end}} persons only.</b>
           </center>
           <div class="wrap-text">The sofware is protect by the <em><a href="{{.LicenceLink}}">{{.LicenceType}}</a></em>.</div>
         

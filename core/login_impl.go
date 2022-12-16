@@ -17,6 +17,7 @@ type loginPage struct {
 	LicenceType      string
 	LicenceLink      string
 	ResponseMessage  string
+	CompanyName      string
 }
 
 func LoginLogout_Publish_Impl(mux http.ServeMux) {
@@ -45,6 +46,7 @@ func LoginLogout_HandlerLogin(w http.ResponseWriter, r *http.Request) {
 		LicenceType:      ApplicationGetLicenseName(),
 		LicenceLink:      ApplicationGetLicenseLink(),
 		ResponseMessage:  SecurityViolation,
+		CompanyName:      ApplicationCompanyName(),
 	}
 
 	//fmt.Println("Page Data", loginPageContent)
@@ -85,7 +87,10 @@ func LoginLogout_HandlerRequest(w http.ResponseWriter, r *http.Request) {
 		LicenceType:      ApplicationGetLicenseName(),
 		LicenceLink:      ApplicationGetLicenseLink(),
 		ResponseMessage:  SecurityViolation,
+		CompanyName:      ApplicationCompanyName(),
 	}
+
+	logs.Information("Company Name", loginPageContent.CompanyName)
 
 	message := GetURLparam(r, "msg")
 	if message != "" {
@@ -117,6 +122,7 @@ func LoginLogout_HandlerRequestComplete(w http.ResponseWriter, r *http.Request) 
 		LicenceType:      ApplicationGetLicenseName(),
 		LicenceLink:      ApplicationGetLicenseLink(),
 		ResponseMessage:  SecurityViolation,
+		CompanyName:      ApplicationCompanyName(),
 	}
 
 	message := GetURLparam(r, "msg")

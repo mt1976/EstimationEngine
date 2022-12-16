@@ -2,9 +2,9 @@
 {{template "bodydefinition" .}}
     <form action="/FeatureNewSave" method="GET" class="form">
       <div class="card">
-        <div class="card-header">
-          <div class="row">
-             <div class="col h3">
+        <div class="card-header align-items-center">
+          <div class="row align-items-center">
+             <div class="col h3 align-items-center">
                     <i class="far fa-plus-square me-2" title="ID = NEW"></i><span class="me-3">{{.Title}}</span>
                 </div>
             <div class="col d-flex justify-content-end">
@@ -12,7 +12,7 @@
               
                 <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/FeatureNewSave" onclick="/FeatureNewSave" title="Save Create a New Feature"><i class="fas fa-save me-2"></i>Save</button>
               
-                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Create a New Feature"><i class="fas fa-print me-2"></i></i>Print</button>
+                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Create a New Feature"><i class="fas fa-print me-2"></i>Print</button>
                 <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
               </div>
             </div>

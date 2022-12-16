@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 11/12/2022 at 19:24:00
+// Date & Time		    : 16/12/2022 at 16:47:10
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -48,10 +48,10 @@ func CredentialsAction_GetByID(id string) (int, dm.CredentialsAction, error) {
 	 _, credentialsactionItem, _ := adaptor.CredentialsAction_GetByID_impl(id)
 	
 	// START
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, credentialsactionItem, nil
 }
@@ -113,10 +113,10 @@ func CredentialsAction_StoreSystem(r dm.CredentialsAction) error {
 func CredentialsAction_Validate(r dm.CredentialsAction) (dm.CredentialsAction, error) {
 	var err error
 	// START
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -186,10 +186,10 @@ func CredentialsAction_New() (int, []dm.CredentialsAction, dm.CredentialsAction,
 	
 
 	// START
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

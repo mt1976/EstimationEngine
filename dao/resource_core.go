@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 11/12/2022 at 19:24:02
+// Date & Time		    : 16/12/2022 at 16:47:12
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -63,10 +63,10 @@ func Resource_GetByID(id string) (int, dm.Resource, error) {
 	_, _, resourceItem, _ := resource_Fetch(tsql)
 
 	// START
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, resourceItem, nil
 }
@@ -147,10 +147,10 @@ func Resource_StoreSystem(r dm.Resource) error {
 func Resource_Validate(r dm.Resource) (dm.Resource, error) {
 	var err error
 	// START
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -210,7 +210,7 @@ logs.Storing("Resource",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Resource_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Resource_ResourceID_sql, r.ResourceID)
@@ -234,7 +234,7 @@ logs.Storing("Resource",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Resource_Comments_sql, r.Comments)
 		
 	// 
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + Resource_QualifiedName
@@ -267,7 +267,7 @@ func resource_Fetch(tsql string) (int, []dm.Resource, dm.Resource, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Resource_SYSId_sql, "0")
 	   recItem.ResourceID  = get_String(rec, dm.Resource_ResourceID_sql, "")
@@ -313,7 +313,7 @@ func resource_Fetch(tsql string) (int, []dm.Resource, dm.Resource, error) {
 	
 	
 	// 
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -343,10 +343,10 @@ func Resource_New() (int, []dm.Resource, dm.Resource, error) {
 	
 
 	// START
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

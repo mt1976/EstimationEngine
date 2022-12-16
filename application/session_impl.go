@@ -338,6 +338,7 @@ type requestPage struct {
 	LicenceType      string
 	LicenceLink      string
 	ResponseMessage  string
+	CompanyName      string
 }
 
 func Session_HandlerRegister(w http.ResponseWriter, r *http.Request) {
@@ -358,6 +359,7 @@ func Session_HandlerRegister(w http.ResponseWriter, r *http.Request) {
 		LicenceType:      core.ApplicationGetLicenseName(),
 		LicenceLink:      core.ApplicationGetLicenseLink(),
 		ResponseMessage:  "",
+		CompanyName:      core.ApplicationCompanyName(),
 	}
 
 	message := core.GetURLparam(r, "msg")

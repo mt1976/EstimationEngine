@@ -45,6 +45,7 @@ const (
 	log_Callout       = "Callout"
 	log_Override      = "Override"
 	log_Expired       = "Expired"
+	log_Email         = "Email"
 
 	ColorReset         = "\033[0m"
 	ColorRed           = "\033[31m"
@@ -73,6 +74,7 @@ const (
 	Character_Callout  = "📞"
 	Character_Override = "🔧"
 	Character_Expired  = "🕰"
+	Character_Email    = "📧"
 )
 
 type Config struct {
@@ -134,6 +136,12 @@ func System(s string) {
 func Default(s string, w string) {
 	//msg_done(s)
 	msg_raw(log_Default, s, w, colour.Purple)
+}
+
+func Email(s string, w string) {
+	//msg_done(s)
+	MSG_TXT := "Sending Email to " + s + " with Subject " + w
+	msg_raw(log_Email, MSG_TXT, "", colour.Blue)
 }
 
 func Information(w string, v string) {

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 11/12/2022 at 19:24:01
+// Date & Time		    : 16/12/2022 at 16:47:11
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -65,11 +65,11 @@ func Project_GetByID(id string) (int, dm.Project, error) {
 	_, _, projectItem, _ := project_Fetch(tsql)
 
 	// START
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	projectItem.NoEstimationSessions,projectItem.NoEstimationSessions_props = adaptor.Project_NoEstimationSessions_impl (adaptor.GET,id,projectItem.NoEstimationSessions,projectItem,projectItem.NoEstimationSessions_props)
 	// 
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, projectItem, nil
 }
@@ -150,11 +150,11 @@ func Project_StoreSystem(r dm.Project) error {
 func Project_Validate(r dm.Project) (dm.Project, error) {
 	var err error
 	// START
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.NoEstimationSessions,r.NoEstimationSessions_props = adaptor.Project_NoEstimationSessions_impl (adaptor.PUT,r.ProjectID,r.NoEstimationSessions,r,r.NoEstimationSessions_props)
 	// 
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -216,7 +216,7 @@ logs.Storing("Project",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Project_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Project_ProjectID_sql, r.ProjectID)
@@ -242,7 +242,7 @@ logs.Storing("Project",fmt.Sprintf("%v", r))
 	
 		
 	// 
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + Project_QualifiedName
@@ -275,7 +275,7 @@ func project_Fetch(tsql string) (int, []dm.Project, dm.Project, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Project_SYSId_sql, "0")
 	   recItem.ProjectID  = get_String(rec, dm.Project_ProjectID_sql, "")
@@ -325,7 +325,7 @@ func project_Fetch(tsql string) (int, []dm.Project, dm.Project, error) {
 	   recItem.NoEstimationSessions  = adaptor.Project_NoEstimationSessions_OnFetch_impl (recItem)
 	
 	// 
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -355,11 +355,11 @@ func Project_New() (int, []dm.Project, dm.Project, error) {
 	
 
 	// START
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.NoEstimationSessions,r.NoEstimationSessions_props = adaptor.Project_NoEstimationSessions_impl (adaptor.NEW,r.ProjectID,r.NoEstimationSessions,r,r.NoEstimationSessions_props)
 	// 
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

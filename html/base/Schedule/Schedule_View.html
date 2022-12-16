@@ -1,15 +1,15 @@
 {{template "header" .}} {{template "bodydefinition" .}}
 <form action="/ScheduleEdit/?Schedule={{.Id}}" method="POST" class="form">
     <div class="card">
-        <div class="card-header">
-            <div class="row">
-                <div class="col h3">
+        <div class="card-header align-items-center" >
+            <div class="row align-items-center">
+                <div class="col h3 align-items-center">
                     <i class="far fa-clock me-2" title="Schedule = {{.Id}}"></i><span class="me-3">{{.Title}}</span>
                 </div>
                 <div class="col d-flex justify-content-end">
                     <div class="btn-group float-right">
                         
-                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Scheduler {{.Id}}"><i class="fas fa-print me-2"></i></i>Print</button>
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Scheduler {{.Id}}"><i class="fas fa-print me-2"></i>Print</button>
                         <button type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
                     </div>
                 </div>

@@ -471,6 +471,18 @@ func ApplicationName() string {
 	return GetApplicationProperty("appname")
 }
 
+func ApplicationCompanyName() string {
+	return GetApplicationProperty("companyname")
+}
+
+func ApplicationLicenseLink() string {
+	return GetApplicationProperty("liclink")
+}
+
+func ApplicationLicenseName() string {
+	return GetApplicationProperty("licname")
+}
+
 func ApplicationHostname() string {
 	tmpHostname, _ := os.Hostname()
 	return tmpHostname
@@ -572,4 +584,16 @@ func AddActivity_ForUser(in string, what string, un string) string {
 	tm := time.Now().Format("02/01/2006 15:04:05")
 	out := in + "\n" + tm + " " + un + " : " + what
 	return out
+}
+
+func RunningInDockerContainer() bool {
+	// docker creates a .dockerenv file at the root
+	// of the directory tree inside the container.
+	// if this file exists then the viewer is running
+	// from inside a container so return true
+
+	if _, err := os.Stat("/.dockerenv"); err == nil {
+		return true
+	}
+	return false
 }

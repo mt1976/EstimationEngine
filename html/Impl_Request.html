@@ -13,7 +13,11 @@
   <link rel="stylesheet" href="/assets/css/mdb.min.css" />
   <link rel="stylesheet" href="/assets/login.css" />
 
-  <title>{{.AppName}} - Access Request</title>
+  {{if .CompanyName  }}
+  <title>{{.CompanyName}} - {{.AppName}} - Sign On</title>
+  {{else}}
+  <title>{{.AppName}} - Sign On</title>
+  {{end}}
 
   <!-- ADDITION STYLES IN SPECIFIC INSTANCES -->
 
@@ -29,32 +33,51 @@ of Simple CSS Waves-->
     <div class="inner-header flex" style="z-index:-1">
       <!--Just the logo.. Don't mind this-->
 
-      <div class="card shadow-custom col-md-10" style="margin-top:10rem; box-shadow: 0 2px
+      <div class="card shadow-custom col-md-10" style="margin-top:20rem; box-shadow: 0 2px
         20px 0 rgba(0, 0, 0, .25), 0 3px 14px 16px rgba(0, 0, 0, 0.11)
         !important;z-index:99; max-width:1rem";>
-        <div class="card-header text-center"><h4 class="card-title">{{.AppName}}</h4></div>
+        <div class="card-header text-center">
+                  {{if .CompanyName  }}
+          <div class="hdrimage">
+              <img
+                src="/assets/company.png"
+                class="img-fluid"
+                style="
+                  max-height: 300px;
+                  max-width: 300px;
+                  margin-top: 1rem;
+                  margin-bottom: 1rem;
+                "
+                alt="{{.CompanyName}} logo"
+              />
+            </div>
+            {{end}}
+
+          
+          <h2 class="fw-light text-application">{{.AppName}}</h2>
+          <p class="text-center h4 me-4 mx-1 mx-md-4 mt-4 fw-light">Access Request</p>
+        </div>
         <div class="card-body">
           <div class="row justify-content-center">
             <div class="col">
-              <p class="text-center h1  mb-5 mx-1 mx-md-4 mt-4">Access
-                Request</p>
               <form class="mx-1 mx-md-4" action="/request" method="GET">
                 <div class="d-flex flex-row align-items-center mb-4">
-                  <div class="form-outline flex-fill mb-0 bg-white">
-                    <input type="text" id="firstname" name="firstname" class="form-control"
-                      required />
-                    <label class="form-label" for="firstname"><i class="far
-                        fa-user me-2 text-muted"></i>First Name</label>
+                  <div class="col me-2">
+                    <div class="form-outline flex-fill mb-0 bg-white">
+                      <input type="text" id="firstname" name="firstname" class="form-control"
+                        required />
+                      <label class="form-label" for="firstname"><i class="far
+                          fa-user me-2 text-muted"></i>First Name</label>
+                    </div>
                   </div>
-                </div>
-
-                <div class="d-flex flex-row align-items-center mb-4">
-                  <div class="form-outline flex-fill mb-0 bg-white">
-                    <input type="text" id="lastname" name="lastname" class="form-control"
-                      required />
-                    <label class="form-label" for="lastname"><i class="fas
-                        fa-user me-2 text-muted"></i>Last Name</label>
-                  </div>
+                  <div class="col">
+                    <div class="form-outline flex-fill mb-0 bg-white">
+                      <input type="text" id="lastname" name="lastname" class="form-control"
+                        required />
+                      <label class="form-label" for="lastname"><i class="fas
+                          fa-user me-2 text-muted"></i>Last Name</label>
+                    </div>
+                  </div>  
                 </div>
 
                 <div class="d-flex flex-row align-items-center mb-4">

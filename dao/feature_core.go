@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 11/12/2022 at 19:24:01
+// Date & Time		    : 16/12/2022 at 16:47:10
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -65,10 +65,10 @@ func Feature_GetByID(id string) (int, dm.Feature, error) {
 	_, _, featureItem, _ := feature_Fetch(tsql)
 
 	// START
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, featureItem, nil
 }
@@ -149,19 +149,19 @@ func Feature_StoreSystem(r dm.Feature) error {
 func Feature_Validate(r dm.Feature) (dm.Feature, error) {
 	var err error
 	// START
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
 	// START
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r, _, err = adaptor.Feature_ObjectValidation_impl(adaptor.PUT, r.FeatureID, r)
 	// 
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	
 
@@ -246,7 +246,7 @@ logs.Storing("Feature",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Feature_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Feature_FeatureID_sql, r.FeatureID)
@@ -296,7 +296,7 @@ logs.Storing("Feature",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Feature_Description_sql, r.Description)
 		
 	// 
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + Feature_QualifiedName
@@ -329,7 +329,7 @@ func feature_Fetch(tsql string) (int, []dm.Feature, dm.Feature, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Feature_SYSId_sql, "0")
 	   recItem.FeatureID  = get_String(rec, dm.Feature_FeatureID_sql, "")
@@ -427,7 +427,7 @@ func feature_Fetch(tsql string) (int, []dm.Feature, dm.Feature, error) {
 	
 	
 	// 
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -457,10 +457,10 @@ func Feature_New() (int, []dm.Feature, dm.Feature, error) {
 	
 
 	// START
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 11/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

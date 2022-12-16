@@ -1,103 +1,173 @@
 {{template "header" .}}
 {{template "bodydefinition" .}}
-
-
   <div class="container-fluid">
-
     <div id="config">
-      <div class="card">
-        <div class="card-header font-weight-bold">
-          <div class="row">
+      <div class="card justify-content-center">
+        <div class="card-header font-weight-bold justify-content-center">
+          <div class="row justify-content-center">
             <div class="col h3">
-              {{.Title}}
+              About {{.AppName}}
             </div>
-      <div class="col d-flex justify-content-end">
-                  <form action="/home" method="POST">
-                    <div class="btn-group">
-                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Country"><i class="fas fa-print"></i></i>&nbsp;&nbsp;Print</button>
-                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
-                    </div>
-                  </form>
-                </div>
-
+            <div class="col d-flex justify-content-end">
+              <form action="/home" method="POST">
+                <div class="btn-group">
+                  <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Country"><i class="fas fa-print"></i>&nbsp;&nbsp;Print</button>
+                  <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
+                </div>  
+              </form>
             </div>
+          </div>
         </div>
 
-      <div class="card-body">
-
-
-       
-        <div class="tab-content" id="myTabContent">
-          <div class="tab-pane fade show active" id="application" role="tabpanel" aria-labelledby="application-tab">
-            <h5>Application -&nbsp{{.AppServerReleaseID}}&nbsp;[r{{.AppServerReleaseLevel}}-{{.AppServerReleaseNumber}}]</h5>
-            <div class="row">
-              <div class="col">
-                <label for="responseType">App Server Release ID :</label>
-                <input type="text" id="responseType" name="responseType" value="{{.AppServerReleaseID}}" disabled="disabled" size="60" class="form-control">
+        <div class="card-body">
+          <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="application" role="tabpanel" aria-labelledby="application-tab">
+              <h4>Application</h4>
+              <h6 style="color:#322a77;">{{.AppName}} - [r{{.AppServerReleaseLevel}}-{{.AppServerReleaseNumber}}] - Code Name "{{.AppServerReleaseID}}"</h6>
+              <div class="row">
+                <div class="col">
+                  <div class="form-outline">                
+                    <input type="text" id="relid" name="relid" value="{{.AppServerReleaseID}}" disabled="disabled" size="60" class="form-control">
+                    <label class="form-label" for="relid">Code Name</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-outline">                
+                   <input type="text" id="rellevel" name="rellevel" value="{{.AppServerReleaseLevel}}" disabled="disabled" size="60" class="form-control">
+                   <label class="form-label" for="rellevel">Level</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-outline">                
+                    <input type="text" id="relno" name="relno" value="{{.AppServerReleaseNumber}}" disabled="disabled" size="60" class="form-control">
+                    <label class="form-label" for="relno">Release</label>
+                  </div>
+                </div>
               </div>
-              <div class="col-sm">
-                <label for="responseType">App Server Release Level :</label>
-                <input type="text" id="responseType" name="responseType" value="{{.AppServerReleaseLevel}}" disabled="disabled" size="60" class="form-control">
+              <br>  
+              <div class="row">
+                <div class="col">
+                  <div class="form-outline">                
+                    <input type="text" id="host" name="host" value="{{.SessionInfo.HostName}}" disabled="disabled" size="60" class="form-control">
+                    <label class="form-label" for="host">Host Name</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-outline">                
+                    <input type="text" id="docker" name="docker" value="{{if eq .AppDocker "Yes"}}Docker - {{end}}{{.AppDocker}}" disabled="disabled" size="60" class="form-control">
+                    <label class="form-label" for="docker">Containerised</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-outline">                
+                   <input type="text" id="os" name="os" value="{{.OS}}" disabled="disabled" size="60" class="form-control">
+                   <label class="form-label" for="os">Operating System</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-outline">                
+                    <input type="text" id="go" name="go" value="{{.GoVersion}}" disabled="disabled" size="60" class="form-control">
+                    <label class="form-label" for="go">Go Version</label>
+                  </div>
+                </div>
+                  <div class="col">
+                  <div class="form-outline">                
+                    <input type="text" id="mode" name="mode" value="{{.AppEnvironment}}" disabled="disabled" size="60" class="form-control">
+                    <label class="form-label" for="mode">Mode</label>
+                  </div>
+                </div>
               </div>
-              <div class="col-sm">
-                <label for="responseType">App Server Release Number :</label>
-                <input type="text" id="responseType" name="responseType" value="{{.AppServerReleaseNumber}}" disabled="disabled" size="60" class="form-control">
+              <hr>
+              <h4> Database</h4>
+              <div class="row">
+                <div class="col">
+                  <div class="form-outline">  
+                    <input type="text" id="sienaDataServer" name="sienaDataServer" value="{{.AppDBServer}}" disabled="disabled" size="60" class="form-control">
+                    <label class="form-label" for="sienaDataServer">Server (Machine Name or IP address)</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-outline">  
+                    <input type="text" id="sienaDataSource" name="sienaDataSource" value="{{.AppDBDatabase}}" disabled="disabled" size="60" class="form-control">
+                    <label class="form-label" for="sienaDataSource">Database</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-outline">  
+                    <input type="text" id="sienaDBSchema" name="sienaDBSchema" value="{{.AppDBSchema}}" disabled="disabled" size="60" class="form-control">
+                    <label class="form-label" for="sienaDBSchema">Schema</label>
+                  </div>
+                </div>
               </div>
+              <br>
+              <div class="row">
+                <div class="col">
+                  <div class="form-outline">                
+                    <input type="text" id="sienaDBUser" name="sienaDBUser" value="{{.AppDBUser}}" disabled="disabled" size="60" class="form-control">
+                    <label class="form-label" for="sienaDBUser">User</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-outline">
+                    <input type="text" id="sienaDBPassword" name="sienaDBPassword" value="{{.AppDBPassword}}" disabled="disabled" size="60" class="form-control">
+                    <label class="form-label" for="sienaDBPassword">Password</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-outline">
+                    <input type="text" id="sienaDBPort" name="sienaDBPort" value="{{.AppDBPort}}" disabled="disabled" size="60" class="form-control">
+                    <label class="form-label" for="sienaDBPort">Port</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-outline">
+                    <input type="text" id="dbmodel" name="dbmodel" value="{{.DBModel}}" disabled="disabled" size="60" class="form-control">
+                    <label class="form-label" for="dbmodel">Model No.</label>
+                  </div>
+                </div>
+              </div>
+              <hr>
+              <h4>Credentials & Session Management</h4>
+              <div class="row">
+                <div class="col">
+                  <div class="form-outline">
+                    <input type="text" id="sesslife" name="sesslife" value="{{.AppSessionLife}}" disabled="disabled" size="60" class="form-control">
+                    <label class="form-label" for="sesslife">Session Life (minutes)</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-outline">
+                    <input type="text" id="credlife" name="credlife" value="{{.AppCredentialsLife}}" disabled="disabled" size="60" class="form-control">
+                    <label class="form-label" for="credlife">Credentials Life (days)</label>
+                  </div>
+                </div>
+              </div>
+              {{if .CompanyName}}
+              <hr>
+              <h4>Company & Licence</h4>
+              <div class="row">
+                <div class="col">
+                  <div class="form-outline">
+                    <input type="text" id="companyname" name="companyname" value="{{.CompanyName}}" disabled="disabled" size="60" class="form-control">
+                    <label class="form-label" for="companyname">Name</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-outline">
+                    <input type="text" id="licname" name="licname" value="{{.LicenseName}}" disabled="disabled" size="60" class="form-control">
+                    <label class="form-label" for="licname">Licence Name</label>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="form-outline">
+                    <input type="text" id="liclink" name="liclink" value="{{.LicenseLink}}" disabled="disabled" size="60" class="form-control">
+                    <label class="form-label" for="liclink">Licence Link</label>
+                  </div>
+                </div>
+              </div>
+              {{end}}
             </div>
-
-  <br>
-  <h5> Database Connection</h5>
-            <div class="row">
-              <div class="col-sm">
-                <label for="sienaDataServer">MS SQL Server:</label>
-                <input type="text" id="sienaDataServer" name="sienaDataServer" value="{{.AppDBServer}}" disabled="disabled" size="60" class="form-control">
-                <small class="form-text text-muted">Machine Name or IP address</small>
-              </div>
-              <div class="col-sm">
-                <label for="sienaDataSource">Database:</label>
-                <input type="text" id="sienaDataSource" name="sienaDataSource" value="{{.AppDBDatabase}}" disabled="disabled" size="60" class="form-control">
-              </div>
-              <div class="col-sm">
-                <label for="sienaDBSchema">Schema:</label>
-                <input type="text" id="sienaDBSchema" name="sienaDBSchema" value="{{.AppDBSchema}}" disabled="disabled" size="60" class="form-control">
-              </div>
-            </div>
-
-
-
-            <div class="row">
-              <div class="col-sm">
-                <label for="sienaDBUser">DB User :</label>
-                <input type="text" id="sienaDBUser" name="sienaDBUser" value="{{.AppDBUser}}" disabled="disabled" size="60" class="form-control">
-              </div>
-              <div class="col-sm">
-                <label for="sienaDBPassword">DB Password :</label>
-                <input type="text" id="sienaDBPassword" name="sienaDBPassword" value="{{.AppDBPassword}}" disabled="disabled" size="60" class="form-control">
-              </div>
-              <div class="col-sm">
-                <label for="sienaDBPort">DB Port :</label>
-                <input type="text" id="sienaDBPort" name="sienaDBPort" value="{{.AppDBPort}}" disabled="disabled" size="60" class="form-control">
-              </div>
-            </div>
-<br>
-<h5>Credentials & Session Management</h5>
-<div class="row">
-  <div class="col-sm">
-    <label for="sienaDataServer">Session Life:</label>
-    <input type="text" id="sienaDataServer" name="sienaDataServer" value="{{.AppSessionLife}}" disabled="disabled" size="60" class="form-control">
-    <small class="form-text text-muted">Duration</small>
-
-  </div>
-  <div class="col-sm">
-    <label for="sienaDataSource">Credentials Life:</label>
-    <input type="text" id="sienaDataSource" name="sienaDataSource" value="{{.AppCredentialsLife}}" disabled="disabled" size="60" class="form-control">
-    <small class="form-text text-muted">Days</small>
-  </div>
-</div>
           </div>
-
-
-
         </div>
       </div>
     </div>

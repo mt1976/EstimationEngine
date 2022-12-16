@@ -242,6 +242,9 @@ func Application_Info() {
 	logs.Break()
 
 	logs.Header("Application")
+	if core.ApplicationCompanyName() != "" {
+		logs.Information("Company", core.ApplicationCompanyName())
+	}
 	logs.Information("Name", core.ApplicationName())
 	logs.Information("Host Name", core.ApplicationHostname())
 	logs.Information("Server Release", core.ReleaseIdentityVerbose())

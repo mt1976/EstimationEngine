@@ -2,17 +2,13 @@
 {{template "bodydefinition" .}}
     <form action="/EstimationSessionSave" method="GET" class="form">
       <div class="card">
-        <div class="card-header">
-          <div class="row">
-             <div class="col h3">
-                    <i class="fas fa-calculator me-2" title="EstimationSessionID = NEW"></i><span class="me-3">Create an estimate</span>
-                </div>
+        <div class="card-header" style="padding-bottom:0;">
+          <div class="row d-flex align-items-center">
+            <div class="col d-flex align-items-center"><h3><i class="fas fa-calculator me-2"></i>{{.Title}}</h3></div>
             <div class="col d-flex justify-content-end">
-              <div class="btn-group float-right">
-              
-                <button type="submit" value="" class="btn btn-warning" method="GET" formaction="/EstimationSessionCreate" onclick="/EstimationSessionCreate" title="Create a new estimation"><i class="fas fa-save me-2"></i>Create</button>
-              
-                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Estimation Session"><i class="fas fa-print me-2"></i></i>Print</button>
+              <div class="btn-group" style="margin-bottom:1rem;">
+                <button type="submit" value="" class="btn btn-warning" method="GET" formaction="/EstimationSessionCreate" onclick="/EstimationSessionCreate" title="Create a new estimation"><i class="fas fa-save me-2"></i>Save</button>
+                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Estimation Session"><i class="fas fa-print me-2"></i>Print</button>
                 <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
               </div>
             </div>

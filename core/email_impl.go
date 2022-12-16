@@ -6,11 +6,13 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/mt1976/ebEstimates/logs"
 	"gopkg.in/gomail.v2"
 )
 
 var EMAIL_From string
 var EMAIL_Footer string
+var EMAIL_Active bool
 
 const (
 	ES_FROM    = "From"
@@ -22,13 +24,16 @@ const (
 
 func Email_init() *gomail.Dialer {
 	//fmt.Println("Email Init")
-
+	EMAIL_Active = false
 	emailService := GetApplicationProperty("emailservice")
 	emailPort, _ := strconv.Atoi(GetApplicationProperty("emailPort"))
 	emailUser := GetApplicationProperty("emailUser")
 	emailPassword := GetApplicationProperty("emailPassword")
 	EMAIL_From = GetApplicationProperty("emailFrom")
 	EMAIL_Footer = GetApplicationProperty("emailFooter")
+	if GetApplicationProperty("emailActive") == "true" {
+		EMAIL_Active = true
+	}
 	if EMAIL_Footer == "" {
 		EMAIL_Footer = "This is an automated email. Please do not reply!"
 	}
@@ -50,9 +55,13 @@ func SendEmail(to string, name string, subject string, body string) {
 	MSG_BODY := name + ",<br><br>" + body + "<br><br>" + EMAIL_Footer
 	m.SetBody(ES_TYPE, MSG_BODY)
 	//m.Attach("/home/Alex/lolcat.jpg")
-
-	// Send the email to Bob, Cora and Dan.
-	if err := Emailer.DialAndSend(m); err != nil {
-		panic(err)
+	if EMAIL_Active {
+		logs.Email(to, subject)
+		// Send the email to Bob, Cora and Dan.
+		if err := Emailer.DialAndSend(m); err != nil {
+			panic(err)
+		}
+	} else {
+		logs.Information("Email not sent to "+to+" - "+subject, "Email Not Active")
 	}
 }

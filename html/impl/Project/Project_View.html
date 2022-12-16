@@ -2,15 +2,12 @@
 <form action="/ProjectEdit/?ProjectID={{.ProjectID}}" method="POST" class="form">
     <div class="card">
         <div class="card-header">
-            <div class="row">
-                <div class="col h3">
-                    <i class="fas fa-project-diagram me-2" title="ProjectID = {{.ProjectID}}"></i><span class="me-3">{{.OriginID}} - Project {{.Name}}</span>
-                </div>
+            <div class="row d-flex align-items-center">
+                <div class="col d-flex align-items-center"><h3><i class="fas fa-project-diagram me-2"></i>{{.Title}} {{.Name}}</h3></div>
                 <div class="col d-flex justify-content-end">
-                    <div class="btn-group float-right">
-                        
+                    <div class="btn-group" style="">
                         <button type="submit" class="btn btn-warning" method="get" formaction="/ProjectEdit/?ProjectID={{.ProjectID}}"  title="Edit Project {{.ProjectID}}"><i class="fas fa-pen me-2"></i>Edit</button>
-                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Project {{.ProjectID}}"><i class="fas fa-print me-2"></i></i>Print</button>
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Project {{.ProjectID}}"><i class="fas fa-print me-2"></i>Print</button>
                         <button type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
                     </div>
                 </div>

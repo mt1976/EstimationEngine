@@ -1,16 +1,13 @@
 {{template "header" .}} {{template "bodydefinition" .}}
 <form action="/FeatureEdit/?FeatureID={{.FeatureID}}" method="POST" class="form">
     <div class="card">
-        <div class="card-header">
-            <div class="row">
-                <div class="col h3">
-                    <i class="fas fa-tasks me-2" title="FeatureID = {{.FeatureID}}"></i><span class="me-3">{{.Title}}</span>
-                </div>
+        <div class="card-header" style="padding-bottom:0;">
+            <div class="row d-flex align-items-center">
+                <div class="col d-flex align-items-center"><h3><i class="fas fa-tasks me-2"></i>{{.Title}}</h3></div>
                 <div class="col d-flex justify-content-end">
-                    <div class="btn-group float-right">
-                        
+                    <div class="btn-group" style="margin-bottom:1rem;">
                         <button type="submit" class="btn btn-warning" method="get" formaction="/FeatureEdit/?FeatureID={{.FeatureID}}"  title="Edit Feature {{.FeatureID}}"><i class="fas fa-pen me-2"></i>Edit</button>
-                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Feature {{.FeatureID}}"><i class="fas fa-print me-2"></i></i>Print</button>
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Feature {{.FeatureID}}"><i class="fas fa-print me-2"></i>Print</button>
                         <button type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
                     </div>
                 </div>

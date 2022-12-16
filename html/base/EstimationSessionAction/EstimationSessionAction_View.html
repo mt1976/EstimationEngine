@@ -1,16 +1,16 @@
 {{template "header" .}} {{template "bodydefinition" .}}
 <form action="/EstimationSessionActionEdit/?ID={{.ID}}" method="POST" class="form">
     <div class="card">
-        <div class="card-header">
-            <div class="row">
-                <div class="col h3">
+        <div class="card-header align-items-center" >
+            <div class="row align-items-center">
+                <div class="col h3 align-items-center">
                     <i class="fas fa-angle-double-right me-2" title="ID = {{.ID}}"></i><span class="me-3">{{.Title}}</span>
                 </div>
                 <div class="col d-flex justify-content-end">
                     <div class="btn-group float-right">
                         
                         <button type="submit" class="btn btn-warning" method="get" formaction="/EstimationSessionActionEdit/?ID={{.ID}}"  title="Edit Estimation Session Actions {{.ID}}"><i class="fas fa-pen me-2"></i>Edit</button>
-                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Estimation Session Actions {{.ID}}"><i class="fas fa-print me-2"></i></i>Print</button>
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Estimation Session Actions {{.ID}}"><i class="fas fa-print me-2"></i>Print</button>
                         <button type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
                     </div>
                 </div>

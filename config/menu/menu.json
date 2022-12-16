@@ -1,5 +1,5 @@
 {
-  "MenuHeaderText": "poop",
+  "MenuHeaderText": "Application Menu",
   "SectionTrees": [
     {
       "SectionID": "0",
@@ -108,36 +108,22 @@
       ]
     },
     {
-      "SectionID": "3",
-      "SectionName": "Utilities",
-      "SectionNodes": [
-        {
-          "MenuID": "a71475bc-84e4-41b0-82b5-c1602ef15af0",
-          "MenuText": "Credentials Actions",
-          "MenuGlyph": "fas fa-key",
-          "MenuHREF": "/CredentialsActionEdit",
-          "MenuOnClick": "",
-          "MenuTextClass": "text-warning"
-        },
-        {
-          "MenuID": "sqlinject",
-          "MenuText": "Refresh SQL Views",
-          "MenuGlyph": "fas fa-syringe",
-          "MenuHREF": "/injectSQLViews",
-          "MenuOnClick": "",
-          "MenuTextClass": "text-danger"
-        }
-      ]
-    },
-    {
       "SectionID": "4",
-      "SectionName": "Admin",
+      "SectionName": "System Admin",
       "SectionNodes": [
         {
           "MenuID": "a71475bc-84e4-41b0-82b5-c1602ef15af0",
           "MenuText": "Credentials",
           "MenuGlyph": "fas fa-key",
           "MenuHREF": "/CredentialsList",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-warning"
+        },
+        {
+          "MenuID": "a71475bc-84e4-41b0-82b5-c1602ef15af0",
+          "MenuText": "Credentials Actions",
+          "MenuGlyph": "fas fa-key",
+          "MenuHREF": "/CredentialsActionEdit",
           "MenuOnClick": "",
           "MenuTextClass": "text-warning"
         },
@@ -213,11 +199,12 @@
       "SectionID": "99",
       "SectionName": "About",
       "SectionNodes": [
+        
         {
-          "MenuID": "23",
-          "MenuText": "App Environment",
-          "MenuGlyph": "fa fa-server",
-          "MenuHREF": "/viewAppConfiguration",
+          "MenuID": "f4cbafd2-3fca-405f-97fa-66ba105e8152",
+          "MenuText": "API Catalog",
+          "MenuGlyph": "fas fa-cubes",
+          "MenuHREF": "/CatalogList",
           "MenuOnClick": "",
           "MenuTextClass": "text-info"
         },
@@ -225,10 +212,10 @@
           "MenuBreak": "true"
         },
         {
-          "MenuID": "f4cbafd2-3fca-405f-97fa-66ba105e8152",
-          "MenuText": "API Catalog",
-          "MenuGlyph": "fas fa-cubes",
-          "MenuHREF": "/CatalogList",
+          "MenuID": "23",
+          "MenuText": "About Application",
+          "MenuGlyph": "fas fa-balance-scale",
+          "MenuHREF": "/viewAppConfiguration",
           "MenuOnClick": "",
           "MenuTextClass": "text-info"
         }

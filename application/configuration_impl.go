@@ -36,6 +36,13 @@ type AppConfigurationPage struct {
 	AppSessionLife     string
 	GoVersion          string
 	OS                 string
+	AppName            string
+	CompanyName        string
+	DBModel            string
+	LicenseName        string
+	LicenseLink        string
+	AppEnvironment     string
+	AppDocker          string
 }
 
 func Configuration_Publish_Impl(mux http.ServeMux) {
@@ -78,10 +85,11 @@ func Configuration_HandlerView(w http.ResponseWriter, r *http.Request) {
 		GoVersion: runtime.Version(),
 		OS:        runtime.GOOS,
 	}
+	pageAppConfigView.SessionInfo, _ = Session_GetSessionInfo(r)
 	pageAppConfigView.AppDBServer = core.ApplicationSQLServer()
 	pageAppConfigView.AppDBPort = core.GetDatabaseProperty("port")
 	pageAppConfigView.AppDBUser = core.GetDatabaseProperty("user")
-	pageAppConfigView.AppDBPassword = strings.Repeat("*", len(core.GetApplicationProperty("password")))
+	pageAppConfigView.AppDBPassword = strings.Repeat("*", len(core.GetDatabaseProperty("password")))
 	pageAppConfigView.AppDBDatabase = core.ApplicationSQLDatabase()
 	pageAppConfigView.AppDBSchema = core.ApplicationSQLSchema()
 	pageAppConfigView.AppCredentialsLife = core.ApplicationCredentialsLife()
@@ -91,6 +99,17 @@ func Configuration_HandlerView(w http.ResponseWriter, r *http.Request) {
 	//thisTemplate:= core.GetTemplateID(tmpl,core.GetUserRole(r))
 
 	pageAppConfigView.SessionInfo, _ = Session_GetSessionInfo(r)
+	pageAppConfigView.AppName = core.ApplicationName()
+	pageAppConfigView.CompanyName = core.ApplicationCompanyName()
+	pageAppConfigView.DBModel = core.DB_Version()
+	pageAppConfigView.LicenseName = core.ApplicationLicenseName()
+	pageAppConfigView.LicenseLink = core.ApplicationLicenseLink()
+	pageAppConfigView.AppEnvironment = core.ApplicationEnvironment()
+	if core.RunningInDockerContainer() {
+		pageAppConfigView.AppDocker = "Yes"
+	} else {
+		pageAppConfigView.AppDocker = "No"
+	}
 
 	ExecuteTemplate(tmpl, w, r, pageAppConfigView)
 
