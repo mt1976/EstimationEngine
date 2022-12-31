@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 16/12/2022 at 16:47:10
+// Date & Time		    : 30/12/2022 at 12:58:05
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -109,6 +109,20 @@ Comments       string
 Comments_props FieldProperties
 Description       string
 Description_props FieldProperties
+Analyst       string
+Analyst_props FieldProperties
+ProductManager       string
+ProductManager_props FieldProperties
+ProjectManager       string
+ProjectManager_props FieldProperties
+Training       string
+Training_props FieldProperties
+DfTraining       string
+DfTraining_props FieldProperties
+DefaultProfile       string
+DefaultProfile_props FieldProperties
+ActualProfile       string
+ActualProfile_props FieldProperties
  // Any lookups will be added below
 
 EstimationSessionID_lookup []Lookup_Item
@@ -155,6 +169,13 @@ Approver_lookup []Lookup_Item
 
 
 
+Analyst_lookup []Lookup_Item
+ProductManager_lookup []Lookup_Item
+ProjectManager_lookup []Lookup_Item
+
+
+DefaultProfile_lookup []Lookup_Item
+ActualProfile_lookup []Lookup_Item
 
 }
 
@@ -235,6 +256,13 @@ const (
 	Feature_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
 	Feature_Comments_sql   = "comments" // Comments is a String
 	Feature_Description_sql   = "description" // Description is a String
+	Feature_Analyst_sql   = "analyst" // Analyst is a String
+	Feature_ProductManager_sql   = "productManager" // ProductManager is a String
+	Feature_ProjectManager_sql   = "projectManager" // ProjectManager is a String
+	Feature_Training_sql   = "training" // Training is a String
+	Feature_DfTraining_sql   = "dfTraining" // DfTraining is a String
+	Feature_DefaultProfile_sql   = "defaultProfile" // DefaultProfile is a String
+	Feature_ActualProfile_sql   = "actualProfile" // ActualProfile is a String
 
 	/// Definitions End
 	///
@@ -286,6 +314,13 @@ const (
 	Feature_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
 	Feature_Comments_scrn   = "Comments" // Comments is a String
 	Feature_Description_scrn   = "Description" // Description is a String
+	Feature_Analyst_scrn   = "Analyst" // Analyst is a String
+	Feature_ProductManager_scrn   = "ProductManager" // ProductManager is a String
+	Feature_ProjectManager_scrn   = "ProjectManager" // ProjectManager is a String
+	Feature_Training_scrn   = "Training" // Training is a String
+	Feature_DfTraining_scrn   = "DfTraining" // DfTraining is a String
+	Feature_DefaultProfile_scrn   = "DefaultProfile" // DefaultProfile is a String
+	Feature_ActualProfile_scrn   = "ActualProfile" // ActualProfile is a String
 
 	/// Definitions End
 	///
@@ -311,7 +346,7 @@ type Feature_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -409,8 +444,27 @@ type Feature_Page struct {
 	Comments_props     FieldProperties
 	Description         string
 	Description_props     FieldProperties
+	Analyst         string
+	Analyst_lookup    []Lookup_Item
+	Analyst_props     FieldProperties
+	ProductManager         string
+	ProductManager_lookup    []Lookup_Item
+	ProductManager_props     FieldProperties
+	ProjectManager         string
+	ProjectManager_lookup    []Lookup_Item
+	ProjectManager_props     FieldProperties
+	Training         string
+	Training_props     FieldProperties
+	DfTraining         string
+	DfTraining_props     FieldProperties
+	DefaultProfile         string
+	DefaultProfile_lookup    []Lookup_Item
+	DefaultProfile_props     FieldProperties
+	ActualProfile         string
+	ActualProfile_lookup    []Lookup_Item
+	ActualProfile_props     FieldProperties
 	// 
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

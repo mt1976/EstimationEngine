@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 16/12/2022 at 16:47:11
+// Date & Time		    : 30/12/2022 at 20:07:46
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -81,7 +81,10 @@ SYSDbVersion       string
 SYSDbVersion_props FieldProperties
 Comments       string
 Comments_props FieldProperties
+TrainingPerc       string
+TrainingPerc_props FieldProperties
  // Any lookups will be added below
+
 
 
 
@@ -179,6 +182,7 @@ const (
 	Profile_Notes_sql   = "notes" // Notes is a String
 	Profile_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
 	Profile_Comments_sql   = "comments" // Comments is a String
+	Profile_TrainingPerc_sql   = "TrainingPerc" // TrainingPerc is a String
 
 	/// Definitions End
 	///
@@ -216,6 +220,7 @@ const (
 	Profile_Notes_scrn   = "Notes" // Notes is a String
 	Profile_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
 	Profile_Comments_scrn   = "Comments" // Comments is a String
+	Profile_TrainingPerc_scrn   = "TrainingPerc" // TrainingPerc is a String
 
 	/// Definitions End
 	///
@@ -241,7 +246,7 @@ type Profile_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -307,8 +312,10 @@ type Profile_Page struct {
 	SYSDbVersion_props     FieldProperties
 	Comments         string
 	Comments_props     FieldProperties
+	TrainingPerc         string
+	TrainingPerc_props     FieldProperties
 	// 
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

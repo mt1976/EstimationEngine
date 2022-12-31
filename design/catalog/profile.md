@@ -46,22 +46,22 @@ SQL Table Key | **profileID**
 | -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
 |**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|text||
 |**ProfileID**|String|false|true|false|true|||||H|profileID||true|false|false|text||
-|**Code**|String|true|true|false|false|||||Y|code||false|false|false|text||
+|**Code**|String|true|true|false|true|||||Y|code||true|false|false|text||
 |**Name**|String|true|true|false|false|||||Y|name||false|false|false|text||
 |**StartDate**|String|false|true|false|true|||||Y|startDate||false|false|false|date|yyyy-mm-dd|
 |**EndDate**|String|false|true|false|true|||||Y|endDate||false|false|false|date|yyyy-mm-dd|
-|**DefaultReleases**|String|true|true|false|false|||||Y|DefaultReleases||false|false|false|text||
-|**DefaultReleaseHours**|String|true|true|false|false|||||Y|DefaultReleaseHours||false|false|false|text||
-|**BlendedRate**|String|true|true|false|false|||||Y|BlendedRate||false|false|false|text||
-|**Rounding**|String|true|true|false|false|||||Y|Rounding||false|false|false|text||
-|**HoursPerDay**|String|true|true|false|false|||||Y|HoursPerDay||false|false|false|text||
-|**REQPerc**|String|false|true|false|false|||||Y|REQPerc||false|false|false|text||
-|**ANAPerc**|String|false|true|false|false|||||Y|ANAPerc||false|false|false|text||
-|**DOCPerc**|String|false|true|false|false|||||Y|DOCPerc||false|false|false|text||
-|**PMPerc**|String|false|true|false|false|||||Y|PMPerc||false|false|false|text||
-|**UATPerc**|String|false|true|false|false|||||Y|UATPerc||false|false|false|text||
-|**GTMPerc**|String|false|true|false|false|||||Y|GTMPerc||false|false|false|text||
-|**SupportUplift**|String|false|true|false|false|||||Y|SupportUplift||false|false|false|text||
+|**DefaultReleases**|String|false|true|false|true|||||Y|DefaultReleases||false|false|false|number||
+|**DefaultReleaseHours**|String|false|true|false|true|||||Y|DefaultReleaseHours||false|false|false|number||
+|**BlendedRate**|String|true|true|false|true|||||Y|BlendedRate||false|false|false|number||
+|**Rounding**|String|false|true|false|true|||||Y|Rounding||false|false|false|number||
+|**HoursPerDay**|String|true|true|false|true|||||Y|HoursPerDay||false|false|false|number||
+|**REQPerc**|String|false|true|false|true|||||Y|REQPerc||false|false|false|number||
+|**ANAPerc**|String|false|true|false|true|||||Y|ANAPerc||false|false|false|number||
+|**DOCPerc**|String|false|true|false|true|||||Y|DOCPerc||false|false|false|number||
+|**PMPerc**|String|false|true|false|true|||||Y|PMPerc||false|false|false|number||
+|**UATPerc**|String|false|true|false|true|||||Y|UATPerc||false|false|false|number||
+|**GTMPerc**|String|false|true|false|true|||||Y|GTMPerc||false|false|false|number||
+|**SupportUplift**|String|false|true|false|true|||||Y|SupportUplift||false|false|false|number||
 |**ContigencyPerc**|String|false|true|false|false|||||Y|ContigencyPerc||false|false|false|text||
 |**SYSCreated**|String|false|true|false|false|||||NH|_created||false|false|true|text||
 |**SYSCreatedBy**|String|false|true|false|false|||||NH|_createdBy||false|false|true|text||
@@ -76,6 +76,7 @@ SQL Table Key | **profileID**
 |**Notes**|String|false|true|false|false|||||Y|notes||false|false|false|text||
 |**SYSDbVersion**|String|false|true|false|false|||||NH|_dbVersion||false|false|true|text||
 |**Comments**|String|false|true|false|false|||||Y|comments||false|false|false|text||
+|**TrainingPerc**|String|false|true|false|true|||||Y|TrainingPerc||false|false|false|number||
 
 
 ##  Artifacts Generated
@@ -97,7 +98,7 @@ SQL Table Key | **profileID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **16/12/2022** at **16:47:11**
+Date & Time		     | **30/12/2022** at **20:07:46**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

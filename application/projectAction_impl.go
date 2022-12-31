@@ -49,9 +49,12 @@ func ProjectAction_HandlerSave_Impl(w http.ResponseWriter, r *http.Request) {
 
 	item := project_DataFromRequest(r)
 
-	dao.Project_Store(item, r)
 	// Get Origin by Code
 	_, origin, _ := dao.Origin_GetByCode(item.OriginID)
+	item.DefaultRate = origin.Rate
+	item.ProjectRate = ""
+
+	dao.Project_Store(item, r)
 
 	REDR := dm.Project_Origin_PathList + "?" + dm.Origin_QueryString + "=" + origin.OriginID
 	logs.Information("REDIRECTING TO: ", REDR)

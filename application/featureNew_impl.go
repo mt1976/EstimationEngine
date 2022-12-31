@@ -136,7 +136,10 @@ func Feature_CalcDefaults(item dm.Feature) dm.Feature {
 	_, p, _ := dao.Project_GetByID(es.ProjectID)
 	// Then Get the Profile
 	_, pp, _ := dao.Profile_GetByCode(p.ProfileID)
-
+	item.DefaultProfile = p.ProfileID
+	if item.ActualProfile == "" {
+		item.ActualProfile = p.ProfileID
+	}
 	//spew.Dump(pp)
 
 	if item.DevEstimate == "" {
@@ -151,6 +154,7 @@ func Feature_CalcDefaults(item dm.Feature) dm.Feature {
 	pmPerc, _ := strconv.ParseFloat(pp.PMPerc, 64)
 	uatPerc, _ := strconv.ParseFloat(pp.UATPerc, 64)
 	gtmPerc, _ := strconv.ParseFloat(pp.GTMPerc, 64)
+	trainPerc, _ := strconv.ParseFloat(pp.TrainingPerc, 64)
 	//supportUpliftPerc, _ := strconv.ParseFloat(pp.SupportUplift, 64)
 
 	// Get the Confidence Factor
@@ -190,6 +194,10 @@ func Feature_CalcDefaults(item dm.Feature) dm.Feature {
 	gtmEstimate := coreEstimate * (gtmPerc / 100)
 	item.Marketing = strconv.FormatFloat(gtmEstimate, 'f', 2, 64)
 	item.Dfmarketing = item.Marketing
+
+	trainEstimate := coreEstimate * (trainPerc / 100)
+	item.Training = strconv.FormatFloat(trainEstimate, 'f', 2, 64)
+	item.DfTraining = item.Training
 
 	//totalEstimate := coreEstimate + reqEstimate + anaEstimate + docEstimate + pmEstimate + uatEstimate + gtmEstimate
 	item.Total = feature_CalculateTotal(item)

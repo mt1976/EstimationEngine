@@ -25,6 +25,7 @@ const (
 	Project_Origin_PathList    = "/ProjectsByOrigin/"
 	Project_Origin_QueryString = "OriginID"
 	Project_PathRemove         = "/ProjectRemove/"
+	Project_PathUpdate         = "/ProjectUpdate/"
 	///
 
 )

@@ -66,7 +66,38 @@
               <div class="{{.Name_props.MsgFeedBackType}}">{{.Name_props.MsgMessage}}</div>
             </div>
         
-        </div></div>
+        </div>
+        
+        
+        <div class="col">
+        
+            
+            <select id="DefaultProfile" name="DefaultProfile" class="select" data-mdb-filter="true" readonly="true" disabled>
+                {{range .DefaultProfile_lookup}}<option value="{{.ID}}" {{if eq .ID $.DefaultProfile}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="DefaultProfile" readonly="true">Default Profile</label>
+            <div class="{{.DefaultProfile_props.MsgFeedBackType}}">{{.DefaultProfile_props.MsgMessage}}</div>
+            
+        
+        </div>
+       
+        <div class="col">
+        
+            
+            <select id="ActualProfile" name="ActualProfile" class="select" data-mdb-filter="true"  >
+                {{range .ActualProfile_lookup}}<option value="{{.ID}}" {{if eq .ID $.ActualProfile}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ActualProfile" >Actual Profile</label>
+            <div class="{{.ActualProfile_props.MsgFeedBackType}}">{{.ActualProfile_props.MsgMessage}}</div>
+            
+        
+        </div> 
+        
+        </div>
+
+
+
+
         <div class="row mb-3"  ><div class="col">
         
             <div class="form-outline">
@@ -78,6 +109,35 @@
             </div>
         
         </div></div>
+
+
+        <div class="row mb-3"  ><div class="col">
+        
+            
+            <select id="ProjectManager" name="ProjectManager" class="select" data-mdb-filter="true"  >
+                {{range .ProjectManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ProjectManager" >Project Manager</label>
+            <div class="{{.ProjectManager_props.MsgFeedBackType}}">{{.ProjectManager_props.MsgMessage}}</div>
+            
+        
+        </div>
+        
+        <div class="col">
+        
+            
+            <select id="ProductManager" name="ProductManager" class="select" data-mdb-filter="true"  >
+                {{range .ProductManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProductManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ProductManager" >Product Manager</label>
+            <div class="{{.ProductManager_props.MsgFeedBackType}}">{{.ProductManager_props.MsgMessage}}</div>
+            
+        
+        </div>
+        
+        </div>
+
+
 <h4>Links</h4>
 
        
@@ -177,7 +237,22 @@
             <div class="{{.Developer_props.MsgFeedBackType}}">{{.Developer_props.MsgMessage}}</div>
             
         
-        </div></div>
+        </div>
+        
+          <div class="col">
+        
+            
+            <select id="Analyst" name="Analyst" class="select" data-mdb-filter="true"  >
+                {{range .Analyst_lookup}}<option value="{{.ID}}" {{if eq .ID $.Analyst}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="Analyst" >Analyst</label>
+            <div class="{{.Analyst_props.MsgFeedBackType}}">{{.Analyst_props.MsgMessage}}</div>
+            
+        
+        </div>
+        
+        
+        </div>
 
 
 <h5>Default Estimate</h5>
@@ -230,17 +305,7 @@
         
         </div>
         
-        <div class="col">
-        
-            <div class="form-outline">
-              
-              <input type="text" class="form-control {{.Dfmgt_props.MsgType}}" id="Dfmgt" name="Dfmgt" aria-describedby="DfmgtHelp" placeholder="" readonly  value="{{.Dfmgt}}"  data-mdb-input-mask="" />
-              
-              <label class="form-label" for="Dfmgt" >Management</label>
-              <div class="{{.Dfmgt_props.MsgFeedBackType}}">{{.Dfmgt_props.MsgMessage}}</div>
-            </div>
-        
-        </div>
+
         
         <div class="col">
         
@@ -253,15 +318,41 @@
             </div>
         
         </div>
+
+
+       
+        <div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="number" class="form-control {{.DfTraining_props.MsgType}}" id="DfTraining" name="DfTraining" aria-describedby="DfTrainingHelp" placeholder="" readonly="true"  value="{{.DfTraining}}"  data-mdb-input-mask="" step="0.25" disabled/>
+              
+              <label class="form-label" for="DfTraining" readonly="true">Training</label>
+              <div class="{{.DfTraining_props.MsgFeedBackType}}">{{.DfTraining_props.MsgMessage}}</div>
+            </div>
+        
+        </div>
         
         <div class="col">
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.DfuatSupport_props.MsgType}}" id="Dfmarketing" name="Dfmarketing" aria-describedby="DfmarketingHelp" placeholder="" readonly  value="{{.Dfmarketing}}"  data-mdb-input-mask="" />
+              <input type="text" class="form-control {{.Dfmarketing_props.MsgType}}" id="Dfmarketing" name="Dfmarketing" aria-describedby="DfmarketingHelp" placeholder="" readonly  value="{{.Dfmarketing}}"  data-mdb-input-mask="" />
               
               <label class="form-label" for="Dfmarketing" >Marketing</label>
               <div class="{{.Dfmarketing_props.MsgFeedBackType}}">{{.Dfmarketing_props.MsgMessage}}</div>
+            </div>
+        
+        </div>
+
+                <div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Dfmgt_props.MsgType}}" id="Dfmgt" name="Dfmgt" aria-describedby="DfmgtHelp" placeholder="" readonly  value="{{.Dfmgt}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="Dfmgt" >Management</label>
+              <div class="{{.Dfmgt_props.MsgFeedBackType}}">{{.Dfmgt_props.MsgMessage}}</div>
             </div>
         
         </div>
@@ -272,7 +363,7 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.DevUplift_props.MsgType}}" id="DevUplift" name="DevUplift" aria-describedby="DevUpliftHelp" placeholder=""   value="{{.DevUplift}}"  data-mdb-input-mask="" />
+              <input type="number" class="form-control {{.DevUplift_props.MsgType}}" id="DevUplift" name="DevUplift" aria-describedby="DevUpliftHelp" placeholder=""   value="{{.DevUplift}}"  data-mdb-input-mask="" step="0.25"/>
               
               <label class="form-label" for="DevUplift" >Development + Uplift</label>
               <div class="{{.DevUplift_props.MsgFeedBackType}}">{{.DevUplift_props.MsgMessage}}</div>
@@ -284,7 +375,7 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.Reqs_props.MsgType}}" id="Reqs" name="Reqs" aria-describedby="ReqsHelp" placeholder=""   value="{{.Reqs}}"  data-mdb-input-mask="" />
+              <input type="number" class="form-control {{.Reqs_props.MsgType}}" id="Reqs" name="Reqs" aria-describedby="ReqsHelp" placeholder=""   value="{{.Reqs}}"  data-mdb-input-mask="" step="0.25"/>
               
               <label class="form-label" for="Reqs" >Requirements</label>
               <div class="{{.Reqs_props.MsgFeedBackType}}">{{.Reqs_props.MsgMessage}}</div>
@@ -296,7 +387,7 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.AnalystTest_props.MsgType}}" id="AnalystTest" name="AnalystTest" aria-describedby="AnalystTestHelp" placeholder=""   value="{{.AnalystTest}}"  data-mdb-input-mask="" />
+              <input type="number" class="form-control {{.AnalystTest_props.MsgType}}" id="AnalystTest" name="AnalystTest" aria-describedby="AnalystTestHelp" placeholder=""   value="{{.AnalystTest}}"  data-mdb-input-mask="" step="0.25"/>
               
               <label class="form-label" for="AnalystTest" >Analyst & Test</label>
               <div class="{{.AnalystTest_props.MsgFeedBackType}}">{{.AnalystTest_props.MsgMessage}}</div>
@@ -308,7 +399,7 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.Docs_props.MsgType}}" id="Docs" name="Docs" aria-describedby="DocsHelp" placeholder=""   value="{{.Docs}}"  data-mdb-input-mask="" />
+              <input type="number" class="form-control {{.Docs_props.MsgType}}" id="Docs" name="Docs" aria-describedby="DocsHelp" placeholder=""   value="{{.Docs}}"  data-mdb-input-mask="" step="0.25"/>
               
               <label class="form-label" for="Docs" >Documentation</label>
               <div class="{{.Docs_props.MsgFeedBackType}}">{{.Docs_props.MsgMessage}}</div>
@@ -316,23 +407,13 @@
         
         </div>
         
-        <div class="col">
-        
-            <div class="form-outline">
-              
-              <input type="text" class="form-control {{.Mgt_props.MsgType}}" id="Mgt" name="Mgt" aria-describedby="MgtHelp" placeholder=""   value="{{.Mgt}}"  data-mdb-input-mask="" />
-              
-              <label class="form-label" for="Mgt" >Management</label>
-              <div class="{{.Mgt_props.MsgFeedBackType}}">{{.Mgt_props.MsgMessage}}</div>
-            </div>
-        
-        </div>
+
         
         <div class="col">
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.UatSupport_props.MsgType}}" id="UatSupport" name="UatSupport" aria-describedby="UatSupportHelp" placeholder=""   value="{{.UatSupport}}"  data-mdb-input-mask="" />
+              <input type="number" class="form-control {{.UatSupport_props.MsgType}}" id="UatSupport" name="UatSupport" aria-describedby="UatSupportHelp" placeholder=""   value="{{.UatSupport}}"  data-mdb-input-mask="" step="0.25"/>
               
               <label class="form-label" for="UatSupport" >UAT Support</label>
               <div class="{{.UatSupport_props.MsgFeedBackType}}">{{.UatSupport_props.MsgMessage}}</div>
@@ -344,10 +425,34 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.Marketing_props.MsgType}}" id="Marketing" name="Marketing" aria-describedby="MarketingHelp" placeholder=""   value="{{.Marketing}}"  data-mdb-input-mask="" />
+              <input type="number" class="form-control {{.Training_props.MsgType}}" id="Training" name="Training" aria-describedby="TrainingHelp" placeholder=""   value="{{.Training}}"  data-mdb-input-mask="" step="0.25"/>
+              
+              <label class="form-label" for="Training" >Training</label>
+              <div class="{{.Training_props.MsgFeedBackType}}">{{.Training_props.MsgMessage}}</div>
+            </div>
+        
+        </div>
+
+        <div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="number" class="form-control {{.Marketing_props.MsgType}}" id="Marketing" name="Marketing" aria-describedby="MarketingHelp" placeholder=""   value="{{.Marketing}}"  data-mdb-input-mask="" step="0.25"/>
               
               <label class="form-label" for="Marketing" >Marketing</label>
               <div class="{{.Marketing_props.MsgFeedBackType}}">{{.Marketing_props.MsgMessage}}</div>
+            </div>
+        
+        </div>
+
+                <div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="number" class="form-control {{.Mgt_props.MsgType}}" id="Mgt" name="Mgt" aria-describedby="MgtHelp" placeholder=""   value="{{.Mgt}}"  data-mdb-input-mask="" step="0.25"/>
+              
+              <label class="form-label" for="Mgt" >Management</label>
+              <div class="{{.Mgt_props.MsgFeedBackType}}">{{.Mgt_props.MsgMessage}}</div>
             </div>
         
         </div>
@@ -549,6 +654,14 @@
         
         </div></div>
       
+          
+       
+
+       
+       
+       
+
+        
       
     </div>
     {{template "audit" .}}

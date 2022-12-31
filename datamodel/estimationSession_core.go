@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 16/12/2022 at 16:47:10
+// Date & Time		    : 30/12/2022 at 12:18:20
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -91,6 +91,12 @@ SYSDbVersion       string
 SYSDbVersion_props FieldProperties
 Comments       string
 Comments_props FieldProperties
+ProjectManager       string
+ProjectManager_props FieldProperties
+ProductManager       string
+ProductManager_props FieldProperties
+Approver       string
+Approver_props FieldProperties
 Origin       string
 Origin_props FieldProperties
 OriginStateID       string
@@ -178,6 +184,9 @@ EstimationStateID_lookup []Lookup_Item
 
 
 
+ProjectManager_lookup []Lookup_Item
+ProductManager_lookup []Lookup_Item
+Approver_lookup []Lookup_Item
 
 
 
@@ -274,6 +283,9 @@ const (
 	EstimationSession_SYSActivity_sql   = "_activity" // SYSActivity is a String
 	EstimationSession_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
 	EstimationSession_Comments_sql   = "comments" // Comments is a String
+	EstimationSession_ProjectManager_sql   = "projectManager" // ProjectManager is a String
+	EstimationSession_ProductManager_sql   = "productManager" // ProductManager is a String
+	EstimationSession_Approver_sql   = "approver" // Approver is a String
 	EstimationSession_Origin_sql   = "Origin" // Origin is a String
 	EstimationSession_OriginStateID_sql   = "OriginStateID" // OriginStateID is a String
 	EstimationSession_OriginState_sql   = "OriginState" // OriginState is a String
@@ -341,6 +353,9 @@ const (
 	EstimationSession_SYSActivity_scrn   = "SYSActivity" // SYSActivity is a String
 	EstimationSession_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
 	EstimationSession_Comments_scrn   = "Comments" // Comments is a String
+	EstimationSession_ProjectManager_scrn   = "ProjectManager" // ProjectManager is a String
+	EstimationSession_ProductManager_scrn   = "ProductManager" // ProductManager is a String
+	EstimationSession_Approver_scrn   = "Approver" // Approver is a String
 	EstimationSession_Origin_scrn   = "Origin" // Origin is a String
 	EstimationSession_OriginStateID_scrn   = "OriginStateID" // OriginStateID is a String
 	EstimationSession_OriginState_scrn   = "OriginState" // OriginState is a String
@@ -391,7 +406,7 @@ type EstimationSession_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -469,6 +484,15 @@ type EstimationSession_Page struct {
 	SYSDbVersion_props     FieldProperties
 	Comments         string
 	Comments_props     FieldProperties
+	ProjectManager         string
+	ProjectManager_lookup    []Lookup_Item
+	ProjectManager_props     FieldProperties
+	ProductManager         string
+	ProductManager_lookup    []Lookup_Item
+	ProductManager_props     FieldProperties
+	Approver         string
+	Approver_lookup    []Lookup_Item
+	Approver_props     FieldProperties
 	Origin         string
 	Origin_props     FieldProperties
 	OriginStateID         string
@@ -520,7 +544,7 @@ type EstimationSession_Page struct {
 	NoActiveFeatures         string
 	NoActiveFeatures_props     FieldProperties
 	// 
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

@@ -16,7 +16,7 @@ import (
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 16/12/2022 at 16:47:10
+// Date & Time		    : 30/12/2022 at 12:18:20
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -27,7 +27,7 @@ import (
 
 	// If there are fields below, create the methods in adaptor\estimationsession_impl.go
 	// START - GET API/Callout
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 func EstimationSession_Origin_OnStore_impl (fieldval string,rec dm.EstimationSession,usr string) (string,error)  {
 	logs.Callout("EstimationSession", "Origin", PUT, rec.EstimationSessionID)
@@ -131,11 +131,11 @@ func EstimationSession_NoActiveFeatures_OnStore_impl (fieldval string,rec dm.Est
 	}
 
 	// 
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END - GET API/Callout
 	//
 	// START - PUT API/Callout
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 func EstimationSession_Origin_OnFetch_impl (rec dm.EstimationSession)(string) {
 	logs.Callout("EstimationSession", "Origin", GET, rec.EstimationSessionID)
@@ -239,11 +239,11 @@ func EstimationSession_NoActiveFeatures_OnFetch_impl (rec dm.EstimationSession)(
 	}
 
 	// 
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END - PUT API/Callout
 
 	// START - Validation API/Callout
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// EstimationSession_Origin_impl provides validation/actions for Origin
 	func EstimationSession_Origin_impl (iAction string, iId string, iValue string, iRec dm.EstimationSession, fP dm.FieldProperties) (string, dm.FieldProperties) {
@@ -372,7 +372,7 @@ func EstimationSession_NoActiveFeatures_OnFetch_impl (rec dm.EstimationSession)(
 	}
 
 	// 
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END - Validation API/Callout
 
 func EstimationSession_ObjectValidation_impl (iAction string, iId string, iRec dm.EstimationSession) (dm.EstimationSession, string, error) {

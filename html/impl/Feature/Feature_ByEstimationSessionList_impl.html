@@ -27,18 +27,19 @@
           <thead class="table-primary">
             <tr class="fs-6 text-center">
               <th class="fw-bolder">NAME</th>
+              <th class="text-center fw-bolder">PROFILE</th>
+
               <th class="text-center fw-bolder">ESTIMATE</th>
         
               <th class="text-center fw-bolder">CONFIDENCE</th>
-              <th class="text-center fw-bolder">UPLIFT</th>
-              <th class="text-center table-info fw-bolder">REQUIREMENTS</th>
-              <th class="text-center table-info fw-bolder">ANALYST/TEST</th>
-              <th class="text-center table-info fw-bolder">DOCUMENTATION</th>
+              <th class="text-center fw-bolder">+UPLIFT</th>
+              <th class="text-center table-info fw-bolder">REQS</th>
+              <th class="text-center table-info fw-bolder">ANA/TEST</th>
+              <th class="text-center table-info fw-bolder">DOCS</th>
               <th class="text-center fw-bolder">UAT SUPPORT</th>
-              <th class="text-center fw-bolder">MANAGEMENT</th>
-
+              <th class="text-center fw-bolder">TRAINING</th>
               <th class="text-center fw-bolder">MARKETING</th>
-
+              <th class="text-center fw-bolder">MGMT</th>
               <th class="text-center table-secondary fw-bolder">TOTAL</th>
               <th class="text-end fw-bolder">ACTIONS</th>
             </tr>
@@ -47,6 +48,7 @@
             {{range .ItemList}}
             <tr class="fs-6">
               <td class="text-primary"><a href="/FeatureView/?FeatureID={{.FeatureID}}" class="" style="font-weight:bolder;" role="button" aria-pressed="true">{{.Name}}</a></td>
+              <td class="text-center">{{.ActualProfile}}</td>
               <td class="text-center">{{.DevEstimate}}</td>
         
               <td class="text-center">{{.ConfidenceID}}</td>
@@ -54,9 +56,11 @@
               <td class="text-center bg-info" style="--mdb-bg-opacity: 0.1;">{{.Reqs}}</td>
               <td class="text-center bg-info" style="--mdb-bg-opacity: 0.1;">{{.AnalystTest}}</td>
               <td class="text-center bg-info" style="--mdb-bg-opacity: 0.1;">{{.Docs}}</td>
-              <td class="text-center">{{.Mgt}}</td>
+              
               <td class="text-center">{{.UatSupport}}</td>
+              <td class="text-center">{{.Training}}</td>
               <td class="text-center">{{.Marketing}}</td>
+              <td class="text-center">{{.Mgt}}</td>
               <td class="text-center bg-secondary" style="--mdb-bg-opacity: 0.1;">{{.Total}}</td>
 
               <td class="float-right">
@@ -71,9 +75,9 @@
           <tfoot class="table-primary">
             <tr class="fs-6">
               <th></th>
-              <th colspan="3" class="text-center ">Engineering</th>
+              <th colspan="4" class="text-center ">Engineering</th>
               <th colspan="3" class="text-center table-info">Product</th>
-              <th colspan="3" class="text-center">General</th>
+              <th colspan="4" class="text-center">General</th>
               <th colspan="1" class="text-center table-secondary">TOTAL</th>
               <th></th>
             </tr>

@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 16/12/2022 at 16:47:11
+// Date & Time		    : 30/12/2022 at 20:09:22
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -59,6 +59,16 @@ SYSDbVersion       string
 SYSDbVersion_props FieldProperties
 Comments       string
 Comments_props FieldProperties
+ProjectRate       string
+ProjectRate_props FieldProperties
+DefaultRate       string
+DefaultRate_props FieldProperties
+ProjectAnalyst       string
+ProjectAnalyst_props FieldProperties
+ProjectEngineer       string
+ProjectEngineer_props FieldProperties
+ProjectManager       string
+ProjectManager_props FieldProperties
 NoEstimationSessions       string
 NoEstimationSessions_props FieldProperties
  // Any lookups will be added below
@@ -82,6 +92,11 @@ ProfileID_lookup []Lookup_Item
 
 
 
+
+
+ProjectAnalyst_lookup []Lookup_Item
+ProjectEngineer_lookup []Lookup_Item
+ProjectManager_lookup []Lookup_Item
 
 
 }
@@ -138,6 +153,11 @@ const (
 	Project_SYSActivity_sql   = "_activity" // SYSActivity is a String
 	Project_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
 	Project_Comments_sql   = "comments" // Comments is a String
+	Project_ProjectRate_sql   = "projectRate" // ProjectRate is a String
+	Project_DefaultRate_sql   = "defaultRate" // DefaultRate is a String
+	Project_ProjectAnalyst_sql   = "projectAnalyst" // ProjectAnalyst is a String
+	Project_ProjectEngineer_sql   = "projectEngineer" // ProjectEngineer is a String
+	Project_ProjectManager_sql   = "projectManager" // ProjectManager is a String
 	Project_NoEstimationSessions_sql   = "NoEstimationSessions" // NoEstimationSessions is a String
 
 	/// Definitions End
@@ -165,6 +185,11 @@ const (
 	Project_SYSActivity_scrn   = "SYSActivity" // SYSActivity is a String
 	Project_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
 	Project_Comments_scrn   = "Comments" // Comments is a String
+	Project_ProjectRate_scrn   = "ProjectRate" // ProjectRate is a String
+	Project_DefaultRate_scrn   = "DefaultRate" // DefaultRate is a String
+	Project_ProjectAnalyst_scrn   = "ProjectAnalyst" // ProjectAnalyst is a String
+	Project_ProjectEngineer_scrn   = "ProjectEngineer" // ProjectEngineer is a String
+	Project_ProjectManager_scrn   = "ProjectManager" // ProjectManager is a String
 	Project_NoEstimationSessions_scrn   = "NoEstimationSessions" // NoEstimationSessions is a String
 
 	/// Definitions End
@@ -191,7 +216,7 @@ type Project_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -238,10 +263,23 @@ type Project_Page struct {
 	SYSDbVersion_props     FieldProperties
 	Comments         string
 	Comments_props     FieldProperties
+	ProjectRate         string
+	ProjectRate_props     FieldProperties
+	DefaultRate         string
+	DefaultRate_props     FieldProperties
+	ProjectAnalyst         string
+	ProjectAnalyst_lookup    []Lookup_Item
+	ProjectAnalyst_props     FieldProperties
+	ProjectEngineer         string
+	ProjectEngineer_lookup    []Lookup_Item
+	ProjectEngineer_props     FieldProperties
+	ProjectManager         string
+	ProjectManager_lookup    []Lookup_Item
+	ProjectManager_props     FieldProperties
 	NoEstimationSessions         string
 	NoEstimationSessions_props     FieldProperties
 	// 
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

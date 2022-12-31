@@ -26,6 +26,7 @@ import (
 func Project_Publish_Impl(mux http.ServeMux) {
 	mux.HandleFunc(dm.Project_Origin_PathList, Project_ByOrigin_HandlerList)
 	mux.HandleFunc(dm.Project_PathRemove, Project_HandlerRemove)
+	mux.HandleFunc(dm.Project_PathUpdate, Project_HandlerUpdate)
 	logs.Publish("Implementation", dm.Project_Title)
 
 }
@@ -107,4 +108,43 @@ func Project_SoftDeleteByOriginCode(originCODE string) error {
 		}
 	}
 	return nil
+}
+
+// Project_HandlerUpdate is the handler used process the saving of an Project
+// It is called from the Edit and New pages
+// Project_HandlerUpdate  - Manually generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+func Project_HandlerUpdate(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	//
+	// Mandatory Security Validation
+	//
+	if !(Session_Validate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	// Code Continues Below
+
+	w.Header().Set("Content-Type", "text/html")
+	logs.Servicing(r.URL.Path + r.FormValue("ProjectID"))
+
+	item := project_DataFromRequest(r)
+
+	dao.Project_Store(item, r)
+
+	projectID := item.ProjectID
+	_, esSessions, _ := dao.EstimationSession_Active_ByProject_GetList(projectID)
+	if len(esSessions) != 0 {
+		for _, esSession := range esSessions {
+			go Estimationsession_Calculate(esSession.EstimationSessionID)
+		}
+	}
+
+	_, origin, _ := dao.Origin_GetByCode(item.OriginID)
+
+	REDR := dm.Project_Origin_PathList + "?" + dm.Project_Origin_QueryString + "=" + origin.OriginID
+	http.Redirect(w, r, REDR, http.StatusFound)
+	//
+	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
 }

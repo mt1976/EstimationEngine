@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 16/12/2022 at 16:47:12
+// Date & Time		    : 30/12/2022 at 12:18:23
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -53,10 +53,10 @@ func Translation_GetByID(id string) (int, dm.Translation, error) {
 	_, _, translationItem, _ := translation_Fetch(tsql)
 
 	// START
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, translationItem, nil
 }
@@ -127,10 +127,10 @@ func Translation_StoreSystem(r dm.Translation) error {
 func Translation_Validate(r dm.Translation) (dm.Translation, error) {
 	var err error
 	// START
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -185,7 +185,7 @@ logs.Storing("Translation",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Translation_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Translation_Id_sql, r.Id)
@@ -204,7 +204,7 @@ logs.Storing("Translation",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Translation_SYSDbVersion_sql, r.SYSDbVersion)
 		
 	// 
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + Translation_QualifiedName
@@ -237,7 +237,7 @@ func translation_Fetch(tsql string) (int, []dm.Translation, dm.Translation, erro
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Translation_SYSId_sql, "0")
 	   recItem.Id  = get_String(rec, dm.Translation_Id_sql, "")
@@ -273,7 +273,7 @@ func translation_Fetch(tsql string) (int, []dm.Translation, dm.Translation, erro
 	
 	
 	// 
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -303,10 +303,10 @@ func Translation_New() (int, []dm.Translation, dm.Translation, error) {
 	
 
 	// START
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

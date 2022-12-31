@@ -275,6 +275,66 @@
         
         </div></div>
        
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="number" class="form-control {{.ProjectRate_props.MsgType}}" id="ProjectRate" name="ProjectRate" aria-describedby="ProjectRateHelp" placeholder=""   value="{{.ProjectRate}}"  data-mdb-input-mask="" step="0.25"/>
+              
+              <label class="form-label" for="ProjectRate" >ProjectRate</label>
+              <div class="{{.ProjectRate_props.MsgFeedBackType}}">{{.ProjectRate_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3" readonly="true" ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="number" class="form-control {{.DefaultRate_props.MsgType}}" id="DefaultRate" name="DefaultRate" aria-describedby="DefaultRateHelp" placeholder="" readonly="true"  value="{{.DefaultRate}}"  data-mdb-input-mask="" step="0.25"/>
+              
+              <label class="form-label" for="DefaultRate" readonly="true">DefaultRate</label>
+              <div class="{{.DefaultRate_props.MsgFeedBackType}}">{{.DefaultRate_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            
+            <select id="ProjectAnalyst" name="ProjectAnalyst" class="select" data-mdb-filter="true"  >
+                {{range .ProjectAnalyst_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectAnalyst}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ProjectAnalyst" >ProjectAnalyst</label>
+            <div class="{{.ProjectAnalyst_props.MsgFeedBackType}}">{{.ProjectAnalyst_props.MsgMessage}}</div>
+            
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            
+            <select id="ProjectEngineer" name="ProjectEngineer" class="select" data-mdb-filter="true"  >
+                {{range .ProjectEngineer_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectEngineer}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ProjectEngineer" >ProjectEngineer</label>
+            <div class="{{.ProjectEngineer_props.MsgFeedBackType}}">{{.ProjectEngineer_props.MsgMessage}}</div>
+            
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            
+            <select id="ProjectManager" name="ProjectManager" class="select" data-mdb-filter="true"  >
+                {{range .ProjectManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ProjectManager" >ProjectManager</label>
+            <div class="{{.ProjectManager_props.MsgFeedBackType}}">{{.ProjectManager_props.MsgMessage}}</div>
+            
+        
+        </div></div>
+       
         <div class="row mb-3" readonly="true" ><div class="col">
         
             <div class="form-outline">

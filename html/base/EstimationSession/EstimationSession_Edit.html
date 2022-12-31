@@ -467,6 +467,42 @@
         
         </div></div>
        
+        <div class="row mb-3"  ><div class="col">
+        
+            
+            <select id="ProjectManager" name="ProjectManager" class="select" data-mdb-filter="true"  >
+                {{range .ProjectManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ProjectManager" >ProjectManager</label>
+            <div class="{{.ProjectManager_props.MsgFeedBackType}}">{{.ProjectManager_props.MsgMessage}}</div>
+            
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            
+            <select id="ProductManager" name="ProductManager" class="select" data-mdb-filter="true"  >
+                {{range .ProductManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProductManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ProductManager" >ProductManager</label>
+            <div class="{{.ProductManager_props.MsgFeedBackType}}">{{.ProductManager_props.MsgMessage}}</div>
+            
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            
+            <select id="Approver" name="Approver" class="select" data-mdb-filter="true"  >
+                {{range .Approver_lookup}}<option value="{{.ID}}" {{if eq .ID $.Approver}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="Approver" >Approver</label>
+            <div class="{{.Approver_props.MsgFeedBackType}}">{{.Approver_props.MsgMessage}}</div>
+            
+        
+        </div></div>
+       
         <div class="row mb-3" readonly="true" ><div class="col">
         
             <div class="form-outline">

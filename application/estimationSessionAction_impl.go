@@ -16,7 +16,6 @@ package application
 import (
 	"net/http"
 	"strconv"
-	"time"
 
 	core "github.com/mt1976/ebEstimates/core"
 	dao "github.com/mt1976/ebEstimates/dao"
@@ -88,13 +87,9 @@ func EstimationSessionAction_HandlerStore(w http.ResponseWriter, r *http.Request
 	logs.Information("NoFound", strconv.Itoa(noRet))
 	//spew.Dump(es)
 
-	tm := time.Now().Format("02/01/2006 ")
-	note := tm + Session_GetUserName(r) + ": " + es.EstimationStateID + "->" + item.Action
+	msgTXT := es.EstimationStateID + "->" + item.Action
+	item.Notes = addActivity_System(item.Notes, msgTXT)
 
-	es.Notes = es.Notes + "\r\n" + note
-	if item.Notes != "" {
-		es.Notes = es.Notes + "\r\n" + tm + Session_GetUserName(r) + ": " + item.Notes
-	}
 	es.EstimationStateID = item.Action
 
 	dao.EstimationSession_Store(es, r)

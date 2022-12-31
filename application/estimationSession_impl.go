@@ -129,6 +129,7 @@ func EstimationSession_HandlerFormatted(w http.ResponseWriter, r *http.Request) 
 	pageDetail.OriginDocTypeID = thisOriginDocType.DocTypeID
 	pageDetail.OriginDocType = thisOriginDocType.Name
 	pageDetail.OriginRate = thisOrigin.Rate
+
 	pageDetail.ProjectProfileID = thisProject.ProfileID
 	pageDetail.ProjectProfile = thisProjectProfile.Name
 	pageDetail.ProjectDefaultReleases = thisProjectProfile.DefaultReleases
@@ -140,6 +141,14 @@ func EstimationSession_HandlerFormatted(w http.ResponseWriter, r *http.Request) 
 	pageDetail.ProjectStartDate = thisProject.StartDate
 	pageDetail.ProjectEndDate = thisProject.EndDate
 	pageDetail.ProfileSupportUpliftPerc = thisProjectProfile.SupportUplift
+
+	if thisProject.DefaultRate != "" {
+		pageDetail.OriginRate = thisProject.DefaultRate
+	}
+
+	if thisProject.ProjectRate != "" {
+		pageDetail.OriginRate = thisProject.ProjectRate
+	}
 
 	symbol := "£"
 	if thisOrigin.Currency != "" {
@@ -165,7 +174,6 @@ func EstimationSession_HandlerFormatted(w http.ResponseWriter, r *http.Request) 
 
 	// Add up the effort
 	ExecuteTemplate(dm.EstimationSession_Formatted_TemplateView, w, r, pageDetail)
-
 }
 
 // EstimationSession_HandlerSave is the handler used process the saving of an EstimationSession
@@ -246,7 +254,7 @@ func Estimationsession_Calculate(searchID string) dm.EstimationSession {
 	//Get the current profile
 	profileID := proj.ProfileID
 	originID := proj.OriginID
-	logs.Information("ProjectUI: ", esRecord.ProjectID)
+	logs.Information("ProjectID: ", esRecord.ProjectID)
 	logs.Information("ProfileID: ", profileID)
 	logs.Information("OriginID: ", originID)
 
@@ -258,6 +266,12 @@ func Estimationsession_Calculate(searchID string) dm.EstimationSession {
 
 	HoursInDay := stf(profile.HoursPerDay)
 	Rate := stf(origin.Rate)
+	if proj.DefaultRate != "" {
+		Rate = stf(proj.DefaultRate)
+	}
+	if proj.ProjectRate != "" {
+		Rate = stf(proj.ProjectRate)
+	}
 
 	logs.Information("HoursInDay: ", fts(HoursInDay))
 	logs.Information("Rate: ", fts(Rate))
@@ -268,6 +282,7 @@ func Estimationsession_Calculate(searchID string) dm.EstimationSession {
 	Total_Mgt := 0.00
 	Total_UAT := 0.00
 	Total_MKT := 0.00
+	Total_Training := 0.00
 	//Total_Contingency := 0.00
 	Total_DevEstimate := 0.00
 	Total_DevUplift := 0.00
@@ -287,9 +302,10 @@ func Estimationsession_Calculate(searchID string) dm.EstimationSession {
 		//Total_Contingency += stf(feature.Contingency)
 		Total_DevUplift += stf(feature.DevUplift)
 		Total_DevEstimate += stf(feature.DevEstimate)
+		Total_Training += stf(feature.Training)
 	}
 
-	logs.Information("Total_Reqs: ", fmt.Sprintf("%.2f", Total_Reqs))
+	//logs.Information("Total_Reqs: ", fmt.Sprintf("%.2f", Total_Reqs))
 
 	ReleaseHoursInDay := stf(profile.DefaultReleaseHours)
 	RelHours := stf(profile.DefaultReleases) * ReleaseHoursInDay
@@ -309,13 +325,14 @@ func Estimationsession_Calculate(searchID string) dm.EstimationSession {
 	//Total_DevEstimate_Days, Total_DevEstimate_Cost := calculate(Total_DevEstimate, HoursInDay, Rate)
 	Total_DevUplift_Days, _ := calculate(Total_DevUplift, HoursInDay, Rate)
 	Total_Rel_Days, _ := calculate(RelHours, ReleaseHoursInDay, Rate)
+	Total_Training_Days, _ := calculate(Total_Training, HoursInDay, Rate)
 
-	TReqs, _ := rtn(Total_Reqs_Days+Total_AnaTest_Days+Total_Docs_Days+Total_MKT_Days, RoundingFactor)
+	TReqs, _ := rtn(Total_Reqs_Days, RoundingFactor)
 
 	// Requirement Days
 	esRecord.ReqDays = fts(TReqs)
 	esRecord.RegCost = fts((TReqs * HoursInDay) * Rate)
-	Timps, _ := rtn(Total_DevUplift_Days, RoundingFactor)
+	Timps, _ := rtn(Total_DevUplift_Days+Total_AnaTest_Days+Total_Docs_Days+Total_MKT_Days+Total_Training_Days, RoundingFactor)
 	// Implementaion Days
 	esRecord.ImpDays = fts(Timps)
 	esRecord.ImpCost = fts((Timps * HoursInDay) * Rate)

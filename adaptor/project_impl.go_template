@@ -16,7 +16,7 @@ import (
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 16/12/2022 at 16:47:11
+// Date & Time		    : 30/12/2022 at 20:09:22
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -27,7 +27,7 @@ import (
 
 	// If there are fields below, create the methods in adaptor\project_impl.go
 	// START - GET API/Callout
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 func Project_NoEstimationSessions_OnStore_impl (fieldval string,rec dm.Project,usr string) (string,error)  {
 	logs.Callout("Project", "NoEstimationSessions", PUT, rec.ProjectID)
@@ -35,11 +35,11 @@ func Project_NoEstimationSessions_OnStore_impl (fieldval string,rec dm.Project,u
 	}
 
 	// 
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END - GET API/Callout
 	//
 	// START - PUT API/Callout
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 func Project_NoEstimationSessions_OnFetch_impl (rec dm.Project)(string) {
 	logs.Callout("Project", "NoEstimationSessions", GET, rec.ProjectID)
@@ -47,11 +47,11 @@ func Project_NoEstimationSessions_OnFetch_impl (rec dm.Project)(string) {
 	}
 
 	// 
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END - PUT API/Callout
 
 	// START - Validation API/Callout
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Project_NoEstimationSessions_impl provides validation/actions for NoEstimationSessions
 	func Project_NoEstimationSessions_impl (iAction string, iId string, iValue string, iRec dm.Project, fP dm.FieldProperties) (string, dm.FieldProperties) {
@@ -60,7 +60,7 @@ func Project_NoEstimationSessions_OnFetch_impl (rec dm.Project)(string) {
 	}
 
 	// 
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END - Validation API/Callout
 
 func Project_ObjectValidation_impl (iAction string, iId string, iRec dm.Project) (dm.Project, string, error) {

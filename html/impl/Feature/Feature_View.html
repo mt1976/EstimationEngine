@@ -64,6 +64,36 @@
                     </div>
                 
                 </div>
+
+            
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="DefaultProfile" aria-describedby="DefaultProfileHelp" placeholder="" disabled value="{{.DefaultProfile}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="DefaultProfile">Default Profile</label>
+                        
+                    </div>
+                
+                </div>
+            
+             
+            
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="ActualProfile" aria-describedby="ActualProfileHelp" placeholder="" disabled value="{{.ActualProfile}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="ActualProfile">Actual Profile</label>
+                        
+                    </div>
+                
+                </div>
+            
+
+
             </div>
 
             <div class="row mb-3"  >
@@ -80,7 +110,27 @@
                 </div>
             </div>
 
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                  <select id="ProjectManager" name="ProjectManager" class="select" data-mdb-filter="true" disabled>
+                  {{range .ProjectManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="ProjectManager" disabled>Project Manager</label>
+                
+                </div>
 
+                <div class="col">
+                
+                  <select id="ProductManager" name="ProductManager" class="select" data-mdb-filter="true" disabled>
+                  {{range .ProductManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProductManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="ProductManager" disabled>Product Manager</label>
+                
+                </div>
+       
+
+            </div>
 
   <h4>Links</h4>
                        <div class="row mb-3"  >
@@ -184,6 +234,22 @@
                   <label class="form-label select-label" for="Developer" disabled>Developer</label>
                 
                 </div>
+
+
+                       
+                <div class="col">
+                
+                  <select id="Analyst" name="Analyst" class="select" data-mdb-filter="true" disabled>
+                  {{range .Analyst_lookup}}<option value="{{.ID}}" {{if eq .ID $.Analyst}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="Analyst" disabled>Analyst</label>
+                
+                </div>
+            
+
+
+
+
             </div>  
 
 <h5>Default Estimate</h5>
@@ -236,17 +302,7 @@
         
         </div>
         
-        <div class="col">
-        
-            <div class="form-outline">
-              
-              <input type="text" class="form-control {{.Mgt_props.MsgType}}" id="DefaultMgt" name="DefaultMgt" aria-describedby="DefaultMgtHelp" placeholder="" readonly  value="{{.Dfmgt}}"  data-mdb-input-mask="" />
-              
-              <label class="form-label" for="DefaultMgt" >Management</label>
-              <div class="{{.Mgt_props.MsgFeedBackType}}">{{.Mgt_props.MsgMessage}}</div>
-            </div>
-        
-        </div>
+
         
         <div class="col">
         
@@ -260,6 +316,19 @@
         
         </div>
         
+          
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="DfTraining" aria-describedby="DfTrainingHelp" placeholder="" disabled value="{{.DfTraining}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="DfTraining">Training</label>
+                        
+                    </div>
+                
+                </div>
+          
         <div class="col">
         
             <div class="form-outline">
@@ -268,6 +337,18 @@
               
               <label class="form-label" for="DefaultMarketing" >Marketing</label>
               <div class="{{.Marketing_props.MsgFeedBackType}}">{{.Marketing_props.MsgMessage}}</div>
+            </div>
+        
+        </div>
+
+                <div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.Mgt_props.MsgType}}" id="DefaultMgt" name="DefaultMgt" aria-describedby="DefaultMgtHelp" placeholder="" readonly  value="{{.Dfmgt}}"  data-mdb-input-mask="" />
+              
+              <label class="form-label" for="DefaultMgt" >Management</label>
+              <div class="{{.Mgt_props.MsgFeedBackType}}">{{.Mgt_props.MsgMessage}}</div>
             </div>
         
         </div>
@@ -324,17 +405,7 @@
                 
                 </div>
      
-                <div class="col">
                 
-                    <div class="form-outline">
-                        
-                            <input type="text" class="form-control" id="Mgt" aria-describedby="MgtHelp" placeholder="" disabled value="{{.Mgt}}" data-mdb-input-mask=""></input>
-                        
-                        <label class="form-label" for="Mgt">Management</label>
-                        
-                    </div>
-                
-                </div>
   
                 <div class="col">
                 
@@ -347,7 +418,21 @@
                     </div>
                 
                 </div>
+                       
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Training" aria-describedby="TrainingHelp" placeholder="" disabled value="{{.Training}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="Training">Training</label>
+                        
+                    </div>
+                
+                </div>
            
+             
+ 
                 <div class="col">
                 
                     <div class="form-outline">
@@ -359,7 +444,17 @@
                     </div>
                 
                 </div>
-   
+   <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Mgt" aria-describedby="MgtHelp" placeholder="" disabled value="{{.Mgt}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="Mgt">Management</label>
+                        
+                    </div>
+                
+                </div>
 
             </div>
              
@@ -572,6 +667,14 @@
                 
                 </div>
             </div>
+
+
+             
+
+             
+
+             
+
             
         </div>
         {{template "audit" .}}

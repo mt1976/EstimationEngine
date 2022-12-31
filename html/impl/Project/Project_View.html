@@ -59,7 +59,7 @@
                         
                             <input type="text" class="form-control" id="Name" aria-describedby="NameHelp" placeholder="" disabled value="{{.Name}}" data-mdb-input-mask=""></input>
                         
-                        <label class="form-label" for="Name">Project Name</label>
+                        <label class="form-label" for="Name">Name</label>
                         
                     </div>
                 
@@ -88,11 +88,11 @@
 
                 <div class="col">
                 
-                    <div class="form-outline">
+                    <div class="form-outline datedisabled">
                         
                             <input type="date" class="form-control" id="StartDate" aria-describedby="StartDateHelp" placeholder="" disabled value="{{.StartDate}}" data-mdb-input-mask="yyyy-mm-dd"></input>
                         
-                        <label class="form-label" for="StartDate">Project Start Date</label>
+                        <label class="form-label" for="StartDate">Start Date</label>
                         
                     </div>
                 
@@ -102,17 +102,75 @@
 
                 <div class="col">
                 
-                    <div class="form-outline">
+
+                    <div class="form-outline datedisabled">
                         
-                            <input type="date" class="form-control" id="EndDate" aria-describedby="EndDateHelp" placeholder="" disabled value="{{.EndDate}}" data-mdb-input-mask="yyyy-mm-dd"></input>
+                            <input type="date" class="form-control" id="EndDate" aria-describedby="EndDateHelp" placeholder="" disabled readonly="true" value="{{.EndDate}}" data-mdb-input-mask="yyyy-mm-dd"></input>
                         
-                        <label class="form-label" for="EndDate">Project End Date</label>
+                        <label class="form-label" for="EndDate">End Date</label>
                         
                     </div>
                 
                 </div>
             </div>
-            <h4>Project Description</h4>
+
+            <h4>Resources</h4>
+                        <div class="row mb-3"  >
+                                   <div class="col">
+                
+                  <select id="ProjectEngineer" name="ProjectEngineer" class="select" data-mdb-filter="true" disabled>
+                  {{range .ProjectEngineer_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectEngineer}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="ProjectEngineer" disabled>Lead Engineer</label>
+                
+                </div>
+                <div class="col">
+                
+                  <select id="ProjectAnalyst" name="ProjectAnalyst" class="select" data-mdb-filter="true" disabled>
+                  {{range .ProjectAnalyst_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectAnalyst}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="ProjectAnalyst" disabled>Lead Analyst</label>
+                
+                </div>
+     
+
+                <div class="col">
+                
+                  <select id="ProjectManager" name="ProjectManager" class="select" data-mdb-filter="true" disabled>
+                  {{range .ProjectManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="ProjectManager" disabled>Project Manager</label>
+                
+                </div>
+            </div>
+             <h4>Project Rates</h4>
+       <div class="row mb-3"  >
+                       <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="number" class="form-control" id="DefaultRate" aria-describedby="DefaultRateHelp" placeholder="" disabled value="{{.DefaultRate}}" data-mdb-input-mask="" step="0.25"></input>
+                        
+                        <label class="form-label" for="DefaultRate">Default</label>
+                        
+                    </div>
+                
+                </div>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="number" class="form-control" id="ProjectRate" aria-describedby="ProjectRateHelp" placeholder="" disabled value="{{.ProjectRate}}" data-mdb-input-mask="" step="0.25"></input>
+                        
+                        <label class="form-label" for="ProjectRate">Actual</label>
+                        
+                    </div>
+                
+                </div>
+         
+
+            </div>
+            <h4>Description</h4>
             <div class="row mb-3"  >
                 <div class="col">
                 
@@ -126,6 +184,7 @@
                 
                 </div>
             </div>
+           
             <h4>Comments</h4>
             <div class="row mb-3"  >
                 <div class="col">
@@ -265,6 +324,10 @@
                 
                 </div>
             </div>
+
+         
+             
+
             
         </div>
         {{template "audit" .}}

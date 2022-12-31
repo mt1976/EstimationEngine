@@ -214,6 +214,7 @@ func feature_CalculateTotal(item dm.Feature) string {
 	total += stf(item.UatSupport)
 	total += stf(item.Marketing)
 	total += stf(item.Contingency)
+	total += stf(item.Training)
 	return fts(total)
 }
 

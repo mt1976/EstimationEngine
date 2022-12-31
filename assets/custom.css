@@ -27,6 +27,12 @@
     --custom-audit-text: #b4b4b4;
 }
 
+.mandatory {
+    border-color: red !important;
+    box-shadow: inset 0 0 0 1px red !important;
+    border-bottom: 1px solid red !important;
+}
+
 body>div.container-fluid>div>form>div.card-header.font-weight-bold.border-primary>div>div.col-sm.text-right>div {
     //background-color: red;
     ////position: absolute;

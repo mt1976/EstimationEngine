@@ -81,6 +81,9 @@ SQL Table Key | **estimationSessionID**
 |**SYSActivity**|String|false|true|false|false|||||NH|_activity||false|false|true|text||
 |**SYSDbVersion**|String|false|true|false|false|||||NH|_dbVersion||false|false|true|text||
 |**Comments**|String|false|true|false|true|||||Y|comments||false|false|false|textarea||
+|**ProjectManager**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|projectManager||false|false|false|text||
+|**ProductManager**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|productManager||false|false|false|text||
+|**Approver**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|approver||false|false|false|text||
 |**Origin**|String|false|false|true|false|||||N|||false|true|false|text||
 |**OriginStateID**|String|false|false|true|false|||||N|||false|true|false|text||
 |**OriginState**|String|false|false|true|false|||||N|||false|true|false|text||
@@ -127,7 +130,7 @@ SQL Table Key | **estimationSessionID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **16/12/2022** at **16:47:10**
+Date & Time		     | **30/12/2022** at **12:18:20**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

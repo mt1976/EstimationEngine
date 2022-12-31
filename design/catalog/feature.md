@@ -49,15 +49,15 @@ SQL Table Key | **featureID**
 |**EstimationSessionID**|String|false|true|false|false|OL|EstimationSession|EstimationSession_EstimationSessionID|EstimationSession_Name|Y|estimationSessionID||false|false|false|text||
 |**ConfidenceID**|String|false|true|false|false|OL|Confidence|Confidence_ConfidenceID||Y|confidenceID||false|false|false|text||
 |**Name**|String|true|true|false|false|||||Y|name||false|false|false|text||
-|**DevEstimate**|String|true|true|false|false|||||Y|devEstimate||false|false|false|text||
-|**DevUplift**|String|false|true|false|false|||||Y|devUplift||false|false|false|text||
-|**Reqs**|String|false|true|false|false|||||Y|reqs||false|false|false|text||
-|**AnalystTest**|String|false|true|false|false|||||Y|analystTest||false|false|false|text||
-|**Docs**|String|false|true|false|false|||||Y|docs||false|false|false|text||
-|**Mgt**|String|false|true|false|false|||||Y|mgt||false|false|false|text||
+|**DevEstimate**|String|false|true|false|true|||||Y|devEstimate||false|false|false|number||
+|**DevUplift**|String|false|true|false|true|||||Y|devUplift||false|false|false|number||
+|**Reqs**|String|false|true|false|true|||||Y|reqs||false|false|false|number||
+|**AnalystTest**|String|false|true|false|true|||||Y|analystTest||false|false|false|number||
+|**Docs**|String|false|true|false|true|||||Y|docs||false|false|false|number||
+|**Mgt**|String|false|true|false|true|||||Y|mgt||false|false|false|number||
 |**UatSupport**|String|false|true|false|false|||||Y|uatSupport||false|false|false|text||
-|**Marketing**|String|false|true|false|false|||||Y|marketing||false|false|false|text||
-|**Contingency**|String|false|true|false|false|||||Y|contingency||false|false|false|text||
+|**Marketing**|String|false|true|false|true|||||Y|marketing||false|false|false|number||
+|**Contingency**|String|false|true|false|true|||||Y|contingency||false|false|false|number||
 |**TrackerID**|String|false|true|false|false|||||Y|trackerID||false|false|false|text||
 |**AdoID**|String|false|true|false|false|||||Y|adoID||false|false|false|text||
 |**FreshdeskID**|String|false|true|false|false|||||Y|freshdeskID||false|false|false|text||
@@ -86,10 +86,17 @@ SQL Table Key | **featureID**
 |**Dfmarketing**|String|false|true|false|false|||||Y|dfmarketing||false|false|false|text||
 |**Dfcontingency**|String|false|true|false|false|||||Y|dfcontingency||false|false|false|text||
 |**DfdevUplift**|String|false|true|false|false|||||Y|dfdevUplift||false|false|false|text||
-|**Total**|String|false|true|false|false|||||Y|total||false|false|false|text||
+|**Total**|String|false|true|false|true|||||N|total||false|false|false|number||
 |**SYSDbVersion**|String|false|true|false|false|||||NH|_dbVersion||false|false|true|text||
 |**Comments**|String|false|true|false|true|||||Y|comments||false|false|false|textarea||
 |**Description**|String|false|true|false|true|||||Y|description||false|false|false|textarea||
+|**Analyst**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|analyst||false|false|false|text||
+|**ProductManager**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|productManager||false|false|false|text||
+|**ProjectManager**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|projectManager||false|false|false|text||
+|**Training**|String|false|true|false|true|||||Y|training||false|false|false|number||
+|**DfTraining**|String|false|true|false|true|||||N|dfTraining||false|false|false|number||
+|**DefaultProfile**|String|false|true|false|false|OL|Profile|Profile_ProfileID|Profile_Name|N|defaultProfile||false|false|false|text||
+|**ActualProfile**|String|false|true|false|false|OL|Profile|Profile_ProfileID|Profile_Name|Y|actualProfile||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -111,7 +118,7 @@ SQL Table Key | **featureID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **16/12/2022** at **16:47:10**
+Date & Time		     | **30/12/2022** at **12:58:05**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

@@ -51,7 +51,7 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.Code_props.MsgType}}" id="Code" name="Code" aria-describedby="CodeHelp" placeholder=""   value="{{.Code}}" required data-mdb-input-mask="" />
+              <input type="text" class="form-control {{.Code_props.MsgType}}" id="Code" name="Code" aria-describedby="CodeHelp" placeholder=""  readonly="true"  value="{{.Code}}" required data-mdb-input-mask="" />
               
               <label class="form-label" for="Code" >Code</label>
               <div class="{{.Code_props.MsgFeedBackType}}">{{.Code_props.MsgMessage}}</div>
@@ -99,7 +99,7 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.DefaultReleases_props.MsgType}}" id="DefaultReleases" name="DefaultReleases" aria-describedby="DefaultReleasesHelp" placeholder=""   value="{{.DefaultReleases}}" required data-mdb-input-mask="" />
+              <input type="number" class="form-control {{.DefaultReleases_props.MsgType}}" id="DefaultReleases" name="DefaultReleases" aria-describedby="DefaultReleasesHelp" placeholder=""   value="{{.DefaultReleases}}"  data-mdb-input-mask="" step="0.25"/>
               
               <label class="form-label" for="DefaultReleases" >DefaultReleases</label>
               <div class="{{.DefaultReleases_props.MsgFeedBackType}}">{{.DefaultReleases_props.MsgMessage}}</div>
@@ -111,7 +111,7 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.DefaultReleaseHours_props.MsgType}}" id="DefaultReleaseHours" name="DefaultReleaseHours" aria-describedby="DefaultReleaseHoursHelp" placeholder=""   value="{{.DefaultReleaseHours}}" required data-mdb-input-mask="" />
+              <input type="number" class="form-control {{.DefaultReleaseHours_props.MsgType}}" id="DefaultReleaseHours" name="DefaultReleaseHours" aria-describedby="DefaultReleaseHoursHelp" placeholder=""   value="{{.DefaultReleaseHours}}"  data-mdb-input-mask="" step="0.25"/>
               
               <label class="form-label" for="DefaultReleaseHours" >DefaultReleaseHours</label>
               <div class="{{.DefaultReleaseHours_props.MsgFeedBackType}}">{{.DefaultReleaseHours_props.MsgMessage}}</div>
@@ -123,7 +123,7 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.BlendedRate_props.MsgType}}" id="BlendedRate" name="BlendedRate" aria-describedby="BlendedRateHelp" placeholder=""   value="{{.BlendedRate}}" required data-mdb-input-mask="" />
+              <input type="number" class="form-control {{.BlendedRate_props.MsgType}}" id="BlendedRate" name="BlendedRate" aria-describedby="BlendedRateHelp" placeholder=""   value="{{.BlendedRate}}" required data-mdb-input-mask="" step="0.25"/>
               
               <label class="form-label" for="BlendedRate" >BlendedRate</label>
               <div class="{{.BlendedRate_props.MsgFeedBackType}}">{{.BlendedRate_props.MsgMessage}}</div>
@@ -135,7 +135,7 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.Rounding_props.MsgType}}" id="Rounding" name="Rounding" aria-describedby="RoundingHelp" placeholder=""   value="{{.Rounding}}" required data-mdb-input-mask="" />
+              <input type="number" class="form-control {{.Rounding_props.MsgType}}" id="Rounding" name="Rounding" aria-describedby="RoundingHelp" placeholder=""   value="{{.Rounding}}"  data-mdb-input-mask="" step="0.25"/>
               
               <label class="form-label" for="Rounding" >Rounding</label>
               <div class="{{.Rounding_props.MsgFeedBackType}}">{{.Rounding_props.MsgMessage}}</div>
@@ -147,7 +147,7 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.HoursPerDay_props.MsgType}}" id="HoursPerDay" name="HoursPerDay" aria-describedby="HoursPerDayHelp" placeholder=""   value="{{.HoursPerDay}}" required data-mdb-input-mask="" />
+              <input type="number" class="form-control {{.HoursPerDay_props.MsgType}}" id="HoursPerDay" name="HoursPerDay" aria-describedby="HoursPerDayHelp" placeholder=""   value="{{.HoursPerDay}}" required data-mdb-input-mask="" step="0.25"/>
               
               <label class="form-label" for="HoursPerDay" >HoursPerDay</label>
               <div class="{{.HoursPerDay_props.MsgFeedBackType}}">{{.HoursPerDay_props.MsgMessage}}</div>
@@ -159,7 +159,7 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.REQPerc_props.MsgType}}" id="REQPerc" name="REQPerc" aria-describedby="REQPercHelp" placeholder=""   value="{{.REQPerc}}"  data-mdb-input-mask="" />
+              <input type="number" class="form-control {{.REQPerc_props.MsgType}}" id="REQPerc" name="REQPerc" aria-describedby="REQPercHelp" placeholder=""   value="{{.REQPerc}}"  data-mdb-input-mask="" step="0.25"/>
               
               <label class="form-label" for="REQPerc" >REQPerc</label>
               <div class="{{.REQPerc_props.MsgFeedBackType}}">{{.REQPerc_props.MsgMessage}}</div>
@@ -171,7 +171,7 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.ANAPerc_props.MsgType}}" id="ANAPerc" name="ANAPerc" aria-describedby="ANAPercHelp" placeholder=""   value="{{.ANAPerc}}"  data-mdb-input-mask="" />
+              <input type="number" class="form-control {{.ANAPerc_props.MsgType}}" id="ANAPerc" name="ANAPerc" aria-describedby="ANAPercHelp" placeholder=""   value="{{.ANAPerc}}"  data-mdb-input-mask="" step="0.25"/>
               
               <label class="form-label" for="ANAPerc" >ANAPerc</label>
               <div class="{{.ANAPerc_props.MsgFeedBackType}}">{{.ANAPerc_props.MsgMessage}}</div>
@@ -183,7 +183,7 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.DOCPerc_props.MsgType}}" id="DOCPerc" name="DOCPerc" aria-describedby="DOCPercHelp" placeholder=""   value="{{.DOCPerc}}"  data-mdb-input-mask="" />
+              <input type="number" class="form-control {{.DOCPerc_props.MsgType}}" id="DOCPerc" name="DOCPerc" aria-describedby="DOCPercHelp" placeholder=""   value="{{.DOCPerc}}"  data-mdb-input-mask="" step="0.25"/>
               
               <label class="form-label" for="DOCPerc" >DOCPerc</label>
               <div class="{{.DOCPerc_props.MsgFeedBackType}}">{{.DOCPerc_props.MsgMessage}}</div>
@@ -195,7 +195,7 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.PMPerc_props.MsgType}}" id="PMPerc" name="PMPerc" aria-describedby="PMPercHelp" placeholder=""   value="{{.PMPerc}}"  data-mdb-input-mask="" />
+              <input type="number" class="form-control {{.PMPerc_props.MsgType}}" id="PMPerc" name="PMPerc" aria-describedby="PMPercHelp" placeholder=""   value="{{.PMPerc}}"  data-mdb-input-mask="" step="0.25"/>
               
               <label class="form-label" for="PMPerc" >PMPerc</label>
               <div class="{{.PMPerc_props.MsgFeedBackType}}">{{.PMPerc_props.MsgMessage}}</div>
@@ -207,7 +207,7 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.UATPerc_props.MsgType}}" id="UATPerc" name="UATPerc" aria-describedby="UATPercHelp" placeholder=""   value="{{.UATPerc}}"  data-mdb-input-mask="" />
+              <input type="number" class="form-control {{.UATPerc_props.MsgType}}" id="UATPerc" name="UATPerc" aria-describedby="UATPercHelp" placeholder=""   value="{{.UATPerc}}"  data-mdb-input-mask="" step="0.25"/>
               
               <label class="form-label" for="UATPerc" >UATPerc</label>
               <div class="{{.UATPerc_props.MsgFeedBackType}}">{{.UATPerc_props.MsgMessage}}</div>
@@ -219,7 +219,7 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.GTMPerc_props.MsgType}}" id="GTMPerc" name="GTMPerc" aria-describedby="GTMPercHelp" placeholder=""   value="{{.GTMPerc}}"  data-mdb-input-mask="" />
+              <input type="number" class="form-control {{.GTMPerc_props.MsgType}}" id="GTMPerc" name="GTMPerc" aria-describedby="GTMPercHelp" placeholder=""   value="{{.GTMPerc}}"  data-mdb-input-mask="" step="0.25"/>
               
               <label class="form-label" for="GTMPerc" >GTMPerc</label>
               <div class="{{.GTMPerc_props.MsgFeedBackType}}">{{.GTMPerc_props.MsgMessage}}</div>
@@ -231,7 +231,7 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.SupportUplift_props.MsgType}}" id="SupportUplift" name="SupportUplift" aria-describedby="SupportUpliftHelp" placeholder=""   value="{{.SupportUplift}}"  data-mdb-input-mask="" />
+              <input type="number" class="form-control {{.SupportUplift_props.MsgType}}" id="SupportUplift" name="SupportUplift" aria-describedby="SupportUpliftHelp" placeholder=""   value="{{.SupportUplift}}"  data-mdb-input-mask="" step="0.25"/>
               
               <label class="form-label" for="SupportUplift" >SupportUplift</label>
               <div class="{{.SupportUplift_props.MsgFeedBackType}}">{{.SupportUplift_props.MsgMessage}}</div>
@@ -403,6 +403,18 @@
               
               <label class="form-label" for="Comments" >Comments</label>
               <div class="{{.Comments_props.MsgFeedBackType}}">{{.Comments_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="number" class="form-control {{.TrainingPerc_props.MsgType}}" id="TrainingPerc" name="TrainingPerc" aria-describedby="TrainingPercHelp" placeholder=""   value="{{.TrainingPerc}}"  data-mdb-input-mask="" step="0.25"/>
+              
+              <label class="form-label" for="TrainingPerc" >TrainingPerc</label>
+              <div class="{{.TrainingPerc_props.MsgFeedBackType}}">{{.TrainingPerc_props.MsgMessage}}</div>
             </div>
         
         </div></div>

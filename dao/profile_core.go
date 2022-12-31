@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 16/12/2022 at 16:47:11
+// Date & Time		    : 30/12/2022 at 20:07:46
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -63,10 +63,10 @@ func Profile_GetByID(id string) (int, dm.Profile, error) {
 	_, _, profileItem, _ := profile_Fetch(tsql)
 
 	// START
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, profileItem, nil
 }
@@ -147,10 +147,10 @@ func Profile_StoreSystem(r dm.Profile) error {
 func Profile_Validate(r dm.Profile) (dm.Profile, error) {
 	var err error
 	// START
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -207,6 +207,7 @@ func profile_Save(r dm.Profile,usr string) error {
 
 
 
+
 	
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
@@ -222,7 +223,7 @@ logs.Storing("Profile",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Profile_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Profile_ProfileID_sql, r.ProfileID)
@@ -256,9 +257,10 @@ logs.Storing("Profile",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Profile_Notes_sql, r.Notes)
 	ts = addData(ts, dm.Profile_SYSDbVersion_sql, r.SYSDbVersion)
 	ts = addData(ts, dm.Profile_Comments_sql, r.Comments)
+	ts = addData(ts, dm.Profile_TrainingPerc_sql, r.TrainingPerc)
 		
 	// 
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + Profile_QualifiedName
@@ -291,7 +293,7 @@ func profile_Fetch(tsql string) (int, []dm.Profile, dm.Profile, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Profile_SYSId_sql, "0")
 	   recItem.ProfileID  = get_String(rec, dm.Profile_ProfileID_sql, "")
@@ -325,6 +327,7 @@ func profile_Fetch(tsql string) (int, []dm.Profile, dm.Profile, error) {
 	   recItem.Notes  = get_String(rec, dm.Profile_Notes_sql, "")
 	   recItem.SYSDbVersion  = get_String(rec, dm.Profile_SYSDbVersion_sql, "")
 	   recItem.Comments  = get_String(rec, dm.Profile_Comments_sql, "")
+	   recItem.TrainingPerc  = get_String(rec, dm.Profile_TrainingPerc_sql, "")
 	
 	// If there are fields below, create the methods in adaptor\Profile_impl.go
 	
@@ -360,8 +363,9 @@ func profile_Fetch(tsql string) (int, []dm.Profile, dm.Profile, error) {
 	
 	
 	
+	
 	// 
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -391,10 +395,10 @@ func Profile_New() (int, []dm.Profile, dm.Profile, error) {
 	
 
 	// START
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

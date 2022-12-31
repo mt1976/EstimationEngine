@@ -42,3 +42,21 @@ body{
     margin-bottom: 1rem;
     padding-bottom: 1rem;
 }
+
+.mandatory {
+    /* border: 1px solid red !important;
+    box-shadow: inset 0 0 0 2px red !important;
+        */
+    border-radius: .25rem;
+
+    background-color: #FFEEEC;
+}
+
+.datedisabled {
+    /* border: 1px solid red !important;
+    box-shadow: inset 0 0 0 2px red !important;
+        */
+    border-radius: .25rem;
+
+    background-color: #e9ecef;
+}

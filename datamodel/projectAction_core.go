@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 16/12/2022 at 16:47:11
+// Date & Time		    : 30/12/2022 at 12:18:22
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -59,11 +59,26 @@ SYSDbVersion       string
 SYSDbVersion_props FieldProperties
 Comments       string
 Comments_props FieldProperties
+ProjectRate       string
+ProjectRate_props FieldProperties
+DefaultRate       string
+DefaultRate_props FieldProperties
+ProjectAnalyst       string
+ProjectAnalyst_props FieldProperties
+ProjectEngineer       string
+ProjectEngineer_props FieldProperties
+ProjectManager       string
+ProjectManager_props FieldProperties
  // Any lookups will be added below
 
 OriginID_lookup []Lookup_Item
 ProjectStateID_lookup []Lookup_Item
 ProfileID_lookup []Lookup_Item
+
+
+
+
+
 
 
 
@@ -134,6 +149,11 @@ const (
 	ProjectAction_SYSActivity_sql   = "_activity" // SYSActivity is a String
 	ProjectAction_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
 	ProjectAction_Comments_sql   = "comments" // Comments is a String
+	ProjectAction_ProjectRate_sql   = "projectRate" // ProjectRate is a String
+	ProjectAction_DefaultRate_sql   = "defaultRate" // DefaultRate is a String
+	ProjectAction_ProjectAnalyst_sql   = "projectAnalyst" // ProjectAnalyst is a String
+	ProjectAction_ProjectEngineer_sql   = "projectEngineer" // ProjectEngineer is a String
+	ProjectAction_ProjectManager_sql   = "projectManager" // ProjectManager is a String
 
 	/// Definitions End
 	///
@@ -160,6 +180,11 @@ const (
 	ProjectAction_SYSActivity_scrn   = "SYSActivity" // SYSActivity is a String
 	ProjectAction_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
 	ProjectAction_Comments_scrn   = "Comments" // Comments is a String
+	ProjectAction_ProjectRate_scrn   = "ProjectRate" // ProjectRate is a String
+	ProjectAction_DefaultRate_scrn   = "DefaultRate" // DefaultRate is a String
+	ProjectAction_ProjectAnalyst_scrn   = "ProjectAnalyst" // ProjectAnalyst is a String
+	ProjectAction_ProjectEngineer_scrn   = "ProjectEngineer" // ProjectEngineer is a String
+	ProjectAction_ProjectManager_scrn   = "ProjectManager" // ProjectManager is a String
 
 	/// Definitions End
 	///
@@ -185,7 +210,7 @@ type ProjectAction_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -232,8 +257,18 @@ type ProjectAction_Page struct {
 	SYSDbVersion_props     FieldProperties
 	Comments         string
 	Comments_props     FieldProperties
+	ProjectRate         string
+	ProjectRate_props     FieldProperties
+	DefaultRate         string
+	DefaultRate_props     FieldProperties
+	ProjectAnalyst         string
+	ProjectAnalyst_props     FieldProperties
+	ProjectEngineer         string
+	ProjectEngineer_props     FieldProperties
+	ProjectManager         string
+	ProjectManager_props     FieldProperties
 	// 
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

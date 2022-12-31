@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 16/12/2022 at 16:47:11
+// Date & Time		    : 30/12/2022 at 12:18:21
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -63,6 +63,10 @@ SYSDbVersion       string
 SYSDbVersion_props FieldProperties
 Comments       string
 Comments_props FieldProperties
+ProjectManager       string
+ProjectManager_props FieldProperties
+AccountManager       string
+AccountManager_props FieldProperties
 NoActiveProjects       string
 NoActiveProjects_props FieldProperties
  // Any lookups will be added below
@@ -88,6 +92,8 @@ DocTypeID_lookup []Lookup_Item
 Currency_lookup []Lookup_Item
 
 
+ProjectManager_lookup []Lookup_Item
+AccountManager_lookup []Lookup_Item
 
 
 }
@@ -146,6 +152,8 @@ const (
 	Origin_Currency_sql   = "currency" // Currency is a String
 	Origin_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
 	Origin_Comments_sql   = "comments" // Comments is a String
+	Origin_ProjectManager_sql   = "projectManager" // ProjectManager is a String
+	Origin_AccountManager_sql   = "accountManager" // AccountManager is a String
 	Origin_NoActiveProjects_sql   = "NoActiveProjects" // NoActiveProjects is a String
 
 	/// Definitions End
@@ -175,6 +183,8 @@ const (
 	Origin_Currency_scrn   = "Currency" // Currency is a String
 	Origin_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
 	Origin_Comments_scrn   = "Comments" // Comments is a String
+	Origin_ProjectManager_scrn   = "ProjectManager" // ProjectManager is a String
+	Origin_AccountManager_scrn   = "AccountManager" // AccountManager is a String
 	Origin_NoActiveProjects_scrn   = "NoActiveProjects" // NoActiveProjects is a String
 
 	/// Definitions End
@@ -201,7 +211,7 @@ type Origin_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -252,10 +262,16 @@ type Origin_Page struct {
 	SYSDbVersion_props     FieldProperties
 	Comments         string
 	Comments_props     FieldProperties
+	ProjectManager         string
+	ProjectManager_lookup    []Lookup_Item
+	ProjectManager_props     FieldProperties
+	AccountManager         string
+	AccountManager_lookup    []Lookup_Item
+	AccountManager_props     FieldProperties
 	NoActiveProjects         string
 	NoActiveProjects_props     FieldProperties
 	// 
-	// Dynamically generated 16/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

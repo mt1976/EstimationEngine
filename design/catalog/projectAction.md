@@ -65,6 +65,11 @@ SQL Table Key | **projectID**
 |**SYSActivity**|String|false|true|false|false|||||NH|_activity||false|false|true|text||
 |**SYSDbVersion**|String|false|true|false|false|||||NH|_dbVersion||false|false|true|text||
 |**Comments**|String|false|true|false|false|||||Y|comments||false|false|false|text||
+|**ProjectRate**|String|false|true|false|false|||||Y|projectRate||false|false|false|text||
+|**DefaultRate**|String|false|true|false|false|||||Y|defaultRate||false|false|false|text||
+|**ProjectAnalyst**|String|false|true|false|false|||||Y|projectAnalyst||false|false|false|text||
+|**ProjectEngineer**|String|false|true|false|false|||||Y|projectEngineer||false|false|false|text||
+|**ProjectManager**|String|false|true|false|false|||||Y|projectManager||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -82,7 +87,7 @@ SQL Table Key | **projectID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **16/12/2022** at **16:47:11**
+Date & Time		     | **30/12/2022** at **12:18:22**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

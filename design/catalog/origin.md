@@ -67,6 +67,8 @@ SQL Table Key | **originID**
 |**Currency**|String|true|true|false|false|LL|ccy|||Y|currency||false|false|false|text||
 |**SYSDbVersion**|String|false|true|false|false|||||NH|_dbVersion||false|false|true|text||
 |**Comments**|String|false|true|false|false|||||Y|comments||false|false|false|text||
+|**ProjectManager**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|projectManager||false|false|false|text||
+|**AccountManager**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|accountManager||false|false|false|text||
 |**NoActiveProjects**|String|false|false|true|false|||||N|||false|true|false|text||
 
 
@@ -90,7 +92,7 @@ SQL Table Key | **originID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **16/12/2022** at **16:47:11**
+Date & Time		     | **30/12/2022** at **12:18:21**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

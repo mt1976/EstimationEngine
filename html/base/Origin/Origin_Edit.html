@@ -299,6 +299,30 @@
         
         </div></div>
        
+        <div class="row mb-3"  ><div class="col">
+        
+            
+            <select id="ProjectManager" name="ProjectManager" class="select" data-mdb-filter="true"  >
+                {{range .ProjectManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ProjectManager" >ProjectManager</label>
+            <div class="{{.ProjectManager_props.MsgFeedBackType}}">{{.ProjectManager_props.MsgMessage}}</div>
+            
+        
+        </div></div>
+       
+        <div class="row mb-3"  ><div class="col">
+        
+            
+            <select id="AccountManager" name="AccountManager" class="select" data-mdb-filter="true"  >
+                {{range .AccountManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.AccountManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="AccountManager" >AccountManager</label>
+            <div class="{{.AccountManager_props.MsgFeedBackType}}">{{.AccountManager_props.MsgMessage}}</div>
+            
+        
+        </div></div>
+       
         <div class="row mb-3" readonly="true" ><div class="col">
         
             <div class="form-outline">
