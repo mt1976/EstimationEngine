@@ -14,6 +14,7 @@ package application
 // ----------------------------------------------------------------
 
 import (
+	"fmt"
 	"net/http"
 
 	core "github.com/mt1976/ebEstimates/core"
@@ -53,7 +54,18 @@ func ProjectAction_HandlerSave_Impl(w http.ResponseWriter, r *http.Request) {
 	_, origin, _ := dao.Origin_GetByCode(item.OriginID)
 	item.DefaultRate = origin.Rate
 	item.ProjectRate = ""
+	if item.Releases == "" {
+		// Get No Released from Profile, or set to 1.
+		_, profile, _ := dao.Profile_GetByCode(item.ProfileID)
+		item.Releases = profile.DefaultReleases
+	}
 
+	msg_TXT := "CREATED -> %s"
+	msg_TXT = dao.Translate("AuditMessage", msg_TXT)
+	msg_TXT = fmt.Sprintf(msg_TXT, item.ProjectStateID)
+	item.Notes = addActivity(item.Notes, msg_TXT, r)
+
+	// Save the Project
 	dao.Project_Store(item, r)
 
 	REDR := dm.Project_Origin_PathList + "?" + dm.Origin_QueryString + "=" + origin.OriginID

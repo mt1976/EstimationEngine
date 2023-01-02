@@ -64,12 +64,14 @@ SQL Table Key | **projectID**
 |**SYSDeletedHost**|String|false|true|false|false|||||NH|_deletedHost||false|false|true|text||
 |**SYSActivity**|String|false|true|false|false|||||NH|_activity||false|false|true|text||
 |**SYSDbVersion**|String|false|true|false|false|||||NH|_dbVersion||false|false|true|text||
-|**Comments**|String|false|true|false|false|||||Y|comments||false|false|false|text||
+|**Comments**|String|false|true|false|true|||||Y|comments||false|false|false|textarea||
 |**ProjectRate**|String|false|true|false|true|||||Y|projectRate||false|false|false|number||
 |**DefaultRate**|String|false|true|false|true|||||N|defaultRate||false|false|false|number||
 |**ProjectAnalyst**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|projectAnalyst||false|false|false|text||
 |**ProjectEngineer**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|projectEngineer||false|false|false|text||
 |**ProjectManager**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|projectManager||false|false|false|text||
+|**Releases**|String|false|true|false|false|||||Y|releases||false|false|false|text||
+|**Notes**|String|false|true|false|true|||||N|notes||false|false|false|textarea||
 |**NoEstimationSessions**|String|false|false|true|false|||||N||0|false|true|false|text||
 
 
@@ -92,7 +94,7 @@ SQL Table Key | **projectID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **30/12/2022** at **20:09:22**
+Date & Time		     | **02/01/2023** at **15:17:14**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

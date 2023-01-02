@@ -294,7 +294,7 @@
                 
                     <div class="form-outline">
                         
-                            <input type="text" class="form-control" id="Comments" aria-describedby="CommentsHelp" placeholder="" disabled value="{{.Comments}}" data-mdb-input-mask="" ></input>
+                            <textarea class="form-control" id="Comments" name="Comments" aria-describedby="CommentsHelp" placeholder=""  disabled value="{{.Comments}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Comments}}</textarea>
                         
                         <label class="form-label" for="Comments">Comments</label>
                         
@@ -360,6 +360,34 @@
                   {{range .ProjectManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
                   </select>
                   <label class="form-label select-label" for="ProjectManager" disabled>ProjectManager</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Releases" aria-describedby="ReleasesHelp" placeholder="" disabled value="{{.Releases}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="Releases">Releases</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <textarea class="form-control" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder=""  disabled value="{{.Notes}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Notes}}</textarea>
+                        
+                        <label class="form-label" for="Notes">Notes</label>
+                        
+                    </div>
                 
                 </div>
             </div>

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 30/12/2022 at 12:18:21
+// Date & Time		    : 02/01/2023 at 15:17:14
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -65,11 +65,11 @@ func Origin_GetByID(id string) (int, dm.Origin, error) {
 	_, _, originItem, _ := origin_Fetch(tsql)
 
 	// START
-	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	originItem.NoActiveProjects,originItem.NoActiveProjects_props = adaptor.Origin_NoActiveProjects_impl (adaptor.GET,id,originItem.NoActiveProjects,originItem,originItem.NoActiveProjects_props)
 	// 
-	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, originItem, nil
 }
@@ -150,11 +150,11 @@ func Origin_StoreSystem(r dm.Origin) error {
 func Origin_Validate(r dm.Origin) (dm.Origin, error) {
 	var err error
 	// START
-	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.NoActiveProjects,r.NoActiveProjects_props = adaptor.Origin_NoActiveProjects_impl (adaptor.PUT,r.OriginID,r.NoActiveProjects,r,r.NoActiveProjects_props)
 	// 
-	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -220,7 +220,7 @@ logs.Storing("Origin",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Origin_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Origin_OriginID_sql, r.OriginID)
@@ -250,7 +250,7 @@ logs.Storing("Origin",fmt.Sprintf("%v", r))
 	
 		
 	// 
-	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + Origin_QualifiedName
@@ -283,7 +283,7 @@ func origin_Fetch(tsql string) (int, []dm.Origin, dm.Origin, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Origin_SYSId_sql, "0")
 	   recItem.OriginID  = get_String(rec, dm.Origin_OriginID_sql, "")
@@ -341,7 +341,7 @@ func origin_Fetch(tsql string) (int, []dm.Origin, dm.Origin, error) {
 	   recItem.NoActiveProjects  = adaptor.Origin_NoActiveProjects_OnFetch_impl (recItem)
 	
 	// 
-	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -371,11 +371,11 @@ func Origin_New() (int, []dm.Origin, dm.Origin, error) {
 	
 
 	// START
-	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.NoActiveProjects,r.NoActiveProjects_props = adaptor.Origin_NoActiveProjects_impl (adaptor.NEW,r.OriginID,r.NoActiveProjects,r,r.NoActiveProjects_props)
 	// 
-	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

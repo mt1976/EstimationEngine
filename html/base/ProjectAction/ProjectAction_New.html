@@ -310,7 +310,7 @@
             <div class="form-outline">
 
             
-                <input type="text" class="form-control {{.Comments_props.MsgType}}" id="Comments" name="Comments" aria-describedby="CommentsHelp" placeholder=""  value="{{.Comments}}"  data-mdb-input-mask="" >
+                <textarea class="form-control {{.Comments_props.MsgType}}" id="Comments" name="Comments" aria-describedby="CommentsHelp" placeholder=""   value="{{.Comments}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Comments}}</textarea>
             
            
            
@@ -325,7 +325,7 @@
             <div class="form-outline">
 
             
-                <input type="text" class="form-control {{.ProjectRate_props.MsgType}}" id="ProjectRate" name="ProjectRate" aria-describedby="ProjectRateHelp" placeholder=""  value="{{.ProjectRate}}"  data-mdb-input-mask="" >
+                <input type="number" class="form-control {{.ProjectRate_props.MsgType}}" id="ProjectRate" name="ProjectRate" aria-describedby="ProjectRateHelp" placeholder=""  value="{{.ProjectRate}}"  data-mdb-input-mask="" step="0.25">
             
            
            
@@ -335,16 +335,16 @@
                   
           </div></div>
 
-            <div class="row mb-3"  ><div class="col">
+            <div class="row mb-3" readonly="true" ><div class="col">
          
             <div class="form-outline">
 
             
-                <input type="text" class="form-control {{.DefaultRate_props.MsgType}}" id="DefaultRate" name="DefaultRate" aria-describedby="DefaultRateHelp" placeholder=""  value="{{.DefaultRate}}"  data-mdb-input-mask="" >
+                <input type="number" class="form-control {{.DefaultRate_props.MsgType}}" id="DefaultRate" name="DefaultRate" aria-describedby="DefaultRateHelp" placeholder="" readonly="true" value="{{.DefaultRate}}"  data-mdb-input-mask="" step="0.25">
             
            
            
-              <label class="form-label" for="DefaultRate" >DefaultRate</label>
+              <label class="form-label" for="DefaultRate" readonly="true">DefaultRate</label>
               <div class="{{.DefaultRate_props.MsgFeedBackType}}">{{.DefaultRate_props.MsgMessage}}</div>
             </div>
                   
@@ -352,16 +352,31 @@
 
             <div class="row mb-3"  ><div class="col">
          
-            <div class="form-outline">
+            <select id="ProjectAnalyst" name="ProjectAnalyst" class="select" data-mdb-filter="true"  >
+                {{range .ProjectAnalyst_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectAnalyst}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ProjectAnalyst" >ProjectAnalyst</label>
+            <div class="{{.ProjectAnalyst_props.MsgFeedBackType}}">{{.ProjectAnalyst_props.MsgMessage}}</div>
+                  
+          </div></div>
 
-            
-                <input type="text" class="form-control {{.ProjectAnalyst_props.MsgType}}" id="ProjectAnalyst" name="ProjectAnalyst" aria-describedby="ProjectAnalystHelp" placeholder=""  value="{{.ProjectAnalyst}}"  data-mdb-input-mask="" >
-            
-           
-           
-              <label class="form-label" for="ProjectAnalyst" >ProjectAnalyst</label>
-              <div class="{{.ProjectAnalyst_props.MsgFeedBackType}}">{{.ProjectAnalyst_props.MsgMessage}}</div>
-            </div>
+            <div class="row mb-3"  ><div class="col">
+         
+            <select id="ProjectEngineer" name="ProjectEngineer" class="select" data-mdb-filter="true"  >
+                {{range .ProjectEngineer_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectEngineer}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ProjectEngineer" >ProjectEngineer</label>
+            <div class="{{.ProjectEngineer_props.MsgFeedBackType}}">{{.ProjectEngineer_props.MsgMessage}}</div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <select id="ProjectManager" name="ProjectManager" class="select" data-mdb-filter="true"  >
+                {{range .ProjectManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ProjectManager" >ProjectManager</label>
+            <div class="{{.ProjectManager_props.MsgFeedBackType}}">{{.ProjectManager_props.MsgMessage}}</div>
                   
           </div></div>
 
@@ -370,30 +385,49 @@
             <div class="form-outline">
 
             
-                <input type="text" class="form-control {{.ProjectEngineer_props.MsgType}}" id="ProjectEngineer" name="ProjectEngineer" aria-describedby="ProjectEngineerHelp" placeholder=""  value="{{.ProjectEngineer}}"  data-mdb-input-mask="" >
+                <input type="text" class="form-control {{.Releases_props.MsgType}}" id="Releases" name="Releases" aria-describedby="ReleasesHelp" placeholder=""  value="{{.Releases}}"  data-mdb-input-mask="" >
             
            
            
-              <label class="form-label" for="ProjectEngineer" >ProjectEngineer</label>
-              <div class="{{.ProjectEngineer_props.MsgFeedBackType}}">{{.ProjectEngineer_props.MsgMessage}}</div>
+              <label class="form-label" for="Releases" >Releases</label>
+              <div class="{{.Releases_props.MsgFeedBackType}}">{{.Releases_props.MsgMessage}}</div>
             </div>
                   
           </div></div>
 
-            <div class="row mb-3"  ><div class="col">
+            <div class="row mb-3" readonly="true" ><div class="col">
          
             <div class="form-outline">
 
             
-                <input type="text" class="form-control {{.ProjectManager_props.MsgType}}" id="ProjectManager" name="ProjectManager" aria-describedby="ProjectManagerHelp" placeholder=""  value="{{.ProjectManager}}"  data-mdb-input-mask="" >
+                <textarea class="form-control {{.Notes_props.MsgType}}" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder="" readonly="true"  value="{{.Notes}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Notes}}</textarea>
             
            
            
-              <label class="form-label" for="ProjectManager" >ProjectManager</label>
-              <div class="{{.ProjectManager_props.MsgFeedBackType}}">{{.ProjectManager_props.MsgMessage}}</div>
+              <label class="form-label" for="Notes" readonly="true">Notes</label>
+              <div class="{{.Notes_props.MsgFeedBackType}}">{{.Notes_props.MsgMessage}}</div>
             </div>
                   
           </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.NoEstimationSessions_props.MsgType}}" id="NoEstimationSessions" name="NoEstimationSessions" aria-describedby="NoEstimationSessionsHelp" placeholder="0" readonly="true" value="{{.NoEstimationSessions}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="NoEstimationSessions" readonly="true">NoEstimationSessions</label>
+              <div class="{{.NoEstimationSessions_props.MsgFeedBackType}}">{{.NoEstimationSessions_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            
+              
+                
 
      
         </div>

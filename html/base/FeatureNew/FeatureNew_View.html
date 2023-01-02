@@ -92,6 +92,159 @@
                 
                 </div>
             </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Comments" aria-describedby="CommentsHelp" placeholder="" disabled value="{{.Comments}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="Comments">Comments</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Description" aria-describedby="DescriptionHelp" placeholder="" disabled value="{{.Description}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="Description">Description</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="DevOpsID" aria-describedby="DevOpsIDHelp" placeholder="" disabled value="{{.DevOpsID}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="DevOpsID">DevOpsID</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="FreshDeskID" aria-describedby="FreshDeskIDHelp" placeholder="" disabled value="{{.FreshDeskID}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="FreshDeskID">FreshDeskID</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="RSCID" aria-describedby="RSCIDHelp" placeholder="" disabled value="{{.RSCID}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="RSCID">RSCID</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="OtherID" aria-describedby="OtherIDHelp" placeholder="" disabled value="{{.OtherID}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="OtherID">OtherID</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="OtherID2" aria-describedby="OtherID2Help" placeholder="" disabled value="{{.OtherID2}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="OtherID2">OtherID2</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                  <select id="Analyst" name="Analyst" class="select" data-mdb-filter="true" disabled>
+                  {{range .Analyst_lookup}}<option value="{{.ID}}" {{if eq .ID $.Analyst}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="Analyst" disabled>Analyst</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                  <select id="ProductManager" name="ProductManager" class="select" data-mdb-filter="true" disabled>
+                  {{range .ProductManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProductManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="ProductManager" disabled>ProductManager</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                  <select id="ProjectManager" name="ProjectManager" class="select" data-mdb-filter="true" disabled>
+                  {{range .ProjectManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="ProjectManager" disabled>ProjectManager</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                  <select id="DefaultProfile" name="DefaultProfile" class="select" data-mdb-filter="true" disabled>
+                  {{range .DefaultProfile_lookup}}<option value="{{.ID}}" {{if eq .ID $.DefaultProfile}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="DefaultProfile" disabled>DefaultProfile</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                  <select id="ActualProfile" name="ActualProfile" class="select" data-mdb-filter="true" disabled>
+                  {{range .ActualProfile_lookup}}<option value="{{.ID}}" {{if eq .ID $.ActualProfile}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="ActualProfile" disabled>ActualProfile</label>
+                
+                </div>
+            </div>
             
         </div>
         

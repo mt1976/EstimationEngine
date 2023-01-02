@@ -49,8 +49,7 @@
             </div>
                   
           </div></div>
-<h4>Identification</h4>
-
+         <h4>Identification</h4>
             <div class="row mb-3"  ><div class="col" hidden>
             
             <input type="text" class="form-control" id="OriginID" name="OriginID" aria-describedby="NameHelp" placeholder=""  value="{{.OriginID}}" required data-mdb-input-mask="" hidden>
@@ -66,7 +65,7 @@
             <div class="form-outline mandatory">
 
             
-                <input type="text" class="form-control {{.Name_props.MsgType}}" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""  value="{{.Name}}" required data-mdb-input-mask="">
+                <input type="text" class="form-control {{.Name_props.MsgType}}" id="Name" name="Name" aria-describedby="NameHelp" placeholder="Give the project a name, make it meaningful. e.g. Upgrade 2023, or Customer Onboarding"  value="{{.Name}}" required data-mdb-input-mask="">
             
            
            
@@ -121,7 +120,23 @@
               <div class="{{.EndDate_props.MsgFeedBackType}}">{{.EndDate_props.MsgMessage}}</div>
             </div>
                   
-          </div></div>
+          </div>
+          
+                    <div class="col">
+         
+            <div class="form-outline">
+              <input type="text" class="form-control {{.Releases_props.MsgType}}" id="Releases" name="Releases" aria-describedby="ReleasesHelp" placeholder="No. releases required to deliver Req."  value="{{.Releases}}"  data-mdb-input-mask="" >
+              <label class="form-label" for="Releases" >Releases</label>
+              <div class="{{.Releases_props.MsgFeedBackType}}">{{.Releases_props.MsgMessage}}</div>
+            </div>
+                  
+          </div>
+          
+          
+          
+          </div>
+
+
 
 <h4>Project Description</h4>
             <div class="row mb-3"  ><div class="col">
@@ -129,7 +144,7 @@
             <div class="form-outline">
 
             
-                <textarea class="form-control {{.Description_props.MsgType}}" id="Description" name="Description" aria-describedby="DescriptionHelp" placeholder=""   value="{{.Description}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Description}}</textarea>
+                <textarea class="form-control {{.Description_props.MsgType}}" id="Description" name="Description" aria-describedby="DescriptionHelp" placeholder="Enter a brief description of the project"   value="{{.Description}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Description}}</textarea>
             
            
            

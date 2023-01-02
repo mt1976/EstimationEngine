@@ -17,7 +17,6 @@ import (
 	"fmt"
 	"net/http"
 	"strconv"
-	"time"
 
 	core "github.com/mt1976/ebEstimates/core"
 	dao "github.com/mt1976/ebEstimates/dao"
@@ -71,6 +70,8 @@ func FeatureNew_HandlerSetup(w http.ResponseWriter, r *http.Request) {
 	_, proj, _ := dao.Project_GetByID(es.ProjectID)
 
 	pageDetail.Name = proj.Name
+	pageDetail.DefaultProfile = proj.ProfileID
+	pageDetail.ActualProfile = proj.ProfileID
 
 	ExecuteTemplate(dm.FeatureNew_TemplateSetup, w, r, pageDetail)
 }
@@ -102,6 +103,22 @@ func FeatureNew_HandlerCreate(w http.ResponseWriter, r *http.Request) {
 	item.DevEstimate = r.FormValue(dm.FeatureNew_DevEstimate_scrn)
 	item.ConfidenceID = r.FormValue(dm.FeatureNew_Confidence_scrn)
 	item.Developer = r.FormValue(dm.FeatureNew_Developer_scrn)
+
+	fop := featurenew_DataFromRequest(r)
+	item.EstimationSessionID = fop.EstimationSession
+	item.Name = fop.Name
+	item.DevEstimate = fop.DevEstimate
+	item.ConfidenceID = fop.Confidence
+	item.Developer = fop.Developer
+	item.Description = fop.Description
+	item.Comments = fop.Comments
+	item.AdoID = fop.DevOpsID
+	item.FreshdeskID = fop.FreshDeskID
+	item.TrackerID = fop.RSCID
+	item.ExtRef = fop.OtherID
+	item.ExtRef2 = fop.OtherID2
+	item.ActualProfile = fop.ActualProfile
+	item.DefaultProfile = fop.DefaultProfile
 
 	item = Feature_CalcDefaults(item)
 	//
@@ -203,37 +220,36 @@ func Feature_CalcDefaults(item dm.Feature) dm.Feature {
 	item.Total = feature_CalculateTotal(item)
 	//supportUplift := totalEstimate * (supportUpliftPerc / 100)
 	//item.SupportUplift = strconv.FormatFloat(supportUplift, 'f', 2, 64)
-	msgTXT := "Recalculated"
+	msgTXT := "Feature Recalculated"
 	item.Notes = addActivity_System(item.Notes, msgTXT)
 
 	//item.Notes = item.Notes + "\nBase Estimate: " + strconv.FormatFloat(baseEstimate, 'f', 2, 64)
-	msgTXT = "Base Estimate: %s"
+	msgTXT = "Estimate = Base Estimate + Confidence Factor"
 	msgTXT = dao.Translate("AuditMessage", msgTXT)
-	msgTXT = fmt.Sprintf(msgTXT, fts(baseEstimate))
 	item.Notes = addActivity_System(item.Notes, msgTXT)
 
 	//item.Notes = item.Notes + "\nDev Confidence: " + strconv.FormatFloat(devConfPerc, 'f', 2, 64)
-	msgTXT = "Dev Confidence: %s"
+	msgTXT = "Estimate = %s + %s% = %s"
 	msgTXT = dao.Translate("AuditMessage", msgTXT)
-	msgTXT = fmt.Sprintf(msgTXT, fts(devConfPerc))
+	msgTXT = fmt.Sprintf(msgTXT, fts(baseEstimate), fts(devConfPerc), fts(coreEstimate))
 	item.Notes = addActivity_System(item.Notes, msgTXT)
 
-	//item.Notes = item.Notes + "\nCore Estimate: " + strconv.FormatFloat(coreEstimate, 'f', 2, 64)
-	msgTXT = "Core Estimate: %s"
-	msgTXT = dao.Translate("AuditMessage", msgTXT)
-	msgTXT = fmt.Sprintf(msgTXT, fts(coreEstimate))
-	item.Notes = addActivity_System(item.Notes, msgTXT)
+	baseTXT := "| %s | %s | %s | %s | %s | %s | %s | %s | %s |"
+	msgTXT = dao.Translate("AuditMessage", baseTXT)
+	brkTXT := fmt.Sprintf(msgTXT, "---", "---", "---", "---", "---", "---", "---", "---", "---")
+
+	msgTXT = dao.Translate("AuditMessage", baseTXT)
+	hdrTXT := fmt.Sprintf(msgTXT, "TYPE", "DEV", "REQ", "ANA", "DOC", "UAT", "TRG", "MKT", "MGT")
+	item.Notes = addActivity_System(item.Notes, hdrTXT)
+	item.Notes = addActivity_System(item.Notes, brkTXT)
 
 	//item.Notes = item.Notes + "\nDev: " + item.DevEstimate + " | " + "Conf: " + item.ConfidenceID + " | " + "DevUplift: " + item.DevUplift + " | " + "Req: " + item.Reqs + " | " + "Ana: " + item.AnalystTest + " | " + "Doc: " + item.Docs + " | " + "PM: " + item.Mgt + " | " + "UAT: " + item.UatSupport + " | " + "GTM: " + item.Marketing
-	msgTXT = "Dev: %s | Conf: %s | DevUplift: %s | Req: %s | Ana: %s | Doc: %s | PM: %s | UAT: %s | GTM: %s"
-	msgTXT = dao.Translate("AuditMessage", msgTXT)
-	msgTXT = fmt.Sprintf(msgTXT, item.DevEstimate, item.ConfidenceID, item.DevUplift, item.Reqs, item.AnalystTest, item.Docs, item.Mgt, item.UatSupport, item.Marketing)
+	//msgTXT = "Dev: %s | Conf: %s | DevUplift: %s | Req: %s | Ana: %s | Doc: %s | PM: %s | UAT: %s | GTM: %s"
+	//msgTXT = dao.Translate("AuditMessage", baseTXT)
+	msgTXT = fmt.Sprintf(baseTXT, "Profile", fts(devConfPerc+100), fts(reqPerc), fts(anaPerc), fts(docPerc), fts(uatPerc), fts(trainPerc), fts(gtmPerc), fts(pmPerc))
 	item.Notes = addActivity_System(item.Notes, msgTXT)
 
-	//item.Notes = item.Notes + "\nDevConf: " + cf.Perc + " | " + "ReqPerc: " + pp.REQPerc + " | " + "AnaPerc: " + pp.ANAPerc + " | " + "DocPerc: " + pp.DOCPerc + " | " + "PMPerc: " + pp.PMPerc + " | " + "UATPerc: " + pp.UATPerc + " | " + "GTM: " + pp.GTMPerc + " | " + "SupportUplift: " + pp.SupportUplift
-	msgTXT = "DevConf: %s | ReqPerc: %s | AnaPerc: %s | DocPerc: %s | PMPerc: %s | UATPerc: %s | GTM: %s | SupportUplift: %s"
-	msgTXT = dao.Translate("AuditMessage", msgTXT)
-	msgTXT = fmt.Sprintf(msgTXT, cf.Perc, pp.REQPerc, pp.ANAPerc, pp.DOCPerc, pp.PMPerc, pp.UATPerc, pp.GTMPerc, pp.SupportUplift)
+	msgTXT = fmt.Sprintf(baseTXT, "Result", fts(coreEstimate), fts(reqEstimate), fts(anaEstimate), fts(docEstimate), fts(uatEstimate), fts(trainEstimate), fts(gtmEstimate), fts(pmEstimate))
 	item.Notes = addActivity_System(item.Notes, msgTXT)
 
 	//Total
@@ -244,10 +260,10 @@ func Feature_CalcDefaults(item dm.Feature) dm.Feature {
 	item.Notes = addActivity_System(item.Notes, msgTXT)
 
 	//item.Notes = item.Notes + "\nUpdated: " + time.Now().Format("2006-01-02 at 15:04:05")
-	msgTXT = "Updated: %s"
-	msgTXT = dao.Translate("AuditMessage", msgTXT)
-	msgTXT = fmt.Sprintf(msgTXT, time.Now().Format("2006-01-02 at 15:04:05"))
-	item.Notes = addActivity_System(item.Notes, msgTXT)
+	//msgTXT = "Updated: %s"
+	//msgTXT = dao.Translate("AuditMessage", msgTXT)
+	//msgTXT = fmt.Sprintf(msgTXT, time.Now().Format("2006-01-02 at 15:04:05"))
+	//item.Notes = addActivity_System(item.Notes, msgTXT)
 	// Call Feature_RefreshEstimates(item)
 	//
 	// Dynamically generated 29/11/2022 by matttownsend (Matt Townsend) on silicon.local

@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 30/12/2022 at 12:18:20
+// Date & Time		    : 02/01/2023 at 15:17:13
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -45,7 +45,10 @@ SYSDeletedHost       string
 SYSDeletedHost_props FieldProperties
 SYSDbVersion       string
 SYSDbVersion_props FieldProperties
+IsLocked       string
+IsLocked_props FieldProperties
  // Any lookups will be added below
+
 
 
 
@@ -107,6 +110,7 @@ const (
 	EstimationState_SYSDeletedBy_sql   = "_deletedBy" // SYSDeletedBy is a String
 	EstimationState_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
 	EstimationState_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
+	EstimationState_IsLocked_sql   = "isLocked" // IsLocked is a String
 
 	/// Definitions End
 	///
@@ -126,6 +130,7 @@ const (
 	EstimationState_SYSDeletedBy_scrn   = "SYSDeletedBy" // SYSDeletedBy is a String
 	EstimationState_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
 	EstimationState_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
+	EstimationState_IsLocked_scrn   = "IsLocked" // IsLocked is a String
 
 	/// Definitions End
 	///
@@ -151,7 +156,7 @@ type EstimationState_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -181,8 +186,10 @@ type EstimationState_Page struct {
 	SYSDeletedHost_props     FieldProperties
 	SYSDbVersion         string
 	SYSDbVersion_props     FieldProperties
+	IsLocked         string
+	IsLocked_props     FieldProperties
 	// 
-	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

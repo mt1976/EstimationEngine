@@ -57,10 +57,10 @@
                   
           </div><div class="col">
          
-            <div class="form-outline">
+            <div class="form-outline mandatory">
 
             
-                <input type="text" class="form-control {{.Name_props.MsgType}}" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""  value="{{.Name}}" required data-mdb-input-mask="">
+                <input type="text" class="form-control {{.Name_props.MsgType}}" id="Name" name="Name" aria-describedby="NameHelp" placeholder="Get the Estimate a meaningful name"  value="{{.Name}}" required data-mdb-input-mask="">
             
            
            
@@ -96,7 +96,7 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.Releases_props.MsgType}}" id="Releases" name="Releases" readonly aria-describedby="ReleasesHelp" placeholder=""   value="{{.Releases}}"  data-mdb-input-mask="" />
+              <input type="text" class="form-control {{.Releases_props.MsgType}}" id="Releases" name="Releases"  aria-describedby="ReleasesHelp" placeholder="1"   value="{{.Releases}}"  data-mdb-input-mask="" />
               
               <label class="form-label" for="Releases" >Releases</label>
               <div class="{{.Releases_props.MsgFeedBackType}}">{{.Releases_props.MsgMessage}}</div>

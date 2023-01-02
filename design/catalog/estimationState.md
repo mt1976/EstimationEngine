@@ -58,6 +58,7 @@ SQL Table Key | **estimationStateID**
 |**SYSDeletedBy**|String|false|true|false|false|||||NH|_deletedBy||false|false|true|text||
 |**SYSDeletedHost**|String|false|true|false|false|||||NH|_deletedHost||false|false|true|text||
 |**SYSDbVersion**|String|false|true|false|false|||||NH|_dbVersion||false|false|true|text||
+|**IsLocked**|String|false|true|false|false|||||Y|isLocked||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -79,7 +80,7 @@ SQL Table Key | **estimationStateID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **30/12/2022** at **12:18:20**
+Date & Time		     | **02/01/2023** at **15:17:13**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 30/12/2022 at 12:18:21
+// Date & Time		    : 02/01/2023 at 15:17:14
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -48,10 +48,10 @@ func FeatureNew_GetByID(id string) (int, dm.FeatureNew, error) {
 	 _, featurenewItem, _ := adaptor.FeatureNew_GetByID_impl(id)
 	
 	// START
-	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, featurenewItem, nil
 }
@@ -113,10 +113,10 @@ func FeatureNew_StoreSystem(r dm.FeatureNew) error {
 func FeatureNew_Validate(r dm.FeatureNew) (dm.FeatureNew, error) {
 	var err error
 	// START
-	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -139,6 +139,18 @@ func featurenew_Save(r dm.FeatureNew,usr string) error {
 	}
 
 // If there are fields below, create the methods in dao\featurenew_impl.go
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -188,10 +200,10 @@ func FeatureNew_New() (int, []dm.FeatureNew, dm.FeatureNew, error) {
 	
 
 	// START
-	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

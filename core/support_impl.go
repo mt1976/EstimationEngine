@@ -581,7 +581,12 @@ func AddActivity_ForUser(in string, what string, un string) string {
 		return in
 	}
 
+	logs.Information("Activity", what+" "+un)
+
 	tm := time.Now().Format("02/01/2006 15:04:05")
+	if in == "" {
+		return tm + " " + un + " : " + what
+	}
 	out := in + "\n" + tm + " " + un + " : " + what
 	return out
 }

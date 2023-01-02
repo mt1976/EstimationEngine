@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 30/12/2022 at 12:18:21
+// Date & Time		    : 02/01/2023 at 15:17:14
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //Origin_Publish annouces the endpoints available for this object
-//Origin_Publish - Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+//Origin_Publish - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 func Origin_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.Origin_Path, Origin_Handler)
 	mux.HandleFunc(dm.Origin_PathList, Origin_HandlerList)
@@ -38,17 +38,17 @@ func Origin_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.Origin_Title)
     core.Catalog_Add(dm.Origin_Title, dm.Origin_Path, "", dm.Origin_QueryString, "Application")
 	// 
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Origin_HandlerList is the handler for the list page
 //Allows Listing of Origin records
-//Origin_HandlerList - Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+//Origin_HandlerList - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 func Origin_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -78,7 +78,7 @@ func Origin_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	ExecuteTemplate(dm.Origin_TemplateList, w, r, pageDetail)
 	// 
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -86,10 +86,10 @@ func Origin_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //Origin_HandlerView is the handler used to View a page
 //Allows Viewing for an existing Origin record
-//Origin_HandlerView - Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+//Origin_HandlerView - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Origin_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -118,17 +118,17 @@ func Origin_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Origin_TemplateView, w, r, pageDetail)
 	// 
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Origin_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing Origin record and then allows the user to save the changes
-//Origin_HandlerEdit - Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+//Origin_HandlerEdit - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Origin_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -157,17 +157,17 @@ func Origin_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Origin_TemplateEdit, w, r, pageDetail)
 	// 
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Origin_HandlerSave is the handler used process the saving of an Origin
 //It is called from the Edit and New pages
-//Origin_HandlerSave  - Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+//Origin_HandlerSave  - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Origin_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -185,17 +185,17 @@ func Origin_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	dao.Origin_Store(item,r)	
 	http.Redirect(w, r, dm.Origin_Redirect, http.StatusFound)
 	// 
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Origin_HandlerNew is the handler used process the creation of an Origin
 //It will create a new Origin and then redirect to the Edit page
-//Origin_HandlerNew  - Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+//Origin_HandlerNew  - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Origin_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -222,7 +222,7 @@ func Origin_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Origin_TemplateNew, w, r, pageDetail)
 	// 
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }	
 
@@ -231,7 +231,7 @@ func Origin_HandlerNew(w http.ResponseWriter, r *http.Request) {
 //origin_PopulatePage Builds/Populates the Origin Page 
 func origin_PopulatePage(rD dm.Origin, pageDetail dm.Origin_Page) dm.Origin_Page {
 	// START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.OriginID = rD.OriginID
@@ -262,7 +262,7 @@ func origin_PopulatePage(rD dm.Origin, pageDetail dm.Origin_Page) dm.Origin_Page
 	pageDetail.NoActiveProjects = rD.NoActiveProjects
 	
 	//
-	// Automatically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -355,7 +355,7 @@ func origin_PopulatePage(rD dm.Origin, pageDetail dm.Origin_Page) dm.Origin_Page
 	pageDetail.NoActiveProjects_props = rD.NoActiveProjects_props
 	
 	// 
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	
@@ -364,11 +364,11 @@ return pageDetail
 //origin_DataFromRequest is used process the content of an HTTP Request and return an instance of an Origin
 func origin_DataFromRequest(r *http.Request) dm.Origin {
 	// START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	var item dm.Origin
 	// FIELD SET START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Origin_SYSId_scrn)
 		item.OriginID = r.FormValue(dm.Origin_OriginID_scrn)
@@ -398,7 +398,7 @@ func origin_DataFromRequest(r *http.Request) dm.Origin {
 		item.NoActiveProjects = r.FormValue(dm.Origin_NoActiveProjects_scrn)
 	
 	// 
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return item
 }

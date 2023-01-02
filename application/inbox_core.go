@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 30/12/2022 at 12:18:21
+// Date & Time		    : 02/01/2023 at 15:17:14
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //Inbox_Publish annouces the endpoints available for this object
-//Inbox_Publish - Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+//Inbox_Publish - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 func Inbox_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.Inbox_Path, Inbox_Handler)
 	mux.HandleFunc(dm.Inbox_PathList, Inbox_HandlerList)
@@ -38,17 +38,17 @@ func Inbox_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.Inbox_Title)
     core.Catalog_Add(dm.Inbox_Title, dm.Inbox_Path, "", dm.Inbox_QueryString, "Application")
 	// 
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Inbox_HandlerList is the handler for the list page
 //Allows Listing of Inbox records
-//Inbox_HandlerList - Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+//Inbox_HandlerList - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 func Inbox_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -78,7 +78,7 @@ func Inbox_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	ExecuteTemplate(dm.Inbox_TemplateList, w, r, pageDetail)
 	// 
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -86,10 +86,10 @@ func Inbox_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //Inbox_HandlerView is the handler used to View a page
 //Allows Viewing for an existing Inbox record
-//Inbox_HandlerView - Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+//Inbox_HandlerView - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Inbox_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -118,7 +118,7 @@ func Inbox_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Inbox_TemplateView, w, r, pageDetail)
 	// 
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
@@ -126,10 +126,10 @@ func Inbox_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 //Inbox_HandlerSave is the handler used process the saving of an Inbox
 //It is called from the Edit and New pages
-//Inbox_HandlerSave  - Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+//Inbox_HandlerSave  - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Inbox_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -147,7 +147,7 @@ func Inbox_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	dao.Inbox_Store(item,r)	
 	http.Redirect(w, r, dm.Inbox_Redirect, http.StatusFound)
 	// 
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
@@ -155,10 +155,10 @@ func Inbox_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 //Inbox_HandlerDelete is the handler used process the deletion of an Inbox
 // It will delete the Inbox and then redirect to the List page
-//Inbox_HandlerDelete - Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+//Inbox_HandlerDelete - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Inbox_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -176,7 +176,7 @@ func Inbox_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, dm.Inbox_Redirect, http.StatusFound)
 	// 
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
@@ -184,7 +184,7 @@ func Inbox_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 //inbox_PopulatePage Builds/Populates the Inbox Page 
 func inbox_PopulatePage(rD dm.Inbox, pageDetail dm.Inbox_Page) dm.Inbox_Page {
 	// START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.SYSCreated = rD.SYSCreated
@@ -209,7 +209,7 @@ func inbox_PopulatePage(rD dm.Inbox, pageDetail dm.Inbox_Page) dm.Inbox_Page {
 	
 	
 	//
-	// Automatically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -278,7 +278,7 @@ func inbox_PopulatePage(rD dm.Inbox, pageDetail dm.Inbox_Page) dm.Inbox_Page {
 	pageDetail.SYSDbVersion_props = rD.SYSDbVersion_props
 	
 	// 
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	
@@ -287,11 +287,11 @@ return pageDetail
 //inbox_DataFromRequest is used process the content of an HTTP Request and return an instance of an Inbox
 func inbox_DataFromRequest(r *http.Request) dm.Inbox {
 	// START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	var item dm.Inbox
 	// FIELD SET START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Inbox_SYSId_scrn)
 		item.SYSCreated = r.FormValue(dm.Inbox_SYSCreated_scrn)
@@ -315,7 +315,7 @@ func inbox_DataFromRequest(r *http.Request) dm.Inbox {
 		item.SYSDbVersion = r.FormValue(dm.Inbox_SYSDbVersion_scrn)
 	
 	// 
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return item
 }

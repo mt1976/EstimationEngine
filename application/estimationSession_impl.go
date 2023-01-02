@@ -172,6 +172,18 @@ func EstimationSession_HandlerFormatted(w http.ResponseWriter, r *http.Request) 
 
 	pageDetail.EffortTotal = strconv.FormatFloat(totEffort, 'f', 2, 64)
 
+	pageDetail.RegCost = core.AmtFormatStr(pageDetail.RegCost)
+	pageDetail.ImpCost = core.AmtFormatStr(pageDetail.ImpCost)
+	pageDetail.UatCost = core.AmtFormatStr(pageDetail.UatCost)
+	pageDetail.MgtCost = core.AmtFormatStr(pageDetail.MgtCost)
+	pageDetail.RelCost = core.AmtFormatStr(pageDetail.RelCost)
+	pageDetail.SupportUplift = core.AmtFormatStr(pageDetail.SupportUplift)
+	pageDetail.Total = core.AmtFormatStr(pageDetail.Total)
+
+	if pageDetail.ProfileSupportUpliftPerc == "" {
+		pageDetail.ProfileSupportUpliftPerc = "0.00"
+	}
+
 	// Add up the effort
 	ExecuteTemplate(dm.EstimationSession_Formatted_TemplateView, w, r, pageDetail)
 }
@@ -189,6 +201,18 @@ func EstimationSession_HandlerCreate(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path + r.FormValue("EstimationSessionID"))
 
 	item := estimationsession_DataFromRequest(r)
+	if item.Releases == "" {
+		// Get the default from the project, if not there then the profile
+		_, thisProject, _ := dao.Project_GetByID(item.ProjectID)
+		item.Releases = thisProject.Releases
+		if item.Releases == "" {
+			_, thisProfile, _ := dao.Profile_GetByCode(thisProject.ProfileID)
+			item.Releases = thisProfile.DefaultReleases
+		}
+		if item.Releases == "" {
+			item.Releases = "1"
+		}
+	}
 
 	msg_TXT := "CREATED -> %s"
 	msg_TXT = dao.Translate("AuditMessage", msg_TXT)
@@ -234,6 +258,12 @@ func EstimationSession_HandlerSetup(w http.ResponseWriter, r *http.Request) {
 
 	_, proj, _ := dao.Project_GetByID(projectID)
 
+	// Get the default from the project, if not there then the profile
+	pageDetail.Releases = proj.Releases
+	if pageDetail.Releases == "" {
+		pageDetail.Releases = "1"
+	}
+
 	pageDetail.Name = proj.Name
 
 	ExecuteTemplate(dm.EstimationSession_TemplateSetup, w, r, pageDetail)
@@ -247,16 +277,16 @@ func Estimationsession_Calculate(searchID string) dm.EstimationSession {
 
 	// Get the list of all Features for this EstimationSession
 	foundFeatures, featureList, _ := dao.Feature_Active_ByEstimationSession_GetList(searchID)
-	logs.Information("Found Features: ", strconv.Itoa(foundFeatures))
+	logs.Information("No. Features Found", strconv.Itoa(foundFeatures))
 	// Get the current projiect id
 	_, proj, _ := dao.Project_GetByID(esRecord.ProjectID)
 
 	//Get the current profile
 	profileID := proj.ProfileID
 	originID := proj.OriginID
-	logs.Information("ProjectID: ", esRecord.ProjectID)
-	logs.Information("ProfileID: ", profileID)
-	logs.Information("OriginID: ", originID)
+	logs.Information("ProjectID", esRecord.ProjectID)
+	logs.Information("ProfileID", profileID)
+	logs.Information("OriginID", originID)
 
 	_, profile, _ := dao.Profile_GetByCode(profileID)
 	//Get the current rate from the origin
@@ -273,8 +303,8 @@ func Estimationsession_Calculate(searchID string) dm.EstimationSession {
 		Rate = stf(proj.ProjectRate)
 	}
 
-	logs.Information("HoursInDay: ", fts(HoursInDay))
-	logs.Information("Rate: ", fts(Rate))
+	logs.Information("HoursInDay", fts(HoursInDay))
+	logs.Information("Rate", fts(Rate))
 
 	Total_Reqs := 0.00
 	Total_AnaTest := 0.00
@@ -290,8 +320,9 @@ func Estimationsession_Calculate(searchID string) dm.EstimationSession {
 	for thisFeature, feature := range featureList {
 		// Sum up the estimates in this featre
 		// convert feature.Reqs to INT
-		logs.Information("Feature: ", strconv.Itoa(thisFeature))
-		logs.Information("Feature.Reqs: ", feature.Reqs)
+		logs.Break()
+		logs.Information("Feature", strconv.Itoa(thisFeature))
+		logs.Information("Feature.Reqs", feature.Reqs)
 
 		Total_Reqs += stf(feature.Reqs)
 		Total_AnaTest += stf(feature.AnalystTest)
@@ -447,22 +478,24 @@ func EstimationSession_HandlerClone(w http.ResponseWriter, r *http.Request) {
 	// Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Clone Features
-	err := EstimationSession_Clone(esID, r)
+	newID, err := EstimationSession_Clone(esID, r)
 	if err != nil {
 		logs.Panic("Cannot Clone Estimation Session {"+esID+"}", err)
 		return
 	}
 
-	REDR := dm.EstimationSession_PathEdit + "/?" + dm.EstimationSession_QueryString + "=" + esID
+	REDR := dm.EstimationSession_PathEdit + "/?" + dm.EstimationSession_QueryString + "=" + newID
 	http.Redirect(w, r, REDR, http.StatusFound)
 }
 
-func EstimationSession_Clone(esID string, r *http.Request) error {
+func EstimationSession_Clone(esID string, r *http.Request) (string, error) {
 	_, esREC, _ := dao.EstimationSession_GetByID(esID)
 
 	esREC.SYSId = ""
 	cloneID := dao.EstimationSession_NewID(esREC)
 	esREC.EstimationSessionID = cloneID
+	origName := esREC.Name
+	esREC.Name = fmt.Sprintf(dao.Translate("ActionMessage", "%s (Clone)"), esREC.Name)
 	esREC.Notes = r.FormValue(dm.EstimationSession_Notes_scrn)
 
 	esREC.SYSCreated = r.FormValue(dm.EstimationSession_SYSCreated_scrn)
@@ -475,7 +508,7 @@ func EstimationSession_Clone(esID string, r *http.Request) error {
 	esREC.SYSDeletedBy = r.FormValue(dm.EstimationSession_SYSDeletedBy_scrn)
 	esREC.SYSDeletedHost = r.FormValue(dm.EstimationSession_SYSDeletedHost_scrn)
 
-	esREC.Notes = addActivity(esREC.Notes, "CLONED -> "+esREC.EstimationStateID, r)
+	esREC.Notes = addActivity(esREC.Notes, fmt.Sprintf(dao.Translate("Audit Message", "Cloned from %s (%s)"), origName, esREC.EstimationStateID), r)
 
 	dao.EstimationSession_Store(esREC, r)
 
@@ -484,10 +517,10 @@ func EstimationSession_Clone(esID string, r *http.Request) error {
 		err := Feature_Clone(feature, cloneID, r)
 		if err != nil {
 			logs.Panic("Cannot Clone Feature {"+feature.FeatureID+"}", err)
-			return err
+			return cloneID, err
 		}
 	}
-	return nil
+	return cloneID, nil
 }
 
 func stf(in string) float64 {

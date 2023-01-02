@@ -201,9 +201,9 @@
 
  
           
-      <hr>
+
 <h4>Estimates</h4>
-<h5>Developer Estimate</h5>
+<h5>Engineer Estimate</h5>
 <div class="row mb-3"  >
                 <div class="col">
                 
@@ -211,7 +211,7 @@
                         
                             <input type="text" class="form-control" id="DevEstimate" aria-describedby="DevEstimateHelp" placeholder="" disabled value="{{.DevEstimate}}" data-mdb-input-mask=""></input>
                         
-                        <label class="form-label" for="DevEstimate">Developer Estimate</label>
+                        <label class="form-label" for="DevEstimate">Engineer Estimate</label>
                         
                     </div>
                 
@@ -222,7 +222,7 @@
                   <select id="ConfidenceID" name="ConfidenceID" class="select" data-mdb-filter="true" disabled>
                   {{range .ConfidenceID_lookup}}<option value="{{.ID}}" {{if eq .ID $.ConfidenceID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
                   </select>
-                  <label class="form-label select-label" for="ConfidenceID" disabled>Confidence in Developer Estimate</label>
+                  <label class="form-label select-label" for="ConfidenceID" disabled>Confidence in Engineer Estimate</label>
                 
                 </div>
         
@@ -231,7 +231,7 @@
                   <select id="Developer" name="Developer" class="select" data-mdb-filter="true" disabled>
                   {{range .Developer_lookup}}<option value="{{.ID}}" {{if eq .ID $.Developer}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
                   </select>
-                  <label class="form-label select-label" for="Developer" disabled>Developer</label>
+                  <label class="form-label select-label" for="Developer" disabled>Engineer</label>
                 
                 </div>
 

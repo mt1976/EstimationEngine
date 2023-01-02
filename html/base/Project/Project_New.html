@@ -310,7 +310,7 @@
             <div class="form-outline">
 
             
-                <input type="text" class="form-control {{.Comments_props.MsgType}}" id="Comments" name="Comments" aria-describedby="CommentsHelp" placeholder=""  value="{{.Comments}}"  data-mdb-input-mask="" >
+                <textarea class="form-control {{.Comments_props.MsgType}}" id="Comments" name="Comments" aria-describedby="CommentsHelp" placeholder=""   value="{{.Comments}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Comments}}</textarea>
             
            
            
@@ -377,6 +377,36 @@
             </select>
             <label class="form-label select-label" for="ProjectManager" >ProjectManager</label>
             <div class="{{.ProjectManager_props.MsgFeedBackType}}">{{.ProjectManager_props.MsgMessage}}</div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.Releases_props.MsgType}}" id="Releases" name="Releases" aria-describedby="ReleasesHelp" placeholder=""  value="{{.Releases}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="Releases" >Releases</label>
+              <div class="{{.Releases_props.MsgFeedBackType}}">{{.Releases_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <textarea class="form-control {{.Notes_props.MsgType}}" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder="" readonly="true"  value="{{.Notes}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Notes}}</textarea>
+            
+           
+           
+              <label class="form-label" for="Notes" readonly="true">Notes</label>
+              <div class="{{.Notes_props.MsgFeedBackType}}">{{.Notes_props.MsgMessage}}</div>
+            </div>
                   
           </div></div>
 

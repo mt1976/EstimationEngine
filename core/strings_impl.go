@@ -4,8 +4,11 @@ import (
 	"encoding/base64"
 	"log"
 	"regexp"
+	"strconv"
 	"strings"
 	"time"
+
+	"github.com/dustin/go-humanize"
 )
 
 // ArrToString converts an array of strings to a printable string
@@ -112,4 +115,15 @@ func DecodeString(encodedStr string) string {
 	}
 
 	return string(decodedStr)
+}
+
+func AmtFormatFloat(amt float64) string {
+
+	return humanize.CommafWithDigits(amt, 2)
+
+}
+
+func AmtFormatStr(amt string) string {
+	amtFloat, _ := strconv.ParseFloat(amt, 64)
+	return AmtFormatFloat(amtFloat)
 }

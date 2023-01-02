@@ -51,6 +51,14 @@ func Credentials_Run_impl() (string, error) {
 	// Scan the credentials
 	// ------------------
 	for _, c := range creds {
+		if c.Expiry == "" {
+			shouldReturn, returnValue, returnErr := expireCredentials(c, message)
+			if shouldReturn {
+				return returnValue, returnErr
+			}
+			continue
+		}
+
 		expiry, err2 := time.Parse(core.DATETIMEFORMATUSER, c.Expiry)
 		if err2 != nil {
 			logs.Error("Credentials Housekeeping", err2)

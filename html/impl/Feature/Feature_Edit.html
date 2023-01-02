@@ -204,14 +204,14 @@
 
 
 <H4>Estimates</H4>
-<H5>Developer Estimate</h5>
+<H5>Engineer Estimate</h5>
             <div class="row mb-3"  ><div class="col">
             
             <div class="form-outline">
               
               <input type="text" class="form-control {{.DevEstimate_props.MsgType}}" id="DevEstimate" name="DevEstimate" aria-describedby="DevEstimateHelp" placeholder="" readonly  value="{{.DevEstimate}}" required data-mdb-input-mask="" />
               
-              <label class="form-label" for="DevEstimate" >Developer Estimate</label>
+              <label class="form-label" for="DevEstimate" >Engineer Estimate</label>
               <div class="{{.DevEstimate_props.MsgFeedBackType}}">{{.DevEstimate_props.MsgMessage}}</div>
             </div>
         
@@ -222,7 +222,7 @@
             <select id="ConfidenceIDDisplay" name="ConfidenceIDDisplay" class="select" data-mdb-filter="true" disabled >
                 {{range .ConfidenceID_lookup}}<option value="{{.ID}}" {{if eq .ID $.ConfidenceID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
             </select>
-            <label class="form-label select-label" for="ConfidenceIDDisplay" >Confidence in Developer Estimate</label>
+            <label class="form-label select-label" for="ConfidenceIDDisplay" >Confidence in Engineer Estimate</label>
             <div class="{{.ConfidenceID_props.MsgFeedBackType}}">{{.ConfidenceID_props.MsgMessage}}</div>
             
         

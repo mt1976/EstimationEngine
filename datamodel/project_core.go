@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 30/12/2022 at 20:09:22
+// Date & Time		    : 02/01/2023 at 15:17:14
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -69,6 +69,10 @@ ProjectEngineer       string
 ProjectEngineer_props FieldProperties
 ProjectManager       string
 ProjectManager_props FieldProperties
+Releases       string
+Releases_props FieldProperties
+Notes       string
+Notes_props FieldProperties
 NoEstimationSessions       string
 NoEstimationSessions_props FieldProperties
  // Any lookups will be added below
@@ -97,6 +101,8 @@ ProfileID_lookup []Lookup_Item
 ProjectAnalyst_lookup []Lookup_Item
 ProjectEngineer_lookup []Lookup_Item
 ProjectManager_lookup []Lookup_Item
+
+
 
 
 }
@@ -158,6 +164,8 @@ const (
 	Project_ProjectAnalyst_sql   = "projectAnalyst" // ProjectAnalyst is a String
 	Project_ProjectEngineer_sql   = "projectEngineer" // ProjectEngineer is a String
 	Project_ProjectManager_sql   = "projectManager" // ProjectManager is a String
+	Project_Releases_sql   = "releases" // Releases is a String
+	Project_Notes_sql   = "notes" // Notes is a String
 	Project_NoEstimationSessions_sql   = "NoEstimationSessions" // NoEstimationSessions is a String
 
 	/// Definitions End
@@ -190,6 +198,8 @@ const (
 	Project_ProjectAnalyst_scrn   = "ProjectAnalyst" // ProjectAnalyst is a String
 	Project_ProjectEngineer_scrn   = "ProjectEngineer" // ProjectEngineer is a String
 	Project_ProjectManager_scrn   = "ProjectManager" // ProjectManager is a String
+	Project_Releases_scrn   = "Releases" // Releases is a String
+	Project_Notes_scrn   = "Notes" // Notes is a String
 	Project_NoEstimationSessions_scrn   = "NoEstimationSessions" // NoEstimationSessions is a String
 
 	/// Definitions End
@@ -216,7 +226,7 @@ type Project_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -276,10 +286,14 @@ type Project_Page struct {
 	ProjectManager         string
 	ProjectManager_lookup    []Lookup_Item
 	ProjectManager_props     FieldProperties
+	Releases         string
+	Releases_props     FieldProperties
+	Notes         string
+	Notes_props     FieldProperties
 	NoEstimationSessions         string
 	NoEstimationSessions_props     FieldProperties
 	// 
-	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

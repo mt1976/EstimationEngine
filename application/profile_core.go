@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 30/12/2022 at 20:07:46
+// Date & Time		    : 02/01/2023 at 15:17:14
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //Profile_Publish annouces the endpoints available for this object
-//Profile_Publish - Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+//Profile_Publish - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 func Profile_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.Profile_Path, Profile_Handler)
 	mux.HandleFunc(dm.Profile_PathList, Profile_HandlerList)
@@ -38,17 +38,17 @@ func Profile_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.Profile_Title)
     core.Catalog_Add(dm.Profile_Title, dm.Profile_Path, "", dm.Profile_QueryString, "Application")
 	// 
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Profile_HandlerList is the handler for the list page
 //Allows Listing of Profile records
-//Profile_HandlerList - Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+//Profile_HandlerList - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 func Profile_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -78,7 +78,7 @@ func Profile_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	ExecuteTemplate(dm.Profile_TemplateList, w, r, pageDetail)
 	// 
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -86,10 +86,10 @@ func Profile_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //Profile_HandlerView is the handler used to View a page
 //Allows Viewing for an existing Profile record
-//Profile_HandlerView - Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+//Profile_HandlerView - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Profile_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -118,17 +118,17 @@ func Profile_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Profile_TemplateView, w, r, pageDetail)
 	// 
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Profile_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing Profile record and then allows the user to save the changes
-//Profile_HandlerEdit - Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+//Profile_HandlerEdit - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Profile_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -157,17 +157,17 @@ func Profile_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Profile_TemplateEdit, w, r, pageDetail)
 	// 
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Profile_HandlerSave is the handler used process the saving of an Profile
 //It is called from the Edit and New pages
-//Profile_HandlerSave  - Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+//Profile_HandlerSave  - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Profile_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -185,17 +185,17 @@ func Profile_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	dao.Profile_Store(item,r)	
 	http.Redirect(w, r, dm.Profile_Redirect, http.StatusFound)
 	// 
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Profile_HandlerNew is the handler used process the creation of an Profile
 //It will create a new Profile and then redirect to the Edit page
-//Profile_HandlerNew  - Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+//Profile_HandlerNew  - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Profile_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -222,7 +222,7 @@ func Profile_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Profile_TemplateNew, w, r, pageDetail)
 	// 
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }	
 
@@ -231,7 +231,7 @@ func Profile_HandlerNew(w http.ResponseWriter, r *http.Request) {
 //profile_PopulatePage Builds/Populates the Profile Page 
 func profile_PopulatePage(rD dm.Profile, pageDetail dm.Profile_Page) dm.Profile_Page {
 	// START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.ProfileID = rD.ProfileID
@@ -269,7 +269,7 @@ func profile_PopulatePage(rD dm.Profile, pageDetail dm.Profile_Page) dm.Profile_
 	
 	
 	//
-	// Automatically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -373,7 +373,7 @@ func profile_PopulatePage(rD dm.Profile, pageDetail dm.Profile_Page) dm.Profile_
 	pageDetail.TrainingPerc_props = rD.TrainingPerc_props
 	
 	// 
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	
@@ -382,11 +382,11 @@ return pageDetail
 //profile_DataFromRequest is used process the content of an HTTP Request and return an instance of an Profile
 func profile_DataFromRequest(r *http.Request) dm.Profile {
 	// START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	var item dm.Profile
 	// FIELD SET START
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Profile_SYSId_scrn)
 		item.ProfileID = r.FormValue(dm.Profile_ProfileID_scrn)
@@ -423,7 +423,7 @@ func profile_DataFromRequest(r *http.Request) dm.Profile {
 		item.TrainingPerc = r.FormValue(dm.Profile_TrainingPerc_scrn)
 	
 	// 
-	// Auto generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return item
 }

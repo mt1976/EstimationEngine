@@ -50,99 +50,130 @@
         </div>
         <div class="col">
         
-            <div class="form-outline">
+            <div class="form-outline mandatory">
               
-              <input type="text" class="form-control {{.Name_props.MsgType}}" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""   value="{{.Name}}" required data-mdb-input-mask="" />
+              <input type="text" class="form-control {{.Name_props.MsgType}}" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""   value="{{.Name}}" required data-mdb-input-mask="" required/>
               
               <label class="form-label" for="Name" >Name</label>
               <div class="{{.Name_props.MsgFeedBackType}}">{{.Name_props.MsgMessage}}</div>
             </div>
         
-        </div></div>
+        </div>
+        
+               <div class="col" readonly="true">
+        
+            
+            <select id="DefaultProfile" name="DefaultProfile" class="select" data-mdb-filter="true" readonly="true" disabled>
+                {{range .DefaultProfile_lookup}}<option value="{{.ID}}" {{if eq .ID $.DefaultProfile}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="DefaultProfile" readonly="true">Default Profile</label>
+            <div class="{{.DefaultProfile_props.MsgFeedBackType}}">{{.DefaultProfile_props.MsgMessage}}</div>
+            
+        
+        </div><div class="col">
+        
+            
+            <select id="ActualProfile" name="ActualProfile" class="select" data-mdb-filter="true"  >
+                {{range .ActualProfile_lookup}}<option value="{{.ID}}" {{if eq .ID $.ActualProfile}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ActualProfile" >Actual Profile</label>
+            <div class="{{.ActualProfile_props.MsgFeedBackType}}">{{.ActualProfile_props.MsgMessage}}</div>
+            
+        
+        </div>
+        
+        
+        
+        </div>
            <div class="row mb-3"  >
                 <div class="col">
-                
-                    <div class="form-outline">
-                        
-                            <textarea class="form-control" id="Description" name="Notes" aria-describedby="NotesHelp" placeholder=""   value="placeholder"  data-mdb-input-mask="" rows="4" maxlength="255">placeholder</textarea>
-                        
-                        <label class="form-label" for="Description">Description</label>
-                        
-                    </div>
-                
-                </div>
+        
+            <div class="form-outline">
+              
+              <textarea class="form-control {{.Description_props.MsgType}}" id="Description" name="Description" aria-describedby="DescriptionHelp" placeholder=""   value="{{.Description}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Description}}</textarea>
+              
+              <label class="form-label" for="Description" >Description</label>
+              <div class="{{.Description_props.MsgFeedBackType}}">{{.Description_props.MsgMessage}}</div>
+            </div>
+        
+        </div>
             </div>
             <h4>Links</h4>
 
+
+  <div class="row mb-3"  >
+  
+  
+          <div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.DevOpsID_props.MsgType}}" id="DevOpsID" name="DevOpsID" aria-describedby="DevOpsIDHelp" placeholder=""  value="{{.DevOpsID}}"  data-mdb-input-mask="" >
+              <label class="form-label" for="DevOpsID" >Azure DevOps ID</label>
+              <div class="{{.DevOpsID_props.MsgFeedBackType}}">{{.DevOpsID_props.MsgMessage}}</div>
+            </div>
+                  
+          </div>
+          
+          <div class="col">
+         
+            <div class="form-outline">
+
+                <input type="text" class="form-control {{.FreshDeskID_props.MsgType}}" id="FreshDeskID" name="FreshDeskID" aria-describedby="FreshDeskIDHelp" placeholder=""  value="{{.FreshDeskID}}"  data-mdb-input-mask="" >
+              <label class="form-label" for="FreshDeskID" >FreshDesk ID</label>
+              <div class="{{.FreshDeskID_props.MsgFeedBackType}}">{{.FreshDeskID_props.MsgMessage}}</div>
+            </div>
+                  
+          </div><div class="col">
+         
+            <div class="form-outline">
+                <input type="text" class="form-control {{.RSCID_props.MsgType}}" id="RSCID" name="RSCID" aria-describedby="RSCIDHelp" placeholder=""  value="{{.RSCID}}"  data-mdb-input-mask="" >
+              <label class="form-label" for="RSCID" >RSC/NC No.</label>
+              <div class="{{.RSCID_props.MsgFeedBackType}}">{{.RSCID_props.MsgMessage}}</div>
+            </div>
+                  
+          </div>
+          
+          <div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.OtherID_props.MsgType}}" id="OtherID" name="OtherID" aria-describedby="OtherIDHelp" placeholder=""  value="{{.OtherID}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="OtherID" >Other Ref</label>
+              <div class="{{.OtherID_props.MsgFeedBackType}}">{{.OtherID_props.MsgMessage}}</div>
+            </div>
+                  
+          </div>
+          
+          <div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.OtherID2_props.MsgType}}" id="OtherID2" name="OtherID2" aria-describedby="OtherID2Help" placeholder=""  value="{{.OtherID2}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="OtherID2" >Other Ref 2</label>
+              <div class="{{.OtherID2_props.MsgFeedBackType}}">{{.OtherID2_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
        
-        <div class="row mb-3"  ><div class="col">
-        
-            <div class="form-outline">
-              
-              <input type="text" class="form-control " id="AdoID" name="AdoID" aria-describedby="AdoIDHelp" placeholder=""   value=""  data-mdb-input-mask="" />
-              
-              <label class="form-label" for="AdoID" >Azure DevOps ID</label>
-              <div class=""></div>
-            </div>
-        
-        </div>
-        
-        <div class="col">
-        
-            <div class="form-outline">
-              
-              <input type="text" class="form-control " id="FreshdeskID" name="FreshdeskID" aria-describedby="FreshdeskIDHelp" placeholder=""   value=""  data-mdb-input-mask="" />
-              
-              <label class="form-label" for="FreshdeskID" >FreshDesk ID</label>
-              <div class=""></div>
-            </div>
-        
-        </div>
-        
-        <div class="col">
-        
-            <div class="form-outline">
-              
-              <input type="text" class="form-control " id="TrackerID" name="TrackerID" aria-describedby="TrackerIDHelp" placeholder=""   value=""  data-mdb-input-mask="" />
-              
-              <label class="form-label" for="TrackerID" >RSC/NC No.</label>
-              <div class=""></div>
-            </div>
-        
-        </div>
-        
-        <div class="col">
-        
-            <div class="form-outline">
-              
-              <input type="text" class="form-control " id="ExtRef" name="ExtRef" aria-describedby="ExtRefHelp" placeholder=""   value=""  data-mdb-input-mask="" />
-              
-              <label class="form-label" for="ExtRef" >Other Ref</label>
-              <div class=""></div>
-            </div>
-        
-        </div>
-        <div class="col">
-        
-            <div class="form-outline">
-              
-              <input type="text" class="form-control " id="ExtRef2" name="ExtRef2" aria-describedby="ExtRef2Help" placeholder=""   value=""  data-mdb-input-mask="" />
-              
-              <label class="form-label" for="ExtRef2" >Other Ref 2</label>
-              <div class=""></div>
-            </div>
-        
-        </div></div>
-        <hr>
+     
        <h4>Estimates</h4>
-       <h5>Developer Estimate</h5>
         <div class="row mb-3"  ><div class="col">
         
-            <div class="form-outline">
+            <div class="form-outline mandatory">
               
-              <input type="text" class="form-control {{.DevEstimate_props.MsgType}}" id="DevEstimate" name="DevEstimate" aria-describedby="DevEstimateHelp" placeholder=""   value="{{.DevEstimate}}"  data-mdb-input-mask="" />
+              <input type="number" class="form-control {{.DevEstimate_props.MsgType}}" id="DevEstimate" name="DevEstimate" aria-describedby="DevEstimateHelp" placeholder="" step="0.25"  value="{{.DevEstimate}}"  data-mdb-input-mask="" required/>
               
-              <label class="form-label" for="DevEstimate" >Developer Estimate</label>
+              <label class="form-label" for="DevEstimate" >Engineer Estimate</label>
               <div class="{{.DevEstimate_props.MsgFeedBackType}}">{{.DevEstimate_props.MsgMessage}}</div>
             </div>
         
@@ -166,25 +197,23 @@
             <select id="Developer" name="Developer" class="select" data-mdb-filter="true"  >
                 {{range .Developer_lookup}}<option value="{{.ID}}" {{if eq .ID $.Developer}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
             </select>
-            <label class="form-label select-label" for="Developer" >Developer</label>
+            <label class="form-label select-label" for="Developer" >Engineer</label>
             <div class="{{.Developer_props.MsgFeedBackType}}">{{.Developer_props.MsgMessage}}</div>
             
         
         </div></div>
         <h4>Comments</h4>
-          <div class="row mb-3"  >
-                <div class="col">
-                
-                    <div class="form-outline">
-                        
-                            <textarea class="form-control" id="Description" name="Comments" aria-describedby="CommentsHelp" placeholder=""   value="placeholder"  data-mdb-input-mask="" rows="4" maxlength="255">placeholder</textarea>
-                        
-                        <label class="form-label" for="Description">Comments</label>
-                        
-                    </div>
-                
-                </div>
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <textarea class="form-control {{.Comments_props.MsgType}}" id="Comments" name="Comments" aria-describedby="CommentsHelp" placeholder=""   value="{{.Comments}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Comments}}</textarea>
+              
+              <label class="form-label" for="Comments" >Comments</label>
+              <div class="{{.Comments_props.MsgFeedBackType}}">{{.Comments_props.MsgMessage}}</div>
             </div>
+        
+        </div></div>
       
     </div>
     

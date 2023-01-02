@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 30/12/2022 at 12:18:22
+// Date & Time		    : 02/01/2023 at 15:17:15
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -69,6 +69,12 @@ ProjectEngineer       string
 ProjectEngineer_props FieldProperties
 ProjectManager       string
 ProjectManager_props FieldProperties
+Releases       string
+Releases_props FieldProperties
+Notes       string
+Notes_props FieldProperties
+NoEstimationSessions       string
+NoEstimationSessions_props FieldProperties
  // Any lookups will be added below
 
 OriginID_lookup []Lookup_Item
@@ -92,6 +98,9 @@ ProfileID_lookup []Lookup_Item
 
 
 
+ProjectAnalyst_lookup []Lookup_Item
+ProjectEngineer_lookup []Lookup_Item
+ProjectManager_lookup []Lookup_Item
 
 
 
@@ -154,6 +163,9 @@ const (
 	ProjectAction_ProjectAnalyst_sql   = "projectAnalyst" // ProjectAnalyst is a String
 	ProjectAction_ProjectEngineer_sql   = "projectEngineer" // ProjectEngineer is a String
 	ProjectAction_ProjectManager_sql   = "projectManager" // ProjectManager is a String
+	ProjectAction_Releases_sql   = "releases" // Releases is a String
+	ProjectAction_Notes_sql   = "notes" // Notes is a String
+	ProjectAction_NoEstimationSessions_sql   = "NoEstimationSessions" // NoEstimationSessions is a String
 
 	/// Definitions End
 	///
@@ -185,6 +197,9 @@ const (
 	ProjectAction_ProjectAnalyst_scrn   = "ProjectAnalyst" // ProjectAnalyst is a String
 	ProjectAction_ProjectEngineer_scrn   = "ProjectEngineer" // ProjectEngineer is a String
 	ProjectAction_ProjectManager_scrn   = "ProjectManager" // ProjectManager is a String
+	ProjectAction_Releases_scrn   = "Releases" // Releases is a String
+	ProjectAction_Notes_scrn   = "Notes" // Notes is a String
+	ProjectAction_NoEstimationSessions_scrn   = "NoEstimationSessions" // NoEstimationSessions is a String
 
 	/// Definitions End
 	///
@@ -210,7 +225,7 @@ type ProjectAction_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -262,13 +277,22 @@ type ProjectAction_Page struct {
 	DefaultRate         string
 	DefaultRate_props     FieldProperties
 	ProjectAnalyst         string
+	ProjectAnalyst_lookup    []Lookup_Item
 	ProjectAnalyst_props     FieldProperties
 	ProjectEngineer         string
+	ProjectEngineer_lookup    []Lookup_Item
 	ProjectEngineer_props     FieldProperties
 	ProjectManager         string
+	ProjectManager_lookup    []Lookup_Item
 	ProjectManager_props     FieldProperties
+	Releases         string
+	Releases_props     FieldProperties
+	Notes         string
+	Notes_props     FieldProperties
+	NoEstimationSessions         string
+	NoEstimationSessions_props     FieldProperties
 	// 
-	// Dynamically generated 30/12/2022 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }
