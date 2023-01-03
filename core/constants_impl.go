@@ -110,3 +110,8 @@ const (
 	ContextState_NORMAL = "action-success"
 	ContextState_OK     = "action-success"
 )
+
+const (
+	TRUE  = "true"
+	FALSE = "false"
+)

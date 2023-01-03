@@ -54,7 +54,7 @@ Store|<ul><li>**Implement in Adaptor**</li><li>func EstimationSessionAction_NewI
 | Type | Artifact | Path|
 | :--: | -- | -- |
 | code | **application** | /application/estimationSessionAction_core.go |
-| code | **adaptor** | /adaptor/estimationSessionAction_impl.go_template |
+| code | **adaptor** | /dao/estimationSessionAction_adaptor.go_template |
 | code | **api** | /application/estimationSessionAction_api.go |
 | code | **dao** | /dao/estimationSessionAction_core.go |
 | code | **datamodel** | /datamodel/estimationSessionAction_core.go |
@@ -68,7 +68,7 @@ Store|<ul><li>**Implement in Adaptor**</li><li>func EstimationSessionAction_NewI
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **02/01/2023** at **15:17:13**
+Date & Time		     | **03/01/2023** at **19:18:08**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

@@ -60,3 +60,55 @@ body{
 
     background-color: #e9ecef;
 }
+
+.datatable tbody tr:last-child {
+    border-bottom: 1px;
+    border-color: inherit;
+    height: fit-content !important;
+}
+.table-primary {
+    color: #322a77;
+    --mdb-table-bg: #CDCDCD;
+}
+
+
+
+.text-primary {
+    --mdb-text-opacity: 1;
+    color: #322a77 !important;
+    font-weight: bolder;
+  }
+
+  a.breadcrumb-item {
+
+    color: #322a77 !important;
+    font-weight: bolder;
+  }
+  .a.page-link {
+    --mdb-text-opacity: 1;
+    color: #322a77 !important;
+    font-weight: bolder;
+  }
+
+  .page-item.active .page-link{
+    background-color: #322a77 !important;
+    border-color: #322a77 !important;
+  }
+
+  .note-light{
+    border-left: 6px solid #322a77;
+  }
+
+
+  .btn-primary{
+    background-color: #322a77 !important;
+  }
+
+  .btn-info{
+    background-color: #294775 !important;
+  }
+
+  .btn-tertiary{
+    background-color: #572975 !important;
+    color: white;
+  }

@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 02/01/2023 at 15:17:15
+// Date & Time		    : 03/01/2023 at 19:18:11
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -47,7 +47,10 @@ SYSDbVersion       string
 SYSDbVersion_props FieldProperties
 IsLocked       string
 IsLocked_props FieldProperties
+Notify       string
+Notify_props FieldProperties
  // Any lookups will be added below
+
 
 
 
@@ -111,6 +114,7 @@ const (
 	ProjectState_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
 	ProjectState_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
 	ProjectState_IsLocked_sql   = "isLocked" // IsLocked is a String
+	ProjectState_Notify_sql   = "notify" // Notify is a String
 
 	/// Definitions End
 	///
@@ -131,6 +135,7 @@ const (
 	ProjectState_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
 	ProjectState_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
 	ProjectState_IsLocked_scrn   = "IsLocked" // IsLocked is a String
+	ProjectState_Notify_scrn   = "Notify" // Notify is a String
 
 	/// Definitions End
 	///
@@ -156,7 +161,7 @@ type ProjectState_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -188,8 +193,10 @@ type ProjectState_Page struct {
 	SYSDbVersion_props     FieldProperties
 	IsLocked         string
 	IsLocked_props     FieldProperties
+	Notify         string
+	Notify_props     FieldProperties
 	// 
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

@@ -193,7 +193,9 @@ func Template(w string) {
 
 func Accessing(w string) {
 	//msg_info(w, v)
-	msg_raw(log_Accessing, w, "", colour.Green)
+	if CFG.VerboseMode {
+		msg_raw(log_Accessing, w, "", colour.Green)
+	}
 
 }
 

@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 02/01/2023 at 15:17:15
+// Date & Time		    : 03/01/2023 at 19:18:11
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //Session_Publish annouces the endpoints available for this object
-//Session_Publish - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
+//Session_Publish - Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 func Session_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	//No API
 	mux.HandleFunc(dm.Session_PathList, Session_HandlerList)
@@ -38,17 +38,17 @@ func Session_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.Session_Title)
     //No API
 	// 
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Session_HandlerList is the handler for the list page
 //Allows Listing of Session records
-//Session_HandlerList - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
+//Session_HandlerList - Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 func Session_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -78,7 +78,7 @@ func Session_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	ExecuteTemplate(dm.Session_TemplateList, w, r, pageDetail)
 	// 
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -86,10 +86,10 @@ func Session_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //Session_HandlerView is the handler used to View a page
 //Allows Viewing for an existing Session record
-//Session_HandlerView - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Session_HandlerView - Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Session_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -118,7 +118,7 @@ func Session_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Session_TemplateView, w, r, pageDetail)
 	// 
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
@@ -126,10 +126,10 @@ func Session_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 //Session_HandlerSave is the handler used process the saving of an Session
 //It is called from the Edit and New pages
-//Session_HandlerSave  - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Session_HandlerSave  - Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Session_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -147,7 +147,7 @@ func Session_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	dao.Session_Store(item,r)	
 	http.Redirect(w, r, dm.Session_Redirect, http.StatusFound)
 	// 
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
@@ -157,7 +157,7 @@ func Session_HandlerSave(w http.ResponseWriter, r *http.Request) {
 //session_PopulatePage Builds/Populates the Session Page 
 func session_PopulatePage(rD dm.Session, pageDetail dm.Session_Page) dm.Session_Page {
 	// START
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
@@ -191,7 +191,7 @@ func session_PopulatePage(rD dm.Session, pageDetail dm.Session_Page) dm.Session_
 	
 	
 	//
-	// Automatically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -283,7 +283,7 @@ func session_PopulatePage(rD dm.Session, pageDetail dm.Session_Page) dm.Session_
 	pageDetail.SYSDbVersion_props = rD.SYSDbVersion_props
 	
 	// 
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	
@@ -292,11 +292,11 @@ return pageDetail
 //session_DataFromRequest is used process the content of an HTTP Request and return an instance of an Session
 func session_DataFromRequest(r *http.Request) dm.Session {
 	// START
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	var item dm.Session
 	// FIELD SET START
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Session_SYSId_scrn)
 		item.Id = r.FormValue(dm.Session_Id_scrn)
@@ -329,7 +329,7 @@ func session_DataFromRequest(r *http.Request) dm.Session {
 		item.SYSDbVersion = r.FormValue(dm.Session_SYSDbVersion_scrn)
 	
 	// 
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return item
 }

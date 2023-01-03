@@ -54,7 +54,7 @@ Friendly Name|**API Catalog**|
 | Type | Artifact | Path|
 | :--: | -- | -- |
 | code | **application** | /application/catalog_core.go |
-| code | **adaptor** | /adaptor/catalog_impl.go_template |
+| code | **adaptor** | /dao/catalog_adaptor.go_template |
 | code | **api** | /application/catalog_api.go |
 | code | **dao** | /dao/catalog_core.go |
 | code | **datamodel** | /datamodel/catalog_core.go |
@@ -64,7 +64,7 @@ Friendly Name|**API Catalog**|
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **02/01/2023** at **15:17:13**
+Date & Time		     | **03/01/2023** at **19:18:07**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

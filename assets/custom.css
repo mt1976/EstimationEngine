@@ -26,6 +26,12 @@
     --custom-dark-grey: #404040;
     --custom-audit-text: #b4b4b4;
 }
+.datatable tbody tr:last-child {
+    border-bottom: transparent;
+    background-color: #007F00 !important;
+    height: 71px;
+}
+
 
 .mandatory {
     border-color: red !important;

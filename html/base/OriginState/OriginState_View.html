@@ -213,6 +213,34 @@
                 
                 </div>
             </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="IsLocked" aria-describedby="IsLockedHelp" placeholder="" disabled value="{{.IsLocked}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="IsLocked">IsLocked</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Notify" aria-describedby="NotifyHelp" placeholder="" disabled value="{{.Notify}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="Notify">Notify</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
             
         </div>
         {{template "audit" .}}

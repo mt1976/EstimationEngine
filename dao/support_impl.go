@@ -7,10 +7,16 @@ import (
 	"strings"
 	"time"
 
+	"github.com/google/uuid"
 	core "github.com/mt1976/ebEstimates/core"
 	dm "github.com/mt1976/ebEstimates/datamodel"
 	logs "github.com/mt1976/ebEstimates/logs"
 )
+
+const GET = "GET"
+const PUT = "PUT"
+const VAL = "VALIDATE"
+const NEW = "NEW"
 
 type SQLData struct {
 	fields []string
@@ -146,4 +152,11 @@ func StubLists_Get(listName string) []dm.Lookup_Item {
 	}
 	//fmt.Printf("ctLookup: %v\n", ctLookup)
 	return ctLookup
+}
+
+func getNewFileID() string {
+	nID := uuid.New().String()
+	nID = core.RemoveSpecialChars(nID)
+	nID = strings.ReplaceAll(nID, "-", "")
+	return nID
 }

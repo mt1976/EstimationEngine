@@ -46,6 +46,12 @@ func Email_init() *gomail.Dialer {
 }
 
 func SendEmail(to string, name string, subject string, body string) {
+
+	if to == "" {
+		logs.Warning("Email not sent - no recipient")
+		return
+	}
+
 	m := gomail.NewMessage()
 	m.SetHeader(ES_FROM, EMAIL_From)
 	m.SetHeader(ES_TO, to)

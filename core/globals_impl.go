@@ -63,7 +63,7 @@ func GetApplicationProperty(inProperty string) string {
 	rtn_var := ApplicationProperties[low_var]
 	env_var := "APP_" + strings.ToUpper(inProperty)
 
-	logs.Accessing("GetApplicationProperty : " + inProperty + " " + env_var)
+	//logs.Accessing("GetApplicationProperty : " + inProperty + " " + env_var)
 
 	xxx := os.Getenv(env_var)
 	if xxx != "" {
@@ -71,7 +71,7 @@ func GetApplicationProperty(inProperty string) string {
 		return xxx
 	}
 
-	logs.Information("GetApplicationProperty", rtn_var)
+	//logs.Information("GetApplicationProperty", rtn_var)
 	return rtn_var
 }
 

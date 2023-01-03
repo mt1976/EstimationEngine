@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 02/01/2023 at 15:17:13
+// Date & Time		    : 03/01/2023 at 19:18:08
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -19,7 +19,7 @@ import (
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/google/uuid"
 	
-	 adaptor   "github.com/mt1976/ebEstimates/adaptor"
+
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
 )
@@ -34,7 +34,7 @@ func init(){
 // EstimationSessionAction_GetList() returns a list of all EstimationSessionAction records
 func EstimationSessionAction_GetList() (int, []dm.EstimationSessionAction, error) {
 	
-	count, estimationsessionactionList, _ := adaptor.EstimationSessionAction_GetList_impl()
+	count, estimationsessionactionList, _ := EstimationSessionAction_GetList_impl()
 	
 	return count, estimationsessionactionList, nil
 }
@@ -45,13 +45,13 @@ func EstimationSessionAction_GetList() (int, []dm.EstimationSessionAction, error
 func EstimationSessionAction_GetByID(id string) (int, dm.EstimationSessionAction, error) {
 
 
-	 _, estimationsessionactionItem, _ := adaptor.EstimationSessionAction_GetByID_impl(id)
+	 _, estimationsessionactionItem, _ := EstimationSessionAction_GetByID_impl(id)
 	
 	// START
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, estimationsessionactionItem, nil
 }
@@ -62,7 +62,7 @@ func EstimationSessionAction_GetByID(id string) (int, dm.EstimationSessionAction
 func EstimationSessionAction_Delete(id string) {
 
 
-	adaptor.EstimationSessionAction_Delete_impl(id)
+	EstimationSessionAction_Delete_impl(id)
 	
 	
 }
@@ -113,10 +113,10 @@ func EstimationSessionAction_StoreSystem(r dm.EstimationSessionAction) error {
 func EstimationSessionAction_Validate(r dm.EstimationSessionAction) (dm.EstimationSessionAction, error) {
 	var err error
 	// START
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -149,8 +149,8 @@ func estimationsessionaction_Save(r dm.EstimationSessionAction,usr string) error
 logs.Storing("EstimationSessionAction",fmt.Sprintf("%v", r))
 
 // Please Create Functions Below in the adaptor/EstimationSessionAction_impl.go file
-	err1 := adaptor.EstimationSessionAction_Delete_impl(r.ID)
-	err2 := adaptor.EstimationSessionAction_Update_impl(r.ID,r,usr)
+	err1 := EstimationSessionAction_Delete_impl(r.ID)
+	err2 := EstimationSessionAction_Update_impl(r.ID,r,usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -186,10 +186,10 @@ func EstimationSessionAction_New() (int, []dm.EstimationSessionAction, dm.Estima
 	
 
 	// START
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

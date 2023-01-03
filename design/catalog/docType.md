@@ -65,7 +65,7 @@ SQL Table Key | **docTypeID**
 | Type | Artifact | Path|
 | :--: | -- | -- |
 | code | **application** | /application/docType_core.go |
-| code | **adaptor** | /adaptor/docType_impl.go_template |
+| code | **adaptor** | /dao/docType_adaptor.go_template |
 | code | **api** | /application/docType_api.go |
 | code | **dao** | /dao/docType_core.go |
 | code | **datamodel** | /datamodel/docType_core.go |
@@ -80,7 +80,7 @@ SQL Table Key | **docTypeID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **02/01/2023** at **15:17:13**
+Date & Time		     | **03/01/2023** at **19:18:08**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

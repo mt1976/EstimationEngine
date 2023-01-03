@@ -47,7 +47,7 @@ SQL Table Key | **estimationSessionID**
 |**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|text||
 |**EstimationSessionID**|String|false|true|false|true|||||H|estimationSessionID||true|false|false|text||
 |**ProjectID**|String|false|true|false|false|OL|Project|Project_ProjectID|Project_Name|Y|projectID||false|false|false|text||
-|**EstimationStateID**|String|false|true|false|false|OL|EstimationState|EstimationState_EstimationStateID||Y|estimationStateID||false|false|false|text||
+|**EstimationStateID**|String|false|true|false|false|OL|EstimationState|EstimationState_EstimationStateID||Y|estimationStateID||false|true|false|text||
 |**Notes**|String|false|true|false|true|||||N|notes||false|false|false|textarea||
 |**Releases**|String|false|true|false|false|||||Y|releases||false|false|false|text||
 |**Total**|String|false|true|false|false|||||Y|total||false|false|false|text||
@@ -83,7 +83,7 @@ SQL Table Key | **estimationSessionID**
 |**Comments**|String|false|true|false|true|||||Y|comments||false|false|false|textarea||
 |**ProjectManager**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|projectManager||false|false|false|text||
 |**ProductManager**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|productManager||false|false|false|text||
-|**Approver**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|approver||false|false|false|text||
+|**Approver**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|approver||false|true|false|text||
 |**Origin**|String|false|false|true|false|||||N|||false|true|false|text||
 |**OriginStateID**|String|false|false|true|false|||||N|||false|true|false|text||
 |**OriginState**|String|false|false|true|false|||||N|||false|true|false|text||
@@ -115,10 +115,11 @@ SQL Table Key | **estimationSessionID**
 | Type | Artifact | Path|
 | :--: | -- | -- |
 | code | **application** | /application/estimationSession_core.go |
-| code | **adaptor** | /adaptor/estimationSession_impl.go_template |
+| code | **adaptor** | /dao/estimationSession_adaptor.go_template |
 | code | **api** | /application/estimationSession_api.go |
 | code | **dao** | /dao/estimationSession_core.go |
 | code | **datamodel** | /datamodel/estimationSession_core.go |
+| code | **job** | /jobs/estimationSession_core.go |
 | code | **menu** | /design/menu/estimationSession.json |
 | html | **list** | /EstimationSession_List.html |
 | html | **view** | /EstimationSession_View.html |
@@ -130,7 +131,7 @@ SQL Table Key | **estimationSessionID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **02/01/2023** at **15:17:13**
+Date & Time		     | **03/01/2023** at **20:58:19**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

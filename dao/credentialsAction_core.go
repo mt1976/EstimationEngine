@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 02/01/2023 at 15:17:13
+// Date & Time		    : 03/01/2023 at 19:18:08
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -19,7 +19,7 @@ import (
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/google/uuid"
 	
-	 adaptor   "github.com/mt1976/ebEstimates/adaptor"
+
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
 )
@@ -34,7 +34,7 @@ func init(){
 // CredentialsAction_GetList() returns a list of all CredentialsAction records
 func CredentialsAction_GetList() (int, []dm.CredentialsAction, error) {
 	
-	count, credentialsactionList, _ := adaptor.CredentialsAction_GetList_impl()
+	count, credentialsactionList, _ := CredentialsAction_GetList_impl()
 	
 	return count, credentialsactionList, nil
 }
@@ -45,13 +45,13 @@ func CredentialsAction_GetList() (int, []dm.CredentialsAction, error) {
 func CredentialsAction_GetByID(id string) (int, dm.CredentialsAction, error) {
 
 
-	 _, credentialsactionItem, _ := adaptor.CredentialsAction_GetByID_impl(id)
+	 _, credentialsactionItem, _ := CredentialsAction_GetByID_impl(id)
 	
 	// START
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, credentialsactionItem, nil
 }
@@ -62,7 +62,7 @@ func CredentialsAction_GetByID(id string) (int, dm.CredentialsAction, error) {
 func CredentialsAction_Delete(id string) {
 
 
-	adaptor.CredentialsAction_Delete_impl(id)
+	CredentialsAction_Delete_impl(id)
 	
 	
 }
@@ -113,10 +113,10 @@ func CredentialsAction_StoreSystem(r dm.CredentialsAction) error {
 func CredentialsAction_Validate(r dm.CredentialsAction) (dm.CredentialsAction, error) {
 	var err error
 	// START
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -149,8 +149,8 @@ func credentialsaction_Save(r dm.CredentialsAction,usr string) error {
 logs.Storing("CredentialsAction",fmt.Sprintf("%v", r))
 
 // Please Create Functions Below in the adaptor/CredentialsAction_impl.go file
-	err1 := adaptor.CredentialsAction_Delete_impl(r.ID)
-	err2 := adaptor.CredentialsAction_Update_impl(r.ID,r,usr)
+	err1 := CredentialsAction_Delete_impl(r.ID)
+	err2 := CredentialsAction_Update_impl(r.ID,r,usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -186,10 +186,10 @@ func CredentialsAction_New() (int, []dm.CredentialsAction, dm.CredentialsAction,
 	
 
 	// START
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

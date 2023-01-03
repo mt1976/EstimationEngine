@@ -103,7 +103,7 @@ SQL Table Key | **featureID**
 | Type | Artifact | Path|
 | :--: | -- | -- |
 | code | **application** | /application/feature_core.go |
-| code | **adaptor** | /adaptor/feature_impl.go_template |
+| code | **adaptor** | /dao/feature_adaptor.go_template |
 | code | **api** | /application/feature_api.go |
 | code | **dao** | /dao/feature_core.go |
 | code | **datamodel** | /datamodel/feature_core.go |
@@ -118,7 +118,7 @@ SQL Table Key | **featureID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **02/01/2023** at **15:17:14**
+Date & Time		     | **03/01/2023** at **19:18:09**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

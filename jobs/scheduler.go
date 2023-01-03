@@ -34,6 +34,7 @@ func Start() {
 	if !core.IsChildInstance {
 		//		RatesFXSpot_Register(c)
 		Origin_Register(c)
+		EstimationSession_Register(c)
 	}
 	//ExternalMessage_Register(c)
 	SessionHouseKeeping_Register(c)

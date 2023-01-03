@@ -70,7 +70,7 @@ SQL Table Key | **resourceID**
 | Type | Artifact | Path|
 | :--: | -- | -- |
 | code | **application** | /application/resource_core.go |
-| code | **adaptor** | /adaptor/resource_impl.go_template |
+| code | **adaptor** | /dao/resource_adaptor.go_template |
 | code | **api** | /application/resource_api.go |
 | code | **dao** | /dao/resource_core.go |
 | code | **datamodel** | /datamodel/resource_core.go |
@@ -85,7 +85,7 @@ SQL Table Key | **resourceID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **02/01/2023** at **15:17:15**
+Date & Time		     | **03/01/2023** at **19:18:11**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

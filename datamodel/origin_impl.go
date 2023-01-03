@@ -18,10 +18,12 @@ const (
 	///
 	/// Handler Defintions
 	///
+	Origin_TemplateStore = "/Origin/Origin_Store"
 	///
 	/// Handler Monitor Paths
 	///
 	Origin_PathRemove = "/OriginRemove/"
+	Origin_PathStore  = "/OriginStore/"
 	///
 
 )

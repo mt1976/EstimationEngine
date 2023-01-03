@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 02/01/2023 at 15:17:14
+// Date & Time		    : 03/01/2023 at 19:18:09
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -19,7 +19,7 @@ import (
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/google/uuid"
 	
-	 adaptor   "github.com/mt1976/ebEstimates/adaptor"
+
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
 )
@@ -34,7 +34,7 @@ func init(){
 // FeatureNew_GetList() returns a list of all FeatureNew records
 func FeatureNew_GetList() (int, []dm.FeatureNew, error) {
 	
-	count, featurenewList, _ := adaptor.FeatureNew_GetList_impl()
+	count, featurenewList, _ := FeatureNew_GetList_impl()
 	
 	return count, featurenewList, nil
 }
@@ -45,13 +45,13 @@ func FeatureNew_GetList() (int, []dm.FeatureNew, error) {
 func FeatureNew_GetByID(id string) (int, dm.FeatureNew, error) {
 
 
-	 _, featurenewItem, _ := adaptor.FeatureNew_GetByID_impl(id)
+	 _, featurenewItem, _ := FeatureNew_GetByID_impl(id)
 	
 	// START
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, featurenewItem, nil
 }
@@ -62,7 +62,7 @@ func FeatureNew_GetByID(id string) (int, dm.FeatureNew, error) {
 func FeatureNew_Delete(id string) {
 
 
-	adaptor.FeatureNew_Delete_impl(id)
+	FeatureNew_Delete_impl(id)
 	
 	
 }
@@ -113,10 +113,10 @@ func FeatureNew_StoreSystem(r dm.FeatureNew) error {
 func FeatureNew_Validate(r dm.FeatureNew) (dm.FeatureNew, error) {
 	var err error
 	// START
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -163,8 +163,8 @@ func featurenew_Save(r dm.FeatureNew,usr string) error {
 logs.Storing("FeatureNew",fmt.Sprintf("%v", r))
 
 // Please Create Functions Below in the adaptor/FeatureNew_impl.go file
-	err1 := adaptor.FeatureNew_Delete_impl(r.ID)
-	err2 := adaptor.FeatureNew_Update_impl(r.ID,r,usr)
+	err1 := FeatureNew_Delete_impl(r.ID)
+	err2 := FeatureNew_Update_impl(r.ID,r,usr)
 	if err1 != nil {
 		err = err1
 	}
@@ -200,10 +200,10 @@ func FeatureNew_New() (int, []dm.FeatureNew, dm.FeatureNew, error) {
 	
 
 	// START
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

@@ -67,7 +67,7 @@ SQL Table Key | **confidenceID**
 | Type | Artifact | Path|
 | :--: | -- | -- |
 | code | **application** | /application/confidence_core.go |
-| code | **adaptor** | /adaptor/confidence_impl.go_template |
+| code | **adaptor** | /dao/confidence_adaptor.go_template |
 | code | **api** | /application/confidence_api.go |
 | code | **dao** | /dao/confidence_core.go |
 | code | **datamodel** | /datamodel/confidence_core.go |
@@ -82,7 +82,7 @@ SQL Table Key | **confidenceID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **02/01/2023** at **15:17:13**
+Date & Time		     | **03/01/2023** at **19:18:07**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

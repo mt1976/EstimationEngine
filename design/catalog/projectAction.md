@@ -78,7 +78,7 @@ SQL Table Key | **projectID**
 ##  Artifacts Generated
 | Type | Artifact | Path|
 | :--: | -- | -- |
-| code | **adaptor** | /adaptor/projectAction_impl.go_template |
+| code | **adaptor** | /dao/projectAction_adaptor.go_template |
 | code | **api** | /application/projectAction_api.go |
 | code | **dao** | /dao/projectAction_core.go |
 | code | **datamodel** | /datamodel/projectAction_core.go |
@@ -90,7 +90,7 @@ SQL Table Key | **projectID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **02/01/2023** at **15:17:15**
+Date & Time		     | **03/01/2023** at **19:18:10**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

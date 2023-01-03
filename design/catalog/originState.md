@@ -58,13 +58,15 @@ SQL Table Key | **originStateID**
 |**SYSDeletedBy**|String|false|true|false|false|||||NH|_deletedBy||false|false|true|text||
 |**SYSDeletedHost**|String|false|true|false|false|||||NH|_deletedHost||false|false|true|text||
 |**SYSDbVersion**|String|false|true|false|false|||||NH|_dbVersion||false|false|true|text||
+|**IsLocked**|String|false|true|false|false|||||Y|isLocked||false|false|false|text||
+|**Notify**|String|false|true|false|false|||||Y|notify||false|false|false|text||
 
 
 ##  Artifacts Generated
 | Type | Artifact | Path|
 | :--: | -- | -- |
 | code | **application** | /application/originState_core.go |
-| code | **adaptor** | /adaptor/originState_impl.go_template |
+| code | **adaptor** | /dao/originState_adaptor.go_template |
 | code | **api** | /application/originState_api.go |
 | code | **dao** | /dao/originState_core.go |
 | code | **datamodel** | /datamodel/originState_core.go |
@@ -79,7 +81,7 @@ SQL Table Key | **originStateID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **02/01/2023** at **15:17:14**
+Date & Time		     | **03/01/2023** at **19:18:10**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

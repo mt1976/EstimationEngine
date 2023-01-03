@@ -90,6 +90,7 @@ func main() {
 	application.Origin_Publish_Impl(*mux)
 
 	application.OriginState_Publish(*mux)
+	application.OriginState_Publish_Impl(*mux)
 	application.Profile_Publish(*mux)
 	application.Project_Publish(*mux)
 	application.Project_Publish_Impl(*mux)

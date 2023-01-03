@@ -1,6 +1,9 @@
 package dao
 
 import (
+	"strconv"
+	"time"
+
 	"github.com/google/uuid"
 	core "github.com/mt1976/ebEstimates/core"
 	dm "github.com/mt1976/ebEstimates/datamodel"
@@ -38,4 +41,11 @@ func Credentials_GetByEmail(id string) (int, dm.Credentials, error) {
 
 	noItems, _, credentialsItem, _ := credentials_Fetch(tsql)
 	return noItems, credentialsItem, nil
+}
+
+func getExpiryDate() string {
+	expiryDate := time.Now()
+	life, _ := strconv.Atoi(core.ApplicationCredentialsLife())
+	expiryDate = expiryDate.AddDate(0, 0, life)
+	return expiryDate.Format(core.DATETIMEFORMATUSER)
 }

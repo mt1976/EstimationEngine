@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 02/01/2023 at 15:17:14
+// Date & Time		    : 03/01/2023 at 19:18:09
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //Feature_Publish annouces the endpoints available for this object
-//Feature_Publish - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
+//Feature_Publish - Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 func Feature_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.Feature_Path, Feature_Handler)
 	mux.HandleFunc(dm.Feature_PathList, Feature_HandlerList)
@@ -38,17 +38,17 @@ func Feature_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.Feature_Title)
     core.Catalog_Add(dm.Feature_Title, dm.Feature_Path, "", dm.Feature_QueryString, "Application")
 	// 
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Feature_HandlerList is the handler for the list page
 //Allows Listing of Feature records
-//Feature_HandlerList - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
+//Feature_HandlerList - Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 func Feature_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -78,7 +78,7 @@ func Feature_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	ExecuteTemplate(dm.Feature_TemplateList, w, r, pageDetail)
 	// 
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -86,10 +86,10 @@ func Feature_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //Feature_HandlerView is the handler used to View a page
 //Allows Viewing for an existing Feature record
-//Feature_HandlerView - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Feature_HandlerView - Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Feature_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -118,17 +118,17 @@ func Feature_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Feature_TemplateView, w, r, pageDetail)
 	// 
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Feature_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing Feature record and then allows the user to save the changes
-//Feature_HandlerEdit - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Feature_HandlerEdit - Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Feature_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -157,17 +157,17 @@ func Feature_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Feature_TemplateEdit, w, r, pageDetail)
 	// 
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Feature_HandlerSave is the handler used process the saving of an Feature
 //It is called from the Edit and New pages
-//Feature_HandlerSave  - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Feature_HandlerSave  - Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Feature_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -185,17 +185,17 @@ func Feature_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	dao.Feature_Store(item,r)	
 	http.Redirect(w, r, dm.Feature_Redirect, http.StatusFound)
 	// 
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Feature_HandlerNew is the handler used process the creation of an Feature
 //It will create a new Feature and then redirect to the Edit page
-//Feature_HandlerNew  - Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Feature_HandlerNew  - Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Feature_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -222,7 +222,7 @@ func Feature_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Feature_TemplateNew, w, r, pageDetail)
 	// 
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }	
 
@@ -231,7 +231,7 @@ func Feature_HandlerNew(w http.ResponseWriter, r *http.Request) {
 //feature_PopulatePage Builds/Populates the Feature Page 
 func feature_PopulatePage(rD dm.Feature, pageDetail dm.Feature_Page) dm.Feature_Page {
 	// START
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.FeatureID = rD.FeatureID
@@ -289,7 +289,7 @@ func feature_PopulatePage(rD dm.Feature, pageDetail dm.Feature_Page) dm.Feature_
 	
 	
 	//
-	// Automatically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -471,7 +471,7 @@ func feature_PopulatePage(rD dm.Feature, pageDetail dm.Feature_Page) dm.Feature_
 	pageDetail.ActualProfile_props = rD.ActualProfile_props
 	
 	// 
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	
@@ -480,11 +480,11 @@ return pageDetail
 //feature_DataFromRequest is used process the content of an HTTP Request and return an instance of an Feature
 func feature_DataFromRequest(r *http.Request) dm.Feature {
 	// START
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	var item dm.Feature
 	// FIELD SET START
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Feature_SYSId_scrn)
 		item.FeatureID = r.FormValue(dm.Feature_FeatureID_scrn)
@@ -541,7 +541,7 @@ func feature_DataFromRequest(r *http.Request) dm.Feature {
 		item.ActualProfile = r.FormValue(dm.Feature_ActualProfile_scrn)
 	
 	// 
-	// Auto generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return item
 }

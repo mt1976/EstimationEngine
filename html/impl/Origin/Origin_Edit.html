@@ -13,7 +13,7 @@
         <div class="col d-flex justify-content-end">
           <div class="btn-group">
             
-            <button type="submit" value="" class="btn btn-warning" method="GET" formaction="/OriginSave/?OriginID={{.OriginID}}" onclick="/OriginSave/?OriginID={{.OriginID}}" title="Save Origin"><i class="fas fa-save me-2"></i>Save</button>
+            <button type="submit" value="" class="btn btn-warning" method="GET" formaction="/OriginStore/?OriginID={{.OriginID}}" onclick="/OriginStore/?OriginID={{.OriginID}}" title="Save Origin"><i class="fas fa-save me-2"></i>Save</button>
             
             <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Origin"><i class="fas fa-print me-2"></i></i>Print</button>
             <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
@@ -139,7 +139,35 @@
               <div class="{{.EndDate_props.MsgFeedBackType}}">{{.EndDate_props.MsgMessage}}</div>
             </div>
         
-        </div></div>
+        </div>
+        
+        
+              <div class="col">
+        
+            
+            <select id="ProjectManager" name="ProjectManager" class="select" data-mdb-filter="true"  >
+                {{range .ProjectManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ProjectManager" >ProjectManager</label>
+            <div class="{{.ProjectManager_props.MsgFeedBackType}}">{{.ProjectManager_props.MsgMessage}}</div>
+            
+        
+        </div>
+       
+        <div class="col">
+        
+            
+            <select id="AccountManager" name="AccountManager" class="select" data-mdb-filter="true"  >
+                {{range .AccountManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.AccountManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="AccountManager" >AccountManager</label>
+            <div class="{{.AccountManager_props.MsgFeedBackType}}">{{.AccountManager_props.MsgMessage}}</div>
+            
+        
+        </div>
+        
+        
+        </div>
               <h4>Comments</h4>
         <div class="row mb-3"  ><div class="col">
         

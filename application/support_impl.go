@@ -10,6 +10,11 @@ import (
 	"github.com/mt1976/ebEstimates/dao"
 )
 
+const GET = "GET"
+const PUT = "PUT"
+const VAL = "VALIDATE"
+const NEW = "NEW"
+
 var sqlSYSDToday sql.NullString
 
 func setChecked(inValue string) string {
@@ -87,4 +92,13 @@ func addActivity_System(in string, what string) string {
 
 func addActivity_ForUser(in string, what string, un string) string {
 	return core.AddActivity_ForUser(in, what, un)
+}
+
+func getCheckBoxValue(field string, r *http.Request) string {
+	testField := r.FormValue(field)
+	if testField == "on" {
+		return core.TRUE
+	} else {
+		return core.FALSE
+	}
 }

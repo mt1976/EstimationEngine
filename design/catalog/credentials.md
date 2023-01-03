@@ -76,7 +76,7 @@ SQL Table Key | **id**
 | Type | Artifact | Path|
 | :--: | -- | -- |
 | code | **application** | /application/credentials_core.go |
-| code | **adaptor** | /adaptor/credentials_impl.go_template |
+| code | **adaptor** | /dao/credentials_adaptor.go_template |
 | code | **api** | /application/credentials_api.go |
 | code | **dao** | /dao/credentials_core.go |
 | code | **datamodel** | /datamodel/credentials_core.go |
@@ -92,7 +92,7 @@ SQL Table Key | **id**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **02/01/2023** at **15:17:13**
+Date & Time		     | **03/01/2023** at **19:18:08**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

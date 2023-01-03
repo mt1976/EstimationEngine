@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 02/01/2023 at 15:17:13
+// Date & Time		    : 03/01/2023 at 20:58:19
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -19,11 +19,7 @@ import (
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/google/uuid"
 	das  "github.com/mt1976/ebEstimates/das"
-	
-		 
-		// Does Lookup
-		adaptor   "github.com/mt1976/ebEstimates/adaptor"
-	
+
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
 )
@@ -65,35 +61,37 @@ func EstimationSession_GetByID(id string) (int, dm.EstimationSession, error) {
 	_, _, estimationsessionItem, _ := estimationsession_Fetch(tsql)
 
 	// START
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
-	estimationsessionItem.Origin,estimationsessionItem.Origin_props = adaptor.EstimationSession_Origin_impl (adaptor.GET,id,estimationsessionItem.Origin,estimationsessionItem,estimationsessionItem.Origin_props)
-	estimationsessionItem.OriginStateID,estimationsessionItem.OriginStateID_props = adaptor.EstimationSession_OriginStateID_impl (adaptor.GET,id,estimationsessionItem.OriginStateID,estimationsessionItem,estimationsessionItem.OriginStateID_props)
-	estimationsessionItem.OriginState,estimationsessionItem.OriginState_props = adaptor.EstimationSession_OriginState_impl (adaptor.GET,id,estimationsessionItem.OriginState,estimationsessionItem,estimationsessionItem.OriginState_props)
-	estimationsessionItem.OriginDocTypeID,estimationsessionItem.OriginDocTypeID_props = adaptor.EstimationSession_OriginDocTypeID_impl (adaptor.GET,id,estimationsessionItem.OriginDocTypeID,estimationsessionItem,estimationsessionItem.OriginDocTypeID_props)
-	estimationsessionItem.OriginDocType,estimationsessionItem.OriginDocType_props = adaptor.EstimationSession_OriginDocType_impl (adaptor.GET,id,estimationsessionItem.OriginDocType,estimationsessionItem,estimationsessionItem.OriginDocType_props)
-	estimationsessionItem.OriginCode,estimationsessionItem.OriginCode_props = adaptor.EstimationSession_OriginCode_impl (adaptor.GET,id,estimationsessionItem.OriginCode,estimationsessionItem,estimationsessionItem.OriginCode_props)
-	estimationsessionItem.OriginName,estimationsessionItem.OriginName_props = adaptor.EstimationSession_OriginName_impl (adaptor.GET,id,estimationsessionItem.OriginName,estimationsessionItem,estimationsessionItem.OriginName_props)
-	estimationsessionItem.OriginRate,estimationsessionItem.OriginRate_props = adaptor.EstimationSession_OriginRate_impl (adaptor.GET,id,estimationsessionItem.OriginRate,estimationsessionItem,estimationsessionItem.OriginRate_props)
-	estimationsessionItem.ProjectProfileID,estimationsessionItem.ProjectProfileID_props = adaptor.EstimationSession_ProjectProfileID_impl (adaptor.GET,id,estimationsessionItem.ProjectProfileID,estimationsessionItem,estimationsessionItem.ProjectProfileID_props)
-	estimationsessionItem.ProjectProfile,estimationsessionItem.ProjectProfile_props = adaptor.EstimationSession_ProjectProfile_impl (adaptor.GET,id,estimationsessionItem.ProjectProfile,estimationsessionItem,estimationsessionItem.ProjectProfile_props)
-	estimationsessionItem.ProjectDefaultReleases,estimationsessionItem.ProjectDefaultReleases_props = adaptor.EstimationSession_ProjectDefaultReleases_impl (adaptor.GET,id,estimationsessionItem.ProjectDefaultReleases,estimationsessionItem,estimationsessionItem.ProjectDefaultReleases_props)
-	estimationsessionItem.ProjectDefaultReleaseHours,estimationsessionItem.ProjectDefaultReleaseHours_props = adaptor.EstimationSession_ProjectDefaultReleaseHours_impl (adaptor.GET,id,estimationsessionItem.ProjectDefaultReleaseHours,estimationsessionItem,estimationsessionItem.ProjectDefaultReleaseHours_props)
-	estimationsessionItem.ProjectBlendedRate,estimationsessionItem.ProjectBlendedRate_props = adaptor.EstimationSession_ProjectBlendedRate_impl (adaptor.GET,id,estimationsessionItem.ProjectBlendedRate,estimationsessionItem,estimationsessionItem.ProjectBlendedRate_props)
-	estimationsessionItem.ProjectStateID,estimationsessionItem.ProjectStateID_props = adaptor.EstimationSession_ProjectStateID_impl (adaptor.GET,id,estimationsessionItem.ProjectStateID,estimationsessionItem,estimationsessionItem.ProjectStateID_props)
-	estimationsessionItem.ProjectState,estimationsessionItem.ProjectState_props = adaptor.EstimationSession_ProjectState_impl (adaptor.GET,id,estimationsessionItem.ProjectState,estimationsessionItem,estimationsessionItem.ProjectState_props)
-	estimationsessionItem.ProjectName,estimationsessionItem.ProjectName_props = adaptor.EstimationSession_ProjectName_impl (adaptor.GET,id,estimationsessionItem.ProjectName,estimationsessionItem,estimationsessionItem.ProjectName_props)
-	estimationsessionItem.ProjectStartDate,estimationsessionItem.ProjectStartDate_props = adaptor.EstimationSession_ProjectStartDate_impl (adaptor.GET,id,estimationsessionItem.ProjectStartDate,estimationsessionItem,estimationsessionItem.ProjectStartDate_props)
-	estimationsessionItem.ProjectEndDate,estimationsessionItem.ProjectEndDate_props = adaptor.EstimationSession_ProjectEndDate_impl (adaptor.GET,id,estimationsessionItem.ProjectEndDate,estimationsessionItem,estimationsessionItem.ProjectEndDate_props)
-	estimationsessionItem.ProfileSupportUpliftPerc,estimationsessionItem.ProfileSupportUpliftPerc_props = adaptor.EstimationSession_ProfileSupportUpliftPerc_impl (adaptor.GET,id,estimationsessionItem.ProfileSupportUpliftPerc,estimationsessionItem,estimationsessionItem.ProfileSupportUpliftPerc_props)
-	estimationsessionItem.CCY,estimationsessionItem.CCY_props = adaptor.EstimationSession_CCY_impl (adaptor.GET,id,estimationsessionItem.CCY,estimationsessionItem,estimationsessionItem.CCY_props)
-	estimationsessionItem.CCYCode,estimationsessionItem.CCYCode_props = adaptor.EstimationSession_CCYCode_impl (adaptor.GET,id,estimationsessionItem.CCYCode,estimationsessionItem,estimationsessionItem.CCYCode_props)
-	estimationsessionItem.EffortTotal,estimationsessionItem.EffortTotal_props = adaptor.EstimationSession_EffortTotal_impl (adaptor.GET,id,estimationsessionItem.EffortTotal,estimationsessionItem,estimationsessionItem.EffortTotal_props)
-	estimationsessionItem.FreshDeskURI,estimationsessionItem.FreshDeskURI_props = adaptor.EstimationSession_FreshDeskURI_impl (adaptor.GET,id,estimationsessionItem.FreshDeskURI,estimationsessionItem,estimationsessionItem.FreshDeskURI_props)
-	estimationsessionItem.ADOURI,estimationsessionItem.ADOURI_props = adaptor.EstimationSession_ADOURI_impl (adaptor.GET,id,estimationsessionItem.ADOURI,estimationsessionItem,estimationsessionItem.ADOURI_props)
-	estimationsessionItem.NoActiveFeatures,estimationsessionItem.NoActiveFeatures_props = adaptor.EstimationSession_NoActiveFeatures_impl (adaptor.GET,id,estimationsessionItem.NoActiveFeatures,estimationsessionItem,estimationsessionItem.NoActiveFeatures_props)
+	estimationsessionItem.EstimationStateID,estimationsessionItem.EstimationStateID_props = EstimationSession_EstimationStateID_impl (GET,id,estimationsessionItem.EstimationStateID,estimationsessionItem,estimationsessionItem.EstimationStateID_props)
+	estimationsessionItem.Approver,estimationsessionItem.Approver_props = EstimationSession_Approver_impl (GET,id,estimationsessionItem.Approver,estimationsessionItem,estimationsessionItem.Approver_props)
+	estimationsessionItem.Origin,estimationsessionItem.Origin_props = EstimationSession_Origin_impl (GET,id,estimationsessionItem.Origin,estimationsessionItem,estimationsessionItem.Origin_props)
+	estimationsessionItem.OriginStateID,estimationsessionItem.OriginStateID_props = EstimationSession_OriginStateID_impl (GET,id,estimationsessionItem.OriginStateID,estimationsessionItem,estimationsessionItem.OriginStateID_props)
+	estimationsessionItem.OriginState,estimationsessionItem.OriginState_props = EstimationSession_OriginState_impl (GET,id,estimationsessionItem.OriginState,estimationsessionItem,estimationsessionItem.OriginState_props)
+	estimationsessionItem.OriginDocTypeID,estimationsessionItem.OriginDocTypeID_props = EstimationSession_OriginDocTypeID_impl (GET,id,estimationsessionItem.OriginDocTypeID,estimationsessionItem,estimationsessionItem.OriginDocTypeID_props)
+	estimationsessionItem.OriginDocType,estimationsessionItem.OriginDocType_props = EstimationSession_OriginDocType_impl (GET,id,estimationsessionItem.OriginDocType,estimationsessionItem,estimationsessionItem.OriginDocType_props)
+	estimationsessionItem.OriginCode,estimationsessionItem.OriginCode_props = EstimationSession_OriginCode_impl (GET,id,estimationsessionItem.OriginCode,estimationsessionItem,estimationsessionItem.OriginCode_props)
+	estimationsessionItem.OriginName,estimationsessionItem.OriginName_props = EstimationSession_OriginName_impl (GET,id,estimationsessionItem.OriginName,estimationsessionItem,estimationsessionItem.OriginName_props)
+	estimationsessionItem.OriginRate,estimationsessionItem.OriginRate_props = EstimationSession_OriginRate_impl (GET,id,estimationsessionItem.OriginRate,estimationsessionItem,estimationsessionItem.OriginRate_props)
+	estimationsessionItem.ProjectProfileID,estimationsessionItem.ProjectProfileID_props = EstimationSession_ProjectProfileID_impl (GET,id,estimationsessionItem.ProjectProfileID,estimationsessionItem,estimationsessionItem.ProjectProfileID_props)
+	estimationsessionItem.ProjectProfile,estimationsessionItem.ProjectProfile_props = EstimationSession_ProjectProfile_impl (GET,id,estimationsessionItem.ProjectProfile,estimationsessionItem,estimationsessionItem.ProjectProfile_props)
+	estimationsessionItem.ProjectDefaultReleases,estimationsessionItem.ProjectDefaultReleases_props = EstimationSession_ProjectDefaultReleases_impl (GET,id,estimationsessionItem.ProjectDefaultReleases,estimationsessionItem,estimationsessionItem.ProjectDefaultReleases_props)
+	estimationsessionItem.ProjectDefaultReleaseHours,estimationsessionItem.ProjectDefaultReleaseHours_props = EstimationSession_ProjectDefaultReleaseHours_impl (GET,id,estimationsessionItem.ProjectDefaultReleaseHours,estimationsessionItem,estimationsessionItem.ProjectDefaultReleaseHours_props)
+	estimationsessionItem.ProjectBlendedRate,estimationsessionItem.ProjectBlendedRate_props = EstimationSession_ProjectBlendedRate_impl (GET,id,estimationsessionItem.ProjectBlendedRate,estimationsessionItem,estimationsessionItem.ProjectBlendedRate_props)
+	estimationsessionItem.ProjectStateID,estimationsessionItem.ProjectStateID_props = EstimationSession_ProjectStateID_impl (GET,id,estimationsessionItem.ProjectStateID,estimationsessionItem,estimationsessionItem.ProjectStateID_props)
+	estimationsessionItem.ProjectState,estimationsessionItem.ProjectState_props = EstimationSession_ProjectState_impl (GET,id,estimationsessionItem.ProjectState,estimationsessionItem,estimationsessionItem.ProjectState_props)
+	estimationsessionItem.ProjectName,estimationsessionItem.ProjectName_props = EstimationSession_ProjectName_impl (GET,id,estimationsessionItem.ProjectName,estimationsessionItem,estimationsessionItem.ProjectName_props)
+	estimationsessionItem.ProjectStartDate,estimationsessionItem.ProjectStartDate_props = EstimationSession_ProjectStartDate_impl (GET,id,estimationsessionItem.ProjectStartDate,estimationsessionItem,estimationsessionItem.ProjectStartDate_props)
+	estimationsessionItem.ProjectEndDate,estimationsessionItem.ProjectEndDate_props = EstimationSession_ProjectEndDate_impl (GET,id,estimationsessionItem.ProjectEndDate,estimationsessionItem,estimationsessionItem.ProjectEndDate_props)
+	estimationsessionItem.ProfileSupportUpliftPerc,estimationsessionItem.ProfileSupportUpliftPerc_props = EstimationSession_ProfileSupportUpliftPerc_impl (GET,id,estimationsessionItem.ProfileSupportUpliftPerc,estimationsessionItem,estimationsessionItem.ProfileSupportUpliftPerc_props)
+	estimationsessionItem.CCY,estimationsessionItem.CCY_props = EstimationSession_CCY_impl (GET,id,estimationsessionItem.CCY,estimationsessionItem,estimationsessionItem.CCY_props)
+	estimationsessionItem.CCYCode,estimationsessionItem.CCYCode_props = EstimationSession_CCYCode_impl (GET,id,estimationsessionItem.CCYCode,estimationsessionItem,estimationsessionItem.CCYCode_props)
+	estimationsessionItem.EffortTotal,estimationsessionItem.EffortTotal_props = EstimationSession_EffortTotal_impl (GET,id,estimationsessionItem.EffortTotal,estimationsessionItem,estimationsessionItem.EffortTotal_props)
+	estimationsessionItem.FreshDeskURI,estimationsessionItem.FreshDeskURI_props = EstimationSession_FreshDeskURI_impl (GET,id,estimationsessionItem.FreshDeskURI,estimationsessionItem,estimationsessionItem.FreshDeskURI_props)
+	estimationsessionItem.ADOURI,estimationsessionItem.ADOURI_props = EstimationSession_ADOURI_impl (GET,id,estimationsessionItem.ADOURI,estimationsessionItem,estimationsessionItem.ADOURI_props)
+	estimationsessionItem.NoActiveFeatures,estimationsessionItem.NoActiveFeatures_props = EstimationSession_NoActiveFeatures_impl (GET,id,estimationsessionItem.NoActiveFeatures,estimationsessionItem,estimationsessionItem.NoActiveFeatures_props)
 	// 
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, estimationsessionItem, nil
 }
@@ -174,44 +172,46 @@ func EstimationSession_StoreSystem(r dm.EstimationSession) error {
 func EstimationSession_Validate(r dm.EstimationSession) (dm.EstimationSession, error) {
 	var err error
 	// START
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
-	r.Origin,r.Origin_props = adaptor.EstimationSession_Origin_impl (adaptor.PUT,r.EstimationSessionID,r.Origin,r,r.Origin_props)
-	r.OriginStateID,r.OriginStateID_props = adaptor.EstimationSession_OriginStateID_impl (adaptor.PUT,r.EstimationSessionID,r.OriginStateID,r,r.OriginStateID_props)
-	r.OriginState,r.OriginState_props = adaptor.EstimationSession_OriginState_impl (adaptor.PUT,r.EstimationSessionID,r.OriginState,r,r.OriginState_props)
-	r.OriginDocTypeID,r.OriginDocTypeID_props = adaptor.EstimationSession_OriginDocTypeID_impl (adaptor.PUT,r.EstimationSessionID,r.OriginDocTypeID,r,r.OriginDocTypeID_props)
-	r.OriginDocType,r.OriginDocType_props = adaptor.EstimationSession_OriginDocType_impl (adaptor.PUT,r.EstimationSessionID,r.OriginDocType,r,r.OriginDocType_props)
-	r.OriginCode,r.OriginCode_props = adaptor.EstimationSession_OriginCode_impl (adaptor.PUT,r.EstimationSessionID,r.OriginCode,r,r.OriginCode_props)
-	r.OriginName,r.OriginName_props = adaptor.EstimationSession_OriginName_impl (adaptor.PUT,r.EstimationSessionID,r.OriginName,r,r.OriginName_props)
-	r.OriginRate,r.OriginRate_props = adaptor.EstimationSession_OriginRate_impl (adaptor.PUT,r.EstimationSessionID,r.OriginRate,r,r.OriginRate_props)
-	r.ProjectProfileID,r.ProjectProfileID_props = adaptor.EstimationSession_ProjectProfileID_impl (adaptor.PUT,r.EstimationSessionID,r.ProjectProfileID,r,r.ProjectProfileID_props)
-	r.ProjectProfile,r.ProjectProfile_props = adaptor.EstimationSession_ProjectProfile_impl (adaptor.PUT,r.EstimationSessionID,r.ProjectProfile,r,r.ProjectProfile_props)
-	r.ProjectDefaultReleases,r.ProjectDefaultReleases_props = adaptor.EstimationSession_ProjectDefaultReleases_impl (adaptor.PUT,r.EstimationSessionID,r.ProjectDefaultReleases,r,r.ProjectDefaultReleases_props)
-	r.ProjectDefaultReleaseHours,r.ProjectDefaultReleaseHours_props = adaptor.EstimationSession_ProjectDefaultReleaseHours_impl (adaptor.PUT,r.EstimationSessionID,r.ProjectDefaultReleaseHours,r,r.ProjectDefaultReleaseHours_props)
-	r.ProjectBlendedRate,r.ProjectBlendedRate_props = adaptor.EstimationSession_ProjectBlendedRate_impl (adaptor.PUT,r.EstimationSessionID,r.ProjectBlendedRate,r,r.ProjectBlendedRate_props)
-	r.ProjectStateID,r.ProjectStateID_props = adaptor.EstimationSession_ProjectStateID_impl (adaptor.PUT,r.EstimationSessionID,r.ProjectStateID,r,r.ProjectStateID_props)
-	r.ProjectState,r.ProjectState_props = adaptor.EstimationSession_ProjectState_impl (adaptor.PUT,r.EstimationSessionID,r.ProjectState,r,r.ProjectState_props)
-	r.ProjectName,r.ProjectName_props = adaptor.EstimationSession_ProjectName_impl (adaptor.PUT,r.EstimationSessionID,r.ProjectName,r,r.ProjectName_props)
-	r.ProjectStartDate,r.ProjectStartDate_props = adaptor.EstimationSession_ProjectStartDate_impl (adaptor.PUT,r.EstimationSessionID,r.ProjectStartDate,r,r.ProjectStartDate_props)
-	r.ProjectEndDate,r.ProjectEndDate_props = adaptor.EstimationSession_ProjectEndDate_impl (adaptor.PUT,r.EstimationSessionID,r.ProjectEndDate,r,r.ProjectEndDate_props)
-	r.ProfileSupportUpliftPerc,r.ProfileSupportUpliftPerc_props = adaptor.EstimationSession_ProfileSupportUpliftPerc_impl (adaptor.PUT,r.EstimationSessionID,r.ProfileSupportUpliftPerc,r,r.ProfileSupportUpliftPerc_props)
-	r.CCY,r.CCY_props = adaptor.EstimationSession_CCY_impl (adaptor.PUT,r.EstimationSessionID,r.CCY,r,r.CCY_props)
-	r.CCYCode,r.CCYCode_props = adaptor.EstimationSession_CCYCode_impl (adaptor.PUT,r.EstimationSessionID,r.CCYCode,r,r.CCYCode_props)
-	r.EffortTotal,r.EffortTotal_props = adaptor.EstimationSession_EffortTotal_impl (adaptor.PUT,r.EstimationSessionID,r.EffortTotal,r,r.EffortTotal_props)
-	r.FreshDeskURI,r.FreshDeskURI_props = adaptor.EstimationSession_FreshDeskURI_impl (adaptor.PUT,r.EstimationSessionID,r.FreshDeskURI,r,r.FreshDeskURI_props)
-	r.ADOURI,r.ADOURI_props = adaptor.EstimationSession_ADOURI_impl (adaptor.PUT,r.EstimationSessionID,r.ADOURI,r,r.ADOURI_props)
-	r.NoActiveFeatures,r.NoActiveFeatures_props = adaptor.EstimationSession_NoActiveFeatures_impl (adaptor.PUT,r.EstimationSessionID,r.NoActiveFeatures,r,r.NoActiveFeatures_props)
+	r.EstimationStateID,r.EstimationStateID_props = EstimationSession_EstimationStateID_impl (PUT,r.EstimationSessionID,r.EstimationStateID,r,r.EstimationStateID_props)
+	r.Approver,r.Approver_props = EstimationSession_Approver_impl (PUT,r.EstimationSessionID,r.Approver,r,r.Approver_props)
+	r.Origin,r.Origin_props = EstimationSession_Origin_impl (PUT,r.EstimationSessionID,r.Origin,r,r.Origin_props)
+	r.OriginStateID,r.OriginStateID_props = EstimationSession_OriginStateID_impl (PUT,r.EstimationSessionID,r.OriginStateID,r,r.OriginStateID_props)
+	r.OriginState,r.OriginState_props = EstimationSession_OriginState_impl (PUT,r.EstimationSessionID,r.OriginState,r,r.OriginState_props)
+	r.OriginDocTypeID,r.OriginDocTypeID_props = EstimationSession_OriginDocTypeID_impl (PUT,r.EstimationSessionID,r.OriginDocTypeID,r,r.OriginDocTypeID_props)
+	r.OriginDocType,r.OriginDocType_props = EstimationSession_OriginDocType_impl (PUT,r.EstimationSessionID,r.OriginDocType,r,r.OriginDocType_props)
+	r.OriginCode,r.OriginCode_props = EstimationSession_OriginCode_impl (PUT,r.EstimationSessionID,r.OriginCode,r,r.OriginCode_props)
+	r.OriginName,r.OriginName_props = EstimationSession_OriginName_impl (PUT,r.EstimationSessionID,r.OriginName,r,r.OriginName_props)
+	r.OriginRate,r.OriginRate_props = EstimationSession_OriginRate_impl (PUT,r.EstimationSessionID,r.OriginRate,r,r.OriginRate_props)
+	r.ProjectProfileID,r.ProjectProfileID_props = EstimationSession_ProjectProfileID_impl (PUT,r.EstimationSessionID,r.ProjectProfileID,r,r.ProjectProfileID_props)
+	r.ProjectProfile,r.ProjectProfile_props = EstimationSession_ProjectProfile_impl (PUT,r.EstimationSessionID,r.ProjectProfile,r,r.ProjectProfile_props)
+	r.ProjectDefaultReleases,r.ProjectDefaultReleases_props = EstimationSession_ProjectDefaultReleases_impl (PUT,r.EstimationSessionID,r.ProjectDefaultReleases,r,r.ProjectDefaultReleases_props)
+	r.ProjectDefaultReleaseHours,r.ProjectDefaultReleaseHours_props = EstimationSession_ProjectDefaultReleaseHours_impl (PUT,r.EstimationSessionID,r.ProjectDefaultReleaseHours,r,r.ProjectDefaultReleaseHours_props)
+	r.ProjectBlendedRate,r.ProjectBlendedRate_props = EstimationSession_ProjectBlendedRate_impl (PUT,r.EstimationSessionID,r.ProjectBlendedRate,r,r.ProjectBlendedRate_props)
+	r.ProjectStateID,r.ProjectStateID_props = EstimationSession_ProjectStateID_impl (PUT,r.EstimationSessionID,r.ProjectStateID,r,r.ProjectStateID_props)
+	r.ProjectState,r.ProjectState_props = EstimationSession_ProjectState_impl (PUT,r.EstimationSessionID,r.ProjectState,r,r.ProjectState_props)
+	r.ProjectName,r.ProjectName_props = EstimationSession_ProjectName_impl (PUT,r.EstimationSessionID,r.ProjectName,r,r.ProjectName_props)
+	r.ProjectStartDate,r.ProjectStartDate_props = EstimationSession_ProjectStartDate_impl (PUT,r.EstimationSessionID,r.ProjectStartDate,r,r.ProjectStartDate_props)
+	r.ProjectEndDate,r.ProjectEndDate_props = EstimationSession_ProjectEndDate_impl (PUT,r.EstimationSessionID,r.ProjectEndDate,r,r.ProjectEndDate_props)
+	r.ProfileSupportUpliftPerc,r.ProfileSupportUpliftPerc_props = EstimationSession_ProfileSupportUpliftPerc_impl (PUT,r.EstimationSessionID,r.ProfileSupportUpliftPerc,r,r.ProfileSupportUpliftPerc_props)
+	r.CCY,r.CCY_props = EstimationSession_CCY_impl (PUT,r.EstimationSessionID,r.CCY,r,r.CCY_props)
+	r.CCYCode,r.CCYCode_props = EstimationSession_CCYCode_impl (PUT,r.EstimationSessionID,r.CCYCode,r,r.CCYCode_props)
+	r.EffortTotal,r.EffortTotal_props = EstimationSession_EffortTotal_impl (PUT,r.EstimationSessionID,r.EffortTotal,r,r.EffortTotal_props)
+	r.FreshDeskURI,r.FreshDeskURI_props = EstimationSession_FreshDeskURI_impl (PUT,r.EstimationSessionID,r.FreshDeskURI,r,r.FreshDeskURI_props)
+	r.ADOURI,r.ADOURI_props = EstimationSession_ADOURI_impl (PUT,r.EstimationSessionID,r.ADOURI,r,r.ADOURI_props)
+	r.NoActiveFeatures,r.NoActiveFeatures_props = EstimationSession_NoActiveFeatures_impl (PUT,r.EstimationSessionID,r.NoActiveFeatures,r,r.NoActiveFeatures_props)
 	// 
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
 	// START
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
-	r, _, err = adaptor.EstimationSession_ObjectValidation_impl(adaptor.PUT, r.EstimationSessionID, r)
+	r, _, err = EstimationSession_ObjectValidation_impl(PUT, r.EstimationSessionID, r)
 	// 
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	
 
@@ -236,6 +236,7 @@ func estimationsession_Save(r dm.EstimationSession,usr string) error {
 
 
 
+  r.EstimationStateID,err = EstimationSession_EstimationStateID_OnStore_impl (r.EstimationStateID,r,usr)
 
 
 
@@ -271,33 +272,32 @@ func estimationsession_Save(r dm.EstimationSession,usr string) error {
 
 
 
-
-
-  r.Origin,err = adaptor.EstimationSession_Origin_OnStore_impl (r.Origin,r,usr)
-  r.OriginStateID,err = adaptor.EstimationSession_OriginStateID_OnStore_impl (r.OriginStateID,r,usr)
-  r.OriginState,err = adaptor.EstimationSession_OriginState_OnStore_impl (r.OriginState,r,usr)
-  r.OriginDocTypeID,err = adaptor.EstimationSession_OriginDocTypeID_OnStore_impl (r.OriginDocTypeID,r,usr)
-  r.OriginDocType,err = adaptor.EstimationSession_OriginDocType_OnStore_impl (r.OriginDocType,r,usr)
-  r.OriginCode,err = adaptor.EstimationSession_OriginCode_OnStore_impl (r.OriginCode,r,usr)
-  r.OriginName,err = adaptor.EstimationSession_OriginName_OnStore_impl (r.OriginName,r,usr)
-  r.OriginRate,err = adaptor.EstimationSession_OriginRate_OnStore_impl (r.OriginRate,r,usr)
-  r.ProjectProfileID,err = adaptor.EstimationSession_ProjectProfileID_OnStore_impl (r.ProjectProfileID,r,usr)
-  r.ProjectProfile,err = adaptor.EstimationSession_ProjectProfile_OnStore_impl (r.ProjectProfile,r,usr)
-  r.ProjectDefaultReleases,err = adaptor.EstimationSession_ProjectDefaultReleases_OnStore_impl (r.ProjectDefaultReleases,r,usr)
-  r.ProjectDefaultReleaseHours,err = adaptor.EstimationSession_ProjectDefaultReleaseHours_OnStore_impl (r.ProjectDefaultReleaseHours,r,usr)
-  r.ProjectBlendedRate,err = adaptor.EstimationSession_ProjectBlendedRate_OnStore_impl (r.ProjectBlendedRate,r,usr)
-  r.ProjectStateID,err = adaptor.EstimationSession_ProjectStateID_OnStore_impl (r.ProjectStateID,r,usr)
-  r.ProjectState,err = adaptor.EstimationSession_ProjectState_OnStore_impl (r.ProjectState,r,usr)
-  r.ProjectName,err = adaptor.EstimationSession_ProjectName_OnStore_impl (r.ProjectName,r,usr)
-  r.ProjectStartDate,err = adaptor.EstimationSession_ProjectStartDate_OnStore_impl (r.ProjectStartDate,r,usr)
-  r.ProjectEndDate,err = adaptor.EstimationSession_ProjectEndDate_OnStore_impl (r.ProjectEndDate,r,usr)
-  r.ProfileSupportUpliftPerc,err = adaptor.EstimationSession_ProfileSupportUpliftPerc_OnStore_impl (r.ProfileSupportUpliftPerc,r,usr)
-  r.CCY,err = adaptor.EstimationSession_CCY_OnStore_impl (r.CCY,r,usr)
-  r.CCYCode,err = adaptor.EstimationSession_CCYCode_OnStore_impl (r.CCYCode,r,usr)
-  r.EffortTotal,err = adaptor.EstimationSession_EffortTotal_OnStore_impl (r.EffortTotal,r,usr)
-  r.FreshDeskURI,err = adaptor.EstimationSession_FreshDeskURI_OnStore_impl (r.FreshDeskURI,r,usr)
-  r.ADOURI,err = adaptor.EstimationSession_ADOURI_OnStore_impl (r.ADOURI,r,usr)
-  r.NoActiveFeatures,err = adaptor.EstimationSession_NoActiveFeatures_OnStore_impl (r.NoActiveFeatures,r,usr)
+  r.Approver,err = EstimationSession_Approver_OnStore_impl (r.Approver,r,usr)
+  r.Origin,err = EstimationSession_Origin_OnStore_impl (r.Origin,r,usr)
+  r.OriginStateID,err = EstimationSession_OriginStateID_OnStore_impl (r.OriginStateID,r,usr)
+  r.OriginState,err = EstimationSession_OriginState_OnStore_impl (r.OriginState,r,usr)
+  r.OriginDocTypeID,err = EstimationSession_OriginDocTypeID_OnStore_impl (r.OriginDocTypeID,r,usr)
+  r.OriginDocType,err = EstimationSession_OriginDocType_OnStore_impl (r.OriginDocType,r,usr)
+  r.OriginCode,err = EstimationSession_OriginCode_OnStore_impl (r.OriginCode,r,usr)
+  r.OriginName,err = EstimationSession_OriginName_OnStore_impl (r.OriginName,r,usr)
+  r.OriginRate,err = EstimationSession_OriginRate_OnStore_impl (r.OriginRate,r,usr)
+  r.ProjectProfileID,err = EstimationSession_ProjectProfileID_OnStore_impl (r.ProjectProfileID,r,usr)
+  r.ProjectProfile,err = EstimationSession_ProjectProfile_OnStore_impl (r.ProjectProfile,r,usr)
+  r.ProjectDefaultReleases,err = EstimationSession_ProjectDefaultReleases_OnStore_impl (r.ProjectDefaultReleases,r,usr)
+  r.ProjectDefaultReleaseHours,err = EstimationSession_ProjectDefaultReleaseHours_OnStore_impl (r.ProjectDefaultReleaseHours,r,usr)
+  r.ProjectBlendedRate,err = EstimationSession_ProjectBlendedRate_OnStore_impl (r.ProjectBlendedRate,r,usr)
+  r.ProjectStateID,err = EstimationSession_ProjectStateID_OnStore_impl (r.ProjectStateID,r,usr)
+  r.ProjectState,err = EstimationSession_ProjectState_OnStore_impl (r.ProjectState,r,usr)
+  r.ProjectName,err = EstimationSession_ProjectName_OnStore_impl (r.ProjectName,r,usr)
+  r.ProjectStartDate,err = EstimationSession_ProjectStartDate_OnStore_impl (r.ProjectStartDate,r,usr)
+  r.ProjectEndDate,err = EstimationSession_ProjectEndDate_OnStore_impl (r.ProjectEndDate,r,usr)
+  r.ProfileSupportUpliftPerc,err = EstimationSession_ProfileSupportUpliftPerc_OnStore_impl (r.ProfileSupportUpliftPerc,r,usr)
+  r.CCY,err = EstimationSession_CCY_OnStore_impl (r.CCY,r,usr)
+  r.CCYCode,err = EstimationSession_CCYCode_OnStore_impl (r.CCYCode,r,usr)
+  r.EffortTotal,err = EstimationSession_EffortTotal_OnStore_impl (r.EffortTotal,r,usr)
+  r.FreshDeskURI,err = EstimationSession_FreshDeskURI_OnStore_impl (r.FreshDeskURI,r,usr)
+  r.ADOURI,err = EstimationSession_ADOURI_OnStore_impl (r.ADOURI,r,usr)
+  r.NoActiveFeatures,err = EstimationSession_NoActiveFeatures_OnStore_impl (r.NoActiveFeatures,r,usr)
 
 
 	
@@ -315,7 +315,7 @@ logs.Storing("EstimationSession",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.EstimationSession_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.EstimationSession_EstimationSessionID_sql, r.EstimationSessionID)
@@ -384,7 +384,7 @@ logs.Storing("EstimationSession",fmt.Sprintf("%v", r))
 	
 		
 	// 
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + EstimationSession_QualifiedName
@@ -417,7 +417,7 @@ func estimationsession_Fetch(tsql string) (int, []dm.EstimationSession, dm.Estim
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.EstimationSession_SYSId_sql, "0")
 	   recItem.EstimationSessionID  = get_String(rec, dm.EstimationSession_EstimationSessionID_sql, "")
@@ -489,6 +489,7 @@ func estimationsession_Fetch(tsql string) (int, []dm.EstimationSession, dm.Estim
 	
 	
 	
+	   recItem.EstimationStateID  = EstimationSession_EstimationStateID_OnFetch_impl (recItem)
 	
 	
 	
@@ -524,36 +525,35 @@ func estimationsession_Fetch(tsql string) (int, []dm.EstimationSession, dm.Estim
 	
 	
 	
-	
-	
-	   recItem.Origin  = adaptor.EstimationSession_Origin_OnFetch_impl (recItem)
-	   recItem.OriginStateID  = adaptor.EstimationSession_OriginStateID_OnFetch_impl (recItem)
-	   recItem.OriginState  = adaptor.EstimationSession_OriginState_OnFetch_impl (recItem)
-	   recItem.OriginDocTypeID  = adaptor.EstimationSession_OriginDocTypeID_OnFetch_impl (recItem)
-	   recItem.OriginDocType  = adaptor.EstimationSession_OriginDocType_OnFetch_impl (recItem)
-	   recItem.OriginCode  = adaptor.EstimationSession_OriginCode_OnFetch_impl (recItem)
-	   recItem.OriginName  = adaptor.EstimationSession_OriginName_OnFetch_impl (recItem)
-	   recItem.OriginRate  = adaptor.EstimationSession_OriginRate_OnFetch_impl (recItem)
-	   recItem.ProjectProfileID  = adaptor.EstimationSession_ProjectProfileID_OnFetch_impl (recItem)
-	   recItem.ProjectProfile  = adaptor.EstimationSession_ProjectProfile_OnFetch_impl (recItem)
-	   recItem.ProjectDefaultReleases  = adaptor.EstimationSession_ProjectDefaultReleases_OnFetch_impl (recItem)
-	   recItem.ProjectDefaultReleaseHours  = adaptor.EstimationSession_ProjectDefaultReleaseHours_OnFetch_impl (recItem)
-	   recItem.ProjectBlendedRate  = adaptor.EstimationSession_ProjectBlendedRate_OnFetch_impl (recItem)
-	   recItem.ProjectStateID  = adaptor.EstimationSession_ProjectStateID_OnFetch_impl (recItem)
-	   recItem.ProjectState  = adaptor.EstimationSession_ProjectState_OnFetch_impl (recItem)
-	   recItem.ProjectName  = adaptor.EstimationSession_ProjectName_OnFetch_impl (recItem)
-	   recItem.ProjectStartDate  = adaptor.EstimationSession_ProjectStartDate_OnFetch_impl (recItem)
-	   recItem.ProjectEndDate  = adaptor.EstimationSession_ProjectEndDate_OnFetch_impl (recItem)
-	   recItem.ProfileSupportUpliftPerc  = adaptor.EstimationSession_ProfileSupportUpliftPerc_OnFetch_impl (recItem)
-	   recItem.CCY  = adaptor.EstimationSession_CCY_OnFetch_impl (recItem)
-	   recItem.CCYCode  = adaptor.EstimationSession_CCYCode_OnFetch_impl (recItem)
-	   recItem.EffortTotal  = adaptor.EstimationSession_EffortTotal_OnFetch_impl (recItem)
-	   recItem.FreshDeskURI  = adaptor.EstimationSession_FreshDeskURI_OnFetch_impl (recItem)
-	   recItem.ADOURI  = adaptor.EstimationSession_ADOURI_OnFetch_impl (recItem)
-	   recItem.NoActiveFeatures  = adaptor.EstimationSession_NoActiveFeatures_OnFetch_impl (recItem)
+	   recItem.Approver  = EstimationSession_Approver_OnFetch_impl (recItem)
+	   recItem.Origin  = EstimationSession_Origin_OnFetch_impl (recItem)
+	   recItem.OriginStateID  = EstimationSession_OriginStateID_OnFetch_impl (recItem)
+	   recItem.OriginState  = EstimationSession_OriginState_OnFetch_impl (recItem)
+	   recItem.OriginDocTypeID  = EstimationSession_OriginDocTypeID_OnFetch_impl (recItem)
+	   recItem.OriginDocType  = EstimationSession_OriginDocType_OnFetch_impl (recItem)
+	   recItem.OriginCode  = EstimationSession_OriginCode_OnFetch_impl (recItem)
+	   recItem.OriginName  = EstimationSession_OriginName_OnFetch_impl (recItem)
+	   recItem.OriginRate  = EstimationSession_OriginRate_OnFetch_impl (recItem)
+	   recItem.ProjectProfileID  = EstimationSession_ProjectProfileID_OnFetch_impl (recItem)
+	   recItem.ProjectProfile  = EstimationSession_ProjectProfile_OnFetch_impl (recItem)
+	   recItem.ProjectDefaultReleases  = EstimationSession_ProjectDefaultReleases_OnFetch_impl (recItem)
+	   recItem.ProjectDefaultReleaseHours  = EstimationSession_ProjectDefaultReleaseHours_OnFetch_impl (recItem)
+	   recItem.ProjectBlendedRate  = EstimationSession_ProjectBlendedRate_OnFetch_impl (recItem)
+	   recItem.ProjectStateID  = EstimationSession_ProjectStateID_OnFetch_impl (recItem)
+	   recItem.ProjectState  = EstimationSession_ProjectState_OnFetch_impl (recItem)
+	   recItem.ProjectName  = EstimationSession_ProjectName_OnFetch_impl (recItem)
+	   recItem.ProjectStartDate  = EstimationSession_ProjectStartDate_OnFetch_impl (recItem)
+	   recItem.ProjectEndDate  = EstimationSession_ProjectEndDate_OnFetch_impl (recItem)
+	   recItem.ProfileSupportUpliftPerc  = EstimationSession_ProfileSupportUpliftPerc_OnFetch_impl (recItem)
+	   recItem.CCY  = EstimationSession_CCY_OnFetch_impl (recItem)
+	   recItem.CCYCode  = EstimationSession_CCYCode_OnFetch_impl (recItem)
+	   recItem.EffortTotal  = EstimationSession_EffortTotal_OnFetch_impl (recItem)
+	   recItem.FreshDeskURI  = EstimationSession_FreshDeskURI_OnFetch_impl (recItem)
+	   recItem.ADOURI  = EstimationSession_ADOURI_OnFetch_impl (recItem)
+	   recItem.NoActiveFeatures  = EstimationSession_NoActiveFeatures_OnFetch_impl (recItem)
 	
 	// 
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -583,35 +583,37 @@ func EstimationSession_New() (int, []dm.EstimationSession, dm.EstimationSession,
 	
 
 	// START
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
-	r.Origin,r.Origin_props = adaptor.EstimationSession_Origin_impl (adaptor.NEW,r.EstimationSessionID,r.Origin,r,r.Origin_props)
-	r.OriginStateID,r.OriginStateID_props = adaptor.EstimationSession_OriginStateID_impl (adaptor.NEW,r.EstimationSessionID,r.OriginStateID,r,r.OriginStateID_props)
-	r.OriginState,r.OriginState_props = adaptor.EstimationSession_OriginState_impl (adaptor.NEW,r.EstimationSessionID,r.OriginState,r,r.OriginState_props)
-	r.OriginDocTypeID,r.OriginDocTypeID_props = adaptor.EstimationSession_OriginDocTypeID_impl (adaptor.NEW,r.EstimationSessionID,r.OriginDocTypeID,r,r.OriginDocTypeID_props)
-	r.OriginDocType,r.OriginDocType_props = adaptor.EstimationSession_OriginDocType_impl (adaptor.NEW,r.EstimationSessionID,r.OriginDocType,r,r.OriginDocType_props)
-	r.OriginCode,r.OriginCode_props = adaptor.EstimationSession_OriginCode_impl (adaptor.NEW,r.EstimationSessionID,r.OriginCode,r,r.OriginCode_props)
-	r.OriginName,r.OriginName_props = adaptor.EstimationSession_OriginName_impl (adaptor.NEW,r.EstimationSessionID,r.OriginName,r,r.OriginName_props)
-	r.OriginRate,r.OriginRate_props = adaptor.EstimationSession_OriginRate_impl (adaptor.NEW,r.EstimationSessionID,r.OriginRate,r,r.OriginRate_props)
-	r.ProjectProfileID,r.ProjectProfileID_props = adaptor.EstimationSession_ProjectProfileID_impl (adaptor.NEW,r.EstimationSessionID,r.ProjectProfileID,r,r.ProjectProfileID_props)
-	r.ProjectProfile,r.ProjectProfile_props = adaptor.EstimationSession_ProjectProfile_impl (adaptor.NEW,r.EstimationSessionID,r.ProjectProfile,r,r.ProjectProfile_props)
-	r.ProjectDefaultReleases,r.ProjectDefaultReleases_props = adaptor.EstimationSession_ProjectDefaultReleases_impl (adaptor.NEW,r.EstimationSessionID,r.ProjectDefaultReleases,r,r.ProjectDefaultReleases_props)
-	r.ProjectDefaultReleaseHours,r.ProjectDefaultReleaseHours_props = adaptor.EstimationSession_ProjectDefaultReleaseHours_impl (adaptor.NEW,r.EstimationSessionID,r.ProjectDefaultReleaseHours,r,r.ProjectDefaultReleaseHours_props)
-	r.ProjectBlendedRate,r.ProjectBlendedRate_props = adaptor.EstimationSession_ProjectBlendedRate_impl (adaptor.NEW,r.EstimationSessionID,r.ProjectBlendedRate,r,r.ProjectBlendedRate_props)
-	r.ProjectStateID,r.ProjectStateID_props = adaptor.EstimationSession_ProjectStateID_impl (adaptor.NEW,r.EstimationSessionID,r.ProjectStateID,r,r.ProjectStateID_props)
-	r.ProjectState,r.ProjectState_props = adaptor.EstimationSession_ProjectState_impl (adaptor.NEW,r.EstimationSessionID,r.ProjectState,r,r.ProjectState_props)
-	r.ProjectName,r.ProjectName_props = adaptor.EstimationSession_ProjectName_impl (adaptor.NEW,r.EstimationSessionID,r.ProjectName,r,r.ProjectName_props)
-	r.ProjectStartDate,r.ProjectStartDate_props = adaptor.EstimationSession_ProjectStartDate_impl (adaptor.NEW,r.EstimationSessionID,r.ProjectStartDate,r,r.ProjectStartDate_props)
-	r.ProjectEndDate,r.ProjectEndDate_props = adaptor.EstimationSession_ProjectEndDate_impl (adaptor.NEW,r.EstimationSessionID,r.ProjectEndDate,r,r.ProjectEndDate_props)
-	r.ProfileSupportUpliftPerc,r.ProfileSupportUpliftPerc_props = adaptor.EstimationSession_ProfileSupportUpliftPerc_impl (adaptor.NEW,r.EstimationSessionID,r.ProfileSupportUpliftPerc,r,r.ProfileSupportUpliftPerc_props)
-	r.CCY,r.CCY_props = adaptor.EstimationSession_CCY_impl (adaptor.NEW,r.EstimationSessionID,r.CCY,r,r.CCY_props)
-	r.CCYCode,r.CCYCode_props = adaptor.EstimationSession_CCYCode_impl (adaptor.NEW,r.EstimationSessionID,r.CCYCode,r,r.CCYCode_props)
-	r.EffortTotal,r.EffortTotal_props = adaptor.EstimationSession_EffortTotal_impl (adaptor.NEW,r.EstimationSessionID,r.EffortTotal,r,r.EffortTotal_props)
-	r.FreshDeskURI,r.FreshDeskURI_props = adaptor.EstimationSession_FreshDeskURI_impl (adaptor.NEW,r.EstimationSessionID,r.FreshDeskURI,r,r.FreshDeskURI_props)
-	r.ADOURI,r.ADOURI_props = adaptor.EstimationSession_ADOURI_impl (adaptor.NEW,r.EstimationSessionID,r.ADOURI,r,r.ADOURI_props)
-	r.NoActiveFeatures,r.NoActiveFeatures_props = adaptor.EstimationSession_NoActiveFeatures_impl (adaptor.NEW,r.EstimationSessionID,r.NoActiveFeatures,r,r.NoActiveFeatures_props)
+	r.EstimationStateID,r.EstimationStateID_props = EstimationSession_EstimationStateID_impl (NEW,r.EstimationSessionID,r.EstimationStateID,r,r.EstimationStateID_props)
+	r.Approver,r.Approver_props = EstimationSession_Approver_impl (NEW,r.EstimationSessionID,r.Approver,r,r.Approver_props)
+	r.Origin,r.Origin_props = EstimationSession_Origin_impl (NEW,r.EstimationSessionID,r.Origin,r,r.Origin_props)
+	r.OriginStateID,r.OriginStateID_props = EstimationSession_OriginStateID_impl (NEW,r.EstimationSessionID,r.OriginStateID,r,r.OriginStateID_props)
+	r.OriginState,r.OriginState_props = EstimationSession_OriginState_impl (NEW,r.EstimationSessionID,r.OriginState,r,r.OriginState_props)
+	r.OriginDocTypeID,r.OriginDocTypeID_props = EstimationSession_OriginDocTypeID_impl (NEW,r.EstimationSessionID,r.OriginDocTypeID,r,r.OriginDocTypeID_props)
+	r.OriginDocType,r.OriginDocType_props = EstimationSession_OriginDocType_impl (NEW,r.EstimationSessionID,r.OriginDocType,r,r.OriginDocType_props)
+	r.OriginCode,r.OriginCode_props = EstimationSession_OriginCode_impl (NEW,r.EstimationSessionID,r.OriginCode,r,r.OriginCode_props)
+	r.OriginName,r.OriginName_props = EstimationSession_OriginName_impl (NEW,r.EstimationSessionID,r.OriginName,r,r.OriginName_props)
+	r.OriginRate,r.OriginRate_props = EstimationSession_OriginRate_impl (NEW,r.EstimationSessionID,r.OriginRate,r,r.OriginRate_props)
+	r.ProjectProfileID,r.ProjectProfileID_props = EstimationSession_ProjectProfileID_impl (NEW,r.EstimationSessionID,r.ProjectProfileID,r,r.ProjectProfileID_props)
+	r.ProjectProfile,r.ProjectProfile_props = EstimationSession_ProjectProfile_impl (NEW,r.EstimationSessionID,r.ProjectProfile,r,r.ProjectProfile_props)
+	r.ProjectDefaultReleases,r.ProjectDefaultReleases_props = EstimationSession_ProjectDefaultReleases_impl (NEW,r.EstimationSessionID,r.ProjectDefaultReleases,r,r.ProjectDefaultReleases_props)
+	r.ProjectDefaultReleaseHours,r.ProjectDefaultReleaseHours_props = EstimationSession_ProjectDefaultReleaseHours_impl (NEW,r.EstimationSessionID,r.ProjectDefaultReleaseHours,r,r.ProjectDefaultReleaseHours_props)
+	r.ProjectBlendedRate,r.ProjectBlendedRate_props = EstimationSession_ProjectBlendedRate_impl (NEW,r.EstimationSessionID,r.ProjectBlendedRate,r,r.ProjectBlendedRate_props)
+	r.ProjectStateID,r.ProjectStateID_props = EstimationSession_ProjectStateID_impl (NEW,r.EstimationSessionID,r.ProjectStateID,r,r.ProjectStateID_props)
+	r.ProjectState,r.ProjectState_props = EstimationSession_ProjectState_impl (NEW,r.EstimationSessionID,r.ProjectState,r,r.ProjectState_props)
+	r.ProjectName,r.ProjectName_props = EstimationSession_ProjectName_impl (NEW,r.EstimationSessionID,r.ProjectName,r,r.ProjectName_props)
+	r.ProjectStartDate,r.ProjectStartDate_props = EstimationSession_ProjectStartDate_impl (NEW,r.EstimationSessionID,r.ProjectStartDate,r,r.ProjectStartDate_props)
+	r.ProjectEndDate,r.ProjectEndDate_props = EstimationSession_ProjectEndDate_impl (NEW,r.EstimationSessionID,r.ProjectEndDate,r,r.ProjectEndDate_props)
+	r.ProfileSupportUpliftPerc,r.ProfileSupportUpliftPerc_props = EstimationSession_ProfileSupportUpliftPerc_impl (NEW,r.EstimationSessionID,r.ProfileSupportUpliftPerc,r,r.ProfileSupportUpliftPerc_props)
+	r.CCY,r.CCY_props = EstimationSession_CCY_impl (NEW,r.EstimationSessionID,r.CCY,r,r.CCY_props)
+	r.CCYCode,r.CCYCode_props = EstimationSession_CCYCode_impl (NEW,r.EstimationSessionID,r.CCYCode,r,r.CCYCode_props)
+	r.EffortTotal,r.EffortTotal_props = EstimationSession_EffortTotal_impl (NEW,r.EstimationSessionID,r.EffortTotal,r,r.EffortTotal_props)
+	r.FreshDeskURI,r.FreshDeskURI_props = EstimationSession_FreshDeskURI_impl (NEW,r.EstimationSessionID,r.FreshDeskURI,r,r.FreshDeskURI_props)
+	r.ADOURI,r.ADOURI_props = EstimationSession_ADOURI_impl (NEW,r.EstimationSessionID,r.ADOURI,r,r.ADOURI_props)
+	r.NoActiveFeatures,r.NoActiveFeatures_props = EstimationSession_NoActiveFeatures_impl (NEW,r.EstimationSessionID,r.NoActiveFeatures,r,r.NoActiveFeatures_props)
 	// 
-	// Dynamically generated 02/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 
