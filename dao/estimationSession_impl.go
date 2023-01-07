@@ -42,10 +42,11 @@ func EstimationSession_Active_ByProject_GetList(id string) (int, []dm.Estimation
 }
 
 // EstimationSession_GetList() returns a list of all EstimationSession records
-func EstimationSession_ByADO_GetList(id string) (int, []dm.EstimationSession, error) {
+func EstimationSession_Get_ByADO(id string) (int, []dm.EstimationSession, error) {
 
 	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.EstimationSession_SQLTable)
 	tsql = tsql + " WHERE " + dm.EstimationSession_AdoID_sql + "='" + id + "'"
+	tsql = tsql + " AND datalength(" + dm.EstimationSession_SYSDeleted_sql + ") = 0"
 	count, estimationsessionList, _, _ := estimationsession_Fetch(tsql)
 	if count > 1 {
 		return count, estimationsessionList, errors.New("duplicate records found")
@@ -54,13 +55,23 @@ func EstimationSession_ByADO_GetList(id string) (int, []dm.EstimationSession, er
 }
 
 // EstimationSession_GetList() returns a list of all EstimationSession records
-func EstimationSession_ByFreshDesk_GetList(id string) (int, []dm.EstimationSession, error) {
+func EstimationSession_Get_ByFreshDesk(id string) (int, []dm.EstimationSession, error) {
 
 	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.EstimationSession_SQLTable)
 	tsql = tsql + " WHERE " + dm.EstimationSession_FreshdeskID_sql + "='" + id + "'"
+	tsql = tsql + " AND datalength(" + dm.EstimationSession_SYSDeleted_sql + ") = 0"
 	count, estimationsessionList, _, _ := estimationsession_Fetch(tsql)
 	if count > 1 {
 		return count, estimationsessionList, errors.New("duplicate records found")
 	}
+	return count, estimationsessionList, nil
+}
+
+// EstimationSession_List_ByStatus() returns a list of all EstimationSession records
+func EstimationSession_ListActive_ByState(id string) (int, []dm.EstimationSession, error) {
+	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.EstimationSession_SQLTable)
+	tsql = tsql + " WHERE " + dm.EstimationSession_EstimationStateID_sql + "='" + id + "'"
+	tsql = tsql + " AND datalength(" + dm.EstimationSession_SYSDeleted_sql + ") = 0"
+	count, estimationsessionList, _, _ := estimationsession_Fetch(tsql)
 	return count, estimationsessionList, nil
 }

@@ -1,5 +1,4 @@
 package jobs
-
 // ----------------------------------------------------------------
 // Automatically generated  "/jobs/estimationsession.go"
 // ----------------------------------------------------------------
@@ -9,17 +8,17 @@ package jobs
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 03/01/2023 at 20:58:19
+// Date & Time		    : 07/01/2023 at 10:30:58
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
 	application "github.com/mt1976/ebEstimates/application"
-	core "github.com/mt1976/ebEstimates/core"
-	dm "github.com/mt1976/ebEstimates/datamodel"
-	logs "github.com/mt1976/ebEstimates/logs"
+	dm          "github.com/mt1976/ebEstimates/datamodel"
+	logs        "github.com/mt1976/ebEstimates/logs"
+		core        "github.com/mt1976/ebEstimates/core"
 
-	cron "github.com/robfig/cron/v3"
+	cron        "github.com/robfig/cron/v3"
 )
 
 // EstimationSessionJob defines the job properties, name, period etc..
@@ -48,8 +47,8 @@ func EstimationSession_Run() {
 	logs.StartJob(EstimationSession_Job().Name)
 	message := ""
 	/// CONTENT STARTS
-	// Create a func in the EstimationSession_Impl.go file called EstimationSession_Run_impl() that returns string,error
-	message, err := EstimationSession_Run_impl()
+	// Create a func in the EstimationSession_Impl.go file called EstimationSession_Run_impl() that returns string,error	
+	message,err := EstimationSession_Run_impl()
 	if err != nil {
 		logs.Warning(err.Error())
 	}

@@ -1,0 +1,70 @@
+package dao
+
+import (
+	"strings"
+
+	core "github.com/mt1976/ebEstimates/core"
+	logs "github.com/mt1976/ebEstimates/logs"
+    dm "github.com/mt1976/ebEstimates/datamodel"
+)
+	// ----------------------------------------------------------------
+	// Automatically generated  "/dao/project.go"
+	// ----------------------------------------------------------------
+	// Package              : dao
+	// Object 			    : Project (project)
+	// Endpoint 	        : Project (ProjectID)
+	// For Project          : github.com/mt1976/ebEstimates/
+	// ----------------------------------------------------------------
+	// Template Generator   : Dysprosium [r4-21.12.31]
+	// Date & Time		    : 05/01/2023 at 20:41:25
+	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
+	// ----------------------------------------------------------------
+	// The following functions should be created in project_impl.go
+	// ----------------------------------------------------------------
+
+
+
+	// ----------------------------------------------------------------
+	
+	// ----------------------------------------------------------------
+	// Project_ObjectValidation_impl provides Record/Object level validation for Project
+	func Project_ObjectValidation_impl (iAction string, iId string, iRec dm.Project) (dm.Project, string, error) {
+		logs.Callout("Project", "ObjectValidation", VAL +"-"+iAction, iId)
+		switch iAction {
+			case VAL:
+				
+			case NEW:
+
+			case PUT:
+
+			case GET:
+
+			default:
+				logs.Warning("Project" + " - Invalid Action ["+iAction+"]")
+			}
+		return iRec,"",nil
+	}
+	//
+	// ----------------------------------------------------------------
+	// If there are fields below, create the methods in adaptor\project_impl.go
+	// These are the the default implementations, which do nothing
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// Project_NoEstimationSessions_OnStore_impl provides the implementation for the callout
+	func Project_NoEstimationSessions_OnStore_impl (fieldval string,rec dm.Project,usr string) (string,error)  {
+		logs.Callout("Project", dm.Project_NoEstimationSessions_scrn, PUT, rec.ProjectID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// Project_NoEstimationSessions_OnFetch_impl provides the implementation for the callout	
+	func Project_NoEstimationSessions_OnFetch_impl (rec dm.Project)(string) {
+		logs.Callout("Project", dm.Project_NoEstimationSessions_scrn, GET, rec.ProjectID)
+		return rec.NoEstimationSessions
+	}
+	// ----------------------------------------------------------------
+	// Project_NoEstimationSessions_impl provides validation/actions for NoEstimationSessions
+	func Project_NoEstimationSessions_impl (iAction string, iId string, iValue string, iRec dm.Project, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Project", dm.Project_NoEstimationSessions_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}

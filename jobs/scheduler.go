@@ -35,14 +35,13 @@ func Start() {
 		//		RatesFXSpot_Register(c)
 		Origin_Register(c)
 		EstimationSession_Register(c)
+		Project_Register(c)
 	}
 	//ExternalMessage_Register(c)
 	SessionHouseKeeping_Register(c)
 	Credentials_Register(c)
 	Database_Register(c)
-	//ExternalMessage_Register(c)
 
-	//SessionHouseKeeping_Register(c)
 	//DataDispatcher_Register(c, "MARKET", "*/10 6-21 * * 1-5")
 
 	c.Start()

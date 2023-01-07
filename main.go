@@ -63,6 +63,8 @@ func main() {
 	//application.Translation_Publish(*mux)
 
 	application.Schedule_Publish(*mux)
+	// Special Case - Schedule is a special case as it is the only object that has a job that runs it
+	jobs.Schedule_PublishImpl(*mux)
 
 	application.Session_Publish(*mux)
 
@@ -97,6 +99,8 @@ func main() {
 	application.ProjectState_Publish(*mux)
 	application.ProjectAction_Publish_Impl(*mux)
 
+	application.Data_Publish(*mux)
+
 	// End of Endpoints
 	logs.Break()
 	logs.Header("Publish API")
@@ -112,16 +116,7 @@ func main() {
 	//	monitors.Start()
 	logs.Success("Watchers Started")
 	Application_Info()
-	//scheduler.RunJobLSE("")
-	//scheduler.RunJobFII("")
-	//jobs.RatesFXSpot_Run()
-	//spew.Dump(mux)
-	//logs.Header("Rebuild Cache")
-	//scheduler.RefreshCache_Run()
-	//logs.Success("Cache Rebuilt")
-	//core.Notification_Test()
-	//scheduler.RatesCrypto_Run()
-	//logs.Success("Rates Rebuilt")
+	logs.Break()
 	logs.Header("Contacts")
 	logs.Information("Admin", core.GetApplicationProperty("admin"))
 	logs.Header("READY STEADY GO!!!")
@@ -132,6 +127,8 @@ func main() {
 	MSG_BODY = dao.Translate("Email", MSG_BODY)
 	MSG_BODY = fmt.Sprintf(MSG_BODY, core.ApplicationName(), time.Now().Format("15:04:05"), time.Now().Format("02/01/2006"), core.ApplicationHostname())
 	core.SendEmail(core.GetApplicationProperty("admin"), "Admin", "System Online - "+core.ApplicationName(), MSG_BODY)
+
+	//jobs.EstimationSession_Run()
 
 	httpProtocol := core.ApplicationHTTPProtocol()
 	logs.URI(httpProtocol + "://localhost:" + core.ApplicationHTTPPort())

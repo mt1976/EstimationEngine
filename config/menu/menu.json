@@ -190,7 +190,18 @@
           "MenuOnClick": "",
           "MenuTextClass": "text-info"
         }
-
+        ,
+        {
+          "MenuBreak": "true"
+        },
+        {
+          "MenuID": "1beab4f6-05a9-4ea2-b49a-996b91bbec36",
+          "MenuText": "System Properties",
+          "MenuGlyph": "fas fa-table",
+          "MenuHREF": "/DataList",
+          "MenuOnClick": "",
+          "MenuTextClass": ""
+        }
 
 
       ]

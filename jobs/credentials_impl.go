@@ -2,7 +2,6 @@ package jobs
 
 import (
 	"fmt"
-	"strconv"
 	"time"
 
 	application "github.com/mt1976/ebEstimates/application"
@@ -29,7 +28,10 @@ func Credentials_Run_impl() (string, error) {
 	// ------------------
 	// Get the credentials prompt period
 	// ------------------
-	period, err0 := strconv.Atoi(core.GetApplicationProperty("credentialsprompt"))
+	//period, err0 := strconv.Atoi(core.GetApplicationProperty("credentialsprompt"))
+
+	period, err0 := dao.Data_GetInt("Credentials", "ExpiryWarning")
+
 	warn := period
 	if err0 != nil {
 		logs.Error("Credentials Housekeeping", err0)

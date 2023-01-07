@@ -35,6 +35,9 @@
           <th class="text-center fw-bolder">RSC/NC NO.</th>
           <th class="text-end fw-bolder">SUPPORT UPLIFT</th>
           <th class="text-end fw-bolder">TOTAL</th>
+          <th class="text-end fw-bolder">ISSUED</th>
+          <th class="text-end fw-bolder">EXPIRY</th>
+
           
           <th class="text-end fw-bolder">ACTIONS</th>
         </tr>
@@ -49,6 +52,9 @@
           <td class="text-center">{{.TrackerID}}</td>
           <td class="text-end">{{$.CCY}}&nbsp;{{.SupportUplift}}</td>
           <td class="text-end">{{$.CCY}}&nbsp;{{.Total}}</td>
+          <td class="text-end">{{.IssueDate}}</td>
+          <td class="text-end">{{.ExpiryDate}}</td>
+
           <td>
             <div class="btn-group float-end" role="group" aria-label="Basic example">
               <a href="/FeatureByEstimationSession/?EstimationSessionID={{.EstimationSessionID}}" class="btn btn-sm btn-primary" role="button" aria-pressed="true"><i class="fas fa-tasks fa-fw me-1"></i>Features</a>

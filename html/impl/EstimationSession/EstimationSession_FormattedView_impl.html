@@ -95,6 +95,26 @@
                     </div>
                 
                 </div>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="ProjectProfile" aria-describedby="ProjectProfileHelp" placeholder="" disabled value="{{.ProjectProfile}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="ProjectProfile">Estimate Profile</label>
+                        
+                    </div>
+                
+                </div>
+
+                <div class="col">
+                
+                  <select id="EstimationStateID" name="EstimationStateID" class="select fw-bolder" data-mdb-filter="true" disabled>
+                  {{range .EstimationStateID_lookup}}<option value="{{.ID}}" {{if eq .ID $.EstimationStateID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="EstimationStateID" >Estimation Status</label>
+                
+                </div>
             </div>
              
 
@@ -153,31 +173,43 @@
             </div>
 
 
-
+            <h4>Resources</h4>
+            <div class="row mb-3"  ><div class="col">
+        
+            
+            <select id="ProjectManager" name="ProjectManager" class="select" data-mdb-filter="true" disabled >
+                {{range .ProjectManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ProjectManager" >Project Manager</label>
+            <div class="{{.ProjectManager_props.MsgFeedBackType}}">{{.ProjectManager_props.MsgMessage}}</div>
+            
+        
+        </div><div class="col">
+        
+            
+            <select id="ProductManager" name="ProductManager" class="select" data-mdb-filter="true" disabled >
+                {{range .ProductManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProductManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ProductManager" >Product Manager</label>
+            <div class="{{.ProductManager_props.MsgFeedBackType}}">{{.ProductManager_props.MsgMessage}}</div>
+            
+        
+        </div><div class="col">
+        
+            
+            <select id="Approver" name="Approver" class="select" data-mdb-filter="true" disabled >
+                {{range .Approver_lookup}}<option value="{{.ID}}" {{if eq .ID $.Approver}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="Approver" >Approved By</label>
+            <div class="{{.Approver_props.MsgFeedBackType}}">{{.Approver_props.MsgMessage}}</div>
+            
+        
+        </div></div>
 
 
             <h4>Estimation</h4>
             <div class="row mb-3"  >
-                <div class="col">
                 
-                    <div class="form-outline">
-                        
-                            <input type="text" class="form-control" id="ProjectProfile" aria-describedby="ProjectProfileHelp" placeholder="" disabled value="{{.ProjectProfile}}" data-mdb-input-mask=""></input>
-                        
-                        <label class="form-label" for="ProjectProfile">Estimate Profile</label>
-                        
-                    </div>
-                
-                </div>
-
-                <div class="col">
-                
-                  <select id="EstimationStateID" name="EstimationStateID" class="select" data-mdb-filter="true" disabled>
-                  {{range .EstimationStateID_lookup}}<option value="{{.ID}}" {{if eq .ID $.EstimationStateID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
-                  </select>
-                  <label class="form-label select-label" for="EstimationStateID" >Estimation Status</label>
-                
-                </div>
                 <div class="col">
                 
                     <div class="form-outline">
@@ -189,12 +221,43 @@
                     </div>
                 
                 </div>
+
+
+ 
+                <div class="col">
+                
+                    <div class="form-outline datedisabled">
+                        
+                            <input type="date" class="form-control fw-bolder" id="IssueDate" aria-describedby="IssueDateHelp" placeholder="" disabled value="{{.IssueDate}}" data-mdb-input-mask="yyyy-mm-dd" ></input>
+                        
+                        <label class="form-label" for="IssueDate">Issue Date</label>
+                        
+                    </div>
+                
+                </div>
+           
+             
+           
+                <div class="col">
+                
+                    <div class="form-outline datedisabled">
+                        
+                            <input type="date" class="form-control fw-bolder" id="ExpiryDate" aria-describedby="ExpiryDateHelp" placeholder="" disabled value="{{.ExpiryDate}}" data-mdb-input-mask="yyyy-mm-dd" ></input>
+                        
+                        <label class="form-label" for="ExpiryDate">Expiry Date</label>
+                        
+                    </div>
+                
+                </div>
+         
+
+
             </div>
  <h4> RSC Format Breakdown</h4>
             <table class="table table-hover align-middle mb-0 bg-white text-center mb-4">
                 <thead class="bg-light">
                 <tr class="table-primary  fw-bolder">
-                    <th colspan=3 class="">Estimated Cost</th>
+                    <th colspan=3 class="">ESTIMATED COSTS</th>
                 </tr>
                 <tr  class="fw-bolder">
                     <th>Activity</th>
@@ -217,7 +280,7 @@
             <table class="table table-hover align-middle mb-0 bg-white text-center mb-4">
                 <thead class="bg-light">
                 <tr class="table-primary">
-                    <th colspan=3 class="">Support Cost</th>
+                    <th colspan=3 class="">SUPPORT COSTS</th>
                 </tr>
                 </thead>
                 <tbody>

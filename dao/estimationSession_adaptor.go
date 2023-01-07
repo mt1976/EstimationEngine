@@ -2,6 +2,8 @@ package dao
 
 import (
 	"fmt"
+	"strconv"
+	"time"
 
 	core "github.com/mt1976/ebEstimates/core"
 	dm "github.com/mt1976/ebEstimates/datamodel"
@@ -487,4 +489,96 @@ func EstimationSession_ObjectValidation_impl(iAction string, iId string, iRec dm
 		logs.Warning("EstimationSession" + " - Invalid Action [" + iAction + "]")
 	}
 	return iRec, "", nil
+}
+
+func EstimationSession_IssueDate_OnStore_impl(fieldval string, rec dm.EstimationSession, usr string) (string, error) {
+	logs.Callout("EstimationSession", dm.EstimationSession_IssueDate_scrn, PUT, rec.EstimationSessionID)
+	issuedState, _ := Data_GetString("Quote", "IssuedState")
+	if fieldval == "" && rec.ExpiryDate == "" && rec.EstimationStateID == issuedState {
+		// Get Todays Date yyyy-mm-dd
+		today := time.Now().Format(core.DATEFORMAT)
+		return today, nil
+	}
+
+	return fieldval, nil
+}
+
+func EstimationSession_IssueDate_OnFetch_impl(rec dm.EstimationSession) string {
+	logs.Callout("EstimationSession", dm.EstimationSession_IssueDate_scrn, GET, rec.EstimationSessionID)
+	return rec.IssueDate
+}
+
+// EstimationSession_IssueDate_impl provides validation/actions for IssueDate
+func EstimationSession_IssueDate_impl(iAction string, iId string, iValue string, iRec dm.EstimationSession, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("EstimationSession", dm.EstimationSession_IssueDate_scrn, VAL+"-"+iAction, iId)
+	return iValue, fP
+}
+
+func EstimationSession_ExpiryDate_OnStore_impl(fieldval string, rec dm.EstimationSession, usr string) (string, error) {
+	logs.Callout("EstimationSession", dm.EstimationSession_ExpiryDate_scrn, PUT, rec.EstimationSessionID)
+
+	issuedState, _ := Data_GetString("Quote", "IssuedState")
+	expiredState, _ := Data_GetString("Quote", "ExpiredState")
+
+	switch rec.EstimationStateID {
+	case issuedState:
+		// Get Expiroty Date 30 days from today
+		if fieldval == "" {
+			expPeriod, _ := Data_GetInt("Quote", "Expiry")
+			logs.Information("Expiry Period: ", strconv.Itoa(expPeriod))
+			expiry := time.Now().AddDate(0, 0, expPeriod).Format(core.DATEFORMAT)
+			return expiry, nil
+		}
+	case expiredState:
+		logs.Information("Quote is expired", " cannot change Expiry Date")
+		return emailRelatedResources(rec)
+	default:
+	}
+
+	return fieldval, nil
+}
+
+func emailRelatedResources(rec dm.EstimationSession) (string, error) {
+
+	_, project, _ := Project_GetByID(rec.ProjectID)
+	_, origin, _ := Origin_GetByCode(project.OriginID)
+
+	// Get the email addresses
+	var pmEmail dm.Resource
+
+	if rec.ProjectManager == "" {
+		// Get the Project Manager from the Project
+		_, pmEmail, _ = Resource_GetByCode(project.ProjectManager)
+	} else {
+		_, pmEmail, _ = Resource_GetByCode(rec.ProjectManager)
+	}
+	_, pdEmail, _ := Resource_GetByCode(rec.ProductManager)
+	_, acEmail, _ := Resource_GetByCode(origin.AccountManager)
+
+	MSG_SUBJECT := "%s Quote Expired - %s"
+	MSG_SUBJECT = Translate("QuoteExpiredSubject", MSG_SUBJECT)
+	MSG_SUBJECT = fmt.Sprintf(MSG_SUBJECT, project.OriginID, rec.Name, pmEmail.Name, pmEmail.Email)
+
+	MSG_BODY := "Quote for %s %s has expired. Please contact the Project Manager %s (%s) for further information."
+	MSG_SUBJECT = Translate("QuoteExpiredBody", MSG_BODY)
+	MSG_BODY = fmt.Sprintf(MSG_BODY, project.OriginID, rec.Name, pmEmail.Email)
+
+	// Send the email
+	core.SendEmail(pmEmail.Email, pmEmail.Name, MSG_SUBJECT, MSG_BODY)
+	core.SendEmail(pdEmail.Email, pdEmail.Name, MSG_SUBJECT, MSG_BODY)
+	core.SendEmail(acEmail.Email, acEmail.Name, MSG_SUBJECT, MSG_BODY)
+
+	return "", nil
+}
+
+func EstimationSession_ExpiryDate_OnFetch_impl(rec dm.EstimationSession) string {
+	logs.Callout("EstimationSession", dm.EstimationSession_ExpiryDate_scrn, GET, rec.EstimationSessionID)
+	return rec.ExpiryDate
+}
+
+// EstimationSession_ExpiryDate_impl provides validation/actions for ExpiryDate
+func EstimationSession_ExpiryDate_impl(iAction string, iId string, iValue string, iRec dm.EstimationSession, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("EstimationSession", dm.EstimationSession_ExpiryDate_scrn, VAL+"-"+iAction, iId)
+
+	return iValue, fP
 }

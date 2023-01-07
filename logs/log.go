@@ -329,8 +329,8 @@ func getConfig() (config Config, err error) {
 	pwd, _ := os.Getwd()
 
 	//fmt.Println(pwd)
-	viper.AddConfigPath(pwd)
-	viper.SetConfigName("config")
+	viper.AddConfigPath(pwd + "/config")
+	viper.SetConfigName("logs")
 	viper.SetConfigType("env")
 	viper.AutomaticEnv()
 
@@ -350,6 +350,8 @@ func getConfig() (config Config, err error) {
 	} else {
 		config.VerboseMode = false
 	}
+	fmt.Printf("VerboseMode : %v", config.VerboseMode)
+
 	return
 }
 
