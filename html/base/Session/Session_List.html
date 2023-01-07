@@ -91,12 +91,14 @@
                           
                           
                           
-                          <td class="text-center" style="width:1px;">
-                           <form action="/home" method="POST" class="d-flex justify-content-center">
-                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/SessionView?SessionID={{.Id}}" method="POST" title="View Session"><i class="far fa-eye"></i></button>
-                            
-                            
-                            </form>
+                          <td class="align-middle text-center" style="width:1px;padding:0px;padding-top:1rem;">
+                              <form action="/home" method="POST" class="d-flex justify-content-center">
+                                  <div class="btn-group" id="ActionButtonGroup2">
+                                    <button type="submit" value="" class="btn btn-sm btn-info " formaction="/SessionView?SessionID={{.Id}}" method="POST" title="View Session"><i class="far fa-eye"></i>View</button>
+                                    
+                                    
+                                  </div>
+                                </form>
                           </td>
                         </tr>
                         {{end}}

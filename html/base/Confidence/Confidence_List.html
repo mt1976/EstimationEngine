@@ -67,12 +67,14 @@
                           
                           <td class="align-middle" >{{.Comments}}</td>
                           
-                          <td class="text-center" style="width:1px;">
-                           <form action="/home" method="POST" class="d-flex justify-content-center">
-                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/ConfidenceView?ConfidenceID={{.ConfidenceID}}" method="POST" title="View Confidence"><i class="far fa-eye"></i></button>
-                            <button type="submit" value="" class="btn btn-warning ms-2 btn-floating" formaction="/ConfidenceEdit?ConfidenceID={{.ConfidenceID}}" method="POST" title="Edit Confidence"><i class="fas fa-edit"></i></button>
-                            
-                            </form>
+                          <td class="align-middle text-center" style="width:1px;padding:0px;padding-top:1rem;">
+                              <form action="/home" method="POST" class="d-flex justify-content-center">
+                                  <div class="btn-group" id="ActionButtonGroup2">
+                                    <button type="submit" value="" class="btn btn-sm btn-info " formaction="/ConfidenceView?ConfidenceID={{.ConfidenceID}}" method="POST" title="View Confidence"><i class="far fa-eye"></i>View</button>
+                                    <button type="submit" value="" class="btn btn-sm btn-warning " formaction="/ConfidenceEdit?ConfidenceID={{.ConfidenceID}}" method="POST" title="Edit Confidence"><i class="fas fa-edit"></i>Edit</button>
+                                    
+                                  </div>
+                                </form>
                           </td>
                         </tr>
                         {{end}}

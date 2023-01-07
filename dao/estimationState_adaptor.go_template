@@ -1,0 +1,54 @@
+package dao
+
+import (
+	"strings"
+
+	core "github.com/mt1976/ebEstimates/core"
+	logs "github.com/mt1976/ebEstimates/logs"
+    dm "github.com/mt1976/ebEstimates/datamodel"
+)
+	// ----------------------------------------------------------------
+	// Automatically generated  "/dao/estimationstate.go"
+	// ----------------------------------------------------------------
+	// Package              : dao
+	// Object 			    : EstimationState (estimationstate)
+	// Endpoint 	        : EstimationState (EstimationStateID)
+	// For Project          : github.com/mt1976/ebEstimates/
+	// ----------------------------------------------------------------
+	// Template Generator   : Dysprosium [r4-21.12.31]
+	// Date & Time		    : 07/01/2023 at 23:01:29
+	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
+	// ----------------------------------------------------------------
+	// The following functions should be created in estimationstate_impl.go
+	// ----------------------------------------------------------------
+
+
+
+	// ----------------------------------------------------------------
+	
+	// ----------------------------------------------------------------
+	// EstimationState_ObjectValidation_impl provides Record/Object level validation for EstimationState
+	func EstimationState_ObjectValidation_impl (iAction string, iId string, iRec dm.EstimationState) (dm.EstimationState, string, error) {
+		logs.Callout("EstimationState", "ObjectValidation", VAL +"-"+iAction, iId)
+		switch iAction {
+			case VAL:
+				
+			case NEW:
+
+			case PUT:
+
+			case GET:
+
+			default:
+				logs.Warning("EstimationState" + " - Invalid Action ["+iAction+"]")
+			}
+		return iRec,"",nil
+	}
+	//
+	// ----------------------------------------------------------------
+	// If there are fields below, create the methods in adaptor\estimationstate_impl.go
+	// These are the the default implementations, which do nothing
+
+	// ----------------------------------------------------------------
+	// Automatically generated code ends here
+	// ----------------------------------------------------------------

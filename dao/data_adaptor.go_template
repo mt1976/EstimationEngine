@@ -16,7 +16,7 @@ import (
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
 	// Template Generator   : Dysprosium [r4-21.12.31]
-	// Date & Time		    : 05/01/2023 at 20:43:15
+	// Date & Time		    : 07/01/2023 at 23:01:28
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in data_impl.go
@@ -50,6 +50,10 @@ import (
 	// These are the the default implementations, which do nothing
 
 	// ----------------------------------------------------------------
+	// BEGIN Data_DataID
+	// BEGIN Data_DataID
+	// BEGIN Data_DataID
+	// ----------------------------------------------------------------
 	// Data_DataID_OnStore_impl provides the implementation for the callout
 	func Data_DataID_OnStore_impl (fieldval string,rec dm.Data,usr string) (string,error)  {
 		logs.Callout("Data", dm.Data_DataID_scrn, PUT, rec.DataID)
@@ -67,6 +71,11 @@ import (
 		logs.Callout("Data", dm.Data_DataID_scrn, VAL +"-"+iAction, iId)
 		return iValue,fP
 	}
+	// ----------------------------------------------------------------
+	// END   Data_DataID
+	// END   Data_DataID
+	// END   Data_DataID
+	// ----------------------------------------------------------------
 
 	// ----------------------------------------------------------------
 	// Automatically generated code ends here

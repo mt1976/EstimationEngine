@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 03/01/2023 at 19:18:08
+// Date & Time		    : 07/01/2023 at 23:01:28
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -61,11 +61,11 @@ func Credentials_GetByID(id string) (int, dm.Credentials, error) {
 	_, _, credentialsItem, _ := credentials_Fetch(tsql)
 
 	// START
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	credentialsItem.State,credentialsItem.State_props = Credentials_State_impl (GET,id,credentialsItem.State,credentialsItem,credentialsItem.State_props)
 	// 
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, credentialsItem, nil
 }
@@ -136,20 +136,20 @@ func Credentials_StoreSystem(r dm.Credentials) error {
 func Credentials_Validate(r dm.Credentials) (dm.Credentials, error) {
 	var err error
 	// START
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.State,r.State_props = Credentials_State_impl (PUT,r.Id,r.State,r,r.State_props)
 	// 
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
 	// START
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r, _, err = Credentials_ObjectValidation_impl(PUT, r.Id, r)
 	// 
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	
 
@@ -214,7 +214,7 @@ logs.Storing("Credentials",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Credentials_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Credentials_Id_sql, r.Id)
@@ -244,7 +244,7 @@ logs.Storing("Credentials",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Credentials_EmailNotifications_sql, r.EmailNotifications)
 		
 	// 
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + Credentials_QualifiedName
@@ -277,7 +277,7 @@ func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, erro
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Credentials_SYSId_sql, "0")
 	   recItem.Id  = get_String(rec, dm.Credentials_Id_sql, "")
@@ -335,7 +335,7 @@ func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, erro
 	
 	
 	// 
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -365,11 +365,11 @@ func Credentials_New() (int, []dm.Credentials, dm.Credentials, error) {
 	
 
 	// START
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.State,r.State_props = Credentials_State_impl (NEW,r.Id,r.State,r,r.State_props)
 	// 
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

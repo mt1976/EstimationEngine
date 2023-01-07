@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 03/01/2023 at 19:18:09
+// Date & Time		    : 07/01/2023 at 23:01:29
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -61,13 +61,13 @@ func Origin_GetByID(id string) (int, dm.Origin, error) {
 	_, _, originItem, _ := origin_Fetch(tsql)
 
 	// START
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	originItem.StateID,originItem.StateID_props = Origin_StateID_impl (GET,id,originItem.StateID,originItem,originItem.StateID_props)
 	originItem.Rate,originItem.Rate_props = Origin_Rate_impl (GET,id,originItem.Rate,originItem,originItem.Rate_props)
 	originItem.NoActiveProjects,originItem.NoActiveProjects_props = Origin_NoActiveProjects_impl (GET,id,originItem.NoActiveProjects,originItem,originItem.NoActiveProjects_props)
 	// 
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, originItem, nil
 }
@@ -148,13 +148,13 @@ func Origin_StoreSystem(r dm.Origin) error {
 func Origin_Validate(r dm.Origin) (dm.Origin, error) {
 	var err error
 	// START
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.StateID,r.StateID_props = Origin_StateID_impl (PUT,r.OriginID,r.StateID,r,r.StateID_props)
 	r.Rate,r.Rate_props = Origin_Rate_impl (PUT,r.OriginID,r.Rate,r,r.Rate_props)
 	r.NoActiveProjects,r.NoActiveProjects_props = Origin_NoActiveProjects_impl (PUT,r.OriginID,r.NoActiveProjects,r,r.NoActiveProjects_props)
 	// 
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -220,7 +220,7 @@ logs.Storing("Origin",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Origin_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Origin_OriginID_sql, r.OriginID)
@@ -250,7 +250,7 @@ logs.Storing("Origin",fmt.Sprintf("%v", r))
 	
 		
 	// 
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + Origin_QualifiedName
@@ -283,7 +283,7 @@ func origin_Fetch(tsql string) (int, []dm.Origin, dm.Origin, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Origin_SYSId_sql, "0")
 	   recItem.OriginID  = get_String(rec, dm.Origin_OriginID_sql, "")
@@ -341,7 +341,7 @@ func origin_Fetch(tsql string) (int, []dm.Origin, dm.Origin, error) {
 	   recItem.NoActiveProjects  = Origin_NoActiveProjects_OnFetch_impl (recItem)
 	
 	// 
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -371,13 +371,13 @@ func Origin_New() (int, []dm.Origin, dm.Origin, error) {
 	
 
 	// START
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.StateID,r.StateID_props = Origin_StateID_impl (NEW,r.OriginID,r.StateID,r,r.StateID_props)
 	r.Rate,r.Rate_props = Origin_Rate_impl (NEW,r.OriginID,r.Rate,r,r.Rate_props)
 	r.NoActiveProjects,r.NoActiveProjects_props = Origin_NoActiveProjects_impl (NEW,r.OriginID,r.NoActiveProjects,r,r.NoActiveProjects_props)
 	// 
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

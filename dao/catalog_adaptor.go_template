@@ -1,0 +1,66 @@
+package dao
+
+import (
+	"strings"
+
+	core "github.com/mt1976/ebEstimates/core"
+	logs "github.com/mt1976/ebEstimates/logs"
+    dm "github.com/mt1976/ebEstimates/datamodel"
+)
+	// ----------------------------------------------------------------
+	// Automatically generated  "/dao/catalog.go"
+	// ----------------------------------------------------------------
+	// Package              : dao
+	// Object 			    : Catalog (catalog)
+	// Endpoint 	        : Catalog (ID)
+	// For Project          : github.com/mt1976/ebEstimates/
+	// ----------------------------------------------------------------
+	// Template Generator   : Dysprosium [r4-21.12.31]
+	// Date & Time		    : 07/01/2023 at 23:01:28
+	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
+	// ----------------------------------------------------------------
+	// The following functions should be created in catalog_impl.go
+	// ----------------------------------------------------------------
+
+
+	// ----------------------------------------------------------------
+	// Catalog_NewID_impl provides the implementation to generate a new ID for a new record
+	func Catalog_NewID_impl(rec dm.Catalog) (string) { return rec.ID }
+	// ----------------------------------------------------------------
+	// Catalog_New_impl provides the implementation to delete a new record
+	func Catalog_Delete_impl(id string) (error) {return nil}
+	// ----------------------------------------------------------------
+
+
+	// ----------------------------------------------------------------
+	// Catalog_Store_impl provides the implementation for the store adaptor
+	func Catalog_Update_impl(id string,rec dm.Catalog, usr string) (error) {return nil}
+
+	// ----------------------------------------------------------------
+	
+	// ----------------------------------------------------------------
+	// Catalog_ObjectValidation_impl provides Record/Object level validation for Catalog
+	func Catalog_ObjectValidation_impl (iAction string, iId string, iRec dm.Catalog) (dm.Catalog, string, error) {
+		logs.Callout("Catalog", "ObjectValidation", VAL +"-"+iAction, iId)
+		switch iAction {
+			case VAL:
+				
+			case NEW:
+
+			case PUT:
+
+			case GET:
+
+			default:
+				logs.Warning("Catalog" + " - Invalid Action ["+iAction+"]")
+			}
+		return iRec,"",nil
+	}
+	//
+	// ----------------------------------------------------------------
+	// If there are fields below, create the methods in adaptor\catalog_impl.go
+	// These are the the default implementations, which do nothing
+
+	// ----------------------------------------------------------------
+	// Automatically generated code ends here
+	// ----------------------------------------------------------------

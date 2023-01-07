@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 05/01/2023 at 20:43:15
+// Date & Time		    : 07/01/2023 at 23:01:28
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -51,11 +51,11 @@ func Data_GetByID(id string) (int, dm.Data, error) {
 	_, _, dataItem, _ := data_Fetch(tsql)
 
 	// START
-	// Dynamically generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	dataItem.DataID,dataItem.DataID_props = Data_DataID_impl (GET,id,dataItem.DataID,dataItem,dataItem.DataID_props)
 	// 
-	// Dynamically generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, dataItem, nil
 }
@@ -136,20 +136,20 @@ func Data_StoreSystem(r dm.Data) error {
 func Data_Validate(r dm.Data) (dm.Data, error) {
 	var err error
 	// START
-	// Dynamically generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.DataID,r.DataID_props = Data_DataID_impl (PUT,r.DataID,r.DataID,r,r.DataID_props)
 	// 
-	// Dynamically generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
 	// START
-	// Dynamically generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r, _, err = Data_ObjectValidation_impl(PUT, r.DataID, r)
 	// 
-	// Dynamically generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	
 
@@ -203,7 +203,7 @@ logs.Storing("Data",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Data_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Data_DataID_sql, r.DataID)
@@ -222,7 +222,7 @@ logs.Storing("Data",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Data_SYSDbVersion_sql, r.SYSDbVersion)
 		
 	// 
-	// Dynamically generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + Data_QualifiedName
@@ -255,7 +255,7 @@ func data_Fetch(tsql string) (int, []dm.Data, dm.Data, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Data_SYSId_sql, "0")
 	   recItem.DataID  = get_String(rec, dm.Data_DataID_sql, "")
@@ -291,7 +291,7 @@ func data_Fetch(tsql string) (int, []dm.Data, dm.Data, error) {
 	
 	
 	// 
-	// Dynamically generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -321,11 +321,11 @@ func Data_New() (int, []dm.Data, dm.Data, error) {
 	
 
 	// START
-	// Dynamically generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.DataID,r.DataID_props = Data_DataID_impl (NEW,r.DataID,r.DataID,r,r.DataID_props)
 	// 
-	// Dynamically generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

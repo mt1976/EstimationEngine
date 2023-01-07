@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 03/01/2023 at 19:18:11
+// Date & Time		    : 07/01/2023 at 23:01:30
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -63,8 +63,8 @@ Notify_props FieldProperties
 
 
 
-
-
+IsLocked_lookup []Lookup_Item
+Notify_lookup []Lookup_Item
 
 }
 
@@ -161,7 +161,7 @@ type ProjectState_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -192,11 +192,13 @@ type ProjectState_Page struct {
 	SYSDbVersion         string
 	SYSDbVersion_props     FieldProperties
 	IsLocked         string
+	IsLocked_lookup    []Lookup_Item
 	IsLocked_props     FieldProperties
 	Notify         string
+	Notify_lookup    []Lookup_Item
 	Notify_props     FieldProperties
 	// 
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 appContext
 }

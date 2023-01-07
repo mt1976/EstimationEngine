@@ -39,12 +39,12 @@
           <th class="text-end fw-bolder">EXPIRY</th>
 
           
-          <th class="text-end fw-bolder">ACTIONS</th>
+          <th class="text-center fw-bolder">ACTIONS</th>
         </tr>
       </thead>
       <tbody>
         {{range .ItemList}}
-        <tr class="fs-6">
+        <tr class="fs-6 align-middle">
           <td class="text-primary"><a href="/FeatureByEstimationSession/?EstimationSessionID={{.EstimationSessionID}}" class="text-primary" style="font-weight:bolder;" role="button" aria-pressed="true">{{.Name}}</a></td>
           <td class="text-center">{{.EstimationStateID}}</td>
           <td class="text-center"><a href="{{.ADOURI}}" class="text-link" role="button" aria-pressed="true">{{.AdoID}}</a></td>
@@ -60,7 +60,7 @@
               <a href="/FeatureByEstimationSession/?EstimationSessionID={{.EstimationSessionID}}" class="btn btn-sm btn-primary" role="button" aria-pressed="true"><i class="fas fa-tasks fa-fw me-1"></i>Features</a>
               <a href="/EstimationSessionFormatted/?EstimationSessionID={{.EstimationSessionID}}" class="btn btn-sm btn-info" role="button" aria-pressed="true"><i class="far fa-file-alt fa-fw me-2"></i>Details</a>
               <a href="/EstimationSessionClone/?EstimationSessionID={{.EstimationSessionID}}" class="btn btn-sm btn-warning" role="button" aria-pressed="true"><i class="far fa-clone fa-fw me-2"></i>Clone</a>
-              <a href="/EstimationSessionRemove/?EstimationSessionID={{.EstimationSessionID}}" class="btn btn-sm btn-warning" role="button" aria-pressed="true" disabled><i class="far fa-trash-alt fa-fw me-2"></i>Remove</a>
+              <a href="/EstimationSessionRemove/?EstimationSessionID={{.EstimationSessionID}}" class="btn btn-sm btn-danger" role="button" aria-pressed="true" disabled><i class="far fa-trash-alt fa-fw me-2"></i>Remove</a>
             </div>
           </td>
         </tr>

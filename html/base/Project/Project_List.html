@@ -91,12 +91,14 @@
                           <td class="align-middle" >{{.Notes}}</td>
                           <td class="align-middle" >{{.NoEstimationSessions}}</td>
                           
-                          <td class="text-center" style="width:1px;">
-                           <form action="/home" method="POST" class="d-flex justify-content-center">
-                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/ProjectView?ProjectID={{.ProjectID}}" method="POST" title="View Project"><i class="far fa-eye"></i></button>
-                            <button type="submit" value="" class="btn btn-warning ms-2 btn-floating" formaction="/ProjectEdit?ProjectID={{.ProjectID}}" method="POST" title="Edit Project"><i class="fas fa-edit"></i></button>
-                            
-                            </form>
+                          <td class="align-middle text-center" style="width:1px;padding:0px;padding-top:1rem;">
+                              <form action="/home" method="POST" class="d-flex justify-content-center">
+                                  <div class="btn-group" id="ActionButtonGroup2">
+                                    <button type="submit" value="" class="btn btn-sm btn-info " formaction="/ProjectView?ProjectID={{.ProjectID}}" method="POST" title="View Project"><i class="far fa-eye"></i>View</button>
+                                    <button type="submit" value="" class="btn btn-sm btn-warning " formaction="/ProjectEdit?ProjectID={{.ProjectID}}" method="POST" title="Edit Project"><i class="fas fa-edit"></i>Edit</button>
+                                    
+                                  </div>
+                                </form>
                           </td>
                         </tr>
                         {{end}}

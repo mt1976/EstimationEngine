@@ -217,13 +217,10 @@
             <div class="row mb-3"  >
                 <div class="col">
                 
-                    <div class="form-outline">
-                        
-                            <input type="text" class="form-control" id="IsLocked" aria-describedby="IsLockedHelp" placeholder="" disabled value="{{.IsLocked}}" data-mdb-input-mask="" ></input>
-                        
-                        <label class="form-label" for="IsLocked">IsLocked</label>
-                        
-                    </div>
+                  <select id="IsLocked" name="IsLocked" class="select" data-mdb-filter="true" disabled>
+                  {{range .IsLocked_lookup}}<option value="{{.ID}}" {{if eq .ID $.IsLocked}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="IsLocked" disabled>IsLocked</label>
                 
                 </div>
             </div>
@@ -231,13 +228,10 @@
             <div class="row mb-3"  >
                 <div class="col">
                 
-                    <div class="form-outline">
-                        
-                            <input type="text" class="form-control" id="Notify" aria-describedby="NotifyHelp" placeholder="" disabled value="{{.Notify}}" data-mdb-input-mask="" ></input>
-                        
-                        <label class="form-label" for="Notify">Notify</label>
-                        
-                    </div>
+                  <select id="Notify" name="Notify" class="select" data-mdb-filter="true" disabled>
+                  {{range .Notify_lookup}}<option value="{{.ID}}" {{if eq .ID $.Notify}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="Notify" disabled>Notify</label>
                 
                 </div>
             </div>

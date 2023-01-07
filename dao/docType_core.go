@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 03/01/2023 at 19:18:08
+// Date & Time		    : 07/01/2023 at 23:01:29
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -61,10 +61,10 @@ func DocType_GetByID(id string) (int, dm.DocType, error) {
 	_, _, doctypeItem, _ := doctype_Fetch(tsql)
 
 	// START
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, doctypeItem, nil
 }
@@ -145,10 +145,10 @@ func DocType_StoreSystem(r dm.DocType) error {
 func DocType_Validate(r dm.DocType) (dm.DocType, error) {
 	var err error
 	// START
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -203,7 +203,7 @@ logs.Storing("DocType",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.DocType_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.DocType_DocTypeID_sql, r.DocTypeID)
@@ -222,7 +222,7 @@ logs.Storing("DocType",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.DocType_Comments_sql, r.Comments)
 		
 	// 
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + DocType_QualifiedName
@@ -255,7 +255,7 @@ func doctype_Fetch(tsql string) (int, []dm.DocType, dm.DocType, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.DocType_SYSId_sql, "0")
 	   recItem.DocTypeID  = get_String(rec, dm.DocType_DocTypeID_sql, "")
@@ -291,7 +291,7 @@ func doctype_Fetch(tsql string) (int, []dm.DocType, dm.DocType, error) {
 	
 	
 	// 
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -321,10 +321,10 @@ func DocType_New() (int, []dm.DocType, dm.DocType, error) {
 	
 
 	// START
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

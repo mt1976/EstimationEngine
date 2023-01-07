@@ -53,7 +53,7 @@
             <th class="text-center fw-bolder">ENGINEER</th>
             <th class="text-center fw-bolder">ANALYST</th>
             <th class="text-center fw-bolder">PROJECT MANAGER</th>
-            <th class="text-end fw-bolder">ACTIONS</th>
+            <th class="text-center fw-bolder">ACTIONS</th>
           </tr>
         </thead>
         <tbody>
@@ -67,16 +67,16 @@
             <td class="text-center">{{.ProjectEngineer}}</td>
             <td class="text-center">{{.ProjectAnalyst}}</td>
             <td class="text-center">{{.ProjectManager}}</td>
-            <td class="text-end">
+            <td class="align-middle text-end">
 
 
-              <div class="btn-group" role="group" aria-label="Basic example">
+              <div class="btn-group float-end" role="group" aria-label="Basic example">
 
                           <a href="/EstimationSessionByProject/?ProjectID={{.ProjectID}}" class="btn btn-sm btn-primary" role="button" aria-pressed="true"><i class="fas fa-calculator  fa-fw me-2"></i>Estimates</a>
 
                           <a href="/ProjectView/?ProjectID={{.ProjectID}}" class="btn btn-sm btn-info" role="button" aria-pressed="true"><i class="far fa-eye fa-fw me-2"></i>Details</a> 
 
-                          <a href="/ProjectRemove/?ProjectID={{.ProjectID}}" class="btn btn-sm btn-warning" role="button" aria-pressed="true" disabled><i class="far fa-trash-alt fa-fw me-2"></i>Remove</a>
+                          <a href="/ProjectRemove/?ProjectID={{.ProjectID}}" class="btn btn-sm btn-danger" role="button" aria-pressed="true" disabled><i class="far fa-trash-alt fa-fw me-2"></i>Remove</a>
               </div>
 
 

@@ -1,0 +1,76 @@
+package dao
+
+import (
+	"strings"
+
+	core "github.com/mt1976/ebEstimates/core"
+	logs "github.com/mt1976/ebEstimates/logs"
+    dm "github.com/mt1976/ebEstimates/datamodel"
+)
+	// ----------------------------------------------------------------
+	// Automatically generated  "/dao/featurenew.go"
+	// ----------------------------------------------------------------
+	// Package              : dao
+	// Object 			    : FeatureNew (featurenew)
+	// Endpoint 	        : FeatureNew (ID)
+	// For Project          : github.com/mt1976/ebEstimates/
+	// ----------------------------------------------------------------
+	// Template Generator   : Dysprosium [r4-21.12.31]
+	// Date & Time		    : 07/01/2023 at 23:01:29
+	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
+	// ----------------------------------------------------------------
+	// The following functions should be created in featurenew_impl.go
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// FeatureNew_GetList_impl provides the implementation to get a list of records
+	func FeatureNew_GetList_impl() (int, []dm.FeatureNew, error) {return 0, nil, nil}
+	// ----------------------------------------------------------------
+	// FeatureNew_GetByID_impl provides the implementation to get a record by ID
+	func FeatureNew_GetByID_impl(id string) (int, dm.FeatureNew, error) {return 0, dm.FeatureNew{}, nil}
+	//
+	
+	// ----------------------------------------------------------------
+
+
+	// ----------------------------------------------------------------
+	// FeatureNew_NewID_impl provides the implementation to generate a new ID for a new record
+	func FeatureNew_NewID_impl(rec dm.FeatureNew) (string) { return rec.ID }
+	// ----------------------------------------------------------------
+	// FeatureNew_New_impl provides the implementation to delete a new record
+	func FeatureNew_Delete_impl(id string) (error) {return nil}
+	// ----------------------------------------------------------------
+
+
+	// ----------------------------------------------------------------
+	// FeatureNew_Store_impl provides the implementation for the store adaptor
+	func FeatureNew_Update_impl(id string,rec dm.FeatureNew, usr string) (error) {return nil}
+
+	// ----------------------------------------------------------------
+	
+	// ----------------------------------------------------------------
+	// FeatureNew_ObjectValidation_impl provides Record/Object level validation for FeatureNew
+	func FeatureNew_ObjectValidation_impl (iAction string, iId string, iRec dm.FeatureNew) (dm.FeatureNew, string, error) {
+		logs.Callout("FeatureNew", "ObjectValidation", VAL +"-"+iAction, iId)
+		switch iAction {
+			case VAL:
+				
+			case NEW:
+
+			case PUT:
+
+			case GET:
+
+			default:
+				logs.Warning("FeatureNew" + " - Invalid Action ["+iAction+"]")
+			}
+		return iRec,"",nil
+	}
+	//
+	// ----------------------------------------------------------------
+	// If there are fields below, create the methods in adaptor\featurenew_impl.go
+	// These are the the default implementations, which do nothing
+
+	// ----------------------------------------------------------------
+	// Automatically generated code ends here
+	// ----------------------------------------------------------------

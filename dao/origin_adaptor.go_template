@@ -1,0 +1,138 @@
+package dao
+
+import (
+	"strings"
+
+	core "github.com/mt1976/ebEstimates/core"
+	logs "github.com/mt1976/ebEstimates/logs"
+    dm "github.com/mt1976/ebEstimates/datamodel"
+)
+	// ----------------------------------------------------------------
+	// Automatically generated  "/dao/origin.go"
+	// ----------------------------------------------------------------
+	// Package              : dao
+	// Object 			    : Origin (origin)
+	// Endpoint 	        : Origin (OriginID)
+	// For Project          : github.com/mt1976/ebEstimates/
+	// ----------------------------------------------------------------
+	// Template Generator   : Dysprosium [r4-21.12.31]
+	// Date & Time		    : 07/01/2023 at 23:01:29
+	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
+	// ----------------------------------------------------------------
+	// The following functions should be created in origin_impl.go
+	// ----------------------------------------------------------------
+
+
+
+	// ----------------------------------------------------------------
+	
+	// ----------------------------------------------------------------
+	// Origin_ObjectValidation_impl provides Record/Object level validation for Origin
+	func Origin_ObjectValidation_impl (iAction string, iId string, iRec dm.Origin) (dm.Origin, string, error) {
+		logs.Callout("Origin", "ObjectValidation", VAL +"-"+iAction, iId)
+		switch iAction {
+			case VAL:
+				
+			case NEW:
+
+			case PUT:
+
+			case GET:
+
+			default:
+				logs.Warning("Origin" + " - Invalid Action ["+iAction+"]")
+			}
+		return iRec,"",nil
+	}
+	//
+	// ----------------------------------------------------------------
+	// If there are fields below, create the methods in adaptor\origin_impl.go
+	// These are the the default implementations, which do nothing
+
+	// ----------------------------------------------------------------
+	// BEGIN Origin_StateID
+	// BEGIN Origin_StateID
+	// BEGIN Origin_StateID
+	// ----------------------------------------------------------------
+	// Origin_StateID_OnStore_impl provides the implementation for the callout
+	func Origin_StateID_OnStore_impl (fieldval string,rec dm.Origin,usr string) (string,error)  {
+		logs.Callout("Origin", dm.Origin_StateID_scrn, PUT, rec.OriginID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// Origin_StateID_OnFetch_impl provides the implementation for the callout	
+	func Origin_StateID_OnFetch_impl (rec dm.Origin)(string) {
+		logs.Callout("Origin", dm.Origin_StateID_scrn, GET, rec.OriginID)
+		return rec.StateID
+	}
+	// ----------------------------------------------------------------
+	// Origin_StateID_impl provides validation/actions for StateID
+	func Origin_StateID_impl (iAction string, iId string, iValue string, iRec dm.Origin, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Origin", dm.Origin_StateID_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+	// ----------------------------------------------------------------
+	// END   Origin_StateID
+	// END   Origin_StateID
+	// END   Origin_StateID
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN Origin_Rate
+	// BEGIN Origin_Rate
+	// BEGIN Origin_Rate
+	// ----------------------------------------------------------------
+	// Origin_Rate_OnStore_impl provides the implementation for the callout
+	func Origin_Rate_OnStore_impl (fieldval string,rec dm.Origin,usr string) (string,error)  {
+		logs.Callout("Origin", dm.Origin_Rate_scrn, PUT, rec.OriginID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// Origin_Rate_OnFetch_impl provides the implementation for the callout	
+	func Origin_Rate_OnFetch_impl (rec dm.Origin)(string) {
+		logs.Callout("Origin", dm.Origin_Rate_scrn, GET, rec.OriginID)
+		return rec.Rate
+	}
+	// ----------------------------------------------------------------
+	// Origin_Rate_impl provides validation/actions for Rate
+	func Origin_Rate_impl (iAction string, iId string, iValue string, iRec dm.Origin, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Origin", dm.Origin_Rate_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+	// ----------------------------------------------------------------
+	// END   Origin_Rate
+	// END   Origin_Rate
+	// END   Origin_Rate
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN Origin_NoActiveProjects
+	// BEGIN Origin_NoActiveProjects
+	// BEGIN Origin_NoActiveProjects
+	// ----------------------------------------------------------------
+	// Origin_NoActiveProjects_OnStore_impl provides the implementation for the callout
+	func Origin_NoActiveProjects_OnStore_impl (fieldval string,rec dm.Origin,usr string) (string,error)  {
+		logs.Callout("Origin", dm.Origin_NoActiveProjects_scrn, PUT, rec.OriginID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// Origin_NoActiveProjects_OnFetch_impl provides the implementation for the callout	
+	func Origin_NoActiveProjects_OnFetch_impl (rec dm.Origin)(string) {
+		logs.Callout("Origin", dm.Origin_NoActiveProjects_scrn, GET, rec.OriginID)
+		return rec.NoActiveProjects
+	}
+	// ----------------------------------------------------------------
+	// Origin_NoActiveProjects_impl provides validation/actions for NoActiveProjects
+	func Origin_NoActiveProjects_impl (iAction string, iId string, iValue string, iRec dm.Origin, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Origin", dm.Origin_NoActiveProjects_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+	// ----------------------------------------------------------------
+	// END   Origin_NoActiveProjects
+	// END   Origin_NoActiveProjects
+	// END   Origin_NoActiveProjects
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// Automatically generated code ends here
+	// ----------------------------------------------------------------

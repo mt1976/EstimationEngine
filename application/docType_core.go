@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 03/01/2023 at 19:18:08
+// Date & Time		    : 07/01/2023 at 23:01:29
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //DocType_Publish annouces the endpoints available for this object
-//DocType_Publish - Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+//DocType_Publish - Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 func DocType_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.DocType_Path, DocType_Handler)
 	mux.HandleFunc(dm.DocType_PathList, DocType_HandlerList)
@@ -38,17 +38,17 @@ func DocType_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.DocType_Title)
     core.Catalog_Add(dm.DocType_Title, dm.DocType_Path, "", dm.DocType_QueryString, "Application")
 	// 
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //DocType_HandlerList is the handler for the list page
 //Allows Listing of DocType records
-//DocType_HandlerList - Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+//DocType_HandlerList - Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 func DocType_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -78,7 +78,7 @@ func DocType_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	ExecuteTemplate(dm.DocType_TemplateList, w, r, pageDetail)
 	// 
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -86,10 +86,10 @@ func DocType_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //DocType_HandlerView is the handler used to View a page
 //Allows Viewing for an existing DocType record
-//DocType_HandlerView - Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+//DocType_HandlerView - Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func DocType_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -118,17 +118,17 @@ func DocType_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.DocType_TemplateView, w, r, pageDetail)
 	// 
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //DocType_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing DocType record and then allows the user to save the changes
-//DocType_HandlerEdit - Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+//DocType_HandlerEdit - Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func DocType_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -157,17 +157,17 @@ func DocType_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.DocType_TemplateEdit, w, r, pageDetail)
 	// 
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //DocType_HandlerSave is the handler used process the saving of an DocType
 //It is called from the Edit and New pages
-//DocType_HandlerSave  - Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+//DocType_HandlerSave  - Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func DocType_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -185,17 +185,17 @@ func DocType_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	dao.DocType_Store(item,r)	
 	http.Redirect(w, r, dm.DocType_Redirect, http.StatusFound)
 	// 
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //DocType_HandlerNew is the handler used process the creation of an DocType
 //It will create a new DocType and then redirect to the Edit page
-//DocType_HandlerNew  - Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+//DocType_HandlerNew  - Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func DocType_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -222,7 +222,7 @@ func DocType_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.DocType_TemplateNew, w, r, pageDetail)
 	// 
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }	
 
@@ -231,7 +231,7 @@ func DocType_HandlerNew(w http.ResponseWriter, r *http.Request) {
 //doctype_PopulatePage Builds/Populates the DocType Page 
 func doctype_PopulatePage(rD dm.DocType, pageDetail dm.DocType_Page) dm.DocType_Page {
 	// START
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.DocTypeID = rD.DocTypeID
@@ -251,7 +251,7 @@ func doctype_PopulatePage(rD dm.DocType, pageDetail dm.DocType_Page) dm.DocType_
 	
 	
 	//
-	// Automatically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -301,7 +301,7 @@ func doctype_PopulatePage(rD dm.DocType, pageDetail dm.DocType_Page) dm.DocType_
 	pageDetail.Comments_props = rD.Comments_props
 	
 	// 
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	
@@ -310,11 +310,11 @@ return pageDetail
 //doctype_DataFromRequest is used process the content of an HTTP Request and return an instance of an DocType
 func doctype_DataFromRequest(r *http.Request) dm.DocType {
 	// START
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	var item dm.DocType
 	// FIELD SET START
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.DocType_SYSId_scrn)
 		item.DocTypeID = r.FormValue(dm.DocType_DocTypeID_scrn)
@@ -333,7 +333,7 @@ func doctype_DataFromRequest(r *http.Request) dm.DocType {
 		item.Comments = r.FormValue(dm.DocType_Comments_scrn)
 	
 	// 
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return item
 }

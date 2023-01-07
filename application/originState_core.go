@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 03/01/2023 at 19:18:10
+// Date & Time		    : 07/01/2023 at 23:01:30
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //OriginState_Publish annouces the endpoints available for this object
-//OriginState_Publish - Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+//OriginState_Publish - Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 func OriginState_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.OriginState_Path, OriginState_Handler)
 	mux.HandleFunc(dm.OriginState_PathList, OriginState_HandlerList)
@@ -38,17 +38,17 @@ func OriginState_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.OriginState_Title)
     core.Catalog_Add(dm.OriginState_Title, dm.OriginState_Path, "", dm.OriginState_QueryString, "Application")
 	// 
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //OriginState_HandlerList is the handler for the list page
 //Allows Listing of OriginState records
-//OriginState_HandlerList - Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+//OriginState_HandlerList - Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 func OriginState_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -78,7 +78,7 @@ func OriginState_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	ExecuteTemplate(dm.OriginState_TemplateList, w, r, pageDetail)
 	// 
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -86,10 +86,10 @@ func OriginState_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //OriginState_HandlerView is the handler used to View a page
 //Allows Viewing for an existing OriginState record
-//OriginState_HandlerView - Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+//OriginState_HandlerView - Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func OriginState_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -118,17 +118,17 @@ func OriginState_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.OriginState_TemplateView, w, r, pageDetail)
 	// 
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //OriginState_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing OriginState record and then allows the user to save the changes
-//OriginState_HandlerEdit - Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+//OriginState_HandlerEdit - Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func OriginState_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -157,17 +157,17 @@ func OriginState_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.OriginState_TemplateEdit, w, r, pageDetail)
 	// 
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //OriginState_HandlerSave is the handler used process the saving of an OriginState
 //It is called from the Edit and New pages
-//OriginState_HandlerSave  - Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+//OriginState_HandlerSave  - Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func OriginState_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -185,17 +185,17 @@ func OriginState_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	dao.OriginState_Store(item,r)	
 	http.Redirect(w, r, dm.OriginState_Redirect, http.StatusFound)
 	// 
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //OriginState_HandlerNew is the handler used process the creation of an OriginState
 //It will create a new OriginState and then redirect to the Edit page
-//OriginState_HandlerNew  - Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+//OriginState_HandlerNew  - Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func OriginState_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -222,7 +222,7 @@ func OriginState_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.OriginState_TemplateNew, w, r, pageDetail)
 	// 
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }	
 
@@ -231,7 +231,7 @@ func OriginState_HandlerNew(w http.ResponseWriter, r *http.Request) {
 //originstate_PopulatePage Builds/Populates the OriginState Page 
 func originstate_PopulatePage(rD dm.OriginState, pageDetail dm.OriginState_Page) dm.OriginState_Page {
 	// START
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.OriginStateID = rD.OriginStateID
@@ -252,7 +252,7 @@ func originstate_PopulatePage(rD dm.OriginState, pageDetail dm.OriginState_Page)
 	
 	
 	//
-	// Automatically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -305,7 +305,7 @@ func originstate_PopulatePage(rD dm.OriginState, pageDetail dm.OriginState_Page)
 	pageDetail.Notify_props = rD.Notify_props
 	
 	// 
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	
@@ -314,11 +314,11 @@ return pageDetail
 //originstate_DataFromRequest is used process the content of an HTTP Request and return an instance of an OriginState
 func originstate_DataFromRequest(r *http.Request) dm.OriginState {
 	// START
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	var item dm.OriginState
 	// FIELD SET START
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.OriginState_SYSId_scrn)
 		item.OriginStateID = r.FormValue(dm.OriginState_OriginStateID_scrn)
@@ -338,7 +338,7 @@ func originstate_DataFromRequest(r *http.Request) dm.OriginState {
 		item.Notify = r.FormValue(dm.OriginState_Notify_scrn)
 	
 	// 
-	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return item
 }

@@ -16,7 +16,7 @@ import (
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
 	// Template Generator   : Dysprosium [r4-21.12.31]
-	// Date & Time		    : 05/01/2023 at 20:41:25
+	// Date & Time		    : 07/01/2023 at 23:01:30
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in project_impl.go
@@ -48,8 +48,11 @@ import (
 	// ----------------------------------------------------------------
 	// If there are fields below, create the methods in adaptor\project_impl.go
 	// These are the the default implementations, which do nothing
-	// ----------------------------------------------------------------
 
+	// ----------------------------------------------------------------
+	// BEGIN Project_NoEstimationSessions
+	// BEGIN Project_NoEstimationSessions
+	// BEGIN Project_NoEstimationSessions
 	// ----------------------------------------------------------------
 	// Project_NoEstimationSessions_OnStore_impl provides the implementation for the callout
 	func Project_NoEstimationSessions_OnStore_impl (fieldval string,rec dm.Project,usr string) (string,error)  {
@@ -68,3 +71,12 @@ import (
 		logs.Callout("Project", dm.Project_NoEstimationSessions_scrn, VAL +"-"+iAction, iId)
 		return iValue,fP
 	}
+	// ----------------------------------------------------------------
+	// END   Project_NoEstimationSessions
+	// END   Project_NoEstimationSessions
+	// END   Project_NoEstimationSessions
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// Automatically generated code ends here
+	// ----------------------------------------------------------------

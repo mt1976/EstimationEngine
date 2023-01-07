@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 05/01/2023 at 20:43:15
+// Date & Time		    : 07/01/2023 at 23:01:28
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //Data_Publish annouces the endpoints available for this object
-//Data_Publish - Auto generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local
+//Data_Publish - Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 func Data_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	//No API
 	mux.HandleFunc(dm.Data_PathList, Data_HandlerList)
@@ -38,17 +38,17 @@ func Data_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.Data_Title)
     //No API
 	// 
-	// Auto generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Data_HandlerList is the handler for the list page
 //Allows Listing of Data records
-//Data_HandlerList - Auto generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local
+//Data_HandlerList - Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 func Data_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -78,7 +78,7 @@ func Data_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	ExecuteTemplate(dm.Data_TemplateList, w, r, pageDetail)
 	// 
-	// Auto generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -86,10 +86,10 @@ func Data_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //Data_HandlerView is the handler used to View a page
 //Allows Viewing for an existing Data record
-//Data_HandlerView - Auto generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Data_HandlerView - Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Data_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -118,17 +118,17 @@ func Data_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Data_TemplateView, w, r, pageDetail)
 	// 
-	// Auto generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Data_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing Data record and then allows the user to save the changes
-//Data_HandlerEdit - Auto generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Data_HandlerEdit - Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Data_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -157,17 +157,17 @@ func Data_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Data_TemplateEdit, w, r, pageDetail)
 	// 
-	// Auto generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Data_HandlerSave is the handler used process the saving of an Data
 //It is called from the Edit and New pages
-//Data_HandlerSave  - Auto generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Data_HandlerSave  - Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Data_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -185,17 +185,17 @@ func Data_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	dao.Data_Store(item,r)	
 	http.Redirect(w, r, dm.Data_Redirect, http.StatusFound)
 	// 
-	// Auto generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Data_HandlerNew is the handler used process the creation of an Data
 //It will create a new Data and then redirect to the Edit page
-//Data_HandlerNew  - Auto generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Data_HandlerNew  - Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Data_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -222,7 +222,7 @@ func Data_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Data_TemplateNew, w, r, pageDetail)
 	// 
-	// Auto generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }	
 
@@ -231,7 +231,7 @@ func Data_HandlerNew(w http.ResponseWriter, r *http.Request) {
 //data_PopulatePage Builds/Populates the Data Page 
 func data_PopulatePage(rD dm.Data, pageDetail dm.Data_Page) dm.Data_Page {
 	// START
-	// Auto generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.DataID = rD.DataID
@@ -251,7 +251,7 @@ func data_PopulatePage(rD dm.Data, pageDetail dm.Data_Page) dm.Data_Page {
 	
 	
 	//
-	// Automatically generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -301,7 +301,7 @@ func data_PopulatePage(rD dm.Data, pageDetail dm.Data_Page) dm.Data_Page {
 	pageDetail.SYSDbVersion_props = rD.SYSDbVersion_props
 	
 	// 
-	// Auto generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	
@@ -310,11 +310,11 @@ return pageDetail
 //data_DataFromRequest is used process the content of an HTTP Request and return an instance of an Data
 func data_DataFromRequest(r *http.Request) dm.Data {
 	// START
-	// Auto generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	var item dm.Data
 	// FIELD SET START
-	// Auto generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Data_SYSId_scrn)
 		item.DataID = r.FormValue(dm.Data_DataID_scrn)
@@ -333,7 +333,7 @@ func data_DataFromRequest(r *http.Request) dm.Data {
 		item.SYSDbVersion = r.FormValue(dm.Data_SYSDbVersion_scrn)
 	
 	// 
-	// Auto generated 05/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return item
 }

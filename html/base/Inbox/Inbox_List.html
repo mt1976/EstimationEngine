@@ -73,12 +73,14 @@
                           
                           
                           
-                          <td class="text-center" style="width:1px;">
-                           <form action="/home" method="POST" class="d-flex justify-content-center">
-                            <button type="submit" value="" class="btn btn-info ms-2 btn-floating" formaction="/InboxView?Message={{.MailId}}" method="POST" title="View Inbox"><i class="far fa-eye"></i></button>
-                            
-                            <button type="submit" value="" class="btn btn-danger ms-2 btn-floating" formaction="/InboxDelete?Message={{.MailId}}" method="POST" title="Delete Inbox"><i class="fas fa-trash"></i></button>
-                            </form>
+                          <td class="align-middle text-center" style="width:1px;padding:0px;padding-top:1rem;">
+                              <form action="/home" method="POST" class="d-flex justify-content-center">
+                                  <div class="btn-group" id="ActionButtonGroup2">
+                                    <button type="submit" value="" class="btn btn-sm btn-info " formaction="/InboxView?Message={{.MailId}}" method="POST" title="View Inbox"><i class="far fa-eye"></i>View</button>
+                                    
+                                    <button type="submit" value="" class="btn btn-sm btn-danger " formaction="/InboxDelete?Message={{.MailId}}" method="POST" title="Delete Inbox"><i class="fas fa-trash"></i>Delete</button>
+                                  </div>
+                                </form>
                           </td>
                         </tr>
                         {{end}}

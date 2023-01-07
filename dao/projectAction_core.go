@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 03/01/2023 at 19:18:10
+// Date & Time		    : 07/01/2023 at 23:01:30
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -61,11 +61,11 @@ func ProjectAction_GetByID(id string) (int, dm.ProjectAction, error) {
 	_, _, projectactionItem, _ := projectaction_Fetch(tsql)
 
 	// START
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	projectactionItem.NoEstimationSessions,projectactionItem.NoEstimationSessions_props = ProjectAction_NoEstimationSessions_impl (GET,id,projectactionItem.NoEstimationSessions,projectactionItem,projectactionItem.NoEstimationSessions_props)
 	// 
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, projectactionItem, nil
 }
@@ -136,11 +136,11 @@ func ProjectAction_StoreSystem(r dm.ProjectAction) error {
 func ProjectAction_Validate(r dm.ProjectAction) (dm.ProjectAction, error) {
 	var err error
 	// START
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.NoEstimationSessions,r.NoEstimationSessions_props = ProjectAction_NoEstimationSessions_impl (PUT,r.ProjectID,r.NoEstimationSessions,r,r.NoEstimationSessions_props)
 	// 
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -209,7 +209,7 @@ logs.Storing("ProjectAction",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.ProjectAction_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.ProjectAction_ProjectID_sql, r.ProjectID)
@@ -242,7 +242,7 @@ logs.Storing("ProjectAction",fmt.Sprintf("%v", r))
 	
 		
 	// 
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + ProjectAction_QualifiedName
@@ -275,7 +275,7 @@ func projectaction_Fetch(tsql string) (int, []dm.ProjectAction, dm.ProjectAction
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.ProjectAction_SYSId_sql, "0")
 	   recItem.ProjectID  = get_String(rec, dm.ProjectAction_ProjectID_sql, "")
@@ -339,7 +339,7 @@ func projectaction_Fetch(tsql string) (int, []dm.ProjectAction, dm.ProjectAction
 	   recItem.NoEstimationSessions  = ProjectAction_NoEstimationSessions_OnFetch_impl (recItem)
 	
 	// 
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -369,11 +369,11 @@ func ProjectAction_New() (int, []dm.ProjectAction, dm.ProjectAction, error) {
 	
 
 	// START
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.NoEstimationSessions,r.NoEstimationSessions_props = ProjectAction_NoEstimationSessions_impl (NEW,r.ProjectID,r.NoEstimationSessions,r,r.NoEstimationSessions_props)
 	// 
-	// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

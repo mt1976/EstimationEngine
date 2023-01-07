@@ -1,0 +1,76 @@
+package dao
+
+import (
+	"strings"
+
+	core "github.com/mt1976/ebEstimates/core"
+	logs "github.com/mt1976/ebEstimates/logs"
+    dm "github.com/mt1976/ebEstimates/datamodel"
+)
+	// ----------------------------------------------------------------
+	// Automatically generated  "/dao/estimationsessionaction.go"
+	// ----------------------------------------------------------------
+	// Package              : dao
+	// Object 			    : EstimationSessionAction (estimationsessionaction)
+	// Endpoint 	        : EstimationSessionAction (ID)
+	// For Project          : github.com/mt1976/ebEstimates/
+	// ----------------------------------------------------------------
+	// Template Generator   : Dysprosium [r4-21.12.31]
+	// Date & Time		    : 07/01/2023 at 23:01:29
+	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
+	// ----------------------------------------------------------------
+	// The following functions should be created in estimationsessionaction_impl.go
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// EstimationSessionAction_GetList_impl provides the implementation to get a list of records
+	func EstimationSessionAction_GetList_impl() (int, []dm.EstimationSessionAction, error) {return 0, nil, nil}
+	// ----------------------------------------------------------------
+	// EstimationSessionAction_GetByID_impl provides the implementation to get a record by ID
+	func EstimationSessionAction_GetByID_impl(id string) (int, dm.EstimationSessionAction, error) {return 0, dm.EstimationSessionAction{}, nil}
+	//
+	
+	// ----------------------------------------------------------------
+
+
+	// ----------------------------------------------------------------
+	// EstimationSessionAction_NewID_impl provides the implementation to generate a new ID for a new record
+	func EstimationSessionAction_NewID_impl(rec dm.EstimationSessionAction) (string) { return rec.ID }
+	// ----------------------------------------------------------------
+	// EstimationSessionAction_New_impl provides the implementation to delete a new record
+	func EstimationSessionAction_Delete_impl(id string) (error) {return nil}
+	// ----------------------------------------------------------------
+
+
+	// ----------------------------------------------------------------
+	// EstimationSessionAction_Store_impl provides the implementation for the store adaptor
+	func EstimationSessionAction_Update_impl(id string,rec dm.EstimationSessionAction, usr string) (error) {return nil}
+
+	// ----------------------------------------------------------------
+	
+	// ----------------------------------------------------------------
+	// EstimationSessionAction_ObjectValidation_impl provides Record/Object level validation for EstimationSessionAction
+	func EstimationSessionAction_ObjectValidation_impl (iAction string, iId string, iRec dm.EstimationSessionAction) (dm.EstimationSessionAction, string, error) {
+		logs.Callout("EstimationSessionAction", "ObjectValidation", VAL +"-"+iAction, iId)
+		switch iAction {
+			case VAL:
+				
+			case NEW:
+
+			case PUT:
+
+			case GET:
+
+			default:
+				logs.Warning("EstimationSessionAction" + " - Invalid Action ["+iAction+"]")
+			}
+		return iRec,"",nil
+	}
+	//
+	// ----------------------------------------------------------------
+	// If there are fields below, create the methods in adaptor\estimationsessionaction_impl.go
+	// These are the the default implementations, which do nothing
+
+	// ----------------------------------------------------------------
+	// Automatically generated code ends here
+	// ----------------------------------------------------------------
