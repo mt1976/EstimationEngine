@@ -15,7 +15,6 @@ package application
 
 import (
 	"fmt"
-	"math"
 	"net/http"
 	"strconv"
 
@@ -273,13 +272,55 @@ func Estimationsession_Calculate(searchID string) dm.EstimationSession {
 
 	logs.Processing("estimationsession_ReCalculate-->" + searchID)
 
-	_, esRecord, _ := dao.EstimationSession_GetByID(searchID)
+	_, esRecord, estErr := dao.EstimationSession_GetByID(searchID)
+	if estErr != nil {
+		logs.Error("estimationsession_ReCalculate", estErr)
+		return dm.EstimationSession{}
+	}
+	//Get Estimation State
+	_, estState, esStateErr := dao.EstimationState_GetByCode(esRecord.EstimationStateID)
+	if esStateErr != nil {
+		logs.Error("estimationsession_ReCalculate", esStateErr)
+		return dm.EstimationSession{}
+	}
+	if estState.IsLocked == core.TRUE {
+		logs.Information("Estimation State is Locked - No Update Required", esRecord.EstimationStateID)
+		return esRecord
+	}
 
-	// Get the list of all Features for this EstimationSession
-	foundFeatures, featureList, _ := dao.Feature_Active_ByEstimationSession_GetList(searchID)
-	logs.Information("No. Features Found", strconv.Itoa(foundFeatures))
 	// Get the current projiect id
-	_, proj, _ := dao.Project_GetByID(esRecord.ProjectID)
+	_, proj, projErr := dao.Project_GetByID(esRecord.ProjectID)
+	if projErr != nil {
+		logs.Error("estimationsession_ReCalculate", projErr)
+		return dm.EstimationSession{}
+	}
+	// Get Project State
+	_, projState, projStateErr := dao.ProjectState_GetByCode(proj.ProjectStateID)
+	if projStateErr != nil {
+		logs.Error("estimationsession_ReCalculate", projStateErr)
+		return dm.EstimationSession{}
+	}
+	if projState.IsLocked == core.TRUE {
+		logs.Information("Project State is Locked - No Update Required", esRecord.ProjectStateID)
+		return esRecord
+	}
+
+	//Get the current rate from the origin
+	_, origin, originErr := dao.Origin_GetByCode(proj.OriginID)
+	if originErr != nil {
+		logs.Error("estimationsession_ReCalculate", originErr)
+		return dm.EstimationSession{}
+	}
+	// Get Origin State
+	_, originState, originStateErr := dao.OriginState_GetByCode(esRecord.OriginStateID)
+	if originStateErr != nil {
+		logs.Error("estimationsession_ReCalculate", originStateErr)
+		return dm.EstimationSession{}
+	}
+	if originState.IsLocked == core.TRUE {
+		logs.Information("Origin State is Locked - No Update Required", esRecord.OriginStateID)
+		return esRecord
+	}
 
 	//Get the current profile
 	profileID := proj.ProfileID
@@ -288,9 +329,15 @@ func Estimationsession_Calculate(searchID string) dm.EstimationSession {
 	logs.Information("ProfileID", profileID)
 	logs.Information("OriginID", originID)
 
-	_, profile, _ := dao.Profile_GetByCode(profileID)
-	//Get the current rate from the origin
-	_, origin, _ := dao.Origin_GetByCode(originID)
+	_, profile, profileErr := dao.Profile_GetByCode(profileID)
+	if profileErr != nil {
+		logs.Error("estimationsession_ReCalculate", profileErr)
+		return dm.EstimationSession{}
+	}
+
+	// Get the list of all Features for this EstimationSession
+	foundFeatures, featureList, _ := dao.Feature_Active_ByEstimationSession_GetList(searchID)
+	logs.Information("Features Found", strconv.Itoa(foundFeatures))
 
 	RoundingFactor := stf(profile.Rounding)
 
@@ -316,13 +363,14 @@ func Estimationsession_Calculate(searchID string) dm.EstimationSession {
 	//Total_Contingency := 0.00
 	Total_DevEstimate := 0.00
 	Total_DevUplift := 0.00
+
 	// Range through the list of Features
 	for thisFeature, feature := range featureList {
 		// Sum up the estimates in this featre
 		// convert feature.Reqs to INT
 		logs.Break()
 		logs.Information("Feature", strconv.Itoa(thisFeature))
-		logs.Information("Feature.Reqs", feature.Reqs)
+		//	logs.Information("Feature.Reqs", feature.Reqs)
 
 		Total_Reqs += stf(feature.Reqs)
 		Total_AnaTest += stf(feature.AnalystTest)
@@ -407,8 +455,8 @@ func Estimationsession_Calculate(searchID string) dm.EstimationSession {
 // rtn Rounds a number to the nearest multiple of the RoundingFactor
 func rtn(number float64, RoundingFactor float64) (float64, error) {
 	// Round to the nearest multiple of the RoundingFactor
-
-	return math.Round(number/RoundingFactor) * RoundingFactor, nil
+	rtnVal, rtnErr := core.RoundTo(number, RoundingFactor)
+	return rtnVal, rtnErr
 }
 
 func EstimationSession_HandlerRemove(w http.ResponseWriter, r *http.Request) {
@@ -524,13 +572,11 @@ func EstimationSession_Clone(esID string, r *http.Request) (string, error) {
 }
 
 func stf(in string) float64 {
-	out, _ := strconv.ParseFloat(in, 64)
-	return out
+	return core.StringToFloat(in)
 }
 
 func fts(in float64) string {
-	out := strconv.FormatFloat(in, 'f', 2, 64)
-	return out
+	return core.FloatToString(in)
 }
 
 func calculate(hrs float64, hrsInDay float64, rate float64) (float64, float64) {

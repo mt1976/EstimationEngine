@@ -127,3 +127,7 @@ func AmtFormatStr(amt string) string {
 	amtFloat, _ := strconv.ParseFloat(amt, 64)
 	return AmtFormatFloat(amtFloat)
 }
+
+func DQuote(in string) string {
+	return "\"" + in + "\""
+}

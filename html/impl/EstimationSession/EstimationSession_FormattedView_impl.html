@@ -45,7 +45,7 @@
             </div>
 
     
-<h4>Identification</h4>
+<h4 class="text-muted">Identification</h4>
              
                     <div class="row mb-3"  >
                 <div class="col">
@@ -118,7 +118,7 @@
             </div>
              
 
-<h4>Project</h4>
+<h4 class="text-muted">Project</h4>
         
             
             <div class="row mb-3"  >
@@ -173,7 +173,7 @@
             </div>
 
 
-            <h4>Resources</h4>
+            <h4 class="text-muted">Resources</h4>
             <div class="row mb-3"  ><div class="col">
         
             
@@ -207,7 +207,7 @@
         </div></div>
 
 
-            <h4>Estimation</h4>
+            <h4 class="text-muted">Estimation</h4>
             <div class="row mb-3"  >
                 
                 <div class="col">
@@ -253,7 +253,7 @@
 
 
             </div>
- <h4> RSC Format Breakdown</h4>
+ <h4 class="text-muted">RSC Format Breakdown</h4>
             <table class="table table-hover align-middle mb-0 bg-white text-center mb-4">
                 <thead class="bg-light">
                 <tr class="table-primary  fw-bolder">
@@ -288,7 +288,7 @@
                 </tbody>
             </table>
 
-<h4>Comments</h4>
+<h4 class="text-muted">Comments</h4>
        
         <div class="row mb-3"  ><div class="col">
         
@@ -302,26 +302,29 @@
         
         </div></div>
 
-            <h4>Links</h2>
+            <h4 class="text-muted">Links</h2>
 <div class="row mb-3"  >
                 <div class="col">
+                        <a href="{{.FreshDeskURI}}">
                    
-                    <div class="input-group">
-                        <a href="{{.FreshDeskURI}}" class="btn btn-tertiary" role="button" aria-pressed="true" data-mdb-ripple-color="dark">FreshDesk</a>
-                        <input type="text" class="form-control" id="TrackerID" aria-describedby="TrackerIDHelp" placeholder="" value="{{.FreshdeskID}}" data-mdb-input-mask="" disabled></input>
-
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="FDID" aria-describedby="FDIDHelp" placeholder="" value="{{.FreshdeskID}}" data-mdb-input-mask="" disabled></input>
+                        
+                        <label class="form-label" for="FDID">FreshDesk</label>
+                        
                     </div>
-                   
+                 </a>          
                 </div>
                 
                 <div class="col">
 
+                    <a href="{{.ADOURI}}">
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="ADOID" aria-describedby="ADOIDHelp" placeholder="" value="{{.AdoID}}" data-mdb-input-mask="" disabled></input>
+                        <label class="form-label" for="ADOID">Dev Ops</label>
 
-                    <div class="input-group">
-                        <a href="{{.ADOURI}}" class="btn btn-tertiary" role="button" aria-pressed="true" data-mdb-ripple-color="dark">Dev Ops</a>
-                        <input type="text" class="form-control" id="TrackerID" aria-describedby="TrackerIDHelp" placeholder=""  value="{{.AdoID}}" data-mdb-input-mask="" disabled></input>
                     </div>
-                
+                    </a>
             
                 </div>
       
@@ -361,7 +364,7 @@
                 
                 </div>
             </div>
-            <H4>Notes</H4>
+            <h4 class="text-muted">Notes</H4>
 
 
              

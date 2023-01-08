@@ -45,7 +45,7 @@
                 
                 </div>
             </div>
-             
+             <h4 class="text-muted">Identification</h4>
             <div class="row mb-3"  >
                 <div class="col">
                 
@@ -71,8 +71,8 @@
                 
                 </div>
             </div>
-            <hr></hr>
-            <h3>Baselines</h3>
+
+            <h4 class="text-muted">Baselines</h4>
             <div class="row mb-3"  >
                         <div class="col">
                 
@@ -133,16 +133,16 @@
                 
                 </div>
             </div>
-                         <hr></hr>
+                  
 
-            <h3>Estimate Factors</h2>
+            <h4 class="text-muted">Factors</h4>
             <div class="row mb-3"  >
                 <div class="col">
                 
                     <div class="form-outline">
 
                         <input type="text" class="form-control" id="REQPerc" aria-describedby="REQPercHelp" placeholder="" disabled value="{{.REQPerc}}" data-mdb-input-mask="99.99 %"></input>
-                        <label class="form-label" for="REQPerc">Requirements (%)</label>
+                        <label class="form-label" for="REQPerc">Requirements <small>(%)</small></label>
 
                         
                     </div>
@@ -160,7 +160,7 @@
                         
                             <input type="text" class="form-control" id="ANAPerc" aria-describedby="ANAPercHelp" placeholder="" disabled value="{{.ANAPerc}}" data-mdb-input-mask=""></input>
                         
-                        <label class="form-label" for="ANAPerc">Analyst Time (%)</label>
+                        <label class="form-label" for="ANAPerc">Analyst Time <small>(%)</small></label>
                         
                     </div>
                 
@@ -177,7 +177,7 @@
                         
                             <input type="text" class="form-control" id="DOCPerc" aria-describedby="DOCPercHelp" placeholder="" disabled value="{{.DOCPerc}}" data-mdb-input-mask=""></input>
                         
-                        <label class="form-label" for="DOCPerc">Documentation (%)</label>
+                        <label class="form-label" for="DOCPerc">Documentation <small>(%)</small></label>
                         
                     </div>
                 
@@ -194,7 +194,7 @@
                         
                             <input type="text" class="form-control" id="PMPerc" aria-describedby="PMPercHelp" placeholder="" disabled value="{{.PMPerc}}" data-mdb-input-mask=""></input>
                         
-                        <label class="form-label" for="PMPerc">Project Management (%)</label>
+                        <label class="form-label" for="PMPerc">Project Management <small>(%)</small></label>
                         
                     </div>
                 
@@ -211,7 +211,7 @@
                         
                             <input type="text" class="form-control" id="UATPerc" aria-describedby="UATPercHelp" placeholder="" disabled value="{{.UATPerc}}" data-mdb-input-mask=""></input>
                         
-                        <label class="form-label" for="UATPerc">UAT Allowance (%)</label>
+                        <label class="form-label" for="UATPerc">UAT Allowance <small>(%)</small></label>
                         
                     </div>
                 
@@ -220,7 +220,22 @@
                 <div class="col"></div>
                 <div class="col"></div>
             </div>
-             
+                        <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="number" class="form-control" id="TrainingPerc" aria-describedby="TrainingPercHelp" placeholder="" disabled value="{{.TrainingPerc}}" data-mdb-input-mask="" step="0.25"></input>
+                        
+                        <label class="form-label" for="TrainingPerc">Training <small>(%)</small></label>
+                        
+                    </div>
+                
+                </div>
+                                <div class="col"></div>
+                <div class="col"></div>
+                <div class="col"></div>
+            </div>
             <div class="row mb-3"  >
                 <div class="col">
                 
@@ -228,7 +243,7 @@
                         
                             <input type="text" class="form-control" id="GTMPerc" aria-describedby="GTMPercHelp" placeholder="" disabled value="{{.GTMPerc}}" data-mdb-input-mask=""></input>
                         
-                        <label class="form-label" for="GTMPerc">Marketing (%)</label>
+                        <label class="form-label" for="GTMPerc">Marketing <small>(%)</small></label>
                         
                     </div>
                 
@@ -239,22 +254,9 @@
             </div>
 
 
-            <div class="row mb-3"  >
-                <div class="col">
-                
-                    <div class="form-outline">
-                        
-                            <input type="text" class="form-control" id="ContigencyPerc" aria-describedby="ContigencyPercHelp" placeholder="" disabled value="{{.ContigencyPerc}}" data-mdb-input-mask=""></input>
-                        
-                        <label class="form-label" for="ContigencyPerc">Contigency/Risk Premium (%)</label>
-                        
-                    </div>
-                
-                </div>
-                 <div class="col"></div>
-                <div class="col"></div>
-                <div class="col"></div>
-            </div>
+             
+
+
 
             <div class="row mb-3"  >
                 <div class="col">
@@ -263,7 +265,7 @@
                         
                             <input type="text" class="form-control" id="SupportUplift" aria-describedby="SupportUpliftHelp" placeholder="" disabled value="{{.SupportUplift}}" data-mdb-input-mask=""></input>
                         
-                        <label class="form-label" for="SupportUplift">Annual Support Uplift (%)</label>
+                        <label class="form-label" for="SupportUplift">Annual Support Uplift <small>(%)</small></label>
                         
                     </div>
                   
@@ -272,8 +274,19 @@
                 <div class="col"></div>
                 <div class="col"></div>
             </div>
-             
-
+            <h4 class="text-muted">Comments</h4>
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                        <textarea class="form-control" id="Comments" aria-describedby="CommentsHelp" placeholder="" disabled value="{{.Comments}}" data-mdb-input-mask="" rows="5"></textarea>
+                        <label class="form-label" for="Comments">Comments</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
              
             <div class="row mb-3" hidden hidden>
                 <div class="col">

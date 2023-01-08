@@ -49,7 +49,7 @@ _display.modal = function ( options ) {
 				var	modalContainer = $('<div class="reveal-overlay" style="display:block"/>');
 				$( '<div class="reveal reveal-modal" style="display:block; top: 150px;" data-reveal/>' )
 					.append( '<button class="close-button" aria-label="Close">&#215;</button>' )
-					.append( options && options.header ? '<h4>'+options.header( row )+'</h4>' : null )
+					.append( options && options.header ? '<h4 class="text-muted">'+options.header( row )+'</h4>' : null )
 					.append( render() )
 					.appendTo( modalContainer );
 				
