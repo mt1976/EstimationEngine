@@ -91,8 +91,8 @@ func connect(mssqlConfig map[string]string) (*sql.DB, error) {
 		logs.Error("Connection attempt with "+database+connString+" failed:", err)
 	}
 	if database != "master" {
-		//logs.Success("Connected to " + server + " " + database)
-		//	log.Println("Information   : Connected to " + server + " " + database)
+		logs.Success("Connected to " + server + " " + database)
+		log.Println("Information   : Connected to " + server + " " + database)
 	}
 	keepalive, _ := time.ParseDuration("-1h")
 	dbInstance.SetConnMaxLifetime(keepalive)
@@ -221,10 +221,10 @@ func Database_CreateObjects(DB *sql.DB, dbConfig map[string]string, sourcePath s
 	//spew.Dump(DB.Stats())
 	// Get a full list of all views
 	_, requiredViews, _ := GetDataList(sourcePath)
-	createTemplate, err := ReadDataFile("templateCreate.sql", "/config/database/templates")
-	if err != nil {
-		log.Println(err.Error())
-	}
+	// createTemplate, err := ReadDataFile("templateCreate.sql", "/config/database/templates")
+	// if err != nil {
+	// 	log.Println(err.Error())
+	// }
 	dropTemplate, err := ReadDataFile("templateDrop.sql", "/config/database/templates")
 	if err != nil {
 		log.Println(err.Error())
@@ -251,7 +251,7 @@ func Database_CreateObjects(DB *sql.DB, dbConfig map[string]string, sourcePath s
 	fmt.Printf("requiredViews: %v\n", requiredViews)
 	for _, view := range requiredViews {
 		thisDrop := dropTemplate
-		thisCreate := createTemplate
+		//thisCreate := createTemplate
 
 		//if the last 3 characters of requiredViews is "sql" then we are dealing with a sql file
 		if view[len(view)-3:] == "sql" {
@@ -274,17 +274,17 @@ func Database_CreateObjects(DB *sql.DB, dbConfig map[string]string, sourcePath s
 
 			//log.Println("***", sqlBody, "***")
 
-			thisCreate = ReplaceWildcard(thisCreate, "!SQL.DB", databaseName)
-			thisCreate = ReplaceWildcard(thisCreate, "!SQL.SCHEMA", schemaName)
-			thisCreate = ReplaceWildcard(thisCreate, "!SQL.VIEW", objectName)
-			thisCreate = ReplaceWildcard(thisCreate, "!SQL.SOURCE", parentschema)
+			// thisCreate = ReplaceWildcard(thisCreate, "!SQL.DB", databaseName)
+			// thisCreate = ReplaceWildcard(thisCreate, "!SQL.SCHEMA", schemaName)
+			// thisCreate = ReplaceWildcard(thisCreate, "!SQL.VIEW", objectName)
+			// thisCreate = ReplaceWildcard(thisCreate, "!SQL.SOURCE", parentschema)
 
 			sqlBody = ReplaceWildcard(sqlBody, "!SQL.DB", databaseName)
 			sqlBody = ReplaceWildcard(sqlBody, "!SQL.SCHEMA", schemaName)
 			sqlBody = ReplaceWildcard(sqlBody, "!SQL.VIEW", objectName)
 			sqlBody = ReplaceWildcard(sqlBody, "!SQL.SOURCE", parentschema)
 
-			thisCreate = ReplaceWildcard(thisCreate, "!SQL.BODY", sqlBody)
+			//thisCreate = ReplaceWildcard(thisCreate, "!SQL.BODY", sqlBody)
 			//fmt.Println("index:", i, fileID, thisDrop, thisCreate)
 			//	fmt.Println("***************************************")
 			//	fmt.Println(fileID, objectName)

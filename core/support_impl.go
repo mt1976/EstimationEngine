@@ -1,11 +1,9 @@
 package core
 
 import (
-	"bytes"
 	"errors"
 	"fmt"
 	"io/fs"
-	"io/ioutil"
 	"log"
 	"net"
 	"net/http"
@@ -19,34 +17,18 @@ import (
 	"github.com/mt1976/ebEstimates/logs"
 )
 
-// Converts a date, as a user readable date
-func dateToUserDate(in string) string {
+// // Converts a date, as a user readable date
+// func dateToUserDate(in string) string {
 
-	t, err := time.Parse(DATEFORMAT, in)
-	if err != nil {
-		log.Println(err.Error())
-	}
+// 	t, err := time.Parse(DATEFORMAT, in)
+// 	if err != nil {
+// 		log.Println(err.Error())
+// 	}
 
-	ext := t.Format(DATEFORMATUSER)
+// 	ext := t.Format(DATEFORMATUSER)
 
-	return ext
-}
-
-// Max returns the larger of x or y.
-func Max(x, y int) int {
-	if x < y {
-		return y
-	}
-	return x
-}
-
-// Min returns the smaller of x or y.
-func Min(x, y int) int {
-	if x > y {
-		return y
-	}
-	return x
-}
+// 	return ext
+// }
 
 // GetURLparam returns a selected parmeter value from the a given URI
 func GetURLparam(r *http.Request, paramID string) string {
@@ -143,7 +125,7 @@ func GetNavigationID(inUserRole string) string {
 	//log.Println("Testing", templateName, FileExists(templateName))
 	//log.Println("Testing", roleTemplate, FileExists(roleTemplate))
 	if FileExists(roleTemplate) {
-		//templateName = roleTemplate
+		templateName = roleTemplate
 	}
 	//log.Println("NAVIGATION", templateName)
 	return templateName
@@ -156,84 +138,6 @@ func FileExists(filename string) bool {
 		return false
 	}
 	return !info.IsDir()
-}
-
-// ipRange - a structure that holds the start and end of a range of ip addresses
-type ipRange struct {
-	start net.IP
-	end   net.IP
-}
-
-// inRange - check to see if a given ip address is within a range given
-func inRange(r ipRange, ipAddress net.IP) bool {
-	// strcmp type byte comparison
-	if bytes.Compare(ipAddress, r.start) >= 0 && bytes.Compare(ipAddress, r.end) < 0 {
-		return true
-	}
-	return false
-}
-
-var privateRanges = []ipRange{
-	ipRange{
-		start: net.ParseIP("10.0.0.0"),
-		end:   net.ParseIP("10.255.255.255"),
-	},
-	ipRange{
-		start: net.ParseIP("100.64.0.0"),
-		end:   net.ParseIP("100.127.255.255"),
-	},
-	ipRange{
-		start: net.ParseIP("172.16.0.0"),
-		end:   net.ParseIP("172.31.255.255"),
-	},
-	ipRange{
-		start: net.ParseIP("192.0.0.0"),
-		end:   net.ParseIP("192.0.0.255"),
-	},
-	ipRange{
-		start: net.ParseIP("192.168.0.0"),
-		end:   net.ParseIP("192.168.255.255"),
-	},
-	ipRange{
-		start: net.ParseIP("198.18.0.0"),
-		end:   net.ParseIP("198.19.255.255"),
-	},
-}
-
-// isPrivateSubnet - check to see if this ip is in a private subnet
-func isPrivateSubnet(ipAddress net.IP) bool {
-	// my use case is only concerned with ipv4 atm
-	if ipCheck := ipAddress.To4(); ipCheck != nil {
-		// iterate over all our ranges
-		for _, r := range privateRanges {
-			// check if this ip is in a private range
-			if inRange(r, ipAddress) {
-				return true
-			}
-		}
-	}
-	return false
-}
-
-// GetIPAdress returns the current IP address
-func GetIPAdress(r *http.Request) string {
-	var ipAddress string
-	for _, h := range []string{"X-Forwarded-For", "X-Real-Ip"} {
-		for _, ip := range strings.Split(r.Header.Get(h), ",") {
-			// header can contain spaces too, strip those out.
-			ip = strings.TrimSpace(ip)
-			realIP := net.ParseIP(ip)
-			if !realIP.IsGlobalUnicast() || isPrivateSubnet(realIP) {
-				// bad address, go to next
-				continue
-			} else {
-				ipAddress = ip
-				goto Done
-			}
-		}
-	}
-Done:
-	return ipAddress
 }
 
 // ReadUserIP returns the end-users IP address
@@ -323,7 +227,7 @@ func ReadDataFile(fileName string, path string) (string, error) {
 	//log.Println("Read          :", filePath)
 	// Read entire file content, giving us little control but
 	// making it very simple. No need to close the file.
-	content, err := ioutil.ReadFile(filePath)
+	content, err := os.ReadFile(filePath)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -331,8 +235,8 @@ func ReadDataFile(fileName string, path string) (string, error) {
 	return string(content), err
 }
 
-func GetDirectoryContentAbsolute(path string) ([]fs.FileInfo, error) {
-	files, err := ioutil.ReadDir(path + "/")
+func GetDirectoryContentAbsolute(path string) ([]fs.DirEntry, error) {
+	files, err := os.ReadDir(path + "/")
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -356,7 +260,7 @@ func ReadDataFileAbsolute(fileName string, path string) ([]byte, string, error) 
 	//log.Println("Read          :", filePath)
 	// Read entire file content, giving us little control but
 	// making it very simple. No need to close the file.
-	content, err := ioutil.ReadFile(absFileName)
+	content, err := os.ReadFile(absFileName)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -369,7 +273,7 @@ func FileSystem_WriteData_Absolute(fileName string, path string, content string)
 	absFileName := path + "/" + fileName
 
 	message := []byte(content)
-	err := ioutil.WriteFile(absFileName, message, 0644)
+	err := os.WriteFile(absFileName, message, 0644)
 	if err != nil {
 		log.Fatal(err)
 		return -1
@@ -553,7 +457,7 @@ func SetApplicationSQLDatabase(db string) {
 }
 
 func DataLoaderArtifactRepository() string {
-	return DataLoaderArtifactRepository()
+	return ""
 }
 
 func OBSOLETE_MessageQueueDeliveryPath() string {

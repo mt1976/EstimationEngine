@@ -13,13 +13,13 @@ func Financial_AbbreviationsToInt(str string) int {
 	str = strings.ToUpper(str)
 	number := ""
 	number = strings.ReplaceAll(str, "$", "")
-	number = strings.ReplaceAll(str, "€", "")
-	number = strings.ReplaceAll(str, "£", "")
+	number = strings.ReplaceAll(number, "€", "")
+	number = strings.ReplaceAll(number, "£", "")
 	fact := strings.ToUpper(number[len(number)-1:])
-	number = strings.ReplaceAll(str, "M", "")
-	number = strings.ReplaceAll(str, "K", "")
-	number = strings.ReplaceAll(str, "T", "")
-	number = strings.ReplaceAll(str, "B", "")
+	number = strings.ReplaceAll(fact, "M", "")
+	number = strings.ReplaceAll(number, "K", "")
+	number = strings.ReplaceAll(number, "T", "")
+	number = strings.ReplaceAll(number, "B", "")
 
 	intNum, err := strconv.Atoi(number)
 	if err != nil {

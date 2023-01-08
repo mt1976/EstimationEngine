@@ -58,12 +58,12 @@ func ReplaceWildcard(orig string, replaceThis string, withThis string) string {
 * number of times
 *
  */
-func leftPad(s string, padStr string, pLen int) string {
-	return strings.Repeat(padStr, pLen) + s
-}
-func rightPad(s string, padStr string, pLen int) string {
-	return s + strings.Repeat(padStr, pLen)
-}
+// func leftPad(s string, padStr string, pLen int) string {
+// 	return strings.Repeat(padStr, pLen) + s
+// }
+// func rightPad(s string, padStr string, pLen int) string {
+// 	return s + strings.Repeat(padStr, pLen)
+// }
 
 /* the Pad2Len functions are generally assumed to be padded with short sequences of strings
 * in many cases with a single character sequence

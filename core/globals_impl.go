@@ -2,7 +2,6 @@ package core
 
 import (
 	"database/sql"
-	"io/ioutil"
 	"os"
 	"strings"
 	"time"
@@ -137,7 +136,7 @@ func writeDataFile(fileName string, path string, content string) (bool, error) {
 	//log.Println("Write         :", filePath)
 
 	message := []byte(content)
-	err := ioutil.WriteFile(filePath, message, 0644)
+	err := os.WriteFile(filePath, message, 0644)
 	if err != nil {
 		logs.Fatal("Write Error", err)
 		return false, err
@@ -145,26 +144,27 @@ func writeDataFile(fileName string, path string, content string) (bool, error) {
 	return false, nil
 }
 
-func deleteDataFile(fileName string, path string) int {
-	pwd, _ := os.Getwd()
-	filePath := pwd + "/" + fileName
-	if len(path) != 0 {
-		filePath = pwd + path + "/" + fileName
-	}
-	//log.Println("Delete        :", filePath)
+// deleteDataFile deletes a file - For Future Use
+// func deleteDataFile(fileName string, path string) int {
+// 	pwd, _ := os.Getwd()
+// 	filePath := pwd + "/" + fileName
+// 	if len(path) != 0 {
+// 		filePath = pwd + path + "/" + fileName
+// 	}
+// 	//log.Println("Delete        :", filePath)
 
-	// delete file
+// 	// delete file
 
-	if fileExists(filePath) {
-		var err = os.Remove(filePath)
-		if err != nil {
-			logs.Fatal("File Error", err)
-			return -1
-		}
-	}
-	logs.Information("File Deleted", fileName+" - "+path)
-	return 1
-}
+// 	if fileExists(filePath) {
+// 		var err = os.Remove(filePath)
+// 		if err != nil {
+// 			logs.Fatal("File Error", err)
+// 			return -1
+// 		}
+// 	}
+// 	logs.Information("File Deleted", fileName+" - "+path)
+// 	return 1
+// }
 
 func copyDataFile(fileName string, fromPath string, toPath string) bool {
 
@@ -194,7 +194,7 @@ func GetDataList(basePath string) (int, []string, error) {
 	//	log.Println(basePath, kind, direction, requestPath)
 	pwd, _ := os.Getwd()
 	//logs.Accessing(pwd + basePath)
-	files, err := ioutil.ReadDir(pwd + basePath)
+	files, err := os.ReadDir(pwd + basePath)
 	if err != nil {
 		logs.Fatal("Directory Error", err)
 	}
