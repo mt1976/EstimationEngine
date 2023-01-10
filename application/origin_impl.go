@@ -97,9 +97,9 @@ func Origin_HandlerStore(w http.ResponseWriter, r *http.Request) {
 }
 
 func sendStateChangeEmail(who string, rec dm.Origin, lkOriginState dm.OriginState) {
-	MSG_TEXT := dao.Translate("Notification", "%s state has been updated")
-	MSG_TEXT = fmt.Sprintf(MSG_TEXT, rec.FullName)
-	MSG_TXT := dao.Translate("Notification", "Origin %s (%s) state has been changed to %s (%s)")
-	MSG_TXT = fmt.Sprintf(MSG_TXT, rec.FullName, rec.Code, lkOriginState.Name, rec.StateID)
-	core.SendEmail(who, "", MSG_TXT, MSG_TXT)
+	MSG_SUBJECT := dao.Translate("Notification", "%s state has been updated")
+	MSG_SUBJECT = fmt.Sprintf(MSG_SUBJECT, rec.FullName)
+	MSG_BODY := dao.Translate("Notification", "Origin %s (%s) state has been changed to %s (%s)")
+	MSG_BODY = fmt.Sprintf(MSG_BODY, rec.FullName, rec.Code, lkOriginState.Name, rec.StateID)
+	dao.SendMailToResource(who, MSG_SUBJECT, MSG_BODY)
 }

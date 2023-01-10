@@ -18,7 +18,7 @@ func Log_uptime() {
 
 func Initialise() {
 	//logs.Message("Initialisation", "Vroom")
-	logs.Information("Initialisation", "Vroom "+Bike)
+	//logs.Information("Initialisation", "Vroom "+Bike)
 
 	SessionToken = ""
 	UUID = "authorAdjust"
@@ -69,5 +69,5 @@ func Initialise() {
 
 	Emailer = Email_init()
 
-	logs.Information("Initialisation", "Vroooom Vrooooom! "+Bike+Bike)
+	//logs.Information("Initialisation", "Vroooom Vrooooom! "+Bike+Bike)
 }

@@ -68,13 +68,13 @@ func StatusChangeMessage(action string, val string, rec dm.EstimationSession, us
 	}
 
 	// Send a notification to the Project Manager
-	_, pm, _ := Resource_GetByCode(thisPM)
-	core.SendEmail(pm.Email, pm.Name, MSG_TXT, MSG_BODY)
-
+	//_, pm, _ := Resource_GetByCode(thisPM)
+	//core.SendEmail(pm.Email, pm.Name, MSG_TXT, MSG_BODY)
+	SendMailToResource(thisPM, MSG_TXT, MSG_BODY)
 	// Send a notification to the Account Manager
-	_, am, _ := Resource_GetByCode(origin.AccountManager)
-	core.SendEmail(am.Email, am.Name, MSG_TXT, MSG_BODY)
-
+	//_, am, _ := Resource_GetByCode(origin.AccountManager)
+	//core.SendEmail(am.Email, am.Name, MSG_TXT, MSG_BODY)
+	SendMailToResource(origin.AccountManager, MSG_TXT, MSG_BODY)
 	return "", nil
 }
 
@@ -544,29 +544,34 @@ func emailRelatedResources(rec dm.EstimationSession) (string, error) {
 	_, origin, _ := Origin_GetByCode(project.OriginID)
 
 	// Get the email addresses
-	var pmEmail dm.Resource
+	var pmEmail string
 
 	if rec.ProjectManager == "" {
 		// Get the Project Manager from the Project
-		_, pmEmail, _ = Resource_GetByCode(project.ProjectManager)
+		pmEmail = project.ProjectManager
 	} else {
-		_, pmEmail, _ = Resource_GetByCode(rec.ProjectManager)
+		pmEmail = rec.ProjectManager
 	}
-	_, pdEmail, _ := Resource_GetByCode(rec.ProductManager)
-	_, acEmail, _ := Resource_GetByCode(origin.AccountManager)
+	_, pmResource, _ := Resource_GetByID(pmEmail)
+
+	pdEmail := rec.ProductManager
+	acEmail := origin.AccountManager
 
 	MSG_SUBJECT := "%s Quote Expired - %s"
 	MSG_SUBJECT = Translate("QuoteExpiredSubject", MSG_SUBJECT)
-	MSG_SUBJECT = fmt.Sprintf(MSG_SUBJECT, project.OriginID, rec.Name, pmEmail.Name, pmEmail.Email)
+	MSG_SUBJECT = fmt.Sprintf(MSG_SUBJECT, project.OriginID, rec.Name, pmResource.Name, pmResource.Email)
 
 	MSG_BODY := "Quote for %s %s has expired. Please contact the Project Manager %s (%s) for further information."
 	MSG_SUBJECT = Translate("QuoteExpiredBody", MSG_BODY)
-	MSG_BODY = fmt.Sprintf(MSG_BODY, project.OriginID, rec.Name, pmEmail.Email)
+	MSG_BODY = fmt.Sprintf(MSG_BODY, project.OriginID, rec.Name, pmResource.Email)
 
 	// Send the email
-	core.SendEmail(pmEmail.Email, pmEmail.Name, MSG_SUBJECT, MSG_BODY)
-	core.SendEmail(pdEmail.Email, pdEmail.Name, MSG_SUBJECT, MSG_BODY)
-	core.SendEmail(acEmail.Email, acEmail.Name, MSG_SUBJECT, MSG_BODY)
+	// core.SendEmail(pmEmail.Email, pmEmail.Name, MSG_SUBJECT, MSG_BODY)
+	// core.SendEmail(pdEmail.Email, pdEmail.Name, MSG_SUBJECT, MSG_BODY)
+	// core.SendEmail(acEmail.Email, acEmail.Name, MSG_SUBJECT, MSG_BODY)
+	SendMailToResource(pmEmail, MSG_SUBJECT, MSG_BODY)
+	SendMailToResource(pdEmail, MSG_SUBJECT, MSG_BODY)
+	SendMailToResource(acEmail, MSG_SUBJECT, MSG_BODY)
 
 	return "", nil
 }

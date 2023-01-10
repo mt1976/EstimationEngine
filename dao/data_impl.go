@@ -18,7 +18,6 @@ import (
 	"strings"
 
 	core "github.com/mt1976/ebEstimates/core"
-	"github.com/mt1976/ebEstimates/logs"
 
 	dm "github.com/mt1976/ebEstimates/datamodel"
 )
@@ -30,10 +29,27 @@ func Data_Get(class string, field string) (string, error) {
 
 	tsql := Data_SQLbase
 	tsql = tsql + " " + core.DB_WHERE + " " + dm.Data_SQLSearchID + core.DB_EQ + "'" + id + "'"
-	logs.Information("tsql", tsql)
+	//logs.Information("tsql", tsql)
 	_, _, dataItem, err := data_Fetch(tsql)
-	logs.Information("dataItem", dataItem.Value)
+	//logs.Information("dataItem", dataItem.Value)
 	return dataItem.Value, err
+}
+
+// Data_Put() returns a single Data record
+func Data_Put(class string, field string, value string) (string, error) {
+	//logs.Information("Data_Put", class+"-"+field+"-"+value)
+	id := data_BuildID(class, field)
+	//logs.Information("Data_Put ID", id)
+	dataItem := dm.Data{}
+	dataItem.DataID = id
+	dataItem.Class = class
+	dataItem.Field = field
+	dataItem.Value = value
+	err2 := Data_StoreSystem(dataItem)
+	if err2 != nil {
+		return "error", err2
+	}
+	return "ok", err2
 }
 
 // Data_GetString() returns a single Data record

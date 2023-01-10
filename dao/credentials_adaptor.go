@@ -73,8 +73,15 @@ func Credentials_ObjectValidation_impl(iAction string, iId string, iRec dm.Crede
 			iRec.Expiry = getExpiryDate()
 			iRec.Issued = time.Now().Format(core.DATETIMEFORMATUSER)
 			host, _ := os.Hostname()
-			msg := fmt.Sprintf("You have been authorised to use %s on %s until %s", core.ApplicationName(), host, iRec.Expiry)
-			_ = Inbox_SendMail(iRec.Username, "Welcome Message", msg, host, host)
+			MSG_BODY := "You have been authorised to use %s until %s"
+			Translate("CredentialsMessage", MSG_BODY)
+			MSG_BODY = fmt.Sprintf(MSG_BODY, core.ApplicationName(), iRec.Expiry)
+			MSG_SUBJECT := "Welcome to %s"
+			Translate("CredentialsMessage", MSG_SUBJECT)
+			MSG_SUBJECT = fmt.Sprintf(MSG_SUBJECT, core.ApplicationName())
+			_ = Inbox_SendMail(iRec.Username, MSG_SUBJECT, MSG_BODY, host, host)
+			core.SendEmail(iRec.Username, iRec.Firstname, MSG_SUBJECT, MSG_BODY)
+
 		case "LOCK":
 			iRec.Expiry = ""
 			iRec.Issued = ""
@@ -85,6 +92,13 @@ func Credentials_ObjectValidation_impl(iAction string, iId string, iRec dm.Crede
 			iRec.Expiry = ""
 			iRec.Issued = ""
 			// Send an email telling the use to go bugger off???
+			MSG_SUBJECT := "Your request to access %s has not been approved"
+			MSG_BODY := MSG_SUBJECT + ". Please Contact the System Admin if you feel that this is not justified"
+			Translate("CredentialsMessage", MSG_SUBJECT)
+			Translate("CredentialsMessage", MSG_BODY)
+			MSG_SUBJECT = fmt.Sprintf(MSG_SUBJECT, core.ApplicationName())
+			MSG_BODY = fmt.Sprintf(MSG_BODY, core.ApplicationName())
+			core.SendEmail(iRec.Username, iRec.Firstname, MSG_SUBJECT, MSG_BODY)
 		default:
 			logs.Warning("Credentials_ObjectValidation_impl" + " - Invalid State")
 		}

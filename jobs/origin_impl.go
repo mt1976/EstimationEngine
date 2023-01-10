@@ -43,18 +43,18 @@ func Origin_Run_impl() (string, error) {
 	for _, o := range origins {
 		noOrigins++
 
-		// Get Acount Manager from Origin
-		_, am, err := dao.Resource_GetByCode(o.AccountManager)
-		if err != nil {
-			logs.Error("Origin Housekeeping", err)
-			return message, err
-		}
-		// Get Project Manager from Origin
-		_, pm, err := dao.Resource_GetByCode(o.ProjectManager)
-		if err != nil {
-			logs.Error("Origin Housekeeping", err)
-			return message, err
-		}
+		// // Get Acount Manager from Origin
+		// _, am, err := dao.Resource_GetByCode(o.AccountManager)
+		// if err != nil {
+		// 	logs.Error("Origin Housekeeping", err)
+		// 	return message, err
+		// }
+		// // Get Project Manager from Origin
+		// _, pm, err := dao.Resource_GetByCode(o.ProjectManager)
+		// if err != nil {
+		// 	logs.Error("Origin Housekeeping", err)
+		// 	return message, err
+		// }
 
 		if o.EndDate == "" {
 			logs.Information("Origin Housekeeping", "Origin "+o.Code+" has no contract expiry date")
@@ -64,8 +64,10 @@ func Origin_Run_impl() (string, error) {
 			MSG_BODY = dao.Translate("OriginWarning", MSG_BODY)
 			MSG_TEXT = fmt.Sprintf(MSG_TEXT, o.Code, o.FullName)
 			MSG_BODY = fmt.Sprintf(MSG_BODY, o.Code, o.FullName)
-			core.SendEmail(am.Email, am.Name, MSG_TEXT, MSG_BODY)
-			core.SendEmail(pm.Email, pm.Name, MSG_TEXT, MSG_BODY)
+			SendMailToResource(o.AccountManager, MSG_TEXT, MSG_BODY)
+			SendMailToResource(o.ProjectManager, MSG_TEXT, MSG_BODY)
+			//core.SendEmail(am.Email, am.Name, MSG_TEXT, MSG_BODY)
+			//core.SendEmail(pm.Email, pm.Name, MSG_TEXT, MSG_BODY)
 			noWarnings++
 			continue
 		}
@@ -87,8 +89,10 @@ func Origin_Run_impl() (string, error) {
 				MSG_BODY = dao.Translate("OriginWarning", MSG_BODY)
 				MSG_TEXT = fmt.Sprintf(MSG_TEXT, o.Code, o.FullName, o.EndDate)
 				MSG_BODY = fmt.Sprintf(MSG_BODY, o.Code, o.FullName, o.EndDate)
-				core.SendEmail(am.Email, am.Name, MSG_TEXT, MSG_BODY)
-				core.SendEmail(pm.Email, pm.Name, MSG_TEXT, MSG_BODY)
+				SendMailToResource(o.AccountManager, MSG_TEXT, MSG_BODY)
+				SendMailToResource(o.ProjectManager, MSG_TEXT, MSG_BODY)
+				// core.SendEmail(am.Email, am.Name, MSG_TEXT, MSG_BODY)
+				// core.SendEmail(pm.Email, pm.Name, MSG_TEXT, MSG_BODY)
 
 			}
 			if contractExpiry.Before(time.Now()) {
@@ -102,8 +106,10 @@ func Origin_Run_impl() (string, error) {
 				MSG_BODY = dao.Translate("OriginWarning", MSG_BODY)
 				MSG_TEXT = fmt.Sprintf(MSG_TEXT, o.Code, o.FullName, o.EndDate)
 				MSG_BODY = fmt.Sprintf(MSG_BODY, o.Code, o.FullName, o.EndDate)
-				core.SendEmail(am.Email, am.Name, MSG_TEXT, MSG_BODY)
-				core.SendEmail(pm.Email, pm.Name, MSG_TEXT, MSG_BODY)
+				SendMailToResource(o.AccountManager, MSG_TEXT, MSG_BODY)
+				SendMailToResource(o.ProjectManager, MSG_TEXT, MSG_BODY)
+				// core.SendEmail(am.Email, am.Name, MSG_TEXT, MSG_BODY)
+				// core.SendEmail(pm.Email, pm.Name, MSG_TEXT, MSG_BODY)
 			}
 		}
 

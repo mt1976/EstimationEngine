@@ -352,7 +352,7 @@ func ReleaseIdentityVerbose() string {
 
 func GetCookieIdentity() string {
 	newidentity := EncodeString(ReleaseIdentity())
-	return strings.ReplaceAll(RemoveSpecialChars(newidentity), "=", "")
+	return strings.ReplaceAll(ReplaceSpecialChars(newidentity), "=", "")
 }
 
 func ReleaseID() string {
@@ -484,8 +484,9 @@ func AddActivity_ForUser(in string, what string, un string) string {
 	if what == "" {
 		return in
 	}
-
-	logs.Information("Activity", what+" "+un)
+	what = ReplaceSpecialChars(what)
+	what = strings.ReplaceAll(what, "'", "")
+	//logs.Information("Activity", what+" "+un)
 
 	tm := time.Now().Format("02/01/2006 15:04:05")
 	if in == "" {

@@ -36,6 +36,7 @@ func Start() {
 		Origin_Register(c)
 		EstimationSession_Register(c)
 		Project_Register(c)
+		Ssloader_Register(c)
 	}
 	//ExternalMessage_Register(c)
 	SessionHouseKeeping_Register(c)

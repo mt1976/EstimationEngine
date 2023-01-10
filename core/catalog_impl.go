@@ -20,7 +20,7 @@ func Catalog_Add(id string, path string, descr string, query string, src string)
 
 func Catalog_List() {
 	for _, k := range Catalog {
-		logs.Information("Catalog Item", k.ID+" - "+k.Path+" - "+k.Descr+" - "+k.Query+" - "+k.Source)
+		logs.Catalog(k.ID, k.Path, k.Query, k.Source)
 	}
 }
 

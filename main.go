@@ -20,9 +20,9 @@ import (
 )
 
 func main() {
-
+	logs.Clear()
 	logs.Break()
-	logs.Header("MISSION CONTROL")
+	logs.Header("Estimation Engine")
 	logs.Break()
 
 	logs.Information("Initialising...", "")
@@ -120,7 +120,7 @@ func main() {
 	logs.Header("Contacts")
 	logs.Information("Admin", core.GetApplicationProperty("admin"))
 	logs.Header("READY STEADY GO!!!")
-	logs.Information("Initialisation", "Vrooom, Vrooooom, Vroooooooo..."+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike)
+	//logs.Information("Initialisation", "Vrooom, Vrooooom, Vroooooooo..."+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike)
 	logs.Break()
 
 	MSG_BODY := "System Online <br><br> %s Started %s at %s on %s"
@@ -129,7 +129,8 @@ func main() {
 	core.SendEmail(core.GetApplicationProperty("admin"), "Admin", "System Online - "+core.ApplicationName(), MSG_BODY)
 
 	//jobs.EstimationSession_Run()
-
+	//jobs.Ssloader_Run()
+	logs.Break()
 	httpProtocol := core.ApplicationHTTPProtocol()
 	logs.URI(httpProtocol + "://localhost:" + core.ApplicationHTTPPort())
 	logs.Break()

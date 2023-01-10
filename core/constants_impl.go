@@ -18,6 +18,7 @@ const (
 	DATETIMEFORMATUSER      = DATEFORMATUSER + " 15:04:05"
 	TIMEHMS                 = "15:04:05"
 	DATEMSG                 = "2006-01-02 at 15:04:05"
+	DFSS                    = "02-Jan-06"
 )
 const (
 	APPCONFIG       = "application.cfg"

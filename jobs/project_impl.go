@@ -140,7 +140,7 @@ func sendProjectExpiryMail(p dm.Project, resID string) {
 	MSG_BODY = dao.Translate("Email", MSG_BODY)
 	MSG_BODY = fmt.Sprintf(MSG_BODY, p.OriginID, p.Name, p.EndDate)
 
-	SendEmail(resID, MSG_SUBJECT, MSG_BODY)
+	SendMailToResource(resID, MSG_SUBJECT, MSG_BODY)
 }
 
 func sendProjectExpiredMail(p dm.Project, resID string) {
@@ -152,5 +152,5 @@ func sendProjectExpiredMail(p dm.Project, resID string) {
 	MSG_BODY = dao.Translate("Email", MSG_BODY)
 	MSG_BODY = fmt.Sprintf(MSG_BODY, p.OriginID, p.Name, p.EndDate)
 
-	SendEmail(resID, MSG_SUBJECT, MSG_BODY)
+	SendMailToResource(resID, MSG_SUBJECT, MSG_BODY)
 }

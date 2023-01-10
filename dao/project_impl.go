@@ -30,3 +30,17 @@ func Project_ByOrigin_Active_GetList(id string) (int, []dm.Project, error) {
 
 	return count, projectList, nil
 }
+
+// Project_GetList() returns a list of all Project records
+func Project_GetList_ByCustomerAndName(originID string, name string) (int, dm.Project, error) {
+
+	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Project_SQLTable)
+	tsql = tsql + " WHERE " + dm.Project_OriginID_sql + "='" + originID + "'"
+	tsql = tsql + " AND " + dm.Project_Name_sql + "='" + name + "'"
+
+	count, projectList, _, _ := project_Fetch(tsql)
+	if count == 0 {
+		return count, dm.Project{}, nil
+	}
+	return count, projectList[0], nil
+}

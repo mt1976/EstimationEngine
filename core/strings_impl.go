@@ -32,12 +32,12 @@ func StrArrayToStringWithSep(inArray []string, inSep string) string {
 	return outString
 }
 
-func RemoveSpecialChars(in string) string {
+func ReplaceSpecialChars(in string) string {
 	reg, err := regexp.Compile("[^A-Za-z0-9]+")
 	if err != nil {
 		log.Fatal(err)
 	}
-	newStr := reg.ReplaceAllString(in, "-")
+	newStr := reg.ReplaceAllString(in, " ")
 	return newStr
 }
 

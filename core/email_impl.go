@@ -68,6 +68,6 @@ func SendEmail(to string, name string, subject string, body string) {
 			panic(err)
 		}
 	} else {
-		logs.Information("Email not sent to "+to+" - "+subject, "Email Not Active")
+		logs.Warning("Email not sent to " + to + " - " + subject)
 	}
 }

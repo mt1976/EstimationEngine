@@ -6,7 +6,6 @@ import (
 	"os"
 	"strings"
 
-	"github.com/TwiN/go-color"
 	colour "github.com/TwiN/go-color"
 	viper "github.com/spf13/viper"
 	"golang.org/x/term"
@@ -46,6 +45,7 @@ const (
 	log_Override      = "Override"
 	log_Expired       = "Expired"
 	log_Email         = "Email"
+	log_Catalog       = "Catalog"
 
 	ColorReset         = "\033[0m"
 	ColorRed           = "\033[31m"
@@ -75,6 +75,9 @@ const (
 	Character_Override = "🔧"
 	Character_Expired  = "🕰"
 	Character_Email    = "📧"
+	Character_Catalog  = "📚"
+	Character_Publish  = "📤"
+	Character_Schedule = "📅"
 )
 
 type Config struct {
@@ -87,6 +90,20 @@ var CFG Config
 func init() {
 	CFG, _ = getConfig()
 	//spew.Dump(CFG)
+}
+
+func Catalog(
+	inID string,
+	inPath string,
+	inQuery string,
+	inSource string,
+) {
+	msgTXT := "ID: " + DQuote(inID) + " Path: " + DQuote(inPath) + " Query: " + DQuote(inQuery) + " Source: " + DQuote(inSource)
+	msg_raw(log_Catalog, msgTXT, Character_Catalog, colour.White)
+}
+
+func DQuote(inString string) string {
+	return "\"" + inString + "\""
 }
 
 func Poke(w string, v string) {
@@ -140,8 +157,8 @@ func Default(s string, w string) {
 
 func Email(s string, w string) {
 	//msg_done(s)
-	MSG_TXT := "Sending Email to " + s + " with Subject " + w
-	msg_raw(log_Email, MSG_TXT, "", colour.Blue)
+	MSG_TXT := "Send Email to " + s
+	msg_raw(log_Email, MSG_TXT, w+" "+Character_Email, colour.Purple)
 }
 
 func Information(w string, v string) {
@@ -149,7 +166,7 @@ func Information(w string, v string) {
 	if len(v) == 0 {
 		msg_raw(log_Info, w, "", colour.Reset)
 	} else {
-		msg_raw(log_Info, w+" =", color.Bold+v, colour.Reset)
+		msg_raw(log_Info, w+" =", colour.Bold+v, colour.Reset)
 	}
 	//msg_raw(log_Info, w, v, colour.Reset)
 
@@ -162,7 +179,7 @@ func Processing(s string) {
 
 func Schedule(w string) {
 	//msg_info(w, v)
-	msg_raw(log_Schedule, w, "", colour.Cyan)
+	msg_raw(log_Schedule, w+" "+Character_Schedule, "", colour.White)
 
 }
 
@@ -291,9 +308,9 @@ func Panic(s string, e error) {
 }
 
 func Publish(w string, v string) {
-	op := v + " " + Character_MapTo + "  " + w + " " + Character_Tick
+	op := v + " " + Character_MapTo + "  " + w + " " + Character_Publish
 	//	msg_mux(v + " " + Character_MapTo + "  " + w)
-	msg_raw(log_MUX, op, "", colour.Bold+colour.White)
+	msg_raw(log_MUX, op, "", colour.White)
 }
 
 func msg_raw(pref string, what string, value string, clr string) {
@@ -317,7 +334,7 @@ func Break() {
 }
 
 func Header(s string) {
-	log.Println(colour.Green + color.Bold + s + colour.Reset)
+	log.Println(colour.Green + colour.Bold + s + colour.Reset)
 }
 
 func Clear() {
@@ -350,8 +367,16 @@ func getConfig() (config Config, err error) {
 	} else {
 		config.VerboseMode = false
 	}
-	fmt.Printf("VerboseMode : %v", config.VerboseMode)
 
+	if config.VerboseMode {
+		MSG_TEXT := "VerboseMode Active : %v"
+		MSG := fmt.Sprintf(MSG_TEXT, config.VerboseMode)
+		Break()
+		Warning(MSG)
+		Warning(MSG)
+		Warning(MSG)
+		Break()
+	}
 	return
 }
 

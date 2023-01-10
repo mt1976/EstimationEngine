@@ -79,6 +79,10 @@ func Schedule_HandlerDO_Impl(w http.ResponseWriter, r *http.Request) {
 		if thisJob.Type == SessionHouseKeeping_Job().Type {
 			go SessionHouseKeeping_Run()
 		}
+	case Ssloader_Job().Name:
+		if thisJob.Type == Ssloader_Job().Type {
+			go Ssloader_Run()
+		}
 	default:
 		//Do nothing
 	}
