@@ -131,8 +131,8 @@ func tsql_AND(tsql string, inField string, inValue string) string {
 func StubLists_Get(listName string) []dm.Lookup_Item {
 	listid := strings.ToLower(listName)
 	ctList := core.ApplicationStubLists[listid]
-	logs.Success("listName=" + listName)
-	logs.Success("List=" + ctList)
+	//logs.Success("listName=" + listName)
+	//logs.Success("List=" + ctList)
 	// Turn comma-separated string into a slice of strings
 	ctSlice := strings.Split(ctList, core.ListSeperator)
 	//fmt.Printf("ctSlice: %v\n", ctSlice)

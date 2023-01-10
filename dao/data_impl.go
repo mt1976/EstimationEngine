@@ -52,6 +52,32 @@ func Data_Put(class string, field string, value string) (string, error) {
 	return "ok", err2
 }
 
+func Data_GetSEQ(docType string) (int, string, error) {
+	if docType == "" {
+		return 0, "", nil
+	}
+	if docType == "SOW" {
+		docType = "RSC"
+	}
+	rtnVal, err := Data_GetInt("SEQ", docType)
+	if err != nil {
+		return 0, "", err
+	}
+	rtnVal++
+	return rtnVal, strconv.Itoa(rtnVal), nil
+}
+
+func Data_PutSEQ(docType string, seq int) error {
+	if docType == "SOW" {
+		docType = "RSC"
+	}
+	_, err := Data_Put("SEQ", docType, strconv.Itoa(seq))
+	if err != nil {
+		return err
+	}
+	return err
+}
+
 // Data_GetString() returns a single Data record
 func Data_GetString(class string, field string) (string, error) {
 	value, err := Data_Get(class, field)
