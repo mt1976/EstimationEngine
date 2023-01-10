@@ -14,6 +14,7 @@ package dao
 // ----------------------------------------------------------------
 
 import (
+	"errors"
 	"strconv"
 	"strings"
 
@@ -52,13 +53,11 @@ func Data_Put(class string, field string, value string) (string, error) {
 	return "ok", err2
 }
 
-func Data_GetSEQ(docType string) (int, string, error) {
+func data_GetSEQ(docType string) (int, string, error) {
 	if docType == "" {
 		return 0, "", nil
 	}
-	if docType == "SOW" {
-		docType = "RSC"
-	}
+
 	rtnVal, err := Data_GetInt("SEQ", docType)
 	if err != nil {
 		return 0, "", err
@@ -67,15 +66,34 @@ func Data_GetSEQ(docType string) (int, string, error) {
 	return rtnVal, strconv.Itoa(rtnVal), nil
 }
 
-func Data_PutSEQ(docType string, seq int) error {
-	if docType == "SOW" {
-		docType = "RSC"
+func data_PutSEQ(docType string, seq int) error {
+	if docType == "" || seq == 0 {
+		return errors.New("invalid parameters passed to data_PutSEQ")
 	}
+
 	_, err := Data_Put("SEQ", docType, strconv.Itoa(seq))
 	if err != nil {
 		return err
 	}
 	return err
+}
+
+func Data_NextSEQ(docType string) (int, string, error) {
+	if docType == "" {
+		return 0, "", nil
+	}
+	if docType == "SOW" {
+		docType = "RSC"
+	}
+	seq, seqStr, err := data_GetSEQ(docType)
+	if err != nil {
+		return 0, "", err
+	}
+	err = data_PutSEQ(docType, seq)
+	if err != nil {
+		return 0, "", err
+	}
+	return seq, docType + seqStr, nil
 }
 
 // Data_GetString() returns a single Data record

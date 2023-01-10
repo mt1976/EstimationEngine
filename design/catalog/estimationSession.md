@@ -75,7 +75,7 @@ SQL Table Key | **estimationSessionID**
 |**Name**|String|true|true|false|true|||||Y|name||true|false|false|text||
 |**AdoID**|String|false|true|false|false|||||Y|adoID||false|false|false|text||
 |**FreshdeskID**|String|false|true|false|false|||||Y|freshdeskID||false|false|false|text||
-|**TrackerID**|String|false|true|false|false|||||Y|trackerID||false|false|false|text||
+|**TrackerID**|String|false|true|false|true|||||Y|trackerID||false|true|false|text||
 |**EstRef**|String|false|true|false|false|||||Y|estRef||false|false|false|text||
 |**ExtRef**|String|false|true|false|false|||||Y|extRef||false|false|false|text||
 |**SYSActivity**|String|false|true|false|false|||||NH|_activity||false|false|true|text||
@@ -133,7 +133,7 @@ SQL Table Key | **estimationSessionID**
 |   |   |
 |---|---|
 Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **07/01/2023** at **23:01:29**
+Date & Time		     | **10/01/2023** at **14:57:51**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ### Footnotes

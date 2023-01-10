@@ -16,7 +16,7 @@ import (
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
 	// Template Generator   : Dysprosium [r4-21.12.31]
-	// Date & Time		    : 07/01/2023 at 23:01:29
+	// Date & Time		    : 10/01/2023 at 14:57:51
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in estimationsession_impl.go
@@ -75,6 +75,34 @@ import (
 	// END   EstimationSession_EstimationStateID
 	// END   EstimationSession_EstimationStateID
 	// END   EstimationSession_EstimationStateID
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN EstimationSession_TrackerID
+	// BEGIN EstimationSession_TrackerID
+	// BEGIN EstimationSession_TrackerID
+	// ----------------------------------------------------------------
+	// EstimationSession_TrackerID_OnStore_impl provides the implementation for the callout
+	func EstimationSession_TrackerID_OnStore_impl (fieldval string,rec dm.EstimationSession,usr string) (string,error)  {
+		logs.Callout("EstimationSession", dm.EstimationSession_TrackerID_scrn, PUT, rec.EstimationSessionID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// EstimationSession_TrackerID_OnFetch_impl provides the implementation for the callout	
+	func EstimationSession_TrackerID_OnFetch_impl (rec dm.EstimationSession)(string) {
+		logs.Callout("EstimationSession", dm.EstimationSession_TrackerID_scrn, GET, rec.EstimationSessionID)
+		return rec.TrackerID
+	}
+	// ----------------------------------------------------------------
+	// EstimationSession_TrackerID_impl provides validation/actions for TrackerID
+	func EstimationSession_TrackerID_impl (iAction string, iId string, iValue string, iRec dm.EstimationSession, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("EstimationSession", dm.EstimationSession_TrackerID_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+	// ----------------------------------------------------------------
+	// END   EstimationSession_TrackerID
+	// END   EstimationSession_TrackerID
+	// END   EstimationSession_TrackerID
 	// ----------------------------------------------------------------
 
 	// ----------------------------------------------------------------
