@@ -1,7 +1,6 @@
 # **Origin** - Object Definition
----
 ##  Information
-|   |   |
+| Information  | Value  |
 |---|---|
 |Object         |**Origin** (origin) |
 |Endpoint 	    |**/Origin...** [^1]|
@@ -34,7 +33,7 @@ Friendly Name|**Origin**|
 
 
 ##  Data Source 
-|   |   |
+| Information  | Value  |
 |---|---|
 SQL Table Name       | **originStore**
 SQL Table Key | **originID**
@@ -46,10 +45,10 @@ SQL Table Key | **originID**
 | -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
 |**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|text||
 |**OriginID**|String|false|true|false|true|||||H|originID||true|false|false|text||
-|**StateID**|String|false|true|false|false|OL|OriginState|OriginState_OriginStateID|OriginState_Name|Y|stateID||false|true|false|text||
-|**DocTypeID**|String|false|true|false|false|OL|DocType|DocType_DocTypeID||Y|docTypeID||false|false|false|text||
-|**Code**|String|false|true|false|true|||||Y|code||true|false|false|text||
-|**FullName**|String|false|true|false|true|||||Y|fullName||false|false|false|text||
+|**StateID**|String|false|true|false|false|OL∀|OriginState|OriginState_OriginStateID|OriginState_Name|Y|stateID||false|true|false|text||
+|**DocTypeID**|String|false|true|false|false|OL∀|DocType|DocType_DocTypeID||Y|docTypeID||false|false|false|text||
+|**Code**|String|false|true|false|true|||||H|code||true|true|false|text||
+|**FullName**|String|false|true|false|true|||||H|fullName||false|true|false|text||
 |**Rate**|String|false|true|false|true|||||Y|rate||false|true|false|text||
 |**Notes**|String|false|true|false|true|||||Y|notes||false|false|false|textarea||
 |**StartDate**|String|false|true|false|true|||||Y|startDate||false|false|false|date|yyyy-mm-dd|
@@ -67,8 +66,8 @@ SQL Table Key | **originID**
 |**Currency**|String|true|true|false|false|LL|ccy|||Y|currency||false|false|false|text||
 |**SYSDbVersion**|String|false|true|false|false|||||NH|_dbVersion||false|false|true|text||
 |**Comments**|String|false|true|false|false|||||Y|comments||false|false|false|text||
-|**ProjectManager**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|projectManager||false|false|false|text||
-|**AccountManager**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|accountManager||false|false|false|text||
+|**ProjectManager**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|projectManager||false|false|false|text||
+|**AccountManager**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|accountManager||false|false|false|text||
 |**NoActiveProjects**|String|false|false|true|false|||||N|||false|true|false|text||
 
 
@@ -89,12 +88,13 @@ SQL Table Key | **originID**
 
 
 ## Audit Information
-|   |   |
+| Information  | Value |
 |---|---|
-Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **07/01/2023** at **23:01:29**
+Template Generator Version   | **Einsteinium [r5-23.01.23]**
+Date & Time		     | **24/01/2023** at **13:18:10**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
+---
 ### Footnotes
 [^1]: **Endpoint**
     * The full list of endpoints can be found in the [Actions](#action-id) section
@@ -102,6 +102,7 @@ Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
     * LL = A List Lookup. Define list in lits.cfg
     * OL = An Object Lookup. Get a list of values from an Object
     * FL = Fetches 1 value from an object based on the content of the field. 
+    * ∀ = This lookup has a filter that can be defined in the Data Object
 [^3]: **Inputtable**   
     * H = Hidden Field
     * N = No Input Field

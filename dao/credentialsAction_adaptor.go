@@ -20,7 +20,9 @@ import (
 
 // The following functions should be created in credentialsaction_impl.go
 
-func CredentialsAction_GetList_impl() (int, []dm.CredentialsAction, error) { return 0, nil, nil }
+func CredentialsAction_GetList_impl(filter string) (int, []dm.CredentialsAction, error) {
+	return 0, nil, nil
+}
 func CredentialsAction_GetByID_impl(id string) (int, dm.CredentialsAction, error) {
 	return 0, dm.CredentialsAction{}, nil
 }

@@ -6,7 +6,7 @@
   <div class="card">
     <div class="card-header" style="padding-bottom:0;">
       <div class="row d-flex align-items-center">
-        <div class="col d-flex align-items-center"><h3><i class="fas fa-tasks me-2"></i>{{.Title}}</h3></div>
+        <div class="col d-flex align-items-center"><h3><i class="fas fa-tasks me-2"></i>{{.Name}}</h3></div>
         <div class="col d-flex justify-content-end">
           <div class="btn-group" style="margin-bottom:1rem;">
             <button type="submit" value="" class="btn btn-warning" method="GET" formaction="/FeatureStore/?FeatureID={{.FeatureID}}" onclick="/FeatureStore/?FeatureID={{.FeatureID}}" title="Save Feature"><i class="fas fa-save me-2"></i>Save</button>        
@@ -102,7 +102,7 @@
         
             <div class="form-outline">
               
-              <textarea class="form-control {{.Description_props.MsgType}}" id="Description" name="Description" aria-describedby="DescriptionHelp" placeholder=""   value="{{.Description}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Description}}</textarea>
+              <textarea class="form-control {{.Description_props.MsgType}}" id="Description" name="Description" aria-describedby="DescriptionHelp" placeholder=""   value="{{.Description}}"  data-mdb-input-mask="" rows="3" maxlength="255">{{.Description}}</textarea>
               
               <label class="form-label" for="Description" >Description</label>
               <div class="{{.Description_props.MsgFeedBackType}}">{{.Description_props.MsgMessage}}</div>
@@ -204,8 +204,11 @@
 
 
 <h4 class="text-muted">Estimates</H4>
-<H5>Engineer Estimate</h5>
-            <div class="row mb-3"  ><div class="col">
+            <div class="row mb-3"  >
+            
+
+            
+            <div class="col">
             
             <div class="form-outline">
               
@@ -254,10 +257,26 @@
         
         </div>
 
+<br>
 
-<h5>Default Estimate</h5>
+                     <div class="row text-center h5 text-muted mb-3">
+ <div class="col"></div>
+ <div class="col">Development</div>
+ <div class="col">Requirements</div>
+ <div class="col">Analyst/Testing</div>
+ <div class="col">Documentation</div>
+ <div class="col">UAT Support</div>
+ <div class="col">Training</div>
+ <div class="col">Marketing</div>
+ <div class="col">Management</div>
+ <div class="col"></div>
+ </div>   
 
-        <div class="row mb-3"  ><div class="col">
+        <div class="row mb-3"  >
+        
+        <div class="col h5 text-muted text-center align-middle">Default</div>
+        
+        <div class="col">
         
             <div class="form-outline">
               
@@ -345,7 +364,7 @@
         
         </div>
 
-                <div class="col">
+        <div class="col">
         
             <div class="form-outline">
               
@@ -356,10 +375,16 @@
             </div>
         
         </div>
+                <div class="col h5 text-muted text-center align-middle">Default</div>
+
         
  </div>
-  <h5>Refined Estimate</h5>     
-        <div class="row mb-3"  ><div class="col">
+
+        <div class="row mb-3"  >
+        
+                <div class="col h5 text-muted text-center align-middle">Refined</div>
+
+        <div class="col">
         
             <div class="form-outline">
               
@@ -456,8 +481,11 @@
             </div>
         
         </div>
+                <div class="col h5 text-muted text-center align-middle">Refined</div>
+
         
 </div>
+<br>
        <h4 class="text-muted">Comments</h4>
         <div class="row mb-3"  >
           <div class="col">

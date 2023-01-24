@@ -8,8 +8,8 @@ package datamodel
 // Endpoint 	        : Resource (ResourceID)
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
-// Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 07/01/2023 at 23:01:30
+// Template Generator   : Einsteinium [r5-23.01.23]
+// Date & Time		    : 24/01/2023 at 13:18:11
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -171,6 +171,12 @@ type Resource_PageList struct {
 	ItemsOnPage 	 int
 	ItemList  		 []Resource
 	Context	 appContext
+	BlockEdit		 bool
+	BlockSave 		 bool
+	BlockCreate		 bool
+	BlockDelete		 bool
+	BlockValidate	 bool
+	BlockView		 bool
 }
 
 //resource_Page provides the information for the template for an individual Resource
@@ -181,7 +187,7 @@ type Resource_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -226,7 +232,13 @@ type Resource_Page struct {
 	Comments         string
 	Comments_props     FieldProperties
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-	Context	 appContext
+	Context	 		 appContext
+	BlockEdit		 bool
+	BlockSave 		 bool
+	BlockCreate		 bool
+	BlockDelete		 bool
+	BlockValidate	 bool
+	BlockView		 bool
 }

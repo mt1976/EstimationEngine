@@ -1,7 +1,6 @@
 # **Profile** - Object Definition
----
 ##  Information
-|   |   |
+| Information  | Value  |
 |---|---|
 |Object         |**Profile** (profile) |
 |Endpoint 	    |**/Profile...** [^1]|
@@ -34,7 +33,7 @@ Friendly Name|**Profile**|
 
 
 ##  Data Source 
-|   |   |
+| Information  | Value  |
 |---|---|
 SQL Table Name       | **profileStore**
 SQL Table Key | **profileID**
@@ -95,12 +94,13 @@ SQL Table Key | **profileID**
 
 
 ## Audit Information
-|   |   |
+| Information  | Value |
 |---|---|
-Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **07/01/2023** at **23:01:30**
+Template Generator Version   | **Einsteinium [r5-23.01.23]**
+Date & Time		     | **24/01/2023** at **13:18:10**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
+---
 ### Footnotes
 [^1]: **Endpoint**
     * The full list of endpoints can be found in the [Actions](#action-id) section
@@ -108,6 +108,7 @@ Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
     * LL = A List Lookup. Define list in lits.cfg
     * OL = An Object Lookup. Get a list of values from an Object
     * FL = Fetches 1 value from an object based on the content of the field. 
+    * ∀ = This lookup has a filter that can be defined in the Data Object
 [^3]: **Inputtable**   
     * H = Hidden Field
     * N = No Input Field

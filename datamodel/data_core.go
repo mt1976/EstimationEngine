@@ -8,8 +8,8 @@ package datamodel
 // Endpoint 	        : Data (DataID)
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
-// Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 07/01/2023 at 23:01:28
+// Template Generator   : Einsteinium [r5-23.01.23]
+// Date & Time		    : 24/01/2023 at 14:03:00
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -47,7 +47,10 @@ SYSDeletedHost       string
 SYSDeletedHost_props FieldProperties
 SYSDbVersion       string
 SYSDbVersion_props FieldProperties
+Category       string
+Category_props FieldProperties
  // Any lookups will be added below
+
 
 
 
@@ -111,6 +114,7 @@ const (
 	Data_SYSDeletedBy_sql   = "_deletedBy" // SYSDeletedBy is a String
 	Data_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
 	Data_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
+	Data_Category_sql   = "category" // Category is a String
 
 	/// Definitions End
 	///
@@ -131,6 +135,7 @@ const (
 	Data_SYSDeletedBy_scrn   = "SYSDeletedBy" // SYSDeletedBy is a String
 	Data_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
 	Data_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
+	Data_Category_scrn   = "Category" // Category is a String
 
 	/// Definitions End
 	///
@@ -146,6 +151,12 @@ type Data_PageList struct {
 	ItemsOnPage 	 int
 	ItemList  		 []Data
 	Context	 appContext
+	BlockEdit		 bool
+	BlockSave 		 bool
+	BlockCreate		 bool
+	BlockDelete		 bool
+	BlockValidate	 bool
+	BlockView		 bool
 }
 
 //data_Page provides the information for the template for an individual Data
@@ -156,7 +167,7 @@ type Data_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -188,8 +199,16 @@ type Data_Page struct {
 	SYSDeletedHost_props     FieldProperties
 	SYSDbVersion         string
 	SYSDbVersion_props     FieldProperties
+	Category         string
+	Category_props     FieldProperties
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-	Context	 appContext
+	Context	 		 appContext
+	BlockEdit		 bool
+	BlockSave 		 bool
+	BlockCreate		 bool
+	BlockDelete		 bool
+	BlockValidate	 bool
+	BlockView		 bool
 }

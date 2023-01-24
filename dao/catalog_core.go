@@ -7,8 +7,8 @@ package dao
 // Endpoint 	        : Catalog (ID)
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
-// Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 07/01/2023 at 23:01:28
+// Template Generator   : Einsteinium [r5-23.01.23]
+// Date & Time		    : 24/01/2023 at 13:18:07
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,18 @@ func init(){
 // Catalog_GetList() returns a list of all Catalog records
 func Catalog_GetList() (int, []dm.Catalog, error) {
 	
+	count, catalogList, err := Catalog_GetListFiltered("")
+	
+	return count, catalogList, err
+}
+
+// Catalog_GetListFiltered() returns a filtered list of all Catalog records
+func Catalog_GetListFiltered(filter string) (int, []dm.Catalog, error) {
+	
 	tsql := Catalog_SQLbase
+	if filter != "" {
+		tsql = tsql + " " + core.DB_WHERE + " " + filter
+	}
 	count, catalogList, _, _ := catalog_Fetch(tsql)
 	
 	return count, catalogList, nil
@@ -51,10 +62,10 @@ func Catalog_GetByID(id string) (int, dm.Catalog, error) {
 	_, _, catalogItem, _ := catalog_Fetch(tsql)
 
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, catalogItem, nil
 }
@@ -116,10 +127,10 @@ func Catalog_StoreSystem(r dm.Catalog) error {
 func Catalog_Validate(r dm.Catalog) (dm.Catalog, error) {
 	var err error
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -184,7 +195,7 @@ func catalog_Fetch(tsql string) (int, []dm.Catalog, dm.Catalog, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.ID  = get_String(rec, dm.Catalog_ID_sql, "")
 	   recItem.Endpoint  = get_String(rec, dm.Catalog_Endpoint_sql, "")
@@ -200,7 +211,7 @@ func catalog_Fetch(tsql string) (int, []dm.Catalog, dm.Catalog, error) {
 	
 	
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -230,10 +241,10 @@ func Catalog_New() (int, []dm.Catalog, dm.Catalog, error) {
 	
 
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

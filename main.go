@@ -17,6 +17,7 @@ import (
 	"github.com/mt1976/ebEstimates/dao"
 	"github.com/mt1976/ebEstimates/jobs"
 	logs "github.com/mt1976/ebEstimates/logs"
+	upgrader "github.com/mt1976/ebEstimates/upgrade"
 )
 
 func main() {
@@ -30,6 +31,14 @@ func main() {
 	core.Initialise()
 
 	logs.Success("Initialised")
+	logs.Break()
+	logs.Header("Database Upgrade")
+	logs.Break()
+	message, e := upgrader.Upgrade()
+	if e != nil {
+		logs.Error("Upgrade", e)
+	}
+	logs.Success(message)
 	logs.Break()
 	logs.Header("Scheduling Jobs")
 	logs.Break()
@@ -101,6 +110,18 @@ func main() {
 
 	application.Data_Publish(*mux)
 
+	application.Index_Publish(*mux)
+
+	logs.Break()
+	logs.Header("Rebuild Index")
+	logs.Break()
+	e2 := dao.Indexer_Rebuild()
+	if e2 != nil {
+		logs.Error("Indexer", e2)
+	}
+	logs.Success("Index Rebuilt")
+	//logs.Information("Indexer", "")
+	//spew.Dump(t)
 	// End of Endpoints
 	logs.Break()
 	logs.Header("Publish API")
@@ -118,10 +139,11 @@ func main() {
 	Application_Info()
 	logs.Break()
 	logs.Header("Contacts")
+	logs.Break()
 	logs.Information("Admin", core.GetApplicationProperty("admin"))
+	logs.Break()
 	logs.Header("READY STEADY GO!!!")
 	//logs.Information("Initialisation", "Vrooom, Vrooooom, Vroooooooo..."+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike)
-	logs.Break()
 
 	MSG_BODY := "System Online <br><br> %s Started %s at %s on %s"
 	MSG_BODY = dao.Translate("Email", MSG_BODY)
@@ -130,10 +152,9 @@ func main() {
 
 	//jobs.EstimationSession_Run()
 	//jobs.Ssloader_Run()
-	logs.Break()
+
 	httpProtocol := core.ApplicationHTTPProtocol()
 	logs.URI(httpProtocol + "://localhost:" + core.ApplicationHTTPPort())
-	logs.Break()
 
 	httpPort := ":" + core.ApplicationHTTPPort()
 
@@ -160,8 +181,6 @@ func main() {
 		log.Fatal(http.ListenAndServeTLS(httpPort, certCrt, certKey, core.SessionManager.LoadAndSave(mux)))
 	}
 	logs.Break()
-	core.Log_uptime()
-	core.Log_uptime()
 
 }
 

@@ -1,0 +1,291 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/IndexEdit/?IndexID={{.IndexID}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header align-items-center" >
+            <div class="row align-items-center">
+                <div class="col h3 align-items-center">
+                    <i class="fas fa-search me-2" title="IndexID = {{.IndexID}}"></i><span class="me-3">{{.Title}}</span>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Index {{.IndexID}}"><i class="fas fa-print me-2"></i>Print</button>
+                        <button type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSId" aria-describedby="SYSIdHelp" placeholder="0" disabled value="{{.SYSId}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="SYSId">SYSId</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="IndexID" aria-describedby="IndexIDHelp" placeholder="" disabled value="{{.IndexID}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="IndexID"><i class="fas fa-key me-2"></i>IndexID</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="KeyClass" aria-describedby="KeyClassHelp" placeholder="" disabled value="{{.KeyClass}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="KeyClass">KeyClass</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="KeyName" aria-describedby="KeyNameHelp" placeholder="" disabled value="{{.KeyName}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="KeyName">KeyName</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="KeyID" aria-describedby="KeyIDHelp" placeholder="" disabled value="{{.KeyID}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="KeyID">KeyID</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="Link" aria-describedby="LinkHelp" placeholder="" disabled value="{{.Link}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="Link">Link</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="LinkView" aria-describedby="LinkViewHelp" placeholder="" disabled value="{{.LinkView}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="LinkView">LinkView</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="LinkEdit" aria-describedby="LinkEditHelp" placeholder="" disabled value="{{.LinkEdit}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="LinkEdit">LinkEdit</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" disabled value="{{.SYSCreated}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="SYSCreated">SYSCreated</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" disabled value="{{.SYSCreatedBy}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="SYSCreatedBy">SYSCreatedBy</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" disabled value="{{.SYSCreatedHost}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="SYSCreatedHost">SYSCreatedHost</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" disabled value="{{.SYSUpdated}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="SYSUpdated">SYSUpdated</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" disabled value="{{.SYSUpdatedBy}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="SYSUpdatedBy">SYSUpdatedBy</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" disabled value="{{.SYSUpdatedHost}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="SYSUpdatedHost">SYSUpdatedHost</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSDeleted" aria-describedby="SYSDeletedHelp" placeholder="" disabled value="{{.SYSDeleted}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="SYSDeleted">SYSDeleted</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSDeletedBy" aria-describedby="SYSDeletedByHelp" placeholder="" disabled value="{{.SYSDeletedBy}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="SYSDeletedBy">SYSDeletedBy</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSDeletedHost" aria-describedby="SYSDeletedHostHelp" placeholder="" disabled value="{{.SYSDeletedHost}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="SYSDeletedHost">SYSDeletedHost</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3" hidden hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="SYSDbVersion" aria-describedby="SYSDbVersionHelp" placeholder="" disabled value="{{.SYSDbVersion}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="SYSDbVersion">SYSDbVersion</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="KeyValue" aria-describedby="KeyValueHelp" placeholder="" disabled value="{{.KeyValue}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="KeyValue">KeyValue</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        {{template "audit" .}}
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

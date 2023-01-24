@@ -52,6 +52,8 @@ func Session_HandlerValidateLogin(w http.ResponseWriter, r *http.Request) {
 		logs.Result("Redirecting to: /", "/home")
 		//fmt.Printf("core.SessionManager.Get(r.Context(), core.SessionUserName): %v\n", core.SessionManager.Get(r.Context(), core.SessionUserName))
 		//spew.Dump(r.Context())
+		// Store Last Login Details
+		dao.Data_Put("Credentials", uName, "LastLogin", time.Now().Format(core.DATEMSG))
 		http.Redirect(w, r, "/home", http.StatusFound)
 
 	} else {

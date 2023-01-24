@@ -61,3 +61,34 @@ func Feature_ObjectValidation_impl(iAction string, iId string, iRec dm.Feature) 
 	}
 	return iRec, "", nil
 }
+
+// ----------------------------------------------------------------
+// BEGIN Feature_FeatureID
+// BEGIN Feature_FeatureID
+// BEGIN Feature_FeatureID
+// ----------------------------------------------------------------
+// Feature_FeatureID_OnStore_impl provides the implementation for the callout
+func Feature_FeatureID_OnStore_impl(fieldval string, rec dm.Feature, usr string) (string, error) {
+	logs.Callout("Feature", dm.Feature_FeatureID_scrn, PUT, rec.FeatureID)
+	return fieldval, nil
+}
+
+// ----------------------------------------------------------------
+// Feature_FeatureID_OnFetch_impl provides the implementation for the callout
+func Feature_FeatureID_OnFetch_impl(rec dm.Feature) string {
+	logs.Callout("Feature", dm.Feature_FeatureID_scrn, GET, rec.FeatureID)
+	return rec.FeatureID
+}
+
+// ----------------------------------------------------------------
+// Feature_FeatureID_impl provides validation/actions for FeatureID
+func Feature_FeatureID_impl(iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("Feature", dm.Feature_FeatureID_scrn, VAL+"-"+iAction, iId)
+	return iValue, fP
+}
+
+// ----------------------------------------------------------------
+// END   Feature_FeatureID
+// END   Feature_FeatureID
+// END   Feature_FeatureID
+// ----------------------------------------------------------------

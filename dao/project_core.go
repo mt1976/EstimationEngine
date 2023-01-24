@@ -7,8 +7,8 @@ package dao
 // Endpoint 	        : Project (ProjectID)
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
-// Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 07/01/2023 at 23:01:30
+// Template Generator   : Einsteinium [r5-23.01.23]
+// Date & Time		    : 24/01/2023 at 13:18:10
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,18 @@ func init(){
 // Project_GetList() returns a list of all Project records
 func Project_GetList() (int, []dm.Project, error) {
 	
+	count, projectList, err := Project_GetListFiltered("")
+	
+	return count, projectList, err
+}
+
+// Project_GetListFiltered() returns a filtered list of all Project records
+func Project_GetListFiltered(filter string) (int, []dm.Project, error) {
+	
 	tsql := Project_SQLbase
+	if filter != "" {
+		tsql = tsql + " " + core.DB_WHERE + " " + filter
+	}
 	count, projectList, _, _ := project_Fetch(tsql)
 	
 	return count, projectList, nil
@@ -51,6 +62,24 @@ func Project_GetLookup() []dm.Lookup_Item {
 	return returnList
 }
 
+// Project_GetFilteredLookup() returns a lookup list of all Project items in lookup format
+func Project_GetFilteredLookup(requestObject string,requestField string) []dm.Lookup_Item {
+	var returnList []dm.Lookup_Item
+	reqClass := "Project"
+	reqField := requestObject+"-"+requestField
+	reqCategory := "Filter"
+	filter,_ := Data_GetString(reqClass, reqField, reqCategory)
+	if filter == "" {
+		logs.Warning("Project_GetFilteredLookup() - No filter found for " + reqClass + " " + reqField)
+	} 
+	count, projectList, _ := Project_GetListFiltered(filter)
+	for i := 0; i < count; i++ {
+		returnList = append(returnList, dm.Lookup_Item{ID: projectList[i].ProjectID, Name: projectList[i].Name})
+	}
+	return returnList
+}
+
+
 
 // Project_GetByID() returns a single Project record
 func Project_GetByID(id string) (int, dm.Project, error) {
@@ -61,11 +90,13 @@ func Project_GetByID(id string) (int, dm.Project, error) {
 	_, _, projectItem, _ := project_Fetch(tsql)
 
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
+	projectItem.ProjectID,projectItem.ProjectID_props = Project_ProjectID_impl (GET,id,projectItem.ProjectID,projectItem,projectItem.ProjectID_props)
+	projectItem.Description,projectItem.Description_props = Project_Description_impl (GET,id,projectItem.Description,projectItem,projectItem.Description_props)
 	projectItem.NoEstimationSessions,projectItem.NoEstimationSessions_props = Project_NoEstimationSessions_impl (GET,id,projectItem.NoEstimationSessions,projectItem,projectItem.NoEstimationSessions_props)
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, projectItem, nil
 }
@@ -146,11 +177,13 @@ func Project_StoreSystem(r dm.Project) error {
 func Project_Validate(r dm.Project) (dm.Project, error) {
 	var err error
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
+	r.ProjectID,r.ProjectID_props = Project_ProjectID_impl (PUT,r.ProjectID,r.ProjectID,r,r.ProjectID_props)
+	r.Description,r.Description_props = Project_Description_impl (PUT,r.ProjectID,r.Description,r,r.Description_props)
 	r.NoEstimationSessions,r.NoEstimationSessions_props = Project_NoEstimationSessions_impl (PUT,r.ProjectID,r.NoEstimationSessions,r,r.NoEstimationSessions_props)
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -174,12 +207,12 @@ func project_Save(r dm.Project,usr string) error {
 
 // If there are fields below, create the methods in dao\project_impl.go
 
+  r.ProjectID,err = Project_ProjectID_OnStore_impl (r.ProjectID,r,usr)
 
 
 
 
-
-
+  r.Description,err = Project_Description_OnStore_impl (r.Description,r,usr)
 
 
 
@@ -219,7 +252,7 @@ logs.Storing("Project",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Project_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Project_ProjectID_sql, r.ProjectID)
@@ -252,7 +285,7 @@ logs.Storing("Project",fmt.Sprintf("%v", r))
 	
 		
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + Project_QualifiedName
@@ -285,7 +318,7 @@ func project_Fetch(tsql string) (int, []dm.Project, dm.Project, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Project_SYSId_sql, "0")
 	   recItem.ProjectID  = get_String(rec, dm.Project_ProjectID_sql, "")
@@ -319,12 +352,12 @@ func project_Fetch(tsql string) (int, []dm.Project, dm.Project, error) {
 	
 	// If there are fields below, create the methods in adaptor\Project_impl.go
 	
+	   recItem.ProjectID  = Project_ProjectID_OnFetch_impl (recItem)
 	
 	
 	
 	
-	
-	
+	   recItem.Description  = Project_Description_OnFetch_impl (recItem)
 	
 	
 	
@@ -349,7 +382,7 @@ func project_Fetch(tsql string) (int, []dm.Project, dm.Project, error) {
 	   recItem.NoEstimationSessions  = Project_NoEstimationSessions_OnFetch_impl (recItem)
 	
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -379,11 +412,13 @@ func Project_New() (int, []dm.Project, dm.Project, error) {
 	
 
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
+	r.ProjectID,r.ProjectID_props = Project_ProjectID_impl (NEW,r.ProjectID,r.ProjectID,r,r.ProjectID_props)
+	r.Description,r.Description_props = Project_Description_impl (NEW,r.ProjectID,r.Description,r,r.Description_props)
 	r.NoEstimationSessions,r.NoEstimationSessions_props = Project_NoEstimationSessions_impl (NEW,r.ProjectID,r.NoEstimationSessions,r,r.NoEstimationSessions_props)
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

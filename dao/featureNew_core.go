@@ -7,8 +7,8 @@ package dao
 // Endpoint 	        : FeatureNew (ID)
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
-// Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 07/01/2023 at 23:01:29
+// Template Generator   : Einsteinium [r5-23.01.23]
+// Date & Time		    : 24/01/2023 at 13:18:09
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,15 @@ func init(){
 // FeatureNew_GetList() returns a list of all FeatureNew records
 func FeatureNew_GetList() (int, []dm.FeatureNew, error) {
 	
-	count, featurenewList, _ := FeatureNew_GetList_impl()
+	count, featurenewList, err := FeatureNew_GetListFiltered("")
+	
+	return count, featurenewList, err
+}
+
+// FeatureNew_GetListFiltered() returns a filtered list of all FeatureNew records
+func FeatureNew_GetListFiltered(filter string) (int, []dm.FeatureNew, error) {
+	
+	count, featurenewList, _ := FeatureNew_GetList_impl(filter)
 	
 	return count, featurenewList, nil
 }
@@ -48,10 +56,10 @@ func FeatureNew_GetByID(id string) (int, dm.FeatureNew, error) {
 	 _, featurenewItem, _ := FeatureNew_GetByID_impl(id)
 	
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, featurenewItem, nil
 }
@@ -113,10 +121,10 @@ func FeatureNew_StoreSystem(r dm.FeatureNew) error {
 func FeatureNew_Validate(r dm.FeatureNew) (dm.FeatureNew, error) {
 	var err error
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -200,10 +208,10 @@ func FeatureNew_New() (int, []dm.FeatureNew, dm.FeatureNew, error) {
 	
 
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

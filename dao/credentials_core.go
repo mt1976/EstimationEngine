@@ -7,8 +7,8 @@ package dao
 // Endpoint 	        : Credentials (Id)
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
-// Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 07/01/2023 at 23:01:28
+// Template Generator   : Einsteinium [r5-23.01.23]
+// Date & Time		    : 24/01/2023 at 13:18:07
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,18 @@ func init(){
 // Credentials_GetList() returns a list of all Credentials records
 func Credentials_GetList() (int, []dm.Credentials, error) {
 	
+	count, credentialsList, err := Credentials_GetListFiltered("")
+	
+	return count, credentialsList, err
+}
+
+// Credentials_GetListFiltered() returns a filtered list of all Credentials records
+func Credentials_GetListFiltered(filter string) (int, []dm.Credentials, error) {
+	
 	tsql := Credentials_SQLbase
+	if filter != "" {
+		tsql = tsql + " " + core.DB_WHERE + " " + filter
+	}
 	count, credentialsList, _, _ := credentials_Fetch(tsql)
 	
 	return count, credentialsList, nil
@@ -51,6 +62,24 @@ func Credentials_GetLookup() []dm.Lookup_Item {
 	return returnList
 }
 
+// Credentials_GetFilteredLookup() returns a lookup list of all Credentials items in lookup format
+func Credentials_GetFilteredLookup(requestObject string,requestField string) []dm.Lookup_Item {
+	var returnList []dm.Lookup_Item
+	reqClass := "Credentials"
+	reqField := requestObject+"-"+requestField
+	reqCategory := "Filter"
+	filter,_ := Data_GetString(reqClass, reqField, reqCategory)
+	if filter == "" {
+		logs.Warning("Credentials_GetFilteredLookup() - No filter found for " + reqClass + " " + reqField)
+	} 
+	count, credentialsList, _ := Credentials_GetListFiltered(filter)
+	for i := 0; i < count; i++ {
+		returnList = append(returnList, dm.Lookup_Item{ID: credentialsList[i].Id, Name: credentialsList[i].Username})
+	}
+	return returnList
+}
+
+
 
 // Credentials_GetByID() returns a single Credentials record
 func Credentials_GetByID(id string) (int, dm.Credentials, error) {
@@ -61,11 +90,11 @@ func Credentials_GetByID(id string) (int, dm.Credentials, error) {
 	_, _, credentialsItem, _ := credentials_Fetch(tsql)
 
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	credentialsItem.State,credentialsItem.State_props = Credentials_State_impl (GET,id,credentialsItem.State,credentialsItem,credentialsItem.State_props)
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, credentialsItem, nil
 }
@@ -136,20 +165,20 @@ func Credentials_StoreSystem(r dm.Credentials) error {
 func Credentials_Validate(r dm.Credentials) (dm.Credentials, error) {
 	var err error
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.State,r.State_props = Credentials_State_impl (PUT,r.Id,r.State,r,r.State_props)
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r, _, err = Credentials_ObjectValidation_impl(PUT, r.Id, r)
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	
 
@@ -214,7 +243,7 @@ logs.Storing("Credentials",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Credentials_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Credentials_Id_sql, r.Id)
@@ -244,7 +273,7 @@ logs.Storing("Credentials",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Credentials_EmailNotifications_sql, r.EmailNotifications)
 		
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + Credentials_QualifiedName
@@ -277,7 +306,7 @@ func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, erro
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Credentials_SYSId_sql, "0")
 	   recItem.Id  = get_String(rec, dm.Credentials_Id_sql, "")
@@ -335,7 +364,7 @@ func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, erro
 	
 	
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -365,11 +394,11 @@ func Credentials_New() (int, []dm.Credentials, dm.Credentials, error) {
 	
 
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.State,r.State_props = Credentials_State_impl (NEW,r.Id,r.State,r,r.State_props)
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

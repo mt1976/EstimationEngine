@@ -1,7 +1,6 @@
 # **Data** - Object Definition
----
 ##  Information
-|   |   |
+| Information  | Value  |
 |---|---|
 |Object         |**Data** (data) |
 |Endpoint 	    |**/Data...** [^1]|
@@ -33,7 +32,7 @@ Friendly Name|**System Properties**|
 
 
 ##  Data Source 
-|   |   |
+| Information  | Value  |
 |---|---|
 SQL Table Name       | **dataStore**
 SQL Table Key | **dataID**
@@ -44,9 +43,9 @@ SQL Table Key | **dataID**
 | Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
 | -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
 |**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|text||
-|**DataID**|String|false|true|false|true|||||NH|dataID||false|true|false|text||
-|**Class**|String|true|true|false|true|||||Y|class||true|false|false|text||
-|**Field**|String|true|true|false|true|||||Y|field||true|false|false|text||
+|**DataID**|String|true|true|false|true|||||NH|dataID||false|true|false|text||
+|**Class**|String|true|true|false|true|||||N|class||false|false|false|text||
+|**Field**|String|true|true|false|true|||||N|field||false|false|false|text||
 |**Value**|String|true|true|false|false|||||Y|value||false|false|false|text||
 |**SYSCreated**|String|false|true|false|false|||||NH|_created||false|false|true|text||
 |**SYSCreatedBy**|String|false|true|false|false|||||NH|_createdBy||false|false|true|text||
@@ -58,6 +57,7 @@ SQL Table Key | **dataID**
 |**SYSDeletedBy**|String|false|true|false|false|||||NH|_deletedBy||false|false|true|text||
 |**SYSDeletedHost**|String|false|true|false|false|||||NH|_deletedHost||false|false|true|text||
 |**SYSDbVersion**|String|false|true|false|false|||||NH|_dbVersion||false|false|true|text||
+|**Category**|String|true|true|false|true|||||N|category||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -75,12 +75,13 @@ SQL Table Key | **dataID**
 
 
 ## Audit Information
-|   |   |
+| Information  | Value |
 |---|---|
-Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **07/01/2023** at **23:01:28**
+Template Generator Version   | **Einsteinium [r5-23.01.23]**
+Date & Time		     | **24/01/2023** at **14:03:00**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
+---
 ### Footnotes
 [^1]: **Endpoint**
     * The full list of endpoints can be found in the [Actions](#action-id) section
@@ -88,6 +89,7 @@ Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
     * LL = A List Lookup. Define list in lits.cfg
     * OL = An Object Lookup. Get a list of values from an Object
     * FL = Fetches 1 value from an object based on the content of the field. 
+    * ∀ = This lookup has a filter that can be defined in the Data Object
 [^3]: **Inputtable**   
     * H = Hidden Field
     * N = No Input Field

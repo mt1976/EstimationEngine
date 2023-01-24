@@ -335,3 +335,13 @@ func Database_CreateObjects(DB *sql.DB, dbConfig map[string]string, sourcePath s
 func DB_Version() string {
 	return GetDatabaseProperty("version")
 }
+
+func SQL_Escape(input string) string {
+	input = strings.ReplaceAll(input, "'", "''")
+	return input
+}
+
+func SQL_UnEscape(input string) string {
+	input = strings.ReplaceAll(input, "''", "'")
+	return input
+}

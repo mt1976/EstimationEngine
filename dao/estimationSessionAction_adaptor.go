@@ -20,7 +20,7 @@ import (
 
 // The following functions should be created in estimationsessionaction_impl.go
 
-func EstimationSessionAction_GetList_impl() (int, []dm.EstimationSessionAction, error) {
+func EstimationSessionAction_GetList_impl(filter string) (int, []dm.EstimationSessionAction, error) {
 	return 0, nil, nil
 }
 func EstimationSessionAction_GetByID_impl(id string) (int, dm.EstimationSessionAction, error) {

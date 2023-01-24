@@ -15,8 +15,8 @@ import (
 	// Endpoint 	        : EstimationSession (EstimationSessionID)
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
-	// Template Generator   : Dysprosium [r4-21.12.31]
-	// Date & Time		    : 10/01/2023 at 14:57:51
+	// Template Generator   : Einsteinium [r5-23.01.23]
+	// Date & Time		    : 24/01/2023 at 13:18:08
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in estimationsession_impl.go
@@ -48,6 +48,34 @@ import (
 	// ----------------------------------------------------------------
 	// If there are fields below, create the methods in adaptor\estimationsession_impl.go
 	// These are the the default implementations, which do nothing
+
+	// ----------------------------------------------------------------
+	// BEGIN EstimationSession_EstimationSessionID
+	// BEGIN EstimationSession_EstimationSessionID
+	// BEGIN EstimationSession_EstimationSessionID
+	// ----------------------------------------------------------------
+	// EstimationSession_EstimationSessionID_OnStore_impl provides the implementation for the callout
+	func EstimationSession_EstimationSessionID_OnStore_impl (fieldval string,rec dm.EstimationSession,usr string) (string,error)  {
+		logs.Callout("EstimationSession", dm.EstimationSession_EstimationSessionID_scrn, PUT, rec.EstimationSessionID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// EstimationSession_EstimationSessionID_OnFetch_impl provides the implementation for the callout	
+	func EstimationSession_EstimationSessionID_OnFetch_impl (rec dm.EstimationSession)(string) {
+		logs.Callout("EstimationSession", dm.EstimationSession_EstimationSessionID_scrn, GET, rec.EstimationSessionID)
+		return rec.EstimationSessionID
+	}
+	// ----------------------------------------------------------------
+	// EstimationSession_EstimationSessionID_impl provides validation/actions for EstimationSessionID
+	func EstimationSession_EstimationSessionID_impl (iAction string, iId string, iValue string, iRec dm.EstimationSession, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("EstimationSession", dm.EstimationSession_EstimationSessionID_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+	// ----------------------------------------------------------------
+	// END   EstimationSession_EstimationSessionID
+	// END   EstimationSession_EstimationSessionID
+	// END   EstimationSession_EstimationSessionID
+	// ----------------------------------------------------------------
 
 	// ----------------------------------------------------------------
 	// BEGIN EstimationSession_EstimationStateID

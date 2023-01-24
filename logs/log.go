@@ -46,6 +46,7 @@ const (
 	log_Expired       = "Expired"
 	log_Email         = "Email"
 	log_Catalog       = "Catalog"
+	log_Upgrade       = "Upgrade"
 
 	ColorReset         = "\033[0m"
 	ColorRed           = "\033[31m"
@@ -56,19 +57,19 @@ const (
 	ColorCyan          = "\033[36m"
 	ColorWhite         = "\033[37m"
 	ColorBoldYellow    = "\033[1m\033[33m"
-	Character_MapTo    = "⇄"
-	Character_Job      = "⚙️"
+	Character_MapTo    = "🔌"
+	Character_Job      = "🚅"
 	Character_Heart    = "🫀"
 	Character_Poke     = "👉"
 	Character_Time     = "🕒"
-	Character_Break    = "≫"
-	Character_Tick     = "☑️"
-	Character_Warning  = "⚠️"
+	Character_Break    = "💔"
+	Character_Tick     = "✅"
+	Character_Warning  = "🚨"
 	Character_Bike     = "🚴‍♂️"
 	Character_Skip     = "⏭️"
 	Character_Created  = "💾"
 	Character_Query    = "🔎"
-	Character_Result   = "?"
+	Character_Result   = "🗄️"
 	Character_Storing  = "📀"
 	Character_Event    = "🗂"
 	Character_Callout  = "📞"
@@ -78,6 +79,7 @@ const (
 	Character_Catalog  = "📚"
 	Character_Publish  = "📤"
 	Character_Schedule = "📅"
+	Character_Upgrade  = "🚀"
 )
 
 type Config struct {
@@ -118,6 +120,11 @@ func Override(inProp string, inVal string, inEnv string, inEnvVal string) {
 func Success(s string) {
 	//msg_done(s)
 	msg_raw(log_Success, s, Character_Tick, colour.Green)
+}
+
+func Upgrade(s string) {
+	//msg_done(s)
+	msg_raw(log_Upgrade, s, Character_Upgrade, colour.Gray)
 }
 
 func Expired(s string) {

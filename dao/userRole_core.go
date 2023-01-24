@@ -7,8 +7,8 @@ package dao
 // Endpoint 	        : UserRole (Id)
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
-// Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 07/01/2023 at 23:01:31
+// Template Generator   : Einsteinium [r5-23.01.23]
+// Date & Time		    : 24/01/2023 at 13:18:12
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,18 @@ func init(){
 // UserRole_GetList() returns a list of all UserRole records
 func UserRole_GetList() (int, []dm.UserRole, error) {
 	
+	count, userroleList, err := UserRole_GetListFiltered("")
+	
+	return count, userroleList, err
+}
+
+// UserRole_GetListFiltered() returns a filtered list of all UserRole records
+func UserRole_GetListFiltered(filter string) (int, []dm.UserRole, error) {
+	
 	tsql := UserRole_SQLbase
+	if filter != "" {
+		tsql = tsql + " " + core.DB_WHERE + " " + filter
+	}
 	count, userroleList, _, _ := userrole_Fetch(tsql)
 	
 	return count, userroleList, nil
@@ -51,6 +62,24 @@ func UserRole_GetLookup() []dm.Lookup_Item {
 	return returnList
 }
 
+// UserRole_GetFilteredLookup() returns a lookup list of all UserRole items in lookup format
+func UserRole_GetFilteredLookup(requestObject string,requestField string) []dm.Lookup_Item {
+	var returnList []dm.Lookup_Item
+	reqClass := "UserRole"
+	reqField := requestObject+"-"+requestField
+	reqCategory := "Filter"
+	filter,_ := Data_GetString(reqClass, reqField, reqCategory)
+	if filter == "" {
+		logs.Warning("UserRole_GetFilteredLookup() - No filter found for " + reqClass + " " + reqField)
+	} 
+	count, userroleList, _ := UserRole_GetListFiltered(filter)
+	for i := 0; i < count; i++ {
+		returnList = append(returnList, dm.Lookup_Item{ID: userroleList[i].Id, Name: userroleList[i].Name})
+	}
+	return returnList
+}
+
+
 
 // UserRole_GetByID() returns a single UserRole record
 func UserRole_GetByID(id string) (int, dm.UserRole, error) {
@@ -61,10 +90,10 @@ func UserRole_GetByID(id string) (int, dm.UserRole, error) {
 	_, _, userroleItem, _ := userrole_Fetch(tsql)
 
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, userroleItem, nil
 }
@@ -135,10 +164,10 @@ func UserRole_StoreSystem(r dm.UserRole) error {
 func UserRole_Validate(r dm.UserRole) (dm.UserRole, error) {
 	var err error
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -191,7 +220,7 @@ logs.Storing("UserRole",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.UserRole_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.UserRole_Id_sql, r.Id)
@@ -208,7 +237,7 @@ logs.Storing("UserRole",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.UserRole_SYSDbVersion_sql, r.SYSDbVersion)
 		
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + UserRole_QualifiedName
@@ -241,7 +270,7 @@ func userrole_Fetch(tsql string) (int, []dm.UserRole, dm.UserRole, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.UserRole_SYSId_sql, "0")
 	   recItem.Id  = get_String(rec, dm.UserRole_Id_sql, "")
@@ -273,7 +302,7 @@ func userrole_Fetch(tsql string) (int, []dm.UserRole, dm.UserRole, error) {
 	
 	
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -303,10 +332,10 @@ func UserRole_New() (int, []dm.UserRole, dm.UserRole, error) {
 	
 
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

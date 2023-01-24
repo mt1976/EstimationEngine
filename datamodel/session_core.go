@@ -8,8 +8,8 @@ package datamodel
 // Endpoint 	        : Session (SessionID)
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
-// Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 07/01/2023 at 23:01:31
+// Template Generator   : Einsteinium [r5-23.01.23]
+// Date & Time		    : 24/01/2023 at 13:18:11
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -216,6 +216,12 @@ type Session_PageList struct {
 	ItemsOnPage 	 int
 	ItemList  		 []Session
 	Context	 appContext
+	BlockEdit		 bool
+	BlockSave 		 bool
+	BlockCreate		 bool
+	BlockDelete		 bool
+	BlockValidate	 bool
+	BlockView		 bool
 }
 
 //session_Page provides the information for the template for an individual Session
@@ -226,7 +232,7 @@ type Session_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -287,7 +293,13 @@ type Session_Page struct {
 	SYSDbVersion         string
 	SYSDbVersion_props     FieldProperties
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-	Context	 appContext
+	Context	 		 appContext
+	BlockEdit		 bool
+	BlockSave 		 bool
+	BlockCreate		 bool
+	BlockDelete		 bool
+	BlockValidate	 bool
+	BlockView		 bool
 }

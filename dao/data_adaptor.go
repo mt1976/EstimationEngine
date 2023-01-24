@@ -1,6 +1,7 @@
 package dao
 
 import (
+	"github.com/mt1976/ebEstimates/core"
 	dm "github.com/mt1976/ebEstimates/datamodel"
 	logs "github.com/mt1976/ebEstimates/logs"
 )
@@ -61,9 +62,9 @@ func Data_ObjectValidation_impl(iAction string, iId string, iRec dm.Data) (dm.Da
 	case NEW:
 
 	case PUT:
-
+		iRec.Value = core.SQL_Escape(iRec.Value)
 	case GET:
-
+		iRec.Value = core.SQL_UnEscape(iRec.Value)
 	default:
 		logs.Warning("Data" + " - Invalid Action [" + iAction + "]")
 	}
@@ -72,7 +73,7 @@ func Data_ObjectValidation_impl(iAction string, iId string, iRec dm.Data) (dm.Da
 
 func Data_DataID_OnStore_impl(fieldval string, rec dm.Data, usr string) (string, error) {
 	logs.Callout("Data", dm.Data_DataID_scrn, PUT, rec.DataID)
-	fieldval = data_BuildID(rec.Class, rec.Field)
+	fieldval = data_BuildID(rec.Class, rec.Field, rec.Category)
 	return fieldval, nil
 }
 

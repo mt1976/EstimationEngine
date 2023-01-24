@@ -15,8 +15,8 @@ import (
 	// Endpoint 	        : Feature (FeatureID)
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
-	// Template Generator   : Dysprosium [r4-21.12.31]
-	// Date & Time		    : 07/01/2023 at 23:01:29
+	// Template Generator   : Einsteinium [r5-23.01.23]
+	// Date & Time		    : 24/01/2023 at 13:18:09
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in feature_impl.go
@@ -48,6 +48,34 @@ import (
 	// ----------------------------------------------------------------
 	// If there are fields below, create the methods in adaptor\feature_impl.go
 	// These are the the default implementations, which do nothing
+
+	// ----------------------------------------------------------------
+	// BEGIN Feature_FeatureID
+	// BEGIN Feature_FeatureID
+	// BEGIN Feature_FeatureID
+	// ----------------------------------------------------------------
+	// Feature_FeatureID_OnStore_impl provides the implementation for the callout
+	func Feature_FeatureID_OnStore_impl (fieldval string,rec dm.Feature,usr string) (string,error)  {
+		logs.Callout("Feature", dm.Feature_FeatureID_scrn, PUT, rec.FeatureID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// Feature_FeatureID_OnFetch_impl provides the implementation for the callout	
+	func Feature_FeatureID_OnFetch_impl (rec dm.Feature)(string) {
+		logs.Callout("Feature", dm.Feature_FeatureID_scrn, GET, rec.FeatureID)
+		return rec.FeatureID
+	}
+	// ----------------------------------------------------------------
+	// Feature_FeatureID_impl provides validation/actions for FeatureID
+	func Feature_FeatureID_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_FeatureID_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+	// ----------------------------------------------------------------
+	// END   Feature_FeatureID
+	// END   Feature_FeatureID
+	// END   Feature_FeatureID
+	// ----------------------------------------------------------------
 
 	// ----------------------------------------------------------------
 	// Automatically generated code ends here

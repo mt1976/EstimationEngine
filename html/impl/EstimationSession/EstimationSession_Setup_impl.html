@@ -4,7 +4,7 @@
       <div class="card">
         <div class="card-header" style="padding-bottom:0;">
           <div class="row d-flex align-items-center">
-            <div class="col d-flex align-items-center"><h3><i class="fas fa-calculator me-2"></i>{{.Title}}</h3></div>
+            <div class="col d-flex align-items-center"><h3><i class="fas fa-calculator me-2"></i>Add a new estimation</h3></div>
             <div class="col d-flex justify-content-end">
               <div class="btn-group" style="margin-bottom:1rem;">
                 <button type="submit" value="" class="btn btn-warning" method="GET" formaction="/EstimationSessionCreate" onclick="/EstimationSessionCreate" title="Create a new estimation"><i class="fas fa-save me-2"></i>Save</button>
@@ -128,7 +128,7 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.Releases_props.MsgType}}" id="Releases" name="Releases"  aria-describedby="ReleasesHelp" placeholder="1"   value="{{.Releases}}"  data-mdb-input-mask="" />
+              <input type="number" class="form-control {{.Releases_props.MsgType}}" id="Releases" name="Releases"  aria-describedby="ReleasesHelp" placeholder="1"   value="{{.Releases}}"  data-mdb-input-mask="" min="1" step="1" />
               
               <label class="form-label" for="Releases" >Releases</label>
               <div class="{{.Releases_props.MsgFeedBackType}}">{{.Releases_props.MsgMessage}}</div>
@@ -309,7 +309,7 @@
             <div class="form-outline">
 
             
-                <input type="text" class="form-control {{.TrackerID_props.MsgType}}" id="TrackerID" name="TrackerID" aria-describedby="TrackerIDHelp" placeholder=""  value="{{.TrackerID}}"  data-mdb-input-mask="">
+                <input type="text" class="form-control {{.TrackerID_props.MsgType}}" id="TrackerID" name="TrackerID" aria-describedby="TrackerIDHelp" placeholder="" disabled value="{{.TrackerID}}"  data-mdb-input-mask="">
             
            
            

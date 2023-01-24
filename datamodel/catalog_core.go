@@ -8,8 +8,8 @@ package datamodel
 // Endpoint 	        : Catalog (ID)
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
-// Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 07/01/2023 at 23:01:28
+// Template Generator   : Einsteinium [r5-23.01.23]
+// Date & Time		    : 24/01/2023 at 13:18:07
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -96,6 +96,12 @@ type Catalog_PageList struct {
 	ItemsOnPage 	 int
 	ItemList  		 []Catalog
 	Context	 appContext
+	BlockEdit		 bool
+	BlockSave 		 bool
+	BlockCreate		 bool
+	BlockDelete		 bool
+	BlockValidate	 bool
+	BlockView		 bool
 }
 
 //catalog_Page provides the information for the template for an individual Catalog
@@ -106,7 +112,7 @@ type Catalog_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	ID         string
 	ID_props     FieldProperties
@@ -119,7 +125,13 @@ type Catalog_Page struct {
 	Source         string
 	Source_props     FieldProperties
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-	Context	 appContext
+	Context	 		 appContext
+	BlockEdit		 bool
+	BlockSave 		 bool
+	BlockCreate		 bool
+	BlockDelete		 bool
+	BlockValidate	 bool
+	BlockView		 bool
 }

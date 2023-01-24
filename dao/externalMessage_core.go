@@ -7,8 +7,8 @@ package dao
 // Endpoint 	        : ExternalMessage (Message)
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
-// Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 07/01/2023 at 23:01:29
+// Template Generator   : Einsteinium [r5-23.01.23]
+// Date & Time		    : 24/01/2023 at 13:18:09
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,18 @@ func init(){
 // ExternalMessage_GetList() returns a list of all ExternalMessage records
 func ExternalMessage_GetList() (int, []dm.ExternalMessage, error) {
 	
+	count, externalmessageList, err := ExternalMessage_GetListFiltered("")
+	
+	return count, externalmessageList, err
+}
+
+// ExternalMessage_GetListFiltered() returns a filtered list of all ExternalMessage records
+func ExternalMessage_GetListFiltered(filter string) (int, []dm.ExternalMessage, error) {
+	
 	tsql := ExternalMessage_SQLbase
+	if filter != "" {
+		tsql = tsql + " " + core.DB_WHERE + " " + filter
+	}
 	count, externalmessageList, _, _ := externalmessage_Fetch(tsql)
 	
 	return count, externalmessageList, nil
@@ -51,10 +62,10 @@ func ExternalMessage_GetByID(id string) (int, dm.ExternalMessage, error) {
 	_, _, externalmessageItem, _ := externalmessage_Fetch(tsql)
 
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, externalmessageItem, nil
 }
@@ -125,10 +136,10 @@ func ExternalMessage_StoreSystem(r dm.ExternalMessage) error {
 func ExternalMessage_Validate(r dm.ExternalMessage) (dm.ExternalMessage, error) {
 	var err error
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -200,7 +211,7 @@ logs.Storing("ExternalMessage",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.ExternalMessage_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.ExternalMessage_MessageID_sql, r.MessageID)
@@ -236,7 +247,7 @@ logs.Storing("ExternalMessage",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.ExternalMessage_SYSDbVersion_sql, r.SYSDbVersion)
 		
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + ExternalMessage_QualifiedName
@@ -269,7 +280,7 @@ func externalmessage_Fetch(tsql string) (int, []dm.ExternalMessage, dm.ExternalM
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.ExternalMessage_SYSId_sql, "0")
 	   recItem.MessageID  = get_String(rec, dm.ExternalMessage_MessageID_sql, "")
@@ -339,7 +350,7 @@ func externalmessage_Fetch(tsql string) (int, []dm.ExternalMessage, dm.ExternalM
 	
 	
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -369,10 +380,10 @@ func ExternalMessage_New() (int, []dm.ExternalMessage, dm.ExternalMessage, error
 	
 
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

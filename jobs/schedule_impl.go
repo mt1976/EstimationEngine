@@ -83,6 +83,10 @@ func Schedule_HandlerDO_Impl(w http.ResponseWriter, r *http.Request) {
 		if thisJob.Type == Ssloader_Job().Type {
 			go Ssloader_Run()
 		}
+	case Index_Job().Name:
+		if thisJob.Type == Index_Job().Type {
+			go Index_Run()
+		}
 	default:
 		//Do nothing
 	}

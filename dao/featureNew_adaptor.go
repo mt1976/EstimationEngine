@@ -20,8 +20,8 @@ import (
 
 // The following functions should be created in featurenew_impl.go
 
-func FeatureNew_GetList_impl() (int, []dm.FeatureNew, error)        { return 0, nil, nil }
-func FeatureNew_GetByID_impl(id string) (int, dm.FeatureNew, error) { return 0, dm.FeatureNew{}, nil }
+func FeatureNew_GetList_impl(filter string) (int, []dm.FeatureNew, error) { return 0, nil, nil }
+func FeatureNew_GetByID_impl(id string) (int, dm.FeatureNew, error)       { return 0, dm.FeatureNew{}, nil }
 
 func FeatureNew_NewID_impl(rec dm.FeatureNew) string { return rec.ID }
 func FeatureNew_Delete_impl(id string) error         { return nil }

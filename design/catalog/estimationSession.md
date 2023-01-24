@@ -1,7 +1,6 @@
 # **EstimationSession** - Object Definition
----
 ##  Information
-|   |   |
+| Information  | Value  |
 |---|---|
 |Object         |**EstimationSession** (estimationsession) |
 |Endpoint 	    |**/EstimationSession...** [^1]|
@@ -34,7 +33,7 @@ Friendly Name|**Estimation Session**|
 
 
 ##  Data Source 
-|   |   |
+| Information  | Value  |
 |---|---|
 SQL Table Name       | **estimationSessionStore**
 SQL Table Key | **estimationSessionID**
@@ -45,7 +44,7 @@ SQL Table Key | **estimationSessionID**
 | Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
 | -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
 |**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|text||
-|**EstimationSessionID**|String|false|true|false|true|||||H|estimationSessionID||true|false|false|text||
+|**EstimationSessionID**|String|false|true|false|true|||||H|estimationSessionID||true|true|false|text||
 |**ProjectID**|String|false|true|false|false|OL|Project|Project_ProjectID|Project_Name|Y|projectID||false|false|false|text||
 |**EstimationStateID**|String|false|true|false|true|OL|EstimationState|EstimationState_EstimationStateID||Y|estimationStateID||false|true|false|text||
 |**Notes**|String|false|true|false|true|||||N|notes||false|false|false|textarea||
@@ -81,9 +80,9 @@ SQL Table Key | **estimationSessionID**
 |**SYSActivity**|String|false|true|false|false|||||NH|_activity||false|false|true|text||
 |**SYSDbVersion**|String|false|true|false|false|||||NH|_dbVersion||false|false|true|text||
 |**Comments**|String|false|true|false|true|||||Y|comments||false|false|false|textarea||
-|**ProjectManager**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|projectManager||false|false|false|text||
-|**ProductManager**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|productManager||false|false|false|text||
-|**Approver**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|approver||false|true|false|text||
+|**ProjectManager**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|projectManager||false|false|false|text||
+|**ProductManager**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|productManager||false|false|false|text||
+|**Approver**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|approver||false|true|false|text||
 |**IssueDate**|String|false|true|false|true|||||Y|IssueDate||false|true|false|date|yyyy-mm-dd|
 |**ExpiryDate**|String|false|true|false|true|||||Y|ExpiryDate||false|true|false|date|yyyy-mm-dd|
 |**Origin**|String|false|false|true|false|||||N|||false|true|false|text||
@@ -130,12 +129,13 @@ SQL Table Key | **estimationSessionID**
 
 
 ## Audit Information
-|   |   |
+| Information  | Value |
 |---|---|
-Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **10/01/2023** at **14:57:51**
+Template Generator Version   | **Einsteinium [r5-23.01.23]**
+Date & Time		     | **24/01/2023** at **13:18:08**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
+---
 ### Footnotes
 [^1]: **Endpoint**
     * The full list of endpoints can be found in the [Actions](#action-id) section
@@ -143,6 +143,7 @@ Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
     * LL = A List Lookup. Define list in lits.cfg
     * OL = An Object Lookup. Get a list of values from an Object
     * FL = Fetches 1 value from an object based on the content of the field. 
+    * ∀ = This lookup has a filter that can be defined in the Data Object
 [^3]: **Inputtable**   
     * H = Hidden Field
     * N = No Input Field

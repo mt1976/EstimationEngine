@@ -3,7 +3,7 @@
     <div class="card">
         <div class="card-header" style="padding-bottom:0;">
             <div class="row d-flex align-items-center">
-                <div class="col d-flex align-items-center"><h3><i class="fas fa-tasks me-2"></i>{{.Title}}</h3></div>
+                <div class="col d-flex align-items-center"><h3><i class="fas fa-tasks me-2"></i>{{.Name}}</h3></div>
                 <div class="col d-flex justify-content-end">
                     <div class="btn-group" style="margin-bottom:1rem;">
                         <button type="submit" class="btn btn-warning" method="get" formaction="/FeatureEdit/?FeatureID={{.FeatureID}}"  title="Edit Feature {{.FeatureID}}"><i class="fas fa-pen me-2"></i>Edit</button>
@@ -101,7 +101,7 @@
                 
                     <div class="form-outline">
                         
-                            <textarea class="form-control" id="Description" name="Description" aria-describedby="DescriptionHelp" placeholder=""  disabled value="{{.Description}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Description}}</textarea>
+                            <textarea class="form-control" id="Description" name="Description" aria-describedby="DescriptionHelp" placeholder=""  disabled value="{{.Description}}"  data-mdb-input-mask="" rows="" maxlength="255">{{.Description}}</textarea>
                         
                         <label class="form-label" for="Description">Description</label>
                         
@@ -203,7 +203,6 @@
           
 
 <h4 class="text-muted">Estimates</h4>
-<h5>Engineer Estimate</h5>
 <div class="row mb-3"  >
                 <div class="col">
                 
@@ -251,10 +250,27 @@
 
 
             </div>  
+            <br>
+            <div class="row text-center h5 text-muted mb-3">
+            <div class="col"></div>
+            <div class="col">Development</div>
+            <div class="col">Requirements</div>
+            <div class="col">Analyst/Testing</div>
+            <div class="col">Documentation</div>
+            <div class="col">UAT Support</div>
+            <div class="col">Training</div>
+            <div class="col">Marketing</div>
+            <div class="col">Management</div>
+            <div class="col"></div>
+               
+            </div>
+        <div class="row mb-3"  >
+        
+        <div class="col">
+<h5 class="text-muted text-center align-middle">Default</h5>
 
-<h5>Default Estimate</h5>
-
-        <div class="row mb-3"  ><div class="col">
+        </div>
+        <div class="col">
         
             <div class="form-outline">
               
@@ -352,11 +368,14 @@
             </div>
         
         </div>
-        
+                <div class="col h5 text-muted text-center align-middle">Default</div>
+
 </div>
-  <h5>Refined Estimate</h5> 
 
             <div class="row mb-3"  >
+            <div class="col">
+            <h5 class="text-muted align-middle text-center">Refined</h5> 
+            </div>
                 <div class="col">
                 
                     <div class="form-outline">
@@ -455,10 +474,12 @@
                     </div>
                 
                 </div>
+                        <div class="col h5 text-muted text-center align-middle">Refined</div>
+
 
             </div>
              
-            
+            <br>
              
             <div class="row mb-3" hidden hidden>
                 <div class="col">
@@ -594,7 +615,7 @@
         
             <div class="form-outline">
               
-              <textarea class="form-control {{.Comments_props.MsgType}}" id="Comments" name="Comments" aria-describedby="CommentsHelp" placeholder=""  readonly value="{{.Comments}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Comments}}</textarea>
+              <textarea class="form-control {{.Comments_props.MsgType}}" id="Comments" name="Comments" aria-describedby="CommentsHelp" placeholder=""  readonly value="{{.Comments}}"  data-mdb-input-mask="" rows="0" maxlength="255">{{.Comments}}</textarea>
               
               <label class="form-label" for="Comments" >Comments</label>
               <div class="{{.Comments_props.MsgFeedBackType}}">{{.Comments_props.MsgMessage}}</div>
@@ -644,7 +665,7 @@
                 
                     <div class="form-outline">
                         
-                            <textarea class="form-control" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder=""  disabled value="{{.Notes}}"  data-mdb-input-mask="" rows="10" maxlength="255">{{.Notes}}</textarea>
+                            <textarea class="form-control" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder=""  disabled value="{{.Notes}}"  data-mdb-input-mask="" rows="6" maxlength="255">{{.Notes}}</textarea>
                         
                         <label class="form-label" for="Notes">Notes</label>
                         

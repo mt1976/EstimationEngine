@@ -493,7 +493,7 @@ func EstimationSession_ObjectValidation_impl(iAction string, iId string, iRec dm
 
 func EstimationSession_IssueDate_OnStore_impl(fieldval string, rec dm.EstimationSession, usr string) (string, error) {
 	logs.Callout("EstimationSession", dm.EstimationSession_IssueDate_scrn, PUT, rec.EstimationSessionID)
-	issuedState, _ := Data_GetString("Quote", "IssuedState")
+	issuedState, _ := Data_GetString("Quote", "Issued", "State")
 	if fieldval == "" && rec.ExpiryDate == "" && rec.EstimationStateID == issuedState {
 		// Get Todays Date yyyy-mm-dd
 		today := time.Now().Format(core.DATEFORMAT)
@@ -517,14 +517,14 @@ func EstimationSession_IssueDate_impl(iAction string, iId string, iValue string,
 func EstimationSession_ExpiryDate_OnStore_impl(fieldval string, rec dm.EstimationSession, usr string) (string, error) {
 	logs.Callout("EstimationSession", dm.EstimationSession_ExpiryDate_scrn, PUT, rec.EstimationSessionID)
 
-	issuedState, _ := Data_GetString("Quote", "IssuedState")
-	expiredState, _ := Data_GetString("Quote", "ExpiredState")
+	issuedState, _ := Data_GetString("Quote", "Issued", "State")
+	expiredState, _ := Data_GetString("Quote", "Expired", "State")
 
 	switch rec.EstimationStateID {
 	case issuedState:
 		// Get Expiroty Date 30 days from today
 		if fieldval == "" {
-			expPeriod, _ := Data_GetInt("Quote", "Expiry")
+			expPeriod, _ := Data_GetInt("Quote", "Expiry", "Period")
 			logs.Information("Expiry Period: ", strconv.Itoa(expPeriod))
 			expiry := time.Now().AddDate(0, 0, expPeriod).Format(core.DATEFORMAT)
 			return expiry, nil
@@ -563,7 +563,7 @@ func emailRelatedResources(rec dm.EstimationSession) (string, error) {
 
 	MSG_BODY := "Quote for %s %s has expired. Please contact the Project Manager %s (%s) for further information."
 	MSG_SUBJECT = Translate("QuoteExpiredBody", MSG_BODY)
-	MSG_BODY = fmt.Sprintf(MSG_BODY, project.OriginID, rec.Name, pmResource.Email)
+	MSG_BODY = fmt.Sprintf(MSG_BODY, project.OriginID, rec.Name, pmResource.Name, pmResource.Email)
 
 	// Send the email
 	// core.SendEmail(pmEmail.Email, pmEmail.Name, MSG_SUBJECT, MSG_BODY)
@@ -587,3 +587,34 @@ func EstimationSession_ExpiryDate_impl(iAction string, iId string, iValue string
 
 	return iValue, fP
 }
+
+// ----------------------------------------------------------------
+// BEGIN EstimationSession_EstimationSessionID
+// BEGIN EstimationSession_EstimationSessionID
+// BEGIN EstimationSession_EstimationSessionID
+// ----------------------------------------------------------------
+// EstimationSession_EstimationSessionID_OnStore_impl provides the implementation for the callout
+func EstimationSession_EstimationSessionID_OnStore_impl(fieldval string, rec dm.EstimationSession, usr string) (string, error) {
+	logs.Callout("EstimationSession", dm.EstimationSession_EstimationSessionID_scrn, PUT, rec.EstimationSessionID)
+	return fieldval, nil
+}
+
+// ----------------------------------------------------------------
+// EstimationSession_EstimationSessionID_OnFetch_impl provides the implementation for the callout
+func EstimationSession_EstimationSessionID_OnFetch_impl(rec dm.EstimationSession) string {
+	logs.Callout("EstimationSession", dm.EstimationSession_EstimationSessionID_scrn, GET, rec.EstimationSessionID)
+	return rec.EstimationSessionID
+}
+
+// ----------------------------------------------------------------
+// EstimationSession_EstimationSessionID_impl provides validation/actions for EstimationSessionID
+func EstimationSession_EstimationSessionID_impl(iAction string, iId string, iValue string, iRec dm.EstimationSession, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("EstimationSession", dm.EstimationSession_EstimationSessionID_scrn, VAL+"-"+iAction, iId)
+	return iValue, fP
+}
+
+// ----------------------------------------------------------------
+// END   EstimationSession_EstimationSessionID
+// END   EstimationSession_EstimationSessionID
+// END   EstimationSession_EstimationSessionID
+// ----------------------------------------------------------------

@@ -24,7 +24,7 @@ func Origin_Run_impl() (string, error) {
 	message := ""
 
 	/// CONTENT STARTS
-	contractExpiryPeriod, err0 := dao.Data_GetInt("Contract", "Expiry")
+	contractExpiryPeriod, err0 := dao.Data_GetInt("Contract", "Expiry", "Setting")
 	if err0 != nil {
 		return message, err0
 	}

@@ -7,8 +7,8 @@ package dao
 // Endpoint 	        : ProjectState (ProjectStateID)
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
-// Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 07/01/2023 at 23:01:30
+// Template Generator   : Einsteinium [r5-23.01.23]
+// Date & Time		    : 24/01/2023 at 13:18:11
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,18 @@ func init(){
 // ProjectState_GetList() returns a list of all ProjectState records
 func ProjectState_GetList() (int, []dm.ProjectState, error) {
 	
+	count, projectstateList, err := ProjectState_GetListFiltered("")
+	
+	return count, projectstateList, err
+}
+
+// ProjectState_GetListFiltered() returns a filtered list of all ProjectState records
+func ProjectState_GetListFiltered(filter string) (int, []dm.ProjectState, error) {
+	
 	tsql := ProjectState_SQLbase
+	if filter != "" {
+		tsql = tsql + " " + core.DB_WHERE + " " + filter
+	}
 	count, projectstateList, _, _ := projectstate_Fetch(tsql)
 	
 	return count, projectstateList, nil
@@ -51,6 +62,24 @@ func ProjectState_GetLookup() []dm.Lookup_Item {
 	return returnList
 }
 
+// ProjectState_GetFilteredLookup() returns a lookup list of all ProjectState items in lookup format
+func ProjectState_GetFilteredLookup(requestObject string,requestField string) []dm.Lookup_Item {
+	var returnList []dm.Lookup_Item
+	reqClass := "ProjectState"
+	reqField := requestObject+"-"+requestField
+	reqCategory := "Filter"
+	filter,_ := Data_GetString(reqClass, reqField, reqCategory)
+	if filter == "" {
+		logs.Warning("ProjectState_GetFilteredLookup() - No filter found for " + reqClass + " " + reqField)
+	} 
+	count, projectstateList, _ := ProjectState_GetListFiltered(filter)
+	for i := 0; i < count; i++ {
+		returnList = append(returnList, dm.Lookup_Item{ID: projectstateList[i].Code, Name: projectstateList[i].Name})
+	}
+	return returnList
+}
+
+
 
 // ProjectState_GetByID() returns a single ProjectState record
 func ProjectState_GetByID(id string) (int, dm.ProjectState, error) {
@@ -61,10 +90,10 @@ func ProjectState_GetByID(id string) (int, dm.ProjectState, error) {
 	_, _, projectstateItem, _ := projectstate_Fetch(tsql)
 
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, projectstateItem, nil
 }
@@ -145,10 +174,10 @@ func ProjectState_StoreSystem(r dm.ProjectState) error {
 func ProjectState_Validate(r dm.ProjectState) (dm.ProjectState, error) {
 	var err error
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -204,7 +233,7 @@ logs.Storing("ProjectState",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.ProjectState_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.ProjectState_ProjectStateID_sql, r.ProjectStateID)
@@ -224,7 +253,7 @@ logs.Storing("ProjectState",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.ProjectState_Notify_sql, r.Notify)
 		
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + ProjectState_QualifiedName
@@ -257,7 +286,7 @@ func projectstate_Fetch(tsql string) (int, []dm.ProjectState, dm.ProjectState, e
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.ProjectState_SYSId_sql, "0")
 	   recItem.ProjectStateID  = get_String(rec, dm.ProjectState_ProjectStateID_sql, "")
@@ -295,7 +324,7 @@ func projectstate_Fetch(tsql string) (int, []dm.ProjectState, dm.ProjectState, e
 	
 	
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -325,10 +354,10 @@ func ProjectState_New() (int, []dm.ProjectState, dm.ProjectState, error) {
 	
 
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

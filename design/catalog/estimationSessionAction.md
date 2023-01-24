@@ -1,7 +1,6 @@
 # **EstimationSessionAction** - Object Definition
----
 ##  Information
-|   |   |
+| Information  | Value  |
 |---|---|
 |Object         |**EstimationSessionAction** (estimationsessionaction) |
 |Endpoint 	    |**/EstimationSessionAction...** [^1]|
@@ -34,7 +33,7 @@ Friendly Name|**Estimation Session Actions**|
 
 
 ##  Data Source 
-|   |   |
+| Information  | Value  |
 |---|---|
 SQL Table Name       | **n/a**
 SQL Table Key | **n/a**
@@ -65,12 +64,13 @@ Store|<ul><li>**Implement in Adaptor**</li><li>func EstimationSessionAction_NewI
 
 
 ## Audit Information
-|   |   |
+| Information  | Value |
 |---|---|
-Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **07/01/2023** at **23:01:29**
+Template Generator Version   | **Einsteinium [r5-23.01.23]**
+Date & Time		     | **24/01/2023** at **13:18:08**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
+---
 ### Footnotes
 [^1]: **Endpoint**
     * The full list of endpoints can be found in the [Actions](#action-id) section
@@ -78,6 +78,7 @@ Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
     * LL = A List Lookup. Define list in lits.cfg
     * OL = An Object Lookup. Get a list of values from an Object
     * FL = Fetches 1 value from an object based on the content of the field. 
+    * ∀ = This lookup has a filter that can be defined in the Data Object
 [^3]: **Inputtable**   
     * H = Hidden Field
     * N = No Input Field

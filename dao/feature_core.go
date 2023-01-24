@@ -7,8 +7,8 @@ package dao
 // Endpoint 	        : Feature (FeatureID)
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
-// Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 07/01/2023 at 23:01:29
+// Template Generator   : Einsteinium [r5-23.01.23]
+// Date & Time		    : 24/01/2023 at 13:18:09
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,18 @@ func init(){
 // Feature_GetList() returns a list of all Feature records
 func Feature_GetList() (int, []dm.Feature, error) {
 	
+	count, featureList, err := Feature_GetListFiltered("")
+	
+	return count, featureList, err
+}
+
+// Feature_GetListFiltered() returns a filtered list of all Feature records
+func Feature_GetListFiltered(filter string) (int, []dm.Feature, error) {
+	
 	tsql := Feature_SQLbase
+	if filter != "" {
+		tsql = tsql + " " + core.DB_WHERE + " " + filter
+	}
 	count, featureList, _, _ := feature_Fetch(tsql)
 	
 	return count, featureList, nil
@@ -51,6 +62,24 @@ func Feature_GetLookup() []dm.Lookup_Item {
 	return returnList
 }
 
+// Feature_GetFilteredLookup() returns a lookup list of all Feature items in lookup format
+func Feature_GetFilteredLookup(requestObject string,requestField string) []dm.Lookup_Item {
+	var returnList []dm.Lookup_Item
+	reqClass := "Feature"
+	reqField := requestObject+"-"+requestField
+	reqCategory := "Filter"
+	filter,_ := Data_GetString(reqClass, reqField, reqCategory)
+	if filter == "" {
+		logs.Warning("Feature_GetFilteredLookup() - No filter found for " + reqClass + " " + reqField)
+	} 
+	count, featureList, _ := Feature_GetListFiltered(filter)
+	for i := 0; i < count; i++ {
+		returnList = append(returnList, dm.Lookup_Item{ID: featureList[i].FeatureID, Name: featureList[i].Name})
+	}
+	return returnList
+}
+
+
 
 // Feature_GetByID() returns a single Feature record
 func Feature_GetByID(id string) (int, dm.Feature, error) {
@@ -61,10 +90,11 @@ func Feature_GetByID(id string) (int, dm.Feature, error) {
 	_, _, featureItem, _ := feature_Fetch(tsql)
 
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
+	featureItem.FeatureID,featureItem.FeatureID_props = Feature_FeatureID_impl (GET,id,featureItem.FeatureID,featureItem,featureItem.FeatureID_props)
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, featureItem, nil
 }
@@ -145,19 +175,20 @@ func Feature_StoreSystem(r dm.Feature) error {
 func Feature_Validate(r dm.Feature) (dm.Feature, error) {
 	var err error
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
+	r.FeatureID,r.FeatureID_props = Feature_FeatureID_impl (PUT,r.FeatureID,r.FeatureID,r,r.FeatureID_props)
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r, _, err = Feature_ObjectValidation_impl(PUT, r.FeatureID, r)
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	
 
@@ -180,7 +211,7 @@ func feature_Save(r dm.Feature,usr string) error {
 
 // If there are fields below, create the methods in dao\feature_impl.go
 
-
+  r.FeatureID,err = Feature_FeatureID_OnStore_impl (r.FeatureID,r,usr)
 
 
 
@@ -249,7 +280,7 @@ logs.Storing("Feature",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Feature_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Feature_FeatureID_sql, r.FeatureID)
@@ -306,7 +337,7 @@ logs.Storing("Feature",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Feature_ActualProfile_sql, r.ActualProfile)
 		
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + Feature_QualifiedName
@@ -339,7 +370,7 @@ func feature_Fetch(tsql string) (int, []dm.Feature, dm.Feature, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Feature_SYSId_sql, "0")
 	   recItem.FeatureID  = get_String(rec, dm.Feature_FeatureID_sql, "")
@@ -397,7 +428,7 @@ func feature_Fetch(tsql string) (int, []dm.Feature, dm.Feature, error) {
 	
 	// If there are fields below, create the methods in adaptor\Feature_impl.go
 	
-	
+	   recItem.FeatureID  = Feature_FeatureID_OnFetch_impl (recItem)
 	
 	
 	
@@ -451,7 +482,7 @@ func feature_Fetch(tsql string) (int, []dm.Feature, dm.Feature, error) {
 	
 	
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -481,10 +512,11 @@ func Feature_New() (int, []dm.Feature, dm.Feature, error) {
 	
 
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
+	r.FeatureID,r.FeatureID_props = Feature_FeatureID_impl (NEW,r.FeatureID,r.FeatureID,r,r.FeatureID_props)
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

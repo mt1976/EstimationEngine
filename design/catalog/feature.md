@@ -1,7 +1,6 @@
 # **Feature** - Object Definition
----
 ##  Information
-|   |   |
+| Information  | Value  |
 |---|---|
 |Object         |**Feature** (feature) |
 |Endpoint 	    |**/Feature...** [^1]|
@@ -34,7 +33,7 @@ Friendly Name|**Feature**|
 
 
 ##  Data Source 
-|   |   |
+| Information  | Value  |
 |---|---|
 SQL Table Name       | **featureStore**
 SQL Table Key | **featureID**
@@ -45,9 +44,9 @@ SQL Table Key | **featureID**
 | Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
 | -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
 |**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|text||
-|**FeatureID**|String|false|true|false|true|||||H|featureID||true|false|false|text||
+|**FeatureID**|String|false|true|false|true|||||H|featureID||true|true|false|text||
 |**EstimationSessionID**|String|false|true|false|false|OL|EstimationSession|EstimationSession_EstimationSessionID|EstimationSession_Name|Y|estimationSessionID||false|false|false|text||
-|**ConfidenceID**|String|false|true|false|false|OL|Confidence|Confidence_ConfidenceID||Y|confidenceID||false|false|false|text||
+|**ConfidenceID**|String|false|true|false|false|OL∀|Confidence|Confidence_ConfidenceID||Y|confidenceID||false|false|false|text||
 |**Name**|String|true|true|false|false|||||Y|name||false|false|false|text||
 |**DevEstimate**|String|false|true|false|true|||||Y|devEstimate||false|false|false|number||
 |**DevUplift**|String|false|true|false|true|||||Y|devUplift||false|false|false|number||
@@ -72,8 +71,8 @@ SQL Table Key | **featureID**
 |**SYSDeleted**|String|false|true|false|false|||||NH|_deleted||false|false|true|text||
 |**SYSDeletedBy**|String|false|true|false|false|||||NH|_deletedBy||false|false|true|text||
 |**SYSDeletedHost**|String|false|true|false|false|||||NH|_deletedHost||false|false|true|text||
-|**Developer**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|developer||false|false|false|text||
-|**Approver**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|approver||false|false|false|text||
+|**Developer**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|developer||false|false|false|text||
+|**Approver**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|approver||false|false|false|text||
 |**Notes**|String|false|true|false|true|||||N|notes||false|false|false|textarea||
 |**OffProfile**|String|false|true|false|false|||||Y|offProfile||false|false|false|text||
 |**OffProfileJustification**|String|false|true|false|false|||||Y|offProfileJustification||false|false|false|text||
@@ -90,13 +89,13 @@ SQL Table Key | **featureID**
 |**SYSDbVersion**|String|false|true|false|false|||||NH|_dbVersion||false|false|true|text||
 |**Comments**|String|false|true|false|true|||||Y|comments||false|false|false|textarea||
 |**Description**|String|false|true|false|true|||||Y|description||false|false|false|textarea||
-|**Analyst**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|analyst||false|false|false|text||
-|**ProductManager**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|productManager||false|false|false|text||
-|**ProjectManager**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|projectManager||false|false|false|text||
+|**Analyst**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|analyst||false|false|false|text||
+|**ProductManager**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|productManager||false|false|false|text||
+|**ProjectManager**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|projectManager||false|false|false|text||
 |**Training**|String|false|true|false|true|||||Y|training||false|false|false|number||
 |**DfTraining**|String|false|true|false|true|||||N|dfTraining||false|false|false|number||
-|**DefaultProfile**|String|false|true|false|false|OL|Profile|Profile_ProfileID|Profile_Name|N|defaultProfile||false|false|false|text||
-|**ActualProfile**|String|false|true|false|false|OL|Profile|Profile_ProfileID|Profile_Name|Y|actualProfile||false|false|false|text||
+|**DefaultProfile**|String|false|true|false|false|OL∀|Profile|Profile_ProfileID|Profile_Name|N|defaultProfile||false|false|false|text||
+|**ActualProfile**|String|false|true|false|false|OL∀|Profile|Profile_ProfileID|Profile_Name|Y|actualProfile||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -115,12 +114,13 @@ SQL Table Key | **featureID**
 
 
 ## Audit Information
-|   |   |
+| Information  | Value |
 |---|---|
-Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **07/01/2023** at **23:01:29**
+Template Generator Version   | **Einsteinium [r5-23.01.23]**
+Date & Time		     | **24/01/2023** at **13:18:09**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
+---
 ### Footnotes
 [^1]: **Endpoint**
     * The full list of endpoints can be found in the [Actions](#action-id) section
@@ -128,6 +128,7 @@ Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
     * LL = A List Lookup. Define list in lits.cfg
     * OL = An Object Lookup. Get a list of values from an Object
     * FL = Fetches 1 value from an object based on the content of the field. 
+    * ∀ = This lookup has a filter that can be defined in the Data Object
 [^3]: **Inputtable**   
     * H = Hidden Field
     * N = No Input Field

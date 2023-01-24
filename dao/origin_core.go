@@ -7,8 +7,8 @@ package dao
 // Endpoint 	        : Origin (OriginID)
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
-// Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 07/01/2023 at 23:01:29
+// Template Generator   : Einsteinium [r5-23.01.23]
+// Date & Time		    : 24/01/2023 at 13:18:10
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,18 @@ func init(){
 // Origin_GetList() returns a list of all Origin records
 func Origin_GetList() (int, []dm.Origin, error) {
 	
+	count, originList, err := Origin_GetListFiltered("")
+	
+	return count, originList, err
+}
+
+// Origin_GetListFiltered() returns a filtered list of all Origin records
+func Origin_GetListFiltered(filter string) (int, []dm.Origin, error) {
+	
 	tsql := Origin_SQLbase
+	if filter != "" {
+		tsql = tsql + " " + core.DB_WHERE + " " + filter
+	}
 	count, originList, _, _ := origin_Fetch(tsql)
 	
 	return count, originList, nil
@@ -51,6 +62,24 @@ func Origin_GetLookup() []dm.Lookup_Item {
 	return returnList
 }
 
+// Origin_GetFilteredLookup() returns a lookup list of all Origin items in lookup format
+func Origin_GetFilteredLookup(requestObject string,requestField string) []dm.Lookup_Item {
+	var returnList []dm.Lookup_Item
+	reqClass := "Origin"
+	reqField := requestObject+"-"+requestField
+	reqCategory := "Filter"
+	filter,_ := Data_GetString(reqClass, reqField, reqCategory)
+	if filter == "" {
+		logs.Warning("Origin_GetFilteredLookup() - No filter found for " + reqClass + " " + reqField)
+	} 
+	count, originList, _ := Origin_GetListFiltered(filter)
+	for i := 0; i < count; i++ {
+		returnList = append(returnList, dm.Lookup_Item{ID: originList[i].Code, Name: originList[i].FullName})
+	}
+	return returnList
+}
+
+
 
 // Origin_GetByID() returns a single Origin record
 func Origin_GetByID(id string) (int, dm.Origin, error) {
@@ -61,13 +90,15 @@ func Origin_GetByID(id string) (int, dm.Origin, error) {
 	_, _, originItem, _ := origin_Fetch(tsql)
 
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	originItem.StateID,originItem.StateID_props = Origin_StateID_impl (GET,id,originItem.StateID,originItem,originItem.StateID_props)
+	originItem.Code,originItem.Code_props = Origin_Code_impl (GET,id,originItem.Code,originItem,originItem.Code_props)
+	originItem.FullName,originItem.FullName_props = Origin_FullName_impl (GET,id,originItem.FullName,originItem,originItem.FullName_props)
 	originItem.Rate,originItem.Rate_props = Origin_Rate_impl (GET,id,originItem.Rate,originItem,originItem.Rate_props)
 	originItem.NoActiveProjects,originItem.NoActiveProjects_props = Origin_NoActiveProjects_impl (GET,id,originItem.NoActiveProjects,originItem,originItem.NoActiveProjects_props)
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, originItem, nil
 }
@@ -148,13 +179,15 @@ func Origin_StoreSystem(r dm.Origin) error {
 func Origin_Validate(r dm.Origin) (dm.Origin, error) {
 	var err error
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.StateID,r.StateID_props = Origin_StateID_impl (PUT,r.OriginID,r.StateID,r,r.StateID_props)
+	r.Code,r.Code_props = Origin_Code_impl (PUT,r.OriginID,r.Code,r,r.Code_props)
+	r.FullName,r.FullName_props = Origin_FullName_impl (PUT,r.OriginID,r.FullName,r,r.FullName_props)
 	r.Rate,r.Rate_props = Origin_Rate_impl (PUT,r.OriginID,r.Rate,r,r.Rate_props)
 	r.NoActiveProjects,r.NoActiveProjects_props = Origin_NoActiveProjects_impl (PUT,r.OriginID,r.NoActiveProjects,r,r.NoActiveProjects_props)
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -181,8 +214,8 @@ func origin_Save(r dm.Origin,usr string) error {
 
   r.StateID,err = Origin_StateID_OnStore_impl (r.StateID,r,usr)
 
-
-
+  r.Code,err = Origin_Code_OnStore_impl (r.Code,r,usr)
+  r.FullName,err = Origin_FullName_OnStore_impl (r.FullName,r,usr)
   r.Rate,err = Origin_Rate_OnStore_impl (r.Rate,r,usr)
 
 
@@ -220,7 +253,7 @@ logs.Storing("Origin",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Origin_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Origin_OriginID_sql, r.OriginID)
@@ -250,7 +283,7 @@ logs.Storing("Origin",fmt.Sprintf("%v", r))
 	
 		
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + Origin_QualifiedName
@@ -283,7 +316,7 @@ func origin_Fetch(tsql string) (int, []dm.Origin, dm.Origin, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Origin_SYSId_sql, "0")
 	   recItem.OriginID  = get_String(rec, dm.Origin_OriginID_sql, "")
@@ -317,8 +350,8 @@ func origin_Fetch(tsql string) (int, []dm.Origin, dm.Origin, error) {
 	
 	   recItem.StateID  = Origin_StateID_OnFetch_impl (recItem)
 	
-	
-	
+	   recItem.Code  = Origin_Code_OnFetch_impl (recItem)
+	   recItem.FullName  = Origin_FullName_OnFetch_impl (recItem)
 	   recItem.Rate  = Origin_Rate_OnFetch_impl (recItem)
 	
 	
@@ -341,7 +374,7 @@ func origin_Fetch(tsql string) (int, []dm.Origin, dm.Origin, error) {
 	   recItem.NoActiveProjects  = Origin_NoActiveProjects_OnFetch_impl (recItem)
 	
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -371,13 +404,15 @@ func Origin_New() (int, []dm.Origin, dm.Origin, error) {
 	
 
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.StateID,r.StateID_props = Origin_StateID_impl (NEW,r.OriginID,r.StateID,r,r.StateID_props)
+	r.Code,r.Code_props = Origin_Code_impl (NEW,r.OriginID,r.Code,r,r.Code_props)
+	r.FullName,r.FullName_props = Origin_FullName_impl (NEW,r.OriginID,r.FullName,r,r.FullName_props)
 	r.Rate,r.Rate_props = Origin_Rate_impl (NEW,r.OriginID,r.Rate,r,r.Rate_props)
 	r.NoActiveProjects,r.NoActiveProjects_props = Origin_NoActiveProjects_impl (NEW,r.OriginID,r.NoActiveProjects,r,r.NoActiveProjects_props)
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

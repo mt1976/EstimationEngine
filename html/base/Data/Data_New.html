@@ -40,7 +40,7 @@
             <div class="form-outline">
 
             
-                <input type="text" class="form-control {{.DataID_props.MsgType}}" id="DataID" name="DataID" aria-describedby="DataIDHelp" placeholder="" readonly="true" value="{{.DataID}}"  data-mdb-input-mask="" >
+                <input type="text" class="form-control {{.DataID_props.MsgType}}" id="DataID" name="DataID" aria-describedby="DataIDHelp" placeholder="" readonly="true" value="{{.DataID}}" required data-mdb-input-mask="" >
             
            
            
@@ -50,31 +50,31 @@
                   
           </div></div>
 
-            <div class="row mb-3"  ><div class="col">
+            <div class="row mb-3" readonly="true" ><div class="col">
          
             <div class="form-outline">
 
             
-                <input type="text" class="form-control {{.Class_props.MsgType}}" id="Class" name="Class" aria-describedby="ClassHelp" placeholder=""  value="{{.Class}}" required data-mdb-input-mask="" >
+                <input type="text" class="form-control {{.Class_props.MsgType}}" id="Class" name="Class" aria-describedby="ClassHelp" placeholder="" readonly="true" value="{{.Class}}" required data-mdb-input-mask="" >
             
            
            
-              <label class="form-label" for="Class" >Class</label>
+              <label class="form-label" for="Class" readonly="true">Class</label>
               <div class="{{.Class_props.MsgFeedBackType}}">{{.Class_props.MsgMessage}}</div>
             </div>
                   
           </div></div>
 
-            <div class="row mb-3"  ><div class="col">
+            <div class="row mb-3" readonly="true" ><div class="col">
          
             <div class="form-outline">
 
             
-                <input type="text" class="form-control {{.Field_props.MsgType}}" id="Field" name="Field" aria-describedby="FieldHelp" placeholder=""  value="{{.Field}}" required data-mdb-input-mask="" >
+                <input type="text" class="form-control {{.Field_props.MsgType}}" id="Field" name="Field" aria-describedby="FieldHelp" placeholder="" readonly="true" value="{{.Field}}" required data-mdb-input-mask="" >
             
            
            
-              <label class="form-label" for="Field" >Field</label>
+              <label class="form-label" for="Field" readonly="true">Field</label>
               <div class="{{.Field_props.MsgFeedBackType}}">{{.Field_props.MsgMessage}}</div>
             </div>
                   
@@ -241,6 +241,21 @@
            
               <label class="form-label" for="SYSDbVersion" hidden>SYSDbVersion</label>
               <div class="{{.SYSDbVersion_props.MsgFeedBackType}}">{{.SYSDbVersion_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.Category_props.MsgType}}" id="Category" name="Category" aria-describedby="CategoryHelp" placeholder="" readonly="true" value="{{.Category}}" required data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="Category" readonly="true">Category</label>
+              <div class="{{.Category_props.MsgFeedBackType}}">{{.Category_props.MsgMessage}}</div>
             </div>
                   
           </div></div>

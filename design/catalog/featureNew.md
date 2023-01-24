@@ -1,7 +1,6 @@
 # **FeatureNew** - Object Definition
----
 ##  Information
-|   |   |
+| Information  | Value  |
 |---|---|
 |Object         |**FeatureNew** (featurenew) |
 |Endpoint 	    |**/FeatureNew...** [^1]|
@@ -34,7 +33,7 @@ Friendly Name|**Create a New Feature**|
 
 
 ##  Data Source 
-|   |   |
+| Information  | Value  |
 |---|---|
 SQL Table Name       | **n/a**
 SQL Table Key | **n/a**
@@ -48,8 +47,8 @@ Store|<ul><li>**Implement in Adaptor**</li><li>func FeatureNew_NewID_impl(rec dm
 |**EstimationSession**|String|true|true|false|false|OL|EstimationSession|EstimationSessionID_EstimationSessionID|EstimationSession_Name|Y|EstimationSession||false|false|false|text||
 |**Name**|String|true|true|false|false|||||Y|Name||false|false|false|text||
 |**DevEstimate**|String|true|true|false|false|||||Y|DevEstimate||false|false|false|text||
-|**Confidence**|String|true|true|false|false|OL|Confidence|Confidence_Code|EstimationState_Name|Y|Confidence||false|false|false|text|true|
-|**Developer**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|Developer||false|false|false|text||
+|**Confidence**|String|true|true|false|false|OL∀|Confidence|Confidence_Code|EstimationState_Name|Y|Confidence||false|false|false|text|true|
+|**Developer**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|Developer||false|false|false|text||
 |**Comments**|String|false|true|false|false|||||Y|Comments||false|false|false|text||
 |**Description**|String|false|true|false|false|||||Y|Description||false|false|false|text||
 |**DevOpsID**|String|false|true|false|false|||||Y|DevOpsID||false|false|false|text||
@@ -57,11 +56,11 @@ Store|<ul><li>**Implement in Adaptor**</li><li>func FeatureNew_NewID_impl(rec dm
 |**RSCID**|String|false|true|false|false|||||Y|RSCID||false|false|false|text||
 |**OtherID**|String|false|true|false|false|||||Y|OtherID||false|false|false|text||
 |**OtherID2**|String|false|true|false|false|||||Y|OtherID2||false|false|false|text||
-|**Analyst**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|Analyst||false|false|false|text||
-|**ProductManager**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|ProductManager||false|false|false|text||
-|**ProjectManager**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|ProjectManager||false|false|false|text||
-|**DefaultProfile**|String|false|true|false|false|OL|Profile|Profile_ProfileID|Profile_Name|N|DefaultProfile||false|false|false|text||
-|**ActualProfile**|String|false|true|false|false|OL|Profile|Profile_ProfileID|Profile_Name|Y|ActualProfile||false|false|false|text||
+|**Analyst**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|Analyst||false|false|false|text||
+|**ProductManager**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|ProductManager||false|false|false|text||
+|**ProjectManager**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|ProjectManager||false|false|false|text||
+|**DefaultProfile**|String|false|true|false|false|OL∀|Profile|Profile_ProfileID|Profile_Name|N|DefaultProfile||false|false|false|text||
+|**ActualProfile**|String|false|true|false|false|OL∀|Profile|Profile_ProfileID|Profile_Name|Y|ActualProfile||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -79,12 +78,13 @@ Store|<ul><li>**Implement in Adaptor**</li><li>func FeatureNew_NewID_impl(rec dm
 
 
 ## Audit Information
-|   |   |
+| Information  | Value |
 |---|---|
-Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **07/01/2023** at **23:01:29**
+Template Generator Version   | **Einsteinium [r5-23.01.23]**
+Date & Time		     | **24/01/2023** at **13:18:09**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
+---
 ### Footnotes
 [^1]: **Endpoint**
     * The full list of endpoints can be found in the [Actions](#action-id) section
@@ -92,6 +92,7 @@ Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
     * LL = A List Lookup. Define list in lits.cfg
     * OL = An Object Lookup. Get a list of values from an Object
     * FL = Fetches 1 value from an object based on the content of the field. 
+    * ∀ = This lookup has a filter that can be defined in the Data Object
 [^3]: **Inputtable**   
     * H = Hidden Field
     * N = No Input Field

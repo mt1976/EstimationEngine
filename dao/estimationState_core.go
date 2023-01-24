@@ -7,8 +7,8 @@ package dao
 // Endpoint 	        : EstimationState (EstimationStateID)
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
-// Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 07/01/2023 at 23:01:29
+// Template Generator   : Einsteinium [r5-23.01.23]
+// Date & Time		    : 24/01/2023 at 13:18:08
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -34,7 +34,18 @@ func init(){
 // EstimationState_GetList() returns a list of all EstimationState records
 func EstimationState_GetList() (int, []dm.EstimationState, error) {
 	
+	count, estimationstateList, err := EstimationState_GetListFiltered("")
+	
+	return count, estimationstateList, err
+}
+
+// EstimationState_GetListFiltered() returns a filtered list of all EstimationState records
+func EstimationState_GetListFiltered(filter string) (int, []dm.EstimationState, error) {
+	
 	tsql := EstimationState_SQLbase
+	if filter != "" {
+		tsql = tsql + " " + core.DB_WHERE + " " + filter
+	}
 	count, estimationstateList, _, _ := estimationstate_Fetch(tsql)
 	
 	return count, estimationstateList, nil
@@ -51,6 +62,24 @@ func EstimationState_GetLookup() []dm.Lookup_Item {
 	return returnList
 }
 
+// EstimationState_GetFilteredLookup() returns a lookup list of all EstimationState items in lookup format
+func EstimationState_GetFilteredLookup(requestObject string,requestField string) []dm.Lookup_Item {
+	var returnList []dm.Lookup_Item
+	reqClass := "EstimationState"
+	reqField := requestObject+"-"+requestField
+	reqCategory := "Filter"
+	filter,_ := Data_GetString(reqClass, reqField, reqCategory)
+	if filter == "" {
+		logs.Warning("EstimationState_GetFilteredLookup() - No filter found for " + reqClass + " " + reqField)
+	} 
+	count, estimationstateList, _ := EstimationState_GetListFiltered(filter)
+	for i := 0; i < count; i++ {
+		returnList = append(returnList, dm.Lookup_Item{ID: estimationstateList[i].Code, Name: estimationstateList[i].Name})
+	}
+	return returnList
+}
+
+
 
 // EstimationState_GetByID() returns a single EstimationState record
 func EstimationState_GetByID(id string) (int, dm.EstimationState, error) {
@@ -61,10 +90,10 @@ func EstimationState_GetByID(id string) (int, dm.EstimationState, error) {
 	_, _, estimationstateItem, _ := estimationstate_Fetch(tsql)
 
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, estimationstateItem, nil
 }
@@ -145,10 +174,10 @@ func EstimationState_StoreSystem(r dm.EstimationState) error {
 func EstimationState_Validate(r dm.EstimationState) (dm.EstimationState, error) {
 	var err error
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -204,7 +233,7 @@ logs.Storing("EstimationState",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.EstimationState_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.EstimationState_EstimationStateID_sql, r.EstimationStateID)
@@ -224,7 +253,7 @@ logs.Storing("EstimationState",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.EstimationState_Notify_sql, r.Notify)
 		
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + EstimationState_QualifiedName
@@ -257,7 +286,7 @@ func estimationstate_Fetch(tsql string) (int, []dm.EstimationState, dm.Estimatio
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.EstimationState_SYSId_sql, "0")
 	   recItem.EstimationStateID  = get_String(rec, dm.EstimationState_EstimationStateID_sql, "")
@@ -295,7 +324,7 @@ func estimationstate_Fetch(tsql string) (int, []dm.EstimationState, dm.Estimatio
 	
 	
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -325,10 +354,10 @@ func EstimationState_New() (int, []dm.EstimationState, dm.EstimationState, error
 	
 
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

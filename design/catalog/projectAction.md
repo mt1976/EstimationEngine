@@ -1,7 +1,6 @@
 # **ProjectAction** - Object Definition
----
 ##  Information
-|   |   |
+| Information  | Value  |
 |---|---|
 |Object         |**ProjectAction** (projectaction) |
 |Endpoint 	    |**/ProjectAction...** [^1]|
@@ -34,7 +33,7 @@ Friendly Name|**ProjectAction**|
 
 
 ##  Data Source 
-|   |   |
+| Information  | Value  |
 |---|---|
 SQL Table Name       | **projectStore**
 SQL Table Key | **projectID**
@@ -47,8 +46,8 @@ SQL Table Key | **projectID**
 |**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|text||
 |**ProjectID**|String|false|true|false|true|||||H|projectID||true|false|false|text||
 |**OriginID**|String|true|true|false|false|OL|Origin|Origin_OriginID|Origin_FullName|Y|originID||true|false|false|text||
-|**ProjectStateID**|String|false|true|false|false|OL|ProjectState|ProjectState_ProjectStateID|ProjectState_Name|Y|projectStateID||false|false|false|text||
-|**ProfileID**|String|false|true|false|false|OL|Profile|Profile_ProfileID|Profile_Name|Y|profileID||false|false|false|text||
+|**ProjectStateID**|String|false|true|false|false|OL∀|ProjectState|ProjectState_ProjectStateID|ProjectState_Name|Y|projectStateID||false|false|false|text||
+|**ProfileID**|String|false|true|false|false|OL∀|Profile|Profile_ProfileID|Profile_Name|Y|profileID||false|false|false|text||
 |**Name**|String|true|true|false|false|||||Y|name||false|false|false|text||
 |**Description**|String|false|true|false|true|||||Y|description||false|false|false|textarea||
 |**StartDate**|String|false|true|false|true|||||Y|startDate||false|false|false|date|yyyy-mm-dd|
@@ -67,9 +66,9 @@ SQL Table Key | **projectID**
 |**Comments**|String|false|true|false|true|||||Y|comments||false|false|false|textarea||
 |**ProjectRate**|String|false|true|false|true|||||Y|projectRate||false|false|false|number||
 |**DefaultRate**|String|false|true|false|true|||||N|defaultRate||false|false|false|number||
-|**ProjectAnalyst**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|projectAnalyst||false|false|false|text||
-|**ProjectEngineer**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|projectEngineer||false|false|false|text||
-|**ProjectManager**|String|false|true|false|false|OL|Resource|Resource_Code|Resource_Name|Y|projectManager||false|false|false|text||
+|**ProjectAnalyst**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|projectAnalyst||false|false|false|text||
+|**ProjectEngineer**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|projectEngineer||false|false|false|text||
+|**ProjectManager**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|projectManager||false|false|false|text||
 |**Releases**|String|false|true|false|false|||||Y|releases||false|false|false|text||
 |**Notes**|String|false|true|false|true|||||N|notes||false|false|false|textarea||
 |**NoEstimationSessions**|String|false|false|true|false|||||N||0|false|true|false|text||
@@ -87,12 +86,13 @@ SQL Table Key | **projectID**
 
 
 ## Audit Information
-|   |   |
+| Information  | Value |
 |---|---|
-Template Generator Version   | **Dysprosium [r4-21.12.31]**
-Date & Time		     | **07/01/2023** at **23:01:30**
+Template Generator Version   | **Einsteinium [r5-23.01.23]**
+Date & Time		     | **24/01/2023** at **13:18:11**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
+---
 ### Footnotes
 [^1]: **Endpoint**
     * The full list of endpoints can be found in the [Actions](#action-id) section
@@ -100,6 +100,7 @@ Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
     * LL = A List Lookup. Define list in lits.cfg
     * OL = An Object Lookup. Get a list of values from an Object
     * FL = Fetches 1 value from an object based on the content of the field. 
+    * ∀ = This lookup has a filter that can be defined in the Data Object
 [^3]: **Inputtable**   
     * H = Hidden Field
     * N = No Input Field

@@ -70,7 +70,9 @@ func Schedule_Register(thisJob dm.JobDefinition) {
 		case core.Dispatcher:
 			icon = core.Character_Dispatcher
 		}
-		op := fmt.Sprintf("%s  %-18s %-18s %q", icon, s.Name, s.Schedule, Schedule_GetCronHuman(s.Schedule))
+		MSG_BODY := "%s  %-18s %-18s %q"
+		dao.Translate("Scheduler-Register", MSG_BODY)
+		op := fmt.Sprintf(MSG_BODY, icon, s.Name, s.Schedule, Schedule_GetCronHuman(s.Schedule))
 		logs.Schedule(op)
 	}
 }
@@ -86,12 +88,16 @@ func Schedule_Update(thisJob dm.JobDefinition, message string) {
 		//fmt.Printf("s: %v\n", s)
 		s.Lastrun = time.Now().Format(core.DATETIMEFORMATUSER)
 		s.Message = message
-		thisMess := fmt.Sprintf("Ran Job - %-11s %-20s %q", thisJob.Type, s.Name, message)
+		MSG_BODY := "Ran Job - %s %s %q"
+		dao.Translate("Scheduler-Run", MSG_BODY)
+		thisMess := fmt.Sprintf(MSG_BODY, thisJob.Type, s.Name, message)
 		logs.Schedule(thisMess)
 		dao.Schedule_StoreSystem(s)
 
 	} else {
-		thisMess := fmt.Sprintf("Update Schedule Called with '%s','%s','%s'", thisJob.ID, thisJob.Type, message)
+		MSG_BODY := "Update Schedule Called with '%s','%s','%s'"
+		dao.Translate("Scheduler-Update", MSG_BODY)
+		thisMess := fmt.Sprintf(MSG_BODY, thisJob.ID, thisJob.Type, message)
 		logs.Schedule(thisMess)
 	}
 }
@@ -114,7 +120,9 @@ func Schedule_GetCronHuman(in string) string {
 			logs.Error("failed to convert CRON expression to human readable description:", err)
 		}
 	} else {
-		desc = "Event Driven"
+		MSG_BODY := "No Schedule - Ad-Hoc / Event Driven"
+		dao.Translate("Scheduler-AdHoc", MSG_BODY)
+		desc = MSG_BODY
 	}
 
 	return desc

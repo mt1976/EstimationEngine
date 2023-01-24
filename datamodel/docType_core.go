@@ -8,8 +8,8 @@ package datamodel
 // Endpoint 	        : DocType (DocTypeID)
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
-// Template Generator   : Dysprosium [r4-21.12.31]
-// Date & Time		    : 07/01/2023 at 23:01:29
+// Template Generator   : Einsteinium [r5-23.01.23]
+// Date & Time		    : 24/01/2023 at 13:18:08
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -146,6 +146,12 @@ type DocType_PageList struct {
 	ItemsOnPage 	 int
 	ItemList  		 []DocType
 	Context	 appContext
+	BlockEdit		 bool
+	BlockSave 		 bool
+	BlockCreate		 bool
+	BlockDelete		 bool
+	BlockValidate	 bool
+	BlockView		 bool
 }
 
 //doctype_Page provides the information for the template for an individual DocType
@@ -156,7 +162,7 @@ type DocType_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -189,7 +195,13 @@ type DocType_Page struct {
 	Comments         string
 	Comments_props     FieldProperties
 	// 
-	// Dynamically generated 07/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-	Context	 appContext
+	Context	 		 appContext
+	BlockEdit		 bool
+	BlockSave 		 bool
+	BlockCreate		 bool
+	BlockDelete		 bool
+	BlockValidate	 bool
+	BlockView		 bool
 }
