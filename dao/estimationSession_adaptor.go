@@ -618,3 +618,122 @@ func EstimationSession_EstimationSessionID_impl(iAction string, iId string, iVal
 // END   EstimationSession_EstimationSessionID
 // END   EstimationSession_EstimationSessionID
 // ----------------------------------------------------------------
+
+// ----------------------------------------------------------------
+// BEGIN EstimationSession_AdoID
+// BEGIN EstimationSession_AdoID
+// BEGIN EstimationSession_AdoID
+// ----------------------------------------------------------------
+// EstimationSession_AdoID_OnStore_impl provides the implementation for the callout
+func EstimationSession_AdoID_OnStore_impl(fieldval string, rec dm.EstimationSession, usr string) (string, error) {
+	logs.Callout("EstimationSession", dm.EstimationSession_AdoID_scrn, PUT, rec.EstimationSessionID)
+	Indexer_Put("EstimationSession", dm.EstimationSession_AdoID_scrn, rec.EstimationSessionID, fieldval)
+
+	return fieldval, nil
+}
+
+// ----------------------------------------------------------------
+// EstimationSession_AdoID_OnFetch_impl provides the implementation for the callout
+func EstimationSession_AdoID_OnFetch_impl(rec dm.EstimationSession) string {
+	logs.Callout("EstimationSession", dm.EstimationSession_AdoID_scrn, GET, rec.EstimationSessionID)
+	return rec.AdoID
+}
+
+// ----------------------------------------------------------------
+// EstimationSession_AdoID_impl provides validation/actions for AdoID
+func EstimationSession_AdoID_impl(iAction string, iId string, iValue string, iRec dm.EstimationSession, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("EstimationSession", dm.EstimationSession_AdoID_scrn, VAL+"-"+iAction, iId)
+	return iValue, fP
+}
+
+// ----------------------------------------------------------------
+// END   EstimationSession_AdoID
+// END   EstimationSession_AdoID
+// END   EstimationSession_AdoID
+// ----------------------------------------------------------------
+
+// ----------------------------------------------------------------
+// BEGIN EstimationSession_FreshdeskID
+// BEGIN EstimationSession_FreshdeskID
+// BEGIN EstimationSession_FreshdeskID
+// ----------------------------------------------------------------
+// EstimationSession_FreshdeskID_OnStore_impl provides the implementation for the callout
+func EstimationSession_FreshdeskID_OnStore_impl(fieldval string, rec dm.EstimationSession, usr string) (string, error) {
+	logs.Callout("EstimationSession", dm.EstimationSession_FreshdeskID_scrn, PUT, rec.EstimationSessionID)
+	Indexer_Put("EstimationSession", dm.EstimationSession_FreshdeskID_scrn, rec.EstimationSessionID, fieldval)
+
+	return fieldval, nil
+}
+
+// ----------------------------------------------------------------
+// EstimationSession_FreshdeskID_OnFetch_impl provides the implementation for the callout
+func EstimationSession_FreshdeskID_OnFetch_impl(rec dm.EstimationSession) string {
+	logs.Callout("EstimationSession", dm.EstimationSession_FreshdeskID_scrn, GET, rec.EstimationSessionID)
+	return rec.FreshdeskID
+}
+
+// ----------------------------------------------------------------
+// EstimationSession_FreshdeskID_impl provides validation/actions for FreshdeskID
+func EstimationSession_FreshdeskID_impl(iAction string, iId string, iValue string, iRec dm.EstimationSession, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("EstimationSession", dm.EstimationSession_FreshdeskID_scrn, VAL+"-"+iAction, iId)
+	return iValue, fP
+}
+
+// ----------------------------------------------------------------
+// END   EstimationSession_FreshdeskID
+// END   EstimationSession_FreshdeskID
+// END   EstimationSession_FreshdeskID
+// ----------------------------------------------------------------
+
+// ----------------------------------------------------------------
+// BEGIN EstimationSession_TrackerID
+// BEGIN EstimationSession_TrackerID
+// BEGIN EstimationSession_TrackerID
+// ----------------------------------------------------------------
+// EstimationSession_TrackerID_OnStore_impl provides the implementation for the callout
+func EstimationSession_TrackerID_OnStore_impl(fieldval string, rec dm.EstimationSession, usr string) (string, error) {
+	logs.Callout("EstimationSession", dm.EstimationSession_TrackerID_scrn, PUT, rec.EstimationSessionID)
+
+	Indexer_Put("EstimationSession", dm.EstimationSession_TrackerID_scrn, rec.EstimationSessionID, fieldval)
+
+	state := rec.EstimationStateID
+
+	if state == "WRIT" && fieldval == "" {
+		_, proj, err := Project_GetByID(rec.ProjectID)
+		if err != nil {
+			return "", err
+		}
+		_, origin, errorg := Origin_GetByCode(proj.OriginID)
+		if errorg != nil {
+			return "", errorg
+		}
+		docType := origin.DocTypeID
+		_, newIDString, err := Data_NextSEQ(docType)
+		if err != nil {
+			return "", err
+		}
+		fieldval = newIDString
+	}
+
+	return fieldval, nil
+}
+
+// ----------------------------------------------------------------
+// EstimationSession_TrackerID_OnFetch_impl provides the implementation for the callout
+func EstimationSession_TrackerID_OnFetch_impl(rec dm.EstimationSession) string {
+	logs.Callout("EstimationSession", dm.EstimationSession_TrackerID_scrn, GET, rec.EstimationSessionID)
+	return rec.TrackerID
+}
+
+// ----------------------------------------------------------------
+// EstimationSession_TrackerID_impl provides validation/actions for TrackerID
+func EstimationSession_TrackerID_impl(iAction string, iId string, iValue string, iRec dm.EstimationSession, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("EstimationSession", dm.EstimationSession_TrackerID_scrn, VAL+"-"+iAction, iId)
+	return iValue, fP
+}
+
+// ----------------------------------------------------------------
+// END   EstimationSession_TrackerID
+// END   EstimationSession_TrackerID
+// END   EstimationSession_TrackerID
+// ----------------------------------------------------------------

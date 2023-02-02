@@ -57,11 +57,11 @@ SQL Table Key | **featureID**
 |**UatSupport**|String|false|true|false|false|||||Y|uatSupport||false|false|false|text||
 |**Marketing**|String|false|true|false|true|||||Y|marketing||false|false|false|number||
 |**Contingency**|String|false|true|false|true|||||Y|contingency||false|false|false|number||
-|**TrackerID**|String|false|true|false|false|||||Y|trackerID||false|false|false|text||
-|**AdoID**|String|false|true|false|false|||||Y|adoID||false|false|false|text||
-|**FreshdeskID**|String|false|true|false|false|||||Y|freshdeskID||false|false|false|text||
-|**ExtRef**|String|false|true|false|false|||||Y|extRef||false|false|false|text||
-|**ExtRef2**|String|false|true|false|false|||||Y|extRef2||false|false|false|text||
+|**TrackerID**|String|false|true|false|true|||||Y|trackerID||false|true|false|text||
+|**AdoID**|String|false|true|false|true|||||Y|adoID||false|true|false|text||
+|**FreshdeskID**|String|false|true|false|true|||||Y|freshdeskID||false|true|false|text||
+|**ExtRef**|String|false|true|false|true|||||Y|extRef||false|true|false|text||
+|**ExtRef2**|String|false|true|false|true|||||Y|extRef2||false|true|false|text||
 |**SYSCreated**|String|false|true|false|false|||||NH|_created||false|false|true|text||
 |**SYSCreatedBy**|String|false|true|false|false|||||NH|_createdBy||false|false|true|text||
 |**SYSCreatedHost**|String|false|true|false|false|||||NH|_createdHost||false|false|true|text||
@@ -117,7 +117,7 @@ SQL Table Key | **featureID**
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **24/01/2023** at **13:18:09**
+Date & Time		     | **25/01/2023** at **14:23:00**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

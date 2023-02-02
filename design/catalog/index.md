@@ -49,8 +49,6 @@ SQL Table Key | **indexID**
 |**KeyName**|String|false|true|false|true|||||N|keyName||false|false|false|text||
 |**KeyID**|String|false|true|false|true|||||N|keyID||false|false|false|text||
 |**Link**|String|false|true|false|true|||||NH|link||false|true|false|text||
-|**LinkView**|String|false|true|false|true|||||NH|linkView||false|true|false|text||
-|**LinkEdit**|String|false|true|false|true|||||NH|linkEdit||false|true|false|text||
 |**SYSCreated**|String|false|true|false|false|||||NH|_created||false|false|true|text||
 |**SYSCreatedBy**|String|false|true|false|false|||||NH|_createdBy||false|false|true|text||
 |**SYSCreatedHost**|String|false|true|false|false|||||NH|_createdHost||false|false|true|text||
@@ -82,7 +80,7 @@ SQL Table Key | **indexID**
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **24/01/2023** at **13:18:09**
+Date & Time		     | **25/01/2023** at **14:40:46**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

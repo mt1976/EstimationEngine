@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 24/01/2023 at 13:18:09
+// Date & Time		    : 25/01/2023 at 14:23:00
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -90,11 +90,16 @@ func Feature_GetByID(id string) (int, dm.Feature, error) {
 	_, _, featureItem, _ := feature_Fetch(tsql)
 
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	featureItem.FeatureID,featureItem.FeatureID_props = Feature_FeatureID_impl (GET,id,featureItem.FeatureID,featureItem,featureItem.FeatureID_props)
+	featureItem.TrackerID,featureItem.TrackerID_props = Feature_TrackerID_impl (GET,id,featureItem.TrackerID,featureItem,featureItem.TrackerID_props)
+	featureItem.AdoID,featureItem.AdoID_props = Feature_AdoID_impl (GET,id,featureItem.AdoID,featureItem,featureItem.AdoID_props)
+	featureItem.FreshdeskID,featureItem.FreshdeskID_props = Feature_FreshdeskID_impl (GET,id,featureItem.FreshdeskID,featureItem,featureItem.FreshdeskID_props)
+	featureItem.ExtRef,featureItem.ExtRef_props = Feature_ExtRef_impl (GET,id,featureItem.ExtRef,featureItem,featureItem.ExtRef_props)
+	featureItem.ExtRef2,featureItem.ExtRef2_props = Feature_ExtRef2_impl (GET,id,featureItem.ExtRef2,featureItem,featureItem.ExtRef2_props)
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, featureItem, nil
 }
@@ -175,20 +180,25 @@ func Feature_StoreSystem(r dm.Feature) error {
 func Feature_Validate(r dm.Feature) (dm.Feature, error) {
 	var err error
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.FeatureID,r.FeatureID_props = Feature_FeatureID_impl (PUT,r.FeatureID,r.FeatureID,r,r.FeatureID_props)
+	r.TrackerID,r.TrackerID_props = Feature_TrackerID_impl (PUT,r.FeatureID,r.TrackerID,r,r.TrackerID_props)
+	r.AdoID,r.AdoID_props = Feature_AdoID_impl (PUT,r.FeatureID,r.AdoID,r,r.AdoID_props)
+	r.FreshdeskID,r.FreshdeskID_props = Feature_FreshdeskID_impl (PUT,r.FeatureID,r.FreshdeskID,r,r.FreshdeskID_props)
+	r.ExtRef,r.ExtRef_props = Feature_ExtRef_impl (PUT,r.FeatureID,r.ExtRef,r,r.ExtRef_props)
+	r.ExtRef2,r.ExtRef2_props = Feature_ExtRef2_impl (PUT,r.FeatureID,r.ExtRef2,r,r.ExtRef2_props)
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r, _, err = Feature_ObjectValidation_impl(PUT, r.FeatureID, r)
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	
 
@@ -224,11 +234,11 @@ func feature_Save(r dm.Feature,usr string) error {
 
 
 
-
-
-
-
-
+  r.TrackerID,err = Feature_TrackerID_OnStore_impl (r.TrackerID,r,usr)
+  r.AdoID,err = Feature_AdoID_OnStore_impl (r.AdoID,r,usr)
+  r.FreshdeskID,err = Feature_FreshdeskID_OnStore_impl (r.FreshdeskID,r,usr)
+  r.ExtRef,err = Feature_ExtRef_OnStore_impl (r.ExtRef,r,usr)
+  r.ExtRef2,err = Feature_ExtRef2_OnStore_impl (r.ExtRef2,r,usr)
 
 
 
@@ -280,7 +290,7 @@ logs.Storing("Feature",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Feature_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Feature_FeatureID_sql, r.FeatureID)
@@ -337,7 +347,7 @@ logs.Storing("Feature",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Feature_ActualProfile_sql, r.ActualProfile)
 		
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + Feature_QualifiedName
@@ -370,7 +380,7 @@ func feature_Fetch(tsql string) (int, []dm.Feature, dm.Feature, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Feature_SYSId_sql, "0")
 	   recItem.FeatureID  = get_String(rec, dm.Feature_FeatureID_sql, "")
@@ -441,11 +451,11 @@ func feature_Fetch(tsql string) (int, []dm.Feature, dm.Feature, error) {
 	
 	
 	
-	
-	
-	
-	
-	
+	   recItem.TrackerID  = Feature_TrackerID_OnFetch_impl (recItem)
+	   recItem.AdoID  = Feature_AdoID_OnFetch_impl (recItem)
+	   recItem.FreshdeskID  = Feature_FreshdeskID_OnFetch_impl (recItem)
+	   recItem.ExtRef  = Feature_ExtRef_OnFetch_impl (recItem)
+	   recItem.ExtRef2  = Feature_ExtRef2_OnFetch_impl (recItem)
 	
 	
 	
@@ -482,7 +492,7 @@ func feature_Fetch(tsql string) (int, []dm.Feature, dm.Feature, error) {
 	
 	
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -512,11 +522,16 @@ func Feature_New() (int, []dm.Feature, dm.Feature, error) {
 	
 
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.FeatureID,r.FeatureID_props = Feature_FeatureID_impl (NEW,r.FeatureID,r.FeatureID,r,r.FeatureID_props)
+	r.TrackerID,r.TrackerID_props = Feature_TrackerID_impl (NEW,r.FeatureID,r.TrackerID,r,r.TrackerID_props)
+	r.AdoID,r.AdoID_props = Feature_AdoID_impl (NEW,r.FeatureID,r.AdoID,r,r.AdoID_props)
+	r.FreshdeskID,r.FreshdeskID_props = Feature_FreshdeskID_impl (NEW,r.FeatureID,r.FreshdeskID,r,r.FreshdeskID_props)
+	r.ExtRef,r.ExtRef_props = Feature_ExtRef_impl (NEW,r.FeatureID,r.ExtRef,r,r.ExtRef_props)
+	r.ExtRef2,r.ExtRef2_props = Feature_ExtRef2_impl (NEW,r.FeatureID,r.ExtRef2,r,r.ExtRef2_props)
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

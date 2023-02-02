@@ -24,27 +24,27 @@
     <div class="card " style="padding:1rem;">
       <table id="DataTable" class="table table-striped table-hover table-borderless table-sm align-middle mb-0 table-responsive" style="width:100%;">
         <thead class="table-primary text-center">
-          <tr class="fs-6">
+          <tr class="">
             <td class="text-center fw-bolder">ORIGIN</th>
             <th class="fw-bolder">NAME</th>
             <td class="text-center fw-bolder">STATUS</th>
-            <td class="text-center fw-bolder">TYPE</th>
-            <td class="text-center fw-bolder">DESCRIPTION</th>
+            
+            
             <td class="text-end fw-bolder">CURRENT RATE</th>
             <td class="text-center fw-bolder">CONTRACT ENDS</th>
-            <td class="text-end fw-bolder">PROJECT MANAGER</th>
-            <th class="text-end fw-bolder">ACCOUNT MANAGER</th>
-            <th class="text-end fw-bolder">ACTIONS</th>
+            <td class="text-center fw-bolder">PM</th>
+            <th class="text-center fw-bolder">AM</th>
+            <th class="text-center fw-bolder">ACTIONS</th>
           </tr>
         </thead>
         <tbody>
           {{range .OriginList}}
-          <tr class="fs-6">
+          <tr class="">
             <td class="text-primary text-center"><a href="/ProjectsByOrigin/?OriginID={{.OriginID}}" class="text-primary" style="font-weight:bolder;" role="button" aria-pressed="true">{{.Code}}</a></td>
             <td>{{.FullName}}</td>
             <td class="text-center">{{.StateID}}</td>
-            <td class="text-center">{{.DocTypeID}}</td>
-            <td>{{ printf "%.100s" .Comments}}</td>
+            
+           
             <td class="text-end">{{.Currency}}&nbsp;{{.Rate}}</td>
             <td class="text-center">{{.EndDate}}</td>
             <td class="text-center">{{.ProjectManager}}</td>
@@ -53,7 +53,7 @@
             <div class="btn-group" role="group" aria-label="Basic example">
                 <a href="/ProjectsByOrigin/?OriginID={{.OriginID}}" class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i class="fas fa-project-diagram fa-fw me-2"></i>Projects&nbsp<small>({{.NoActiveProjects}})</small></a>
                 <a href="/OriginView/?OriginID={{.OriginID}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="far fa-eye fa-fw me-2"></i>Details</a> 
-              <a href="/OriginRemove/?OriginID={{.OriginID}}" class="btn btn-warning btn-sm" role="button" aria-pressed="true" disabled><i class="far fa-trash-alt fa-fw me-2"></i>Remove</a>
+              <a href="/OriginRemove/?OriginID={{.OriginID}}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" disabled><i class="far fa-trash-alt fa-fw me-2"></i>Remove</a>
             </div>
             </td>
           </tr>

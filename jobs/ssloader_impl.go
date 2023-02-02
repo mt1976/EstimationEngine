@@ -33,7 +33,7 @@ type RSC struct {
 type RSCs []*RSC
 
 func Ssloader_Job_impl(j dm.JobDefinition) dm.JobDefinition {
-	j.Name = "Spreadsheet_Loader"
+	j.Name = "Spreadsheet"
 	j.Period = ""
 	j.Description = "Load Data from Old Tracker Spreadsheet"
 	j.Type = core.Adhoc
@@ -46,7 +46,7 @@ func Ssloader_Run_impl() (string, error) {
 	message := ""
 
 	//Get Path from Data to Spreadsheet
-	ssPath, err := dao.Data_Get(Ssloader_Job().Name, "Path", "Setting")
+	ssPath, err := dao.Data_Get(Ssloader_Job().Name, "Path", "Importer")
 	if err != nil {
 		return "No Location Specified for " + Ssloader_Job().Name, err
 	}
@@ -55,7 +55,7 @@ func Ssloader_Run_impl() (string, error) {
 	}
 
 	//Get Mode from Data
-	ssMode, err := dao.Data_Get(Ssloader_Job().Name, "Mode", "Setting")
+	ssMode, err := dao.Data_Get(Ssloader_Job().Name, "Mode", "Importer")
 	if err != nil {
 		return "No Mode Specified for " + Ssloader_Job().Name, err
 	}
@@ -167,11 +167,11 @@ func Ssloader_Run_impl() (string, error) {
 	//logs.Information("Spreadsheet", content)
 	//Load Data into Database
 	message = strconv.Itoa(noWorkItems) + " Work Items Processed"
-	ok, _ := dao.Data_Put(Ssloader_Job().Name, "LastRun", time.Now().Format(core.DATEMSG), "Result")
-	ok, _ = dao.Data_Put(Ssloader_Job().Name, "LastRunPath", ssPath, "Result")
-	ok, _ = dao.Data_Put(Ssloader_Job().Name, "LastRunMessage", message, "Result")
-	ok, _ = dao.Data_Put(Ssloader_Job().Name, "LastRunMode", ssMode, "Result")
-	ok, _ = dao.Data_Put(Ssloader_Job().Name, "Mode", "Done", "Setting")
+	ok, _ := dao.Data_Put(Ssloader_Job().Name, "LastRun", "Importer", time.Now().Format(core.DATEMSG))
+	ok, _ = dao.Data_Put(Ssloader_Job().Name, "LastRunPath", "Importer", ssPath)
+	ok, _ = dao.Data_Put(Ssloader_Job().Name, "LastRunMessage", "Importer", message)
+	ok, _ = dao.Data_Put(Ssloader_Job().Name, "LastRunMode", "Importer", ssMode)
+	ok, _ = dao.Data_Put(Ssloader_Job().Name, "Mode", "Importer", "Done")
 	if ok == "" {
 		message = "Unable to Update Data for " + Ssloader_Job().Name
 	}

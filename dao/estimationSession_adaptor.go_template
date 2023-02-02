@@ -16,7 +16,7 @@ import (
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
 	// Template Generator   : Einsteinium [r5-23.01.23]
-	// Date & Time		    : 24/01/2023 at 13:18:08
+	// Date & Time		    : 25/01/2023 at 14:14:53
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in estimationsession_impl.go
@@ -103,6 +103,62 @@ import (
 	// END   EstimationSession_EstimationStateID
 	// END   EstimationSession_EstimationStateID
 	// END   EstimationSession_EstimationStateID
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN EstimationSession_AdoID
+	// BEGIN EstimationSession_AdoID
+	// BEGIN EstimationSession_AdoID
+	// ----------------------------------------------------------------
+	// EstimationSession_AdoID_OnStore_impl provides the implementation for the callout
+	func EstimationSession_AdoID_OnStore_impl (fieldval string,rec dm.EstimationSession,usr string) (string,error)  {
+		logs.Callout("EstimationSession", dm.EstimationSession_AdoID_scrn, PUT, rec.EstimationSessionID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// EstimationSession_AdoID_OnFetch_impl provides the implementation for the callout	
+	func EstimationSession_AdoID_OnFetch_impl (rec dm.EstimationSession)(string) {
+		logs.Callout("EstimationSession", dm.EstimationSession_AdoID_scrn, GET, rec.EstimationSessionID)
+		return rec.AdoID
+	}
+	// ----------------------------------------------------------------
+	// EstimationSession_AdoID_impl provides validation/actions for AdoID
+	func EstimationSession_AdoID_impl (iAction string, iId string, iValue string, iRec dm.EstimationSession, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("EstimationSession", dm.EstimationSession_AdoID_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+	// ----------------------------------------------------------------
+	// END   EstimationSession_AdoID
+	// END   EstimationSession_AdoID
+	// END   EstimationSession_AdoID
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN EstimationSession_FreshdeskID
+	// BEGIN EstimationSession_FreshdeskID
+	// BEGIN EstimationSession_FreshdeskID
+	// ----------------------------------------------------------------
+	// EstimationSession_FreshdeskID_OnStore_impl provides the implementation for the callout
+	func EstimationSession_FreshdeskID_OnStore_impl (fieldval string,rec dm.EstimationSession,usr string) (string,error)  {
+		logs.Callout("EstimationSession", dm.EstimationSession_FreshdeskID_scrn, PUT, rec.EstimationSessionID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// EstimationSession_FreshdeskID_OnFetch_impl provides the implementation for the callout	
+	func EstimationSession_FreshdeskID_OnFetch_impl (rec dm.EstimationSession)(string) {
+		logs.Callout("EstimationSession", dm.EstimationSession_FreshdeskID_scrn, GET, rec.EstimationSessionID)
+		return rec.FreshdeskID
+	}
+	// ----------------------------------------------------------------
+	// EstimationSession_FreshdeskID_impl provides validation/actions for FreshdeskID
+	func EstimationSession_FreshdeskID_impl (iAction string, iId string, iValue string, iRec dm.EstimationSession, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("EstimationSession", dm.EstimationSession_FreshdeskID_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+	// ----------------------------------------------------------------
+	// END   EstimationSession_FreshdeskID
+	// END   EstimationSession_FreshdeskID
+	// END   EstimationSession_FreshdeskID
 	// ----------------------------------------------------------------
 
 	// ----------------------------------------------------------------

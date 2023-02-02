@@ -2,7 +2,6 @@ package dao
 
 import (
 	"errors"
-	"fmt"
 
 	core "github.com/mt1976/ebEstimates/core"
 	dm "github.com/mt1976/ebEstimates/datamodel"
@@ -31,28 +30,24 @@ func Indexer_Put(KeyClass string, KeyField string, KeyID string, KeyValue string
 	iRec.KeyValue = KeyValue
 
 	prefix := ""
-	iRec.Link, _ = Data_Get(iRec.KeyClass+"-Link", iRec.KeyName, "Setting")
+	iRec.Link, _ = Data_Get(iRec.KeyClass, iRec.KeyName, "IndexLink")
 	iRec.Link = prefix + iRec.Link
-	iRec.LinkView, _ = Data_Get(iRec.KeyClass+"-View", iRec.KeyName, "Setting")
-	iRec.LinkView = prefix + iRec.LinkView
-	iRec.LinkEdit, _ = Data_Get(iRec.KeyClass+"-Edit", iRec.KeyName, "Setting")
-	iRec.LinkEdit = prefix + iRec.LinkEdit
 
 	if iRec.Link == "" {
-		iRec.Link = "/%s"
-		logs.Warning("Indexer Content Not found " + core.DQuote(iRec.KeyClass+"-Link") + " " + core.DQuote(iRec.KeyName) + " using " + core.DQuote(iRec.Link))
+		iRec.Link = "/{{VALUE}}"
+		logs.Warning("Indexer Content Not found " + core.DQuote(iRec.KeyClass) + " " + core.DQuote(iRec.KeyName) + " using " + core.DQuote(iRec.Link))
+		Data_Put(iRec.KeyClass, iRec.KeyName, "IndexLink", iRec.Link)
 	}
-	iRec.Link = fmt.Sprintf(iRec.Link, iRec.KeyID)
-	if iRec.LinkView == "" {
-		iRec.LinkView = "/%s"
-		logs.Warning("Indexer Content Not found " + core.DQuote(iRec.KeyClass+"-View") + " " + core.DQuote(iRec.KeyName) + " using " + core.DQuote(iRec.LinkView))
+	//iRec.Link = fmt.Sprintf(iRec.Link, iRec.KeyID)
+
+	iRec.Link = core.ReplaceWildcard(iRec.Link, "ID", iRec.KeyID)
+	iRec.Link = core.ReplaceWildcard(iRec.Link, "VALUE", iRec.KeyValue)
+
+	if KeyValue == "" {
+		// Delete the index entry
+		Index_Delete(iRec.IndexID)
+		return iRec, nil
 	}
-	iRec.LinkView = fmt.Sprintf(iRec.LinkView, iRec.KeyID)
-	if iRec.LinkEdit == "" {
-		iRec.LinkEdit = "/%s"
-		logs.Warning("Indexer Content Not found " + core.DQuote(iRec.KeyClass+"-Edit") + " " + core.DQuote(iRec.KeyName) + " using " + core.DQuote(iRec.LinkEdit))
-	}
-	iRec.LinkEdit = fmt.Sprintf(iRec.LinkEdit, iRec.KeyID)
 
 	err := Index_StoreSystem(iRec)
 	if err != nil {

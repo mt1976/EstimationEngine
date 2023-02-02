@@ -25,7 +25,7 @@
       <div class="card " style="padding:1rem;">
         <table id="DataTable" class="table table-striped table-hover table-borderless table-sm align-middle mb-0 table-responsive" style="width:100%">
           <thead class="table-primary">
-            <tr class="fs-6 text-center">
+            <tr class="text-center">
               <th class="fw-bolder">NAME</th>
               <th class="text-center fw-bolder">PROFILE</th>
               <th class="text-center fw-bolder">ESTIMATE</th>
@@ -44,7 +44,7 @@
           </thead>
           <tbody>
             {{range .ItemList}}
-            <tr class="fs-6">
+            <tr class="">
               <td class="text-primary"><a href="/FeatureView/?FeatureID={{.FeatureID}}" class="text-primary" style="font-weight:bolder;" role="button" aria-pressed="true">{{.Name}}</a></td>
               <td class="text-center">{{.ActualProfile}}</td>
               <td class="text-center">{{.DevEstimate}}</td>

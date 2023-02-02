@@ -72,8 +72,8 @@ SQL Table Key | **estimationSessionID**
 |**SYSDeletedBy**|String|false|true|false|false|||||NH|_deletedBy||false|false|true|text||
 |**SYSDeletedHost**|String|false|true|false|false|||||NH|_deletedHost||false|false|true|text||
 |**Name**|String|true|true|false|true|||||Y|name||true|false|false|text||
-|**AdoID**|String|false|true|false|false|||||Y|adoID||false|false|false|text||
-|**FreshdeskID**|String|false|true|false|false|||||Y|freshdeskID||false|false|false|text||
+|**AdoID**|String|false|true|false|true|||||Y|adoID||false|true|false|text||
+|**FreshdeskID**|String|false|true|false|true|||||Y|freshdeskID||false|true|false|text||
 |**TrackerID**|String|false|true|false|true|||||Y|trackerID||false|true|false|text||
 |**EstRef**|String|false|true|false|false|||||Y|estRef||false|false|false|text||
 |**ExtRef**|String|false|true|false|false|||||Y|extRef||false|false|false|text||
@@ -132,7 +132,7 @@ SQL Table Key | **estimationSessionID**
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **24/01/2023** at **13:18:08**
+Date & Time		     | **25/01/2023** at **14:14:53**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

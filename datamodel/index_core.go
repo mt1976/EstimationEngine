@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 24/01/2023 at 13:18:09
+// Date & Time		    : 25/01/2023 at 14:40:46
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -29,10 +29,6 @@ KeyID       string
 KeyID_props FieldProperties
 Link       string
 Link_props FieldProperties
-LinkView       string
-LinkView_props FieldProperties
-LinkEdit       string
-LinkEdit_props FieldProperties
 SYSCreated       string
 SYSCreated_props FieldProperties
 SYSCreatedBy       string
@@ -56,8 +52,6 @@ SYSDbVersion_props FieldProperties
 KeyValue       string
 KeyValue_props FieldProperties
  // Any lookups will be added below
-
-
 
 
 
@@ -114,8 +108,6 @@ const (
 	Index_KeyName_sql   = "keyName" // KeyName is a String
 	Index_KeyID_sql   = "keyID" // KeyID is a String
 	Index_Link_sql   = "link" // Link is a String
-	Index_LinkView_sql   = "linkView" // LinkView is a String
-	Index_LinkEdit_sql   = "linkEdit" // LinkEdit is a String
 	Index_SYSCreated_sql   = "_created" // SYSCreated is a String
 	Index_SYSCreatedBy_sql   = "_createdBy" // SYSCreatedBy is a String
 	Index_SYSCreatedHost_sql   = "_createdHost" // SYSCreatedHost is a String
@@ -138,8 +130,6 @@ const (
 	Index_KeyName_scrn   = "KeyName" // KeyName is a String
 	Index_KeyID_scrn   = "KeyID" // KeyID is a String
 	Index_Link_scrn   = "Link" // Link is a String
-	Index_LinkView_scrn   = "LinkView" // LinkView is a String
-	Index_LinkEdit_scrn   = "LinkEdit" // LinkEdit is a String
 	Index_SYSCreated_scrn   = "SYSCreated" // SYSCreated is a String
 	Index_SYSCreatedBy_scrn   = "SYSCreatedBy" // SYSCreatedBy is a String
 	Index_SYSCreatedHost_scrn   = "SYSCreatedHost" // SYSCreatedHost is a String
@@ -182,7 +172,7 @@ type Index_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -196,10 +186,6 @@ type Index_Page struct {
 	KeyID_props     FieldProperties
 	Link         string
 	Link_props     FieldProperties
-	LinkView         string
-	LinkView_props     FieldProperties
-	LinkEdit         string
-	LinkEdit_props     FieldProperties
 	SYSCreated         string
 	SYSCreated_props     FieldProperties
 	SYSCreatedBy         string
@@ -223,7 +209,7 @@ type Index_Page struct {
 	KeyValue         string
 	KeyValue_props     FieldProperties
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 		 appContext
 	BlockEdit		 bool
