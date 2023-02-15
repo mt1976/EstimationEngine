@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:34
+// Date & Time		    : 15/02/2023 at 10:44:41
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //Credentials_Publish annouces the endpoints available for this object
-//Credentials_Publish - Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+//Credentials_Publish - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 func Credentials_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.Credentials_Path, Credentials_Handler)
 	mux.HandleFunc(dm.Credentials_PathList, Credentials_HandlerList)
@@ -38,17 +38,17 @@ func Credentials_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.Credentials_Title)
     core.Catalog_Add(dm.Credentials_Title, dm.Credentials_Path, "", dm.Credentials_QueryString, "Application")
 	// 
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Credentials_HandlerList is the handler for the list page
 //Allows Listing of Credentials records
-//Credentials_HandlerList - Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+//Credentials_HandlerList - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 func Credentials_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -78,7 +78,7 @@ func Credentials_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	ExecuteTemplate(dm.Credentials_TemplateList, w, r, pageDetail)
 	// 
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -86,10 +86,10 @@ func Credentials_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //Credentials_HandlerView is the handler used to View a page
 //Allows Viewing for an existing Credentials record
-//Credentials_HandlerView - Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Credentials_HandlerView - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Credentials_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -118,17 +118,17 @@ func Credentials_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Credentials_TemplateView, w, r, pageDetail)
 	// 
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Credentials_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing Credentials record and then allows the user to save the changes
-//Credentials_HandlerEdit - Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Credentials_HandlerEdit - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Credentials_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -142,7 +142,15 @@ func Credentials_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path)
 
 	searchID := core.GetURLparam(r, dm.Credentials_QueryString)
-	_, rD, _ := dao.Credentials_GetByID(searchID)
+	action := core.GetURLparam(r, core.ContextState)
+
+	var rD dm.Credentials
+	if action == core.ContextState_ERROR {
+		rD = core.SessionManager.Get(r.Context(), searchID).(dm.Credentials)
+	} else {
+		_, rD, _ = dao.Credentials_GetByID(searchID)
+	}
+
 	
 	pageDetail := dm.Credentials_Page{
 		Title:       CardTitle(dm.Credentials_Title, core.Action_Edit),
@@ -157,17 +165,17 @@ func Credentials_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Credentials_TemplateEdit, w, r, pageDetail)
 	// 
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Credentials_HandlerSave is the handler used process the saving of an Credentials
 //It is called from the Edit and New pages
-//Credentials_HandlerSave  - Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Credentials_HandlerSave  - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Credentials_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -178,24 +186,31 @@ func Credentials_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Code Continues Below
 
 	w.Header().Set("Content-Type", "text/html")
-	logs.Servicing(r.URL.Path+r.FormValue("Id"))
+	itemID := r.FormValue("Id")
+	logs.Servicing(r.URL.Path+itemID)
 
 	item := credentials_DataFromRequest(r)
 	
-	dao.Credentials_Store(item,r)	
-	http.Redirect(w, r, dm.Credentials_Redirect, http.StatusFound)
+	item, errStore := dao.Credentials_Store(item,r)
+	if errStore == nil {	
+		http.Redirect(w, r, dm.Credentials_Redirect, http.StatusFound)
+	} else {
+		logs.Information(dm.Credentials_Name, errStore.Error())
+		http.Redirect(w, r, r.Referer(), http.StatusFound)
+		ExecuteRedirect(r.Referer(), w, r,dm.Credentials_QueryString,itemID,item)
+	}
 	// 
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Credentials_HandlerNew is the handler used process the creation of an Credentials
 //It will create a new Credentials and then redirect to the Edit page
-//Credentials_HandlerNew  - Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Credentials_HandlerNew  - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Credentials_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -207,7 +222,18 @@ func Credentials_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
-	_, _, rD, _ := dao.Credentials_New()
+
+	searchID := core.GetURLparam(r, dm.Credentials_QueryString)
+	action := core.GetURLparam(r, core.ContextState)
+
+	var rD dm.Credentials
+	if action == core.ContextState_ERROR {
+		rD = core.SessionManager.Get(r.Context(), searchID).(dm.Credentials)
+	} else {
+		_, _, rD, _ = dao.Credentials_New()
+	}
+
+
 
 	pageDetail := dm.Credentials_Page{
 		Title:       CardTitle(dm.Credentials_Title, core.Action_New),
@@ -222,17 +248,17 @@ func Credentials_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Credentials_TemplateNew, w, r, pageDetail)
 	// 
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }	
 
 
 //Credentials_HandlerDelete is the handler used process the deletion of an Credentials
 // It will delete the Credentials and then redirect to the List page
-//Credentials_HandlerDelete - Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Credentials_HandlerDelete - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Credentials_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -250,16 +276,15 @@ func Credentials_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, dm.Credentials_Redirect, http.StatusFound)
 	// 
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //credentials_PopulatePage Builds/Populates the Credentials Page 
+//credentials_PopulatePage Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 func credentials_PopulatePage(rD dm.Credentials, pageDetail dm.Credentials_Page) dm.Credentials_Page {
-	// START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
+	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.Id = rD.Id
 	pageDetail.Username = rD.Username
@@ -286,71 +311,14 @@ func credentials_PopulatePage(rD dm.Credentials, pageDetail dm.Credentials_Page)
 	pageDetail.SYSActivity = rD.SYSActivity
 	pageDetail.SYSDbVersion = rD.SYSDbVersion
 	pageDetail.EmailNotifications = rD.EmailNotifications
-	
-	
-	//
-	// Automatically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
-	//
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	// Add Pseudo/Extra Fields
+	// Enrichment Fields 
 	 
 	pageDetail.RoleType_lookup = dao.UserRole_GetLookup()
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	pageDetail.State_lookup = dao.StubLists_Get("credentialStates")
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	pageDetail.EmailNotifications_lookup = dao.StubLists_Get("tf")
-	
-	
 	pageDetail.SYSId_props = rD.SYSId_props
 	pageDetail.Id_props = rD.Id_props
 	pageDetail.Username_props = rD.Username_props
@@ -377,23 +345,15 @@ func credentials_PopulatePage(rD dm.Credentials, pageDetail dm.Credentials_Page)
 	pageDetail.SYSActivity_props = rD.SYSActivity_props
 	pageDetail.SYSDbVersion_props = rD.SYSDbVersion_props
 	pageDetail.EmailNotifications_props = rD.EmailNotifications_props
-	
-	// 
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
-return pageDetail
+	return pageDetail
 }	
 
 
 //credentials_DataFromRequest is used process the content of an HTTP Request and return an instance of an Credentials
+//credentials_DataFromRequest Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 func credentials_DataFromRequest(r *http.Request) dm.Credentials {
-	// START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
+
 	var item dm.Credentials
-	// FIELD SET START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 		item.SYSId = r.FormValue(dm.Credentials_SYSId_scrn)
 		item.Id = r.FormValue(dm.Credentials_Id_scrn)
 		item.Username = r.FormValue(dm.Credentials_Username_scrn)
@@ -420,9 +380,6 @@ func credentials_DataFromRequest(r *http.Request) dm.Credentials {
 		item.SYSActivity = r.FormValue(dm.Credentials_SYSActivity_scrn)
 		item.SYSDbVersion = r.FormValue(dm.Credentials_SYSDbVersion_scrn)
 		item.EmailNotifications = r.FormValue(dm.Credentials_EmailNotifications_scrn)
-	
-	// 
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
 	return item
 }
+

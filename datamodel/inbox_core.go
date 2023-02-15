@@ -9,92 +9,84 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:37
+// Date & Time		    : 15/02/2023 at 10:44:44
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Inbox defines the datamolde for the Inbox object
+//Inbox defines the datamodel for the Inbox object
 type Inbox struct {
-
-
-SYSId       string
-SYSId_props FieldProperties
-SYSCreated       string
-SYSCreated_props FieldProperties
-SYSUpdated       string
-SYSUpdated_props FieldProperties
-SYSCreatedBy       string
-SYSCreatedBy_props FieldProperties
-SYSCreatedHost       string
-SYSCreatedHost_props FieldProperties
-SYSUpdatedBy       string
-SYSUpdatedBy_props FieldProperties
-SYSUpdatedHost       string
-SYSUpdatedHost_props FieldProperties
-MailId       string
-MailId_props FieldProperties
-MailTo       string
-MailTo_props FieldProperties
-MailFrom       string
-MailFrom_props FieldProperties
-MailSource       string
-MailSource_props FieldProperties
-MailSent       string
-MailSent_props FieldProperties
-MailUnread       string
-MailUnread_props FieldProperties
-MailSubject       string
-MailSubject_props FieldProperties
-MailContent       string
-MailContent_props FieldProperties
-MailAcknowledged       string
-MailAcknowledged_props FieldProperties
-SYSDeleted       string
-SYSDeleted_props FieldProperties
-SYSDeletedBy       string
-SYSDeletedBy_props FieldProperties
-SYSDeletedHost       string
-SYSDeletedHost_props FieldProperties
-SYSDbVersion       string
-SYSDbVersion_props FieldProperties
- // Any lookups will be added below
-
-
-
-
-
-
-
-
-
-
-
-MailUnread_lookup []Lookup_Item
-
-
-MailAcknowledged_lookup []Lookup_Item
-
-
-
-
-
-}
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Field Definitions
+	//
+	SYSId       string
+	SYSCreated       string
+	SYSUpdated       string
+	SYSCreatedBy       string
+	SYSCreatedHost       string
+	SYSUpdatedBy       string
+	SYSUpdatedHost       string
+	MailId       string
+	MailTo       string
+	MailFrom       string
+	MailSource       string
+	MailSent       string
+	MailUnread       string
+	MailSubject       string
+	MailContent       string
+	MailAcknowledged       string
+	SYSDeleted       string
+	SYSDeletedBy       string
+	SYSDeletedHost       string
+	SYSDbVersion       string
+	//
+	// Field Properties
+	//
+	SYSId_props FieldProperties
+	SYSCreated_props FieldProperties
+	SYSUpdated_props FieldProperties
+	SYSCreatedBy_props FieldProperties
+	SYSCreatedHost_props FieldProperties
+	SYSUpdatedBy_props FieldProperties
+	SYSUpdatedHost_props FieldProperties
+	MailId_props FieldProperties
+	MailTo_props FieldProperties
+	MailFrom_props FieldProperties
+	MailSource_props FieldProperties
+	MailSent_props FieldProperties
+	MailUnread_props FieldProperties
+	MailSubject_props FieldProperties
+	MailContent_props FieldProperties
+	MailAcknowledged_props FieldProperties
+	SYSDeleted_props FieldProperties
+	SYSDeletedBy_props FieldProperties
+	SYSDeletedHost_props FieldProperties
+	SYSDbVersion_props FieldProperties
+	//
+ 	// Any lookups will be added below
+	//
+	MailUnread_lookup []Lookup_Item
+	MailAcknowledged_lookup []Lookup_Item
+	}
 
 const (
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
+	Inbox_Name      = "Inbox"
 	Inbox_Title       = "Inbox"
 	Inbox_SQLTable    = "inboxMessages"
 	Inbox_SQLSearchID = "MailId"
 	Inbox_QueryString = "Message"
 	///
-	/// Handler Defintions
+	/// Template Path Defintions
 	///
 	Inbox_Template     = "Inbox"
-	Inbox_TemplateList = "/Inbox/Inbox_List"
-	Inbox_TemplateView = "/Inbox/Inbox_View"
-	Inbox_TemplateEdit = "/Inbox/Inbox_Edit"
-	Inbox_TemplateNew  = "/Inbox/Inbox_New"
+	Inbox_TemplateList = "/Inbox/InboxList"
+	Inbox_TemplateView = "/Inbox/InboxView"
+	Inbox_TemplateEdit = "/Inbox/InboxEdit"
+	Inbox_TemplateNew  = "/Inbox/InboxNew"
 	///
-	/// Handler Monitor Paths
+	/// URI Handler Paths
 	///
 	Inbox_Path       = "/API/Inbox/"
 	Inbox_PathList   = "/InboxList/"
@@ -103,14 +95,17 @@ const (
 	Inbox_PathNew    = "/InboxNew/"
 	Inbox_PathSave   = "/InboxSave/"
 	Inbox_PathDelete = "/InboxDelete/"
-	///
+	// Redirects - On Server Side Error
+	Inbox_PathEditException   = "/InboxEditException/"
+	Inbox_PathNewException    = "/InboxNewException/"
+	//
 	//Inbox_Redirect provides a page to return to aftern an action
 	Inbox_Redirect = Inbox_PathList
 	
-	///
-	///
-	/// SQL Field Definitions
-	///
+	//
+	//
+	// SQL Field Definitions
+	//
 	Inbox_SYSId_sql   = "_id" // SYSId is a Int
 	Inbox_SYSCreated_sql   = "_created" // SYSCreated is a String
 	Inbox_SYSUpdated_sql   = "_updated" // SYSUpdated is a String
@@ -131,9 +126,7 @@ const (
 	Inbox_SYSDeletedBy_sql   = "_deletedBy" // SYSDeletedBy is a String
 	Inbox_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
 	Inbox_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
-
-	/// Definitions End
-	///
+///
 	/// Application Field Definitions
 	///
 	Inbox_SYSId_scrn   = "SYSId" // SYSId is a Int
@@ -156,20 +149,19 @@ const (
 	Inbox_SYSDeletedBy_scrn   = "SYSDeletedBy" // SYSDeletedBy is a String
 	Inbox_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
 	Inbox_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
-
-	/// Definitions End
-	///
+///
 )
 
-//inbox_PageList provides the information for the template for a list of Inboxs
+//Inbox_PageList provides the information for the template for a list of Inboxs
 type Inbox_PageList struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []Inbox
+	// Context & Permisions
 	Context	 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -177,63 +169,21 @@ type Inbox_PageList struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	// Page Data
+	ItemsOnPage 	 int
+	ItemList  		 []Inbox
 }
 
-//inbox_Page provides the information for the template for an individual Inbox
+//Inbox_Page provides the information for the template for an individual Inbox
 type Inbox_Page struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	SYSId_props     FieldProperties
-	SYSCreated         string
-	SYSCreated_props     FieldProperties
-	SYSUpdated         string
-	SYSUpdated_props     FieldProperties
-	SYSCreatedBy         string
-	SYSCreatedBy_props     FieldProperties
-	SYSCreatedHost         string
-	SYSCreatedHost_props     FieldProperties
-	SYSUpdatedBy         string
-	SYSUpdatedBy_props     FieldProperties
-	SYSUpdatedHost         string
-	SYSUpdatedHost_props     FieldProperties
-	MailId         string
-	MailId_props     FieldProperties
-	MailTo         string
-	MailTo_props     FieldProperties
-	MailFrom         string
-	MailFrom_props     FieldProperties
-	MailSource         string
-	MailSource_props     FieldProperties
-	MailSent         string
-	MailSent_props     FieldProperties
-	MailUnread         string
-	MailUnread_lookup    []Lookup_Item
-	MailUnread_props     FieldProperties
-	MailSubject         string
-	MailSubject_props     FieldProperties
-	MailContent         string
-	MailContent_props     FieldProperties
-	MailAcknowledged         string
-	MailAcknowledged_lookup    []Lookup_Item
-	MailAcknowledged_props     FieldProperties
-	SYSDeleted         string
-	SYSDeleted_props     FieldProperties
-	SYSDeletedBy         string
-	SYSDeletedBy_props     FieldProperties
-	SYSDeletedHost         string
-	SYSDeletedHost_props     FieldProperties
-	SYSDbVersion         string
-	SYSDbVersion_props     FieldProperties
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+	/// Context & Permisions
 	Context	 		 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -241,4 +191,52 @@ type Inbox_Page struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	/// Fields Definitions
+	SYSId         string
+	SYSCreated         string
+	SYSUpdated         string
+	SYSCreatedBy         string
+	SYSCreatedHost         string
+	SYSUpdatedBy         string
+	SYSUpdatedHost         string
+	MailId         string
+	MailTo         string
+	MailFrom         string
+	MailSource         string
+	MailSent         string
+	MailUnread         string
+	MailSubject         string
+	MailContent         string
+	MailAcknowledged         string
+	SYSDeleted         string
+	SYSDeletedBy         string
+	SYSDeletedHost         string
+	SYSDbVersion         string
+	/// Field Properties
+	SYSId_props     FieldProperties
+	SYSCreated_props     FieldProperties
+	SYSUpdated_props     FieldProperties
+	SYSCreatedBy_props     FieldProperties
+	SYSCreatedHost_props     FieldProperties
+	SYSUpdatedBy_props     FieldProperties
+	SYSUpdatedHost_props     FieldProperties
+	MailId_props     FieldProperties
+	MailTo_props     FieldProperties
+	MailFrom_props     FieldProperties
+	MailSource_props     FieldProperties
+	MailSent_props     FieldProperties
+	MailUnread_props     FieldProperties
+	MailSubject_props     FieldProperties
+	MailContent_props     FieldProperties
+	MailAcknowledged_props     FieldProperties
+	SYSDeleted_props     FieldProperties
+	SYSDeletedBy_props     FieldProperties
+	SYSDeletedHost_props     FieldProperties
+	SYSDbVersion_props     FieldProperties
+	/// Lookups
+	MailUnread_lookup    []Lookup_Item
+	MailAcknowledged_lookup    []Lookup_Item
+	
+	/// END OF DEFINITIONS
+	///
 }

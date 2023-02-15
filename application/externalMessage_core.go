@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:36
+// Date & Time		    : 15/02/2023 at 10:44:43
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //ExternalMessage_Publish annouces the endpoints available for this object
-//ExternalMessage_Publish - Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+//ExternalMessage_Publish - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 func ExternalMessage_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.ExternalMessage_Path, ExternalMessage_Handler)
 	mux.HandleFunc(dm.ExternalMessage_PathList, ExternalMessage_HandlerList)
@@ -38,17 +38,17 @@ func ExternalMessage_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.ExternalMessage_Title)
     core.Catalog_Add(dm.ExternalMessage_Title, dm.ExternalMessage_Path, "", dm.ExternalMessage_QueryString, "Application")
 	// 
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //ExternalMessage_HandlerList is the handler for the list page
 //Allows Listing of ExternalMessage records
-//ExternalMessage_HandlerList - Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+//ExternalMessage_HandlerList - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 func ExternalMessage_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -78,7 +78,7 @@ func ExternalMessage_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	ExecuteTemplate(dm.ExternalMessage_TemplateList, w, r, pageDetail)
 	// 
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -86,10 +86,10 @@ func ExternalMessage_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //ExternalMessage_HandlerView is the handler used to View a page
 //Allows Viewing for an existing ExternalMessage record
-//ExternalMessage_HandlerView - Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//ExternalMessage_HandlerView - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 func ExternalMessage_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -118,17 +118,17 @@ func ExternalMessage_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.ExternalMessage_TemplateView, w, r, pageDetail)
 	// 
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //ExternalMessage_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing ExternalMessage record and then allows the user to save the changes
-//ExternalMessage_HandlerEdit - Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//ExternalMessage_HandlerEdit - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 func ExternalMessage_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -142,7 +142,15 @@ func ExternalMessage_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path)
 
 	searchID := core.GetURLparam(r, dm.ExternalMessage_QueryString)
-	_, rD, _ := dao.ExternalMessage_GetByID(searchID)
+	action := core.GetURLparam(r, core.ContextState)
+
+	var rD dm.ExternalMessage
+	if action == core.ContextState_ERROR {
+		rD = core.SessionManager.Get(r.Context(), searchID).(dm.ExternalMessage)
+	} else {
+		_, rD, _ = dao.ExternalMessage_GetByID(searchID)
+	}
+
 	
 	pageDetail := dm.ExternalMessage_Page{
 		Title:       CardTitle(dm.ExternalMessage_Title, core.Action_Edit),
@@ -157,17 +165,17 @@ func ExternalMessage_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.ExternalMessage_TemplateEdit, w, r, pageDetail)
 	// 
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //ExternalMessage_HandlerSave is the handler used process the saving of an ExternalMessage
 //It is called from the Edit and New pages
-//ExternalMessage_HandlerSave  - Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//ExternalMessage_HandlerSave  - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 func ExternalMessage_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -178,14 +186,21 @@ func ExternalMessage_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Code Continues Below
 
 	w.Header().Set("Content-Type", "text/html")
-	logs.Servicing(r.URL.Path+r.FormValue("MessageID"))
+	itemID := r.FormValue("MessageID")
+	logs.Servicing(r.URL.Path+itemID)
 
 	item := externalmessage_DataFromRequest(r)
 	
-	dao.ExternalMessage_Store(item,r)	
-	http.Redirect(w, r, dm.ExternalMessage_Redirect, http.StatusFound)
+	item, errStore := dao.ExternalMessage_Store(item,r)
+	if errStore == nil {	
+		http.Redirect(w, r, dm.ExternalMessage_Redirect, http.StatusFound)
+	} else {
+		logs.Information(dm.ExternalMessage_Name, errStore.Error())
+		http.Redirect(w, r, r.Referer(), http.StatusFound)
+		ExecuteRedirect(r.Referer(), w, r,dm.ExternalMessage_QueryString,itemID,item)
+	}
 	// 
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
@@ -193,10 +208,10 @@ func ExternalMessage_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 //ExternalMessage_HandlerDelete is the handler used process the deletion of an ExternalMessage
 // It will delete the ExternalMessage and then redirect to the List page
-//ExternalMessage_HandlerDelete - Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//ExternalMessage_HandlerDelete - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 func ExternalMessage_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -214,16 +229,15 @@ func ExternalMessage_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, dm.ExternalMessage_Redirect, http.StatusFound)
 	// 
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //externalmessage_PopulatePage Builds/Populates the ExternalMessage Page 
+//externalmessage_PopulatePage Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 func externalmessage_PopulatePage(rD dm.ExternalMessage, pageDetail dm.ExternalMessage_Page) dm.ExternalMessage_Page {
-	// START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
+	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.MessageID = rD.MessageID
 	pageDetail.MessageFormat = rD.MessageFormat
@@ -256,80 +270,12 @@ func externalmessage_PopulatePage(rD dm.ExternalMessage, pageDetail dm.ExternalM
 	pageDetail.SYSDeletedBy = rD.SYSDeletedBy
 	pageDetail.SYSDeletedHost = rD.SYSDeletedHost
 	pageDetail.SYSDbVersion = rD.SYSDbVersion
-	
-	
-	//
-	// Automatically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
-	//
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	// Add Pseudo/Extra Fields
+	// Enrichment Fields 
 	
 	pageDetail.MessageACKNAK_lookup = dao.StubLists_Get("messageACKNAK")
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	pageDetail.ResponseRecieved_lookup = dao.StubLists_Get("tf")
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	pageDetail.SYSId_props = rD.SYSId_props
 	pageDetail.MessageID_props = rD.MessageID_props
 	pageDetail.MessageFormat_props = rD.MessageFormat_props
@@ -362,23 +308,15 @@ func externalmessage_PopulatePage(rD dm.ExternalMessage, pageDetail dm.ExternalM
 	pageDetail.SYSDeletedBy_props = rD.SYSDeletedBy_props
 	pageDetail.SYSDeletedHost_props = rD.SYSDeletedHost_props
 	pageDetail.SYSDbVersion_props = rD.SYSDbVersion_props
-	
-	// 
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
-return pageDetail
+	return pageDetail
 }	
 
 
 //externalmessage_DataFromRequest is used process the content of an HTTP Request and return an instance of an ExternalMessage
+//externalmessage_DataFromRequest Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 func externalmessage_DataFromRequest(r *http.Request) dm.ExternalMessage {
-	// START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
+
 	var item dm.ExternalMessage
-	// FIELD SET START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 		item.SYSId = r.FormValue(dm.ExternalMessage_SYSId_scrn)
 		item.MessageID = r.FormValue(dm.ExternalMessage_MessageID_scrn)
 		item.MessageFormat = r.FormValue(dm.ExternalMessage_MessageFormat_scrn)
@@ -411,9 +349,6 @@ func externalmessage_DataFromRequest(r *http.Request) dm.ExternalMessage {
 		item.SYSDeletedBy = r.FormValue(dm.ExternalMessage_SYSDeletedBy_scrn)
 		item.SYSDeletedHost = r.FormValue(dm.ExternalMessage_SYSDeletedHost_scrn)
 		item.SYSDbVersion = r.FormValue(dm.ExternalMessage_SYSDbVersion_scrn)
-	
-	// 
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
 	return item
 }
+

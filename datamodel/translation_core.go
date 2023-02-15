@@ -9,77 +9,72 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:39
+// Date & Time		    : 15/02/2023 at 10:44:48
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Translation defines the datamolde for the Translation object
+//Translation defines the datamodel for the Translation object
 type Translation struct {
-
-
-SYSId       string
-SYSId_props FieldProperties
-Id       string
-Id_props FieldProperties
-Class       string
-Class_props FieldProperties
-Message       string
-Message_props FieldProperties
-Translation       string
-Translation_props FieldProperties
-SYSCreated       string
-SYSCreated_props FieldProperties
-SYSUpdated       string
-SYSUpdated_props FieldProperties
-SYSCreatedBy       string
-SYSCreatedBy_props FieldProperties
-SYSCreatedHost       string
-SYSCreatedHost_props FieldProperties
-SYSUpdatedBy       string
-SYSUpdatedBy_props FieldProperties
-SYSUpdatedHost       string
-SYSUpdatedHost_props FieldProperties
-SYSDeleted       string
-SYSDeleted_props FieldProperties
-SYSDeletedBy       string
-SYSDeletedBy_props FieldProperties
-SYSDeletedHost       string
-SYSDeletedHost_props FieldProperties
-SYSDbVersion       string
-SYSDbVersion_props FieldProperties
- // Any lookups will be added below
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Field Definitions
+	//
+	SYSId       string
+	Id       string
+	Class       string
+	Message       string
+	Translation       string
+	SYSCreated       string
+	SYSUpdated       string
+	SYSCreatedBy       string
+	SYSCreatedHost       string
+	SYSUpdatedBy       string
+	SYSUpdatedHost       string
+	SYSDeleted       string
+	SYSDeletedBy       string
+	SYSDeletedHost       string
+	SYSDbVersion       string
+	//
+	// Field Properties
+	//
+	SYSId_props FieldProperties
+	Id_props FieldProperties
+	Class_props FieldProperties
+	Message_props FieldProperties
+	Translation_props FieldProperties
+	SYSCreated_props FieldProperties
+	SYSUpdated_props FieldProperties
+	SYSCreatedBy_props FieldProperties
+	SYSCreatedHost_props FieldProperties
+	SYSUpdatedBy_props FieldProperties
+	SYSUpdatedHost_props FieldProperties
+	SYSDeleted_props FieldProperties
+	SYSDeletedBy_props FieldProperties
+	SYSDeletedHost_props FieldProperties
+	SYSDbVersion_props FieldProperties
+	//
+ 	// Any lookups will be added below
+	//
+	}
 
 const (
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
+	Translation_Name      = "Translation"
 	Translation_Title       = "Message Translation"
 	Translation_SQLTable    = "translationStore"
 	Translation_SQLSearchID = "Id"
 	Translation_QueryString = "Message"
 	///
-	/// Handler Defintions
+	/// Template Path Defintions
 	///
 	Translation_Template     = "Translation"
-	Translation_TemplateList = "/Translation/Translation_List"
-	Translation_TemplateView = "/Translation/Translation_View"
-	Translation_TemplateEdit = "/Translation/Translation_Edit"
-	Translation_TemplateNew  = "/Translation/Translation_New"
+	Translation_TemplateList = "/Translation/TranslationList"
+	Translation_TemplateView = "/Translation/TranslationView"
+	Translation_TemplateEdit = "/Translation/TranslationEdit"
+	Translation_TemplateNew  = "/Translation/TranslationNew"
 	///
-	/// Handler Monitor Paths
+	/// URI Handler Paths
 	///
 	Translation_Path       = "/API/Translation/"
 	Translation_PathList   = "/TranslationList/"
@@ -88,14 +83,17 @@ const (
 	Translation_PathNew    = "/TranslationNew/"
 	Translation_PathSave   = "/TranslationSave/"
 	Translation_PathDelete = "/TranslationDelete/"
-	///
+	// Redirects - On Server Side Error
+	Translation_PathEditException   = "/TranslationEditException/"
+	Translation_PathNewException    = "/TranslationNewException/"
+	//
 	//Translation_Redirect provides a page to return to aftern an action
 	Translation_Redirect = Translation_PathList
 	
-	///
-	///
-	/// SQL Field Definitions
-	///
+	//
+	//
+	// SQL Field Definitions
+	//
 	Translation_SYSId_sql   = "_id" // SYSId is a Int
 	Translation_Id_sql   = "Id" // Id is a String
 	Translation_Class_sql   = "Class" // Class is a String
@@ -111,9 +109,7 @@ const (
 	Translation_SYSDeletedBy_sql   = "_deletedBy" // SYSDeletedBy is a String
 	Translation_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
 	Translation_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
-
-	/// Definitions End
-	///
+///
 	/// Application Field Definitions
 	///
 	Translation_SYSId_scrn   = "SYSId" // SYSId is a Int
@@ -131,20 +127,19 @@ const (
 	Translation_SYSDeletedBy_scrn   = "SYSDeletedBy" // SYSDeletedBy is a String
 	Translation_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
 	Translation_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
-
-	/// Definitions End
-	///
+///
 )
 
-//translation_PageList provides the information for the template for a list of Translations
+//Translation_PageList provides the information for the template for a list of Translations
 type Translation_PageList struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []Translation
+	// Context & Permisions
 	Context	 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -152,51 +147,21 @@ type Translation_PageList struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	// Page Data
+	ItemsOnPage 	 int
+	ItemList  		 []Translation
 }
 
-//translation_Page provides the information for the template for an individual Translation
+//Translation_Page provides the information for the template for an individual Translation
 type Translation_Page struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	SYSId_props     FieldProperties
-	Id         string
-	Id_props     FieldProperties
-	Class         string
-	Class_props     FieldProperties
-	Message         string
-	Message_props     FieldProperties
-	Translation         string
-	Translation_props     FieldProperties
-	SYSCreated         string
-	SYSCreated_props     FieldProperties
-	SYSUpdated         string
-	SYSUpdated_props     FieldProperties
-	SYSCreatedBy         string
-	SYSCreatedBy_props     FieldProperties
-	SYSCreatedHost         string
-	SYSCreatedHost_props     FieldProperties
-	SYSUpdatedBy         string
-	SYSUpdatedBy_props     FieldProperties
-	SYSUpdatedHost         string
-	SYSUpdatedHost_props     FieldProperties
-	SYSDeleted         string
-	SYSDeleted_props     FieldProperties
-	SYSDeletedBy         string
-	SYSDeletedBy_props     FieldProperties
-	SYSDeletedHost         string
-	SYSDeletedHost_props     FieldProperties
-	SYSDbVersion         string
-	SYSDbVersion_props     FieldProperties
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+	/// Context & Permisions
 	Context	 		 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -204,4 +169,40 @@ type Translation_Page struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	/// Fields Definitions
+	SYSId         string
+	Id         string
+	Class         string
+	Message         string
+	Translation         string
+	SYSCreated         string
+	SYSUpdated         string
+	SYSCreatedBy         string
+	SYSCreatedHost         string
+	SYSUpdatedBy         string
+	SYSUpdatedHost         string
+	SYSDeleted         string
+	SYSDeletedBy         string
+	SYSDeletedHost         string
+	SYSDbVersion         string
+	/// Field Properties
+	SYSId_props     FieldProperties
+	Id_props     FieldProperties
+	Class_props     FieldProperties
+	Message_props     FieldProperties
+	Translation_props     FieldProperties
+	SYSCreated_props     FieldProperties
+	SYSUpdated_props     FieldProperties
+	SYSCreatedBy_props     FieldProperties
+	SYSCreatedHost_props     FieldProperties
+	SYSUpdatedBy_props     FieldProperties
+	SYSUpdatedHost_props     FieldProperties
+	SYSDeleted_props     FieldProperties
+	SYSDeletedBy_props     FieldProperties
+	SYSDeletedHost_props     FieldProperties
+	SYSDbVersion_props     FieldProperties
+	/// Lookups
+	
+	/// END OF DEFINITIONS
+	///
 }

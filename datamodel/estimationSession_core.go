@@ -9,233 +9,181 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:35
+// Date & Time		    : 15/02/2023 at 14:33:10
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//EstimationSession defines the datamolde for the EstimationSession object
+//EstimationSession defines the datamodel for the EstimationSession object
 type EstimationSession struct {
-
-
-SYSId       string
-SYSId_props FieldProperties
-EstimationSessionID       string
-EstimationSessionID_props FieldProperties
-ProjectID       string
-ProjectID_props FieldProperties
-EstimationStateID       string
-EstimationStateID_props FieldProperties
-Notes       string
-Notes_props FieldProperties
-Releases       string
-Releases_props FieldProperties
-Total       string
-Total_props FieldProperties
-Contingency       string
-Contingency_props FieldProperties
-ReqDays       string
-ReqDays_props FieldProperties
-RegCost       string
-RegCost_props FieldProperties
-ImpDays       string
-ImpDays_props FieldProperties
-ImpCost       string
-ImpCost_props FieldProperties
-UatDays       string
-UatDays_props FieldProperties
-UatCost       string
-UatCost_props FieldProperties
-MgtDays       string
-MgtDays_props FieldProperties
-MgtCost       string
-MgtCost_props FieldProperties
-RelDays       string
-RelDays_props FieldProperties
-RelCost       string
-RelCost_props FieldProperties
-SupportUplift       string
-SupportUplift_props FieldProperties
-SYSCreated       string
-SYSCreated_props FieldProperties
-SYSCreatedBy       string
-SYSCreatedBy_props FieldProperties
-SYSCreatedHost       string
-SYSCreatedHost_props FieldProperties
-SYSUpdated       string
-SYSUpdated_props FieldProperties
-SYSUpdatedBy       string
-SYSUpdatedBy_props FieldProperties
-SYSUpdatedHost       string
-SYSUpdatedHost_props FieldProperties
-SYSDeleted       string
-SYSDeleted_props FieldProperties
-SYSDeletedBy       string
-SYSDeletedBy_props FieldProperties
-SYSDeletedHost       string
-SYSDeletedHost_props FieldProperties
-Name       string
-Name_props FieldProperties
-AdoID       string
-AdoID_props FieldProperties
-FreshdeskID       string
-FreshdeskID_props FieldProperties
-TrackerID       string
-TrackerID_props FieldProperties
-EstRef       string
-EstRef_props FieldProperties
-ExtRef       string
-ExtRef_props FieldProperties
-SYSActivity       string
-SYSActivity_props FieldProperties
-SYSDbVersion       string
-SYSDbVersion_props FieldProperties
-Comments       string
-Comments_props FieldProperties
-ProjectManager       string
-ProjectManager_props FieldProperties
-ProductManager       string
-ProductManager_props FieldProperties
-Approver       string
-Approver_props FieldProperties
-IssueDate       string
-IssueDate_props FieldProperties
-ExpiryDate       string
-ExpiryDate_props FieldProperties
-Origin       string
-Origin_props FieldProperties
-OriginStateID       string
-OriginStateID_props FieldProperties
-OriginState       string
-OriginState_props FieldProperties
-OriginDocTypeID       string
-OriginDocTypeID_props FieldProperties
-OriginDocType       string
-OriginDocType_props FieldProperties
-OriginCode       string
-OriginCode_props FieldProperties
-OriginName       string
-OriginName_props FieldProperties
-OriginRate       string
-OriginRate_props FieldProperties
-ProjectProfileID       string
-ProjectProfileID_props FieldProperties
-ProjectProfile       string
-ProjectProfile_props FieldProperties
-ProjectDefaultReleases       string
-ProjectDefaultReleases_props FieldProperties
-ProjectDefaultReleaseHours       string
-ProjectDefaultReleaseHours_props FieldProperties
-ProjectBlendedRate       string
-ProjectBlendedRate_props FieldProperties
-ProjectStateID       string
-ProjectStateID_props FieldProperties
-ProjectState       string
-ProjectState_props FieldProperties
-ProjectName       string
-ProjectName_props FieldProperties
-ProjectStartDate       string
-ProjectStartDate_props FieldProperties
-ProjectEndDate       string
-ProjectEndDate_props FieldProperties
-ProfileSupportUpliftPerc       string
-ProfileSupportUpliftPerc_props FieldProperties
-CCY       string
-CCY_props FieldProperties
-CCYCode       string
-CCYCode_props FieldProperties
-EffortTotal       string
-EffortTotal_props FieldProperties
-FreshDeskURI       string
-FreshDeskURI_props FieldProperties
-ADOURI       string
-ADOURI_props FieldProperties
-NoActiveFeatures       string
-NoActiveFeatures_props FieldProperties
- // Any lookups will be added below
-
-ProjectID_lookup []Lookup_Item
-EstimationStateID_lookup []Lookup_Item
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-ProjectManager_lookup []Lookup_Item
-ProductManager_lookup []Lookup_Item
-Approver_lookup []Lookup_Item
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Field Definitions
+	//
+	SYSId       string
+	EstimationSessionID       string
+	ProjectID       string
+	EstimationStateID       string
+	Notes       string
+	Releases       string
+	Total       string
+	Contingency       string
+	ReqDays       string
+	RegCost       string
+	ImpDays       string
+	ImpCost       string
+	UatDays       string
+	UatCost       string
+	MgtDays       string
+	MgtCost       string
+	RelDays       string
+	RelCost       string
+	SupportUplift       string
+	SYSCreated       string
+	SYSCreatedBy       string
+	SYSCreatedHost       string
+	SYSUpdated       string
+	SYSUpdatedBy       string
+	SYSUpdatedHost       string
+	SYSDeleted       string
+	SYSDeletedBy       string
+	SYSDeletedHost       string
+	Name       string
+	AdoID       string
+	FreshdeskID       string
+	TrackerID       string
+	EstRef       string
+	ExtRef       string
+	SYSActivity       string
+	SYSDbVersion       string
+	Comments       string
+	ProjectManager       string
+	ProductManager       string
+	Approver       string
+	IssueDate       string
+	ExpiryDate       string
+	Origin       string
+	OriginStateID       string
+	OriginState       string
+	OriginDocTypeID       string
+	OriginDocType       string
+	OriginCode       string
+	OriginName       string
+	OriginRate       string
+	ProjectProfileID       string
+	ProjectProfile       string
+	ProjectDefaultReleases       string
+	ProjectDefaultReleaseHours       string
+	ProjectBlendedRate       string
+	ProjectStateID       string
+	ProjectState       string
+	ProjectName       string
+	ProjectStartDate       string
+	ProjectEndDate       string
+	ProfileSupportUpliftPerc       string
+	CCY       string
+	CCYCode       string
+	EffortTotal       string
+	FreshDeskURI       string
+	ADOURI       string
+	NoActiveFeatures       string
+	//
+	// Field Properties
+	//
+	SYSId_props FieldProperties
+	EstimationSessionID_props FieldProperties
+	ProjectID_props FieldProperties
+	EstimationStateID_props FieldProperties
+	Notes_props FieldProperties
+	Releases_props FieldProperties
+	Total_props FieldProperties
+	Contingency_props FieldProperties
+	ReqDays_props FieldProperties
+	RegCost_props FieldProperties
+	ImpDays_props FieldProperties
+	ImpCost_props FieldProperties
+	UatDays_props FieldProperties
+	UatCost_props FieldProperties
+	MgtDays_props FieldProperties
+	MgtCost_props FieldProperties
+	RelDays_props FieldProperties
+	RelCost_props FieldProperties
+	SupportUplift_props FieldProperties
+	SYSCreated_props FieldProperties
+	SYSCreatedBy_props FieldProperties
+	SYSCreatedHost_props FieldProperties
+	SYSUpdated_props FieldProperties
+	SYSUpdatedBy_props FieldProperties
+	SYSUpdatedHost_props FieldProperties
+	SYSDeleted_props FieldProperties
+	SYSDeletedBy_props FieldProperties
+	SYSDeletedHost_props FieldProperties
+	Name_props FieldProperties
+	AdoID_props FieldProperties
+	FreshdeskID_props FieldProperties
+	TrackerID_props FieldProperties
+	EstRef_props FieldProperties
+	ExtRef_props FieldProperties
+	SYSActivity_props FieldProperties
+	SYSDbVersion_props FieldProperties
+	Comments_props FieldProperties
+	ProjectManager_props FieldProperties
+	ProductManager_props FieldProperties
+	Approver_props FieldProperties
+	IssueDate_props FieldProperties
+	ExpiryDate_props FieldProperties
+	Origin_props FieldProperties
+	OriginStateID_props FieldProperties
+	OriginState_props FieldProperties
+	OriginDocTypeID_props FieldProperties
+	OriginDocType_props FieldProperties
+	OriginCode_props FieldProperties
+	OriginName_props FieldProperties
+	OriginRate_props FieldProperties
+	ProjectProfileID_props FieldProperties
+	ProjectProfile_props FieldProperties
+	ProjectDefaultReleases_props FieldProperties
+	ProjectDefaultReleaseHours_props FieldProperties
+	ProjectBlendedRate_props FieldProperties
+	ProjectStateID_props FieldProperties
+	ProjectState_props FieldProperties
+	ProjectName_props FieldProperties
+	ProjectStartDate_props FieldProperties
+	ProjectEndDate_props FieldProperties
+	ProfileSupportUpliftPerc_props FieldProperties
+	CCY_props FieldProperties
+	CCYCode_props FieldProperties
+	EffortTotal_props FieldProperties
+	FreshDeskURI_props FieldProperties
+	ADOURI_props FieldProperties
+	NoActiveFeatures_props FieldProperties
+	//
+ 	// Any lookups will be added below
+	//
+	ProjectID_lookup []Lookup_Item
+	EstimationStateID_lookup []Lookup_Item
+	ProjectManager_lookup []Lookup_Item
+	ProductManager_lookup []Lookup_Item
+	Approver_lookup []Lookup_Item
+	}
 
 const (
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
+	EstimationSession_Name      = "EstimationSession"
 	EstimationSession_Title       = "Estimation Session"
 	EstimationSession_SQLTable    = "estimationSessionStore"
 	EstimationSession_SQLSearchID = "estimationSessionID"
 	EstimationSession_QueryString = "EstimationSessionID"
 	///
-	/// Handler Defintions
+	/// Template Path Defintions
 	///
 	EstimationSession_Template     = "EstimationSession"
-	EstimationSession_TemplateList = "/EstimationSession/EstimationSession_List"
-	EstimationSession_TemplateView = "/EstimationSession/EstimationSession_View"
-	EstimationSession_TemplateEdit = "/EstimationSession/EstimationSession_Edit"
-	EstimationSession_TemplateNew  = "/EstimationSession/EstimationSession_New"
+	EstimationSession_TemplateList = "/EstimationSession/EstimationSessionList"
+	EstimationSession_TemplateView = "/EstimationSession/EstimationSessionView"
+	EstimationSession_TemplateEdit = "/EstimationSession/EstimationSessionEdit"
+	EstimationSession_TemplateNew  = "/EstimationSession/EstimationSessionNew"
 	///
-	/// Handler Monitor Paths
+	/// URI Handler Paths
 	///
 	EstimationSession_Path       = "/API/EstimationSession/"
 	EstimationSession_PathList   = "/EstimationSessionList/"
@@ -244,14 +192,17 @@ const (
 	EstimationSession_PathNew    = "/EstimationSessionNew/"
 	EstimationSession_PathSave   = "/EstimationSessionSave/"
 	EstimationSession_PathDelete = "/EstimationSessionDelete/"
-	///
+	// Redirects - On Server Side Error
+	EstimationSession_PathEditException   = "/EstimationSessionEditException/"
+	EstimationSession_PathNewException    = "/EstimationSessionNewException/"
+	//
 	//EstimationSession_Redirect provides a page to return to aftern an action
 	EstimationSession_Redirect = EstimationSession_PathList
 	
-	///
-	///
-	/// SQL Field Definitions
-	///
+	//
+	//
+	// SQL Field Definitions
+	//
 	EstimationSession_SYSId_sql   = "_id" // SYSId is a Int
 	EstimationSession_EstimationSessionID_sql   = "estimationSessionID" // EstimationSessionID is a String
 	EstimationSession_ProjectID_sql   = "projectID" // ProjectID is a String
@@ -319,9 +270,7 @@ const (
 	EstimationSession_FreshDeskURI_sql   = "FreshDeskURI" // FreshDeskURI is a String
 	EstimationSession_ADOURI_sql   = "ADOURI" // ADOURI is a String
 	EstimationSession_NoActiveFeatures_sql   = "NoActiveFeatures" // NoActiveFeatures is a String
-
-	/// Definitions End
-	///
+///
 	/// Application Field Definitions
 	///
 	EstimationSession_SYSId_scrn   = "SYSId" // SYSId is a Int
@@ -391,20 +340,19 @@ const (
 	EstimationSession_FreshDeskURI_scrn   = "FreshDeskURI" // FreshDeskURI is a String
 	EstimationSession_ADOURI_scrn   = "ADOURI" // ADOURI is a String
 	EstimationSession_NoActiveFeatures_scrn   = "NoActiveFeatures" // NoActiveFeatures is a String
-
-	/// Definitions End
-	///
+///
 )
 
-//estimationsession_PageList provides the information for the template for a list of EstimationSessions
+//EstimationSession_PageList provides the information for the template for a list of EstimationSessions
 type EstimationSession_PageList struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []EstimationSession
+	// Context & Permisions
 	Context	 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -412,160 +360,21 @@ type EstimationSession_PageList struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	// Page Data
+	ItemsOnPage 	 int
+	ItemList  		 []EstimationSession
 }
 
-//estimationsession_Page provides the information for the template for an individual EstimationSession
+//EstimationSession_Page provides the information for the template for an individual EstimationSession
 type EstimationSession_Page struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	SYSId_props     FieldProperties
-	EstimationSessionID         string
-	EstimationSessionID_props     FieldProperties
-	ProjectID         string
-	ProjectID_lookup    []Lookup_Item
-	ProjectID_props     FieldProperties
-	EstimationStateID         string
-	EstimationStateID_lookup    []Lookup_Item
-	EstimationStateID_props     FieldProperties
-	Notes         string
-	Notes_props     FieldProperties
-	Releases         string
-	Releases_props     FieldProperties
-	Total         string
-	Total_props     FieldProperties
-	Contingency         string
-	Contingency_props     FieldProperties
-	ReqDays         string
-	ReqDays_props     FieldProperties
-	RegCost         string
-	RegCost_props     FieldProperties
-	ImpDays         string
-	ImpDays_props     FieldProperties
-	ImpCost         string
-	ImpCost_props     FieldProperties
-	UatDays         string
-	UatDays_props     FieldProperties
-	UatCost         string
-	UatCost_props     FieldProperties
-	MgtDays         string
-	MgtDays_props     FieldProperties
-	MgtCost         string
-	MgtCost_props     FieldProperties
-	RelDays         string
-	RelDays_props     FieldProperties
-	RelCost         string
-	RelCost_props     FieldProperties
-	SupportUplift         string
-	SupportUplift_props     FieldProperties
-	SYSCreated         string
-	SYSCreated_props     FieldProperties
-	SYSCreatedBy         string
-	SYSCreatedBy_props     FieldProperties
-	SYSCreatedHost         string
-	SYSCreatedHost_props     FieldProperties
-	SYSUpdated         string
-	SYSUpdated_props     FieldProperties
-	SYSUpdatedBy         string
-	SYSUpdatedBy_props     FieldProperties
-	SYSUpdatedHost         string
-	SYSUpdatedHost_props     FieldProperties
-	SYSDeleted         string
-	SYSDeleted_props     FieldProperties
-	SYSDeletedBy         string
-	SYSDeletedBy_props     FieldProperties
-	SYSDeletedHost         string
-	SYSDeletedHost_props     FieldProperties
-	Name         string
-	Name_props     FieldProperties
-	AdoID         string
-	AdoID_props     FieldProperties
-	FreshdeskID         string
-	FreshdeskID_props     FieldProperties
-	TrackerID         string
-	TrackerID_props     FieldProperties
-	EstRef         string
-	EstRef_props     FieldProperties
-	ExtRef         string
-	ExtRef_props     FieldProperties
-	SYSActivity         string
-	SYSActivity_props     FieldProperties
-	SYSDbVersion         string
-	SYSDbVersion_props     FieldProperties
-	Comments         string
-	Comments_props     FieldProperties
-	ProjectManager         string
-	ProjectManager_lookup    []Lookup_Item
-	ProjectManager_props     FieldProperties
-	ProductManager         string
-	ProductManager_lookup    []Lookup_Item
-	ProductManager_props     FieldProperties
-	Approver         string
-	Approver_lookup    []Lookup_Item
-	Approver_props     FieldProperties
-	IssueDate         string
-	IssueDate_props     FieldProperties
-	ExpiryDate         string
-	ExpiryDate_props     FieldProperties
-	Origin         string
-	Origin_props     FieldProperties
-	OriginStateID         string
-	OriginStateID_props     FieldProperties
-	OriginState         string
-	OriginState_props     FieldProperties
-	OriginDocTypeID         string
-	OriginDocTypeID_props     FieldProperties
-	OriginDocType         string
-	OriginDocType_props     FieldProperties
-	OriginCode         string
-	OriginCode_props     FieldProperties
-	OriginName         string
-	OriginName_props     FieldProperties
-	OriginRate         string
-	OriginRate_props     FieldProperties
-	ProjectProfileID         string
-	ProjectProfileID_props     FieldProperties
-	ProjectProfile         string
-	ProjectProfile_props     FieldProperties
-	ProjectDefaultReleases         string
-	ProjectDefaultReleases_props     FieldProperties
-	ProjectDefaultReleaseHours         string
-	ProjectDefaultReleaseHours_props     FieldProperties
-	ProjectBlendedRate         string
-	ProjectBlendedRate_props     FieldProperties
-	ProjectStateID         string
-	ProjectStateID_props     FieldProperties
-	ProjectState         string
-	ProjectState_props     FieldProperties
-	ProjectName         string
-	ProjectName_props     FieldProperties
-	ProjectStartDate         string
-	ProjectStartDate_props     FieldProperties
-	ProjectEndDate         string
-	ProjectEndDate_props     FieldProperties
-	ProfileSupportUpliftPerc         string
-	ProfileSupportUpliftPerc_props     FieldProperties
-	CCY         string
-	CCY_props     FieldProperties
-	CCYCode         string
-	CCYCode_props     FieldProperties
-	EffortTotal         string
-	EffortTotal_props     FieldProperties
-	FreshDeskURI         string
-	FreshDeskURI_props     FieldProperties
-	ADOURI         string
-	ADOURI_props     FieldProperties
-	NoActiveFeatures         string
-	NoActiveFeatures_props     FieldProperties
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+	/// Context & Permisions
 	Context	 		 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -573,4 +382,149 @@ type EstimationSession_Page struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	/// Fields Definitions
+	SYSId         string
+	EstimationSessionID         string
+	ProjectID         string
+	EstimationStateID         string
+	Notes         string
+	Releases         string
+	Total         string
+	Contingency         string
+	ReqDays         string
+	RegCost         string
+	ImpDays         string
+	ImpCost         string
+	UatDays         string
+	UatCost         string
+	MgtDays         string
+	MgtCost         string
+	RelDays         string
+	RelCost         string
+	SupportUplift         string
+	SYSCreated         string
+	SYSCreatedBy         string
+	SYSCreatedHost         string
+	SYSUpdated         string
+	SYSUpdatedBy         string
+	SYSUpdatedHost         string
+	SYSDeleted         string
+	SYSDeletedBy         string
+	SYSDeletedHost         string
+	Name         string
+	AdoID         string
+	FreshdeskID         string
+	TrackerID         string
+	EstRef         string
+	ExtRef         string
+	SYSActivity         string
+	SYSDbVersion         string
+	Comments         string
+	ProjectManager         string
+	ProductManager         string
+	Approver         string
+	IssueDate         string
+	ExpiryDate         string
+	Origin         string
+	OriginStateID         string
+	OriginState         string
+	OriginDocTypeID         string
+	OriginDocType         string
+	OriginCode         string
+	OriginName         string
+	OriginRate         string
+	ProjectProfileID         string
+	ProjectProfile         string
+	ProjectDefaultReleases         string
+	ProjectDefaultReleaseHours         string
+	ProjectBlendedRate         string
+	ProjectStateID         string
+	ProjectState         string
+	ProjectName         string
+	ProjectStartDate         string
+	ProjectEndDate         string
+	ProfileSupportUpliftPerc         string
+	CCY         string
+	CCYCode         string
+	EffortTotal         string
+	FreshDeskURI         string
+	ADOURI         string
+	NoActiveFeatures         string
+	/// Field Properties
+	SYSId_props     FieldProperties
+	EstimationSessionID_props     FieldProperties
+	ProjectID_props     FieldProperties
+	EstimationStateID_props     FieldProperties
+	Notes_props     FieldProperties
+	Releases_props     FieldProperties
+	Total_props     FieldProperties
+	Contingency_props     FieldProperties
+	ReqDays_props     FieldProperties
+	RegCost_props     FieldProperties
+	ImpDays_props     FieldProperties
+	ImpCost_props     FieldProperties
+	UatDays_props     FieldProperties
+	UatCost_props     FieldProperties
+	MgtDays_props     FieldProperties
+	MgtCost_props     FieldProperties
+	RelDays_props     FieldProperties
+	RelCost_props     FieldProperties
+	SupportUplift_props     FieldProperties
+	SYSCreated_props     FieldProperties
+	SYSCreatedBy_props     FieldProperties
+	SYSCreatedHost_props     FieldProperties
+	SYSUpdated_props     FieldProperties
+	SYSUpdatedBy_props     FieldProperties
+	SYSUpdatedHost_props     FieldProperties
+	SYSDeleted_props     FieldProperties
+	SYSDeletedBy_props     FieldProperties
+	SYSDeletedHost_props     FieldProperties
+	Name_props     FieldProperties
+	AdoID_props     FieldProperties
+	FreshdeskID_props     FieldProperties
+	TrackerID_props     FieldProperties
+	EstRef_props     FieldProperties
+	ExtRef_props     FieldProperties
+	SYSActivity_props     FieldProperties
+	SYSDbVersion_props     FieldProperties
+	Comments_props     FieldProperties
+	ProjectManager_props     FieldProperties
+	ProductManager_props     FieldProperties
+	Approver_props     FieldProperties
+	IssueDate_props     FieldProperties
+	ExpiryDate_props     FieldProperties
+	Origin_props     FieldProperties
+	OriginStateID_props     FieldProperties
+	OriginState_props     FieldProperties
+	OriginDocTypeID_props     FieldProperties
+	OriginDocType_props     FieldProperties
+	OriginCode_props     FieldProperties
+	OriginName_props     FieldProperties
+	OriginRate_props     FieldProperties
+	ProjectProfileID_props     FieldProperties
+	ProjectProfile_props     FieldProperties
+	ProjectDefaultReleases_props     FieldProperties
+	ProjectDefaultReleaseHours_props     FieldProperties
+	ProjectBlendedRate_props     FieldProperties
+	ProjectStateID_props     FieldProperties
+	ProjectState_props     FieldProperties
+	ProjectName_props     FieldProperties
+	ProjectStartDate_props     FieldProperties
+	ProjectEndDate_props     FieldProperties
+	ProfileSupportUpliftPerc_props     FieldProperties
+	CCY_props     FieldProperties
+	CCYCode_props     FieldProperties
+	EffortTotal_props     FieldProperties
+	FreshDeskURI_props     FieldProperties
+	ADOURI_props     FieldProperties
+	NoActiveFeatures_props     FieldProperties
+	/// Lookups
+	ProjectID_lookup    []Lookup_Item
+	EstimationStateID_lookup    []Lookup_Item
+	ProjectManager_lookup    []Lookup_Item
+	ProductManager_lookup    []Lookup_Item
+	Approver_lookup    []Lookup_Item
+	
+	/// END OF DEFINITIONS
+	///
 }

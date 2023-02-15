@@ -1,10 +1,5 @@
 package dao
 
-import (
-	dm "github.com/mt1976/ebEstimates/datamodel"
-	logs "github.com/mt1976/ebEstimates/logs"
-)
-
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/resource.go"
 // ----------------------------------------------------------------
@@ -44,20 +39,3 @@ import (
 //
 // Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 // END - Validation API/Callout
-
-func Resource_ObjectValidation_impl(iAction string, iId string, iRec dm.Resource) (dm.Resource, string, error) {
-	logs.Callout("Resource", "ObjectValidation", VAL+"-"+iAction, iId)
-	switch iAction {
-	case VAL:
-
-	case NEW:
-
-	case PUT:
-
-	case GET:
-
-	default:
-		logs.Warning("Resource" + " - Invalid Action [" + iAction + "]")
-	}
-	return iRec, "", nil
-}

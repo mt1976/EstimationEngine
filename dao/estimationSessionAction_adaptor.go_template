@@ -16,7 +16,7 @@ import (
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
 	// Template Generator   : Einsteinium [r5-23.01.23]
-	// Date & Time		    : 07/02/2023 at 18:52:36
+	// Date & Time		    : 15/02/2023 at 10:44:43
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in estimationsessionaction_impl.go
@@ -48,28 +48,7 @@ import (
 
 	// ----------------------------------------------------------------
 	
-	// ----------------------------------------------------------------
-	// EstimationSessionAction_ObjectValidation_impl provides Record/Object level validation for EstimationSessionAction
-	func EstimationSessionAction_ObjectValidation_impl (iAction string, iId string, iRec dm.EstimationSessionAction) (dm.EstimationSessionAction, string, error) {
-		logs.Callout("EstimationSessionAction", "ObjectValidation", VAL +"-"+iAction, iId)
-		switch iAction {
-			case VAL:
-				
-			case NEW:
 
-			case PUT:
-
-			case GET:
-
-			default:
-				logs.Warning("EstimationSessionAction" + " - Invalid Action ["+iAction+"]")
-			}
-		return iRec,"",nil
-	}
-	//
-	// ----------------------------------------------------------------
-	// If there are fields below, create the methods in adaptor\estimationsessionaction_impl.go
-	// These are the the default implementations, which do nothing
 
 	// ----------------------------------------------------------------
 	// Automatically generated code ends here

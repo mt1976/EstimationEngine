@@ -9,80 +9,76 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:36
+// Date & Time		    : 15/02/2023 at 10:44:43
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//EstimationState defines the datamolde for the EstimationState object
+//EstimationState defines the datamodel for the EstimationState object
 type EstimationState struct {
-
-
-SYSId       string
-SYSId_props FieldProperties
-EstimationStateID       string
-EstimationStateID_props FieldProperties
-Code       string
-Code_props FieldProperties
-Name       string
-Name_props FieldProperties
-SYSCreated       string
-SYSCreated_props FieldProperties
-SYSCreatedBy       string
-SYSCreatedBy_props FieldProperties
-SYSCreatedHost       string
-SYSCreatedHost_props FieldProperties
-SYSUpdated       string
-SYSUpdated_props FieldProperties
-SYSUpdatedBy       string
-SYSUpdatedBy_props FieldProperties
-SYSUpdatedHost       string
-SYSUpdatedHost_props FieldProperties
-SYSDeleted       string
-SYSDeleted_props FieldProperties
-SYSDeletedBy       string
-SYSDeletedBy_props FieldProperties
-SYSDeletedHost       string
-SYSDeletedHost_props FieldProperties
-SYSDbVersion       string
-SYSDbVersion_props FieldProperties
-IsLocked       string
-IsLocked_props FieldProperties
-Notify       string
-Notify_props FieldProperties
- // Any lookups will be added below
-
-
-
-
-
-
-
-
-
-
-
-
-
-IsLocked_lookup []Lookup_Item
-Notify_lookup []Lookup_Item
-
-}
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Field Definitions
+	//
+	SYSId       string
+	EstimationStateID       string
+	Code       string
+	Name       string
+	SYSCreated       string
+	SYSCreatedBy       string
+	SYSCreatedHost       string
+	SYSUpdated       string
+	SYSUpdatedBy       string
+	SYSUpdatedHost       string
+	SYSDeleted       string
+	SYSDeletedBy       string
+	SYSDeletedHost       string
+	SYSDbVersion       string
+	IsLocked       string
+	Notify       string
+	//
+	// Field Properties
+	//
+	SYSId_props FieldProperties
+	EstimationStateID_props FieldProperties
+	Code_props FieldProperties
+	Name_props FieldProperties
+	SYSCreated_props FieldProperties
+	SYSCreatedBy_props FieldProperties
+	SYSCreatedHost_props FieldProperties
+	SYSUpdated_props FieldProperties
+	SYSUpdatedBy_props FieldProperties
+	SYSUpdatedHost_props FieldProperties
+	SYSDeleted_props FieldProperties
+	SYSDeletedBy_props FieldProperties
+	SYSDeletedHost_props FieldProperties
+	SYSDbVersion_props FieldProperties
+	IsLocked_props FieldProperties
+	Notify_props FieldProperties
+	//
+ 	// Any lookups will be added below
+	//
+	IsLocked_lookup []Lookup_Item
+	Notify_lookup []Lookup_Item
+	}
 
 const (
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
+	EstimationState_Name      = "EstimationState"
 	EstimationState_Title       = "Estimation State"
 	EstimationState_SQLTable    = "estimationStateStore"
 	EstimationState_SQLSearchID = "estimationStateID"
 	EstimationState_QueryString = "EstimationStateID"
 	///
-	/// Handler Defintions
+	/// Template Path Defintions
 	///
 	EstimationState_Template     = "EstimationState"
-	EstimationState_TemplateList = "/EstimationState/EstimationState_List"
-	EstimationState_TemplateView = "/EstimationState/EstimationState_View"
-	EstimationState_TemplateEdit = "/EstimationState/EstimationState_Edit"
-	EstimationState_TemplateNew  = "/EstimationState/EstimationState_New"
+	EstimationState_TemplateList = "/EstimationState/EstimationStateList"
+	EstimationState_TemplateView = "/EstimationState/EstimationStateView"
+	EstimationState_TemplateEdit = "/EstimationState/EstimationStateEdit"
+	EstimationState_TemplateNew  = "/EstimationState/EstimationStateNew"
 	///
-	/// Handler Monitor Paths
+	/// URI Handler Paths
 	///
 	EstimationState_Path       = "/API/EstimationState/"
 	EstimationState_PathList   = "/EstimationStateList/"
@@ -91,14 +87,17 @@ const (
 	EstimationState_PathNew    = "/EstimationStateNew/"
 	EstimationState_PathSave   = "/EstimationStateSave/"
 	EstimationState_PathDelete = "/EstimationStateDelete/"
-	///
+	// Redirects - On Server Side Error
+	EstimationState_PathEditException   = "/EstimationStateEditException/"
+	EstimationState_PathNewException    = "/EstimationStateNewException/"
+	//
 	//EstimationState_Redirect provides a page to return to aftern an action
 	EstimationState_Redirect = EstimationState_PathList
 	
-	///
-	///
-	/// SQL Field Definitions
-	///
+	//
+	//
+	// SQL Field Definitions
+	//
 	EstimationState_SYSId_sql   = "_id" // SYSId is a Int
 	EstimationState_EstimationStateID_sql   = "estimationStateID" // EstimationStateID is a String
 	EstimationState_Code_sql   = "code" // Code is a String
@@ -115,9 +114,7 @@ const (
 	EstimationState_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
 	EstimationState_IsLocked_sql   = "isLocked" // IsLocked is a String
 	EstimationState_Notify_sql   = "notify" // Notify is a String
-
-	/// Definitions End
-	///
+///
 	/// Application Field Definitions
 	///
 	EstimationState_SYSId_scrn   = "SYSId" // SYSId is a Int
@@ -136,20 +133,19 @@ const (
 	EstimationState_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
 	EstimationState_IsLocked_scrn   = "IsLocked" // IsLocked is a String
 	EstimationState_Notify_scrn   = "Notify" // Notify is a String
-
-	/// Definitions End
-	///
+///
 )
 
-//estimationstate_PageList provides the information for the template for a list of EstimationStates
+//EstimationState_PageList provides the information for the template for a list of EstimationStates
 type EstimationState_PageList struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []EstimationState
+	// Context & Permisions
 	Context	 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -157,55 +153,21 @@ type EstimationState_PageList struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	// Page Data
+	ItemsOnPage 	 int
+	ItemList  		 []EstimationState
 }
 
-//estimationstate_Page provides the information for the template for an individual EstimationState
+//EstimationState_Page provides the information for the template for an individual EstimationState
 type EstimationState_Page struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	SYSId_props     FieldProperties
-	EstimationStateID         string
-	EstimationStateID_props     FieldProperties
-	Code         string
-	Code_props     FieldProperties
-	Name         string
-	Name_props     FieldProperties
-	SYSCreated         string
-	SYSCreated_props     FieldProperties
-	SYSCreatedBy         string
-	SYSCreatedBy_props     FieldProperties
-	SYSCreatedHost         string
-	SYSCreatedHost_props     FieldProperties
-	SYSUpdated         string
-	SYSUpdated_props     FieldProperties
-	SYSUpdatedBy         string
-	SYSUpdatedBy_props     FieldProperties
-	SYSUpdatedHost         string
-	SYSUpdatedHost_props     FieldProperties
-	SYSDeleted         string
-	SYSDeleted_props     FieldProperties
-	SYSDeletedBy         string
-	SYSDeletedBy_props     FieldProperties
-	SYSDeletedHost         string
-	SYSDeletedHost_props     FieldProperties
-	SYSDbVersion         string
-	SYSDbVersion_props     FieldProperties
-	IsLocked         string
-	IsLocked_lookup    []Lookup_Item
-	IsLocked_props     FieldProperties
-	Notify         string
-	Notify_lookup    []Lookup_Item
-	Notify_props     FieldProperties
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+	/// Context & Permisions
 	Context	 		 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -213,4 +175,44 @@ type EstimationState_Page struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	/// Fields Definitions
+	SYSId         string
+	EstimationStateID         string
+	Code         string
+	Name         string
+	SYSCreated         string
+	SYSCreatedBy         string
+	SYSCreatedHost         string
+	SYSUpdated         string
+	SYSUpdatedBy         string
+	SYSUpdatedHost         string
+	SYSDeleted         string
+	SYSDeletedBy         string
+	SYSDeletedHost         string
+	SYSDbVersion         string
+	IsLocked         string
+	Notify         string
+	/// Field Properties
+	SYSId_props     FieldProperties
+	EstimationStateID_props     FieldProperties
+	Code_props     FieldProperties
+	Name_props     FieldProperties
+	SYSCreated_props     FieldProperties
+	SYSCreatedBy_props     FieldProperties
+	SYSCreatedHost_props     FieldProperties
+	SYSUpdated_props     FieldProperties
+	SYSUpdatedBy_props     FieldProperties
+	SYSUpdatedHost_props     FieldProperties
+	SYSDeleted_props     FieldProperties
+	SYSDeletedBy_props     FieldProperties
+	SYSDeletedHost_props     FieldProperties
+	SYSDbVersion_props     FieldProperties
+	IsLocked_props     FieldProperties
+	Notify_props     FieldProperties
+	/// Lookups
+	IsLocked_lookup    []Lookup_Item
+	Notify_lookup    []Lookup_Item
+	
+	/// END OF DEFINITIONS
+	///
 }

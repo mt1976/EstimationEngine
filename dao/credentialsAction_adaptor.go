@@ -2,7 +2,6 @@ package dao
 
 import (
 	dm "github.com/mt1976/ebEstimates/datamodel"
-	logs "github.com/mt1976/ebEstimates/logs"
 )
 
 // ----------------------------------------------------------------
@@ -56,20 +55,3 @@ func CredentialsAction_Update_impl(id string, rec dm.CredentialsAction, usr stri
 //
 // Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 // END - Validation API/Callout
-
-func CredentialsAction_ObjectValidation_impl(iAction string, iId string, iRec dm.CredentialsAction) (dm.CredentialsAction, string, error) {
-	logs.Callout("CredentialsAction", "ObjectValidation", VAL+"-"+iAction, iId)
-	switch iAction {
-	case VAL:
-
-	case NEW:
-
-	case PUT:
-
-	case GET:
-
-	default:
-		logs.Warning("CredentialsAction" + " - Invalid Action [" + iAction + "]")
-	}
-	return iRec, "", nil
-}

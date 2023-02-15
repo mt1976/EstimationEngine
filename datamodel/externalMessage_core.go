@@ -9,128 +9,108 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:36
+// Date & Time		    : 15/02/2023 at 10:44:43
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//ExternalMessage defines the datamolde for the ExternalMessage object
+//ExternalMessage defines the datamodel for the ExternalMessage object
 type ExternalMessage struct {
-
-
-SYSId       string
-SYSId_props FieldProperties
-MessageID       string
-MessageID_props FieldProperties
-MessageFormat       string
-MessageFormat_props FieldProperties
-MessageDeliveredTo       string
-MessageDeliveredTo_props FieldProperties
-MessageBody       string
-MessageBody_props FieldProperties
-MessageFilename       string
-MessageFilename_props FieldProperties
-MessageLife       string
-MessageLife_props FieldProperties
-MessageDate       string
-MessageDate_props FieldProperties
-MessageTime       string
-MessageTime_props FieldProperties
-MessageTimeoutAction       string
-MessageTimeoutAction_props FieldProperties
-MessageACKNAK       string
-MessageACKNAK_props FieldProperties
-ResponseID       string
-ResponseID_props FieldProperties
-ResponseFilename       string
-ResponseFilename_props FieldProperties
-ResponseBody       string
-ResponseBody_props FieldProperties
-ResponseDate       string
-ResponseDate_props FieldProperties
-ResponseTime       string
-ResponseTime_props FieldProperties
-ResponseAdditionalInfo       string
-ResponseAdditionalInfo_props FieldProperties
-SYSCreated       string
-SYSCreated_props FieldProperties
-SYSCreatedBy       string
-SYSCreatedBy_props FieldProperties
-SYSCreatedHost       string
-SYSCreatedHost_props FieldProperties
-SYSUpdated       string
-SYSUpdated_props FieldProperties
-SYSUpdatedBy       string
-SYSUpdatedBy_props FieldProperties
-SYSUpdatedHost       string
-SYSUpdatedHost_props FieldProperties
-MessageTimeout       string
-MessageTimeout_props FieldProperties
-MessageEmitted       string
-MessageEmitted_props FieldProperties
-ResponseRecieved       string
-ResponseRecieved_props FieldProperties
-MessageClass       string
-MessageClass_props FieldProperties
-AppID       string
-AppID_props FieldProperties
-SYSDeleted       string
-SYSDeleted_props FieldProperties
-SYSDeletedBy       string
-SYSDeletedBy_props FieldProperties
-SYSDeletedHost       string
-SYSDeletedHost_props FieldProperties
-SYSDbVersion       string
-SYSDbVersion_props FieldProperties
- // Any lookups will be added below
-
-
-
-
-
-
-
-
-
-MessageACKNAK_lookup []Lookup_Item
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-ResponseRecieved_lookup []Lookup_Item
-
-
-
-
-
-
-
-}
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Field Definitions
+	//
+	SYSId       string
+	MessageID       string
+	MessageFormat       string
+	MessageDeliveredTo       string
+	MessageBody       string
+	MessageFilename       string
+	MessageLife       string
+	MessageDate       string
+	MessageTime       string
+	MessageTimeoutAction       string
+	MessageACKNAK       string
+	ResponseID       string
+	ResponseFilename       string
+	ResponseBody       string
+	ResponseDate       string
+	ResponseTime       string
+	ResponseAdditionalInfo       string
+	SYSCreated       string
+	SYSCreatedBy       string
+	SYSCreatedHost       string
+	SYSUpdated       string
+	SYSUpdatedBy       string
+	SYSUpdatedHost       string
+	MessageTimeout       string
+	MessageEmitted       string
+	ResponseRecieved       string
+	MessageClass       string
+	AppID       string
+	SYSDeleted       string
+	SYSDeletedBy       string
+	SYSDeletedHost       string
+	SYSDbVersion       string
+	//
+	// Field Properties
+	//
+	SYSId_props FieldProperties
+	MessageID_props FieldProperties
+	MessageFormat_props FieldProperties
+	MessageDeliveredTo_props FieldProperties
+	MessageBody_props FieldProperties
+	MessageFilename_props FieldProperties
+	MessageLife_props FieldProperties
+	MessageDate_props FieldProperties
+	MessageTime_props FieldProperties
+	MessageTimeoutAction_props FieldProperties
+	MessageACKNAK_props FieldProperties
+	ResponseID_props FieldProperties
+	ResponseFilename_props FieldProperties
+	ResponseBody_props FieldProperties
+	ResponseDate_props FieldProperties
+	ResponseTime_props FieldProperties
+	ResponseAdditionalInfo_props FieldProperties
+	SYSCreated_props FieldProperties
+	SYSCreatedBy_props FieldProperties
+	SYSCreatedHost_props FieldProperties
+	SYSUpdated_props FieldProperties
+	SYSUpdatedBy_props FieldProperties
+	SYSUpdatedHost_props FieldProperties
+	MessageTimeout_props FieldProperties
+	MessageEmitted_props FieldProperties
+	ResponseRecieved_props FieldProperties
+	MessageClass_props FieldProperties
+	AppID_props FieldProperties
+	SYSDeleted_props FieldProperties
+	SYSDeletedBy_props FieldProperties
+	SYSDeletedHost_props FieldProperties
+	SYSDbVersion_props FieldProperties
+	//
+ 	// Any lookups will be added below
+	//
+	MessageACKNAK_lookup []Lookup_Item
+	ResponseRecieved_lookup []Lookup_Item
+	}
 
 const (
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
+	ExternalMessage_Name      = "ExternalMessage"
 	ExternalMessage_Title       = "ExternalMessage"
 	ExternalMessage_SQLTable    = "externalMessageStore"
 	ExternalMessage_SQLSearchID = "MessageID"
 	ExternalMessage_QueryString = "Message"
 	///
-	/// Handler Defintions
+	/// Template Path Defintions
 	///
 	ExternalMessage_Template     = "ExternalMessage"
-	ExternalMessage_TemplateList = "/ExternalMessage/ExternalMessage_List"
-	ExternalMessage_TemplateView = "/ExternalMessage/ExternalMessage_View"
-	ExternalMessage_TemplateEdit = "/ExternalMessage/ExternalMessage_Edit"
-	ExternalMessage_TemplateNew  = "/ExternalMessage/ExternalMessage_New"
+	ExternalMessage_TemplateList = "/ExternalMessage/ExternalMessageList"
+	ExternalMessage_TemplateView = "/ExternalMessage/ExternalMessageView"
+	ExternalMessage_TemplateEdit = "/ExternalMessage/ExternalMessageEdit"
+	ExternalMessage_TemplateNew  = "/ExternalMessage/ExternalMessageNew"
 	///
-	/// Handler Monitor Paths
+	/// URI Handler Paths
 	///
 	ExternalMessage_Path       = "/API/ExternalMessage/"
 	ExternalMessage_PathList   = "/ExternalMessageList/"
@@ -139,14 +119,17 @@ const (
 	ExternalMessage_PathNew    = "/ExternalMessageNew/"
 	ExternalMessage_PathSave   = "/ExternalMessageSave/"
 	ExternalMessage_PathDelete = "/ExternalMessageDelete/"
-	///
+	// Redirects - On Server Side Error
+	ExternalMessage_PathEditException   = "/ExternalMessageEditException/"
+	ExternalMessage_PathNewException    = "/ExternalMessageNewException/"
+	//
 	//ExternalMessage_Redirect provides a page to return to aftern an action
 	ExternalMessage_Redirect = ExternalMessage_PathList
 	
-	///
-	///
-	/// SQL Field Definitions
-	///
+	//
+	//
+	// SQL Field Definitions
+	//
 	ExternalMessage_SYSId_sql   = "_id" // SYSId is a Int
 	ExternalMessage_MessageID_sql   = "messageID" // MessageID is a String
 	ExternalMessage_MessageFormat_sql   = "messageFormat" // MessageFormat is a String
@@ -179,9 +162,7 @@ const (
 	ExternalMessage_SYSDeletedBy_sql   = "_deletedBy" // SYSDeletedBy is a String
 	ExternalMessage_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
 	ExternalMessage_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
-
-	/// Definitions End
-	///
+///
 	/// Application Field Definitions
 	///
 	ExternalMessage_SYSId_scrn   = "SYSId" // SYSId is a Int
@@ -216,20 +197,19 @@ const (
 	ExternalMessage_SYSDeletedBy_scrn   = "SYSDeletedBy" // SYSDeletedBy is a String
 	ExternalMessage_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
 	ExternalMessage_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
-
-	/// Definitions End
-	///
+///
 )
 
-//externalmessage_PageList provides the information for the template for a list of ExternalMessages
+//ExternalMessage_PageList provides the information for the template for a list of ExternalMessages
 type ExternalMessage_PageList struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []ExternalMessage
+	// Context & Permisions
 	Context	 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -237,87 +217,21 @@ type ExternalMessage_PageList struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	// Page Data
+	ItemsOnPage 	 int
+	ItemList  		 []ExternalMessage
 }
 
-//externalmessage_Page provides the information for the template for an individual ExternalMessage
+//ExternalMessage_Page provides the information for the template for an individual ExternalMessage
 type ExternalMessage_Page struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	SYSId_props     FieldProperties
-	MessageID         string
-	MessageID_props     FieldProperties
-	MessageFormat         string
-	MessageFormat_props     FieldProperties
-	MessageDeliveredTo         string
-	MessageDeliveredTo_props     FieldProperties
-	MessageBody         string
-	MessageBody_props     FieldProperties
-	MessageFilename         string
-	MessageFilename_props     FieldProperties
-	MessageLife         string
-	MessageLife_props     FieldProperties
-	MessageDate         string
-	MessageDate_props     FieldProperties
-	MessageTime         string
-	MessageTime_props     FieldProperties
-	MessageTimeoutAction         string
-	MessageTimeoutAction_props     FieldProperties
-	MessageACKNAK         string
-	MessageACKNAK_lookup    []Lookup_Item
-	MessageACKNAK_props     FieldProperties
-	ResponseID         string
-	ResponseID_props     FieldProperties
-	ResponseFilename         string
-	ResponseFilename_props     FieldProperties
-	ResponseBody         string
-	ResponseBody_props     FieldProperties
-	ResponseDate         string
-	ResponseDate_props     FieldProperties
-	ResponseTime         string
-	ResponseTime_props     FieldProperties
-	ResponseAdditionalInfo         string
-	ResponseAdditionalInfo_props     FieldProperties
-	SYSCreated         string
-	SYSCreated_props     FieldProperties
-	SYSCreatedBy         string
-	SYSCreatedBy_props     FieldProperties
-	SYSCreatedHost         string
-	SYSCreatedHost_props     FieldProperties
-	SYSUpdated         string
-	SYSUpdated_props     FieldProperties
-	SYSUpdatedBy         string
-	SYSUpdatedBy_props     FieldProperties
-	SYSUpdatedHost         string
-	SYSUpdatedHost_props     FieldProperties
-	MessageTimeout         string
-	MessageTimeout_props     FieldProperties
-	MessageEmitted         string
-	MessageEmitted_props     FieldProperties
-	ResponseRecieved         string
-	ResponseRecieved_lookup    []Lookup_Item
-	ResponseRecieved_props     FieldProperties
-	MessageClass         string
-	MessageClass_props     FieldProperties
-	AppID         string
-	AppID_props     FieldProperties
-	SYSDeleted         string
-	SYSDeleted_props     FieldProperties
-	SYSDeletedBy         string
-	SYSDeletedBy_props     FieldProperties
-	SYSDeletedHost         string
-	SYSDeletedHost_props     FieldProperties
-	SYSDbVersion         string
-	SYSDbVersion_props     FieldProperties
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+	/// Context & Permisions
 	Context	 		 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -325,4 +239,76 @@ type ExternalMessage_Page struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	/// Fields Definitions
+	SYSId         string
+	MessageID         string
+	MessageFormat         string
+	MessageDeliveredTo         string
+	MessageBody         string
+	MessageFilename         string
+	MessageLife         string
+	MessageDate         string
+	MessageTime         string
+	MessageTimeoutAction         string
+	MessageACKNAK         string
+	ResponseID         string
+	ResponseFilename         string
+	ResponseBody         string
+	ResponseDate         string
+	ResponseTime         string
+	ResponseAdditionalInfo         string
+	SYSCreated         string
+	SYSCreatedBy         string
+	SYSCreatedHost         string
+	SYSUpdated         string
+	SYSUpdatedBy         string
+	SYSUpdatedHost         string
+	MessageTimeout         string
+	MessageEmitted         string
+	ResponseRecieved         string
+	MessageClass         string
+	AppID         string
+	SYSDeleted         string
+	SYSDeletedBy         string
+	SYSDeletedHost         string
+	SYSDbVersion         string
+	/// Field Properties
+	SYSId_props     FieldProperties
+	MessageID_props     FieldProperties
+	MessageFormat_props     FieldProperties
+	MessageDeliveredTo_props     FieldProperties
+	MessageBody_props     FieldProperties
+	MessageFilename_props     FieldProperties
+	MessageLife_props     FieldProperties
+	MessageDate_props     FieldProperties
+	MessageTime_props     FieldProperties
+	MessageTimeoutAction_props     FieldProperties
+	MessageACKNAK_props     FieldProperties
+	ResponseID_props     FieldProperties
+	ResponseFilename_props     FieldProperties
+	ResponseBody_props     FieldProperties
+	ResponseDate_props     FieldProperties
+	ResponseTime_props     FieldProperties
+	ResponseAdditionalInfo_props     FieldProperties
+	SYSCreated_props     FieldProperties
+	SYSCreatedBy_props     FieldProperties
+	SYSCreatedHost_props     FieldProperties
+	SYSUpdated_props     FieldProperties
+	SYSUpdatedBy_props     FieldProperties
+	SYSUpdatedHost_props     FieldProperties
+	MessageTimeout_props     FieldProperties
+	MessageEmitted_props     FieldProperties
+	ResponseRecieved_props     FieldProperties
+	MessageClass_props     FieldProperties
+	AppID_props     FieldProperties
+	SYSDeleted_props     FieldProperties
+	SYSDeletedBy_props     FieldProperties
+	SYSDeletedHost_props     FieldProperties
+	SYSDbVersion_props     FieldProperties
+	/// Lookups
+	MessageACKNAK_lookup    []Lookup_Item
+	ResponseRecieved_lookup    []Lookup_Item
+	
+	/// END OF DEFINITIONS
+	///
 }

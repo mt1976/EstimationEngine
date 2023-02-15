@@ -53,19 +53,20 @@ Store|<ul><li>**Implement in Adaptor**</li><li>func CredentialsAction_NewID_impl
 | :--: | -- | -- |
 | code | **application** | /application/credentialsAction_core.go |
 | code | **adaptor** | /dao/credentialsAction_adaptor.go_template |
+| code | **validation** | /dao/credentialsAction_validation.go_template |
 | code | **dao** | /dao/credentialsAction_core.go |
 | code | **datamodel** | /datamodel/credentialsAction_core.go |
 | code | **menu** | /design/menu/credentialsAction.json |
-| html | **view** | /CredentialsAction_View.html |
-| html | **edit** | /CredentialsAction_Edit.html |
-| html | **new** | /CredentialsAction_New.html |
+| html | **view** | /CredentialsActionView.html |
+| html | **edit** | /CredentialsActionEdit.html |
+| html | **new** | /CredentialsActionNew.html |
 
 
 ## Audit Information
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **07/02/2023** at **18:52:35**
+Date & Time		     | **15/02/2023** at **10:44:41**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

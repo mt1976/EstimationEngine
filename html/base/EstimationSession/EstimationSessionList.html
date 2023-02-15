@@ -1,0 +1,267 @@
+{{template "header" .}}
+<link rel="stylesheet" type="text/css" href="/assets/DataTables/datatables.min.css"/>
+{{template "bodydefinition" .}}
+
+      <div class="card">
+       
+            <div class="card-header font-weight-bold" style="padding-bottom:0;">
+              <div class="row d-flex align-items-center">
+                <div class="col d-flex align-items-center"><h3><i class="fas fa-calculator me-2"></i>{{.Title}}</h3></div>
+                <div class="col d-flex justify-content-end">
+                  <form action="/home" method="GET">
+                    <div class="btn-group" id="ActionButtonGroup">
+                    <button type="submit" value="" class="btn btn-primary" formaction="/EstimationSessionNew" method="GET" title="Create a new Estimation Session"><i class="fas fa-plus me-2"></i>New</button>
+                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="card-body">
+             
+                           
+                    <table id="DataTable" class="table table-hover table-responsive" style="width:100%">
+                      <thead class="table-light">
+                        <tr style="background-color:red;">
+                          
+                          
+                          <th class="text-center">ProjectID</th>
+                          <th class="text-center">EstimationStateID</th>
+                          <th class="text-center">Notes</th>
+                          <th class="text-center">Releases</th>
+                          <th class="text-center">Total</th>
+                          <th class="text-center">Contingency</th>
+                          <th class="text-center">ReqDays</th>
+                          <th class="text-center">RegCost</th>
+                          <th class="text-center">ImpDays</th>
+                          <th class="text-center">ImpCost</th>
+                          <th class="text-center">UatDays</th>
+                          <th class="text-center">UatCost</th>
+                          <th class="text-center">MgtDays</th>
+                          <th class="text-center">MgtCost</th>
+                          <th class="text-center">RelDays</th>
+                          <th class="text-center">RelCost</th>
+                          <th class="text-center">SupportUplift</th>
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <th class="text-center">Name</th>
+                          <th class="text-center">AdoID</th>
+                          <th class="text-center">FreshdeskID</th>
+                          <th class="text-center">TrackerID</th>
+                          <th class="text-center">EstRef</th>
+                          <th class="text-center">ExtRef</th>
+                          
+                          
+                          <th class="text-center">Comments</th>
+                          <th class="text-center">ProjectManager</th>
+                          <th class="text-center">ProductManager</th>
+                          <th class="text-center">Approver</th>
+                          <th class="text-center">IssueDate</th>
+                          <th class="text-center">ExpiryDate</th>
+                          <th class="text-center">Origin</th>
+                          <th class="text-center">OriginStateID</th>
+                          <th class="text-center">OriginState</th>
+                          <th class="text-center">OriginDocTypeID</th>
+                          <th class="text-center">OriginDocType</th>
+                          <th class="text-center">OriginCode</th>
+                          <th class="text-center">OriginName</th>
+                          <th class="text-center">OriginRate</th>
+                          <th class="text-center">ProjectProfileID</th>
+                          <th class="text-center">ProjectProfile</th>
+                          <th class="text-center">ProjectDefaultReleases</th>
+                          <th class="text-center">ProjectDefaultReleaseHours</th>
+                          <th class="text-center">ProjectBlendedRate</th>
+                          <th class="text-center">ProjectStateID</th>
+                          <th class="text-center">ProjectState</th>
+                          <th class="text-center">ProjectName</th>
+                          <th class="text-center">ProjectStartDate</th>
+                          <th class="text-center">ProjectEndDate</th>
+                          <th class="text-center">ProfileSupportUpliftPerc</th>
+                          <th class="text-center">CCY</th>
+                          <th class="text-center">CCYCode</th>
+                          <th class="text-center">EffortTotal</th>
+                          <th class="text-center">FreshDeskURI</th>
+                          <th class="text-center">ADOURI</th>
+                          <th class="text-center">NoActiveFeatures</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </thead>
+                      <tbody id="filterTable">
+                        {{range .ItemList}}
+                        <tr>
+                          
+                          
+                          <td class="align-middle" >{{.ProjectID}}</td>
+                          <td class="align-middle" >{{.EstimationStateID}}</td>
+                          <td class="align-middle" >{{.Notes}}</td>
+                          <td class="align-middle" >{{.Releases}}</td>
+                          <td class="align-middle" >{{.Total}}</td>
+                          <td class="align-middle" >{{.Contingency}}</td>
+                          <td class="align-middle" >{{.ReqDays}}</td>
+                          <td class="align-middle" >{{.RegCost}}</td>
+                          <td class="align-middle" >{{.ImpDays}}</td>
+                          <td class="align-middle" >{{.ImpCost}}</td>
+                          <td class="align-middle" >{{.UatDays}}</td>
+                          <td class="align-middle" >{{.UatCost}}</td>
+                          <td class="align-middle" >{{.MgtDays}}</td>
+                          <td class="align-middle" >{{.MgtCost}}</td>
+                          <td class="align-middle" >{{.RelDays}}</td>
+                          <td class="align-middle" >{{.RelCost}}</td>
+                          <td class="align-middle" >{{.SupportUplift}}</td>
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <td class="align-middle" >{{.Name}}</td>
+                          <td class="align-middle" >{{.AdoID}}</td>
+                          <td class="align-middle" >{{.FreshdeskID}}</td>
+                          <td class="align-middle" >{{.TrackerID}}</td>
+                          <td class="align-middle" >{{.EstRef}}</td>
+                          <td class="align-middle" >{{.ExtRef}}</td>
+                          
+                          
+                          <td class="align-middle" >{{.Comments}}</td>
+                          <td class="align-middle" >{{.ProjectManager}}</td>
+                          <td class="align-middle" >{{.ProductManager}}</td>
+                          <td class="align-middle" >{{.Approver}}</td>
+                          <td class="align-middle" >{{.IssueDate}}</td>
+                          <td class="align-middle" >{{.ExpiryDate}}</td>
+                          <td class="align-middle" >{{.Origin}}</td>
+                          <td class="align-middle" >{{.OriginStateID}}</td>
+                          <td class="align-middle" >{{.OriginState}}</td>
+                          <td class="align-middle" >{{.OriginDocTypeID}}</td>
+                          <td class="align-middle" >{{.OriginDocType}}</td>
+                          <td class="align-middle" >{{.OriginCode}}</td>
+                          <td class="align-middle" >{{.OriginName}}</td>
+                          <td class="align-middle" >{{.OriginRate}}</td>
+                          <td class="align-middle" >{{.ProjectProfileID}}</td>
+                          <td class="align-middle" >{{.ProjectProfile}}</td>
+                          <td class="align-middle" >{{.ProjectDefaultReleases}}</td>
+                          <td class="align-middle" >{{.ProjectDefaultReleaseHours}}</td>
+                          <td class="align-middle" >{{.ProjectBlendedRate}}</td>
+                          <td class="align-middle" >{{.ProjectStateID}}</td>
+                          <td class="align-middle" >{{.ProjectState}}</td>
+                          <td class="align-middle" >{{.ProjectName}}</td>
+                          <td class="align-middle" >{{.ProjectStartDate}}</td>
+                          <td class="align-middle" >{{.ProjectEndDate}}</td>
+                          <td class="align-middle" >{{.ProfileSupportUpliftPerc}}</td>
+                          <td class="align-middle" >{{.CCY}}</td>
+                          <td class="align-middle" >{{.CCYCode}}</td>
+                          <td class="align-middle" >{{.EffortTotal}}</td>
+                          <td class="align-middle" >{{.FreshDeskURI}}</td>
+                          <td class="align-middle" >{{.ADOURI}}</td>
+                          <td class="align-middle" >{{.NoActiveFeatures}}</td>
+                          
+                          <td class="align-middle text-center" style="width:1px;padding:0px;padding-top:1rem;">
+                              <form action="/home" method="POST" class="d-flex justify-content-center">
+                                  <div class="btn-group" id="ActionButtonGroup2">
+                                    <button type="submit" value="" class="btn btn-sm btn-info " formaction="/EstimationSessionView?EstimationSessionID={{.EstimationSessionID}}" method="POST" title="View Estimation Session"><i class="far fa-eye"></i>View</button>
+                                    <button type="submit" value="" class="btn btn-sm btn-warning " formaction="/EstimationSessionEdit?EstimationSessionID={{.EstimationSessionID}}" method="POST" title="Edit Estimation Session"><i class="fas fa-edit"></i>Edit</button>
+                                    
+                                  </div>
+                                </form>
+                          </td>
+                        </tr>
+                        {{end}}
+                      </tbody>
+                       <tfoot class="table-light">
+                        <tr style="background-color:red;">
+                          
+                          
+                          <th class="text-center">ProjectID</th>
+                          <th class="text-center">EstimationStateID</th>
+                          <th class="text-center">Notes</th>
+                          <th class="text-center">Releases</th>
+                          <th class="text-center">Total</th>
+                          <th class="text-center">Contingency</th>
+                          <th class="text-center">ReqDays</th>
+                          <th class="text-center">RegCost</th>
+                          <th class="text-center">ImpDays</th>
+                          <th class="text-center">ImpCost</th>
+                          <th class="text-center">UatDays</th>
+                          <th class="text-center">UatCost</th>
+                          <th class="text-center">MgtDays</th>
+                          <th class="text-center">MgtCost</th>
+                          <th class="text-center">RelDays</th>
+                          <th class="text-center">RelCost</th>
+                          <th class="text-center">SupportUplift</th>
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <th class="text-center">Name</th>
+                          <th class="text-center">AdoID</th>
+                          <th class="text-center">FreshdeskID</th>
+                          <th class="text-center">TrackerID</th>
+                          <th class="text-center">EstRef</th>
+                          <th class="text-center">ExtRef</th>
+                          
+                          
+                          <th class="text-center">Comments</th>
+                          <th class="text-center">ProjectManager</th>
+                          <th class="text-center">ProductManager</th>
+                          <th class="text-center">Approver</th>
+                          <th class="text-center">IssueDate</th>
+                          <th class="text-center">ExpiryDate</th>
+                          <th class="text-center">Origin</th>
+                          <th class="text-center">OriginStateID</th>
+                          <th class="text-center">OriginState</th>
+                          <th class="text-center">OriginDocTypeID</th>
+                          <th class="text-center">OriginDocType</th>
+                          <th class="text-center">OriginCode</th>
+                          <th class="text-center">OriginName</th>
+                          <th class="text-center">OriginRate</th>
+                          <th class="text-center">ProjectProfileID</th>
+                          <th class="text-center">ProjectProfile</th>
+                          <th class="text-center">ProjectDefaultReleases</th>
+                          <th class="text-center">ProjectDefaultReleaseHours</th>
+                          <th class="text-center">ProjectBlendedRate</th>
+                          <th class="text-center">ProjectStateID</th>
+                          <th class="text-center">ProjectState</th>
+                          <th class="text-center">ProjectName</th>
+                          <th class="text-center">ProjectStartDate</th>
+                          <th class="text-center">ProjectEndDate</th>
+                          <th class="text-center">ProfileSupportUpliftPerc</th>
+                          <th class="text-center">CCY</th>
+                          <th class="text-center">CCYCode</th>
+                          <th class="text-center">EffortTotal</th>
+                          <th class="text-center">FreshDeskURI</th>
+                          <th class="text-center">ADOURI</th>
+                          <th class="text-center">NoActiveFeatures</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </tfoot>
+                    </table>
+            
+
+            </div>
+        </form>
+      </div>
+
+
+
+
+{{template "userfooter" .}}
+{{template "exportcontrols" .}}
+{{template "tablecontrols" .}}
+{{template "pagefooter" .}}

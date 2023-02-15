@@ -1,8 +1,8 @@
-# **Ssloader** - Object Definition
+# **ssloader** - Object Definition
 ##  Information
 | Information  | Value  |
 |---|---|
-|Object         |**Ssloader** (ssloader) |
+|Object         |**ssloader** (ssloader) |
 |Endpoint 	    |**/Ssloader...** [^1]|
 |Endpoint Query |**ID**|
 Glyph|**fas fa-cubes** (text-info)
@@ -54,7 +54,7 @@ Friendly Name|**Spreadsheet Loader**|
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **07/02/2023** at **18:52:39**
+Date & Time		     | **15/02/2023** at **10:44:48**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

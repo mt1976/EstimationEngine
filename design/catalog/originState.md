@@ -66,21 +66,22 @@ SQL Table Key | **originStateID**
 | :--: | -- | -- |
 | code | **application** | /application/originState_core.go |
 | code | **adaptor** | /dao/originState_adaptor.go_template |
+| code | **validation** | /dao/originState_validation.go_template |
 | code | **api** | /application/originState_api.go |
 | code | **dao** | /dao/originState_core.go |
 | code | **datamodel** | /datamodel/originState_core.go |
 | code | **menu** | /design/menu/originState.json |
-| html | **list** | /OriginState_List.html |
-| html | **view** | /OriginState_View.html |
-| html | **edit** | /OriginState_Edit.html |
-| html | **new** | /OriginState_New.html |
+| html | **list** | /OriginStateList.html |
+| html | **view** | /OriginStateView.html |
+| html | **edit** | /OriginStateEdit.html |
+| html | **new** | /OriginStateNew.html |
 
 
 ## Audit Information
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **07/02/2023** at **18:52:37**
+Date & Time		     | **15/02/2023** at **10:44:45**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

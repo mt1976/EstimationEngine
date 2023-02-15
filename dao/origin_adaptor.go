@@ -86,20 +86,3 @@ func Origin_NoActiveProjects_impl(iAction string, iId string, iValue string, iRe
 //
 // Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 // END - Validation API/Callout
-
-func Origin_ObjectValidation_impl(iAction string, iId string, iRec dm.Origin) (dm.Origin, string, error) {
-	logs.Callout("Origin", "ObjectValidation", VAL+"-"+iAction, iId)
-	switch iAction {
-	case VAL:
-
-	case NEW:
-
-	case PUT:
-
-	case GET:
-
-	default:
-		logs.Warning("Origin" + " - Invalid Action [" + iAction + "]")
-	}
-	return iRec, "", nil
-}

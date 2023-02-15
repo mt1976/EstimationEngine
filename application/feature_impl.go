@@ -129,7 +129,7 @@ func Feature_Clone(feature dm.Feature, esID string, r *http.Request) error {
 	msgTXT = dao.Translate("AuditMessage", msgTXT)
 	feature.Notes = addActivity(feature.Notes, fmt.Sprintf(msgTXT, feature.FeatureID), r)
 
-	err := dao.Feature_Store(feature, r)
+	_, err := dao.Feature_Store(feature, r)
 	if err != nil {
 		logs.Panic("Cannot Store Feature {"+feature.FeatureID+"}", err)
 		return err

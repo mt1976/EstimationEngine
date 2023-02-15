@@ -104,8 +104,8 @@ func Credentials_NewRequest(firstName string, lastName string, email string, use
 	rec.Password = core.EncodeString(password)
 	//fmt.Printf("rec: %v\n", rec)
 	//spew.Dump(rec)
-
-	return dao.Credentials_StoreSystem(rec)
+	_, err := dao.Credentials_StoreSystem(rec)
+	return err
 }
 
 // TODO Build a new request function. Check for duplicates etc.

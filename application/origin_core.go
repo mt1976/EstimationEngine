@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:37
+// Date & Time		    : 15/02/2023 at 10:44:45
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //Origin_Publish annouces the endpoints available for this object
-//Origin_Publish - Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+//Origin_Publish - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 func Origin_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.Origin_Path, Origin_Handler)
 	mux.HandleFunc(dm.Origin_PathList, Origin_HandlerList)
@@ -38,17 +38,17 @@ func Origin_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.Origin_Title)
     core.Catalog_Add(dm.Origin_Title, dm.Origin_Path, "", dm.Origin_QueryString, "Application")
 	// 
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Origin_HandlerList is the handler for the list page
 //Allows Listing of Origin records
-//Origin_HandlerList - Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+//Origin_HandlerList - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 func Origin_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -78,7 +78,7 @@ func Origin_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	ExecuteTemplate(dm.Origin_TemplateList, w, r, pageDetail)
 	// 
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -86,10 +86,10 @@ func Origin_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //Origin_HandlerView is the handler used to View a page
 //Allows Viewing for an existing Origin record
-//Origin_HandlerView - Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Origin_HandlerView - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Origin_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -118,17 +118,17 @@ func Origin_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Origin_TemplateView, w, r, pageDetail)
 	// 
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Origin_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing Origin record and then allows the user to save the changes
-//Origin_HandlerEdit - Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Origin_HandlerEdit - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Origin_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -142,7 +142,15 @@ func Origin_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path)
 
 	searchID := core.GetURLparam(r, dm.Origin_QueryString)
-	_, rD, _ := dao.Origin_GetByID(searchID)
+	action := core.GetURLparam(r, core.ContextState)
+
+	var rD dm.Origin
+	if action == core.ContextState_ERROR {
+		rD = core.SessionManager.Get(r.Context(), searchID).(dm.Origin)
+	} else {
+		_, rD, _ = dao.Origin_GetByID(searchID)
+	}
+
 	
 	pageDetail := dm.Origin_Page{
 		Title:       CardTitle(dm.Origin_Title, core.Action_Edit),
@@ -157,17 +165,17 @@ func Origin_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Origin_TemplateEdit, w, r, pageDetail)
 	// 
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Origin_HandlerSave is the handler used process the saving of an Origin
 //It is called from the Edit and New pages
-//Origin_HandlerSave  - Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Origin_HandlerSave  - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Origin_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -178,24 +186,31 @@ func Origin_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// Code Continues Below
 
 	w.Header().Set("Content-Type", "text/html")
-	logs.Servicing(r.URL.Path+r.FormValue("OriginID"))
+	itemID := r.FormValue("OriginID")
+	logs.Servicing(r.URL.Path+itemID)
 
 	item := origin_DataFromRequest(r)
 	
-	dao.Origin_Store(item,r)	
-	http.Redirect(w, r, dm.Origin_Redirect, http.StatusFound)
+	item, errStore := dao.Origin_Store(item,r)
+	if errStore == nil {	
+		http.Redirect(w, r, dm.Origin_Redirect, http.StatusFound)
+	} else {
+		logs.Information(dm.Origin_Name, errStore.Error())
+		http.Redirect(w, r, r.Referer(), http.StatusFound)
+		ExecuteRedirect(r.Referer(), w, r,dm.Origin_QueryString,itemID,item)
+	}
 	// 
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Origin_HandlerNew is the handler used process the creation of an Origin
 //It will create a new Origin and then redirect to the Edit page
-//Origin_HandlerNew  - Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Origin_HandlerNew  - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Origin_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -207,7 +222,18 @@ func Origin_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
-	_, _, rD, _ := dao.Origin_New()
+
+	searchID := core.GetURLparam(r, dm.Origin_QueryString)
+	action := core.GetURLparam(r, core.ContextState)
+
+	var rD dm.Origin
+	if action == core.ContextState_ERROR {
+		rD = core.SessionManager.Get(r.Context(), searchID).(dm.Origin)
+	} else {
+		_, _, rD, _ = dao.Origin_New()
+	}
+
+
 
 	pageDetail := dm.Origin_Page{
 		Title:       CardTitle(dm.Origin_Title, core.Action_New),
@@ -222,17 +248,16 @@ func Origin_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Origin_TemplateNew, w, r, pageDetail)
 	// 
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }	
 
 
 
 //origin_PopulatePage Builds/Populates the Origin Page 
+//origin_PopulatePage Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 func origin_PopulatePage(rD dm.Origin, pageDetail dm.Origin_Page) dm.Origin_Page {
-	// START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
+	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.OriginID = rD.OriginID
 	pageDetail.StateID = rD.StateID
@@ -258,79 +283,19 @@ func origin_PopulatePage(rD dm.Origin, pageDetail dm.Origin_Page) dm.Origin_Page
 	pageDetail.Comments = rD.Comments
 	pageDetail.ProjectManager = rD.ProjectManager
 	pageDetail.AccountManager = rD.AccountManager
-	
+	// Add Pseudo/Extra Fields
 	pageDetail.NoActiveProjects = rD.NoActiveProjects
-	
-	//
-	// Automatically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
-	//
-	
-	
-	
-	
+	// Enrichment Fields 
 	 
 	pageDetail.StateID_lookup = dao.OriginState_GetFilteredLookup("Origin","StateID")
-	
-	
-	
 	 
 	pageDetail.DocTypeID_lookup = dao.DocType_GetFilteredLookup("Origin","DocTypeID")
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	pageDetail.Currency_lookup = dao.StubLists_Get("ccy")
-	
-	
-	
-	
-	
 	 
 	pageDetail.ProjectManager_lookup = dao.Resource_GetFilteredLookup("Origin","ProjectManager")
-	
-	
-	
 	 
 	pageDetail.AccountManager_lookup = dao.Resource_GetFilteredLookup("Origin","AccountManager")
-	
-	
-	
-	
-	
-	
 	pageDetail.SYSId_props = rD.SYSId_props
 	pageDetail.OriginID_props = rD.OriginID_props
 	pageDetail.StateID_props = rD.StateID_props
@@ -357,23 +322,15 @@ func origin_PopulatePage(rD dm.Origin, pageDetail dm.Origin_Page) dm.Origin_Page
 	pageDetail.ProjectManager_props = rD.ProjectManager_props
 	pageDetail.AccountManager_props = rD.AccountManager_props
 	pageDetail.NoActiveProjects_props = rD.NoActiveProjects_props
-	
-	// 
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
-return pageDetail
+	return pageDetail
 }	
 
 
 //origin_DataFromRequest is used process the content of an HTTP Request and return an instance of an Origin
+//origin_DataFromRequest Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 func origin_DataFromRequest(r *http.Request) dm.Origin {
-	// START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
+
 	var item dm.Origin
-	// FIELD SET START
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 		item.SYSId = r.FormValue(dm.Origin_SYSId_scrn)
 		item.OriginID = r.FormValue(dm.Origin_OriginID_scrn)
 		item.StateID = r.FormValue(dm.Origin_StateID_scrn)
@@ -400,9 +357,6 @@ func origin_DataFromRequest(r *http.Request) dm.Origin {
 		item.ProjectManager = r.FormValue(dm.Origin_ProjectManager_scrn)
 		item.AccountManager = r.FormValue(dm.Origin_AccountManager_scrn)
 		item.NoActiveProjects = r.FormValue(dm.Origin_NoActiveProjects_scrn)
-	
-	// 
-	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
 	return item
 }
+

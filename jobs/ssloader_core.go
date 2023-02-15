@@ -3,12 +3,12 @@ package jobs
 // Automatically generated  "/jobs/ssloader.go"
 // ----------------------------------------------------------------
 // Package              : jobs
-// Object 			    : Ssloader (ssloader)
+// Object 			    : ssloader (ssloader)
 // Endpoint 	        : Ssloader (ID)
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:39
+// Date & Time		    : 15/02/2023 at 10:44:48
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -21,38 +21,38 @@ import (
 	cron        "github.com/robfig/cron/v3"
 )
 
-// SsloaderJob defines the job properties, name, period etc..
-func Ssloader_Job() dm.JobDefinition {
+// ssloaderJob defines the job properties, name, period etc..
+func ssloader_Job() dm.JobDefinition {
 	// ----------------------------------------------------------------
 	// Job Definition
-	// Create a new job definition in the Ssloader_Impl.go file called Ssloader_JobImpl()
+	// Create a new job definition in the ssloader_Impl.go file called ssloader_JobImpl()
 	// ----------------------------------------------------------------
 	var j dm.JobDefinition
-	j.ID = "Ssloader"
-	j.Name = "Ssloader"
+	j.ID = "ssloader"
+	j.Name = "ssloader"
 	j.Period = "10 1 * * *"
-	j.Description = "Ssloader processing"
+	j.Description = "ssloader processing"
 	j.Type = core.General
-	j = Ssloader_Job_impl(j)
+	j = ssloader_Job_impl(j)
 	return j
 }
 
-func Ssloader_Register(c *cron.Cron) {
-	application.Schedule_Register(Ssloader_Job())
-	c.AddFunc(Ssloader_Job().Period, func() { Ssloader_Run() })
+func ssloader_Register(c *cron.Cron) {
+	application.Schedule_Register(ssloader_Job())
+	c.AddFunc(ssloader_Job().Period, func() { ssloader_Run() })
 }
 
-// Ssloader_Run initiates and runs the job as per the period.
-func Ssloader_Run() {
-	logs.StartJob(Ssloader_Job().Name)
+// ssloader_Run initiates and runs the job as per the period.
+func ssloader_Run() {
+	logs.StartJob(ssloader_Job().Name)
 	message := ""
 	/// CONTENT STARTS
-	// Create a func in the Ssloader_Impl.go file called Ssloader_Run_impl() that returns string,error	
-	message,err := Ssloader_Run_impl()
+	// Create a func in the ssloader_Impl.go file called ssloader_Run_impl() that returns string,error	
+	message,err := ssloader_Run_impl()
 	if err != nil {
 		logs.Warning(err.Error())
 	}
 	/// CONTENT ENDS
-	application.Schedule_Update(Ssloader_Job(), message)
-	logs.EndJob(Ssloader_Job().Name)
+	application.Schedule_Update(ssloader_Job(), message)
+	logs.EndJob(ssloader_Job().Name)
 }

@@ -69,19 +69,20 @@ SQL Table Key | **id**
 | Type | Artifact | Path|
 | :--: | -- | -- |
 | code | **application** | /application/schedule_core.go |
+| code | **validation** | /dao/schedule_validation.go_template |
 | code | **api** | /application/schedule_api.go |
 | code | **dao** | /dao/schedule_core.go |
 | code | **datamodel** | /datamodel/schedule_core.go |
 | code | **menu** | /design/menu/schedule.json |
-| html | **list** | /Schedule_List.html |
-| html | **view** | /Schedule_View.html |
+| html | **list** | /ScheduleList.html |
+| html | **view** | /ScheduleView.html |
 
 
 ## Audit Information
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **07/02/2023** at **18:52:39**
+Date & Time		     | **15/02/2023** at **10:44:47**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

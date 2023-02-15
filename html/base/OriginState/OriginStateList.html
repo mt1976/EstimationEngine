@@ -1,0 +1,114 @@
+{{template "header" .}}
+<link rel="stylesheet" type="text/css" href="/assets/DataTables/datatables.min.css"/>
+{{template "bodydefinition" .}}
+
+      <div class="card">
+       
+            <div class="card-header font-weight-bold" style="padding-bottom:0;">
+              <div class="row d-flex align-items-center">
+                <div class="col d-flex align-items-center"><h3><i class="fas fa-cogs me-2"></i>{{.Title}}</h3></div>
+                <div class="col d-flex justify-content-end">
+                  <form action="/home" method="GET">
+                    <div class="btn-group" id="ActionButtonGroup">
+                    <button type="submit" value="" class="btn btn-primary" formaction="/OriginStateNew" method="GET" title="Create a new Origin State"><i class="fas fa-plus me-2"></i>New</button>
+                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="card-body">
+             
+                           
+                    <table id="DataTable" class="table table-hover table-responsive" style="width:100%">
+                      <thead class="table-light">
+                        <tr style="background-color:red;">
+                          
+                          
+                          <th class="text-center">Code</th>
+                          <th class="text-center">Name</th>
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <th class="text-center">IsLocked</th>
+                          <th class="text-center">Notify</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </thead>
+                      <tbody id="filterTable">
+                        {{range .ItemList}}
+                        <tr>
+                          
+                          
+                          <td class="align-middle" >{{.Code}}</td>
+                          <td class="align-middle" >{{.Name}}</td>
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <td class="align-middle" >{{.IsLocked}}</td>
+                          <td class="align-middle" >{{.Notify}}</td>
+                          
+                          <td class="align-middle text-center" style="width:1px;padding:0px;padding-top:1rem;">
+                              <form action="/home" method="POST" class="d-flex justify-content-center">
+                                  <div class="btn-group" id="ActionButtonGroup2">
+                                    <button type="submit" value="" class="btn btn-sm btn-info " formaction="/OriginStateView?OriginStateID={{.OriginStateID}}" method="POST" title="View Origin State"><i class="far fa-eye"></i>View</button>
+                                    <button type="submit" value="" class="btn btn-sm btn-warning " formaction="/OriginStateEdit?OriginStateID={{.OriginStateID}}" method="POST" title="Edit Origin State"><i class="fas fa-edit"></i>Edit</button>
+                                    
+                                  </div>
+                                </form>
+                          </td>
+                        </tr>
+                        {{end}}
+                      </tbody>
+                       <tfoot class="table-light">
+                        <tr style="background-color:red;">
+                          
+                          
+                          <th class="text-center">Code</th>
+                          <th class="text-center">Name</th>
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <th class="text-center">IsLocked</th>
+                          <th class="text-center">Notify</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </tfoot>
+                    </table>
+            
+
+            </div>
+        </form>
+      </div>
+
+
+
+
+{{template "userfooter" .}}
+{{template "exportcontrols" .}}
+{{template "tablecontrols" .}}
+{{template "pagefooter" .}}

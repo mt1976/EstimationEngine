@@ -117,22 +117,23 @@ SQL Table Key | **estimationSessionID**
 | :--: | -- | -- |
 | code | **application** | /application/estimationSession_core.go |
 | code | **adaptor** | /dao/estimationSession_adaptor.go_template |
+| code | **validation** | /dao/estimationSession_validation.go_template |
 | code | **api** | /application/estimationSession_api.go |
 | code | **dao** | /dao/estimationSession_core.go |
 | code | **datamodel** | /datamodel/estimationSession_core.go |
 | code | **job** | /jobs/estimationSession_core.go |
 | code | **menu** | /design/menu/estimationSession.json |
-| html | **list** | /EstimationSession_List.html |
-| html | **view** | /EstimationSession_View.html |
-| html | **edit** | /EstimationSession_Edit.html |
-| html | **new** | /EstimationSession_New.html |
+| html | **list** | /EstimationSessionList.html |
+| html | **view** | /EstimationSessionView.html |
+| html | **edit** | /EstimationSessionEdit.html |
+| html | **new** | /EstimationSessionNew.html |
 
 
 ## Audit Information
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **07/02/2023** at **18:52:35**
+Date & Time		     | **15/02/2023** at **14:33:10**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

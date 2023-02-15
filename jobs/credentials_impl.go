@@ -115,7 +115,7 @@ func warnExpiryOfCredentials(c dm.Credentials, period int, message string) (bool
 	// ------------------
 	// Update the credentials
 	// ------------------
-	err3 := dao.Credentials_StoreSystem(c)
+	_, err3 := dao.Credentials_StoreSystem(c)
 	if err3 != nil {
 		logs.Error("Credentials Housekeeping", err3)
 		return true, message, err3
@@ -145,7 +145,7 @@ func expireCredentials(c dm.Credentials, message string) (bool, string, error) {
 	// ------------------
 	c.State = "EXPD"
 	c.EmailNotifications = "false"
-	err3 := dao.Credentials_StoreSystem(c)
+	_, err3 := dao.Credentials_StoreSystem(c)
 	if err3 != nil {
 		logs.Error("Credentials Housekeeping", err3)
 		return true, message, err3

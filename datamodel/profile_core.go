@@ -9,131 +9,108 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:37
+// Date & Time		    : 15/02/2023 at 10:44:46
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Profile defines the datamolde for the Profile object
+//Profile defines the datamodel for the Profile object
 type Profile struct {
-
-
-SYSId       string
-SYSId_props FieldProperties
-ProfileID       string
-ProfileID_props FieldProperties
-Code       string
-Code_props FieldProperties
-Name       string
-Name_props FieldProperties
-StartDate       string
-StartDate_props FieldProperties
-EndDate       string
-EndDate_props FieldProperties
-DefaultReleases       string
-DefaultReleases_props FieldProperties
-DefaultReleaseHours       string
-DefaultReleaseHours_props FieldProperties
-BlendedRate       string
-BlendedRate_props FieldProperties
-Rounding       string
-Rounding_props FieldProperties
-HoursPerDay       string
-HoursPerDay_props FieldProperties
-REQPerc       string
-REQPerc_props FieldProperties
-ANAPerc       string
-ANAPerc_props FieldProperties
-DOCPerc       string
-DOCPerc_props FieldProperties
-PMPerc       string
-PMPerc_props FieldProperties
-UATPerc       string
-UATPerc_props FieldProperties
-GTMPerc       string
-GTMPerc_props FieldProperties
-SupportUplift       string
-SupportUplift_props FieldProperties
-ContigencyPerc       string
-ContigencyPerc_props FieldProperties
-SYSCreated       string
-SYSCreated_props FieldProperties
-SYSCreatedBy       string
-SYSCreatedBy_props FieldProperties
-SYSCreatedHost       string
-SYSCreatedHost_props FieldProperties
-SYSUpdated       string
-SYSUpdated_props FieldProperties
-SYSUpdatedBy       string
-SYSUpdatedBy_props FieldProperties
-SYSUpdatedHost       string
-SYSUpdatedHost_props FieldProperties
-SYSDeleted       string
-SYSDeleted_props FieldProperties
-SYSDeletedBy       string
-SYSDeletedBy_props FieldProperties
-SYSDeletedHost       string
-SYSDeletedHost_props FieldProperties
-SYSActivity       string
-SYSActivity_props FieldProperties
-Notes       string
-Notes_props FieldProperties
-SYSDbVersion       string
-SYSDbVersion_props FieldProperties
-Comments       string
-Comments_props FieldProperties
-TrainingPerc       string
-TrainingPerc_props FieldProperties
- // Any lookups will be added below
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Field Definitions
+	//
+	SYSId       string
+	ProfileID       string
+	Code       string
+	Name       string
+	StartDate       string
+	EndDate       string
+	DefaultReleases       string
+	DefaultReleaseHours       string
+	BlendedRate       string
+	Rounding       string
+	HoursPerDay       string
+	REQPerc       string
+	ANAPerc       string
+	DOCPerc       string
+	PMPerc       string
+	UATPerc       string
+	GTMPerc       string
+	SupportUplift       string
+	ContigencyPerc       string
+	SYSCreated       string
+	SYSCreatedBy       string
+	SYSCreatedHost       string
+	SYSUpdated       string
+	SYSUpdatedBy       string
+	SYSUpdatedHost       string
+	SYSDeleted       string
+	SYSDeletedBy       string
+	SYSDeletedHost       string
+	SYSActivity       string
+	Notes       string
+	SYSDbVersion       string
+	Comments       string
+	TrainingPerc       string
+	//
+	// Field Properties
+	//
+	SYSId_props FieldProperties
+	ProfileID_props FieldProperties
+	Code_props FieldProperties
+	Name_props FieldProperties
+	StartDate_props FieldProperties
+	EndDate_props FieldProperties
+	DefaultReleases_props FieldProperties
+	DefaultReleaseHours_props FieldProperties
+	BlendedRate_props FieldProperties
+	Rounding_props FieldProperties
+	HoursPerDay_props FieldProperties
+	REQPerc_props FieldProperties
+	ANAPerc_props FieldProperties
+	DOCPerc_props FieldProperties
+	PMPerc_props FieldProperties
+	UATPerc_props FieldProperties
+	GTMPerc_props FieldProperties
+	SupportUplift_props FieldProperties
+	ContigencyPerc_props FieldProperties
+	SYSCreated_props FieldProperties
+	SYSCreatedBy_props FieldProperties
+	SYSCreatedHost_props FieldProperties
+	SYSUpdated_props FieldProperties
+	SYSUpdatedBy_props FieldProperties
+	SYSUpdatedHost_props FieldProperties
+	SYSDeleted_props FieldProperties
+	SYSDeletedBy_props FieldProperties
+	SYSDeletedHost_props FieldProperties
+	SYSActivity_props FieldProperties
+	Notes_props FieldProperties
+	SYSDbVersion_props FieldProperties
+	Comments_props FieldProperties
+	TrainingPerc_props FieldProperties
+	//
+ 	// Any lookups will be added below
+	//
+	}
 
 const (
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
+	Profile_Name      = "Profile"
 	Profile_Title       = "Profile"
 	Profile_SQLTable    = "profileStore"
 	Profile_SQLSearchID = "profileID"
 	Profile_QueryString = "ProfileID"
 	///
-	/// Handler Defintions
+	/// Template Path Defintions
 	///
 	Profile_Template     = "Profile"
-	Profile_TemplateList = "/Profile/Profile_List"
-	Profile_TemplateView = "/Profile/Profile_View"
-	Profile_TemplateEdit = "/Profile/Profile_Edit"
-	Profile_TemplateNew  = "/Profile/Profile_New"
+	Profile_TemplateList = "/Profile/ProfileList"
+	Profile_TemplateView = "/Profile/ProfileView"
+	Profile_TemplateEdit = "/Profile/ProfileEdit"
+	Profile_TemplateNew  = "/Profile/ProfileNew"
 	///
-	/// Handler Monitor Paths
+	/// URI Handler Paths
 	///
 	Profile_Path       = "/API/Profile/"
 	Profile_PathList   = "/ProfileList/"
@@ -142,14 +119,17 @@ const (
 	Profile_PathNew    = "/ProfileNew/"
 	Profile_PathSave   = "/ProfileSave/"
 	Profile_PathDelete = "/ProfileDelete/"
-	///
+	// Redirects - On Server Side Error
+	Profile_PathEditException   = "/ProfileEditException/"
+	Profile_PathNewException    = "/ProfileNewException/"
+	//
 	//Profile_Redirect provides a page to return to aftern an action
 	Profile_Redirect = Profile_PathList
 	
-	///
-	///
-	/// SQL Field Definitions
-	///
+	//
+	//
+	// SQL Field Definitions
+	//
 	Profile_SYSId_sql   = "_id" // SYSId is a Int
 	Profile_ProfileID_sql   = "profileID" // ProfileID is a String
 	Profile_Code_sql   = "code" // Code is a String
@@ -183,9 +163,7 @@ const (
 	Profile_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
 	Profile_Comments_sql   = "comments" // Comments is a String
 	Profile_TrainingPerc_sql   = "TrainingPerc" // TrainingPerc is a String
-
-	/// Definitions End
-	///
+///
 	/// Application Field Definitions
 	///
 	Profile_SYSId_scrn   = "SYSId" // SYSId is a Int
@@ -221,20 +199,19 @@ const (
 	Profile_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
 	Profile_Comments_scrn   = "Comments" // Comments is a String
 	Profile_TrainingPerc_scrn   = "TrainingPerc" // TrainingPerc is a String
-
-	/// Definitions End
-	///
+///
 )
 
-//profile_PageList provides the information for the template for a list of Profiles
+//Profile_PageList provides the information for the template for a list of Profiles
 type Profile_PageList struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []Profile
+	// Context & Permisions
 	Context	 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -242,87 +219,21 @@ type Profile_PageList struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	// Page Data
+	ItemsOnPage 	 int
+	ItemList  		 []Profile
 }
 
-//profile_Page provides the information for the template for an individual Profile
+//Profile_Page provides the information for the template for an individual Profile
 type Profile_Page struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	SYSId_props     FieldProperties
-	ProfileID         string
-	ProfileID_props     FieldProperties
-	Code         string
-	Code_props     FieldProperties
-	Name         string
-	Name_props     FieldProperties
-	StartDate         string
-	StartDate_props     FieldProperties
-	EndDate         string
-	EndDate_props     FieldProperties
-	DefaultReleases         string
-	DefaultReleases_props     FieldProperties
-	DefaultReleaseHours         string
-	DefaultReleaseHours_props     FieldProperties
-	BlendedRate         string
-	BlendedRate_props     FieldProperties
-	Rounding         string
-	Rounding_props     FieldProperties
-	HoursPerDay         string
-	HoursPerDay_props     FieldProperties
-	REQPerc         string
-	REQPerc_props     FieldProperties
-	ANAPerc         string
-	ANAPerc_props     FieldProperties
-	DOCPerc         string
-	DOCPerc_props     FieldProperties
-	PMPerc         string
-	PMPerc_props     FieldProperties
-	UATPerc         string
-	UATPerc_props     FieldProperties
-	GTMPerc         string
-	GTMPerc_props     FieldProperties
-	SupportUplift         string
-	SupportUplift_props     FieldProperties
-	ContigencyPerc         string
-	ContigencyPerc_props     FieldProperties
-	SYSCreated         string
-	SYSCreated_props     FieldProperties
-	SYSCreatedBy         string
-	SYSCreatedBy_props     FieldProperties
-	SYSCreatedHost         string
-	SYSCreatedHost_props     FieldProperties
-	SYSUpdated         string
-	SYSUpdated_props     FieldProperties
-	SYSUpdatedBy         string
-	SYSUpdatedBy_props     FieldProperties
-	SYSUpdatedHost         string
-	SYSUpdatedHost_props     FieldProperties
-	SYSDeleted         string
-	SYSDeleted_props     FieldProperties
-	SYSDeletedBy         string
-	SYSDeletedBy_props     FieldProperties
-	SYSDeletedHost         string
-	SYSDeletedHost_props     FieldProperties
-	SYSActivity         string
-	SYSActivity_props     FieldProperties
-	Notes         string
-	Notes_props     FieldProperties
-	SYSDbVersion         string
-	SYSDbVersion_props     FieldProperties
-	Comments         string
-	Comments_props     FieldProperties
-	TrainingPerc         string
-	TrainingPerc_props     FieldProperties
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+	/// Context & Permisions
 	Context	 		 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -330,4 +241,76 @@ type Profile_Page struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	/// Fields Definitions
+	SYSId         string
+	ProfileID         string
+	Code         string
+	Name         string
+	StartDate         string
+	EndDate         string
+	DefaultReleases         string
+	DefaultReleaseHours         string
+	BlendedRate         string
+	Rounding         string
+	HoursPerDay         string
+	REQPerc         string
+	ANAPerc         string
+	DOCPerc         string
+	PMPerc         string
+	UATPerc         string
+	GTMPerc         string
+	SupportUplift         string
+	ContigencyPerc         string
+	SYSCreated         string
+	SYSCreatedBy         string
+	SYSCreatedHost         string
+	SYSUpdated         string
+	SYSUpdatedBy         string
+	SYSUpdatedHost         string
+	SYSDeleted         string
+	SYSDeletedBy         string
+	SYSDeletedHost         string
+	SYSActivity         string
+	Notes         string
+	SYSDbVersion         string
+	Comments         string
+	TrainingPerc         string
+	/// Field Properties
+	SYSId_props     FieldProperties
+	ProfileID_props     FieldProperties
+	Code_props     FieldProperties
+	Name_props     FieldProperties
+	StartDate_props     FieldProperties
+	EndDate_props     FieldProperties
+	DefaultReleases_props     FieldProperties
+	DefaultReleaseHours_props     FieldProperties
+	BlendedRate_props     FieldProperties
+	Rounding_props     FieldProperties
+	HoursPerDay_props     FieldProperties
+	REQPerc_props     FieldProperties
+	ANAPerc_props     FieldProperties
+	DOCPerc_props     FieldProperties
+	PMPerc_props     FieldProperties
+	UATPerc_props     FieldProperties
+	GTMPerc_props     FieldProperties
+	SupportUplift_props     FieldProperties
+	ContigencyPerc_props     FieldProperties
+	SYSCreated_props     FieldProperties
+	SYSCreatedBy_props     FieldProperties
+	SYSCreatedHost_props     FieldProperties
+	SYSUpdated_props     FieldProperties
+	SYSUpdatedBy_props     FieldProperties
+	SYSUpdatedHost_props     FieldProperties
+	SYSDeleted_props     FieldProperties
+	SYSDeletedBy_props     FieldProperties
+	SYSDeletedHost_props     FieldProperties
+	SYSActivity_props     FieldProperties
+	Notes_props     FieldProperties
+	SYSDbVersion_props     FieldProperties
+	Comments_props     FieldProperties
+	TrainingPerc_props     FieldProperties
+	/// Lookups
+	
+	/// END OF DEFINITIONS
+	///
 }

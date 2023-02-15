@@ -9,44 +9,52 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:36
+// Date & Time		    : 15/02/2023 at 10:44:43
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//EstimationSessionAction defines the datamolde for the EstimationSessionAction object
+//EstimationSessionAction defines the datamodel for the EstimationSessionAction object
 type EstimationSessionAction struct {
-
-
-ID       string
-ID_props FieldProperties
-EstimationSession       string
-EstimationSession_props FieldProperties
-Action       string
-Action_props FieldProperties
-Notes       string
-Notes_props FieldProperties
- // Any lookups will be added below
-EstimationSession_lookup []Lookup_Item
-Action_lookup []Lookup_Item
-
-
-}
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Field Definitions
+	//
+	ID       string
+	EstimationSession       string
+	Action       string
+	Notes       string
+	//
+	// Field Properties
+	//
+	ID_props FieldProperties
+	EstimationSession_props FieldProperties
+	Action_props FieldProperties
+	Notes_props FieldProperties
+	//
+ 	// Any lookups will be added below
+	//
+	EstimationSession_lookup []Lookup_Item
+	Action_lookup []Lookup_Item
+	}
 
 const (
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
+	EstimationSessionAction_Name      = "EstimationSessionAction"
 	EstimationSessionAction_Title       = "Estimation Session Actions"
 	EstimationSessionAction_SQLTable    = "n/a"
 	EstimationSessionAction_SQLSearchID = "n/a"
 	EstimationSessionAction_QueryString = "ID"
 	///
-	/// Handler Defintions
+	/// Template Path Defintions
 	///
 	EstimationSessionAction_Template     = "EstimationSessionAction"
-	EstimationSessionAction_TemplateList = "/EstimationSessionAction/EstimationSessionAction_List"
-	EstimationSessionAction_TemplateView = "/EstimationSessionAction/EstimationSessionAction_View"
-	EstimationSessionAction_TemplateEdit = "/EstimationSessionAction/EstimationSessionAction_Edit"
-	EstimationSessionAction_TemplateNew  = "/EstimationSessionAction/EstimationSessionAction_New"
+	EstimationSessionAction_TemplateList = "/EstimationSessionAction/EstimationSessionActionList"
+	EstimationSessionAction_TemplateView = "/EstimationSessionAction/EstimationSessionActionView"
+	EstimationSessionAction_TemplateEdit = "/EstimationSessionAction/EstimationSessionActionEdit"
+	EstimationSessionAction_TemplateNew  = "/EstimationSessionAction/EstimationSessionActionNew"
 	///
-	/// Handler Monitor Paths
+	/// URI Handler Paths
 	///
 	EstimationSessionAction_Path       = "/API/EstimationSessionAction/"
 	EstimationSessionAction_PathList   = "/EstimationSessionActionList/"
@@ -55,40 +63,40 @@ const (
 	EstimationSessionAction_PathNew    = "/EstimationSessionActionNew/"
 	EstimationSessionAction_PathSave   = "/EstimationSessionActionSave/"
 	EstimationSessionAction_PathDelete = "/EstimationSessionActionDelete/"
-	///
+	// Redirects - On Server Side Error
+	EstimationSessionAction_PathEditException   = "/EstimationSessionActionEditException/"
+	EstimationSessionAction_PathNewException    = "/EstimationSessionActionNewException/"
+	//
 	//EstimationSessionAction_Redirect provides a page to return to aftern an action
 	EstimationSessionAction_Redirect = EstimationSessionAction_PathView
-	///
-	///
-	/// SQL Field Definitions
-	///
+	//
+	//
+	// SQL Field Definitions
+	//
 	EstimationSessionAction_ID_sql   = "ID" // ID is a String
 	EstimationSessionAction_EstimationSession_sql   = "EstimationSession" // EstimationSession is a String
 	EstimationSessionAction_Action_sql   = "Action" // Action is a String
 	EstimationSessionAction_Notes_sql   = "Notes" // Notes is a String
-
-	/// Definitions End
-	///
+///
 	/// Application Field Definitions
 	///
 	EstimationSessionAction_ID_scrn   = "ID" // ID is a String
 	EstimationSessionAction_EstimationSession_scrn   = "EstimationSession" // EstimationSession is a String
 	EstimationSessionAction_Action_scrn   = "Action" // Action is a String
 	EstimationSessionAction_Notes_scrn   = "Notes" // Notes is a String
-
-	/// Definitions End
-	///
+///
 )
 
-//estimationsessionaction_PageList provides the information for the template for a list of EstimationSessionActions
+//EstimationSessionAction_PageList provides the information for the template for a list of EstimationSessionActions
 type EstimationSessionAction_PageList struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []EstimationSessionAction
+	// Context & Permisions
 	Context	 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -96,31 +104,21 @@ type EstimationSessionAction_PageList struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	// Page Data
+	ItemsOnPage 	 int
+	ItemList  		 []EstimationSessionAction
 }
 
-//estimationsessionaction_Page provides the information for the template for an individual EstimationSessionAction
+//EstimationSessionAction_Page provides the information for the template for an individual EstimationSessionAction
 type EstimationSessionAction_Page struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	ID         string
-	ID_props     FieldProperties
-	EstimationSession         string
-	EstimationSession_lookup    []Lookup_Item
-	EstimationSession_props     FieldProperties
-	Action         string
-	Action_lookup    []Lookup_Item
-	Action_props     FieldProperties
-	Notes         string
-	Notes_props     FieldProperties
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+	/// Context & Permisions
 	Context	 		 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -128,4 +126,20 @@ type EstimationSessionAction_Page struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	/// Fields Definitions
+	ID         string
+	EstimationSession         string
+	Action         string
+	Notes         string
+	/// Field Properties
+	ID_props     FieldProperties
+	EstimationSession_props     FieldProperties
+	Action_props     FieldProperties
+	Notes_props     FieldProperties
+	/// Lookups
+	EstimationSession_lookup    []Lookup_Item
+	Action_lookup    []Lookup_Item
+	
+	/// END OF DEFINITIONS
+	///
 }

@@ -54,20 +54,21 @@ Store|<ul><li>**Implement in Adaptor**</li><li>func EstimationSessionAction_NewI
 | :--: | -- | -- |
 | code | **application** | /application/estimationSessionAction_core.go |
 | code | **adaptor** | /dao/estimationSessionAction_adaptor.go_template |
+| code | **validation** | /dao/estimationSessionAction_validation.go_template |
 | code | **api** | /application/estimationSessionAction_api.go |
 | code | **dao** | /dao/estimationSessionAction_core.go |
 | code | **datamodel** | /datamodel/estimationSessionAction_core.go |
 | code | **menu** | /design/menu/estimationSessionAction.json |
-| html | **view** | /EstimationSessionAction_View.html |
-| html | **edit** | /EstimationSessionAction_Edit.html |
-| html | **new** | /EstimationSessionAction_New.html |
+| html | **view** | /EstimationSessionActionView.html |
+| html | **edit** | /EstimationSessionActionEdit.html |
+| html | **new** | /EstimationSessionActionNew.html |
 
 
 ## Audit Information
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **07/02/2023** at **18:52:36**
+Date & Time		     | **15/02/2023** at **10:44:43**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

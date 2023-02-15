@@ -1,4 +1,5 @@
 package dao
+
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/feature.go"
 // ----------------------------------------------------------------
@@ -8,49 +9,47 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:36
+// Date & Time		    : 15/02/2023 at 10:44:43
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-
+	"errors"
 	"fmt"
 	"net/http"
-	core "github.com/mt1976/ebEstimates/core"
-	"github.com/google/uuid"
-	das  "github.com/mt1976/ebEstimates/das"
 
-	dm   "github.com/mt1976/ebEstimates/datamodel"
-	logs   "github.com/mt1976/ebEstimates/logs"
+	"github.com/google/uuid"
+	core "github.com/mt1976/ebEstimates/core"
+	das "github.com/mt1976/ebEstimates/das"
+	dm "github.com/mt1976/ebEstimates/datamodel"
+	logs "github.com/mt1976/ebEstimates/logs"
 )
 
 var Feature_SQLbase string
 var Feature_QualifiedName string
-func init(){
+
+func init() {
 	Feature_QualifiedName = get_TableName(core.ApplicationSQLSchema(), dm.Feature_SQLTable)
-	Feature_SQLbase =  das.SELECTALL + das.FROM + Feature_QualifiedName
+	Feature_SQLbase = das.SELECTALL + das.FROM + Feature_QualifiedName
 }
 
 // Feature_GetList() returns a list of all Feature records
 func Feature_GetList() (int, []dm.Feature, error) {
-	
 	count, featureList, err := Feature_GetListFiltered("")
-	
 	return count, featureList, err
 }
 
 // Feature_GetListFiltered() returns a filtered list of all Feature records
 func Feature_GetListFiltered(filter string) (int, []dm.Feature, error) {
-	
+
 	tsql := Feature_SQLbase
 	if filter != "" {
 		tsql = tsql + " " + das.WHERE + filter
 	}
 	count, featureList, _, _ := feature_Fetch(tsql)
-	
+
 	return count, featureList, nil
 }
-
 
 // Feature_GetLookup() returns a lookup list of all Feature items in lookup format
 func Feature_GetLookup() []dm.Lookup_Item {
@@ -63,15 +62,15 @@ func Feature_GetLookup() []dm.Lookup_Item {
 }
 
 // Feature_GetFilteredLookup() returns a lookup list of all Feature items in lookup format
-func Feature_GetFilteredLookup(requestObject string,requestField string) []dm.Lookup_Item {
+func Feature_GetFilteredLookup(requestObject string, requestField string) []dm.Lookup_Item {
 	var returnList []dm.Lookup_Item
 	reqClass := "Feature"
-	reqField := requestObject+"-"+requestField
+	reqField := requestObject + "-" + requestField
 	reqCategory := "Filter"
-	filter,_ := Data_GetString(reqClass, reqField, reqCategory)
+	filter, _ := Data_GetString(reqClass, reqField, reqCategory)
 	if filter == "" {
 		logs.Warning("Feature_GetFilteredLookup() - No filter found for " + reqClass + " " + reqField)
-	} 
+	}
 	count, featureList, _ := Feature_GetListFiltered(filter)
 	for i := 0; i < count; i++ {
 		returnList = append(returnList, dm.Lookup_Item{ID: featureList[i].FeatureID, Name: featureList[i].Name})
@@ -79,74 +78,60 @@ func Feature_GetFilteredLookup(requestObject string,requestField string) []dm.Lo
 	return returnList
 }
 
-
-
 // Feature_GetByID() returns a single Feature record
 func Feature_GetByID(id string) (int, dm.Feature, error) {
-
 
 	tsql := Feature_SQLbase
 	tsql = tsql + " " + das.WHERE + dm.Feature_SQLSearchID + das.EQ + das.ID(id)
 	_, _, featureItem, _ := feature_Fetch(tsql)
 
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
-	featureItem.FeatureID,featureItem.FeatureID_props = Feature_FeatureID_impl (GET,id,featureItem.FeatureID,featureItem,featureItem.FeatureID_props)
-	featureItem.TrackerID,featureItem.TrackerID_props = Feature_TrackerID_impl (GET,id,featureItem.TrackerID,featureItem,featureItem.TrackerID_props)
-	featureItem.AdoID,featureItem.AdoID_props = Feature_AdoID_impl (GET,id,featureItem.AdoID,featureItem,featureItem.AdoID_props)
-	featureItem.FreshdeskID,featureItem.FreshdeskID_props = Feature_FreshdeskID_impl (GET,id,featureItem.FreshdeskID,featureItem,featureItem.FreshdeskID_props)
-	featureItem.ExtRef,featureItem.ExtRef_props = Feature_ExtRef_impl (GET,id,featureItem.ExtRef,featureItem,featureItem.ExtRef_props)
-	featureItem.ExtRef2,featureItem.ExtRef2_props = Feature_ExtRef2_impl (GET,id,featureItem.ExtRef2,featureItem,featureItem.ExtRef2_props)
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+	featureItem = Feature_PostGet(featureItem, id)
+
 	return 1, featureItem, nil
 }
 
-
+func Feature_PostGet(featureItem dm.Feature, id string) dm.Feature {
+	// START
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	//
+	featureItem.FeatureID, featureItem.FeatureID_props = Feature_FeatureID_validate_impl(GET, id, featureItem.FeatureID, featureItem, featureItem.FeatureID_props)
+	featureItem.TrackerID, featureItem.TrackerID_props = Feature_TrackerID_validate_impl(GET, id, featureItem.TrackerID, featureItem, featureItem.TrackerID_props)
+	featureItem.AdoID, featureItem.AdoID_props = Feature_AdoID_validate_impl(GET, id, featureItem.AdoID, featureItem, featureItem.AdoID_props)
+	featureItem.FreshdeskID, featureItem.FreshdeskID_props = Feature_FreshdeskID_validate_impl(GET, id, featureItem.FreshdeskID, featureItem, featureItem.FreshdeskID_props)
+	featureItem.ExtRef, featureItem.ExtRef_props = Feature_ExtRef_validate_impl(GET, id, featureItem.ExtRef, featureItem, featureItem.ExtRef_props)
+	featureItem.ExtRef2, featureItem.ExtRef2_props = Feature_ExtRef2_validate_impl(GET, id, featureItem.ExtRef2, featureItem, featureItem.ExtRef2_props)
+	//
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// END
+	return featureItem
+}
 
 // Feature_DeleteByID() deletes a single Feature record
 func Feature_Delete(id string) {
 
-
-// Uses Hard Delete
+	// Uses Hard Delete
 	object_Table := Feature_QualifiedName
 	tsql := das.DELETE + das.FROM + object_Table
 	tsql = tsql + " " + das.WHERE + dm.Feature_SQLSearchID + das.EQ + das.ID(id)
-	das.Execute(tsql)	
+	das.Execute(tsql)
 
-	
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	// Feature_SoftDeleteByID() soft deletes a single Feature record
+// Feature_SoftDeleteByID() soft deletes a single Feature record
 func Feature_SoftDelete(id string) {
 	//Uses Soft Delete
-		_,featureItem,_ := Feature_GetByID(id)
-		featureItem.SYSDeletedBy = Audit_Update("", Audit_Host())
-		featureItem.SYSDeleted = Audit_Update("", Audit_TimeStamp())
-		featureItem.SYSDeletedHost = Audit_Update("", Audit_Host())
-		Feature_StoreSystem(featureItem)
+	_, featureItem, _ := Feature_GetByID(id)
+	featureItem.SYSDeletedBy = Audit_Update("", Audit_Host())
+	featureItem.SYSDeleted = Audit_Update("", Audit_TimeStamp())
+	featureItem.SYSDeletedHost = Audit_Update("", Audit_Host())
+	_, err := Feature_StoreSystem(featureItem)
+	if err != nil {
+		logs.Error("Feature_SoftDelete()", err)
+	}
 }
-	
-
 
 // Feature_Store() saves/stores a Feature record to the database
-func Feature_Store(r dm.Feature,req *http.Request) error {
+func Feature_Store(r dm.Feature, req *http.Request) (dm.Feature, error) {
 
 	r, err := Feature_Validate(r)
 	if err == nil {
@@ -155,12 +140,12 @@ func Feature_Store(r dm.Feature,req *http.Request) error {
 		logs.Information("Feature_Store()", err.Error())
 	}
 
-	return err
+	return r, err
 }
 
 // Feature_StoreSystem() saves/stores a Feature record to the database
-func Feature_StoreSystem(r dm.Feature) error {
-	
+func Feature_StoreSystem(r dm.Feature) (dm.Feature, error) {
+
 	r, err := Feature_Validate(r)
 	if err == nil {
 		err = feature_Save(r, Audit_Host())
@@ -168,124 +153,82 @@ func Feature_StoreSystem(r dm.Feature) error {
 		logs.Information("Feature_Store()", err.Error())
 	}
 
-	return err
+	return r, err
 }
 
 // Feature_Validate() validates for saves/stores a Feature record to the database
 func Feature_Validate(r dm.Feature) (dm.Feature, error) {
 	var err error
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
-	r.FeatureID,r.FeatureID_props = Feature_FeatureID_impl (PUT,r.FeatureID,r.FeatureID,r,r.FeatureID_props)
-	r.TrackerID,r.TrackerID_props = Feature_TrackerID_impl (PUT,r.FeatureID,r.TrackerID,r,r.TrackerID_props)
-	r.AdoID,r.AdoID_props = Feature_AdoID_impl (PUT,r.FeatureID,r.AdoID,r,r.AdoID_props)
-	r.FreshdeskID,r.FreshdeskID_props = Feature_FreshdeskID_impl (PUT,r.FeatureID,r.FreshdeskID,r,r.FreshdeskID_props)
-	r.ExtRef,r.ExtRef_props = Feature_ExtRef_impl (PUT,r.FeatureID,r.ExtRef,r,r.ExtRef_props)
-	r.ExtRef2,r.ExtRef2_props = Feature_ExtRef2_impl (PUT,r.FeatureID,r.ExtRef2,r,r.ExtRef2_props)
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	r.FeatureID, r.FeatureID_props = Feature_FeatureID_validate_impl(PUT, r.FeatureID, r.FeatureID, r, r.FeatureID_props)
+	if r.FeatureID_props.MsgMessage != "" {
+		err = errors.New(r.FeatureID_props.MsgMessage)
+	}
+	r.TrackerID, r.TrackerID_props = Feature_TrackerID_validate_impl(PUT, r.FeatureID, r.TrackerID, r, r.TrackerID_props)
+	if r.TrackerID_props.MsgMessage != "" {
+		err = errors.New(r.TrackerID_props.MsgMessage)
+	}
+	r.AdoID, r.AdoID_props = Feature_AdoID_validate_impl(PUT, r.FeatureID, r.AdoID, r, r.AdoID_props)
+	if r.AdoID_props.MsgMessage != "" {
+		err = errors.New(r.AdoID_props.MsgMessage)
+	}
+	r.FreshdeskID, r.FreshdeskID_props = Feature_FreshdeskID_validate_impl(PUT, r.FeatureID, r.FreshdeskID, r, r.FreshdeskID_props)
+	if r.FreshdeskID_props.MsgMessage != "" {
+		err = errors.New(r.FreshdeskID_props.MsgMessage)
+	}
+	r.ExtRef, r.ExtRef_props = Feature_ExtRef_validate_impl(PUT, r.FeatureID, r.ExtRef, r, r.ExtRef_props)
+	if r.ExtRef_props.MsgMessage != "" {
+		err = errors.New(r.ExtRef_props.MsgMessage)
+	}
+	r.ExtRef2, r.ExtRef2_props = Feature_ExtRef2_validate_impl(PUT, r.FeatureID, r.ExtRef2, r, r.ExtRef2_props)
+	if r.ExtRef2_props.MsgMessage != "" {
+		err = errors.New(r.ExtRef2_props.MsgMessage)
+	}
+	//
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//
-	
+
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	r, _, err = Feature_ObjectValidation_impl(PUT, r.FeatureID, r)
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
-	
 
-	return r,err
+	return r, err
 }
+
 //
 
 // feature_Save() saves/stores a Feature record to the database
-func feature_Save(r dm.Feature,usr string) error {
+func feature_Save(r dm.Feature, usr string) error {
 
-    var err error
-
-
-
-	
+	var err error
 
 	if len(r.FeatureID) == 0 {
 		r.FeatureID = Feature_NewID(r)
 	}
 
-// If there are fields below, create the methods in dao\feature_impl.go
-
-  r.FeatureID,err = Feature_FeatureID_OnStore_impl (r.FeatureID,r,usr)
-
-
-
-
-
-
-
-
-
-
-
-
-  r.TrackerID,err = Feature_TrackerID_OnStore_impl (r.TrackerID,r,usr)
-  r.AdoID,err = Feature_AdoID_OnStore_impl (r.AdoID,r,usr)
-  r.FreshdeskID,err = Feature_FreshdeskID_OnStore_impl (r.FreshdeskID,r,usr)
-  r.ExtRef,err = Feature_ExtRef_OnStore_impl (r.ExtRef,r,usr)
-  r.ExtRef2,err = Feature_ExtRef2_OnStore_impl (r.ExtRef2,r,usr)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
+	// If there are fields below, create the methods in dao\feature_impl.go  r.FeatureID,err = Feature_FeatureID_OnStore_impl (r.FeatureID,r,usr)  r.TrackerID,err = Feature_TrackerID_OnStore_impl (r.TrackerID,r,usr)  r.AdoID,err = Feature_AdoID_OnStore_impl (r.AdoID,r,usr)  r.FreshdeskID,err = Feature_FreshdeskID_OnStore_impl (r.FreshdeskID,r,usr)  r.ExtRef,err = Feature_ExtRef_OnStore_impl (r.ExtRef,r,usr)  r.ExtRef2,err = Feature_ExtRef2_OnStore_impl (r.ExtRef2,r,usr)
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
-	r.SYSCreatedHost = Audit_Update(r.SYSCreatedHost,Audit_Host())
+	r.SYSCreatedHost = Audit_Update(r.SYSCreatedHost, Audit_Host())
 	r.SYSUpdated = Audit_Update("", Audit_TimeStamp())
-	r.SYSUpdatedBy = Audit_Update("",usr)
-	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
+	r.SYSUpdatedBy = Audit_Update("", usr)
+	r.SYSUpdatedHost = Audit_Update("", Audit_Host())
 	r.SYSDbVersion = core.DB_Version()
-	
-logs.Storing("Feature",fmt.Sprintf("%v", r))
 
-//Deal with the if its Application or null add this bit, otherwise dont.
+	logs.Storing("Feature", fmt.Sprintf("%v", r))
+
+	//Deal with the if its Application or null add this bit, otherwise dont.
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	ts = addData(ts, dm.Feature_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Feature_FeatureID_sql, r.FeatureID)
@@ -340,25 +283,21 @@ logs.Storing("Feature",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Feature_DfTraining_sql, r.DfTraining)
 	ts = addData(ts, dm.Feature_DefaultProfile_sql, r.DefaultProfile)
 	ts = addData(ts, dm.Feature_ActualProfile_sql, r.ActualProfile)
-		
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+
+	//
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 	tsql := das.INSERT + das.INTO + Feature_QualifiedName
 	tsql = tsql + " (" + fields(ts) + ")"
-	tsql = tsql + " "+das.VALUES +"(" + values(ts) + ")"
+	tsql = tsql + " " + das.VALUES + "(" + values(ts) + ")"
 
 	Feature_Delete(r.FeatureID)
 	das.Execute(tsql)
 
-
-
 	return err
 
 }
-
-
 
 // feature_Fetch read all Feature's
 func feature_Fetch(tsql string) (int, []dm.Feature, dm.Feature, error) {
@@ -368,169 +307,107 @@ func feature_Fetch(tsql string) (int, []dm.Feature, dm.Feature, error) {
 
 	returnList, noitems, err := das.Query(core.ApplicationDB, tsql)
 	if err != nil {
-		logs.Fatal(err.Error(),err)
+		logs.Fatal(err.Error(), err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
-	   recItem.SYSId  = get_Int(rec, dm.Feature_SYSId_sql, "0")
-	   recItem.FeatureID  = get_String(rec, dm.Feature_FeatureID_sql, "")
-	   recItem.EstimationSessionID  = get_String(rec, dm.Feature_EstimationSessionID_sql, "")
-	   recItem.ConfidenceID  = get_String(rec, dm.Feature_ConfidenceID_sql, "")
-	   recItem.Name  = get_String(rec, dm.Feature_Name_sql, "")
-	   recItem.DevEstimate  = get_String(rec, dm.Feature_DevEstimate_sql, "")
-	   recItem.DevUplift  = get_String(rec, dm.Feature_DevUplift_sql, "")
-	   recItem.Reqs  = get_String(rec, dm.Feature_Reqs_sql, "")
-	   recItem.AnalystTest  = get_String(rec, dm.Feature_AnalystTest_sql, "")
-	   recItem.Docs  = get_String(rec, dm.Feature_Docs_sql, "")
-	   recItem.Mgt  = get_String(rec, dm.Feature_Mgt_sql, "")
-	   recItem.UatSupport  = get_String(rec, dm.Feature_UatSupport_sql, "")
-	   recItem.Marketing  = get_String(rec, dm.Feature_Marketing_sql, "")
-	   recItem.Contingency  = get_String(rec, dm.Feature_Contingency_sql, "")
-	   recItem.TrackerID  = get_String(rec, dm.Feature_TrackerID_sql, "")
-	   recItem.AdoID  = get_String(rec, dm.Feature_AdoID_sql, "")
-	   recItem.FreshdeskID  = get_String(rec, dm.Feature_FreshdeskID_sql, "")
-	   recItem.ExtRef  = get_String(rec, dm.Feature_ExtRef_sql, "")
-	   recItem.ExtRef2  = get_String(rec, dm.Feature_ExtRef2_sql, "")
-	   recItem.SYSCreated  = get_String(rec, dm.Feature_SYSCreated_sql, "")
-	   recItem.SYSCreatedBy  = get_String(rec, dm.Feature_SYSCreatedBy_sql, "")
-	   recItem.SYSCreatedHost  = get_String(rec, dm.Feature_SYSCreatedHost_sql, "")
-	   recItem.SYSUpdated  = get_String(rec, dm.Feature_SYSUpdated_sql, "")
-	   recItem.SYSUpdatedBy  = get_String(rec, dm.Feature_SYSUpdatedBy_sql, "")
-	   recItem.SYSUpdatedHost  = get_String(rec, dm.Feature_SYSUpdatedHost_sql, "")
-	   recItem.SYSDeleted  = get_String(rec, dm.Feature_SYSDeleted_sql, "")
-	   recItem.SYSDeletedBy  = get_String(rec, dm.Feature_SYSDeletedBy_sql, "")
-	   recItem.SYSDeletedHost  = get_String(rec, dm.Feature_SYSDeletedHost_sql, "")
-	   recItem.Developer  = get_String(rec, dm.Feature_Developer_sql, "")
-	   recItem.Approver  = get_String(rec, dm.Feature_Approver_sql, "")
-	   recItem.Notes  = get_String(rec, dm.Feature_Notes_sql, "")
-	   recItem.OffProfile  = get_String(rec, dm.Feature_OffProfile_sql, "")
-	   recItem.OffProfileJustification  = get_String(rec, dm.Feature_OffProfileJustification_sql, "")
-	   recItem.SYSActivity  = get_String(rec, dm.Feature_SYSActivity_sql, "")
-	   recItem.DfReqs  = get_String(rec, dm.Feature_DfReqs_sql, "")
-	   recItem.DfAnalystTest  = get_String(rec, dm.Feature_DfAnalystTest_sql, "")
-	   recItem.DfDocs  = get_String(rec, dm.Feature_DfDocs_sql, "")
-	   recItem.Dfmgt  = get_String(rec, dm.Feature_Dfmgt_sql, "")
-	   recItem.DfuatSupport  = get_String(rec, dm.Feature_DfuatSupport_sql, "")
-	   recItem.Dfmarketing  = get_String(rec, dm.Feature_Dfmarketing_sql, "")
-	   recItem.Dfcontingency  = get_String(rec, dm.Feature_Dfcontingency_sql, "")
-	   recItem.DfdevUplift  = get_String(rec, dm.Feature_DfdevUplift_sql, "")
-	   recItem.Total  = get_String(rec, dm.Feature_Total_sql, "")
-	   recItem.SYSDbVersion  = get_String(rec, dm.Feature_SYSDbVersion_sql, "")
-	   recItem.Comments  = get_String(rec, dm.Feature_Comments_sql, "")
-	   recItem.Description  = get_String(rec, dm.Feature_Description_sql, "")
-	   recItem.Analyst  = get_String(rec, dm.Feature_Analyst_sql, "")
-	   recItem.ProductManager  = get_String(rec, dm.Feature_ProductManager_sql, "")
-	   recItem.ProjectManager  = get_String(rec, dm.Feature_ProjectManager_sql, "")
-	   recItem.Training  = get_String(rec, dm.Feature_Training_sql, "")
-	   recItem.DfTraining  = get_String(rec, dm.Feature_DfTraining_sql, "")
-	   recItem.DefaultProfile  = get_String(rec, dm.Feature_DefaultProfile_sql, "")
-	   recItem.ActualProfile  = get_String(rec, dm.Feature_ActualProfile_sql, "")
-	
-	// If there are fields below, create the methods in adaptor\Feature_impl.go
-	
-	   recItem.FeatureID  = Feature_FeatureID_OnFetch_impl (recItem)
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	   recItem.TrackerID  = Feature_TrackerID_OnFetch_impl (recItem)
-	   recItem.AdoID  = Feature_AdoID_OnFetch_impl (recItem)
-	   recItem.FreshdeskID  = Feature_FreshdeskID_OnFetch_impl (recItem)
-	   recItem.ExtRef  = Feature_ExtRef_OnFetch_impl (recItem)
-	   recItem.ExtRef2  = Feature_ExtRef2_OnFetch_impl (recItem)
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-	///
-	//Add to the list
-	//
+		// START
+		// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+		//
+		recItem.SYSId = get_Int(rec, dm.Feature_SYSId_sql, "0")
+		recItem.FeatureID = get_String(rec, dm.Feature_FeatureID_sql, "")
+		recItem.EstimationSessionID = get_String(rec, dm.Feature_EstimationSessionID_sql, "")
+		recItem.ConfidenceID = get_String(rec, dm.Feature_ConfidenceID_sql, "")
+		recItem.Name = get_String(rec, dm.Feature_Name_sql, "")
+		recItem.DevEstimate = get_String(rec, dm.Feature_DevEstimate_sql, "")
+		recItem.DevUplift = get_String(rec, dm.Feature_DevUplift_sql, "")
+		recItem.Reqs = get_String(rec, dm.Feature_Reqs_sql, "")
+		recItem.AnalystTest = get_String(rec, dm.Feature_AnalystTest_sql, "")
+		recItem.Docs = get_String(rec, dm.Feature_Docs_sql, "")
+		recItem.Mgt = get_String(rec, dm.Feature_Mgt_sql, "")
+		recItem.UatSupport = get_String(rec, dm.Feature_UatSupport_sql, "")
+		recItem.Marketing = get_String(rec, dm.Feature_Marketing_sql, "")
+		recItem.Contingency = get_String(rec, dm.Feature_Contingency_sql, "")
+		recItem.TrackerID = get_String(rec, dm.Feature_TrackerID_sql, "")
+		recItem.AdoID = get_String(rec, dm.Feature_AdoID_sql, "")
+		recItem.FreshdeskID = get_String(rec, dm.Feature_FreshdeskID_sql, "")
+		recItem.ExtRef = get_String(rec, dm.Feature_ExtRef_sql, "")
+		recItem.ExtRef2 = get_String(rec, dm.Feature_ExtRef2_sql, "")
+		recItem.SYSCreated = get_String(rec, dm.Feature_SYSCreated_sql, "")
+		recItem.SYSCreatedBy = get_String(rec, dm.Feature_SYSCreatedBy_sql, "")
+		recItem.SYSCreatedHost = get_String(rec, dm.Feature_SYSCreatedHost_sql, "")
+		recItem.SYSUpdated = get_String(rec, dm.Feature_SYSUpdated_sql, "")
+		recItem.SYSUpdatedBy = get_String(rec, dm.Feature_SYSUpdatedBy_sql, "")
+		recItem.SYSUpdatedHost = get_String(rec, dm.Feature_SYSUpdatedHost_sql, "")
+		recItem.SYSDeleted = get_String(rec, dm.Feature_SYSDeleted_sql, "")
+		recItem.SYSDeletedBy = get_String(rec, dm.Feature_SYSDeletedBy_sql, "")
+		recItem.SYSDeletedHost = get_String(rec, dm.Feature_SYSDeletedHost_sql, "")
+		recItem.Developer = get_String(rec, dm.Feature_Developer_sql, "")
+		recItem.Approver = get_String(rec, dm.Feature_Approver_sql, "")
+		recItem.Notes = get_String(rec, dm.Feature_Notes_sql, "")
+		recItem.OffProfile = get_String(rec, dm.Feature_OffProfile_sql, "")
+		recItem.OffProfileJustification = get_String(rec, dm.Feature_OffProfileJustification_sql, "")
+		recItem.SYSActivity = get_String(rec, dm.Feature_SYSActivity_sql, "")
+		recItem.DfReqs = get_String(rec, dm.Feature_DfReqs_sql, "")
+		recItem.DfAnalystTest = get_String(rec, dm.Feature_DfAnalystTest_sql, "")
+		recItem.DfDocs = get_String(rec, dm.Feature_DfDocs_sql, "")
+		recItem.Dfmgt = get_String(rec, dm.Feature_Dfmgt_sql, "")
+		recItem.DfuatSupport = get_String(rec, dm.Feature_DfuatSupport_sql, "")
+		recItem.Dfmarketing = get_String(rec, dm.Feature_Dfmarketing_sql, "")
+		recItem.Dfcontingency = get_String(rec, dm.Feature_Dfcontingency_sql, "")
+		recItem.DfdevUplift = get_String(rec, dm.Feature_DfdevUplift_sql, "")
+		recItem.Total = get_String(rec, dm.Feature_Total_sql, "")
+		recItem.SYSDbVersion = get_String(rec, dm.Feature_SYSDbVersion_sql, "")
+		recItem.Comments = get_String(rec, dm.Feature_Comments_sql, "")
+		recItem.Description = get_String(rec, dm.Feature_Description_sql, "")
+		recItem.Analyst = get_String(rec, dm.Feature_Analyst_sql, "")
+		recItem.ProductManager = get_String(rec, dm.Feature_ProductManager_sql, "")
+		recItem.ProjectManager = get_String(rec, dm.Feature_ProjectManager_sql, "")
+		recItem.Training = get_String(rec, dm.Feature_Training_sql, "")
+		recItem.DfTraining = get_String(rec, dm.Feature_DfTraining_sql, "")
+		recItem.DefaultProfile = get_String(rec, dm.Feature_DefaultProfile_sql, "")
+		recItem.ActualProfile = get_String(rec, dm.Feature_ActualProfile_sql, "")
+
+		// If there are fields below, create the methods in adaptor\Feature_impl.go   recItem.FeatureID  = Feature_FeatureID_OnFetch_impl (recItem)   recItem.TrackerID  = Feature_TrackerID_OnFetch_impl (recItem)   recItem.AdoID  = Feature_AdoID_OnFetch_impl (recItem)   recItem.FreshdeskID  = Feature_FreshdeskID_OnFetch_impl (recItem)   recItem.ExtRef  = Feature_ExtRef_OnFetch_impl (recItem)   recItem.ExtRef2  = Feature_ExtRef2_OnFetch_impl (recItem)//
+		// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+		// END
+		///
+		//Add to the list
+		//
 		recList = append(recList, recItem)
 	}
 
 	return noitems, recList, recItem, nil
 }
-	
-
 
 func Feature_NewID(r dm.Feature) string {
-	
-			id := uuid.New().String()
-	
+
+	id := uuid.New().String()
+
 	return id
 }
-
-
 
 // feature_Fetch read all Feature's
 func Feature_New() (int, []dm.Feature, dm.Feature, error) {
 
 	var r = dm.Feature{}
 	var rList []dm.Feature
-	
 
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
-	r.FeatureID,r.FeatureID_props = Feature_FeatureID_impl (NEW,r.FeatureID,r.FeatureID,r,r.FeatureID_props)
-	r.TrackerID,r.TrackerID_props = Feature_TrackerID_impl (NEW,r.FeatureID,r.TrackerID,r,r.TrackerID_props)
-	r.AdoID,r.AdoID_props = Feature_AdoID_impl (NEW,r.FeatureID,r.AdoID,r,r.AdoID_props)
-	r.FreshdeskID,r.FreshdeskID_props = Feature_FreshdeskID_impl (NEW,r.FeatureID,r.FreshdeskID,r,r.FreshdeskID_props)
-	r.ExtRef,r.ExtRef_props = Feature_ExtRef_impl (NEW,r.FeatureID,r.ExtRef,r,r.ExtRef_props)
-	r.ExtRef2,r.ExtRef2_props = Feature_ExtRef2_impl (NEW,r.FeatureID,r.ExtRef2,r,r.ExtRef2_props)
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	r.FeatureID, r.FeatureID_props = Feature_FeatureID_validate_impl(NEW, r.FeatureID, r.FeatureID, r, r.FeatureID_props)
+	r.TrackerID, r.TrackerID_props = Feature_TrackerID_validate_impl(NEW, r.FeatureID, r.TrackerID, r, r.TrackerID_props)
+	r.AdoID, r.AdoID_props = Feature_AdoID_validate_impl(NEW, r.FeatureID, r.AdoID, r, r.AdoID_props)
+	r.FreshdeskID, r.FreshdeskID_props = Feature_FreshdeskID_validate_impl(NEW, r.FeatureID, r.FreshdeskID, r, r.FreshdeskID_props)
+	r.ExtRef, r.ExtRef_props = Feature_ExtRef_validate_impl(NEW, r.FeatureID, r.ExtRef, r, r.ExtRef_props)
+	r.ExtRef2, r.ExtRef2_props = Feature_ExtRef2_validate_impl(NEW, r.FeatureID, r.ExtRef2, r, r.ExtRef2_props)
+
+	//
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
-
-
 	rList = append(rList, r)
-
 	return 1, rList, r, nil
 }

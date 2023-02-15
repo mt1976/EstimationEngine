@@ -8,18 +8,16 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:37
+// Date & Time		    : 15/02/2023 at 10:44:44
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-
 	"fmt"
 	"net/http"
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/google/uuid"
 	das  "github.com/mt1976/ebEstimates/das"
-
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
 )
@@ -33,9 +31,7 @@ func init(){
 
 // Inbox_GetList() returns a list of all Inbox records
 func Inbox_GetList() (int, []dm.Inbox, error) {
-	
 	count, inboxList, err := Inbox_GetListFiltered("")
-	
 	return count, inboxList, err
 }
 
@@ -61,14 +57,22 @@ func Inbox_GetByID(id string) (int, dm.Inbox, error) {
 	tsql = tsql + " " + das.WHERE + dm.Inbox_SQLSearchID + das.EQ + das.ID(id)
 	_, _, inboxItem, _ := inbox_Fetch(tsql)
 
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+
+	inboxItem = Inbox_PostGet(inboxItem,id)
+
 	return 1, inboxItem, nil
 }
+
+func Inbox_PostGet(inboxItem dm.Inbox,id string) dm.Inbox {
+	// START
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return inboxItem
+}
+
 
 
 
@@ -85,24 +89,11 @@ func Inbox_Delete(id string) {
 	
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
 // Inbox_Store() saves/stores a Inbox record to the database
-func Inbox_Store(r dm.Inbox,req *http.Request) error {
+func Inbox_Store(r dm.Inbox,req *http.Request) (dm.Inbox,error) {
 
 	r, err := Inbox_Validate(r)
 	if err == nil {
@@ -111,11 +102,11 @@ func Inbox_Store(r dm.Inbox,req *http.Request) error {
 		logs.Information("Inbox_Store()", err.Error())
 	}
 
-	return err
+	return r, err
 }
 
 // Inbox_StoreSystem() saves/stores a Inbox record to the database
-func Inbox_StoreSystem(r dm.Inbox) error {
+func Inbox_StoreSystem(r dm.Inbox) (dm.Inbox,error) {
 	
 	r, err := Inbox_Validate(r)
 	if err == nil {
@@ -124,17 +115,17 @@ func Inbox_StoreSystem(r dm.Inbox) error {
 		logs.Information("Inbox_Store()", err.Error())
 	}
 
-	return err
+	return r, err
 }
 
 // Inbox_Validate() validates for saves/stores a Inbox record to the database
 func Inbox_Validate(r dm.Inbox) (dm.Inbox, error) {
 	var err error
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -148,38 +139,11 @@ func inbox_Save(r dm.Inbox,usr string) error {
 
     var err error
 
-
-
-	
-
 	if len(r.MailId) == 0 {
 		r.MailId = Inbox_NewID(r)
 	}
 
 // If there are fields below, create the methods in dao\inbox_impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
 	r.SYSCreatedHost = Audit_Update(r.SYSCreatedHost,Audit_Host())
@@ -194,7 +158,7 @@ logs.Storing("Inbox",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Inbox_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Inbox_SYSCreated_sql, r.SYSCreated)
@@ -218,7 +182,7 @@ logs.Storing("Inbox",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Inbox_SYSDbVersion_sql, r.SYSDbVersion)
 		
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := das.INSERT + das.INTO + Inbox_QualifiedName
@@ -251,7 +215,7 @@ func inbox_Fetch(tsql string) (int, []dm.Inbox, dm.Inbox, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Inbox_SYSId_sql, "0")
 	   recItem.SYSCreated  = get_String(rec, dm.Inbox_SYSCreated_sql, "")
@@ -274,30 +238,8 @@ func inbox_Fetch(tsql string) (int, []dm.Inbox, dm.Inbox, error) {
 	   recItem.SYSDeletedHost  = get_String(rec, dm.Inbox_SYSDeletedHost_sql, "")
 	   recItem.SYSDbVersion  = get_String(rec, dm.Inbox_SYSDbVersion_sql, "")
 	
-	// If there are fields below, create the methods in adaptor\Inbox_impl.go
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// If there are fields below, create the methods in adaptor\Inbox_impl.go// 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -312,7 +254,7 @@ func inbox_Fetch(tsql string) (int, []dm.Inbox, dm.Inbox, error) {
 
 func Inbox_NewID(r dm.Inbox) string {
 	
-			id := uuid.New().String()
+	id := uuid.New().String()
 	
 	return id
 }
@@ -327,14 +269,12 @@ func Inbox_New() (int, []dm.Inbox, dm.Inbox, error) {
 	
 
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
+	
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-
-
 	rList = append(rList, r)
-
 	return 1, rList, r, nil
 }

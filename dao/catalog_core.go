@@ -8,18 +8,16 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:34
+// Date & Time		    : 15/02/2023 at 10:44:40
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-
 	"fmt"
 	"net/http"
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/google/uuid"
 	das  "github.com/mt1976/ebEstimates/das"
-
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
 )
@@ -33,9 +31,7 @@ func init(){
 
 // Catalog_GetList() returns a list of all Catalog records
 func Catalog_GetList() (int, []dm.Catalog, error) {
-	
 	count, catalogList, err := Catalog_GetListFiltered("")
-	
 	return count, catalogList, err
 }
 
@@ -61,14 +57,22 @@ func Catalog_GetByID(id string) (int, dm.Catalog, error) {
 	tsql = tsql + " " + das.WHERE + dm.Catalog_SQLSearchID + das.EQ + das.ID(id)
 	_, _, catalogItem, _ := catalog_Fetch(tsql)
 
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+
+	catalogItem = Catalog_PostGet(catalogItem,id)
+
 	return 1, catalogItem, nil
 }
+
+func Catalog_PostGet(catalogItem dm.Catalog,id string) dm.Catalog {
+	// START
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return catalogItem
+}
+
 
 
 
@@ -81,24 +85,11 @@ func Catalog_Delete(id string) {
 	
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
 // Catalog_Store() saves/stores a Catalog record to the database
-func Catalog_Store(r dm.Catalog,req *http.Request) error {
+func Catalog_Store(r dm.Catalog,req *http.Request) (dm.Catalog,error) {
 
 	r, err := Catalog_Validate(r)
 	if err == nil {
@@ -107,11 +98,11 @@ func Catalog_Store(r dm.Catalog,req *http.Request) error {
 		logs.Information("Catalog_Store()", err.Error())
 	}
 
-	return err
+	return r, err
 }
 
 // Catalog_StoreSystem() saves/stores a Catalog record to the database
-func Catalog_StoreSystem(r dm.Catalog) error {
+func Catalog_StoreSystem(r dm.Catalog) (dm.Catalog,error) {
 	
 	r, err := Catalog_Validate(r)
 	if err == nil {
@@ -120,17 +111,17 @@ func Catalog_StoreSystem(r dm.Catalog) error {
 		logs.Information("Catalog_Store()", err.Error())
 	}
 
-	return err
+	return r, err
 }
 
 // Catalog_Validate() validates for saves/stores a Catalog record to the database
 func Catalog_Validate(r dm.Catalog) (dm.Catalog, error) {
 	var err error
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -144,23 +135,11 @@ func catalog_Save(r dm.Catalog,usr string) error {
 
     var err error
 
-
-
-	
-
 	if len(r.ID) == 0 {
 		r.ID = Catalog_NewID(r)
 	}
 
 // If there are fields below, create the methods in dao\catalog_impl.go
-
-
-
-
-
-
-
-	
 logs.Storing("Catalog",fmt.Sprintf("%v", r))
 
 // Please Create Functions Below in the adaptor/Catalog_impl.go file
@@ -195,7 +174,7 @@ func catalog_Fetch(tsql string) (int, []dm.Catalog, dm.Catalog, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.ID  = get_String(rec, dm.Catalog_ID_sql, "")
 	   recItem.Endpoint  = get_String(rec, dm.Catalog_Endpoint_sql, "")
@@ -203,15 +182,8 @@ func catalog_Fetch(tsql string) (int, []dm.Catalog, dm.Catalog, error) {
 	   recItem.Query  = get_String(rec, dm.Catalog_Query_sql, "")
 	   recItem.Source  = get_String(rec, dm.Catalog_Source_sql, "")
 	
-	// If there are fields below, create the methods in adaptor\Catalog_impl.go
-	
-	
-	
-	
-	
-	
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// If there are fields below, create the methods in adaptor\Catalog_impl.go// 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -226,7 +198,7 @@ func catalog_Fetch(tsql string) (int, []dm.Catalog, dm.Catalog, error) {
 
 func Catalog_NewID(r dm.Catalog) string {
 	
-			id := uuid.New().String()
+	id := uuid.New().String()
 	
 	return id
 }
@@ -241,14 +213,12 @@ func Catalog_New() (int, []dm.Catalog, dm.Catalog, error) {
 	
 
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
+	
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-
-
 	rList = append(rList, r)
-
 	return 1, rList, r, nil
 }

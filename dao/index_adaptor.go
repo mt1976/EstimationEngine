@@ -23,23 +23,6 @@ import (
 // ----------------------------------------------------------------
 
 // ----------------------------------------------------------------
-// Index_ObjectValidation_impl provides Record/Object level validation for Index
-func Index_ObjectValidation_impl(iAction string, iId string, iRec dm.Index) (dm.Index, string, error) {
-	logs.Callout("Index", "ObjectValidation", VAL+"-"+iAction, iId)
-	switch iAction {
-	case VAL:
-
-	case NEW:
-
-	case PUT:
-
-	case GET:
-
-	default:
-		logs.Warning("Index" + " - Invalid Action [" + iAction + "]")
-	}
-	return iRec, "", nil
-}
 
 //
 // ----------------------------------------------------------------

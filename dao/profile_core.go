@@ -8,18 +8,16 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:37
+// Date & Time		    : 15/02/2023 at 10:44:46
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-
 	"fmt"
 	"net/http"
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/google/uuid"
 	das  "github.com/mt1976/ebEstimates/das"
-
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
 )
@@ -33,9 +31,7 @@ func init(){
 
 // Profile_GetList() returns a list of all Profile records
 func Profile_GetList() (int, []dm.Profile, error) {
-	
 	count, profileList, err := Profile_GetListFiltered("")
-	
 	return count, profileList, err
 }
 
@@ -89,14 +85,22 @@ func Profile_GetByID(id string) (int, dm.Profile, error) {
 	tsql = tsql + " " + das.WHERE + dm.Profile_SQLSearchID + das.EQ + das.ID(id)
 	_, _, profileItem, _ := profile_Fetch(tsql)
 
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+
+	profileItem = Profile_PostGet(profileItem,id)
+
 	return 1, profileItem, nil
 }
+
+func Profile_PostGet(profileItem dm.Profile,id string) dm.Profile {
+	// START
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return profileItem
+}
+
 
 
 
@@ -113,19 +117,6 @@ func Profile_Delete(id string) {
 	
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 	// Profile_SoftDeleteByID() soft deletes a single Profile record
 func Profile_SoftDelete(id string) {
@@ -134,13 +125,16 @@ func Profile_SoftDelete(id string) {
 		profileItem.SYSDeletedBy = Audit_Update("", Audit_Host())
 		profileItem.SYSDeleted = Audit_Update("", Audit_TimeStamp())
 		profileItem.SYSDeletedHost = Audit_Update("", Audit_Host())
-		Profile_StoreSystem(profileItem)
+		_,err := Profile_StoreSystem(profileItem)
+		if err != nil {
+			logs.Error("Profile_SoftDelete()",err)
+		}
 }
 	
 
 
 // Profile_Store() saves/stores a Profile record to the database
-func Profile_Store(r dm.Profile,req *http.Request) error {
+func Profile_Store(r dm.Profile,req *http.Request) (dm.Profile,error) {
 
 	r, err := Profile_Validate(r)
 	if err == nil {
@@ -149,11 +143,11 @@ func Profile_Store(r dm.Profile,req *http.Request) error {
 		logs.Information("Profile_Store()", err.Error())
 	}
 
-	return err
+	return r, err
 }
 
 // Profile_StoreSystem() saves/stores a Profile record to the database
-func Profile_StoreSystem(r dm.Profile) error {
+func Profile_StoreSystem(r dm.Profile) (dm.Profile,error) {
 	
 	r, err := Profile_Validate(r)
 	if err == nil {
@@ -162,17 +156,17 @@ func Profile_StoreSystem(r dm.Profile) error {
 		logs.Information("Profile_Store()", err.Error())
 	}
 
-	return err
+	return r, err
 }
 
 // Profile_Validate() validates for saves/stores a Profile record to the database
 func Profile_Validate(r dm.Profile) (dm.Profile, error) {
 	var err error
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -186,51 +180,11 @@ func profile_Save(r dm.Profile,usr string) error {
 
     var err error
 
-
-
-	
-
 	if len(r.ProfileID) == 0 {
 		r.ProfileID = Profile_NewID(r)
 	}
 
 // If there are fields below, create the methods in dao\profile_impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
 	r.SYSCreatedHost = Audit_Update(r.SYSCreatedHost,Audit_Host())
@@ -245,7 +199,7 @@ logs.Storing("Profile",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Profile_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Profile_ProfileID_sql, r.ProfileID)
@@ -282,7 +236,7 @@ logs.Storing("Profile",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Profile_TrainingPerc_sql, r.TrainingPerc)
 		
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := das.INSERT + das.INTO + Profile_QualifiedName
@@ -315,7 +269,7 @@ func profile_Fetch(tsql string) (int, []dm.Profile, dm.Profile, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Profile_SYSId_sql, "0")
 	   recItem.ProfileID  = get_String(rec, dm.Profile_ProfileID_sql, "")
@@ -351,43 +305,8 @@ func profile_Fetch(tsql string) (int, []dm.Profile, dm.Profile, error) {
 	   recItem.Comments  = get_String(rec, dm.Profile_Comments_sql, "")
 	   recItem.TrainingPerc  = get_String(rec, dm.Profile_TrainingPerc_sql, "")
 	
-	// If there are fields below, create the methods in adaptor\Profile_impl.go
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// If there are fields below, create the methods in adaptor\Profile_impl.go// 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -402,7 +321,7 @@ func profile_Fetch(tsql string) (int, []dm.Profile, dm.Profile, error) {
 
 func Profile_NewID(r dm.Profile) string {
 	
-			id := uuid.New().String()
+	id := uuid.New().String()
 	
 	return id
 }
@@ -417,14 +336,12 @@ func Profile_New() (int, []dm.Profile, dm.Profile, error) {
 	
 
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
+	
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-
-
 	rList = append(rList, r)
-
 	return 1, rList, r, nil
 }

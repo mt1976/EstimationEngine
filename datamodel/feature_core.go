@@ -9,191 +9,157 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:36
+// Date & Time		    : 15/02/2023 at 10:44:43
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Feature defines the datamolde for the Feature object
+//Feature defines the datamodel for the Feature object
 type Feature struct {
-
-
-SYSId       string
-SYSId_props FieldProperties
-FeatureID       string
-FeatureID_props FieldProperties
-EstimationSessionID       string
-EstimationSessionID_props FieldProperties
-ConfidenceID       string
-ConfidenceID_props FieldProperties
-Name       string
-Name_props FieldProperties
-DevEstimate       string
-DevEstimate_props FieldProperties
-DevUplift       string
-DevUplift_props FieldProperties
-Reqs       string
-Reqs_props FieldProperties
-AnalystTest       string
-AnalystTest_props FieldProperties
-Docs       string
-Docs_props FieldProperties
-Mgt       string
-Mgt_props FieldProperties
-UatSupport       string
-UatSupport_props FieldProperties
-Marketing       string
-Marketing_props FieldProperties
-Contingency       string
-Contingency_props FieldProperties
-TrackerID       string
-TrackerID_props FieldProperties
-AdoID       string
-AdoID_props FieldProperties
-FreshdeskID       string
-FreshdeskID_props FieldProperties
-ExtRef       string
-ExtRef_props FieldProperties
-ExtRef2       string
-ExtRef2_props FieldProperties
-SYSCreated       string
-SYSCreated_props FieldProperties
-SYSCreatedBy       string
-SYSCreatedBy_props FieldProperties
-SYSCreatedHost       string
-SYSCreatedHost_props FieldProperties
-SYSUpdated       string
-SYSUpdated_props FieldProperties
-SYSUpdatedBy       string
-SYSUpdatedBy_props FieldProperties
-SYSUpdatedHost       string
-SYSUpdatedHost_props FieldProperties
-SYSDeleted       string
-SYSDeleted_props FieldProperties
-SYSDeletedBy       string
-SYSDeletedBy_props FieldProperties
-SYSDeletedHost       string
-SYSDeletedHost_props FieldProperties
-Developer       string
-Developer_props FieldProperties
-Approver       string
-Approver_props FieldProperties
-Notes       string
-Notes_props FieldProperties
-OffProfile       string
-OffProfile_props FieldProperties
-OffProfileJustification       string
-OffProfileJustification_props FieldProperties
-SYSActivity       string
-SYSActivity_props FieldProperties
-DfReqs       string
-DfReqs_props FieldProperties
-DfAnalystTest       string
-DfAnalystTest_props FieldProperties
-DfDocs       string
-DfDocs_props FieldProperties
-Dfmgt       string
-Dfmgt_props FieldProperties
-DfuatSupport       string
-DfuatSupport_props FieldProperties
-Dfmarketing       string
-Dfmarketing_props FieldProperties
-Dfcontingency       string
-Dfcontingency_props FieldProperties
-DfdevUplift       string
-DfdevUplift_props FieldProperties
-Total       string
-Total_props FieldProperties
-SYSDbVersion       string
-SYSDbVersion_props FieldProperties
-Comments       string
-Comments_props FieldProperties
-Description       string
-Description_props FieldProperties
-Analyst       string
-Analyst_props FieldProperties
-ProductManager       string
-ProductManager_props FieldProperties
-ProjectManager       string
-ProjectManager_props FieldProperties
-Training       string
-Training_props FieldProperties
-DfTraining       string
-DfTraining_props FieldProperties
-DefaultProfile       string
-DefaultProfile_props FieldProperties
-ActualProfile       string
-ActualProfile_props FieldProperties
- // Any lookups will be added below
-
-EstimationSessionID_lookup []Lookup_Item
-ConfidenceID_lookup []Lookup_Item
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Developer_lookup []Lookup_Item
-Approver_lookup []Lookup_Item
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Analyst_lookup []Lookup_Item
-ProductManager_lookup []Lookup_Item
-ProjectManager_lookup []Lookup_Item
-
-
-DefaultProfile_lookup []Lookup_Item
-ActualProfile_lookup []Lookup_Item
-
-}
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Field Definitions
+	//
+	SYSId       string
+	FeatureID       string
+	EstimationSessionID       string
+	ConfidenceID       string
+	Name       string
+	DevEstimate       string
+	DevUplift       string
+	Reqs       string
+	AnalystTest       string
+	Docs       string
+	Mgt       string
+	UatSupport       string
+	Marketing       string
+	Contingency       string
+	TrackerID       string
+	AdoID       string
+	FreshdeskID       string
+	ExtRef       string
+	ExtRef2       string
+	SYSCreated       string
+	SYSCreatedBy       string
+	SYSCreatedHost       string
+	SYSUpdated       string
+	SYSUpdatedBy       string
+	SYSUpdatedHost       string
+	SYSDeleted       string
+	SYSDeletedBy       string
+	SYSDeletedHost       string
+	Developer       string
+	Approver       string
+	Notes       string
+	OffProfile       string
+	OffProfileJustification       string
+	SYSActivity       string
+	DfReqs       string
+	DfAnalystTest       string
+	DfDocs       string
+	Dfmgt       string
+	DfuatSupport       string
+	Dfmarketing       string
+	Dfcontingency       string
+	DfdevUplift       string
+	Total       string
+	SYSDbVersion       string
+	Comments       string
+	Description       string
+	Analyst       string
+	ProductManager       string
+	ProjectManager       string
+	Training       string
+	DfTraining       string
+	DefaultProfile       string
+	ActualProfile       string
+	//
+	// Field Properties
+	//
+	SYSId_props FieldProperties
+	FeatureID_props FieldProperties
+	EstimationSessionID_props FieldProperties
+	ConfidenceID_props FieldProperties
+	Name_props FieldProperties
+	DevEstimate_props FieldProperties
+	DevUplift_props FieldProperties
+	Reqs_props FieldProperties
+	AnalystTest_props FieldProperties
+	Docs_props FieldProperties
+	Mgt_props FieldProperties
+	UatSupport_props FieldProperties
+	Marketing_props FieldProperties
+	Contingency_props FieldProperties
+	TrackerID_props FieldProperties
+	AdoID_props FieldProperties
+	FreshdeskID_props FieldProperties
+	ExtRef_props FieldProperties
+	ExtRef2_props FieldProperties
+	SYSCreated_props FieldProperties
+	SYSCreatedBy_props FieldProperties
+	SYSCreatedHost_props FieldProperties
+	SYSUpdated_props FieldProperties
+	SYSUpdatedBy_props FieldProperties
+	SYSUpdatedHost_props FieldProperties
+	SYSDeleted_props FieldProperties
+	SYSDeletedBy_props FieldProperties
+	SYSDeletedHost_props FieldProperties
+	Developer_props FieldProperties
+	Approver_props FieldProperties
+	Notes_props FieldProperties
+	OffProfile_props FieldProperties
+	OffProfileJustification_props FieldProperties
+	SYSActivity_props FieldProperties
+	DfReqs_props FieldProperties
+	DfAnalystTest_props FieldProperties
+	DfDocs_props FieldProperties
+	Dfmgt_props FieldProperties
+	DfuatSupport_props FieldProperties
+	Dfmarketing_props FieldProperties
+	Dfcontingency_props FieldProperties
+	DfdevUplift_props FieldProperties
+	Total_props FieldProperties
+	SYSDbVersion_props FieldProperties
+	Comments_props FieldProperties
+	Description_props FieldProperties
+	Analyst_props FieldProperties
+	ProductManager_props FieldProperties
+	ProjectManager_props FieldProperties
+	Training_props FieldProperties
+	DfTraining_props FieldProperties
+	DefaultProfile_props FieldProperties
+	ActualProfile_props FieldProperties
+	//
+ 	// Any lookups will be added below
+	//
+	EstimationSessionID_lookup []Lookup_Item
+	ConfidenceID_lookup []Lookup_Item
+	Developer_lookup []Lookup_Item
+	Approver_lookup []Lookup_Item
+	Analyst_lookup []Lookup_Item
+	ProductManager_lookup []Lookup_Item
+	ProjectManager_lookup []Lookup_Item
+	DefaultProfile_lookup []Lookup_Item
+	ActualProfile_lookup []Lookup_Item
+	}
 
 const (
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
+	Feature_Name      = "Feature"
 	Feature_Title       = "Feature"
 	Feature_SQLTable    = "featureStore"
 	Feature_SQLSearchID = "featureID"
 	Feature_QueryString = "FeatureID"
 	///
-	/// Handler Defintions
+	/// Template Path Defintions
 	///
 	Feature_Template     = "Feature"
-	Feature_TemplateList = "/Feature/Feature_List"
-	Feature_TemplateView = "/Feature/Feature_View"
-	Feature_TemplateEdit = "/Feature/Feature_Edit"
-	Feature_TemplateNew  = "/Feature/Feature_New"
+	Feature_TemplateList = "/Feature/FeatureList"
+	Feature_TemplateView = "/Feature/FeatureView"
+	Feature_TemplateEdit = "/Feature/FeatureEdit"
+	Feature_TemplateNew  = "/Feature/FeatureNew"
 	///
-	/// Handler Monitor Paths
+	/// URI Handler Paths
 	///
 	Feature_Path       = "/API/Feature/"
 	Feature_PathList   = "/FeatureList/"
@@ -202,14 +168,17 @@ const (
 	Feature_PathNew    = "/FeatureNew/"
 	Feature_PathSave   = "/FeatureSave/"
 	Feature_PathDelete = "/FeatureDelete/"
-	///
+	// Redirects - On Server Side Error
+	Feature_PathEditException   = "/FeatureEditException/"
+	Feature_PathNewException    = "/FeatureNewException/"
+	//
 	//Feature_Redirect provides a page to return to aftern an action
 	Feature_Redirect = Feature_PathList
 	
-	///
-	///
-	/// SQL Field Definitions
-	///
+	//
+	//
+	// SQL Field Definitions
+	//
 	Feature_SYSId_sql   = "_id" // SYSId is a Int
 	Feature_FeatureID_sql   = "featureID" // FeatureID is a String
 	Feature_EstimationSessionID_sql   = "estimationSessionID" // EstimationSessionID is a String
@@ -263,9 +232,7 @@ const (
 	Feature_DfTraining_sql   = "dfTraining" // DfTraining is a String
 	Feature_DefaultProfile_sql   = "defaultProfile" // DefaultProfile is a String
 	Feature_ActualProfile_sql   = "actualProfile" // ActualProfile is a String
-
-	/// Definitions End
-	///
+///
 	/// Application Field Definitions
 	///
 	Feature_SYSId_scrn   = "SYSId" // SYSId is a Int
@@ -321,20 +288,19 @@ const (
 	Feature_DfTraining_scrn   = "DfTraining" // DfTraining is a String
 	Feature_DefaultProfile_scrn   = "DefaultProfile" // DefaultProfile is a String
 	Feature_ActualProfile_scrn   = "ActualProfile" // ActualProfile is a String
-
-	/// Definitions End
-	///
+///
 )
 
-//feature_PageList provides the information for the template for a list of Features
+//Feature_PageList provides the information for the template for a list of Features
 type Feature_PageList struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []Feature
+	// Context & Permisions
 	Context	 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -342,136 +308,21 @@ type Feature_PageList struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	// Page Data
+	ItemsOnPage 	 int
+	ItemList  		 []Feature
 }
 
-//feature_Page provides the information for the template for an individual Feature
+//Feature_Page provides the information for the template for an individual Feature
 type Feature_Page struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	SYSId_props     FieldProperties
-	FeatureID         string
-	FeatureID_props     FieldProperties
-	EstimationSessionID         string
-	EstimationSessionID_lookup    []Lookup_Item
-	EstimationSessionID_props     FieldProperties
-	ConfidenceID         string
-	ConfidenceID_lookup    []Lookup_Item
-	ConfidenceID_props     FieldProperties
-	Name         string
-	Name_props     FieldProperties
-	DevEstimate         string
-	DevEstimate_props     FieldProperties
-	DevUplift         string
-	DevUplift_props     FieldProperties
-	Reqs         string
-	Reqs_props     FieldProperties
-	AnalystTest         string
-	AnalystTest_props     FieldProperties
-	Docs         string
-	Docs_props     FieldProperties
-	Mgt         string
-	Mgt_props     FieldProperties
-	UatSupport         string
-	UatSupport_props     FieldProperties
-	Marketing         string
-	Marketing_props     FieldProperties
-	Contingency         string
-	Contingency_props     FieldProperties
-	TrackerID         string
-	TrackerID_props     FieldProperties
-	AdoID         string
-	AdoID_props     FieldProperties
-	FreshdeskID         string
-	FreshdeskID_props     FieldProperties
-	ExtRef         string
-	ExtRef_props     FieldProperties
-	ExtRef2         string
-	ExtRef2_props     FieldProperties
-	SYSCreated         string
-	SYSCreated_props     FieldProperties
-	SYSCreatedBy         string
-	SYSCreatedBy_props     FieldProperties
-	SYSCreatedHost         string
-	SYSCreatedHost_props     FieldProperties
-	SYSUpdated         string
-	SYSUpdated_props     FieldProperties
-	SYSUpdatedBy         string
-	SYSUpdatedBy_props     FieldProperties
-	SYSUpdatedHost         string
-	SYSUpdatedHost_props     FieldProperties
-	SYSDeleted         string
-	SYSDeleted_props     FieldProperties
-	SYSDeletedBy         string
-	SYSDeletedBy_props     FieldProperties
-	SYSDeletedHost         string
-	SYSDeletedHost_props     FieldProperties
-	Developer         string
-	Developer_lookup    []Lookup_Item
-	Developer_props     FieldProperties
-	Approver         string
-	Approver_lookup    []Lookup_Item
-	Approver_props     FieldProperties
-	Notes         string
-	Notes_props     FieldProperties
-	OffProfile         string
-	OffProfile_props     FieldProperties
-	OffProfileJustification         string
-	OffProfileJustification_props     FieldProperties
-	SYSActivity         string
-	SYSActivity_props     FieldProperties
-	DfReqs         string
-	DfReqs_props     FieldProperties
-	DfAnalystTest         string
-	DfAnalystTest_props     FieldProperties
-	DfDocs         string
-	DfDocs_props     FieldProperties
-	Dfmgt         string
-	Dfmgt_props     FieldProperties
-	DfuatSupport         string
-	DfuatSupport_props     FieldProperties
-	Dfmarketing         string
-	Dfmarketing_props     FieldProperties
-	Dfcontingency         string
-	Dfcontingency_props     FieldProperties
-	DfdevUplift         string
-	DfdevUplift_props     FieldProperties
-	Total         string
-	Total_props     FieldProperties
-	SYSDbVersion         string
-	SYSDbVersion_props     FieldProperties
-	Comments         string
-	Comments_props     FieldProperties
-	Description         string
-	Description_props     FieldProperties
-	Analyst         string
-	Analyst_lookup    []Lookup_Item
-	Analyst_props     FieldProperties
-	ProductManager         string
-	ProductManager_lookup    []Lookup_Item
-	ProductManager_props     FieldProperties
-	ProjectManager         string
-	ProjectManager_lookup    []Lookup_Item
-	ProjectManager_props     FieldProperties
-	Training         string
-	Training_props     FieldProperties
-	DfTraining         string
-	DfTraining_props     FieldProperties
-	DefaultProfile         string
-	DefaultProfile_lookup    []Lookup_Item
-	DefaultProfile_props     FieldProperties
-	ActualProfile         string
-	ActualProfile_lookup    []Lookup_Item
-	ActualProfile_props     FieldProperties
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+	/// Context & Permisions
 	Context	 		 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -479,4 +330,125 @@ type Feature_Page struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	/// Fields Definitions
+	SYSId         string
+	FeatureID         string
+	EstimationSessionID         string
+	ConfidenceID         string
+	Name         string
+	DevEstimate         string
+	DevUplift         string
+	Reqs         string
+	AnalystTest         string
+	Docs         string
+	Mgt         string
+	UatSupport         string
+	Marketing         string
+	Contingency         string
+	TrackerID         string
+	AdoID         string
+	FreshdeskID         string
+	ExtRef         string
+	ExtRef2         string
+	SYSCreated         string
+	SYSCreatedBy         string
+	SYSCreatedHost         string
+	SYSUpdated         string
+	SYSUpdatedBy         string
+	SYSUpdatedHost         string
+	SYSDeleted         string
+	SYSDeletedBy         string
+	SYSDeletedHost         string
+	Developer         string
+	Approver         string
+	Notes         string
+	OffProfile         string
+	OffProfileJustification         string
+	SYSActivity         string
+	DfReqs         string
+	DfAnalystTest         string
+	DfDocs         string
+	Dfmgt         string
+	DfuatSupport         string
+	Dfmarketing         string
+	Dfcontingency         string
+	DfdevUplift         string
+	Total         string
+	SYSDbVersion         string
+	Comments         string
+	Description         string
+	Analyst         string
+	ProductManager         string
+	ProjectManager         string
+	Training         string
+	DfTraining         string
+	DefaultProfile         string
+	ActualProfile         string
+	/// Field Properties
+	SYSId_props     FieldProperties
+	FeatureID_props     FieldProperties
+	EstimationSessionID_props     FieldProperties
+	ConfidenceID_props     FieldProperties
+	Name_props     FieldProperties
+	DevEstimate_props     FieldProperties
+	DevUplift_props     FieldProperties
+	Reqs_props     FieldProperties
+	AnalystTest_props     FieldProperties
+	Docs_props     FieldProperties
+	Mgt_props     FieldProperties
+	UatSupport_props     FieldProperties
+	Marketing_props     FieldProperties
+	Contingency_props     FieldProperties
+	TrackerID_props     FieldProperties
+	AdoID_props     FieldProperties
+	FreshdeskID_props     FieldProperties
+	ExtRef_props     FieldProperties
+	ExtRef2_props     FieldProperties
+	SYSCreated_props     FieldProperties
+	SYSCreatedBy_props     FieldProperties
+	SYSCreatedHost_props     FieldProperties
+	SYSUpdated_props     FieldProperties
+	SYSUpdatedBy_props     FieldProperties
+	SYSUpdatedHost_props     FieldProperties
+	SYSDeleted_props     FieldProperties
+	SYSDeletedBy_props     FieldProperties
+	SYSDeletedHost_props     FieldProperties
+	Developer_props     FieldProperties
+	Approver_props     FieldProperties
+	Notes_props     FieldProperties
+	OffProfile_props     FieldProperties
+	OffProfileJustification_props     FieldProperties
+	SYSActivity_props     FieldProperties
+	DfReqs_props     FieldProperties
+	DfAnalystTest_props     FieldProperties
+	DfDocs_props     FieldProperties
+	Dfmgt_props     FieldProperties
+	DfuatSupport_props     FieldProperties
+	Dfmarketing_props     FieldProperties
+	Dfcontingency_props     FieldProperties
+	DfdevUplift_props     FieldProperties
+	Total_props     FieldProperties
+	SYSDbVersion_props     FieldProperties
+	Comments_props     FieldProperties
+	Description_props     FieldProperties
+	Analyst_props     FieldProperties
+	ProductManager_props     FieldProperties
+	ProjectManager_props     FieldProperties
+	Training_props     FieldProperties
+	DfTraining_props     FieldProperties
+	DefaultProfile_props     FieldProperties
+	ActualProfile_props     FieldProperties
+	/// Lookups
+	EstimationSessionID_lookup    []Lookup_Item
+	ConfidenceID_lookup    []Lookup_Item
+	Developer_lookup    []Lookup_Item
+	Approver_lookup    []Lookup_Item
+	Analyst_lookup    []Lookup_Item
+	ProductManager_lookup    []Lookup_Item
+	ProjectManager_lookup    []Lookup_Item
+	DefaultProfile_lookup    []Lookup_Item
+	ActualProfile_lookup    []Lookup_Item
+	
+	/// END OF DEFINITIONS
+	///
 }

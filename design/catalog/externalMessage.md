@@ -81,20 +81,21 @@ SQL Table Key | **MessageID**
 | Type | Artifact | Path|
 | :--: | -- | -- |
 | code | **application** | /application/externalMessage_core.go |
+| code | **validation** | /dao/externalMessage_validation.go_template |
 | code | **api** | /application/externalMessage_api.go |
 | code | **dao** | /dao/externalMessage_core.go |
 | code | **datamodel** | /datamodel/externalMessage_core.go |
 | code | **menu** | /design/menu/externalMessage.json |
-| html | **list** | /ExternalMessage_List.html |
-| html | **view** | /ExternalMessage_View.html |
-| html | **edit** | /ExternalMessage_Edit.html |
+| html | **list** | /ExternalMessageList.html |
+| html | **view** | /ExternalMessageView.html |
+| html | **edit** | /ExternalMessageEdit.html |
 
 
 ## Audit Information
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **07/02/2023** at **18:52:36**
+Date & Time		     | **15/02/2023** at **10:44:43**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

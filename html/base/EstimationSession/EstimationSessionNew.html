@@ -1,0 +1,1109 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+    <form action="/EstimationSessionSave" method="GET" class="form">
+      <div class="card">
+        <div class="card-header align-items-center">
+          <div class="row align-items-center">
+             <div class="col h3 align-items-center">
+                    <i class="fas fa-calculator me-2" title="EstimationSessionID = NEW"></i><span class="me-3">{{.Title}}</span>
+                </div>
+            <div class="col d-flex justify-content-end">
+              <div class="btn-group float-right">
+              
+                <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/EstimationSessionSave" onclick="/EstimationSessionSave" title="Save Estimation Session"><i class="fas fa-save me-2"></i>Save</button>
+              
+                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Estimation Session"><i class="fas fa-print me-2"></i>Print</button>
+                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+      
+            <div class="row mb-3" hidden hidden><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.SYSId_props.MsgType}}" id="SYSId" name="SYSId" aria-describedby="SYSIdHelp" placeholder="0" hidden value="new" required data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="SYSId" hidden>SYSId</label>
+              <div class="{{.SYSId_props.MsgFeedBackType}}">{{.SYSId_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  hidden><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.EstimationSessionID_props.MsgType}}" id="EstimationSessionID" name="EstimationSessionID" aria-describedby="EstimationSessionIDHelp" placeholder=""  value="{{.EstimationSessionID}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="EstimationSessionID" ><i class="fas fa-key me-2"></i>EstimationSessionID</label>
+              <div class="{{.EstimationSessionID_props.MsgFeedBackType}}">{{.EstimationSessionID_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <select id="ProjectID" name="ProjectID" class="select" data-mdb-filter="true"  >
+                {{range .ProjectID_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ProjectID" >ProjectID</label>
+            <div class="{{.ProjectID_props.MsgFeedBackType}}">{{.ProjectID_props.MsgMessage}}</div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <select id="EstimationStateID" name="EstimationStateID" class="select" data-mdb-filter="true"  >
+                {{range .EstimationStateID_lookup}}<option value="{{.ID}}" {{if eq .ID $.EstimationStateID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="EstimationStateID" >EstimationStateID</label>
+            <div class="{{.EstimationStateID_props.MsgFeedBackType}}">{{.EstimationStateID_props.MsgMessage}}</div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <textarea class="form-control {{.Notes_props.MsgType}}" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder="" readonly="true"  value="{{.Notes}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Notes}}</textarea>
+            
+           
+           
+              <label class="form-label" for="Notes" readonly="true">Notes</label>
+              <div class="{{.Notes_props.MsgFeedBackType}}">{{.Notes_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.Releases_props.MsgType}}" id="Releases" name="Releases" aria-describedby="ReleasesHelp" placeholder=""  value="{{.Releases}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="Releases" >Releases</label>
+              <div class="{{.Releases_props.MsgFeedBackType}}">{{.Releases_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.Total_props.MsgType}}" id="Total" name="Total" aria-describedby="TotalHelp" placeholder=""  value="{{.Total}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="Total" >Total</label>
+              <div class="{{.Total_props.MsgFeedBackType}}">{{.Total_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.Contingency_props.MsgType}}" id="Contingency" name="Contingency" aria-describedby="ContingencyHelp" placeholder=""  value="{{.Contingency}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="Contingency" >Contingency</label>
+              <div class="{{.Contingency_props.MsgFeedBackType}}">{{.Contingency_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.ReqDays_props.MsgType}}" id="ReqDays" name="ReqDays" aria-describedby="ReqDaysHelp" placeholder=""  value="{{.ReqDays}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="ReqDays" >ReqDays</label>
+              <div class="{{.ReqDays_props.MsgFeedBackType}}">{{.ReqDays_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.RegCost_props.MsgType}}" id="RegCost" name="RegCost" aria-describedby="RegCostHelp" placeholder=""  value="{{.RegCost}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="RegCost" >RegCost</label>
+              <div class="{{.RegCost_props.MsgFeedBackType}}">{{.RegCost_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.ImpDays_props.MsgType}}" id="ImpDays" name="ImpDays" aria-describedby="ImpDaysHelp" placeholder=""  value="{{.ImpDays}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="ImpDays" >ImpDays</label>
+              <div class="{{.ImpDays_props.MsgFeedBackType}}">{{.ImpDays_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.ImpCost_props.MsgType}}" id="ImpCost" name="ImpCost" aria-describedby="ImpCostHelp" placeholder=""  value="{{.ImpCost}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="ImpCost" >ImpCost</label>
+              <div class="{{.ImpCost_props.MsgFeedBackType}}">{{.ImpCost_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.UatDays_props.MsgType}}" id="UatDays" name="UatDays" aria-describedby="UatDaysHelp" placeholder=""  value="{{.UatDays}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="UatDays" >UatDays</label>
+              <div class="{{.UatDays_props.MsgFeedBackType}}">{{.UatDays_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.UatCost_props.MsgType}}" id="UatCost" name="UatCost" aria-describedby="UatCostHelp" placeholder=""  value="{{.UatCost}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="UatCost" >UatCost</label>
+              <div class="{{.UatCost_props.MsgFeedBackType}}">{{.UatCost_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.MgtDays_props.MsgType}}" id="MgtDays" name="MgtDays" aria-describedby="MgtDaysHelp" placeholder=""  value="{{.MgtDays}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="MgtDays" >MgtDays</label>
+              <div class="{{.MgtDays_props.MsgFeedBackType}}">{{.MgtDays_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.MgtCost_props.MsgType}}" id="MgtCost" name="MgtCost" aria-describedby="MgtCostHelp" placeholder=""  value="{{.MgtCost}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="MgtCost" >MgtCost</label>
+              <div class="{{.MgtCost_props.MsgFeedBackType}}">{{.MgtCost_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.RelDays_props.MsgType}}" id="RelDays" name="RelDays" aria-describedby="RelDaysHelp" placeholder=""  value="{{.RelDays}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="RelDays" >RelDays</label>
+              <div class="{{.RelDays_props.MsgFeedBackType}}">{{.RelDays_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.RelCost_props.MsgType}}" id="RelCost" name="RelCost" aria-describedby="RelCostHelp" placeholder=""  value="{{.RelCost}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="RelCost" >RelCost</label>
+              <div class="{{.RelCost_props.MsgFeedBackType}}">{{.RelCost_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.SupportUplift_props.MsgType}}" id="SupportUplift" name="SupportUplift" aria-describedby="SupportUpliftHelp" placeholder=""  value="{{.SupportUplift}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="SupportUplift" >SupportUplift</label>
+              <div class="{{.SupportUplift_props.MsgFeedBackType}}">{{.SupportUplift_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" hidden hidden><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.SYSCreated_props.MsgType}}" id="SYSCreated" name="SYSCreated" aria-describedby="SYSCreatedHelp" placeholder="" hidden value="{{.SYSCreated}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="SYSCreated" hidden>SYSCreated</label>
+              <div class="{{.SYSCreated_props.MsgFeedBackType}}">{{.SYSCreated_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" hidden hidden><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.SYSCreatedBy_props.MsgType}}" id="SYSCreatedBy" name="SYSCreatedBy" aria-describedby="SYSCreatedByHelp" placeholder="" hidden value="{{.SYSCreatedBy}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="SYSCreatedBy" hidden>SYSCreatedBy</label>
+              <div class="{{.SYSCreatedBy_props.MsgFeedBackType}}">{{.SYSCreatedBy_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" hidden hidden><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.SYSCreatedHost_props.MsgType}}" id="SYSCreatedHost" name="SYSCreatedHost" aria-describedby="SYSCreatedHostHelp" placeholder="" hidden value="{{.SYSCreatedHost}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="SYSCreatedHost" hidden>SYSCreatedHost</label>
+              <div class="{{.SYSCreatedHost_props.MsgFeedBackType}}">{{.SYSCreatedHost_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" hidden hidden><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.SYSUpdated_props.MsgType}}" id="SYSUpdated" name="SYSUpdated" aria-describedby="SYSUpdatedHelp" placeholder="" hidden value="{{.SYSUpdated}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="SYSUpdated" hidden>SYSUpdated</label>
+              <div class="{{.SYSUpdated_props.MsgFeedBackType}}">{{.SYSUpdated_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" hidden hidden><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.SYSUpdatedBy_props.MsgType}}" id="SYSUpdatedBy" name="SYSUpdatedBy" aria-describedby="SYSUpdatedByHelp" placeholder="" hidden value="{{.SYSUpdatedBy}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="SYSUpdatedBy" hidden>SYSUpdatedBy</label>
+              <div class="{{.SYSUpdatedBy_props.MsgFeedBackType}}">{{.SYSUpdatedBy_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" hidden hidden><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.SYSUpdatedHost_props.MsgType}}" id="SYSUpdatedHost" name="SYSUpdatedHost" aria-describedby="SYSUpdatedHostHelp" placeholder="" hidden value="{{.SYSUpdatedHost}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="SYSUpdatedHost" hidden>SYSUpdatedHost</label>
+              <div class="{{.SYSUpdatedHost_props.MsgFeedBackType}}">{{.SYSUpdatedHost_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" hidden hidden><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.SYSDeleted_props.MsgType}}" id="SYSDeleted" name="SYSDeleted" aria-describedby="SYSDeletedHelp" placeholder="" hidden value="{{.SYSDeleted}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="SYSDeleted" hidden>SYSDeleted</label>
+              <div class="{{.SYSDeleted_props.MsgFeedBackType}}">{{.SYSDeleted_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" hidden hidden><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.SYSDeletedBy_props.MsgType}}" id="SYSDeletedBy" name="SYSDeletedBy" aria-describedby="SYSDeletedByHelp" placeholder="" hidden value="{{.SYSDeletedBy}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="SYSDeletedBy" hidden>SYSDeletedBy</label>
+              <div class="{{.SYSDeletedBy_props.MsgFeedBackType}}">{{.SYSDeletedBy_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" hidden hidden><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.SYSDeletedHost_props.MsgType}}" id="SYSDeletedHost" name="SYSDeletedHost" aria-describedby="SYSDeletedHostHelp" placeholder="" hidden value="{{.SYSDeletedHost}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="SYSDeletedHost" hidden>SYSDeletedHost</label>
+              <div class="{{.SYSDeletedHost_props.MsgFeedBackType}}">{{.SYSDeletedHost_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.Name_props.MsgType}}" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""  value="{{.Name}}" required data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="Name" >Name</label>
+              <div class="{{.Name_props.MsgFeedBackType}}">{{.Name_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.AdoID_props.MsgType}}" id="AdoID" name="AdoID" aria-describedby="AdoIDHelp" placeholder=""  value="{{.AdoID}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="AdoID" >AdoID</label>
+              <div class="{{.AdoID_props.MsgFeedBackType}}">{{.AdoID_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.FreshdeskID_props.MsgType}}" id="FreshdeskID" name="FreshdeskID" aria-describedby="FreshdeskIDHelp" placeholder=""  value="{{.FreshdeskID}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="FreshdeskID" >FreshdeskID</label>
+              <div class="{{.FreshdeskID_props.MsgFeedBackType}}">{{.FreshdeskID_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.TrackerID_props.MsgType}}" id="TrackerID" name="TrackerID" aria-describedby="TrackerIDHelp" placeholder=""  value="{{.TrackerID}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="TrackerID" >TrackerID</label>
+              <div class="{{.TrackerID_props.MsgFeedBackType}}">{{.TrackerID_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.EstRef_props.MsgType}}" id="EstRef" name="EstRef" aria-describedby="EstRefHelp" placeholder=""  value="{{.EstRef}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="EstRef" >EstRef</label>
+              <div class="{{.EstRef_props.MsgFeedBackType}}">{{.EstRef_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.ExtRef_props.MsgType}}" id="ExtRef" name="ExtRef" aria-describedby="ExtRefHelp" placeholder=""  value="{{.ExtRef}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="ExtRef" >ExtRef</label>
+              <div class="{{.ExtRef_props.MsgFeedBackType}}">{{.ExtRef_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" hidden hidden><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.SYSActivity_props.MsgType}}" id="SYSActivity" name="SYSActivity" aria-describedby="SYSActivityHelp" placeholder="" hidden value="{{.SYSActivity}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="SYSActivity" hidden>SYSActivity</label>
+              <div class="{{.SYSActivity_props.MsgFeedBackType}}">{{.SYSActivity_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" hidden hidden><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.SYSDbVersion_props.MsgType}}" id="SYSDbVersion" name="SYSDbVersion" aria-describedby="SYSDbVersionHelp" placeholder="" hidden value="{{.SYSDbVersion}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="SYSDbVersion" hidden>SYSDbVersion</label>
+              <div class="{{.SYSDbVersion_props.MsgFeedBackType}}">{{.SYSDbVersion_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <textarea class="form-control {{.Comments_props.MsgType}}" id="Comments" name="Comments" aria-describedby="CommentsHelp" placeholder=""   value="{{.Comments}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Comments}}</textarea>
+            
+           
+           
+              <label class="form-label" for="Comments" >Comments</label>
+              <div class="{{.Comments_props.MsgFeedBackType}}">{{.Comments_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <select id="ProjectManager" name="ProjectManager" class="select" data-mdb-filter="true"  >
+                {{range .ProjectManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ProjectManager" >ProjectManager</label>
+            <div class="{{.ProjectManager_props.MsgFeedBackType}}">{{.ProjectManager_props.MsgMessage}}</div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <select id="ProductManager" name="ProductManager" class="select" data-mdb-filter="true"  >
+                {{range .ProductManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProductManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ProductManager" >ProductManager</label>
+            <div class="{{.ProductManager_props.MsgFeedBackType}}">{{.ProductManager_props.MsgMessage}}</div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <select id="Approver" name="Approver" class="select" data-mdb-filter="true"  >
+                {{range .Approver_lookup}}<option value="{{.ID}}" {{if eq .ID $.Approver}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="Approver" >Approver</label>
+            <div class="{{.Approver_props.MsgFeedBackType}}">{{.Approver_props.MsgMessage}}</div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="date" class="form-control {{.IssueDate_props.MsgType}}" id="IssueDate" name="IssueDate" aria-describedby="IssueDateHelp" placeholder=""  value="{{.IssueDate}}"  data-mdb-input-mask="yyyy-mm-dd" >
+            
+           
+           
+              <label class="form-label" for="IssueDate" >IssueDate</label>
+              <div class="{{.IssueDate_props.MsgFeedBackType}}">{{.IssueDate_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="date" class="form-control {{.ExpiryDate_props.MsgType}}" id="ExpiryDate" name="ExpiryDate" aria-describedby="ExpiryDateHelp" placeholder=""  value="{{.ExpiryDate}}"  data-mdb-input-mask="yyyy-mm-dd" >
+            
+           
+           
+              <label class="form-label" for="ExpiryDate" >ExpiryDate</label>
+              <div class="{{.ExpiryDate_props.MsgFeedBackType}}">{{.ExpiryDate_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.Origin_props.MsgType}}" id="Origin" name="Origin" aria-describedby="OriginHelp" placeholder="" readonly="true" value="{{.Origin}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="Origin" readonly="true">Origin</label>
+              <div class="{{.Origin_props.MsgFeedBackType}}">{{.Origin_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.OriginStateID_props.MsgType}}" id="OriginStateID" name="OriginStateID" aria-describedby="OriginStateIDHelp" placeholder="" readonly="true" value="{{.OriginStateID}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="OriginStateID" readonly="true">OriginStateID</label>
+              <div class="{{.OriginStateID_props.MsgFeedBackType}}">{{.OriginStateID_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.OriginState_props.MsgType}}" id="OriginState" name="OriginState" aria-describedby="OriginStateHelp" placeholder="" readonly="true" value="{{.OriginState}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="OriginState" readonly="true">OriginState</label>
+              <div class="{{.OriginState_props.MsgFeedBackType}}">{{.OriginState_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.OriginDocTypeID_props.MsgType}}" id="OriginDocTypeID" name="OriginDocTypeID" aria-describedby="OriginDocTypeIDHelp" placeholder="" readonly="true" value="{{.OriginDocTypeID}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="OriginDocTypeID" readonly="true">OriginDocTypeID</label>
+              <div class="{{.OriginDocTypeID_props.MsgFeedBackType}}">{{.OriginDocTypeID_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.OriginDocType_props.MsgType}}" id="OriginDocType" name="OriginDocType" aria-describedby="OriginDocTypeHelp" placeholder="" readonly="true" value="{{.OriginDocType}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="OriginDocType" readonly="true">OriginDocType</label>
+              <div class="{{.OriginDocType_props.MsgFeedBackType}}">{{.OriginDocType_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.OriginCode_props.MsgType}}" id="OriginCode" name="OriginCode" aria-describedby="OriginCodeHelp" placeholder="" readonly="true" value="{{.OriginCode}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="OriginCode" readonly="true">OriginCode</label>
+              <div class="{{.OriginCode_props.MsgFeedBackType}}">{{.OriginCode_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.OriginName_props.MsgType}}" id="OriginName" name="OriginName" aria-describedby="OriginNameHelp" placeholder="" readonly="true" value="{{.OriginName}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="OriginName" readonly="true">OriginName</label>
+              <div class="{{.OriginName_props.MsgFeedBackType}}">{{.OriginName_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.OriginRate_props.MsgType}}" id="OriginRate" name="OriginRate" aria-describedby="OriginRateHelp" placeholder="" readonly="true" value="{{.OriginRate}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="OriginRate" readonly="true">OriginRate</label>
+              <div class="{{.OriginRate_props.MsgFeedBackType}}">{{.OriginRate_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.ProjectProfileID_props.MsgType}}" id="ProjectProfileID" name="ProjectProfileID" aria-describedby="ProjectProfileIDHelp" placeholder="" readonly="true" value="{{.ProjectProfileID}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="ProjectProfileID" readonly="true">ProjectProfileID</label>
+              <div class="{{.ProjectProfileID_props.MsgFeedBackType}}">{{.ProjectProfileID_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.ProjectProfile_props.MsgType}}" id="ProjectProfile" name="ProjectProfile" aria-describedby="ProjectProfileHelp" placeholder="" readonly="true" value="{{.ProjectProfile}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="ProjectProfile" readonly="true">ProjectProfile</label>
+              <div class="{{.ProjectProfile_props.MsgFeedBackType}}">{{.ProjectProfile_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.ProjectDefaultReleases_props.MsgType}}" id="ProjectDefaultReleases" name="ProjectDefaultReleases" aria-describedby="ProjectDefaultReleasesHelp" placeholder="" readonly="true" value="{{.ProjectDefaultReleases}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="ProjectDefaultReleases" readonly="true">ProjectDefaultReleases</label>
+              <div class="{{.ProjectDefaultReleases_props.MsgFeedBackType}}">{{.ProjectDefaultReleases_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.ProjectDefaultReleaseHours_props.MsgType}}" id="ProjectDefaultReleaseHours" name="ProjectDefaultReleaseHours" aria-describedby="ProjectDefaultReleaseHoursHelp" placeholder="" readonly="true" value="{{.ProjectDefaultReleaseHours}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="ProjectDefaultReleaseHours" readonly="true">ProjectDefaultReleaseHours</label>
+              <div class="{{.ProjectDefaultReleaseHours_props.MsgFeedBackType}}">{{.ProjectDefaultReleaseHours_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.ProjectBlendedRate_props.MsgType}}" id="ProjectBlendedRate" name="ProjectBlendedRate" aria-describedby="ProjectBlendedRateHelp" placeholder="" readonly="true" value="{{.ProjectBlendedRate}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="ProjectBlendedRate" readonly="true">ProjectBlendedRate</label>
+              <div class="{{.ProjectBlendedRate_props.MsgFeedBackType}}">{{.ProjectBlendedRate_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.ProjectStateID_props.MsgType}}" id="ProjectStateID" name="ProjectStateID" aria-describedby="ProjectStateIDHelp" placeholder="" readonly="true" value="{{.ProjectStateID}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="ProjectStateID" readonly="true">ProjectStateID</label>
+              <div class="{{.ProjectStateID_props.MsgFeedBackType}}">{{.ProjectStateID_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.ProjectState_props.MsgType}}" id="ProjectState" name="ProjectState" aria-describedby="ProjectStateHelp" placeholder="" readonly="true" value="{{.ProjectState}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="ProjectState" readonly="true">ProjectState</label>
+              <div class="{{.ProjectState_props.MsgFeedBackType}}">{{.ProjectState_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.ProjectName_props.MsgType}}" id="ProjectName" name="ProjectName" aria-describedby="ProjectNameHelp" placeholder="" readonly="true" value="{{.ProjectName}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="ProjectName" readonly="true">ProjectName</label>
+              <div class="{{.ProjectName_props.MsgFeedBackType}}">{{.ProjectName_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.ProjectStartDate_props.MsgType}}" id="ProjectStartDate" name="ProjectStartDate" aria-describedby="ProjectStartDateHelp" placeholder="" readonly="true" value="{{.ProjectStartDate}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="ProjectStartDate" readonly="true">ProjectStartDate</label>
+              <div class="{{.ProjectStartDate_props.MsgFeedBackType}}">{{.ProjectStartDate_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.ProjectEndDate_props.MsgType}}" id="ProjectEndDate" name="ProjectEndDate" aria-describedby="ProjectEndDateHelp" placeholder="" readonly="true" value="{{.ProjectEndDate}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="ProjectEndDate" readonly="true">ProjectEndDate</label>
+              <div class="{{.ProjectEndDate_props.MsgFeedBackType}}">{{.ProjectEndDate_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.ProfileSupportUpliftPerc_props.MsgType}}" id="ProfileSupportUpliftPerc" name="ProfileSupportUpliftPerc" aria-describedby="ProfileSupportUpliftPercHelp" placeholder="" readonly="true" value="{{.ProfileSupportUpliftPerc}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="ProfileSupportUpliftPerc" readonly="true">ProfileSupportUpliftPerc</label>
+              <div class="{{.ProfileSupportUpliftPerc_props.MsgFeedBackType}}">{{.ProfileSupportUpliftPerc_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.CCY_props.MsgType}}" id="CCY" name="CCY" aria-describedby="CCYHelp" placeholder="" readonly="true" value="{{.CCY}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="CCY" readonly="true">CCY</label>
+              <div class="{{.CCY_props.MsgFeedBackType}}">{{.CCY_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.CCYCode_props.MsgType}}" id="CCYCode" name="CCYCode" aria-describedby="CCYCodeHelp" placeholder="" readonly="true" value="{{.CCYCode}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="CCYCode" readonly="true">CCYCode</label>
+              <div class="{{.CCYCode_props.MsgFeedBackType}}">{{.CCYCode_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.EffortTotal_props.MsgType}}" id="EffortTotal" name="EffortTotal" aria-describedby="EffortTotalHelp" placeholder="" readonly="true" value="{{.EffortTotal}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="EffortTotal" readonly="true">EffortTotal</label>
+              <div class="{{.EffortTotal_props.MsgFeedBackType}}">{{.EffortTotal_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.FreshDeskURI_props.MsgType}}" id="FreshDeskURI" name="FreshDeskURI" aria-describedby="FreshDeskURIHelp" placeholder="" readonly="true" value="{{.FreshDeskURI}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="FreshDeskURI" readonly="true">FreshDeskURI</label>
+              <div class="{{.FreshDeskURI_props.MsgFeedBackType}}">{{.FreshDeskURI_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.ADOURI_props.MsgType}}" id="ADOURI" name="ADOURI" aria-describedby="ADOURIHelp" placeholder="" readonly="true" value="{{.ADOURI}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="ADOURI" readonly="true">ADOURI</label>
+              <div class="{{.ADOURI_props.MsgFeedBackType}}">{{.ADOURI_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.NoActiveFeatures_props.MsgType}}" id="NoActiveFeatures" name="NoActiveFeatures" aria-describedby="NoActiveFeaturesHelp" placeholder="0" readonly="true" value="{{.NoActiveFeatures}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="NoActiveFeatures" readonly="true">NoActiveFeatures</label>
+              <div class="{{.NoActiveFeatures_props.MsgFeedBackType}}">{{.NoActiveFeatures_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            
+              
+                
+
+            
+              
+                
+
+            
+              
+                
+
+            
+              
+                
+
+            
+              
+                
+
+            
+              
+                
+
+            
+              
+                
+
+            
+              
+                
+
+            
+              
+                
+
+            
+              
+                
+
+            
+              
+                
+
+            
+              
+                
+
+            
+              
+                
+
+            
+              
+                
+
+            
+              
+                
+
+            
+              
+                
+
+            
+              
+                
+
+            
+              
+                
+
+            
+              
+                
+
+            
+              
+                
+
+            
+              
+                
+
+            
+              
+                
+
+            
+              
+                
+
+            
+              
+                
+
+            
+              
+                
+
+     
+        </div>
+      </div>
+    </form>
+  
+{{template "userfooter" .}}
+{{template "pagefooter" .}}

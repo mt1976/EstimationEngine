@@ -9,92 +9,84 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:38
+// Date & Time		    : 15/02/2023 at 10:44:47
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Resource defines the datamolde for the Resource object
+//Resource defines the datamodel for the Resource object
 type Resource struct {
-
-
-SYSId       string
-SYSId_props FieldProperties
-ResourceID       string
-ResourceID_props FieldProperties
-Code       string
-Code_props FieldProperties
-Name       string
-Name_props FieldProperties
-Email       string
-Email_props FieldProperties
-Class       string
-Class_props FieldProperties
-SYSCreated       string
-SYSCreated_props FieldProperties
-SYSCreatedBy       string
-SYSCreatedBy_props FieldProperties
-SYSCreatedHost       string
-SYSCreatedHost_props FieldProperties
-SYSUpdated       string
-SYSUpdated_props FieldProperties
-SYSUpdatedBy       string
-SYSUpdatedBy_props FieldProperties
-SYSUpdatedHost       string
-SYSUpdatedHost_props FieldProperties
-SYSDeleted       string
-SYSDeleted_props FieldProperties
-SYSDeletedBy       string
-SYSDeletedBy_props FieldProperties
-SYSDeletedHost       string
-SYSDeletedHost_props FieldProperties
-UserActive       string
-UserActive_props FieldProperties
-SYSActivity       string
-SYSActivity_props FieldProperties
-Notes       string
-Notes_props FieldProperties
-SYSDbVersion       string
-SYSDbVersion_props FieldProperties
-Comments       string
-Comments_props FieldProperties
- // Any lookups will be added below
-
-
-
-
-Class_lookup []Lookup_Item
-
-
-
-
-
-
-
-
-
-UserActive_lookup []Lookup_Item
-
-
-
-
-
-}
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Field Definitions
+	//
+	SYSId       string
+	ResourceID       string
+	Code       string
+	Name       string
+	Email       string
+	Class       string
+	SYSCreated       string
+	SYSCreatedBy       string
+	SYSCreatedHost       string
+	SYSUpdated       string
+	SYSUpdatedBy       string
+	SYSUpdatedHost       string
+	SYSDeleted       string
+	SYSDeletedBy       string
+	SYSDeletedHost       string
+	UserActive       string
+	SYSActivity       string
+	Notes       string
+	SYSDbVersion       string
+	Comments       string
+	//
+	// Field Properties
+	//
+	SYSId_props FieldProperties
+	ResourceID_props FieldProperties
+	Code_props FieldProperties
+	Name_props FieldProperties
+	Email_props FieldProperties
+	Class_props FieldProperties
+	SYSCreated_props FieldProperties
+	SYSCreatedBy_props FieldProperties
+	SYSCreatedHost_props FieldProperties
+	SYSUpdated_props FieldProperties
+	SYSUpdatedBy_props FieldProperties
+	SYSUpdatedHost_props FieldProperties
+	SYSDeleted_props FieldProperties
+	SYSDeletedBy_props FieldProperties
+	SYSDeletedHost_props FieldProperties
+	UserActive_props FieldProperties
+	SYSActivity_props FieldProperties
+	Notes_props FieldProperties
+	SYSDbVersion_props FieldProperties
+	Comments_props FieldProperties
+	//
+ 	// Any lookups will be added below
+	//
+	Class_lookup []Lookup_Item
+	UserActive_lookup []Lookup_Item
+	}
 
 const (
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
+	Resource_Name      = "Resource"
 	Resource_Title       = "Resource"
 	Resource_SQLTable    = "resourceStore"
 	Resource_SQLSearchID = "resourceID"
 	Resource_QueryString = "ResourceID"
 	///
-	/// Handler Defintions
+	/// Template Path Defintions
 	///
 	Resource_Template     = "Resource"
-	Resource_TemplateList = "/Resource/Resource_List"
-	Resource_TemplateView = "/Resource/Resource_View"
-	Resource_TemplateEdit = "/Resource/Resource_Edit"
-	Resource_TemplateNew  = "/Resource/Resource_New"
+	Resource_TemplateList = "/Resource/ResourceList"
+	Resource_TemplateView = "/Resource/ResourceView"
+	Resource_TemplateEdit = "/Resource/ResourceEdit"
+	Resource_TemplateNew  = "/Resource/ResourceNew"
 	///
-	/// Handler Monitor Paths
+	/// URI Handler Paths
 	///
 	Resource_Path       = "/API/Resource/"
 	Resource_PathList   = "/ResourceList/"
@@ -103,14 +95,17 @@ const (
 	Resource_PathNew    = "/ResourceNew/"
 	Resource_PathSave   = "/ResourceSave/"
 	Resource_PathDelete = "/ResourceDelete/"
-	///
+	// Redirects - On Server Side Error
+	Resource_PathEditException   = "/ResourceEditException/"
+	Resource_PathNewException    = "/ResourceNewException/"
+	//
 	//Resource_Redirect provides a page to return to aftern an action
 	Resource_Redirect = Resource_PathList
 	
-	///
-	///
-	/// SQL Field Definitions
-	///
+	//
+	//
+	// SQL Field Definitions
+	//
 	Resource_SYSId_sql   = "_id" // SYSId is a Int
 	Resource_ResourceID_sql   = "resourceID" // ResourceID is a String
 	Resource_Code_sql   = "code" // Code is a String
@@ -131,9 +126,7 @@ const (
 	Resource_Notes_sql   = "notes" // Notes is a String
 	Resource_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
 	Resource_Comments_sql   = "comments" // Comments is a String
-
-	/// Definitions End
-	///
+///
 	/// Application Field Definitions
 	///
 	Resource_SYSId_scrn   = "SYSId" // SYSId is a Int
@@ -156,20 +149,19 @@ const (
 	Resource_Notes_scrn   = "Notes" // Notes is a String
 	Resource_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
 	Resource_Comments_scrn   = "Comments" // Comments is a String
-
-	/// Definitions End
-	///
+///
 )
 
-//resource_PageList provides the information for the template for a list of Resources
+//Resource_PageList provides the information for the template for a list of Resources
 type Resource_PageList struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []Resource
+	// Context & Permisions
 	Context	 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -177,63 +169,21 @@ type Resource_PageList struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	// Page Data
+	ItemsOnPage 	 int
+	ItemList  		 []Resource
 }
 
-//resource_Page provides the information for the template for an individual Resource
+//Resource_Page provides the information for the template for an individual Resource
 type Resource_Page struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	SYSId_props     FieldProperties
-	ResourceID         string
-	ResourceID_props     FieldProperties
-	Code         string
-	Code_props     FieldProperties
-	Name         string
-	Name_props     FieldProperties
-	Email         string
-	Email_props     FieldProperties
-	Class         string
-	Class_lookup    []Lookup_Item
-	Class_props     FieldProperties
-	SYSCreated         string
-	SYSCreated_props     FieldProperties
-	SYSCreatedBy         string
-	SYSCreatedBy_props     FieldProperties
-	SYSCreatedHost         string
-	SYSCreatedHost_props     FieldProperties
-	SYSUpdated         string
-	SYSUpdated_props     FieldProperties
-	SYSUpdatedBy         string
-	SYSUpdatedBy_props     FieldProperties
-	SYSUpdatedHost         string
-	SYSUpdatedHost_props     FieldProperties
-	SYSDeleted         string
-	SYSDeleted_props     FieldProperties
-	SYSDeletedBy         string
-	SYSDeletedBy_props     FieldProperties
-	SYSDeletedHost         string
-	SYSDeletedHost_props     FieldProperties
-	UserActive         string
-	UserActive_lookup    []Lookup_Item
-	UserActive_props     FieldProperties
-	SYSActivity         string
-	SYSActivity_props     FieldProperties
-	Notes         string
-	Notes_props     FieldProperties
-	SYSDbVersion         string
-	SYSDbVersion_props     FieldProperties
-	Comments         string
-	Comments_props     FieldProperties
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+	/// Context & Permisions
 	Context	 		 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -241,4 +191,52 @@ type Resource_Page struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	/// Fields Definitions
+	SYSId         string
+	ResourceID         string
+	Code         string
+	Name         string
+	Email         string
+	Class         string
+	SYSCreated         string
+	SYSCreatedBy         string
+	SYSCreatedHost         string
+	SYSUpdated         string
+	SYSUpdatedBy         string
+	SYSUpdatedHost         string
+	SYSDeleted         string
+	SYSDeletedBy         string
+	SYSDeletedHost         string
+	UserActive         string
+	SYSActivity         string
+	Notes         string
+	SYSDbVersion         string
+	Comments         string
+	/// Field Properties
+	SYSId_props     FieldProperties
+	ResourceID_props     FieldProperties
+	Code_props     FieldProperties
+	Name_props     FieldProperties
+	Email_props     FieldProperties
+	Class_props     FieldProperties
+	SYSCreated_props     FieldProperties
+	SYSCreatedBy_props     FieldProperties
+	SYSCreatedHost_props     FieldProperties
+	SYSUpdated_props     FieldProperties
+	SYSUpdatedBy_props     FieldProperties
+	SYSUpdatedHost_props     FieldProperties
+	SYSDeleted_props     FieldProperties
+	SYSDeletedBy_props     FieldProperties
+	SYSDeletedHost_props     FieldProperties
+	UserActive_props     FieldProperties
+	SYSActivity_props     FieldProperties
+	Notes_props     FieldProperties
+	SYSDbVersion_props     FieldProperties
+	Comments_props     FieldProperties
+	/// Lookups
+	Class_lookup    []Lookup_Item
+	UserActive_lookup    []Lookup_Item
+	
+	/// END OF DEFINITIONS
+	///
 }

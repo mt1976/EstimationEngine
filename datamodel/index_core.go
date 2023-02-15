@@ -9,83 +9,76 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:37
+// Date & Time		    : 15/02/2023 at 10:44:44
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Index defines the datamolde for the Index object
+//Index defines the datamodel for the Index object
 type Index struct {
-
-
-SYSId       string
-SYSId_props FieldProperties
-IndexID       string
-IndexID_props FieldProperties
-KeyClass       string
-KeyClass_props FieldProperties
-KeyName       string
-KeyName_props FieldProperties
-KeyID       string
-KeyID_props FieldProperties
-Link       string
-Link_props FieldProperties
-SYSCreated       string
-SYSCreated_props FieldProperties
-SYSCreatedBy       string
-SYSCreatedBy_props FieldProperties
-SYSCreatedHost       string
-SYSCreatedHost_props FieldProperties
-SYSUpdated       string
-SYSUpdated_props FieldProperties
-SYSUpdatedBy       string
-SYSUpdatedBy_props FieldProperties
-SYSUpdatedHost       string
-SYSUpdatedHost_props FieldProperties
-SYSDeleted       string
-SYSDeleted_props FieldProperties
-SYSDeletedBy       string
-SYSDeletedBy_props FieldProperties
-SYSDeletedHost       string
-SYSDeletedHost_props FieldProperties
-SYSDbVersion       string
-SYSDbVersion_props FieldProperties
-KeyValue       string
-KeyValue_props FieldProperties
- // Any lookups will be added below
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Field Definitions
+	//
+	SYSId       string
+	IndexID       string
+	KeyClass       string
+	KeyName       string
+	KeyID       string
+	Link       string
+	SYSCreated       string
+	SYSCreatedBy       string
+	SYSCreatedHost       string
+	SYSUpdated       string
+	SYSUpdatedBy       string
+	SYSUpdatedHost       string
+	SYSDeleted       string
+	SYSDeletedBy       string
+	SYSDeletedHost       string
+	SYSDbVersion       string
+	KeyValue       string
+	//
+	// Field Properties
+	//
+	SYSId_props FieldProperties
+	IndexID_props FieldProperties
+	KeyClass_props FieldProperties
+	KeyName_props FieldProperties
+	KeyID_props FieldProperties
+	Link_props FieldProperties
+	SYSCreated_props FieldProperties
+	SYSCreatedBy_props FieldProperties
+	SYSCreatedHost_props FieldProperties
+	SYSUpdated_props FieldProperties
+	SYSUpdatedBy_props FieldProperties
+	SYSUpdatedHost_props FieldProperties
+	SYSDeleted_props FieldProperties
+	SYSDeletedBy_props FieldProperties
+	SYSDeletedHost_props FieldProperties
+	SYSDbVersion_props FieldProperties
+	KeyValue_props FieldProperties
+	//
+ 	// Any lookups will be added below
+	//
+	}
 
 const (
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
+	Index_Name      = "Index"
 	Index_Title       = "Index"
 	Index_SQLTable    = "indexStore"
 	Index_SQLSearchID = "indexID"
 	Index_QueryString = "IndexID"
 	///
-	/// Handler Defintions
+	/// Template Path Defintions
 	///
 	Index_Template     = "Index"
-	Index_TemplateList = "/Index/Index_List"
-	Index_TemplateView = "/Index/Index_View"
-	Index_TemplateEdit = "/Index/Index_Edit"
-	Index_TemplateNew  = "/Index/Index_New"
+	Index_TemplateList = "/Index/IndexList"
+	Index_TemplateView = "/Index/IndexView"
+	Index_TemplateEdit = "/Index/IndexEdit"
+	Index_TemplateNew  = "/Index/IndexNew"
 	///
-	/// Handler Monitor Paths
+	/// URI Handler Paths
 	///
 	Index_Path       = "/API/Index/"
 	Index_PathList   = "/IndexList/"
@@ -94,14 +87,17 @@ const (
 	Index_PathNew    = "/IndexNew/"
 	Index_PathSave   = "/IndexSave/"
 	Index_PathDelete = "/IndexDelete/"
-	///
+	// Redirects - On Server Side Error
+	Index_PathEditException   = "/IndexEditException/"
+	Index_PathNewException    = "/IndexNewException/"
+	//
 	//Index_Redirect provides a page to return to aftern an action
 	Index_Redirect = Index_PathList
 	
-	///
-	///
-	/// SQL Field Definitions
-	///
+	//
+	//
+	// SQL Field Definitions
+	//
 	Index_SYSId_sql   = "_id" // SYSId is a Int
 	Index_IndexID_sql   = "indexID" // IndexID is a String
 	Index_KeyClass_sql   = "keyClass" // KeyClass is a String
@@ -119,9 +115,7 @@ const (
 	Index_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
 	Index_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
 	Index_KeyValue_sql   = "KeyValue" // KeyValue is a String
-
-	/// Definitions End
-	///
+///
 	/// Application Field Definitions
 	///
 	Index_SYSId_scrn   = "SYSId" // SYSId is a Int
@@ -141,20 +135,19 @@ const (
 	Index_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
 	Index_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
 	Index_KeyValue_scrn   = "KeyValue" // KeyValue is a String
-
-	/// Definitions End
-	///
+///
 )
 
-//index_PageList provides the information for the template for a list of Indexs
+//Index_PageList provides the information for the template for a list of Indexs
 type Index_PageList struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []Index
+	// Context & Permisions
 	Context	 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -162,55 +155,21 @@ type Index_PageList struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	// Page Data
+	ItemsOnPage 	 int
+	ItemList  		 []Index
 }
 
-//index_Page provides the information for the template for an individual Index
+//Index_Page provides the information for the template for an individual Index
 type Index_Page struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	SYSId_props     FieldProperties
-	IndexID         string
-	IndexID_props     FieldProperties
-	KeyClass         string
-	KeyClass_props     FieldProperties
-	KeyName         string
-	KeyName_props     FieldProperties
-	KeyID         string
-	KeyID_props     FieldProperties
-	Link         string
-	Link_props     FieldProperties
-	SYSCreated         string
-	SYSCreated_props     FieldProperties
-	SYSCreatedBy         string
-	SYSCreatedBy_props     FieldProperties
-	SYSCreatedHost         string
-	SYSCreatedHost_props     FieldProperties
-	SYSUpdated         string
-	SYSUpdated_props     FieldProperties
-	SYSUpdatedBy         string
-	SYSUpdatedBy_props     FieldProperties
-	SYSUpdatedHost         string
-	SYSUpdatedHost_props     FieldProperties
-	SYSDeleted         string
-	SYSDeleted_props     FieldProperties
-	SYSDeletedBy         string
-	SYSDeletedBy_props     FieldProperties
-	SYSDeletedHost         string
-	SYSDeletedHost_props     FieldProperties
-	SYSDbVersion         string
-	SYSDbVersion_props     FieldProperties
-	KeyValue         string
-	KeyValue_props     FieldProperties
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+	/// Context & Permisions
 	Context	 		 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -218,4 +177,44 @@ type Index_Page struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	/// Fields Definitions
+	SYSId         string
+	IndexID         string
+	KeyClass         string
+	KeyName         string
+	KeyID         string
+	Link         string
+	SYSCreated         string
+	SYSCreatedBy         string
+	SYSCreatedHost         string
+	SYSUpdated         string
+	SYSUpdatedBy         string
+	SYSUpdatedHost         string
+	SYSDeleted         string
+	SYSDeletedBy         string
+	SYSDeletedHost         string
+	SYSDbVersion         string
+	KeyValue         string
+	/// Field Properties
+	SYSId_props     FieldProperties
+	IndexID_props     FieldProperties
+	KeyClass_props     FieldProperties
+	KeyName_props     FieldProperties
+	KeyID_props     FieldProperties
+	Link_props     FieldProperties
+	SYSCreated_props     FieldProperties
+	SYSCreatedBy_props     FieldProperties
+	SYSCreatedHost_props     FieldProperties
+	SYSUpdated_props     FieldProperties
+	SYSUpdatedBy_props     FieldProperties
+	SYSUpdatedHost_props     FieldProperties
+	SYSDeleted_props     FieldProperties
+	SYSDeletedBy_props     FieldProperties
+	SYSDeletedHost_props     FieldProperties
+	SYSDbVersion_props     FieldProperties
+	KeyValue_props     FieldProperties
+	/// Lookups
+	
+	/// END OF DEFINITIONS
+	///
 }

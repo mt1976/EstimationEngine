@@ -9,119 +9,100 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:39
+// Date & Time		    : 15/02/2023 at 10:44:47
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Session defines the datamolde for the Session object
+//Session defines the datamodel for the Session object
 type Session struct {
-
-
-SYSId       string
-SYSId_props FieldProperties
-Id       string
-Id_props FieldProperties
-Apptoken       string
-Apptoken_props FieldProperties
-Createdate       string
-Createdate_props FieldProperties
-Createtime       string
-Createtime_props FieldProperties
-Uniqueid       string
-Uniqueid_props FieldProperties
-Sessiontoken       string
-Sessiontoken_props FieldProperties
-Username       string
-Username_props FieldProperties
-Password       string
-Password_props FieldProperties
-Userip       string
-Userip_props FieldProperties
-Userhost       string
-Userhost_props FieldProperties
-Appip       string
-Appip_props FieldProperties
-Apphost       string
-Apphost_props FieldProperties
-Issued       string
-Issued_props FieldProperties
-Expiry       string
-Expiry_props FieldProperties
-Expiryraw       string
-Expiryraw_props FieldProperties
-Expires       string
-Expires_props FieldProperties
-Brand       string
-Brand_props FieldProperties
-SessionRole       string
-SessionRole_props FieldProperties
-SYSCreated       string
-SYSCreated_props FieldProperties
-SYSCreatedBy       string
-SYSCreatedBy_props FieldProperties
-SYSCreatedHost       string
-SYSCreatedHost_props FieldProperties
-SYSUpdated       string
-SYSUpdated_props FieldProperties
-SYSUpdatedBy       string
-SYSUpdatedBy_props FieldProperties
-SYSUpdatedHost       string
-SYSUpdatedHost_props FieldProperties
-SYSDeleted       string
-SYSDeleted_props FieldProperties
-SYSDeletedBy       string
-SYSDeletedBy_props FieldProperties
-SYSDeletedHost       string
-SYSDeletedHost_props FieldProperties
-SYSDbVersion       string
-SYSDbVersion_props FieldProperties
- // Any lookups will be added below
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Field Definitions
+	//
+	SYSId       string
+	Id       string
+	Apptoken       string
+	Createdate       string
+	Createtime       string
+	Uniqueid       string
+	Sessiontoken       string
+	Username       string
+	Password       string
+	Userip       string
+	Userhost       string
+	Appip       string
+	Apphost       string
+	Issued       string
+	Expiry       string
+	Expiryraw       string
+	Expires       string
+	Brand       string
+	SessionRole       string
+	SYSCreated       string
+	SYSCreatedBy       string
+	SYSCreatedHost       string
+	SYSUpdated       string
+	SYSUpdatedBy       string
+	SYSUpdatedHost       string
+	SYSDeleted       string
+	SYSDeletedBy       string
+	SYSDeletedHost       string
+	SYSDbVersion       string
+	//
+	// Field Properties
+	//
+	SYSId_props FieldProperties
+	Id_props FieldProperties
+	Apptoken_props FieldProperties
+	Createdate_props FieldProperties
+	Createtime_props FieldProperties
+	Uniqueid_props FieldProperties
+	Sessiontoken_props FieldProperties
+	Username_props FieldProperties
+	Password_props FieldProperties
+	Userip_props FieldProperties
+	Userhost_props FieldProperties
+	Appip_props FieldProperties
+	Apphost_props FieldProperties
+	Issued_props FieldProperties
+	Expiry_props FieldProperties
+	Expiryraw_props FieldProperties
+	Expires_props FieldProperties
+	Brand_props FieldProperties
+	SessionRole_props FieldProperties
+	SYSCreated_props FieldProperties
+	SYSCreatedBy_props FieldProperties
+	SYSCreatedHost_props FieldProperties
+	SYSUpdated_props FieldProperties
+	SYSUpdatedBy_props FieldProperties
+	SYSUpdatedHost_props FieldProperties
+	SYSDeleted_props FieldProperties
+	SYSDeletedBy_props FieldProperties
+	SYSDeletedHost_props FieldProperties
+	SYSDbVersion_props FieldProperties
+	//
+ 	// Any lookups will be added below
+	//
+	}
 
 const (
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
+	Session_Name      = "Session"
 	Session_Title       = "Session"
 	Session_SQLTable    = "sessionStore"
 	Session_SQLSearchID = "Id"
 	Session_QueryString = "SessionID"
 	///
-	/// Handler Defintions
+	/// Template Path Defintions
 	///
 	Session_Template     = "Session"
-	Session_TemplateList = "/Session/Session_List"
-	Session_TemplateView = "/Session/Session_View"
-	Session_TemplateEdit = "/Session/Session_Edit"
-	Session_TemplateNew  = "/Session/Session_New"
+	Session_TemplateList = "/Session/SessionList"
+	Session_TemplateView = "/Session/SessionView"
+	Session_TemplateEdit = "/Session/SessionEdit"
+	Session_TemplateNew  = "/Session/SessionNew"
 	///
-	/// Handler Monitor Paths
+	/// URI Handler Paths
 	///
 	Session_Path       = "/API/Session/"
 	Session_PathList   = "/SessionList/"
@@ -130,14 +111,17 @@ const (
 	Session_PathNew    = "/SessionNew/"
 	Session_PathSave   = "/SessionSave/"
 	Session_PathDelete = "/SessionDelete/"
-	///
+	// Redirects - On Server Side Error
+	Session_PathEditException   = "/SessionEditException/"
+	Session_PathNewException    = "/SessionNewException/"
+	//
 	//Session_Redirect provides a page to return to aftern an action
 	Session_Redirect = Session_PathList
 	
-	///
-	///
-	/// SQL Field Definitions
-	///
+	//
+	//
+	// SQL Field Definitions
+	//
 	Session_SYSId_sql   = "_id" // SYSId is a Int
 	Session_Id_sql   = "Id" // Id is a String
 	Session_Apptoken_sql   = "Apptoken" // Apptoken is a String
@@ -167,9 +151,7 @@ const (
 	Session_SYSDeletedBy_sql   = "_deletedBy" // SYSDeletedBy is a String
 	Session_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
 	Session_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
-
-	/// Definitions End
-	///
+///
 	/// Application Field Definitions
 	///
 	Session_SYSId_scrn   = "SYSId" // SYSId is a Int
@@ -201,20 +183,19 @@ const (
 	Session_SYSDeletedBy_scrn   = "SYSDeletedBy" // SYSDeletedBy is a String
 	Session_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
 	Session_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
-
-	/// Definitions End
-	///
+///
 )
 
-//session_PageList provides the information for the template for a list of Sessions
+//Session_PageList provides the information for the template for a list of Sessions
 type Session_PageList struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []Session
+	// Context & Permisions
 	Context	 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -222,79 +203,21 @@ type Session_PageList struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	// Page Data
+	ItemsOnPage 	 int
+	ItemList  		 []Session
 }
 
-//session_Page provides the information for the template for an individual Session
+//Session_Page provides the information for the template for an individual Session
 type Session_Page struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	SYSId_props     FieldProperties
-	Id         string
-	Id_props     FieldProperties
-	Apptoken         string
-	Apptoken_props     FieldProperties
-	Createdate         string
-	Createdate_props     FieldProperties
-	Createtime         string
-	Createtime_props     FieldProperties
-	Uniqueid         string
-	Uniqueid_props     FieldProperties
-	Sessiontoken         string
-	Sessiontoken_props     FieldProperties
-	Username         string
-	Username_props     FieldProperties
-	Password         string
-	Password_props     FieldProperties
-	Userip         string
-	Userip_props     FieldProperties
-	Userhost         string
-	Userhost_props     FieldProperties
-	Appip         string
-	Appip_props     FieldProperties
-	Apphost         string
-	Apphost_props     FieldProperties
-	Issued         string
-	Issued_props     FieldProperties
-	Expiry         string
-	Expiry_props     FieldProperties
-	Expiryraw         string
-	Expiryraw_props     FieldProperties
-	Expires         string
-	Expires_props     FieldProperties
-	Brand         string
-	Brand_props     FieldProperties
-	SessionRole         string
-	SessionRole_props     FieldProperties
-	SYSCreated         string
-	SYSCreated_props     FieldProperties
-	SYSCreatedBy         string
-	SYSCreatedBy_props     FieldProperties
-	SYSCreatedHost         string
-	SYSCreatedHost_props     FieldProperties
-	SYSUpdated         string
-	SYSUpdated_props     FieldProperties
-	SYSUpdatedBy         string
-	SYSUpdatedBy_props     FieldProperties
-	SYSUpdatedHost         string
-	SYSUpdatedHost_props     FieldProperties
-	SYSDeleted         string
-	SYSDeleted_props     FieldProperties
-	SYSDeletedBy         string
-	SYSDeletedBy_props     FieldProperties
-	SYSDeletedHost         string
-	SYSDeletedHost_props     FieldProperties
-	SYSDbVersion         string
-	SYSDbVersion_props     FieldProperties
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+	/// Context & Permisions
 	Context	 		 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -302,4 +225,68 @@ type Session_Page struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	/// Fields Definitions
+	SYSId         string
+	Id         string
+	Apptoken         string
+	Createdate         string
+	Createtime         string
+	Uniqueid         string
+	Sessiontoken         string
+	Username         string
+	Password         string
+	Userip         string
+	Userhost         string
+	Appip         string
+	Apphost         string
+	Issued         string
+	Expiry         string
+	Expiryraw         string
+	Expires         string
+	Brand         string
+	SessionRole         string
+	SYSCreated         string
+	SYSCreatedBy         string
+	SYSCreatedHost         string
+	SYSUpdated         string
+	SYSUpdatedBy         string
+	SYSUpdatedHost         string
+	SYSDeleted         string
+	SYSDeletedBy         string
+	SYSDeletedHost         string
+	SYSDbVersion         string
+	/// Field Properties
+	SYSId_props     FieldProperties
+	Id_props     FieldProperties
+	Apptoken_props     FieldProperties
+	Createdate_props     FieldProperties
+	Createtime_props     FieldProperties
+	Uniqueid_props     FieldProperties
+	Sessiontoken_props     FieldProperties
+	Username_props     FieldProperties
+	Password_props     FieldProperties
+	Userip_props     FieldProperties
+	Userhost_props     FieldProperties
+	Appip_props     FieldProperties
+	Apphost_props     FieldProperties
+	Issued_props     FieldProperties
+	Expiry_props     FieldProperties
+	Expiryraw_props     FieldProperties
+	Expires_props     FieldProperties
+	Brand_props     FieldProperties
+	SessionRole_props     FieldProperties
+	SYSCreated_props     FieldProperties
+	SYSCreatedBy_props     FieldProperties
+	SYSCreatedHost_props     FieldProperties
+	SYSUpdated_props     FieldProperties
+	SYSUpdatedBy_props     FieldProperties
+	SYSUpdatedHost_props     FieldProperties
+	SYSDeleted_props     FieldProperties
+	SYSDeletedBy_props     FieldProperties
+	SYSDeletedHost_props     FieldProperties
+	SYSDbVersion_props     FieldProperties
+	/// Lookups
+	
+	/// END OF DEFINITIONS
+	///
 }

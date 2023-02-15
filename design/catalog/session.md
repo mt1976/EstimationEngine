@@ -77,18 +77,19 @@ SQL Table Key | **Id**
 | Type | Artifact | Path|
 | :--: | -- | -- |
 | code | **application** | /application/session_core.go |
+| code | **validation** | /dao/session_validation.go_template |
 | code | **dao** | /dao/session_core.go |
 | code | **datamodel** | /datamodel/session_core.go |
 | code | **menu** | /design/menu/session.json |
-| html | **list** | /Session_List.html |
-| html | **view** | /Session_View.html |
+| html | **list** | /SessionList.html |
+| html | **view** | /SessionView.html |
 
 
 ## Audit Information
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **07/02/2023** at **18:52:39**
+Date & Time		     | **15/02/2023** at **10:44:47**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

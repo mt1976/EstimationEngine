@@ -9,110 +9,99 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:37
+// Date & Time		    : 15/02/2023 at 10:44:45
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Origin defines the datamolde for the Origin object
+//Origin defines the datamodel for the Origin object
 type Origin struct {
-
-
-SYSId       string
-SYSId_props FieldProperties
-OriginID       string
-OriginID_props FieldProperties
-StateID       string
-StateID_props FieldProperties
-DocTypeID       string
-DocTypeID_props FieldProperties
-Code       string
-Code_props FieldProperties
-FullName       string
-FullName_props FieldProperties
-Rate       string
-Rate_props FieldProperties
-Notes       string
-Notes_props FieldProperties
-StartDate       string
-StartDate_props FieldProperties
-EndDate       string
-EndDate_props FieldProperties
-SYSCreated       string
-SYSCreated_props FieldProperties
-SYSCreatedBy       string
-SYSCreatedBy_props FieldProperties
-SYSCreatedHost       string
-SYSCreatedHost_props FieldProperties
-SYSUpdated       string
-SYSUpdated_props FieldProperties
-SYSUpdatedBy       string
-SYSUpdatedBy_props FieldProperties
-SYSUpdatedHost       string
-SYSUpdatedHost_props FieldProperties
-SYSDeleted       string
-SYSDeleted_props FieldProperties
-SYSDeletedBy       string
-SYSDeletedBy_props FieldProperties
-SYSDeletedHost       string
-SYSDeletedHost_props FieldProperties
-SYSActivity       string
-SYSActivity_props FieldProperties
-Currency       string
-Currency_props FieldProperties
-SYSDbVersion       string
-SYSDbVersion_props FieldProperties
-Comments       string
-Comments_props FieldProperties
-ProjectManager       string
-ProjectManager_props FieldProperties
-AccountManager       string
-AccountManager_props FieldProperties
-NoActiveProjects       string
-NoActiveProjects_props FieldProperties
- // Any lookups will be added below
-
-StateID_lookup []Lookup_Item
-DocTypeID_lookup []Lookup_Item
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Currency_lookup []Lookup_Item
-
-
-ProjectManager_lookup []Lookup_Item
-AccountManager_lookup []Lookup_Item
-
-
-}
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Field Definitions
+	//
+	SYSId       string
+	OriginID       string
+	StateID       string
+	DocTypeID       string
+	Code       string
+	FullName       string
+	Rate       string
+	Notes       string
+	StartDate       string
+	EndDate       string
+	SYSCreated       string
+	SYSCreatedBy       string
+	SYSCreatedHost       string
+	SYSUpdated       string
+	SYSUpdatedBy       string
+	SYSUpdatedHost       string
+	SYSDeleted       string
+	SYSDeletedBy       string
+	SYSDeletedHost       string
+	SYSActivity       string
+	Currency       string
+	SYSDbVersion       string
+	Comments       string
+	ProjectManager       string
+	AccountManager       string
+	NoActiveProjects       string
+	//
+	// Field Properties
+	//
+	SYSId_props FieldProperties
+	OriginID_props FieldProperties
+	StateID_props FieldProperties
+	DocTypeID_props FieldProperties
+	Code_props FieldProperties
+	FullName_props FieldProperties
+	Rate_props FieldProperties
+	Notes_props FieldProperties
+	StartDate_props FieldProperties
+	EndDate_props FieldProperties
+	SYSCreated_props FieldProperties
+	SYSCreatedBy_props FieldProperties
+	SYSCreatedHost_props FieldProperties
+	SYSUpdated_props FieldProperties
+	SYSUpdatedBy_props FieldProperties
+	SYSUpdatedHost_props FieldProperties
+	SYSDeleted_props FieldProperties
+	SYSDeletedBy_props FieldProperties
+	SYSDeletedHost_props FieldProperties
+	SYSActivity_props FieldProperties
+	Currency_props FieldProperties
+	SYSDbVersion_props FieldProperties
+	Comments_props FieldProperties
+	ProjectManager_props FieldProperties
+	AccountManager_props FieldProperties
+	NoActiveProjects_props FieldProperties
+	//
+ 	// Any lookups will be added below
+	//
+	StateID_lookup []Lookup_Item
+	DocTypeID_lookup []Lookup_Item
+	Currency_lookup []Lookup_Item
+	ProjectManager_lookup []Lookup_Item
+	AccountManager_lookup []Lookup_Item
+	}
 
 const (
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
+	Origin_Name      = "Origin"
 	Origin_Title       = "Origin"
 	Origin_SQLTable    = "originStore"
 	Origin_SQLSearchID = "originID"
 	Origin_QueryString = "OriginID"
 	///
-	/// Handler Defintions
+	/// Template Path Defintions
 	///
 	Origin_Template     = "Origin"
-	Origin_TemplateList = "/Origin/Origin_List"
-	Origin_TemplateView = "/Origin/Origin_View"
-	Origin_TemplateEdit = "/Origin/Origin_Edit"
-	Origin_TemplateNew  = "/Origin/Origin_New"
+	Origin_TemplateList = "/Origin/OriginList"
+	Origin_TemplateView = "/Origin/OriginView"
+	Origin_TemplateEdit = "/Origin/OriginEdit"
+	Origin_TemplateNew  = "/Origin/OriginNew"
 	///
-	/// Handler Monitor Paths
+	/// URI Handler Paths
 	///
 	Origin_Path       = "/API/Origin/"
 	Origin_PathList   = "/OriginList/"
@@ -121,14 +110,17 @@ const (
 	Origin_PathNew    = "/OriginNew/"
 	Origin_PathSave   = "/OriginSave/"
 	Origin_PathDelete = "/OriginDelete/"
-	///
+	// Redirects - On Server Side Error
+	Origin_PathEditException   = "/OriginEditException/"
+	Origin_PathNewException    = "/OriginNewException/"
+	//
 	//Origin_Redirect provides a page to return to aftern an action
 	Origin_Redirect = Origin_PathList
 	
-	///
-	///
-	/// SQL Field Definitions
-	///
+	//
+	//
+	// SQL Field Definitions
+	//
 	Origin_SYSId_sql   = "_id" // SYSId is a Int
 	Origin_OriginID_sql   = "originID" // OriginID is a String
 	Origin_StateID_sql   = "stateID" // StateID is a String
@@ -155,9 +147,7 @@ const (
 	Origin_ProjectManager_sql   = "projectManager" // ProjectManager is a String
 	Origin_AccountManager_sql   = "accountManager" // AccountManager is a String
 	Origin_NoActiveProjects_sql   = "NoActiveProjects" // NoActiveProjects is a String
-
-	/// Definitions End
-	///
+///
 	/// Application Field Definitions
 	///
 	Origin_SYSId_scrn   = "SYSId" // SYSId is a Int
@@ -186,20 +176,19 @@ const (
 	Origin_ProjectManager_scrn   = "ProjectManager" // ProjectManager is a String
 	Origin_AccountManager_scrn   = "AccountManager" // AccountManager is a String
 	Origin_NoActiveProjects_scrn   = "NoActiveProjects" // NoActiveProjects is a String
-
-	/// Definitions End
-	///
+///
 )
 
-//origin_PageList provides the information for the template for a list of Origins
+//Origin_PageList provides the information for the template for a list of Origins
 type Origin_PageList struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []Origin
+	// Context & Permisions
 	Context	 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -207,78 +196,21 @@ type Origin_PageList struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	// Page Data
+	ItemsOnPage 	 int
+	ItemList  		 []Origin
 }
 
-//origin_Page provides the information for the template for an individual Origin
+//Origin_Page provides the information for the template for an individual Origin
 type Origin_Page struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	SYSId_props     FieldProperties
-	OriginID         string
-	OriginID_props     FieldProperties
-	StateID         string
-	StateID_lookup    []Lookup_Item
-	StateID_props     FieldProperties
-	DocTypeID         string
-	DocTypeID_lookup    []Lookup_Item
-	DocTypeID_props     FieldProperties
-	Code         string
-	Code_props     FieldProperties
-	FullName         string
-	FullName_props     FieldProperties
-	Rate         string
-	Rate_props     FieldProperties
-	Notes         string
-	Notes_props     FieldProperties
-	StartDate         string
-	StartDate_props     FieldProperties
-	EndDate         string
-	EndDate_props     FieldProperties
-	SYSCreated         string
-	SYSCreated_props     FieldProperties
-	SYSCreatedBy         string
-	SYSCreatedBy_props     FieldProperties
-	SYSCreatedHost         string
-	SYSCreatedHost_props     FieldProperties
-	SYSUpdated         string
-	SYSUpdated_props     FieldProperties
-	SYSUpdatedBy         string
-	SYSUpdatedBy_props     FieldProperties
-	SYSUpdatedHost         string
-	SYSUpdatedHost_props     FieldProperties
-	SYSDeleted         string
-	SYSDeleted_props     FieldProperties
-	SYSDeletedBy         string
-	SYSDeletedBy_props     FieldProperties
-	SYSDeletedHost         string
-	SYSDeletedHost_props     FieldProperties
-	SYSActivity         string
-	SYSActivity_props     FieldProperties
-	Currency         string
-	Currency_lookup    []Lookup_Item
-	Currency_props     FieldProperties
-	SYSDbVersion         string
-	SYSDbVersion_props     FieldProperties
-	Comments         string
-	Comments_props     FieldProperties
-	ProjectManager         string
-	ProjectManager_lookup    []Lookup_Item
-	ProjectManager_props     FieldProperties
-	AccountManager         string
-	AccountManager_lookup    []Lookup_Item
-	AccountManager_props     FieldProperties
-	NoActiveProjects         string
-	NoActiveProjects_props     FieldProperties
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+	/// Context & Permisions
 	Context	 		 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -286,4 +218,67 @@ type Origin_Page struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	/// Fields Definitions
+	SYSId         string
+	OriginID         string
+	StateID         string
+	DocTypeID         string
+	Code         string
+	FullName         string
+	Rate         string
+	Notes         string
+	StartDate         string
+	EndDate         string
+	SYSCreated         string
+	SYSCreatedBy         string
+	SYSCreatedHost         string
+	SYSUpdated         string
+	SYSUpdatedBy         string
+	SYSUpdatedHost         string
+	SYSDeleted         string
+	SYSDeletedBy         string
+	SYSDeletedHost         string
+	SYSActivity         string
+	Currency         string
+	SYSDbVersion         string
+	Comments         string
+	ProjectManager         string
+	AccountManager         string
+	NoActiveProjects         string
+	/// Field Properties
+	SYSId_props     FieldProperties
+	OriginID_props     FieldProperties
+	StateID_props     FieldProperties
+	DocTypeID_props     FieldProperties
+	Code_props     FieldProperties
+	FullName_props     FieldProperties
+	Rate_props     FieldProperties
+	Notes_props     FieldProperties
+	StartDate_props     FieldProperties
+	EndDate_props     FieldProperties
+	SYSCreated_props     FieldProperties
+	SYSCreatedBy_props     FieldProperties
+	SYSCreatedHost_props     FieldProperties
+	SYSUpdated_props     FieldProperties
+	SYSUpdatedBy_props     FieldProperties
+	SYSUpdatedHost_props     FieldProperties
+	SYSDeleted_props     FieldProperties
+	SYSDeletedBy_props     FieldProperties
+	SYSDeletedHost_props     FieldProperties
+	SYSActivity_props     FieldProperties
+	Currency_props     FieldProperties
+	SYSDbVersion_props     FieldProperties
+	Comments_props     FieldProperties
+	ProjectManager_props     FieldProperties
+	AccountManager_props     FieldProperties
+	NoActiveProjects_props     FieldProperties
+	/// Lookups
+	StateID_lookup    []Lookup_Item
+	DocTypeID_lookup    []Lookup_Item
+	Currency_lookup    []Lookup_Item
+	ProjectManager_lookup    []Lookup_Item
+	AccountManager_lookup    []Lookup_Item
+	
+	/// END OF DEFINITIONS
+	///
 }

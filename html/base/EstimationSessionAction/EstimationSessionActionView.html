@@ -1,0 +1,76 @@
+{{template "header" .}} {{template "bodydefinition" .}}
+<form action="/EstimationSessionActionEdit/?ID={{.ID}}" method="POST" class="form">
+    <div class="card">
+        <div class="card-header align-items-center" >
+            <div class="row align-items-center">
+                <div class="col h3 align-items-center">
+                    <i class="fas fa-angle-double-right me-2" title="ID = {{.ID}}"></i><span class="me-3">{{.Title}}</span>
+                </div>
+                <div class="col d-flex justify-content-end">
+                    <div class="btn-group float-right">
+                        
+                        <button type="submit" class="btn btn-warning" method="get" formaction="/EstimationSessionActionEdit/?ID={{.ID}}"  title="Edit Estimation Session Actions {{.ID}}"><i class="fas fa-pen me-2"></i>Edit</button>
+                        <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Estimation Session Actions {{.ID}}"><i class="fas fa-print me-2"></i>Print</button>
+                        <button type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+             
+            <div class="row mb-3"  hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="ID" aria-describedby="IDHelp" placeholder="" disabled value="{{.ID}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="ID"><i class="fas fa-key me-2"></i>ID</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                  <select id="EstimationSession" name="EstimationSession" class="select" data-mdb-filter="true" disabled>
+                  {{range .EstimationSession_lookup}}<option value="{{.ID}}" {{if eq .ID $.EstimationSession}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="EstimationSession" disabled>EstimationSession</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                  <select id="Action" name="Action" class="select" data-mdb-filter="true" disabled>
+                  {{range .Action_lookup}}<option value="{{.ID}}" {{if eq .ID $.Action}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="Action" disabled>Action</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <textarea class="form-control" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder=""  disabled value="{{.Notes}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Notes}}</textarea>
+                        
+                        <label class="form-label" for="Notes">Notes</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</form>
+
+{{template "userfooter" .}} {{template "pagefooter" .}}

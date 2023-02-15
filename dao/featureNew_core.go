@@ -8,18 +8,16 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:36
+// Date & Time		    : 15/02/2023 at 10:44:44
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-
 	"fmt"
 	"net/http"
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/google/uuid"
 	das  "github.com/mt1976/ebEstimates/das"
-
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
 )
@@ -33,9 +31,7 @@ func init(){
 
 // FeatureNew_GetList() returns a list of all FeatureNew records
 func FeatureNew_GetList() (int, []dm.FeatureNew, error) {
-	
 	count, featurenewList, err := FeatureNew_GetListFiltered("")
-	
 	return count, featurenewList, err
 }
 
@@ -55,14 +51,22 @@ func FeatureNew_GetByID(id string) (int, dm.FeatureNew, error) {
 
 	 _, featurenewItem, _ := FeatureNew_GetByID_impl(id)
 	
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+
+	featurenewItem = FeatureNew_PostGet(featurenewItem,id)
+
 	return 1, featurenewItem, nil
 }
+
+func FeatureNew_PostGet(featurenewItem dm.FeatureNew,id string) dm.FeatureNew {
+	// START
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return featurenewItem
+}
+
 
 
 
@@ -75,24 +79,11 @@ func FeatureNew_Delete(id string) {
 	
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
 // FeatureNew_Store() saves/stores a FeatureNew record to the database
-func FeatureNew_Store(r dm.FeatureNew,req *http.Request) error {
+func FeatureNew_Store(r dm.FeatureNew,req *http.Request) (dm.FeatureNew,error) {
 
 	r, err := FeatureNew_Validate(r)
 	if err == nil {
@@ -101,11 +92,11 @@ func FeatureNew_Store(r dm.FeatureNew,req *http.Request) error {
 		logs.Information("FeatureNew_Store()", err.Error())
 	}
 
-	return err
+	return r, err
 }
 
 // FeatureNew_StoreSystem() saves/stores a FeatureNew record to the database
-func FeatureNew_StoreSystem(r dm.FeatureNew) error {
+func FeatureNew_StoreSystem(r dm.FeatureNew) (dm.FeatureNew,error) {
 	
 	r, err := FeatureNew_Validate(r)
 	if err == nil {
@@ -114,17 +105,17 @@ func FeatureNew_StoreSystem(r dm.FeatureNew) error {
 		logs.Information("FeatureNew_Store()", err.Error())
 	}
 
-	return err
+	return r, err
 }
 
 // FeatureNew_Validate() validates for saves/stores a FeatureNew record to the database
 func FeatureNew_Validate(r dm.FeatureNew) (dm.FeatureNew, error) {
 	var err error
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -138,36 +129,11 @@ func featurenew_Save(r dm.FeatureNew,usr string) error {
 
     var err error
 
-
-
-	
-
 	if len(r.ID) == 0 {
 		r.ID = FeatureNew_NewID(r)
 	}
 
 // If there are fields below, create the methods in dao\featurenew_impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
 logs.Storing("FeatureNew",fmt.Sprintf("%v", r))
 
 // Please Create Functions Below in the adaptor/FeatureNew_impl.go file
@@ -187,13 +153,13 @@ logs.Storing("FeatureNew",fmt.Sprintf("%v", r))
 
 
 
-// featurenew_Fetch is not required as GetByID, GetAll etc... have been diverted to _impl
+	// featurenew_Fetch is not required as GetByID, GetAll etc... have been diverted to _impl
 	
 
 
 func FeatureNew_NewID(r dm.FeatureNew) string {
 	
-			id := uuid.New().String()
+	id := uuid.New().String()
 	
 	return id
 }
@@ -208,14 +174,12 @@ func FeatureNew_New() (int, []dm.FeatureNew, dm.FeatureNew, error) {
 	
 
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
+	
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-
-
 	rList = append(rList, r)
-
 	return 1, rList, r, nil
 }

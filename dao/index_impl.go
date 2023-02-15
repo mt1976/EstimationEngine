@@ -51,7 +51,7 @@ func Indexer_Put(KeyClass string, KeyField string, KeyID string, KeyValue string
 		return iRec, nil
 	}
 
-	err := Index_StoreSystem(iRec)
+	_, err := Index_StoreSystem(iRec)
 	if err != nil {
 		return dm.Index{}, err
 	}

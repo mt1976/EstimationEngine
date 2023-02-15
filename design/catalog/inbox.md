@@ -69,19 +69,20 @@ SQL Table Key | **MailId**
 | Type | Artifact | Path|
 | :--: | -- | -- |
 | code | **application** | /application/inbox_core.go |
+| code | **validation** | /dao/inbox_validation.go_template |
 | code | **api** | /application/inbox_api.go |
 | code | **dao** | /dao/inbox_core.go |
 | code | **datamodel** | /datamodel/inbox_core.go |
 | code | **menu** | /design/menu/inbox.json |
-| html | **list** | /Inbox_List.html |
-| html | **view** | /Inbox_View.html |
+| html | **list** | /InboxList.html |
+| html | **view** | /InboxView.html |
 
 
 ## Audit Information
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **07/02/2023** at **18:52:37**
+Date & Time		     | **15/02/2023** at **10:44:44**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

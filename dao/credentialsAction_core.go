@@ -8,18 +8,16 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:35
+// Date & Time		    : 15/02/2023 at 10:44:41
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-
 	"fmt"
 	"net/http"
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/google/uuid"
 	das  "github.com/mt1976/ebEstimates/das"
-
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
 )
@@ -33,9 +31,7 @@ func init(){
 
 // CredentialsAction_GetList() returns a list of all CredentialsAction records
 func CredentialsAction_GetList() (int, []dm.CredentialsAction, error) {
-	
 	count, credentialsactionList, err := CredentialsAction_GetListFiltered("")
-	
 	return count, credentialsactionList, err
 }
 
@@ -55,14 +51,22 @@ func CredentialsAction_GetByID(id string) (int, dm.CredentialsAction, error) {
 
 	 _, credentialsactionItem, _ := CredentialsAction_GetByID_impl(id)
 	
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+
+	credentialsactionItem = CredentialsAction_PostGet(credentialsactionItem,id)
+
 	return 1, credentialsactionItem, nil
 }
+
+func CredentialsAction_PostGet(credentialsactionItem dm.CredentialsAction,id string) dm.CredentialsAction {
+	// START
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return credentialsactionItem
+}
+
 
 
 
@@ -75,24 +79,11 @@ func CredentialsAction_Delete(id string) {
 	
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
 // CredentialsAction_Store() saves/stores a CredentialsAction record to the database
-func CredentialsAction_Store(r dm.CredentialsAction,req *http.Request) error {
+func CredentialsAction_Store(r dm.CredentialsAction,req *http.Request) (dm.CredentialsAction,error) {
 
 	r, err := CredentialsAction_Validate(r)
 	if err == nil {
@@ -101,11 +92,11 @@ func CredentialsAction_Store(r dm.CredentialsAction,req *http.Request) error {
 		logs.Information("CredentialsAction_Store()", err.Error())
 	}
 
-	return err
+	return r, err
 }
 
 // CredentialsAction_StoreSystem() saves/stores a CredentialsAction record to the database
-func CredentialsAction_StoreSystem(r dm.CredentialsAction) error {
+func CredentialsAction_StoreSystem(r dm.CredentialsAction) (dm.CredentialsAction,error) {
 	
 	r, err := CredentialsAction_Validate(r)
 	if err == nil {
@@ -114,17 +105,17 @@ func CredentialsAction_StoreSystem(r dm.CredentialsAction) error {
 		logs.Information("CredentialsAction_Store()", err.Error())
 	}
 
-	return err
+	return r, err
 }
 
 // CredentialsAction_Validate() validates for saves/stores a CredentialsAction record to the database
 func CredentialsAction_Validate(r dm.CredentialsAction) (dm.CredentialsAction, error) {
 	var err error
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -138,22 +129,11 @@ func credentialsaction_Save(r dm.CredentialsAction,usr string) error {
 
     var err error
 
-
-
-	
-
 	if len(r.ID) == 0 {
 		r.ID = CredentialsAction_NewID(r)
 	}
 
 // If there are fields below, create the methods in dao\credentialsaction_impl.go
-
-
-
-
-
-
-	
 logs.Storing("CredentialsAction",fmt.Sprintf("%v", r))
 
 // Please Create Functions Below in the adaptor/CredentialsAction_impl.go file
@@ -173,13 +153,13 @@ logs.Storing("CredentialsAction",fmt.Sprintf("%v", r))
 
 
 
-// credentialsaction_Fetch is not required as GetByID, GetAll etc... have been diverted to _impl
+	// credentialsaction_Fetch is not required as GetByID, GetAll etc... have been diverted to _impl
 	
 
 
 func CredentialsAction_NewID(r dm.CredentialsAction) string {
 	
-			id := uuid.New().String()
+	id := uuid.New().String()
 	
 	return id
 }
@@ -194,14 +174,12 @@ func CredentialsAction_New() (int, []dm.CredentialsAction, dm.CredentialsAction,
 	
 
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
+	
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-
-
 	rList = append(rList, r)
-
 	return 1, rList, r, nil
 }

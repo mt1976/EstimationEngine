@@ -2,7 +2,6 @@ package dao
 
 import (
 	dm "github.com/mt1976/ebEstimates/datamodel"
-	logs "github.com/mt1976/ebEstimates/logs"
 )
 
 // ----------------------------------------------------------------
@@ -52,20 +51,3 @@ func FeatureNew_Update_impl(id string, rec dm.FeatureNew, usr string) error { re
 //
 // Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 // END - Validation API/Callout
-
-func FeatureNew_ObjectValidation_impl(iAction string, iId string, iRec dm.FeatureNew) (dm.FeatureNew, string, error) {
-	logs.Callout("FeatureNew", "ObjectValidation", VAL+"-"+iAction, iId)
-	switch iAction {
-	case VAL:
-
-	case NEW:
-
-	case PUT:
-
-	case GET:
-
-	default:
-		logs.Warning("FeatureNew" + " - Invalid Action [" + iAction + "]")
-	}
-	return iRec, "", nil
-}

@@ -9,119 +9,106 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:38
+// Date & Time		    : 15/02/2023 at 10:44:46
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Project defines the datamolde for the Project object
+//Project defines the datamodel for the Project object
 type Project struct {
-
-
-SYSId       string
-SYSId_props FieldProperties
-ProjectID       string
-ProjectID_props FieldProperties
-OriginID       string
-OriginID_props FieldProperties
-ProjectStateID       string
-ProjectStateID_props FieldProperties
-ProfileID       string
-ProfileID_props FieldProperties
-Name       string
-Name_props FieldProperties
-Description       string
-Description_props FieldProperties
-StartDate       string
-StartDate_props FieldProperties
-EndDate       string
-EndDate_props FieldProperties
-SYSCreated       string
-SYSCreated_props FieldProperties
-SYSCreatedBy       string
-SYSCreatedBy_props FieldProperties
-SYSCreatedHost       string
-SYSCreatedHost_props FieldProperties
-SYSUpdated       string
-SYSUpdated_props FieldProperties
-SYSUpdatedBy       string
-SYSUpdatedBy_props FieldProperties
-SYSUpdatedHost       string
-SYSUpdatedHost_props FieldProperties
-SYSDeleted       string
-SYSDeleted_props FieldProperties
-SYSDeletedBy       string
-SYSDeletedBy_props FieldProperties
-SYSDeletedHost       string
-SYSDeletedHost_props FieldProperties
-SYSActivity       string
-SYSActivity_props FieldProperties
-SYSDbVersion       string
-SYSDbVersion_props FieldProperties
-Comments       string
-Comments_props FieldProperties
-ProjectRate       string
-ProjectRate_props FieldProperties
-DefaultRate       string
-DefaultRate_props FieldProperties
-ProjectAnalyst       string
-ProjectAnalyst_props FieldProperties
-ProjectEngineer       string
-ProjectEngineer_props FieldProperties
-ProjectManager       string
-ProjectManager_props FieldProperties
-Releases       string
-Releases_props FieldProperties
-Notes       string
-Notes_props FieldProperties
-NoEstimationSessions       string
-NoEstimationSessions_props FieldProperties
- // Any lookups will be added below
-
-OriginID_lookup []Lookup_Item
-ProjectStateID_lookup []Lookup_Item
-ProfileID_lookup []Lookup_Item
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-ProjectAnalyst_lookup []Lookup_Item
-ProjectEngineer_lookup []Lookup_Item
-ProjectManager_lookup []Lookup_Item
-
-
-
-
-}
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Field Definitions
+	//
+	SYSId       string
+	ProjectID       string
+	OriginID       string
+	ProjectStateID       string
+	ProfileID       string
+	Name       string
+	Description       string
+	StartDate       string
+	EndDate       string
+	SYSCreated       string
+	SYSCreatedBy       string
+	SYSCreatedHost       string
+	SYSUpdated       string
+	SYSUpdatedBy       string
+	SYSUpdatedHost       string
+	SYSDeleted       string
+	SYSDeletedBy       string
+	SYSDeletedHost       string
+	SYSActivity       string
+	SYSDbVersion       string
+	Comments       string
+	ProjectRate       string
+	DefaultRate       string
+	ProjectAnalyst       string
+	ProjectEngineer       string
+	ProjectManager       string
+	Releases       string
+	Notes       string
+	NoEstimationSessions       string
+	//
+	// Field Properties
+	//
+	SYSId_props FieldProperties
+	ProjectID_props FieldProperties
+	OriginID_props FieldProperties
+	ProjectStateID_props FieldProperties
+	ProfileID_props FieldProperties
+	Name_props FieldProperties
+	Description_props FieldProperties
+	StartDate_props FieldProperties
+	EndDate_props FieldProperties
+	SYSCreated_props FieldProperties
+	SYSCreatedBy_props FieldProperties
+	SYSCreatedHost_props FieldProperties
+	SYSUpdated_props FieldProperties
+	SYSUpdatedBy_props FieldProperties
+	SYSUpdatedHost_props FieldProperties
+	SYSDeleted_props FieldProperties
+	SYSDeletedBy_props FieldProperties
+	SYSDeletedHost_props FieldProperties
+	SYSActivity_props FieldProperties
+	SYSDbVersion_props FieldProperties
+	Comments_props FieldProperties
+	ProjectRate_props FieldProperties
+	DefaultRate_props FieldProperties
+	ProjectAnalyst_props FieldProperties
+	ProjectEngineer_props FieldProperties
+	ProjectManager_props FieldProperties
+	Releases_props FieldProperties
+	Notes_props FieldProperties
+	NoEstimationSessions_props FieldProperties
+	//
+ 	// Any lookups will be added below
+	//
+	OriginID_lookup []Lookup_Item
+	ProjectStateID_lookup []Lookup_Item
+	ProfileID_lookup []Lookup_Item
+	ProjectAnalyst_lookup []Lookup_Item
+	ProjectEngineer_lookup []Lookup_Item
+	ProjectManager_lookup []Lookup_Item
+	}
 
 const (
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
+	Project_Name      = "Project"
 	Project_Title       = "Project"
 	Project_SQLTable    = "projectStore"
 	Project_SQLSearchID = "projectID"
 	Project_QueryString = "ProjectID"
 	///
-	/// Handler Defintions
+	/// Template Path Defintions
 	///
 	Project_Template     = "Project"
-	Project_TemplateList = "/Project/Project_List"
-	Project_TemplateView = "/Project/Project_View"
-	Project_TemplateEdit = "/Project/Project_Edit"
-	Project_TemplateNew  = "/Project/Project_New"
+	Project_TemplateList = "/Project/ProjectList"
+	Project_TemplateView = "/Project/ProjectView"
+	Project_TemplateEdit = "/Project/ProjectEdit"
+	Project_TemplateNew  = "/Project/ProjectNew"
 	///
-	/// Handler Monitor Paths
+	/// URI Handler Paths
 	///
 	Project_Path       = "/API/Project/"
 	Project_PathList   = "/ProjectList/"
@@ -130,14 +117,17 @@ const (
 	Project_PathNew    = "/ProjectNew/"
 	Project_PathSave   = "/ProjectSave/"
 	Project_PathDelete = "/ProjectDelete/"
-	///
+	// Redirects - On Server Side Error
+	Project_PathEditException   = "/ProjectEditException/"
+	Project_PathNewException    = "/ProjectNewException/"
+	//
 	//Project_Redirect provides a page to return to aftern an action
 	Project_Redirect = Project_PathList
 	
-	///
-	///
-	/// SQL Field Definitions
-	///
+	//
+	//
+	// SQL Field Definitions
+	//
 	Project_SYSId_sql   = "_id" // SYSId is a Int
 	Project_ProjectID_sql   = "projectID" // ProjectID is a String
 	Project_OriginID_sql   = "originID" // OriginID is a String
@@ -167,9 +157,7 @@ const (
 	Project_Releases_sql   = "releases" // Releases is a String
 	Project_Notes_sql   = "notes" // Notes is a String
 	Project_NoEstimationSessions_sql   = "NoEstimationSessions" // NoEstimationSessions is a String
-
-	/// Definitions End
-	///
+///
 	/// Application Field Definitions
 	///
 	Project_SYSId_scrn   = "SYSId" // SYSId is a Int
@@ -201,20 +189,19 @@ const (
 	Project_Releases_scrn   = "Releases" // Releases is a String
 	Project_Notes_scrn   = "Notes" // Notes is a String
 	Project_NoEstimationSessions_scrn   = "NoEstimationSessions" // NoEstimationSessions is a String
-
-	/// Definitions End
-	///
+///
 )
 
-//project_PageList provides the information for the template for a list of Projects
+//Project_PageList provides the information for the template for a list of Projects
 type Project_PageList struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []Project
+	// Context & Permisions
 	Context	 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -222,85 +209,21 @@ type Project_PageList struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	// Page Data
+	ItemsOnPage 	 int
+	ItemList  		 []Project
 }
 
-//project_Page provides the information for the template for an individual Project
+//Project_Page provides the information for the template for an individual Project
 type Project_Page struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	SYSId_props     FieldProperties
-	ProjectID         string
-	ProjectID_props     FieldProperties
-	OriginID         string
-	OriginID_lookup    []Lookup_Item
-	OriginID_props     FieldProperties
-	ProjectStateID         string
-	ProjectStateID_lookup    []Lookup_Item
-	ProjectStateID_props     FieldProperties
-	ProfileID         string
-	ProfileID_lookup    []Lookup_Item
-	ProfileID_props     FieldProperties
-	Name         string
-	Name_props     FieldProperties
-	Description         string
-	Description_props     FieldProperties
-	StartDate         string
-	StartDate_props     FieldProperties
-	EndDate         string
-	EndDate_props     FieldProperties
-	SYSCreated         string
-	SYSCreated_props     FieldProperties
-	SYSCreatedBy         string
-	SYSCreatedBy_props     FieldProperties
-	SYSCreatedHost         string
-	SYSCreatedHost_props     FieldProperties
-	SYSUpdated         string
-	SYSUpdated_props     FieldProperties
-	SYSUpdatedBy         string
-	SYSUpdatedBy_props     FieldProperties
-	SYSUpdatedHost         string
-	SYSUpdatedHost_props     FieldProperties
-	SYSDeleted         string
-	SYSDeleted_props     FieldProperties
-	SYSDeletedBy         string
-	SYSDeletedBy_props     FieldProperties
-	SYSDeletedHost         string
-	SYSDeletedHost_props     FieldProperties
-	SYSActivity         string
-	SYSActivity_props     FieldProperties
-	SYSDbVersion         string
-	SYSDbVersion_props     FieldProperties
-	Comments         string
-	Comments_props     FieldProperties
-	ProjectRate         string
-	ProjectRate_props     FieldProperties
-	DefaultRate         string
-	DefaultRate_props     FieldProperties
-	ProjectAnalyst         string
-	ProjectAnalyst_lookup    []Lookup_Item
-	ProjectAnalyst_props     FieldProperties
-	ProjectEngineer         string
-	ProjectEngineer_lookup    []Lookup_Item
-	ProjectEngineer_props     FieldProperties
-	ProjectManager         string
-	ProjectManager_lookup    []Lookup_Item
-	ProjectManager_props     FieldProperties
-	Releases         string
-	Releases_props     FieldProperties
-	Notes         string
-	Notes_props     FieldProperties
-	NoEstimationSessions         string
-	NoEstimationSessions_props     FieldProperties
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+	/// Context & Permisions
 	Context	 		 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -308,4 +231,74 @@ type Project_Page struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	/// Fields Definitions
+	SYSId         string
+	ProjectID         string
+	OriginID         string
+	ProjectStateID         string
+	ProfileID         string
+	Name         string
+	Description         string
+	StartDate         string
+	EndDate         string
+	SYSCreated         string
+	SYSCreatedBy         string
+	SYSCreatedHost         string
+	SYSUpdated         string
+	SYSUpdatedBy         string
+	SYSUpdatedHost         string
+	SYSDeleted         string
+	SYSDeletedBy         string
+	SYSDeletedHost         string
+	SYSActivity         string
+	SYSDbVersion         string
+	Comments         string
+	ProjectRate         string
+	DefaultRate         string
+	ProjectAnalyst         string
+	ProjectEngineer         string
+	ProjectManager         string
+	Releases         string
+	Notes         string
+	NoEstimationSessions         string
+	/// Field Properties
+	SYSId_props     FieldProperties
+	ProjectID_props     FieldProperties
+	OriginID_props     FieldProperties
+	ProjectStateID_props     FieldProperties
+	ProfileID_props     FieldProperties
+	Name_props     FieldProperties
+	Description_props     FieldProperties
+	StartDate_props     FieldProperties
+	EndDate_props     FieldProperties
+	SYSCreated_props     FieldProperties
+	SYSCreatedBy_props     FieldProperties
+	SYSCreatedHost_props     FieldProperties
+	SYSUpdated_props     FieldProperties
+	SYSUpdatedBy_props     FieldProperties
+	SYSUpdatedHost_props     FieldProperties
+	SYSDeleted_props     FieldProperties
+	SYSDeletedBy_props     FieldProperties
+	SYSDeletedHost_props     FieldProperties
+	SYSActivity_props     FieldProperties
+	SYSDbVersion_props     FieldProperties
+	Comments_props     FieldProperties
+	ProjectRate_props     FieldProperties
+	DefaultRate_props     FieldProperties
+	ProjectAnalyst_props     FieldProperties
+	ProjectEngineer_props     FieldProperties
+	ProjectManager_props     FieldProperties
+	Releases_props     FieldProperties
+	Notes_props     FieldProperties
+	NoEstimationSessions_props     FieldProperties
+	/// Lookups
+	OriginID_lookup    []Lookup_Item
+	ProjectStateID_lookup    []Lookup_Item
+	ProfileID_lookup    []Lookup_Item
+	ProjectAnalyst_lookup    []Lookup_Item
+	ProjectEngineer_lookup    []Lookup_Item
+	ProjectManager_lookup    []Lookup_Item
+	
+	/// END OF DEFINITIONS
+	///
 }

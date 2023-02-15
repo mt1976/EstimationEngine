@@ -8,18 +8,16 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:39
+// Date & Time		    : 15/02/2023 at 10:44:47
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-
 	"fmt"
 	"net/http"
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/google/uuid"
 	das  "github.com/mt1976/ebEstimates/das"
-
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
 )
@@ -33,9 +31,7 @@ func init(){
 
 // Session_GetList() returns a list of all Session records
 func Session_GetList() (int, []dm.Session, error) {
-	
 	count, sessionList, err := Session_GetListFiltered("")
-	
 	return count, sessionList, err
 }
 
@@ -61,14 +57,22 @@ func Session_GetByID(id string) (int, dm.Session, error) {
 	tsql = tsql + " " + das.WHERE + dm.Session_SQLSearchID + das.EQ + das.ID(id)
 	_, _, sessionItem, _ := session_Fetch(tsql)
 
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+
+	sessionItem = Session_PostGet(sessionItem,id)
+
 	return 1, sessionItem, nil
 }
+
+func Session_PostGet(sessionItem dm.Session,id string) dm.Session {
+	// START
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return sessionItem
+}
+
 
 
 
@@ -85,24 +89,11 @@ func Session_Delete(id string) {
 	
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
 // Session_Store() saves/stores a Session record to the database
-func Session_Store(r dm.Session,req *http.Request) error {
+func Session_Store(r dm.Session,req *http.Request) (dm.Session,error) {
 
 	r, err := Session_Validate(r)
 	if err == nil {
@@ -111,11 +102,11 @@ func Session_Store(r dm.Session,req *http.Request) error {
 		logs.Information("Session_Store()", err.Error())
 	}
 
-	return err
+	return r, err
 }
 
 // Session_StoreSystem() saves/stores a Session record to the database
-func Session_StoreSystem(r dm.Session) error {
+func Session_StoreSystem(r dm.Session) (dm.Session,error) {
 	
 	r, err := Session_Validate(r)
 	if err == nil {
@@ -124,17 +115,17 @@ func Session_StoreSystem(r dm.Session) error {
 		logs.Information("Session_Store()", err.Error())
 	}
 
-	return err
+	return r, err
 }
 
 // Session_Validate() validates for saves/stores a Session record to the database
 func Session_Validate(r dm.Session) (dm.Session, error) {
 	var err error
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -148,47 +139,11 @@ func session_Save(r dm.Session,usr string) error {
 
     var err error
 
-
-
-	
-
 	if len(r.Id) == 0 {
 		r.Id = Session_NewID(r)
 	}
 
 // If there are fields below, create the methods in dao\session_impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
 	r.SYSCreatedHost = Audit_Update(r.SYSCreatedHost,Audit_Host())
@@ -203,7 +158,7 @@ logs.Storing("Session",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Session_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Session_Id_sql, r.Id)
@@ -236,7 +191,7 @@ logs.Storing("Session",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Session_SYSDbVersion_sql, r.SYSDbVersion)
 		
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := das.INSERT + das.INTO + Session_QualifiedName
@@ -269,7 +224,7 @@ func session_Fetch(tsql string) (int, []dm.Session, dm.Session, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Session_SYSId_sql, "0")
 	   recItem.Id  = get_String(rec, dm.Session_Id_sql, "")
@@ -301,39 +256,8 @@ func session_Fetch(tsql string) (int, []dm.Session, dm.Session, error) {
 	   recItem.SYSDeletedHost  = get_String(rec, dm.Session_SYSDeletedHost_sql, "")
 	   recItem.SYSDbVersion  = get_String(rec, dm.Session_SYSDbVersion_sql, "")
 	
-	// If there are fields below, create the methods in adaptor\Session_impl.go
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// If there are fields below, create the methods in adaptor\Session_impl.go// 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -348,7 +272,7 @@ func session_Fetch(tsql string) (int, []dm.Session, dm.Session, error) {
 
 func Session_NewID(r dm.Session) string {
 	
-			id := uuid.New().String()
+	id := uuid.New().String()
 	
 	return id
 }
@@ -363,14 +287,12 @@ func Session_New() (int, []dm.Session, dm.Session, error) {
 	
 
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
+	
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-
-
 	rList = append(rList, r)
-
 	return 1, rList, r, nil
 }

@@ -70,21 +70,22 @@ SQL Table Key | **resourceID**
 | :--: | -- | -- |
 | code | **application** | /application/resource_core.go |
 | code | **adaptor** | /dao/resource_adaptor.go_template |
+| code | **validation** | /dao/resource_validation.go_template |
 | code | **api** | /application/resource_api.go |
 | code | **dao** | /dao/resource_core.go |
 | code | **datamodel** | /datamodel/resource_core.go |
 | code | **menu** | /design/menu/resource.json |
-| html | **list** | /Resource_List.html |
-| html | **view** | /Resource_View.html |
-| html | **edit** | /Resource_Edit.html |
-| html | **new** | /Resource_New.html |
+| html | **list** | /ResourceList.html |
+| html | **view** | /ResourceView.html |
+| html | **edit** | /ResourceEdit.html |
+| html | **new** | /ResourceNew.html |
 
 
 ## Audit Information
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **07/02/2023** at **18:52:38**
+Date & Time		     | **15/02/2023** at **10:44:47**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

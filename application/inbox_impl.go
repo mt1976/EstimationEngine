@@ -75,5 +75,6 @@ func Inbox_SendMailSystem(mailto string, mailSubject string, mailContent string)
 	mail.MailContent = mailContent
 	mail.MailSent = time.Now().Format(core.DATETIME)
 
-	return dao.Inbox_StoreSystem(mail)
+	_, err := dao.Inbox_StoreSystem(mail)
+	return err
 }

@@ -8,18 +8,16 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:38
+// Date & Time		    : 15/02/2023 at 10:44:47
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-
 	"fmt"
 	"net/http"
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/google/uuid"
 	das  "github.com/mt1976/ebEstimates/das"
-
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
 )
@@ -33,9 +31,7 @@ func init(){
 
 // ProjectState_GetList() returns a list of all ProjectState records
 func ProjectState_GetList() (int, []dm.ProjectState, error) {
-	
 	count, projectstateList, err := ProjectState_GetListFiltered("")
-	
 	return count, projectstateList, err
 }
 
@@ -89,14 +85,22 @@ func ProjectState_GetByID(id string) (int, dm.ProjectState, error) {
 	tsql = tsql + " " + das.WHERE + dm.ProjectState_SQLSearchID + das.EQ + das.ID(id)
 	_, _, projectstateItem, _ := projectstate_Fetch(tsql)
 
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+
+	projectstateItem = ProjectState_PostGet(projectstateItem,id)
+
 	return 1, projectstateItem, nil
 }
+
+func ProjectState_PostGet(projectstateItem dm.ProjectState,id string) dm.ProjectState {
+	// START
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return projectstateItem
+}
+
 
 
 
@@ -113,19 +117,6 @@ func ProjectState_Delete(id string) {
 	
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 	// ProjectState_SoftDeleteByID() soft deletes a single ProjectState record
 func ProjectState_SoftDelete(id string) {
@@ -134,13 +125,16 @@ func ProjectState_SoftDelete(id string) {
 		projectstateItem.SYSDeletedBy = Audit_Update("", Audit_Host())
 		projectstateItem.SYSDeleted = Audit_Update("", Audit_TimeStamp())
 		projectstateItem.SYSDeletedHost = Audit_Update("", Audit_Host())
-		ProjectState_StoreSystem(projectstateItem)
+		_,err := ProjectState_StoreSystem(projectstateItem)
+		if err != nil {
+			logs.Error("ProjectState_SoftDelete()",err)
+		}
 }
 	
 
 
 // ProjectState_Store() saves/stores a ProjectState record to the database
-func ProjectState_Store(r dm.ProjectState,req *http.Request) error {
+func ProjectState_Store(r dm.ProjectState,req *http.Request) (dm.ProjectState,error) {
 
 	r, err := ProjectState_Validate(r)
 	if err == nil {
@@ -149,11 +143,11 @@ func ProjectState_Store(r dm.ProjectState,req *http.Request) error {
 		logs.Information("ProjectState_Store()", err.Error())
 	}
 
-	return err
+	return r, err
 }
 
 // ProjectState_StoreSystem() saves/stores a ProjectState record to the database
-func ProjectState_StoreSystem(r dm.ProjectState) error {
+func ProjectState_StoreSystem(r dm.ProjectState) (dm.ProjectState,error) {
 	
 	r, err := ProjectState_Validate(r)
 	if err == nil {
@@ -162,17 +156,17 @@ func ProjectState_StoreSystem(r dm.ProjectState) error {
 		logs.Information("ProjectState_Store()", err.Error())
 	}
 
-	return err
+	return r, err
 }
 
 // ProjectState_Validate() validates for saves/stores a ProjectState record to the database
 func ProjectState_Validate(r dm.ProjectState) (dm.ProjectState, error) {
 	var err error
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -186,34 +180,11 @@ func projectstate_Save(r dm.ProjectState,usr string) error {
 
     var err error
 
-
-
-	
-
 	if len(r.ProjectStateID) == 0 {
 		r.ProjectStateID = ProjectState_NewID(r)
 	}
 
 // If there are fields below, create the methods in dao\projectstate_impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
 	r.SYSCreatedHost = Audit_Update(r.SYSCreatedHost,Audit_Host())
@@ -228,7 +199,7 @@ logs.Storing("ProjectState",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.ProjectState_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.ProjectState_ProjectStateID_sql, r.ProjectStateID)
@@ -248,7 +219,7 @@ logs.Storing("ProjectState",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.ProjectState_Notify_sql, r.Notify)
 		
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := das.INSERT + das.INTO + ProjectState_QualifiedName
@@ -281,7 +252,7 @@ func projectstate_Fetch(tsql string) (int, []dm.ProjectState, dm.ProjectState, e
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.ProjectState_SYSId_sql, "0")
 	   recItem.ProjectStateID  = get_String(rec, dm.ProjectState_ProjectStateID_sql, "")
@@ -300,26 +271,8 @@ func projectstate_Fetch(tsql string) (int, []dm.ProjectState, dm.ProjectState, e
 	   recItem.IsLocked  = get_String(rec, dm.ProjectState_IsLocked_sql, "")
 	   recItem.Notify  = get_String(rec, dm.ProjectState_Notify_sql, "")
 	
-	// If there are fields below, create the methods in adaptor\ProjectState_impl.go
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// If there are fields below, create the methods in adaptor\ProjectState_impl.go// 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -334,7 +287,7 @@ func projectstate_Fetch(tsql string) (int, []dm.ProjectState, dm.ProjectState, e
 
 func ProjectState_NewID(r dm.ProjectState) string {
 	
-			id := uuid.New().String()
+	id := uuid.New().String()
 	
 	return id
 }
@@ -349,14 +302,12 @@ func ProjectState_New() (int, []dm.ProjectState, dm.ProjectState, error) {
 	
 
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
+	
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-
-
 	rList = append(rList, r)
-
 	return 1, rList, r, nil
 }

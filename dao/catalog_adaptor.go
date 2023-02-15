@@ -3,7 +3,6 @@ package dao
 import (
 	core "github.com/mt1976/ebEstimates/core"
 	dm "github.com/mt1976/ebEstimates/datamodel"
-	logs "github.com/mt1976/ebEstimates/logs"
 )
 
 // ----------------------------------------------------------------
@@ -50,23 +49,6 @@ func Catalog_Update_impl(id string, rec dm.Catalog, usr string) error { return n
 //
 // Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 // END - Validation API/Callout
-
-func Catalog_ObjectValidation_impl(iAction string, iId string, iRec dm.Catalog) (dm.Catalog, string, error) {
-	logs.Callout("Catalog", "ObjectValidation", VAL+"-"+iAction, iId)
-	switch iAction {
-	case VAL:
-
-	case NEW:
-
-	case PUT:
-
-	case GET:
-
-	default:
-		logs.Warning("Catalog" + " - Invalid Action [" + iAction + "]")
-	}
-	return iRec, "", nil
-}
 
 // Catalog_GetList() returns a list of all API records
 func Catalog_GetList_impl() (int, []dm.Catalog, error) {

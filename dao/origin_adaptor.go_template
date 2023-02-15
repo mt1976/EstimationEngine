@@ -16,7 +16,7 @@ import (
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
 	// Template Generator   : Einsteinium [r5-23.01.23]
-	// Date & Time		    : 07/02/2023 at 18:52:37
+	// Date & Time		    : 15/02/2023 at 10:44:45
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in origin_impl.go
@@ -26,28 +26,7 @@ import (
 
 	// ----------------------------------------------------------------
 	
-	// ----------------------------------------------------------------
-	// Origin_ObjectValidation_impl provides Record/Object level validation for Origin
-	func Origin_ObjectValidation_impl (iAction string, iId string, iRec dm.Origin) (dm.Origin, string, error) {
-		logs.Callout("Origin", "ObjectValidation", VAL +"-"+iAction, iId)
-		switch iAction {
-			case VAL:
-				
-			case NEW:
 
-			case PUT:
-
-			case GET:
-
-			default:
-				logs.Warning("Origin" + " - Invalid Action ["+iAction+"]")
-			}
-		return iRec,"",nil
-	}
-	//
-	// ----------------------------------------------------------------
-	// If there are fields below, create the methods in adaptor\origin_impl.go
-	// These are the the default implementations, which do nothing
 
 	// ----------------------------------------------------------------
 	// BEGIN Origin_StateID
@@ -64,12 +43,6 @@ import (
 	func Origin_StateID_OnFetch_impl (rec dm.Origin)(string) {
 		logs.Callout("Origin", dm.Origin_StateID_scrn, GET, rec.OriginID)
 		return rec.StateID
-	}
-	// ----------------------------------------------------------------
-	// Origin_StateID_impl provides validation/actions for StateID
-	func Origin_StateID_impl (iAction string, iId string, iValue string, iRec dm.Origin, fP dm.FieldProperties) (string, dm.FieldProperties) {
-		logs.Callout("Origin", dm.Origin_StateID_scrn, VAL +"-"+iAction, iId)
-		return iValue,fP
 	}
 	// ----------------------------------------------------------------
 	// END   Origin_StateID
@@ -94,12 +67,6 @@ import (
 		return rec.Code
 	}
 	// ----------------------------------------------------------------
-	// Origin_Code_impl provides validation/actions for Code
-	func Origin_Code_impl (iAction string, iId string, iValue string, iRec dm.Origin, fP dm.FieldProperties) (string, dm.FieldProperties) {
-		logs.Callout("Origin", dm.Origin_Code_scrn, VAL +"-"+iAction, iId)
-		return iValue,fP
-	}
-	// ----------------------------------------------------------------
 	// END   Origin_Code
 	// END   Origin_Code
 	// END   Origin_Code
@@ -120,12 +87,6 @@ import (
 	func Origin_FullName_OnFetch_impl (rec dm.Origin)(string) {
 		logs.Callout("Origin", dm.Origin_FullName_scrn, GET, rec.OriginID)
 		return rec.FullName
-	}
-	// ----------------------------------------------------------------
-	// Origin_FullName_impl provides validation/actions for FullName
-	func Origin_FullName_impl (iAction string, iId string, iValue string, iRec dm.Origin, fP dm.FieldProperties) (string, dm.FieldProperties) {
-		logs.Callout("Origin", dm.Origin_FullName_scrn, VAL +"-"+iAction, iId)
-		return iValue,fP
 	}
 	// ----------------------------------------------------------------
 	// END   Origin_FullName
@@ -150,12 +111,6 @@ import (
 		return rec.Rate
 	}
 	// ----------------------------------------------------------------
-	// Origin_Rate_impl provides validation/actions for Rate
-	func Origin_Rate_impl (iAction string, iId string, iValue string, iRec dm.Origin, fP dm.FieldProperties) (string, dm.FieldProperties) {
-		logs.Callout("Origin", dm.Origin_Rate_scrn, VAL +"-"+iAction, iId)
-		return iValue,fP
-	}
-	// ----------------------------------------------------------------
 	// END   Origin_Rate
 	// END   Origin_Rate
 	// END   Origin_Rate
@@ -176,12 +131,6 @@ import (
 	func Origin_NoActiveProjects_OnFetch_impl (rec dm.Origin)(string) {
 		logs.Callout("Origin", dm.Origin_NoActiveProjects_scrn, GET, rec.OriginID)
 		return rec.NoActiveProjects
-	}
-	// ----------------------------------------------------------------
-	// Origin_NoActiveProjects_impl provides validation/actions for NoActiveProjects
-	func Origin_NoActiveProjects_impl (iAction string, iId string, iValue string, iRec dm.Origin, fP dm.FieldProperties) (string, dm.FieldProperties) {
-		logs.Callout("Origin", dm.Origin_NoActiveProjects_scrn, VAL +"-"+iAction, iId)
-		return iValue,fP
 	}
 	// ----------------------------------------------------------------
 	// END   Origin_NoActiveProjects

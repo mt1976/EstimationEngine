@@ -68,20 +68,21 @@ Store|<ul><li>**Implement in Adaptor**</li><li>func FeatureNew_NewID_impl(rec dm
 | :--: | -- | -- |
 | code | **application** | /application/featureNew_core.go |
 | code | **adaptor** | /dao/featureNew_adaptor.go_template |
+| code | **validation** | /dao/featureNew_validation.go_template |
 | code | **api** | /application/featureNew_api.go |
 | code | **dao** | /dao/featureNew_core.go |
 | code | **datamodel** | /datamodel/featureNew_core.go |
 | code | **menu** | /design/menu/featureNew.json |
-| html | **view** | /FeatureNew_View.html |
-| html | **edit** | /FeatureNew_Edit.html |
-| html | **new** | /FeatureNew_New.html |
+| html | **view** | /FeatureNewView.html |
+| html | **edit** | /FeatureNewEdit.html |
+| html | **new** | /FeatureNewNew.html |
 
 
 ## Audit Information
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **07/02/2023** at **18:52:36**
+Date & Time		     | **15/02/2023** at **10:44:44**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

@@ -9,44 +9,52 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:35
+// Date & Time		    : 15/02/2023 at 10:44:41
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//CredentialsAction defines the datamolde for the CredentialsAction object
+//CredentialsAction defines the datamodel for the CredentialsAction object
 type CredentialsAction struct {
-
-
-ID       string
-ID_props FieldProperties
-User       string
-User_props FieldProperties
-Action       string
-Action_props FieldProperties
-Notes       string
-Notes_props FieldProperties
- // Any lookups will be added below
-User_lookup []Lookup_Item
-Action_lookup []Lookup_Item
-
-
-}
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Field Definitions
+	//
+	ID       string
+	User       string
+	Action       string
+	Notes       string
+	//
+	// Field Properties
+	//
+	ID_props FieldProperties
+	User_props FieldProperties
+	Action_props FieldProperties
+	Notes_props FieldProperties
+	//
+ 	// Any lookups will be added below
+	//
+	User_lookup []Lookup_Item
+	Action_lookup []Lookup_Item
+	}
 
 const (
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
+	CredentialsAction_Name      = "CredentialsAction"
 	CredentialsAction_Title       = "Credentials Actions"
 	CredentialsAction_SQLTable    = "inboxMessages"
 	CredentialsAction_SQLSearchID = "MailId"
 	CredentialsAction_QueryString = "ID"
 	///
-	/// Handler Defintions
+	/// Template Path Defintions
 	///
 	CredentialsAction_Template     = "CredentialsAction"
-	CredentialsAction_TemplateList = "/CredentialsAction/CredentialsAction_List"
-	CredentialsAction_TemplateView = "/CredentialsAction/CredentialsAction_View"
-	CredentialsAction_TemplateEdit = "/CredentialsAction/CredentialsAction_Edit"
-	CredentialsAction_TemplateNew  = "/CredentialsAction/CredentialsAction_New"
+	CredentialsAction_TemplateList = "/CredentialsAction/CredentialsActionList"
+	CredentialsAction_TemplateView = "/CredentialsAction/CredentialsActionView"
+	CredentialsAction_TemplateEdit = "/CredentialsAction/CredentialsActionEdit"
+	CredentialsAction_TemplateNew  = "/CredentialsAction/CredentialsActionNew"
 	///
-	/// Handler Monitor Paths
+	/// URI Handler Paths
 	///
 	CredentialsAction_Path       = "/API/CredentialsAction/"
 	CredentialsAction_PathList   = "/CredentialsActionList/"
@@ -55,40 +63,40 @@ const (
 	CredentialsAction_PathNew    = "/CredentialsActionNew/"
 	CredentialsAction_PathSave   = "/CredentialsActionSave/"
 	CredentialsAction_PathDelete = "/CredentialsActionDelete/"
-	///
+	// Redirects - On Server Side Error
+	CredentialsAction_PathEditException   = "/CredentialsActionEditException/"
+	CredentialsAction_PathNewException    = "/CredentialsActionNewException/"
+	//
 	//CredentialsAction_Redirect provides a page to return to aftern an action
 	CredentialsAction_Redirect = CredentialsAction_PathView
-	///
-	///
-	/// SQL Field Definitions
-	///
+	//
+	//
+	// SQL Field Definitions
+	//
 	CredentialsAction_ID_sql   = "ID" // ID is a String
 	CredentialsAction_User_sql   = "User" // User is a String
 	CredentialsAction_Action_sql   = "Action" // Action is a String
 	CredentialsAction_Notes_sql   = "Notes" // Notes is a String
-
-	/// Definitions End
-	///
+///
 	/// Application Field Definitions
 	///
 	CredentialsAction_ID_scrn   = "ID" // ID is a String
 	CredentialsAction_User_scrn   = "User" // User is a String
 	CredentialsAction_Action_scrn   = "Action" // Action is a String
 	CredentialsAction_Notes_scrn   = "Notes" // Notes is a String
-
-	/// Definitions End
-	///
+///
 )
 
-//credentialsaction_PageList provides the information for the template for a list of CredentialsActions
+//CredentialsAction_PageList provides the information for the template for a list of CredentialsActions
 type CredentialsAction_PageList struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []CredentialsAction
+	// Context & Permisions
 	Context	 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -96,31 +104,21 @@ type CredentialsAction_PageList struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	// Page Data
+	ItemsOnPage 	 int
+	ItemList  		 []CredentialsAction
 }
 
-//credentialsaction_Page provides the information for the template for an individual CredentialsAction
+//CredentialsAction_Page provides the information for the template for an individual CredentialsAction
 type CredentialsAction_Page struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	ID         string
-	ID_props     FieldProperties
-	User         string
-	User_lookup    []Lookup_Item
-	User_props     FieldProperties
-	Action         string
-	Action_lookup    []Lookup_Item
-	Action_props     FieldProperties
-	Notes         string
-	Notes_props     FieldProperties
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+	/// Context & Permisions
 	Context	 		 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -128,4 +126,20 @@ type CredentialsAction_Page struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	/// Fields Definitions
+	ID         string
+	User         string
+	Action         string
+	Notes         string
+	/// Field Properties
+	ID_props     FieldProperties
+	User_props     FieldProperties
+	Action_props     FieldProperties
+	Notes_props     FieldProperties
+	/// Lookups
+	User_lookup    []Lookup_Item
+	Action_lookup    []Lookup_Item
+	
+	/// END OF DEFINITIONS
+	///
 }

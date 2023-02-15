@@ -9,71 +9,68 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:39
+// Date & Time		    : 15/02/2023 at 10:44:48
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//UserRole defines the datamolde for the UserRole object
+//UserRole defines the datamodel for the UserRole object
 type UserRole struct {
-
-
-SYSId       string
-SYSId_props FieldProperties
-Id       string
-Id_props FieldProperties
-Name       string
-Name_props FieldProperties
-SYSCreatedBy       string
-SYSCreatedBy_props FieldProperties
-SYSCreatedHost       string
-SYSCreatedHost_props FieldProperties
-SYSUpdatedBy       string
-SYSUpdatedBy_props FieldProperties
-SYSUpdatedHost       string
-SYSUpdatedHost_props FieldProperties
-SYSUpdated       string
-SYSUpdated_props FieldProperties
-SYSCreated       string
-SYSCreated_props FieldProperties
-SYSDeleted       string
-SYSDeleted_props FieldProperties
-SYSDeletedBy       string
-SYSDeletedBy_props FieldProperties
-SYSDeletedHost       string
-SYSDeletedHost_props FieldProperties
-SYSDbVersion       string
-SYSDbVersion_props FieldProperties
- // Any lookups will be added below
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Field Definitions
+	//
+	SYSId       string
+	Id       string
+	Name       string
+	SYSCreatedBy       string
+	SYSCreatedHost       string
+	SYSUpdatedBy       string
+	SYSUpdatedHost       string
+	SYSUpdated       string
+	SYSCreated       string
+	SYSDeleted       string
+	SYSDeletedBy       string
+	SYSDeletedHost       string
+	SYSDbVersion       string
+	//
+	// Field Properties
+	//
+	SYSId_props FieldProperties
+	Id_props FieldProperties
+	Name_props FieldProperties
+	SYSCreatedBy_props FieldProperties
+	SYSCreatedHost_props FieldProperties
+	SYSUpdatedBy_props FieldProperties
+	SYSUpdatedHost_props FieldProperties
+	SYSUpdated_props FieldProperties
+	SYSCreated_props FieldProperties
+	SYSDeleted_props FieldProperties
+	SYSDeletedBy_props FieldProperties
+	SYSDeletedHost_props FieldProperties
+	SYSDbVersion_props FieldProperties
+	//
+ 	// Any lookups will be added below
+	//
+	}
 
 const (
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
+	UserRole_Name      = "UserRole"
 	UserRole_Title       = "User Roles"
 	UserRole_SQLTable    = "roleStore"
 	UserRole_SQLSearchID = "Id"
 	UserRole_QueryString = "Id"
 	///
-	/// Handler Defintions
+	/// Template Path Defintions
 	///
 	UserRole_Template     = "UserRole"
-	UserRole_TemplateList = "/UserRole/UserRole_List"
-	UserRole_TemplateView = "/UserRole/UserRole_View"
-	UserRole_TemplateEdit = "/UserRole/UserRole_Edit"
-	UserRole_TemplateNew  = "/UserRole/UserRole_New"
+	UserRole_TemplateList = "/UserRole/UserRoleList"
+	UserRole_TemplateView = "/UserRole/UserRoleView"
+	UserRole_TemplateEdit = "/UserRole/UserRoleEdit"
+	UserRole_TemplateNew  = "/UserRole/UserRoleNew"
 	///
-	/// Handler Monitor Paths
+	/// URI Handler Paths
 	///
 	UserRole_Path       = "/API/UserRole/"
 	UserRole_PathList   = "/UserRoleList/"
@@ -82,14 +79,17 @@ const (
 	UserRole_PathNew    = "/UserRoleNew/"
 	UserRole_PathSave   = "/UserRoleSave/"
 	UserRole_PathDelete = "/UserRoleDelete/"
-	///
+	// Redirects - On Server Side Error
+	UserRole_PathEditException   = "/UserRoleEditException/"
+	UserRole_PathNewException    = "/UserRoleNewException/"
+	//
 	//UserRole_Redirect provides a page to return to aftern an action
 	UserRole_Redirect = UserRole_PathList
 	
-	///
-	///
-	/// SQL Field Definitions
-	///
+	//
+	//
+	// SQL Field Definitions
+	//
 	UserRole_SYSId_sql   = "_id" // SYSId is a Int
 	UserRole_Id_sql   = "Id" // Id is a String
 	UserRole_Name_sql   = "Name" // Name is a String
@@ -103,9 +103,7 @@ const (
 	UserRole_SYSDeletedBy_sql   = "_deletedBy" // SYSDeletedBy is a String
 	UserRole_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
 	UserRole_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
-
-	/// Definitions End
-	///
+///
 	/// Application Field Definitions
 	///
 	UserRole_SYSId_scrn   = "SYSId" // SYSId is a Int
@@ -121,20 +119,19 @@ const (
 	UserRole_SYSDeletedBy_scrn   = "SYSDeletedBy" // SYSDeletedBy is a String
 	UserRole_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
 	UserRole_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
-
-	/// Definitions End
-	///
+///
 )
 
-//userrole_PageList provides the information for the template for a list of UserRoles
+//UserRole_PageList provides the information for the template for a list of UserRoles
 type UserRole_PageList struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []UserRole
+	// Context & Permisions
 	Context	 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -142,47 +139,21 @@ type UserRole_PageList struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	// Page Data
+	ItemsOnPage 	 int
+	ItemList  		 []UserRole
 }
 
-//userrole_Page provides the information for the template for an individual UserRole
+//UserRole_Page provides the information for the template for an individual UserRole
 type UserRole_Page struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	SYSId_props     FieldProperties
-	Id         string
-	Id_props     FieldProperties
-	Name         string
-	Name_props     FieldProperties
-	SYSCreatedBy         string
-	SYSCreatedBy_props     FieldProperties
-	SYSCreatedHost         string
-	SYSCreatedHost_props     FieldProperties
-	SYSUpdatedBy         string
-	SYSUpdatedBy_props     FieldProperties
-	SYSUpdatedHost         string
-	SYSUpdatedHost_props     FieldProperties
-	SYSUpdated         string
-	SYSUpdated_props     FieldProperties
-	SYSCreated         string
-	SYSCreated_props     FieldProperties
-	SYSDeleted         string
-	SYSDeleted_props     FieldProperties
-	SYSDeletedBy         string
-	SYSDeletedBy_props     FieldProperties
-	SYSDeletedHost         string
-	SYSDeletedHost_props     FieldProperties
-	SYSDbVersion         string
-	SYSDbVersion_props     FieldProperties
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+	/// Context & Permisions
 	Context	 		 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -190,4 +161,36 @@ type UserRole_Page struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	/// Fields Definitions
+	SYSId         string
+	Id         string
+	Name         string
+	SYSCreatedBy         string
+	SYSCreatedHost         string
+	SYSUpdatedBy         string
+	SYSUpdatedHost         string
+	SYSUpdated         string
+	SYSCreated         string
+	SYSDeleted         string
+	SYSDeletedBy         string
+	SYSDeletedHost         string
+	SYSDbVersion         string
+	/// Field Properties
+	SYSId_props     FieldProperties
+	Id_props     FieldProperties
+	Name_props     FieldProperties
+	SYSCreatedBy_props     FieldProperties
+	SYSCreatedHost_props     FieldProperties
+	SYSUpdatedBy_props     FieldProperties
+	SYSUpdatedHost_props     FieldProperties
+	SYSUpdated_props     FieldProperties
+	SYSCreated_props     FieldProperties
+	SYSDeleted_props     FieldProperties
+	SYSDeletedBy_props     FieldProperties
+	SYSDeletedHost_props     FieldProperties
+	SYSDbVersion_props     FieldProperties
+	/// Lookups
+	
+	/// END OF DEFINITIONS
+	///
 }

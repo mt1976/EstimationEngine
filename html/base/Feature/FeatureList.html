@@ -1,0 +1,225 @@
+{{template "header" .}}
+<link rel="stylesheet" type="text/css" href="/assets/DataTables/datatables.min.css"/>
+{{template "bodydefinition" .}}
+
+      <div class="card">
+       
+            <div class="card-header font-weight-bold" style="padding-bottom:0;">
+              <div class="row d-flex align-items-center">
+                <div class="col d-flex align-items-center"><h3><i class="fas fa-tasks me-2"></i>{{.Title}}</h3></div>
+                <div class="col d-flex justify-content-end">
+                  <form action="/home" method="GET">
+                    <div class="btn-group" id="ActionButtonGroup">
+                    <button type="submit" value="" class="btn btn-primary" formaction="/FeatureNew" method="GET" title="Create a new Feature"><i class="fas fa-plus me-2"></i>New</button>
+                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="card-body">
+             
+                           
+                    <table id="DataTable" class="table table-hover table-responsive" style="width:100%">
+                      <thead class="table-light">
+                        <tr style="background-color:red;">
+                          
+                          
+                          <th class="text-center">EstimationSessionID</th>
+                          <th class="text-center">ConfidenceID</th>
+                          <th class="text-center">Name</th>
+                          <th class="text-center">DevEstimate</th>
+                          <th class="text-center">DevUplift</th>
+                          <th class="text-center">Reqs</th>
+                          <th class="text-center">AnalystTest</th>
+                          <th class="text-center">Docs</th>
+                          <th class="text-center">Mgt</th>
+                          <th class="text-center">UatSupport</th>
+                          <th class="text-center">Marketing</th>
+                          <th class="text-center">Contingency</th>
+                          <th class="text-center">TrackerID</th>
+                          <th class="text-center">AdoID</th>
+                          <th class="text-center">FreshdeskID</th>
+                          <th class="text-center">ExtRef</th>
+                          <th class="text-center">ExtRef2</th>
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <th class="text-center">Developer</th>
+                          <th class="text-center">Approver</th>
+                          <th class="text-center">Notes</th>
+                          <th class="text-center">OffProfile</th>
+                          <th class="text-center">OffProfileJustification</th>
+                          
+                          <th class="text-center">DfReqs</th>
+                          <th class="text-center">DfAnalystTest</th>
+                          <th class="text-center">DfDocs</th>
+                          <th class="text-center">Dfmgt</th>
+                          <th class="text-center">DfuatSupport</th>
+                          <th class="text-center">Dfmarketing</th>
+                          <th class="text-center">Dfcontingency</th>
+                          <th class="text-center">DfdevUplift</th>
+                          <th class="text-center">Total</th>
+                          
+                          <th class="text-center">Comments</th>
+                          <th class="text-center">Description</th>
+                          <th class="text-center">Analyst</th>
+                          <th class="text-center">ProductManager</th>
+                          <th class="text-center">ProjectManager</th>
+                          <th class="text-center">Training</th>
+                          <th class="text-center">DfTraining</th>
+                          <th class="text-center">DefaultProfile</th>
+                          <th class="text-center">ActualProfile</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </thead>
+                      <tbody id="filterTable">
+                        {{range .ItemList}}
+                        <tr>
+                          
+                          
+                          <td class="align-middle" >{{.EstimationSessionID}}</td>
+                          <td class="align-middle" >{{.ConfidenceID}}</td>
+                          <td class="align-middle" >{{.Name}}</td>
+                          <td class="align-middle" >{{.DevEstimate}}</td>
+                          <td class="align-middle" >{{.DevUplift}}</td>
+                          <td class="align-middle" >{{.Reqs}}</td>
+                          <td class="align-middle" >{{.AnalystTest}}</td>
+                          <td class="align-middle" >{{.Docs}}</td>
+                          <td class="align-middle" >{{.Mgt}}</td>
+                          <td class="align-middle" >{{.UatSupport}}</td>
+                          <td class="align-middle" >{{.Marketing}}</td>
+                          <td class="align-middle" >{{.Contingency}}</td>
+                          <td class="align-middle" >{{.TrackerID}}</td>
+                          <td class="align-middle" >{{.AdoID}}</td>
+                          <td class="align-middle" >{{.FreshdeskID}}</td>
+                          <td class="align-middle" >{{.ExtRef}}</td>
+                          <td class="align-middle" >{{.ExtRef2}}</td>
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <td class="align-middle" >{{.Developer}}</td>
+                          <td class="align-middle" >{{.Approver}}</td>
+                          <td class="align-middle" >{{.Notes}}</td>
+                          <td class="align-middle" >{{.OffProfile}}</td>
+                          <td class="align-middle" >{{.OffProfileJustification}}</td>
+                          
+                          <td class="align-middle" >{{.DfReqs}}</td>
+                          <td class="align-middle" >{{.DfAnalystTest}}</td>
+                          <td class="align-middle" >{{.DfDocs}}</td>
+                          <td class="align-middle" >{{.Dfmgt}}</td>
+                          <td class="align-middle" >{{.DfuatSupport}}</td>
+                          <td class="align-middle" >{{.Dfmarketing}}</td>
+                          <td class="align-middle" >{{.Dfcontingency}}</td>
+                          <td class="align-middle" >{{.DfdevUplift}}</td>
+                          <td class="align-middle" >{{.Total}}</td>
+                          
+                          <td class="align-middle" >{{.Comments}}</td>
+                          <td class="align-middle" >{{.Description}}</td>
+                          <td class="align-middle" >{{.Analyst}}</td>
+                          <td class="align-middle" >{{.ProductManager}}</td>
+                          <td class="align-middle" >{{.ProjectManager}}</td>
+                          <td class="align-middle" >{{.Training}}</td>
+                          <td class="align-middle" >{{.DfTraining}}</td>
+                          <td class="align-middle" >{{.DefaultProfile}}</td>
+                          <td class="align-middle" >{{.ActualProfile}}</td>
+                          
+                          <td class="align-middle text-center" style="width:1px;padding:0px;padding-top:1rem;">
+                              <form action="/home" method="POST" class="d-flex justify-content-center">
+                                  <div class="btn-group" id="ActionButtonGroup2">
+                                    <button type="submit" value="" class="btn btn-sm btn-info " formaction="/FeatureView?FeatureID={{.FeatureID}}" method="POST" title="View Feature"><i class="far fa-eye"></i>View</button>
+                                    <button type="submit" value="" class="btn btn-sm btn-warning " formaction="/FeatureEdit?FeatureID={{.FeatureID}}" method="POST" title="Edit Feature"><i class="fas fa-edit"></i>Edit</button>
+                                    
+                                  </div>
+                                </form>
+                          </td>
+                        </tr>
+                        {{end}}
+                      </tbody>
+                       <tfoot class="table-light">
+                        <tr style="background-color:red;">
+                          
+                          
+                          <th class="text-center">EstimationSessionID</th>
+                          <th class="text-center">ConfidenceID</th>
+                          <th class="text-center">Name</th>
+                          <th class="text-center">DevEstimate</th>
+                          <th class="text-center">DevUplift</th>
+                          <th class="text-center">Reqs</th>
+                          <th class="text-center">AnalystTest</th>
+                          <th class="text-center">Docs</th>
+                          <th class="text-center">Mgt</th>
+                          <th class="text-center">UatSupport</th>
+                          <th class="text-center">Marketing</th>
+                          <th class="text-center">Contingency</th>
+                          <th class="text-center">TrackerID</th>
+                          <th class="text-center">AdoID</th>
+                          <th class="text-center">FreshdeskID</th>
+                          <th class="text-center">ExtRef</th>
+                          <th class="text-center">ExtRef2</th>
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <th class="text-center">Developer</th>
+                          <th class="text-center">Approver</th>
+                          <th class="text-center">Notes</th>
+                          <th class="text-center">OffProfile</th>
+                          <th class="text-center">OffProfileJustification</th>
+                          
+                          <th class="text-center">DfReqs</th>
+                          <th class="text-center">DfAnalystTest</th>
+                          <th class="text-center">DfDocs</th>
+                          <th class="text-center">Dfmgt</th>
+                          <th class="text-center">DfuatSupport</th>
+                          <th class="text-center">Dfmarketing</th>
+                          <th class="text-center">Dfcontingency</th>
+                          <th class="text-center">DfdevUplift</th>
+                          <th class="text-center">Total</th>
+                          
+                          <th class="text-center">Comments</th>
+                          <th class="text-center">Description</th>
+                          <th class="text-center">Analyst</th>
+                          <th class="text-center">ProductManager</th>
+                          <th class="text-center">ProjectManager</th>
+                          <th class="text-center">Training</th>
+                          <th class="text-center">DfTraining</th>
+                          <th class="text-center">DefaultProfile</th>
+                          <th class="text-center">ActualProfile</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </tfoot>
+                    </table>
+            
+
+            </div>
+        </form>
+      </div>
+
+
+
+
+{{template "userfooter" .}}
+{{template "exportcontrols" .}}
+{{template "tablecontrols" .}}
+{{template "pagefooter" .}}

@@ -2,7 +2,6 @@ package dao
 
 import (
 	dm "github.com/mt1976/ebEstimates/datamodel"
-	logs "github.com/mt1976/ebEstimates/logs"
 )
 
 // ----------------------------------------------------------------
@@ -58,20 +57,3 @@ func EstimationSessionAction_Update_impl(id string, rec dm.EstimationSessionActi
 //
 // Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 // END - Validation API/Callout
-
-func EstimationSessionAction_ObjectValidation_impl(iAction string, iId string, iRec dm.EstimationSessionAction) (dm.EstimationSessionAction, string, error) {
-	logs.Callout("EstimationSessionAction", "ObjectValidation", VAL+"-"+iAction, iId)
-	switch iAction {
-	case VAL:
-
-	case NEW:
-
-	case PUT:
-
-	case GET:
-
-	default:
-		logs.Warning("EstimationSessionAction" + " - Invalid Action [" + iAction + "]")
-	}
-	return iRec, "", nil
-}

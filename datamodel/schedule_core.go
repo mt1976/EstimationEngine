@@ -9,92 +9,82 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:39
+// Date & Time		    : 15/02/2023 at 10:44:47
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Schedule defines the datamolde for the Schedule object
+//Schedule defines the datamodel for the Schedule object
 type Schedule struct {
-
-
-SYSId       string
-SYSId_props FieldProperties
-Id       string
-Id_props FieldProperties
-Name       string
-Name_props FieldProperties
-Description       string
-Description_props FieldProperties
-Schedule       string
-Schedule_props FieldProperties
-Started       string
-Started_props FieldProperties
-Lastrun       string
-Lastrun_props FieldProperties
-Message       string
-Message_props FieldProperties
-Type       string
-Type_props FieldProperties
-Human       string
-Human_props FieldProperties
-SYSCreated       string
-SYSCreated_props FieldProperties
-SYSCreatedBy       string
-SYSCreatedBy_props FieldProperties
-SYSCreatedHost       string
-SYSCreatedHost_props FieldProperties
-SYSUpdated       string
-SYSUpdated_props FieldProperties
-SYSUpdatedBy       string
-SYSUpdatedBy_props FieldProperties
-SYSUpdatedHost       string
-SYSUpdatedHost_props FieldProperties
-SYSDeleted       string
-SYSDeleted_props FieldProperties
-SYSDeletedBy       string
-SYSDeletedBy_props FieldProperties
-SYSDeletedHost       string
-SYSDeletedHost_props FieldProperties
-SYSDbVersion       string
-SYSDbVersion_props FieldProperties
- // Any lookups will be added below
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Field Definitions
+	//
+	SYSId       string
+	Id       string
+	Name       string
+	Description       string
+	Schedule       string
+	Started       string
+	Lastrun       string
+	Message       string
+	Type       string
+	Human       string
+	SYSCreated       string
+	SYSCreatedBy       string
+	SYSCreatedHost       string
+	SYSUpdated       string
+	SYSUpdatedBy       string
+	SYSUpdatedHost       string
+	SYSDeleted       string
+	SYSDeletedBy       string
+	SYSDeletedHost       string
+	SYSDbVersion       string
+	//
+	// Field Properties
+	//
+	SYSId_props FieldProperties
+	Id_props FieldProperties
+	Name_props FieldProperties
+	Description_props FieldProperties
+	Schedule_props FieldProperties
+	Started_props FieldProperties
+	Lastrun_props FieldProperties
+	Message_props FieldProperties
+	Type_props FieldProperties
+	Human_props FieldProperties
+	SYSCreated_props FieldProperties
+	SYSCreatedBy_props FieldProperties
+	SYSCreatedHost_props FieldProperties
+	SYSUpdated_props FieldProperties
+	SYSUpdatedBy_props FieldProperties
+	SYSUpdatedHost_props FieldProperties
+	SYSDeleted_props FieldProperties
+	SYSDeletedBy_props FieldProperties
+	SYSDeletedHost_props FieldProperties
+	SYSDbVersion_props FieldProperties
+	//
+ 	// Any lookups will be added below
+	//
+	}
 
 const (
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
+	Schedule_Name      = "Schedule"
 	Schedule_Title       = "Scheduler"
 	Schedule_SQLTable    = "scheduleStore"
 	Schedule_SQLSearchID = "id"
 	Schedule_QueryString = "Schedule"
 	///
-	/// Handler Defintions
+	/// Template Path Defintions
 	///
 	Schedule_Template     = "Schedule"
-	Schedule_TemplateList = "/Schedule/Schedule_List"
-	Schedule_TemplateView = "/Schedule/Schedule_View"
-	Schedule_TemplateEdit = "/Schedule/Schedule_Edit"
-	Schedule_TemplateNew  = "/Schedule/Schedule_New"
+	Schedule_TemplateList = "/Schedule/ScheduleList"
+	Schedule_TemplateView = "/Schedule/ScheduleView"
+	Schedule_TemplateEdit = "/Schedule/ScheduleEdit"
+	Schedule_TemplateNew  = "/Schedule/ScheduleNew"
 	///
-	/// Handler Monitor Paths
+	/// URI Handler Paths
 	///
 	Schedule_Path       = "/API/Schedule/"
 	Schedule_PathList   = "/ScheduleList/"
@@ -103,14 +93,17 @@ const (
 	Schedule_PathNew    = "/ScheduleNew/"
 	Schedule_PathSave   = "/ScheduleSave/"
 	Schedule_PathDelete = "/ScheduleDelete/"
-	///
+	// Redirects - On Server Side Error
+	Schedule_PathEditException   = "/ScheduleEditException/"
+	Schedule_PathNewException    = "/ScheduleNewException/"
+	//
 	//Schedule_Redirect provides a page to return to aftern an action
 	Schedule_Redirect = Schedule_PathList
 	
-	///
-	///
-	/// SQL Field Definitions
-	///
+	//
+	//
+	// SQL Field Definitions
+	//
 	Schedule_SYSId_sql   = "_id" // SYSId is a Int
 	Schedule_Id_sql   = "id" // Id is a String
 	Schedule_Name_sql   = "name" // Name is a String
@@ -131,9 +124,7 @@ const (
 	Schedule_SYSDeletedBy_sql   = "_deletedBy" // SYSDeletedBy is a String
 	Schedule_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
 	Schedule_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
-
-	/// Definitions End
-	///
+///
 	/// Application Field Definitions
 	///
 	Schedule_SYSId_scrn   = "SYSId" // SYSId is a Int
@@ -156,20 +147,19 @@ const (
 	Schedule_SYSDeletedBy_scrn   = "SYSDeletedBy" // SYSDeletedBy is a String
 	Schedule_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
 	Schedule_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
-
-	/// Definitions End
-	///
+///
 )
 
-//schedule_PageList provides the information for the template for a list of Schedules
+//Schedule_PageList provides the information for the template for a list of Schedules
 type Schedule_PageList struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []Schedule
+	// Context & Permisions
 	Context	 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -177,61 +167,21 @@ type Schedule_PageList struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	// Page Data
+	ItemsOnPage 	 int
+	ItemList  		 []Schedule
 }
 
-//schedule_Page provides the information for the template for an individual Schedule
+//Schedule_Page provides the information for the template for an individual Schedule
 type Schedule_Page struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	SYSId_props     FieldProperties
-	Id         string
-	Id_props     FieldProperties
-	Name         string
-	Name_props     FieldProperties
-	Description         string
-	Description_props     FieldProperties
-	Schedule         string
-	Schedule_props     FieldProperties
-	Started         string
-	Started_props     FieldProperties
-	Lastrun         string
-	Lastrun_props     FieldProperties
-	Message         string
-	Message_props     FieldProperties
-	Type         string
-	Type_props     FieldProperties
-	Human         string
-	Human_props     FieldProperties
-	SYSCreated         string
-	SYSCreated_props     FieldProperties
-	SYSCreatedBy         string
-	SYSCreatedBy_props     FieldProperties
-	SYSCreatedHost         string
-	SYSCreatedHost_props     FieldProperties
-	SYSUpdated         string
-	SYSUpdated_props     FieldProperties
-	SYSUpdatedBy         string
-	SYSUpdatedBy_props     FieldProperties
-	SYSUpdatedHost         string
-	SYSUpdatedHost_props     FieldProperties
-	SYSDeleted         string
-	SYSDeleted_props     FieldProperties
-	SYSDeletedBy         string
-	SYSDeletedBy_props     FieldProperties
-	SYSDeletedHost         string
-	SYSDeletedHost_props     FieldProperties
-	SYSDbVersion         string
-	SYSDbVersion_props     FieldProperties
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+	/// Context & Permisions
 	Context	 		 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -239,4 +189,50 @@ type Schedule_Page struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	/// Fields Definitions
+	SYSId         string
+	Id         string
+	Name         string
+	Description         string
+	Schedule         string
+	Started         string
+	Lastrun         string
+	Message         string
+	Type         string
+	Human         string
+	SYSCreated         string
+	SYSCreatedBy         string
+	SYSCreatedHost         string
+	SYSUpdated         string
+	SYSUpdatedBy         string
+	SYSUpdatedHost         string
+	SYSDeleted         string
+	SYSDeletedBy         string
+	SYSDeletedHost         string
+	SYSDbVersion         string
+	/// Field Properties
+	SYSId_props     FieldProperties
+	Id_props     FieldProperties
+	Name_props     FieldProperties
+	Description_props     FieldProperties
+	Schedule_props     FieldProperties
+	Started_props     FieldProperties
+	Lastrun_props     FieldProperties
+	Message_props     FieldProperties
+	Type_props     FieldProperties
+	Human_props     FieldProperties
+	SYSCreated_props     FieldProperties
+	SYSCreatedBy_props     FieldProperties
+	SYSCreatedHost_props     FieldProperties
+	SYSUpdated_props     FieldProperties
+	SYSUpdatedBy_props     FieldProperties
+	SYSUpdatedHost_props     FieldProperties
+	SYSDeleted_props     FieldProperties
+	SYSDeletedBy_props     FieldProperties
+	SYSDeletedHost_props     FieldProperties
+	SYSDbVersion_props     FieldProperties
+	/// Lookups
+	
+	/// END OF DEFINITIONS
+	///
 }

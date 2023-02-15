@@ -54,20 +54,3 @@ func ProjectAction_NoEstimationSessions_impl(iAction string, iId string, iValue 
 //
 // Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 // END - Validation API/Callout
-
-func ProjectAction_ObjectValidation_impl(iAction string, iId string, iRec dm.ProjectAction) (dm.ProjectAction, string, error) {
-	logs.Callout("ProjectAction", "ObjectValidation", VAL+"-"+iAction, iId)
-	switch iAction {
-	case VAL:
-
-	case NEW:
-
-	case PUT:
-
-	case GET:
-
-	default:
-		logs.Warning("ProjectAction" + " - Invalid Action [" + iAction + "]")
-	}
-	return iRec, "", nil
-}

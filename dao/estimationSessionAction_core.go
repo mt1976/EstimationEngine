@@ -8,18 +8,16 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:36
+// Date & Time		    : 15/02/2023 at 10:44:43
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-
 	"fmt"
 	"net/http"
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/google/uuid"
 	das  "github.com/mt1976/ebEstimates/das"
-
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
 )
@@ -33,9 +31,7 @@ func init(){
 
 // EstimationSessionAction_GetList() returns a list of all EstimationSessionAction records
 func EstimationSessionAction_GetList() (int, []dm.EstimationSessionAction, error) {
-	
 	count, estimationsessionactionList, err := EstimationSessionAction_GetListFiltered("")
-	
 	return count, estimationsessionactionList, err
 }
 
@@ -55,14 +51,22 @@ func EstimationSessionAction_GetByID(id string) (int, dm.EstimationSessionAction
 
 	 _, estimationsessionactionItem, _ := EstimationSessionAction_GetByID_impl(id)
 	
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+
+	estimationsessionactionItem = EstimationSessionAction_PostGet(estimationsessionactionItem,id)
+
 	return 1, estimationsessionactionItem, nil
 }
+
+func EstimationSessionAction_PostGet(estimationsessionactionItem dm.EstimationSessionAction,id string) dm.EstimationSessionAction {
+	// START
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return estimationsessionactionItem
+}
+
 
 
 
@@ -75,24 +79,11 @@ func EstimationSessionAction_Delete(id string) {
 	
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
 // EstimationSessionAction_Store() saves/stores a EstimationSessionAction record to the database
-func EstimationSessionAction_Store(r dm.EstimationSessionAction,req *http.Request) error {
+func EstimationSessionAction_Store(r dm.EstimationSessionAction,req *http.Request) (dm.EstimationSessionAction,error) {
 
 	r, err := EstimationSessionAction_Validate(r)
 	if err == nil {
@@ -101,11 +92,11 @@ func EstimationSessionAction_Store(r dm.EstimationSessionAction,req *http.Reques
 		logs.Information("EstimationSessionAction_Store()", err.Error())
 	}
 
-	return err
+	return r, err
 }
 
 // EstimationSessionAction_StoreSystem() saves/stores a EstimationSessionAction record to the database
-func EstimationSessionAction_StoreSystem(r dm.EstimationSessionAction) error {
+func EstimationSessionAction_StoreSystem(r dm.EstimationSessionAction) (dm.EstimationSessionAction,error) {
 	
 	r, err := EstimationSessionAction_Validate(r)
 	if err == nil {
@@ -114,17 +105,17 @@ func EstimationSessionAction_StoreSystem(r dm.EstimationSessionAction) error {
 		logs.Information("EstimationSessionAction_Store()", err.Error())
 	}
 
-	return err
+	return r, err
 }
 
 // EstimationSessionAction_Validate() validates for saves/stores a EstimationSessionAction record to the database
 func EstimationSessionAction_Validate(r dm.EstimationSessionAction) (dm.EstimationSessionAction, error) {
 	var err error
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -138,22 +129,11 @@ func estimationsessionaction_Save(r dm.EstimationSessionAction,usr string) error
 
     var err error
 
-
-
-	
-
 	if len(r.ID) == 0 {
 		r.ID = EstimationSessionAction_NewID(r)
 	}
 
 // If there are fields below, create the methods in dao\estimationsessionaction_impl.go
-
-
-
-
-
-
-	
 logs.Storing("EstimationSessionAction",fmt.Sprintf("%v", r))
 
 // Please Create Functions Below in the adaptor/EstimationSessionAction_impl.go file
@@ -173,13 +153,13 @@ logs.Storing("EstimationSessionAction",fmt.Sprintf("%v", r))
 
 
 
-// estimationsessionaction_Fetch is not required as GetByID, GetAll etc... have been diverted to _impl
+	// estimationsessionaction_Fetch is not required as GetByID, GetAll etc... have been diverted to _impl
 	
 
 
 func EstimationSessionAction_NewID(r dm.EstimationSessionAction) string {
 	
-			id := uuid.New().String()
+	id := uuid.New().String()
 	
 	return id
 }
@@ -194,14 +174,12 @@ func EstimationSessionAction_New() (int, []dm.EstimationSessionAction, dm.Estima
 	
 
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
+	
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-
-
 	rList = append(rList, r)
-
 	return 1, rList, r, nil
 }

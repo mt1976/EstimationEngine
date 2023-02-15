@@ -66,21 +66,22 @@ SQL Table Key | **estimationStateID**
 | :--: | -- | -- |
 | code | **application** | /application/estimationState_core.go |
 | code | **adaptor** | /dao/estimationState_adaptor.go_template |
+| code | **validation** | /dao/estimationState_validation.go_template |
 | code | **api** | /application/estimationState_api.go |
 | code | **dao** | /dao/estimationState_core.go |
 | code | **datamodel** | /datamodel/estimationState_core.go |
 | code | **menu** | /design/menu/estimationState.json |
-| html | **list** | /EstimationState_List.html |
-| html | **view** | /EstimationState_View.html |
-| html | **edit** | /EstimationState_Edit.html |
-| html | **new** | /EstimationState_New.html |
+| html | **list** | /EstimationStateList.html |
+| html | **view** | /EstimationStateView.html |
+| html | **edit** | /EstimationStateEdit.html |
+| html | **new** | /EstimationStateNew.html |
 
 
 ## Audit Information
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **07/02/2023** at **18:52:36**
+Date & Time		     | **15/02/2023** at **10:44:43**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

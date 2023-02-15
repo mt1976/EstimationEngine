@@ -9,110 +9,97 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:34
+// Date & Time		    : 15/02/2023 at 10:44:41
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Credentials defines the datamolde for the Credentials object
+//Credentials defines the datamodel for the Credentials object
 type Credentials struct {
-
-
-SYSId       string
-SYSId_props FieldProperties
-Id       string
-Id_props FieldProperties
-Username       string
-Username_props FieldProperties
-Password       string
-Password_props FieldProperties
-Firstname       string
-Firstname_props FieldProperties
-Lastname       string
-Lastname_props FieldProperties
-Knownas       string
-Knownas_props FieldProperties
-Email       string
-Email_props FieldProperties
-Issued       string
-Issued_props FieldProperties
-Expiry       string
-Expiry_props FieldProperties
-RoleType       string
-RoleType_props FieldProperties
-Brand       string
-Brand_props FieldProperties
-SYSCreated       string
-SYSCreated_props FieldProperties
-SYSUpdated       string
-SYSUpdated_props FieldProperties
-SYSCreatedBy       string
-SYSCreatedBy_props FieldProperties
-SYSCreatedHost       string
-SYSCreatedHost_props FieldProperties
-SYSUpdatedBy       string
-SYSUpdatedBy_props FieldProperties
-SYSUpdatedHost       string
-SYSUpdatedHost_props FieldProperties
-State       string
-State_props FieldProperties
-Notes       string
-Notes_props FieldProperties
-SYSDeleted       string
-SYSDeleted_props FieldProperties
-SYSDeletedBy       string
-SYSDeletedBy_props FieldProperties
-SYSDeletedHost       string
-SYSDeletedHost_props FieldProperties
-SYSActivity       string
-SYSActivity_props FieldProperties
-SYSDbVersion       string
-SYSDbVersion_props FieldProperties
-EmailNotifications       string
-EmailNotifications_props FieldProperties
- // Any lookups will be added below
-
-
-
-
-
-
-
-
-
-RoleType_lookup []Lookup_Item
-
-
-
-
-
-
-
-State_lookup []Lookup_Item
-
-
-
-
-
-
-EmailNotifications_lookup []Lookup_Item
-
-}
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Field Definitions
+	//
+	SYSId       string
+	Id       string
+	Username       string
+	Password       string
+	Firstname       string
+	Lastname       string
+	Knownas       string
+	Email       string
+	Issued       string
+	Expiry       string
+	RoleType       string
+	Brand       string
+	SYSCreated       string
+	SYSUpdated       string
+	SYSCreatedBy       string
+	SYSCreatedHost       string
+	SYSUpdatedBy       string
+	SYSUpdatedHost       string
+	State       string
+	Notes       string
+	SYSDeleted       string
+	SYSDeletedBy       string
+	SYSDeletedHost       string
+	SYSActivity       string
+	SYSDbVersion       string
+	EmailNotifications       string
+	//
+	// Field Properties
+	//
+	SYSId_props FieldProperties
+	Id_props FieldProperties
+	Username_props FieldProperties
+	Password_props FieldProperties
+	Firstname_props FieldProperties
+	Lastname_props FieldProperties
+	Knownas_props FieldProperties
+	Email_props FieldProperties
+	Issued_props FieldProperties
+	Expiry_props FieldProperties
+	RoleType_props FieldProperties
+	Brand_props FieldProperties
+	SYSCreated_props FieldProperties
+	SYSUpdated_props FieldProperties
+	SYSCreatedBy_props FieldProperties
+	SYSCreatedHost_props FieldProperties
+	SYSUpdatedBy_props FieldProperties
+	SYSUpdatedHost_props FieldProperties
+	State_props FieldProperties
+	Notes_props FieldProperties
+	SYSDeleted_props FieldProperties
+	SYSDeletedBy_props FieldProperties
+	SYSDeletedHost_props FieldProperties
+	SYSActivity_props FieldProperties
+	SYSDbVersion_props FieldProperties
+	EmailNotifications_props FieldProperties
+	//
+ 	// Any lookups will be added below
+	//
+	RoleType_lookup []Lookup_Item
+	State_lookup []Lookup_Item
+	EmailNotifications_lookup []Lookup_Item
+	}
 
 const (
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
+	Credentials_Name      = "Credentials"
 	Credentials_Title       = "Credentials"
 	Credentials_SQLTable    = "credentialsStore"
 	Credentials_SQLSearchID = "id"
 	Credentials_QueryString = "Id"
 	///
-	/// Handler Defintions
+	/// Template Path Defintions
 	///
 	Credentials_Template     = "Credentials"
-	Credentials_TemplateList = "/Credentials/Credentials_List"
-	Credentials_TemplateView = "/Credentials/Credentials_View"
-	Credentials_TemplateEdit = "/Credentials/Credentials_Edit"
-	Credentials_TemplateNew  = "/Credentials/Credentials_New"
+	Credentials_TemplateList = "/Credentials/CredentialsList"
+	Credentials_TemplateView = "/Credentials/CredentialsView"
+	Credentials_TemplateEdit = "/Credentials/CredentialsEdit"
+	Credentials_TemplateNew  = "/Credentials/CredentialsNew"
 	///
-	/// Handler Monitor Paths
+	/// URI Handler Paths
 	///
 	Credentials_Path       = "/API/Credentials/"
 	Credentials_PathList   = "/CredentialsList/"
@@ -121,14 +108,17 @@ const (
 	Credentials_PathNew    = "/CredentialsNew/"
 	Credentials_PathSave   = "/CredentialsSave/"
 	Credentials_PathDelete = "/CredentialsDelete/"
-	///
+	// Redirects - On Server Side Error
+	Credentials_PathEditException   = "/CredentialsEditException/"
+	Credentials_PathNewException    = "/CredentialsNewException/"
+	//
 	//Credentials_Redirect provides a page to return to aftern an action
 	Credentials_Redirect = Credentials_PathList
 	
-	///
-	///
-	/// SQL Field Definitions
-	///
+	//
+	//
+	// SQL Field Definitions
+	//
 	Credentials_SYSId_sql   = "_id" // SYSId is a Int
 	Credentials_Id_sql   = "Id" // Id is a String
 	Credentials_Username_sql   = "Username" // Username is a String
@@ -155,9 +145,7 @@ const (
 	Credentials_SYSActivity_sql   = "_activity" // SYSActivity is a String
 	Credentials_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
 	Credentials_EmailNotifications_sql   = "emailNotifications" // EmailNotifications is a String
-
-	/// Definitions End
-	///
+///
 	/// Application Field Definitions
 	///
 	Credentials_SYSId_scrn   = "SYSId" // SYSId is a Int
@@ -186,20 +174,19 @@ const (
 	Credentials_SYSActivity_scrn   = "SYSActivity" // SYSActivity is a String
 	Credentials_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
 	Credentials_EmailNotifications_scrn   = "EmailNotifications" // EmailNotifications is a String
-
-	/// Definitions End
-	///
+///
 )
 
-//credentials_PageList provides the information for the template for a list of Credentialss
+//Credentials_PageList provides the information for the template for a list of Credentialss
 type Credentials_PageList struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []Credentials
+	// Context & Permisions
 	Context	 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -207,76 +194,21 @@ type Credentials_PageList struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	// Page Data
+	ItemsOnPage 	 int
+	ItemList  		 []Credentials
 }
 
-//credentials_Page provides the information for the template for an individual Credentials
+//Credentials_Page provides the information for the template for an individual Credentials
 type Credentials_Page struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	SYSId_props     FieldProperties
-	Id         string
-	Id_props     FieldProperties
-	Username         string
-	Username_props     FieldProperties
-	Password         string
-	Password_props     FieldProperties
-	Firstname         string
-	Firstname_props     FieldProperties
-	Lastname         string
-	Lastname_props     FieldProperties
-	Knownas         string
-	Knownas_props     FieldProperties
-	Email         string
-	Email_props     FieldProperties
-	Issued         string
-	Issued_props     FieldProperties
-	Expiry         string
-	Expiry_props     FieldProperties
-	RoleType         string
-	RoleType_lookup    []Lookup_Item
-	RoleType_props     FieldProperties
-	Brand         string
-	Brand_props     FieldProperties
-	SYSCreated         string
-	SYSCreated_props     FieldProperties
-	SYSUpdated         string
-	SYSUpdated_props     FieldProperties
-	SYSCreatedBy         string
-	SYSCreatedBy_props     FieldProperties
-	SYSCreatedHost         string
-	SYSCreatedHost_props     FieldProperties
-	SYSUpdatedBy         string
-	SYSUpdatedBy_props     FieldProperties
-	SYSUpdatedHost         string
-	SYSUpdatedHost_props     FieldProperties
-	State         string
-	State_lookup    []Lookup_Item
-	State_props     FieldProperties
-	Notes         string
-	Notes_props     FieldProperties
-	SYSDeleted         string
-	SYSDeleted_props     FieldProperties
-	SYSDeletedBy         string
-	SYSDeletedBy_props     FieldProperties
-	SYSDeletedHost         string
-	SYSDeletedHost_props     FieldProperties
-	SYSActivity         string
-	SYSActivity_props     FieldProperties
-	SYSDbVersion         string
-	SYSDbVersion_props     FieldProperties
-	EmailNotifications         string
-	EmailNotifications_lookup    []Lookup_Item
-	EmailNotifications_props     FieldProperties
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+	/// Context & Permisions
 	Context	 		 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -284,4 +216,65 @@ type Credentials_Page struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	/// Fields Definitions
+	SYSId         string
+	Id         string
+	Username         string
+	Password         string
+	Firstname         string
+	Lastname         string
+	Knownas         string
+	Email         string
+	Issued         string
+	Expiry         string
+	RoleType         string
+	Brand         string
+	SYSCreated         string
+	SYSUpdated         string
+	SYSCreatedBy         string
+	SYSCreatedHost         string
+	SYSUpdatedBy         string
+	SYSUpdatedHost         string
+	State         string
+	Notes         string
+	SYSDeleted         string
+	SYSDeletedBy         string
+	SYSDeletedHost         string
+	SYSActivity         string
+	SYSDbVersion         string
+	EmailNotifications         string
+	/// Field Properties
+	SYSId_props     FieldProperties
+	Id_props     FieldProperties
+	Username_props     FieldProperties
+	Password_props     FieldProperties
+	Firstname_props     FieldProperties
+	Lastname_props     FieldProperties
+	Knownas_props     FieldProperties
+	Email_props     FieldProperties
+	Issued_props     FieldProperties
+	Expiry_props     FieldProperties
+	RoleType_props     FieldProperties
+	Brand_props     FieldProperties
+	SYSCreated_props     FieldProperties
+	SYSUpdated_props     FieldProperties
+	SYSCreatedBy_props     FieldProperties
+	SYSCreatedHost_props     FieldProperties
+	SYSUpdatedBy_props     FieldProperties
+	SYSUpdatedHost_props     FieldProperties
+	State_props     FieldProperties
+	Notes_props     FieldProperties
+	SYSDeleted_props     FieldProperties
+	SYSDeletedBy_props     FieldProperties
+	SYSDeletedHost_props     FieldProperties
+	SYSActivity_props     FieldProperties
+	SYSDbVersion_props     FieldProperties
+	EmailNotifications_props     FieldProperties
+	/// Lookups
+	RoleType_lookup    []Lookup_Item
+	State_lookup    []Lookup_Item
+	EmailNotifications_lookup    []Lookup_Item
+	
+	/// END OF DEFINITIONS
+	///
 }

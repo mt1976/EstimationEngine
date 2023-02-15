@@ -8,18 +8,16 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:36
+// Date & Time		    : 15/02/2023 at 10:44:43
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-
 	"fmt"
 	"net/http"
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/google/uuid"
 	das  "github.com/mt1976/ebEstimates/das"
-
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
 )
@@ -33,9 +31,7 @@ func init(){
 
 // EstimationState_GetList() returns a list of all EstimationState records
 func EstimationState_GetList() (int, []dm.EstimationState, error) {
-	
 	count, estimationstateList, err := EstimationState_GetListFiltered("")
-	
 	return count, estimationstateList, err
 }
 
@@ -89,14 +85,22 @@ func EstimationState_GetByID(id string) (int, dm.EstimationState, error) {
 	tsql = tsql + " " + das.WHERE + dm.EstimationState_SQLSearchID + das.EQ + das.ID(id)
 	_, _, estimationstateItem, _ := estimationstate_Fetch(tsql)
 
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+
+	estimationstateItem = EstimationState_PostGet(estimationstateItem,id)
+
 	return 1, estimationstateItem, nil
 }
+
+func EstimationState_PostGet(estimationstateItem dm.EstimationState,id string) dm.EstimationState {
+	// START
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return estimationstateItem
+}
+
 
 
 
@@ -113,19 +117,6 @@ func EstimationState_Delete(id string) {
 	
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 	// EstimationState_SoftDeleteByID() soft deletes a single EstimationState record
 func EstimationState_SoftDelete(id string) {
@@ -134,13 +125,16 @@ func EstimationState_SoftDelete(id string) {
 		estimationstateItem.SYSDeletedBy = Audit_Update("", Audit_Host())
 		estimationstateItem.SYSDeleted = Audit_Update("", Audit_TimeStamp())
 		estimationstateItem.SYSDeletedHost = Audit_Update("", Audit_Host())
-		EstimationState_StoreSystem(estimationstateItem)
+		_,err := EstimationState_StoreSystem(estimationstateItem)
+		if err != nil {
+			logs.Error("EstimationState_SoftDelete()",err)
+		}
 }
 	
 
 
 // EstimationState_Store() saves/stores a EstimationState record to the database
-func EstimationState_Store(r dm.EstimationState,req *http.Request) error {
+func EstimationState_Store(r dm.EstimationState,req *http.Request) (dm.EstimationState,error) {
 
 	r, err := EstimationState_Validate(r)
 	if err == nil {
@@ -149,11 +143,11 @@ func EstimationState_Store(r dm.EstimationState,req *http.Request) error {
 		logs.Information("EstimationState_Store()", err.Error())
 	}
 
-	return err
+	return r, err
 }
 
 // EstimationState_StoreSystem() saves/stores a EstimationState record to the database
-func EstimationState_StoreSystem(r dm.EstimationState) error {
+func EstimationState_StoreSystem(r dm.EstimationState) (dm.EstimationState,error) {
 	
 	r, err := EstimationState_Validate(r)
 	if err == nil {
@@ -162,17 +156,17 @@ func EstimationState_StoreSystem(r dm.EstimationState) error {
 		logs.Information("EstimationState_Store()", err.Error())
 	}
 
-	return err
+	return r, err
 }
 
 // EstimationState_Validate() validates for saves/stores a EstimationState record to the database
 func EstimationState_Validate(r dm.EstimationState) (dm.EstimationState, error) {
 	var err error
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -186,34 +180,11 @@ func estimationstate_Save(r dm.EstimationState,usr string) error {
 
     var err error
 
-
-
-	
-
 	if len(r.EstimationStateID) == 0 {
 		r.EstimationStateID = EstimationState_NewID(r)
 	}
 
 // If there are fields below, create the methods in dao\estimationstate_impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
 	r.SYSCreatedHost = Audit_Update(r.SYSCreatedHost,Audit_Host())
@@ -228,7 +199,7 @@ logs.Storing("EstimationState",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.EstimationState_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.EstimationState_EstimationStateID_sql, r.EstimationStateID)
@@ -248,7 +219,7 @@ logs.Storing("EstimationState",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.EstimationState_Notify_sql, r.Notify)
 		
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := das.INSERT + das.INTO + EstimationState_QualifiedName
@@ -281,7 +252,7 @@ func estimationstate_Fetch(tsql string) (int, []dm.EstimationState, dm.Estimatio
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.EstimationState_SYSId_sql, "0")
 	   recItem.EstimationStateID  = get_String(rec, dm.EstimationState_EstimationStateID_sql, "")
@@ -300,26 +271,8 @@ func estimationstate_Fetch(tsql string) (int, []dm.EstimationState, dm.Estimatio
 	   recItem.IsLocked  = get_String(rec, dm.EstimationState_IsLocked_sql, "")
 	   recItem.Notify  = get_String(rec, dm.EstimationState_Notify_sql, "")
 	
-	// If there are fields below, create the methods in adaptor\EstimationState_impl.go
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// If there are fields below, create the methods in adaptor\EstimationState_impl.go// 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -334,7 +287,7 @@ func estimationstate_Fetch(tsql string) (int, []dm.EstimationState, dm.Estimatio
 
 func EstimationState_NewID(r dm.EstimationState) string {
 	
-			id := uuid.New().String()
+	id := uuid.New().String()
 	
 	return id
 }
@@ -349,14 +302,12 @@ func EstimationState_New() (int, []dm.EstimationState, dm.EstimationState, error
 	
 
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
+	
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-
-
 	rList = append(rList, r)
-
 	return 1, rList, r, nil
 }

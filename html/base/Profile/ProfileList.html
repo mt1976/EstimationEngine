@@ -1,0 +1,165 @@
+{{template "header" .}}
+<link rel="stylesheet" type="text/css" href="/assets/DataTables/datatables.min.css"/>
+{{template "bodydefinition" .}}
+
+      <div class="card">
+       
+            <div class="card-header font-weight-bold" style="padding-bottom:0;">
+              <div class="row d-flex align-items-center">
+                <div class="col d-flex align-items-center"><h3><i class="fas fa-sliders-h me-2"></i>{{.Title}}</h3></div>
+                <div class="col d-flex justify-content-end">
+                  <form action="/home" method="GET">
+                    <div class="btn-group" id="ActionButtonGroup">
+                    <button type="submit" value="" class="btn btn-primary" formaction="/ProfileNew" method="GET" title="Create a new Profile"><i class="fas fa-plus me-2"></i>New</button>
+                    <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div class="card-body">
+             
+                           
+                    <table id="DataTable" class="table table-hover table-responsive" style="width:100%">
+                      <thead class="table-light">
+                        <tr style="background-color:red;">
+                          
+                          
+                          <th class="text-center">Code</th>
+                          <th class="text-center">Name</th>
+                          <th class="text-center">StartDate</th>
+                          <th class="text-center">EndDate</th>
+                          <th class="text-center">DefaultReleases</th>
+                          <th class="text-center">DefaultReleaseHours</th>
+                          <th class="text-center">BlendedRate</th>
+                          <th class="text-center">Rounding</th>
+                          <th class="text-center">HoursPerDay</th>
+                          <th class="text-center">REQPerc</th>
+                          <th class="text-center">ANAPerc</th>
+                          <th class="text-center">DOCPerc</th>
+                          <th class="text-center">PMPerc</th>
+                          <th class="text-center">UATPerc</th>
+                          <th class="text-center">GTMPerc</th>
+                          <th class="text-center">SupportUplift</th>
+                          <th class="text-center">ContigencyPerc</th>
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <th class="text-center">Notes</th>
+                          
+                          <th class="text-center">Comments</th>
+                          <th class="text-center">TrainingPerc</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </thead>
+                      <tbody id="filterTable">
+                        {{range .ItemList}}
+                        <tr>
+                          
+                          
+                          <td class="align-middle" >{{.Code}}</td>
+                          <td class="align-middle" >{{.Name}}</td>
+                          <td class="align-middle" >{{.StartDate}}</td>
+                          <td class="align-middle" >{{.EndDate}}</td>
+                          <td class="align-middle" >{{.DefaultReleases}}</td>
+                          <td class="align-middle" >{{.DefaultReleaseHours}}</td>
+                          <td class="align-middle" >{{.BlendedRate}}</td>
+                          <td class="align-middle" >{{.Rounding}}</td>
+                          <td class="align-middle" >{{.HoursPerDay}}</td>
+                          <td class="align-middle" >{{.REQPerc}}</td>
+                          <td class="align-middle" >{{.ANAPerc}}</td>
+                          <td class="align-middle" >{{.DOCPerc}}</td>
+                          <td class="align-middle" >{{.PMPerc}}</td>
+                          <td class="align-middle" >{{.UATPerc}}</td>
+                          <td class="align-middle" >{{.GTMPerc}}</td>
+                          <td class="align-middle" >{{.SupportUplift}}</td>
+                          <td class="align-middle" >{{.ContigencyPerc}}</td>
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <td class="align-middle" >{{.Notes}}</td>
+                          
+                          <td class="align-middle" >{{.Comments}}</td>
+                          <td class="align-middle" >{{.TrainingPerc}}</td>
+                          
+                          <td class="align-middle text-center" style="width:1px;padding:0px;padding-top:1rem;">
+                              <form action="/home" method="POST" class="d-flex justify-content-center">
+                                  <div class="btn-group" id="ActionButtonGroup2">
+                                    <button type="submit" value="" class="btn btn-sm btn-info " formaction="/ProfileView?ProfileID={{.ProfileID}}" method="POST" title="View Profile"><i class="far fa-eye"></i>View</button>
+                                    <button type="submit" value="" class="btn btn-sm btn-warning " formaction="/ProfileEdit?ProfileID={{.ProfileID}}" method="POST" title="Edit Profile"><i class="fas fa-edit"></i>Edit</button>
+                                    
+                                  </div>
+                                </form>
+                          </td>
+                        </tr>
+                        {{end}}
+                      </tbody>
+                       <tfoot class="table-light">
+                        <tr style="background-color:red;">
+                          
+                          
+                          <th class="text-center">Code</th>
+                          <th class="text-center">Name</th>
+                          <th class="text-center">StartDate</th>
+                          <th class="text-center">EndDate</th>
+                          <th class="text-center">DefaultReleases</th>
+                          <th class="text-center">DefaultReleaseHours</th>
+                          <th class="text-center">BlendedRate</th>
+                          <th class="text-center">Rounding</th>
+                          <th class="text-center">HoursPerDay</th>
+                          <th class="text-center">REQPerc</th>
+                          <th class="text-center">ANAPerc</th>
+                          <th class="text-center">DOCPerc</th>
+                          <th class="text-center">PMPerc</th>
+                          <th class="text-center">UATPerc</th>
+                          <th class="text-center">GTMPerc</th>
+                          <th class="text-center">SupportUplift</th>
+                          <th class="text-center">ContigencyPerc</th>
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <th class="text-center">Notes</th>
+                          
+                          <th class="text-center">Comments</th>
+                          <th class="text-center">TrainingPerc</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </tfoot>
+                    </table>
+            
+
+            </div>
+        </form>
+      </div>
+
+
+
+
+{{template "userfooter" .}}
+{{template "exportcontrols" .}}
+{{template "tablecontrols" .}}
+{{template "pagefooter" .}}

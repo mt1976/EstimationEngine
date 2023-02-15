@@ -32,7 +32,7 @@ type RSC struct {
 
 type RSCs []*RSC
 
-func Ssloader_Job_impl(j dm.JobDefinition) dm.JobDefinition {
+func ssloader_Job_impl(j dm.JobDefinition) dm.JobDefinition {
 	j.Name = "Spreadsheet"
 	j.Period = ""
 	j.Description = "Load Data from Old Tracker Spreadsheet"
@@ -41,26 +41,26 @@ func Ssloader_Job_impl(j dm.JobDefinition) dm.JobDefinition {
 	return j
 }
 
-func Ssloader_Run_impl() (string, error) {
+func ssloader_Run_impl() (string, error) {
 
 	message := ""
 
 	//Get Path from Data to Spreadsheet
-	ssPath, err := dao.Data_Get(Ssloader_Job().Name, "Path", "Importer")
+	ssPath, err := dao.Data_Get(ssloader_Job().Name, "Path", "Importer")
 	if err != nil {
-		return "No Location Specified for " + Ssloader_Job().Name, err
+		return "No Location Specified for " + ssloader_Job().Name, err
 	}
 	if ssPath == "" {
 		return "No Spreadsheet at path" + core.DQuote(ssPath), nil
 	}
 
 	//Get Mode from Data
-	ssMode, err := dao.Data_Get(Ssloader_Job().Name, "Mode", "Importer")
+	ssMode, err := dao.Data_Get(ssloader_Job().Name, "Mode", "Importer")
 	if err != nil {
-		return "No Mode Specified for " + Ssloader_Job().Name, err
+		return "No Mode Specified for " + ssloader_Job().Name, err
 	}
 	if ssMode != "Trial" && ssMode != "Live" {
-		return "Invalid Mode " + core.DQuote(ssMode) + " for " + Ssloader_Job().Name, err
+		return "Invalid Mode " + core.DQuote(ssMode) + " for " + ssloader_Job().Name, err
 	}
 	trialMode := false
 	if ssMode == "Trial" {
@@ -68,21 +68,21 @@ func Ssloader_Run_impl() (string, error) {
 		logs.Warning("Trial Mode : Projects,Estimations & Features will not be updated")
 	}
 	if ssMode == "Done" {
-		return Ssloader_Job().Name + " is Done", nil
+		return ssloader_Job().Name + " is Done", nil
 	}
 	if ssMode != "Trial" && ssMode != "Live" {
-		return "Invalid Mode " + core.DQuote(ssMode) + " for " + Ssloader_Job().Name, err
+		return "Invalid Mode " + core.DQuote(ssMode) + " for " + ssloader_Job().Name, err
 	}
 	//Load Spreadsheet
 	ss, err := os.ReadFile(ssPath)
 	if err != nil {
-		return "Unable to Find Spreadsheet for " + Ssloader_Job().Name, err
+		return "Unable to Find Spreadsheet for " + ssloader_Job().Name, err
 	}
 	content := string(ss)
 	if len(content) == 0 {
-		return "No Content in Spreadsheet for " + Ssloader_Job().Name, err
+		return "No Content in Spreadsheet for " + ssloader_Job().Name, err
 	}
-	//logs.Information(Ssloader_Job().Name, strconv.Itoa(len(content)))
+	//logs.Information(ssloader_Job().Name, strconv.Itoa(len(content)))
 	in, err := os.Open(ssPath)
 	if err != nil {
 		panic(err)
@@ -133,7 +133,7 @@ func Ssloader_Run_impl() (string, error) {
 		if projErr != nil {
 			return "Unable to Find/Generate Project for " + core.DQuote(newRSC.Customer), projErr
 		}
-		proj.Notes = core.AddActivity_ForProcess(proj.Notes, core.DQuote(newRSC.Desc)+" loaded from Spreadsheet "+today, Ssloader_Job().Name)
+		proj.Notes = core.AddActivity_ForProcess(proj.Notes, core.DQuote(newRSC.Desc)+" loaded from Spreadsheet "+today, ssloader_Job().Name)
 		proj.ProjectAnalyst = "--"
 		proj.ProjectEngineer = "--"
 		proj.ProjectManager = origin.ProjectManager
@@ -161,19 +161,19 @@ func Ssloader_Run_impl() (string, error) {
 		//logs.Break()
 		MSG := "Item %d of %d Processed"
 		MSG = fmt.Sprintf(MSG, noWorkItems, totalWorkItems)
-		application.Schedule_Update(Ssloader_Job(), MSG)
+		application.Schedule_Update(ssloader_Job(), MSG)
 	}
 
 	//logs.Information("Spreadsheet", content)
 	//Load Data into Database
 	message = strconv.Itoa(noWorkItems) + " Work Items Processed"
-	ok, _ := dao.Data_Put(Ssloader_Job().Name, "LastRun", "Importer", time.Now().Format(core.DATEMSG))
-	ok, _ = dao.Data_Put(Ssloader_Job().Name, "LastRunPath", "Importer", ssPath)
-	ok, _ = dao.Data_Put(Ssloader_Job().Name, "LastRunMessage", "Importer", message)
-	ok, _ = dao.Data_Put(Ssloader_Job().Name, "LastRunMode", "Importer", ssMode)
-	ok, _ = dao.Data_Put(Ssloader_Job().Name, "Mode", "Importer", "Done")
+	ok, _ := dao.Data_Put(ssloader_Job().Name, "LastRun", "Importer", time.Now().Format(core.DATEMSG))
+	ok, _ = dao.Data_Put(ssloader_Job().Name, "LastRunPath", "Importer", ssPath)
+	ok, _ = dao.Data_Put(ssloader_Job().Name, "LastRunMessage", "Importer", message)
+	ok, _ = dao.Data_Put(ssloader_Job().Name, "LastRunMode", "Importer", ssMode)
+	ok, _ = dao.Data_Put(ssloader_Job().Name, "Mode", "Importer", "Done")
 	if ok == "" {
-		message = "Unable to Update Data for " + Ssloader_Job().Name
+		message = "Unable to Update Data for " + ssloader_Job().Name
 	}
 	return message, nil
 }
@@ -190,7 +190,7 @@ func newFeature(estim dm.EstimationSession, newRSC RSC, proj dm.Project, today s
 	feature.ExtRef = newRSC.EXTREF
 	feature.DefaultProfile = proj.ProfileID
 	feature.ActualProfile = proj.ProfileID
-	feature.Notes = core.AddActivity_ForProcess(feature.Notes, core.DQuote(newRSC.Desc)+" loaded from Spreadsheet "+today, Ssloader_Job().Name)
+	feature.Notes = core.AddActivity_ForProcess(feature.Notes, core.DQuote(newRSC.Desc)+" loaded from Spreadsheet "+today, ssloader_Job().Name)
 	feature.Developer = "--"
 	feature.Approver = "--"
 	feature.ProductManager = "--"
@@ -204,7 +204,7 @@ func newEstimationSession(proj dm.Project, newRSC RSC, today string, noWorkItems
 	estim.ProjectID = proj.ProjectID
 	estim.EstimationStateID = newRSC.Status
 	estim.ProjectProfileID = "ADHC"
-	estim.Notes = core.AddActivity_ForProcess(estim.Notes, core.DQuote(newRSC.Desc)+" loaded from Spreadsheet "+today, Ssloader_Job().Name)
+	estim.Notes = core.AddActivity_ForProcess(estim.Notes, core.DQuote(newRSC.Desc)+" loaded from Spreadsheet "+today, ssloader_Job().Name)
 	estim.Name = newRSC.Desc
 	estim.Total = newRSC.Value
 	estim.Name = newRSC.Desc
@@ -262,7 +262,7 @@ func getProject(cust string, project string, origin dm.Origin, trailMode bool) (
 		proj.Name = project
 		proj.ProjectStateID = "TAKE"
 		proj.ProfileID = "ADHC"
-		proj.Notes = core.AddActivity_ForProcess(proj.Notes, "Created from RSC Spreadsheet", Ssloader_Job().Name)
+		proj.Notes = core.AddActivity_ForProcess(proj.Notes, "Created from RSC Spreadsheet", ssloader_Job().Name)
 		if !trailMode {
 			dao.Project_StoreSystem(proj)
 			return proj, nil

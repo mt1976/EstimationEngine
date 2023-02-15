@@ -64,20 +64,21 @@ SQL Table Key | **Id**
 | Type | Artifact | Path|
 | :--: | -- | -- |
 | code | **application** | /application/translation_core.go |
+| code | **validation** | /dao/translation_validation.go_template |
 | code | **api** | /application/translation_api.go |
 | code | **dao** | /dao/translation_core.go |
 | code | **datamodel** | /datamodel/translation_core.go |
 | code | **menu** | /design/menu/translation.json |
-| html | **list** | /Translation_List.html |
-| html | **view** | /Translation_View.html |
-| html | **edit** | /Translation_Edit.html |
+| html | **list** | /TranslationList.html |
+| html | **view** | /TranslationView.html |
+| html | **edit** | /TranslationEdit.html |
 
 
 ## Audit Information
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **07/02/2023** at **18:52:39**
+Date & Time		     | **15/02/2023** at **10:44:48**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

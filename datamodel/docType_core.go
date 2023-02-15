@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 15/02/2023 at 10:17:33
+// Date & Time		    : 15/02/2023 at 10:44:42
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -55,8 +55,7 @@ type DocType struct {
 	//
  	// Any lookups will be added below
 	//
-
-}
+	}
 
 const (
 	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
@@ -203,6 +202,7 @@ type DocType_Page struct {
 	SYSDbVersion_props     FieldProperties
 	Comments_props     FieldProperties
 	/// Lookups
+	
 	/// END OF DEFINITIONS
 	///
 }

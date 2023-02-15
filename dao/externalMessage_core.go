@@ -8,18 +8,16 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 07/02/2023 at 18:52:36
+// Date & Time		    : 15/02/2023 at 10:44:43
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-
 	"fmt"
 	"net/http"
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/google/uuid"
 	das  "github.com/mt1976/ebEstimates/das"
-
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
 )
@@ -33,9 +31,7 @@ func init(){
 
 // ExternalMessage_GetList() returns a list of all ExternalMessage records
 func ExternalMessage_GetList() (int, []dm.ExternalMessage, error) {
-	
 	count, externalmessageList, err := ExternalMessage_GetListFiltered("")
-	
 	return count, externalmessageList, err
 }
 
@@ -61,14 +57,22 @@ func ExternalMessage_GetByID(id string) (int, dm.ExternalMessage, error) {
 	tsql = tsql + " " + das.WHERE + dm.ExternalMessage_SQLSearchID + das.EQ + das.ID(id)
 	_, _, externalmessageItem, _ := externalmessage_Fetch(tsql)
 
-	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+
+	externalmessageItem = ExternalMessage_PostGet(externalmessageItem,id)
+
 	return 1, externalmessageItem, nil
 }
+
+func ExternalMessage_PostGet(externalmessageItem dm.ExternalMessage,id string) dm.ExternalMessage {
+	// START
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return externalmessageItem
+}
+
 
 
 
@@ -85,24 +89,11 @@ func ExternalMessage_Delete(id string) {
 	
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 	
 
 
 // ExternalMessage_Store() saves/stores a ExternalMessage record to the database
-func ExternalMessage_Store(r dm.ExternalMessage,req *http.Request) error {
+func ExternalMessage_Store(r dm.ExternalMessage,req *http.Request) (dm.ExternalMessage,error) {
 
 	r, err := ExternalMessage_Validate(r)
 	if err == nil {
@@ -111,11 +102,11 @@ func ExternalMessage_Store(r dm.ExternalMessage,req *http.Request) error {
 		logs.Information("ExternalMessage_Store()", err.Error())
 	}
 
-	return err
+	return r, err
 }
 
 // ExternalMessage_StoreSystem() saves/stores a ExternalMessage record to the database
-func ExternalMessage_StoreSystem(r dm.ExternalMessage) error {
+func ExternalMessage_StoreSystem(r dm.ExternalMessage) (dm.ExternalMessage,error) {
 	
 	r, err := ExternalMessage_Validate(r)
 	if err == nil {
@@ -124,17 +115,17 @@ func ExternalMessage_StoreSystem(r dm.ExternalMessage) error {
 		logs.Information("ExternalMessage_Store()", err.Error())
 	}
 
-	return err
+	return r, err
 }
 
 // ExternalMessage_Validate() validates for saves/stores a ExternalMessage record to the database
 func ExternalMessage_Validate(r dm.ExternalMessage) (dm.ExternalMessage, error) {
 	var err error
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -148,50 +139,11 @@ func externalmessage_Save(r dm.ExternalMessage,usr string) error {
 
     var err error
 
-
-
-	
-
 	if len(r.MessageID) == 0 {
 		r.MessageID = ExternalMessage_NewID(r)
 	}
 
 // If there are fields below, create the methods in dao\externalmessage_impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
 	r.SYSCreatedHost = Audit_Update(r.SYSCreatedHost,Audit_Host())
@@ -206,7 +158,7 @@ logs.Storing("ExternalMessage",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.ExternalMessage_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.ExternalMessage_MessageID_sql, r.MessageID)
@@ -242,7 +194,7 @@ logs.Storing("ExternalMessage",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.ExternalMessage_SYSDbVersion_sql, r.SYSDbVersion)
 		
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := das.INSERT + das.INTO + ExternalMessage_QualifiedName
@@ -275,7 +227,7 @@ func externalmessage_Fetch(tsql string) (int, []dm.ExternalMessage, dm.ExternalM
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.ExternalMessage_SYSId_sql, "0")
 	   recItem.MessageID  = get_String(rec, dm.ExternalMessage_MessageID_sql, "")
@@ -310,42 +262,8 @@ func externalmessage_Fetch(tsql string) (int, []dm.ExternalMessage, dm.ExternalM
 	   recItem.SYSDeletedHost  = get_String(rec, dm.ExternalMessage_SYSDeletedHost_sql, "")
 	   recItem.SYSDbVersion  = get_String(rec, dm.ExternalMessage_SYSDbVersion_sql, "")
 	
-	// If there are fields below, create the methods in adaptor\ExternalMessage_impl.go
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// If there are fields below, create the methods in adaptor\ExternalMessage_impl.go// 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -360,7 +278,7 @@ func externalmessage_Fetch(tsql string) (int, []dm.ExternalMessage, dm.ExternalM
 
 func ExternalMessage_NewID(r dm.ExternalMessage) string {
 	
-			id := uuid.New().String()
+	id := uuid.New().String()
 	
 	return id
 }
@@ -375,14 +293,12 @@ func ExternalMessage_New() (int, []dm.ExternalMessage, dm.ExternalMessage, error
 	
 
 	// START
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
+	
 	// 
-	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-
-
 	rList = append(rList, r)
-
 	return 1, rList, r, nil
 }

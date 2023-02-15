@@ -62,21 +62,22 @@ SQL Table Key | **Id**
 | Type | Artifact | Path|
 | :--: | -- | -- |
 | code | **application** | /application/userRole_core.go |
+| code | **validation** | /dao/userRole_validation.go_template |
 | code | **api** | /application/userRole_api.go |
 | code | **dao** | /dao/userRole_core.go |
 | code | **datamodel** | /datamodel/userRole_core.go |
 | code | **menu** | /design/menu/userRole.json |
-| html | **list** | /UserRole_List.html |
-| html | **view** | /UserRole_View.html |
-| html | **edit** | /UserRole_Edit.html |
-| html | **new** | /UserRole_New.html |
+| html | **list** | /UserRoleList.html |
+| html | **view** | /UserRoleView.html |
+| html | **edit** | /UserRoleEdit.html |
+| html | **new** | /UserRoleNew.html |
 
 
 ## Audit Information
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **07/02/2023** at **18:52:39**
+Date & Time		     | **15/02/2023** at **10:44:48**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---
