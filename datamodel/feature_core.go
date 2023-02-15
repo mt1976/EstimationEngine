@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 25/01/2023 at 14:23:00
+// Date & Time		    : 07/02/2023 at 18:52:36
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -352,7 +352,7 @@ type Feature_Page struct {
 	Title       	 string
 	PageTitle   	 string
 	// START
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//	
 	SYSId         string
 	SYSId_props     FieldProperties
@@ -470,7 +470,7 @@ type Feature_Page struct {
 	ActualProfile_lookup    []Lookup_Item
 	ActualProfile_props     FieldProperties
 	// 
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	Context	 		 appContext
 	BlockEdit		 bool

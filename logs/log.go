@@ -47,6 +47,7 @@ const (
 	log_Email         = "Email"
 	log_Catalog       = "Catalog"
 	log_Upgrade       = "Upgrade"
+	log_Redirect      = "Redirect"
 
 	ColorReset         = "\033[0m"
 	ColorRed           = "\033[31m"
@@ -80,6 +81,7 @@ const (
 	Character_Publish  = "📤"
 	Character_Schedule = "📅"
 	Character_Upgrade  = "🚀"
+	Character_Redirect = "🔗"
 )
 
 type Config struct {
@@ -197,7 +199,12 @@ func URI(w string) {
 
 func Servicing(w string) {
 	//msg_info(w, v)
-	msg_raw(log_Servicing, w, "", colour.Yellow)
+	msg_raw(log_Servicing, w+" "+Character_Redirect, "", colour.Yellow)
+}
+
+func Redirecting(w string) {
+	//msg_info(w, v)
+	msg_raw(log_Redirect, w+" "+Character_Redirect, "", colour.Yellow)
 }
 
 func Menu(w string) {

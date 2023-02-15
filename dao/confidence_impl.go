@@ -15,14 +15,14 @@ package dao
 
 import (
 	core "github.com/mt1976/ebEstimates/core"
-
+	das "github.com/mt1976/ebEstimates/das"
 	dm "github.com/mt1976/ebEstimates/datamodel"
 )
 
 // Confidence_GetByID() returns a single Confidence record
 func Confidence_GetByCode(id string) (int, dm.Confidence, error) {
 
-	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Confidence_SQLTable)
+	tsql := das.SELECTALL + " " + das.FROM + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Confidence_SQLTable)
 	tsql = tsql + " WHERE " + dm.Confidence_Code_sql + "='" + id + "'"
 	_, _, confidenceItem, _ := confidence_Fetch(tsql)
 

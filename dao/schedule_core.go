@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 24/01/2023 at 13:18:11
+// Date & Time		    : 07/02/2023 at 18:52:39
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -28,7 +28,7 @@ var Schedule_SQLbase string
 var Schedule_QualifiedName string
 func init(){
 	Schedule_QualifiedName = get_TableName(core.ApplicationSQLSchema(), dm.Schedule_SQLTable)
-	Schedule_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + Schedule_QualifiedName
+	Schedule_SQLbase =  das.SELECTALL + das.FROM + Schedule_QualifiedName
 }
 
 // Schedule_GetList() returns a list of all Schedule records
@@ -44,7 +44,7 @@ func Schedule_GetListFiltered(filter string) (int, []dm.Schedule, error) {
 	
 	tsql := Schedule_SQLbase
 	if filter != "" {
-		tsql = tsql + " " + core.DB_WHERE + " " + filter
+		tsql = tsql + " " + das.WHERE + filter
 	}
 	count, scheduleList, _, _ := schedule_Fetch(tsql)
 	
@@ -58,14 +58,14 @@ func Schedule_GetByID(id string) (int, dm.Schedule, error) {
 
 
 	tsql := Schedule_SQLbase
-	tsql = tsql + " " + core.DB_WHERE + " " + dm.Schedule_SQLSearchID + core.DB_EQ + "'" + id + "'"
+	tsql = tsql + " " + das.WHERE + dm.Schedule_SQLSearchID + das.EQ + das.ID(id)
 	_, _, scheduleItem, _ := schedule_Fetch(tsql)
 
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, scheduleItem, nil
 }
@@ -76,16 +76,11 @@ func Schedule_GetByID(id string) (int, dm.Schedule, error) {
 func Schedule_Delete(id string) {
 
 
-
-
 // Uses Hard Delete
 	object_Table := Schedule_QualifiedName
-	tsql := core.DB_DELETE+" "+core.DB_FROM+" " + object_Table
-	tsql = tsql + " " + core.DB_WHERE + " " + dm.Schedule_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-	
-	
+	tsql := das.DELETE + das.FROM + object_Table
+	tsql = tsql + " " + das.WHERE + dm.Schedule_SQLSearchID + das.EQ + das.ID(id)
+	das.Execute(tsql)	
 
 	
 }
@@ -136,10 +131,10 @@ func Schedule_StoreSystem(r dm.Schedule) error {
 func Schedule_Validate(r dm.Schedule) (dm.Schedule, error) {
 	var err error
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -199,7 +194,7 @@ logs.Storing("Schedule",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Schedule_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Schedule_Id_sql, r.Id)
@@ -223,12 +218,12 @@ logs.Storing("Schedule",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Schedule_SYSDbVersion_sql, r.SYSDbVersion)
 		
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
-	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + Schedule_QualifiedName
+	tsql := das.INSERT + das.INTO + Schedule_QualifiedName
 	tsql = tsql + " (" + fields(ts) + ")"
-	tsql = tsql + " "+core.DB_VALUES +" (" + values(ts) + ")"
+	tsql = tsql + " "+das.VALUES +"(" + values(ts) + ")"
 
 	Schedule_Delete(r.Id)
 	das.Execute(tsql)
@@ -256,7 +251,7 @@ func schedule_Fetch(tsql string) (int, []dm.Schedule, dm.Schedule, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Schedule_SYSId_sql, "0")
 	   recItem.Id  = get_String(rec, dm.Schedule_Id_sql, "")
@@ -302,7 +297,7 @@ func schedule_Fetch(tsql string) (int, []dm.Schedule, dm.Schedule, error) {
 	
 	
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -332,10 +327,10 @@ func Schedule_New() (int, []dm.Schedule, dm.Schedule, error) {
 	
 
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

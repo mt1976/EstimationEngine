@@ -13,7 +13,7 @@ func Translation_BuildID(class string, message string) string {
 	var translationStoreID string
 	message = strings.ReplaceAll(message, " ", "-")
 	message = core.ReplaceSpecialChars(message)
-	translationStoreID = class + core.IDSep + message
+	translationStoreID = class + core.ID_SEP + message
 
 	return core.EncodeString(translationStoreID)
 }

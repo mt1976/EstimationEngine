@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 24/01/2023 at 13:18:08
+// Date & Time		    : 07/02/2023 at 18:52:36
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -18,7 +18,7 @@ import (
 	"net/http"
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/google/uuid"
-	
+	das  "github.com/mt1976/ebEstimates/das"
 
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
@@ -28,7 +28,7 @@ var EstimationSessionAction_SQLbase string
 var EstimationSessionAction_QualifiedName string
 func init(){
 	EstimationSessionAction_QualifiedName = get_TableName(core.ApplicationSQLSchema(), dm.EstimationSessionAction_SQLTable)
-	EstimationSessionAction_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + EstimationSessionAction_QualifiedName
+	EstimationSessionAction_SQLbase =  das.SELECTALL + das.FROM + EstimationSessionAction_QualifiedName
 }
 
 // EstimationSessionAction_GetList() returns a list of all EstimationSessionAction records
@@ -56,10 +56,10 @@ func EstimationSessionAction_GetByID(id string) (int, dm.EstimationSessionAction
 	 _, estimationsessionactionItem, _ := EstimationSessionAction_GetByID_impl(id)
 	
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, estimationsessionactionItem, nil
 }
@@ -121,10 +121,10 @@ func EstimationSessionAction_StoreSystem(r dm.EstimationSessionAction) error {
 func EstimationSessionAction_Validate(r dm.EstimationSessionAction) (dm.EstimationSessionAction, error) {
 	var err error
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -194,10 +194,10 @@ func EstimationSessionAction_New() (int, []dm.EstimationSessionAction, dm.Estima
 	
 
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 24/01/2023 at 13:18:07
+// Date & Time		    : 07/02/2023 at 18:52:34
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -28,7 +28,7 @@ var Credentials_SQLbase string
 var Credentials_QualifiedName string
 func init(){
 	Credentials_QualifiedName = get_TableName(core.ApplicationSQLSchema(), dm.Credentials_SQLTable)
-	Credentials_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + Credentials_QualifiedName
+	Credentials_SQLbase =  das.SELECTALL + das.FROM + Credentials_QualifiedName
 }
 
 // Credentials_GetList() returns a list of all Credentials records
@@ -44,7 +44,7 @@ func Credentials_GetListFiltered(filter string) (int, []dm.Credentials, error) {
 	
 	tsql := Credentials_SQLbase
 	if filter != "" {
-		tsql = tsql + " " + core.DB_WHERE + " " + filter
+		tsql = tsql + " " + das.WHERE + filter
 	}
 	count, credentialsList, _, _ := credentials_Fetch(tsql)
 	
@@ -86,15 +86,15 @@ func Credentials_GetByID(id string) (int, dm.Credentials, error) {
 
 
 	tsql := Credentials_SQLbase
-	tsql = tsql + " " + core.DB_WHERE + " " + dm.Credentials_SQLSearchID + core.DB_EQ + "'" + id + "'"
+	tsql = tsql + " " + das.WHERE + dm.Credentials_SQLSearchID + das.EQ + das.ID(id)
 	_, _, credentialsItem, _ := credentials_Fetch(tsql)
 
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	credentialsItem.State,credentialsItem.State_props = Credentials_State_impl (GET,id,credentialsItem.State,credentialsItem,credentialsItem.State_props)
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, credentialsItem, nil
 }
@@ -105,16 +105,11 @@ func Credentials_GetByID(id string) (int, dm.Credentials, error) {
 func Credentials_Delete(id string) {
 
 
-
-
 // Uses Hard Delete
 	object_Table := Credentials_QualifiedName
-	tsql := core.DB_DELETE+" "+core.DB_FROM+" " + object_Table
-	tsql = tsql + " " + core.DB_WHERE + " " + dm.Credentials_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-	
-	
+	tsql := das.DELETE + das.FROM + object_Table
+	tsql = tsql + " " + das.WHERE + dm.Credentials_SQLSearchID + das.EQ + das.ID(id)
+	das.Execute(tsql)	
 
 	
 }
@@ -165,20 +160,20 @@ func Credentials_StoreSystem(r dm.Credentials) error {
 func Credentials_Validate(r dm.Credentials) (dm.Credentials, error) {
 	var err error
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.State,r.State_props = Credentials_State_impl (PUT,r.Id,r.State,r,r.State_props)
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r, _, err = Credentials_ObjectValidation_impl(PUT, r.Id, r)
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	
 
@@ -243,7 +238,7 @@ logs.Storing("Credentials",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Credentials_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Credentials_Id_sql, r.Id)
@@ -273,12 +268,12 @@ logs.Storing("Credentials",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Credentials_EmailNotifications_sql, r.EmailNotifications)
 		
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
-	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + Credentials_QualifiedName
+	tsql := das.INSERT + das.INTO + Credentials_QualifiedName
 	tsql = tsql + " (" + fields(ts) + ")"
-	tsql = tsql + " "+core.DB_VALUES +" (" + values(ts) + ")"
+	tsql = tsql + " "+das.VALUES +"(" + values(ts) + ")"
 
 	Credentials_Delete(r.Id)
 	das.Execute(tsql)
@@ -306,7 +301,7 @@ func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, erro
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Credentials_SYSId_sql, "0")
 	   recItem.Id  = get_String(rec, dm.Credentials_Id_sql, "")
@@ -364,7 +359,7 @@ func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, erro
 	
 	
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -394,11 +389,11 @@ func Credentials_New() (int, []dm.Credentials, dm.Credentials, error) {
 	
 
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.State,r.State_props = Credentials_State_impl (NEW,r.Id,r.State,r,r.State_props)
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

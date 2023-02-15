@@ -9,7 +9,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 24/01/2023 at 13:18:08
+// Date & Time		    : 15/02/2023 at 10:17:33
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -119,7 +119,7 @@ func doctype_MethodPost(w http.ResponseWriter, r *http.Request) {
 	}
 	//spew.Dump(t)
 	
-	err = dao.DocType_StoreSystem(t)
+	_,err = dao.DocType_StoreSystem(t)
 	if err != nil {
 
 		//	panic(err)

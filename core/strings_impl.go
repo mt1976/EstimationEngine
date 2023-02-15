@@ -131,3 +131,9 @@ func AmtFormatStr(amt string) string {
 func DQuote(in string) string {
 	return "\"" + in + "\""
 }
+
+var IsLetter = regexp.MustCompile(`^[a-zA-Z]+$`).MatchString
+
+func IsUpper(s string) bool {
+	return s == strings.ToUpper(s)
+}

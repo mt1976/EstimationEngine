@@ -133,5 +133,5 @@ func schedule_GenerateID(thisJob dm.JobDefinition) string {
 	//logs.Information("Generated ID1:", newID)
 	//newID: = core.EncodeString(thisJob.ID + core.IDSep + thisJob.Type)
 	//logs.Information("Generated ID2:", newID)
-	return core.EncodeString(thisJob.ID + core.IDSep + thisJob.Type)
+	return core.EncodeString(thisJob.ID + core.ID_SEP + thisJob.Type)
 }

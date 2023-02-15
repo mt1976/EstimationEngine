@@ -1,9 +1,7 @@
 package main
 
 import (
-	"context"
 	"fmt"
-	"io"
 	"log"
 	"net/http"
 	"os"
@@ -20,136 +18,50 @@ import (
 	upgrader "github.com/mt1976/ebEstimates/upgrade"
 )
 
-func main() {
+var err error
+
+func init() {
+	err = nil
 	logs.Clear()
 	logs.Break()
 	logs.Header("Estimation Engine")
 	logs.Break()
-
 	logs.Information("Initialising...", "")
-
 	core.Initialise()
-
 	logs.Success("Initialised")
-	logs.Break()
-	logs.Header("Database Upgrade")
-	logs.Break()
-	message, e := upgrader.Upgrade()
-	if e != nil {
-		logs.Error("Upgrade", e)
+}
+
+func main() {
+	if err == nil {
+		upgradeDatabase()
 	}
-	logs.Success(message)
-	logs.Break()
-	logs.Header("Scheduling Jobs")
-	logs.Break()
-
-	jobs.Start()
-
-	logs.Success("Jobs Scheduled")
-	logs.Break()
-	logs.Header("Publish Endpoints")
-	logs.Break()
-	// Setup Endpoints
-	mux := http.NewServeMux()
-	// At least one "mux" handler is required - Dont remove this
-	mux.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
-	// At least one "mux" handler is required - Dont remove this
-
-	Main_Publish(*mux)
-	core.LoginLogout_Publish_Impl(*mux)
-	application.Resources_Publish_Impl(*mux)
-	application.Home_Publish_Impl(*mux)
-	application.Session_Publish_Impl(*mux)
-	application.Translation_Publish(*mux)
-
-	application.Configuration_Publish_Impl(*mux)
-
-	application.Credentials_Publish(*mux)
-	application.CredentialsAction_Publish(*mux)
-
-	application.Message_Publish(*mux)
-
-	//application.Translation_Publish(*mux)
-
-	application.Schedule_Publish(*mux)
-	// Special Case - Schedule is a special case as it is the only object that has a job that runs it
-	jobs.Schedule_PublishImpl(*mux)
-
-	application.Session_Publish(*mux)
-
-	application.SQLInjection_Publish(*mux)
-
-	application.Catalog_Publish_impl(*mux)
-	application.Inbox_Publish(*mux)
-	application.Inbox_Publish_Impl(*mux)
-	application.UserRole_Publish(*mux)
-	// User Defined EndPoints
-	application.Resource_Publish(*mux)
-	application.Confidence_Publish(*mux)
-	application.DocType_Publish(*mux)
-	application.EstimationSession_Publish(*mux)
-	application.EstimationSession_Publish_Impl(*mux)
-	application.EstimationSessionAction_Publish(*mux)
-	application.EstimationSessionAction_Publish_Impl(*mux)
-	application.EstimationState_Publish(*mux)
-	application.ExternalMessage_Publish(*mux)
-	application.Feature_Publish(*mux)
-	application.Feature_Publish_Impl(*mux)
-	application.FeatureNew_Publish(*mux)
-	application.FeatureNew_Publish_Impl(*mux)
-	application.Origin_Publish(*mux)
-	application.Origin_Publish_Impl(*mux)
-
-	application.OriginState_Publish(*mux)
-	application.OriginState_Publish_Impl(*mux)
-	application.Profile_Publish(*mux)
-	application.Project_Publish(*mux)
-	application.Project_Publish_Impl(*mux)
-	application.ProjectState_Publish(*mux)
-	application.ProjectAction_Publish_Impl(*mux)
-
-	application.Data_Publish(*mux)
-
-	application.Index_Publish(*mux)
-
-	logs.Break()
-	logs.Header("Rebuild Index")
-	logs.Break()
-	e2 := dao.Indexer_Rebuild()
-	if e2 != nil {
-		logs.Error("Indexer", e2)
+	if err == nil {
+		startScheduler()
 	}
-	logs.Success("Index Rebuilt")
-	//logs.Information("Indexer", "")
-	//spew.Dump(t)
-	// End of Endpoints
-	logs.Break()
-	logs.Header("Publish API")
-	logs.Break()
-	core.Catalog_List()
 
-	logs.Success("Endpoints Published")
-	logs.Break()
-	logs.Header("Start Watchers")
-	logs.Break()
-	//go monitors.StaticDataImporter_Watch()
+	mux := publishGUIEndpoints()
 
-	//	monitors.Start()
-	logs.Success("Watchers Started")
-	Application_Info()
-	logs.Break()
-	logs.Header("Contacts")
-	logs.Break()
-	logs.Information("Admin", core.GetApplicationProperty("admin"))
-	logs.Break()
+	if err == nil {
+		//	rebuildIndex()
+	}
+	if err == nil {
+		publishAPIEndpoints()
+	}
+
+	if err == nil {
+		startMonitors()
+	}
+
+	if err == nil {
+		displayAppInfo()
+	}
+
 	logs.Header("READY STEADY GO!!!")
 	//logs.Information("Initialisation", "Vrooom, Vrooooom, Vroooooooo..."+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike+logs.Character_Bike)
 
-	MSG_BODY := "System Online <br><br> %s Started %s at %s on %s"
-	MSG_BODY = dao.Translate("Email", MSG_BODY)
-	MSG_BODY = fmt.Sprintf(MSG_BODY, core.ApplicationName(), time.Now().Format("15:04:05"), time.Now().Format("02/01/2006"), core.ApplicationHostname())
-	core.SendEmail(core.GetApplicationProperty("admin"), "Admin", "System Online - "+core.ApplicationName(), MSG_BODY)
-
+	if err == nil {
+		alertSystemStarted()
+	}
 	//jobs.EstimationSession_Run()
 	//jobs.Ssloader_Run()
 
@@ -184,76 +96,129 @@ func main() {
 
 }
 
-func Main_Publish(mux http.ServeMux) {
-
-	mux.HandleFunc("/shutdown/", application_HandlerShutdown)
-	mux.HandleFunc("/clearQueues/", application_HandlerClearQueues)
-	mux.HandleFunc("/put", application_HandlerPUT)
-	mux.HandleFunc("/get", application_HandlerGET)
-	logs.Publish("Main", "Application")
+func alertSystemStarted() {
+	MSG_BODY := "System Online <br><br> %s Started %s at %s on %s"
+	MSG_BODY = dao.Translate("Email", MSG_BODY)
+	MSG_BODY = fmt.Sprintf(MSG_BODY, core.ApplicationName(), time.Now().Format("15:04:05"), time.Now().Format("02/01/2006"), core.ApplicationHostname())
+	core.SendEmail(core.GetApplicationProperty("admin"), "Admin", "System Online - "+core.ApplicationName(), MSG_BODY)
 }
 
-// // TODO: migrage the following three functions to appsupport
-func application_HandlerShutdown(w http.ResponseWriter, r *http.Request) {
-	//	wctProperties := application.GetProperties(APPCONFIG)
+func startMonitors() {
+	logs.Break()
+	logs.Header("Start Watchers")
+	logs.Break()
 
-	inUTL := r.URL.Path
-	w.Header().Set("Content-Type", "text/html")
-	//requestID := uuid.New()http.ListenAndServe(":8080", nil)
-
-	log.Println("Servicing :", inUTL)
-	//requestMessage := application.BuildRequestMessage(requestID.String(), "SHUTDOWN", line, line, line, wctProperties)
-
-	//fmt.Println("requestMessage", requestMessage)
-	//fmt.Println("SEND MESSAGE")
-	//application.SendRequest(requestMessage, requestID.String(), core.ApplicationProperties)
-	m := http.NewServeMux()
-
-	s := http.Server{Addr: core.ApplicationHTTPPort(), Handler: m}
-	s.Shutdown(context.Background())
-	//	r.URL.Path = "/viewResponse?uuid=" + requestID.String()
-	//	viewResponseHandler(w, r)
-
+	logs.Success("Watchers Started")
 }
-func application_HandlerClearQueues(w http.ResponseWriter, r *http.Request) {
 
-	//var propertiesFileName = "config/properties.cfg"
-	//wctProperties := application.GetProperties(APPCONFIG)
-	//	tmpl := "viewResponse"
-	inUTL := r.URL.Path
-	//requestID := uuid.New()
-	log.Println("Servicing :", inUTL)
-	//fmt.Println("delivPath", wctProperties["deliverpath"])
-	err1 := core.RemoveContents(core.OBSOLETE_MessageQueueDeliveryPath())
-	if err1 != nil {
-		fmt.Println(err1)
+func publishAPIEndpoints() {
+	logs.Break()
+	logs.Header("Publish API")
+	logs.Break()
+	core.Catalog_List()
+
+	logs.Success("API Published")
+}
+
+func rebuildIndex() {
+	logs.Break()
+	logs.Header("Rebuild Index")
+	logs.Break()
+	e2 := dao.Indexer_Rebuild()
+	if e2 != nil {
+		logs.Error("Indexer", e2)
 	}
-	//fmt.Println("recPath", wctProperties["receivepath"])
-	err2 := core.RemoveContents(core.OBSOLETE_MessageQueueRecievePath())
-	if err2 != nil {
-		fmt.Println(err2)
+	logs.Success("Index Rebuilt")
+}
+
+func publishGUIEndpoints() *http.ServeMux {
+	logs.Break()
+	logs.Header("Publish Endpoints")
+	logs.Break()
+
+	mux := http.NewServeMux()
+
+	mux.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
+
+	core.LoginLogout_Publish_Impl(*mux)
+	application.Resources_Publish_Impl(*mux)
+	application.Home_Publish_Impl(*mux)
+	application.Session_Publish_Impl(*mux)
+	application.Translation_Publish(*mux)
+
+	application.Configuration_Publish_Impl(*mux)
+
+	application.Credentials_Publish(*mux)
+	application.CredentialsAction_Publish(*mux)
+
+	application.Message_Publish(*mux)
+
+	application.Schedule_Publish(*mux)
+
+	jobs.Schedule_PublishImpl(*mux)
+
+	application.Session_Publish(*mux)
+
+	application.SQLInjection_Publish(*mux)
+
+	application.Catalog_Publish_impl(*mux)
+	application.Inbox_Publish(*mux)
+	application.Inbox_Publish_Impl(*mux)
+	application.UserRole_Publish(*mux)
+
+	application.Resource_Publish(*mux)
+	application.Confidence_Publish(*mux)
+	application.DocType_Publish(*mux)
+	application.EstimationSession_Publish(*mux)
+	application.EstimationSession_Publish_Impl(*mux)
+	application.EstimationSessionAction_Publish(*mux)
+	application.EstimationSessionAction_Publish_Impl(*mux)
+	application.EstimationState_Publish(*mux)
+	application.ExternalMessage_Publish(*mux)
+	application.Feature_Publish(*mux)
+	application.Feature_Publish_Impl(*mux)
+	application.FeatureNew_Publish(*mux)
+	application.FeatureNew_Publish_Impl(*mux)
+	application.Origin_Publish(*mux)
+	application.Origin_Publish_Impl(*mux)
+
+	application.OriginState_Publish(*mux)
+	application.OriginState_Publish_Impl(*mux)
+	application.Profile_Publish(*mux)
+	application.Project_Publish(*mux)
+	application.Project_Publish_Impl(*mux)
+	application.ProjectState_Publish(*mux)
+	application.ProjectAction_Publish_Impl(*mux)
+
+	application.Data_Publish(*mux)
+
+	application.Index_Publish(*mux)
+	logs.Success("Endpoints Published")
+
+	return mux
+}
+
+func startScheduler() {
+	logs.Break()
+	logs.Header("Scheduling Jobs")
+	logs.Break()
+	jobs.Start()
+	logs.Success("Jobs Scheduled")
+}
+
+func upgradeDatabase() {
+	logs.Break()
+	logs.Header("Database Upgrade")
+	logs.Break()
+	message, e := upgrader.Upgrade()
+	if e != nil {
+		logs.Error("Upgrade", e)
 	}
-	//fmt.Println("procPath", wctProperties["processedpath"])
-	err3 := core.RemoveContents(core.GetApplicationProperty("processedpath"))
-	if err3 != nil {
-		fmt.Println(err3)
-	}
-	application.Home_HandlerView(w, r)
+	logs.Success(message)
+	logs.Break()
 }
 
-func application_HandlerPUT(w http.ResponseWriter, r *http.Request) {
-	// Store a new key and value in the session data.
-	core.SessionManager.Put(r.Context(), "message", "Hello from a session!")
-}
-
-func application_HandlerGET(w http.ResponseWriter, r *http.Request) {
-	// Use the GetString helper to retrieve the string value associated with a
-	// key. The zero value is returned if the key does not exist.
-	msg := core.SessionManager.GetString(r.Context(), "message")
-	io.WriteString(w, msg)
-}
-
-func Application_Info() {
+func displayAppInfo() {
 
 	logs.Break()
 	logs.Header("Application Information")
@@ -269,9 +234,9 @@ func Application_Info() {
 	logs.Information("Server Date", time.Now().Format(core.DATEFORMATUSER))
 	logs.Information("Server Time", time.Now().Format(core.TIMEHMS))
 	if !core.IsChildInstance {
-		logs.Information("Server Mode", "Primary System")
+		logs.Success("Server Mode: " + "Primary")
 	} else {
-		logs.Information("Server Mode", "Secondary System")
+		logs.Warning("Server Mode: " + "Secondary")
 	}
 	logs.Information("Licence", core.ApplicationGetLicenseName())
 	logs.Information("Lic URL", core.ApplicationGetLicenseLink())
@@ -288,7 +253,13 @@ func Application_Info() {
 	logs.Header("Sessions")
 	logs.Information("Session Life", core.ApplicationSessionLife())
 
-	core.GetApplicationProperty("admin")
-	core.GetDatabaseProperty("admin")
+	//core.GetApplicationProperty("admin")
+	//core.GetDatabaseProperty("admin")
+
+	logs.Break()
+	logs.Header("Contacts")
+	logs.Break()
+	logs.Information("Admin", core.GetApplicationProperty("admin"))
+	logs.Break()
 
 }

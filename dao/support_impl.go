@@ -134,7 +134,7 @@ func StubLists_Get(listName string) []dm.Lookup_Item {
 	//logs.Success("listName=" + listName)
 	//logs.Success("List=" + ctList)
 	// Turn comma-separated string into a slice of strings
-	ctSlice := strings.Split(ctList, core.ListSeperator)
+	ctSlice := strings.Split(ctList, core.LIST_SEP)
 	//fmt.Printf("ctSlice: %v\n", ctSlice)
 	// Create a lookup list of all CounterpartyType items
 	ctLookup := make([]dm.Lookup_Item, len(ctSlice))
@@ -142,8 +142,8 @@ func StubLists_Get(listName string) []dm.Lookup_Item {
 
 		listID := ctSlice[i]
 		listItem := ctSlice[i]
-		if strings.Contains(listID, core.ListItemSeperator) {
-			ctExploded := strings.Split(ctSlice[i], core.ListItemSeperator)
+		if strings.Contains(listID, core.LIST_ID_SEP) {
+			ctExploded := strings.Split(ctSlice[i], core.LIST_ID_SEP)
 			listID = ctExploded[0]
 			listItem = ctExploded[1]
 		}
@@ -180,4 +180,37 @@ func SendMailToResource(resourceID string, MSG_SUBJECT string, MSG_BODY string) 
 		return
 	}
 	core.SendEmail(who.Email, who.Name, MSG_SUBJECT, MSG_BODY)
+}
+
+func SetFieldError(fP dm.FieldProperties, msg string) dm.FieldProperties {
+	fP.MsgType = "is-invalid"
+	if len(fP.MsgMessage) > 0 {
+		fP.MsgMessage = fP.MsgMessage + ", " + msg
+	} else {
+		fP.MsgMessage = msg
+	}
+	fP.MsgFeedBackType = "invalid-feedback"
+	return fP
+}
+
+func SetFieldMandatory(fP dm.FieldProperties, msg string) dm.FieldProperties {
+	fP.MsgType = "is-invalid"
+	if len(fP.MsgMessage) > 0 {
+		fP.MsgMessage = fP.MsgMessage + ", " + msg
+	} else {
+		fP.MsgMessage = msg
+	}
+	fP.MsgFeedBackType = "invalid-feedback"
+	return fP
+}
+
+func SetFieldGood(fP dm.FieldProperties, msg string) dm.FieldProperties {
+	fP.MsgType = "is-invalid"
+	if len(fP.MsgMessage) > 0 {
+		fP.MsgMessage = fP.MsgMessage + ", " + msg
+	} else {
+		fP.MsgMessage = msg
+	}
+	fP.MsgFeedBackType = "invalid-feedback"
+	return fP
 }

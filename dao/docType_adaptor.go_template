@@ -16,7 +16,7 @@ import (
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
 	// Template Generator   : Einsteinium [r5-23.01.23]
-	// Date & Time		    : 24/01/2023 at 13:18:08
+	// Date & Time		    : 15/02/2023 at 10:17:33
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in doctype_impl.go
@@ -26,28 +26,29 @@ import (
 
 	// ----------------------------------------------------------------
 	
+
+
 	// ----------------------------------------------------------------
-	// DocType_ObjectValidation_impl provides Record/Object level validation for DocType
-	func DocType_ObjectValidation_impl (iAction string, iId string, iRec dm.DocType) (dm.DocType, string, error) {
-		logs.Callout("DocType", "ObjectValidation", VAL +"-"+iAction, iId)
-		switch iAction {
-			case VAL:
-				
-			case NEW:
-
-			case PUT:
-
-			case GET:
-
-			default:
-				logs.Warning("DocType" + " - Invalid Action ["+iAction+"]")
-			}
-		return iRec,"",nil
+	// BEGIN DocType_Code
+	// BEGIN DocType_Code
+	// BEGIN DocType_Code
+	// ----------------------------------------------------------------
+	// DocType_Code_OnStore_impl provides the implementation for the callout
+	func DocType_Code_OnStore_impl (fieldval string,rec dm.DocType,usr string) (string,error)  {
+		logs.Callout("DocType", dm.DocType_Code_scrn, PUT, rec.DocTypeID)
+		return fieldval,nil
 	}
-	//
 	// ----------------------------------------------------------------
-	// If there are fields below, create the methods in adaptor\doctype_impl.go
-	// These are the the default implementations, which do nothing
+	// DocType_Code_OnFetch_impl provides the implementation for the callout	
+	func DocType_Code_OnFetch_impl (rec dm.DocType)(string) {
+		logs.Callout("DocType", dm.DocType_Code_scrn, GET, rec.DocTypeID)
+		return rec.Code
+	}
+	// ----------------------------------------------------------------
+	// END   DocType_Code
+	// END   DocType_Code
+	// END   DocType_Code
+	// ----------------------------------------------------------------
 
 	// ----------------------------------------------------------------
 	// Automatically generated code ends here

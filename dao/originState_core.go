@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 24/01/2023 at 13:18:10
+// Date & Time		    : 07/02/2023 at 18:52:37
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -28,7 +28,7 @@ var OriginState_SQLbase string
 var OriginState_QualifiedName string
 func init(){
 	OriginState_QualifiedName = get_TableName(core.ApplicationSQLSchema(), dm.OriginState_SQLTable)
-	OriginState_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + OriginState_QualifiedName
+	OriginState_SQLbase =  das.SELECTALL + das.FROM + OriginState_QualifiedName
 }
 
 // OriginState_GetList() returns a list of all OriginState records
@@ -44,7 +44,7 @@ func OriginState_GetListFiltered(filter string) (int, []dm.OriginState, error) {
 	
 	tsql := OriginState_SQLbase
 	if filter != "" {
-		tsql = tsql + " " + core.DB_WHERE + " " + filter
+		tsql = tsql + " " + das.WHERE + filter
 	}
 	count, originstateList, _, _ := originstate_Fetch(tsql)
 	
@@ -86,14 +86,14 @@ func OriginState_GetByID(id string) (int, dm.OriginState, error) {
 
 
 	tsql := OriginState_SQLbase
-	tsql = tsql + " " + core.DB_WHERE + " " + dm.OriginState_SQLSearchID + core.DB_EQ + "'" + id + "'"
+	tsql = tsql + " " + das.WHERE + dm.OriginState_SQLSearchID + das.EQ + das.ID(id)
 	_, _, originstateItem, _ := originstate_Fetch(tsql)
 
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, originstateItem, nil
 }
@@ -104,16 +104,11 @@ func OriginState_GetByID(id string) (int, dm.OriginState, error) {
 func OriginState_Delete(id string) {
 
 
-
-
 // Uses Hard Delete
 	object_Table := OriginState_QualifiedName
-	tsql := core.DB_DELETE+" "+core.DB_FROM+" " + object_Table
-	tsql = tsql + " " + core.DB_WHERE + " " + dm.OriginState_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-	
-	
+	tsql := das.DELETE + das.FROM + object_Table
+	tsql = tsql + " " + das.WHERE + dm.OriginState_SQLSearchID + das.EQ + das.ID(id)
+	das.Execute(tsql)	
 
 	
 }
@@ -174,10 +169,10 @@ func OriginState_StoreSystem(r dm.OriginState) error {
 func OriginState_Validate(r dm.OriginState) (dm.OriginState, error) {
 	var err error
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -233,7 +228,7 @@ logs.Storing("OriginState",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.OriginState_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.OriginState_OriginStateID_sql, r.OriginStateID)
@@ -253,12 +248,12 @@ logs.Storing("OriginState",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.OriginState_Notify_sql, r.Notify)
 		
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
-	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + OriginState_QualifiedName
+	tsql := das.INSERT + das.INTO + OriginState_QualifiedName
 	tsql = tsql + " (" + fields(ts) + ")"
-	tsql = tsql + " "+core.DB_VALUES +" (" + values(ts) + ")"
+	tsql = tsql + " "+das.VALUES +"(" + values(ts) + ")"
 
 	OriginState_Delete(r.OriginStateID)
 	das.Execute(tsql)
@@ -286,7 +281,7 @@ func originstate_Fetch(tsql string) (int, []dm.OriginState, dm.OriginState, erro
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.OriginState_SYSId_sql, "0")
 	   recItem.OriginStateID  = get_String(rec, dm.OriginState_OriginStateID_sql, "")
@@ -324,7 +319,7 @@ func originstate_Fetch(tsql string) (int, []dm.OriginState, dm.OriginState, erro
 	
 	
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -354,10 +349,10 @@ func OriginState_New() (int, []dm.OriginState, dm.OriginState, error) {
 	
 
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

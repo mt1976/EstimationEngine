@@ -19,6 +19,7 @@ import (
 	"strings"
 
 	core "github.com/mt1976/ebEstimates/core"
+	das "github.com/mt1976/ebEstimates/das"
 	"github.com/mt1976/ebEstimates/logs"
 
 	dm "github.com/mt1976/ebEstimates/datamodel"
@@ -30,7 +31,7 @@ func Data_Get(class string, field string, category string) (string, error) {
 	id := data_BuildID(class, field, category)
 
 	tsql := Data_SQLbase
-	tsql = tsql + " " + core.DB_WHERE + " " + dm.Data_SQLSearchID + core.DB_EQ + "'" + id + "'"
+	tsql = tsql + " " + das.WHERE + dm.Data_SQLSearchID + das.EQ + das.ID(id)
 	//logs.Information("tsql", tsql)
 	_, _, dataItem, err := data_Fetch(tsql)
 	//logs.Information("dataItem", dataItem.Value)
@@ -58,7 +59,7 @@ func Data_Put(class string, field string, category string, value string) (string
 	dataItem.Field = field
 	dataItem.Value = value
 	dataItem.Category = category
-	err2 := Data_StoreSystem(dataItem)
+	_, err2 := Data_StoreSystem(dataItem)
 	if err2 != nil {
 		return "error", err2
 	}
@@ -123,7 +124,7 @@ func Data_GetInt(class string, field string, category string) (int, error) {
 	}
 	rtnVal, err2 := strconv.Atoi(value)
 	if err2 != nil {
-		return 0, err2
+		return 0, nil
 	}
 
 	return rtnVal, nil

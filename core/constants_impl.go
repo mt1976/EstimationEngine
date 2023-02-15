@@ -19,14 +19,12 @@ const (
 	TIMEHMS                 = "15:04:05"
 	DATEMSG                 = "2006-01-02 at 15:04:05"
 	DFSS                    = "02-Jan-06"
-)
-const (
+
 	APPCONFIG       = "application.cfg"
 	DATASTORECONFIG = "applicationDB.cfg"
 	INSTANCECONFIG  = "instance.cfg"
 	APPSTUBLISTS    = "lists.cfg"
-)
-const (
+
 	ColorReset  = "\033[0m"
 	ColorRed    = "\033[31m"
 	ColorGreen  = "\033[32m"
@@ -35,8 +33,7 @@ const (
 	ColorPurple = "\033[35m"
 	ColorCyan   = "\033[36m"
 	ColorWhite  = "\033[37m"
-)
-const (
+
 	SessionRole              = "1891835972"
 	SessionNavi              = "6782444386"
 	SessionKnowAs            = "0627218437"
@@ -45,13 +42,14 @@ const (
 	SessionUUID              = "0663644127"
 	SessionSecurityViolation = "4097340829"
 	SessionAppToken          = "1117429826"
-)
-const (
-	IDSep             = "|"
-	ListSeperator     = ","
-	ListItemSeperator = "|"
-)
-const (
+
+	ID_SEP      = "|"
+	LIST_SEP    = ","
+	LIST_ID_SEP = "|"
+	URI_SEP     = "/" // used to separate the path from the query
+	URI_QUERY   = "?" // used to separate the query from the path
+	URI_SPECIAL = "_" // used to identify a special query variable
+
 	Tick         = "☑️"
 	WarningLabel = "⚠️"
 	Bike         = "🚴‍♂️"
@@ -62,8 +60,7 @@ const (
 	Aquirer      = "Aquirer"
 	HouseKeeping = "HouseKeeping"
 	General      = "General"
-)
-const (
+
 	Character_MapTo        = "⇄"
 	Character_Job          = "⚙️"
 	Character_Heart        = "🫀"
@@ -75,13 +72,11 @@ const (
 	Character_Dispatcher   = "📡"
 	Character_Gears        = "⚙️"
 	Character_HouseKeeping = "🧼"
-)
-const (
+
 	CatalogType_API = "API"
 	CatalogType_GUI = "USER"
 	DataSource_App  = "APP"
-)
-const (
+
 	Action_Edit       = "Edit"
 	Action_View       = "View"
 	Action_Delete     = "Delete"
@@ -97,22 +92,19 @@ const (
 	Action_Approve    = "Approve"
 	Action_Configure  = "Configure"
 	Action_Import     = "Import"
-)
 
-const (
 	// FieldProperties_MsgType is the field name for the message type
 	FieldMessage_ERROR    = "is-invalid"
 	FieldMessage_NORMAL   = ""
 	FieldMessage_POSITIVE = "is-valid"
-)
 
-const (
+	ContextState        = URI_SPECIAL + "state"
 	ContextState_ERROR  = "action-error"
 	ContextState_NORMAL = "action-success"
 	ContextState_OK     = "action-success"
-)
 
-const (
 	TRUE  = "true"
 	FALSE = "false"
+
+	ExceptionHandlingPageSuffix = "Exception"
 )

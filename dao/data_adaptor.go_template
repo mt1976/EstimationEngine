@@ -16,7 +16,7 @@ import (
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
 	// Template Generator   : Einsteinium [r5-23.01.23]
-	// Date & Time		    : 24/01/2023 at 14:03:00
+	// Date & Time		    : 15/02/2023 at 10:17:29
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in data_impl.go
@@ -26,28 +26,7 @@ import (
 
 	// ----------------------------------------------------------------
 	
-	// ----------------------------------------------------------------
-	// Data_ObjectValidation_impl provides Record/Object level validation for Data
-	func Data_ObjectValidation_impl (iAction string, iId string, iRec dm.Data) (dm.Data, string, error) {
-		logs.Callout("Data", "ObjectValidation", VAL +"-"+iAction, iId)
-		switch iAction {
-			case VAL:
-				
-			case NEW:
 
-			case PUT:
-
-			case GET:
-
-			default:
-				logs.Warning("Data" + " - Invalid Action ["+iAction+"]")
-			}
-		return iRec,"",nil
-	}
-	//
-	// ----------------------------------------------------------------
-	// If there are fields below, create the methods in adaptor\data_impl.go
-	// These are the the default implementations, which do nothing
 
 	// ----------------------------------------------------------------
 	// BEGIN Data_DataID
@@ -64,12 +43,6 @@ import (
 	func Data_DataID_OnFetch_impl (rec dm.Data)(string) {
 		logs.Callout("Data", dm.Data_DataID_scrn, GET, rec.DataID)
 		return rec.DataID
-	}
-	// ----------------------------------------------------------------
-	// Data_DataID_impl provides validation/actions for DataID
-	func Data_DataID_impl (iAction string, iId string, iValue string, iRec dm.Data, fP dm.FieldProperties) (string, dm.FieldProperties) {
-		logs.Callout("Data", dm.Data_DataID_scrn, VAL +"-"+iAction, iId)
-		return iValue,fP
 	}
 	// ----------------------------------------------------------------
 	// END   Data_DataID

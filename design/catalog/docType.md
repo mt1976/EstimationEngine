@@ -45,7 +45,7 @@ SQL Table Key | **docTypeID**
 | -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
 |**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|text||
 |**DocTypeID**|String|false|true|false|true|||||H|docTypeID||true|false|false|text||
-|**Code**|String|true|true|false|false|||||Y|code||false|false|false|text||
+|**Code**|String|true|true|false|true|||||Y|code||false|true|false|text||
 |**Name**|String|true|true|false|false|||||Y|name||false|false|false|text||
 |**SYSCreated**|String|false|true|false|false|||||NH|_created||false|false|true|text||
 |**SYSCreatedBy**|String|false|true|false|false|||||NH|_createdBy||false|false|true|text||
@@ -65,21 +65,22 @@ SQL Table Key | **docTypeID**
 | :--: | -- | -- |
 | code | **application** | /application/docType_core.go |
 | code | **adaptor** | /dao/docType_adaptor.go_template |
+| code | **validation** | /dao/docType_validation.go_template |
 | code | **api** | /application/docType_api.go |
 | code | **dao** | /dao/docType_core.go |
 | code | **datamodel** | /datamodel/docType_core.go |
 | code | **menu** | /design/menu/docType.json |
-| html | **list** | /DocType_List.html |
-| html | **view** | /DocType_View.html |
-| html | **edit** | /DocType_Edit.html |
-| html | **new** | /DocType_New.html |
+| html | **list** | /DocTypeList.html |
+| html | **view** | /DocTypeView.html |
+| html | **edit** | /DocTypeEdit.html |
+| html | **new** | /DocTypeNew.html |
 
 
 ## Audit Information
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **24/01/2023** at **13:18:08**
+Date & Time		     | **15/02/2023** at **10:17:33**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

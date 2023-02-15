@@ -405,7 +405,11 @@ func GetSQLSchema(in map[string]string) string {
 }
 
 func ApplicationSQLSchema() string {
-	return GetDatabaseProperty("schema")
+	rtnVal := GetDatabaseProperty("schema")
+	if len(rtnVal) == 0 {
+		rtnVal = "dbo"
+	}
+	return rtnVal
 }
 
 func ApplicationSQLDatabase() string {

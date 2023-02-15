@@ -9,80 +9,75 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 24/01/2023 at 14:03:00
+// Date & Time		    : 15/02/2023 at 10:17:29
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//Data defines the datamolde for the Data object
+//Data defines the datamodel for the Data object
 type Data struct {
-
-
-SYSId       string
-SYSId_props FieldProperties
-DataID       string
-DataID_props FieldProperties
-Class       string
-Class_props FieldProperties
-Field       string
-Field_props FieldProperties
-Value       string
-Value_props FieldProperties
-SYSCreated       string
-SYSCreated_props FieldProperties
-SYSCreatedBy       string
-SYSCreatedBy_props FieldProperties
-SYSCreatedHost       string
-SYSCreatedHost_props FieldProperties
-SYSUpdated       string
-SYSUpdated_props FieldProperties
-SYSUpdatedBy       string
-SYSUpdatedBy_props FieldProperties
-SYSUpdatedHost       string
-SYSUpdatedHost_props FieldProperties
-SYSDeleted       string
-SYSDeleted_props FieldProperties
-SYSDeletedBy       string
-SYSDeletedBy_props FieldProperties
-SYSDeletedHost       string
-SYSDeletedHost_props FieldProperties
-SYSDbVersion       string
-SYSDbVersion_props FieldProperties
-Category       string
-Category_props FieldProperties
- // Any lookups will be added below
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Field Definitions
+	//
+	SYSId       string
+	DataID       string
+	Class       string
+	Field       string
+	Value       string
+	SYSCreated       string
+	SYSCreatedBy       string
+	SYSCreatedHost       string
+	SYSUpdated       string
+	SYSUpdatedBy       string
+	SYSUpdatedHost       string
+	SYSDeleted       string
+	SYSDeletedBy       string
+	SYSDeletedHost       string
+	SYSDbVersion       string
+	Category       string
+	//
+	// Field Properties
+	//
+	SYSId_props FieldProperties
+	DataID_props FieldProperties
+	Class_props FieldProperties
+	Field_props FieldProperties
+	Value_props FieldProperties
+	SYSCreated_props FieldProperties
+	SYSCreatedBy_props FieldProperties
+	SYSCreatedHost_props FieldProperties
+	SYSUpdated_props FieldProperties
+	SYSUpdatedBy_props FieldProperties
+	SYSUpdatedHost_props FieldProperties
+	SYSDeleted_props FieldProperties
+	SYSDeletedBy_props FieldProperties
+	SYSDeletedHost_props FieldProperties
+	SYSDbVersion_props FieldProperties
+	Category_props FieldProperties
+	//
+ 	// Any lookups will be added below
+	//
 
 }
 
 const (
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
+	Data_Name      = "Data"
 	Data_Title       = "System Properties"
 	Data_SQLTable    = "dataStore"
 	Data_SQLSearchID = "dataID"
 	Data_QueryString = "DataID"
 	///
-	/// Handler Defintions
+	/// Template Path Defintions
 	///
 	Data_Template     = "Data"
-	Data_TemplateList = "/Data/Data_List"
-	Data_TemplateView = "/Data/Data_View"
-	Data_TemplateEdit = "/Data/Data_Edit"
-	Data_TemplateNew  = "/Data/Data_New"
+	Data_TemplateList = "/Data/DataList"
+	Data_TemplateView = "/Data/DataView"
+	Data_TemplateEdit = "/Data/DataEdit"
+	Data_TemplateNew  = "/Data/DataNew"
 	///
-	/// Handler Monitor Paths
+	/// URI Handler Paths
 	///
 	Data_Path       = "/API/Data/"
 	Data_PathList   = "/DataList/"
@@ -91,14 +86,17 @@ const (
 	Data_PathNew    = "/DataNew/"
 	Data_PathSave   = "/DataSave/"
 	Data_PathDelete = "/DataDelete/"
-	///
+	// Redirects - On Server Side Error
+	Data_PathEditException   = "/DataEditException/"
+	Data_PathNewException    = "/DataNewException/"
+	//
 	//Data_Redirect provides a page to return to aftern an action
 	Data_Redirect = Data_PathList
 	
-	///
-	///
-	/// SQL Field Definitions
-	///
+	//
+	//
+	// SQL Field Definitions
+	//
 	Data_SYSId_sql   = "_id" // SYSId is a Int
 	Data_DataID_sql   = "dataID" // DataID is a String
 	Data_Class_sql   = "class" // Class is a String
@@ -115,9 +113,7 @@ const (
 	Data_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
 	Data_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
 	Data_Category_sql   = "category" // Category is a String
-
-	/// Definitions End
-	///
+///
 	/// Application Field Definitions
 	///
 	Data_SYSId_scrn   = "SYSId" // SYSId is a Int
@@ -136,20 +132,19 @@ const (
 	Data_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
 	Data_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
 	Data_Category_scrn   = "Category" // Category is a String
-
-	/// Definitions End
-	///
+///
 )
 
-//data_PageList provides the information for the template for a list of Datas
+//Data_PageList provides the information for the template for a list of Datas
 type Data_PageList struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []Data
+	// Context & Permisions
 	Context	 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -157,53 +152,21 @@ type Data_PageList struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	// Page Data
+	ItemsOnPage 	 int
+	ItemList  		 []Data
 }
 
-//data_Page provides the information for the template for an individual Data
+//Data_Page provides the information for the template for an individual Data
 type Data_Page struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	SYSId_props     FieldProperties
-	DataID         string
-	DataID_props     FieldProperties
-	Class         string
-	Class_props     FieldProperties
-	Field         string
-	Field_props     FieldProperties
-	Value         string
-	Value_props     FieldProperties
-	SYSCreated         string
-	SYSCreated_props     FieldProperties
-	SYSCreatedBy         string
-	SYSCreatedBy_props     FieldProperties
-	SYSCreatedHost         string
-	SYSCreatedHost_props     FieldProperties
-	SYSUpdated         string
-	SYSUpdated_props     FieldProperties
-	SYSUpdatedBy         string
-	SYSUpdatedBy_props     FieldProperties
-	SYSUpdatedHost         string
-	SYSUpdatedHost_props     FieldProperties
-	SYSDeleted         string
-	SYSDeleted_props     FieldProperties
-	SYSDeletedBy         string
-	SYSDeletedBy_props     FieldProperties
-	SYSDeletedHost         string
-	SYSDeletedHost_props     FieldProperties
-	SYSDbVersion         string
-	SYSDbVersion_props     FieldProperties
-	Category         string
-	Category_props     FieldProperties
-	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+	/// Context & Permisions
 	Context	 		 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -211,4 +174,41 @@ type Data_Page struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	/// Fields Definitions
+	SYSId         string
+	DataID         string
+	Class         string
+	Field         string
+	Value         string
+	SYSCreated         string
+	SYSCreatedBy         string
+	SYSCreatedHost         string
+	SYSUpdated         string
+	SYSUpdatedBy         string
+	SYSUpdatedHost         string
+	SYSDeleted         string
+	SYSDeletedBy         string
+	SYSDeletedHost         string
+	SYSDbVersion         string
+	Category         string
+	/// Field Properties
+	SYSId_props     FieldProperties
+	DataID_props     FieldProperties
+	Class_props     FieldProperties
+	Field_props     FieldProperties
+	Value_props     FieldProperties
+	SYSCreated_props     FieldProperties
+	SYSCreatedBy_props     FieldProperties
+	SYSCreatedHost_props     FieldProperties
+	SYSUpdated_props     FieldProperties
+	SYSUpdatedBy_props     FieldProperties
+	SYSUpdatedHost_props     FieldProperties
+	SYSDeleted_props     FieldProperties
+	SYSDeletedBy_props     FieldProperties
+	SYSDeletedHost_props     FieldProperties
+	SYSDbVersion_props     FieldProperties
+	Category_props     FieldProperties
+	/// Lookups
+	/// END OF DEFINITIONS
+	///
 }

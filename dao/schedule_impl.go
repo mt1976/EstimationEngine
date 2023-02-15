@@ -21,7 +21,7 @@ import (
 func schedule_NewIDImpl(r dm.Schedule) string {
 
 	//schedule_NewIDImpl should be specified in dao/Schedule_Impl.go
-	id := r.Name + core.IDSep + r.Type
+	id := r.Name + core.ID_SEP + r.Type
 
 	return id
 }

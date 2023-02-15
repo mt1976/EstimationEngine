@@ -57,6 +57,8 @@ type DateItem struct {
 	PICKEpoch string
 }
 
+// GetApplicationProperty returns the value of a property configuration for the application
+// GetApplicationProperty checks the environment variable APP_<PROPERTY> first and if not found uses the value in the properties file
 func GetApplicationProperty(inProperty string) string {
 	low_var := strings.ToLower(inProperty)
 	rtn_var := ApplicationProperties[low_var]
@@ -74,20 +76,18 @@ func GetApplicationProperty(inProperty string) string {
 	return rtn_var
 }
 
+// GetDatabaseProperty returns the value of a property configuration for the database
+// GetDatabaseProperty checks the environment variable DB_<PROPERTY> first and if not found uses the value in the properties file
 func GetDatabaseProperty(inProperty string) string {
-
+	//logs.Accessing("GetDatabaseProperty : " + inProperty)
 	rtn_var := ApplicationPropertiesDB[inProperty]
 	env_var := "DB_" + strings.ToUpper(inProperty)
-
-	//logs.Accessing("GetDBProperty : " + inProperty + " " + env_var)
-
+	logs.Accessing("GetDBProperty : " + inProperty + " " + env_var)
 	xxx := os.Getenv(env_var)
 	if xxx != "" {
 		logs.Override(inProperty, rtn_var, env_var, xxx)
 		return xxx
 	}
-
-	//logs.Information("GetDBProperty :", ApplicationPropertiesDB[inProperty])
 	return rtn_var
 }
 
@@ -187,25 +187,171 @@ func copyDataFile(fileName string, fromPath string, toPath string) bool {
 	return true
 }
 
-// getFundsCheckList read all employees
+// GetDataList gets a list from a properties file
 func GetDataList(basePath string) (int, []string, error) {
 
 	var listing []string
-	//	log.Println(basePath, kind, direction, requestPath)
 	pwd, _ := os.Getwd()
-	//logs.Accessing(pwd + basePath)
 	files, err := os.ReadDir(pwd + basePath)
 	if err != nil {
 		logs.Fatal("Directory Error", err)
 	}
 
-	//logs.Information("Files Found", strconv.Itoa(len(files)))
-
 	for _, k := range files {
-		//fmt.Println("key:", k)
 		listing = append(listing, k.Name())
 	}
 
-	//count, simFundsCheckList, _, _ := fetchFundsCheckData("")
 	return len(files), listing, nil
+}
+
+func (dbconnectionstring *DBConnectionString) GetID() string {
+	return dbconnectionstring.ID
+}
+
+func (dbconnectionstring *DBConnectionString) GetServer() string {
+	return dbconnectionstring.Server
+}
+
+func (dbconnectionstring *DBConnectionString) GetPort() string {
+	return dbconnectionstring.Port
+}
+
+func (dbconnectionstring *DBConnectionString) GetUser() string {
+	return dbconnectionstring.User
+}
+
+func (dbconnectionstring *DBConnectionString) GetPassword() string {
+	return dbconnectionstring.Password
+}
+
+func (dbconnectionstring *DBConnectionString) GetDatabase() string {
+	return dbconnectionstring.Database
+}
+
+func (dbconnectionstring *DBConnectionString) GetSchema() string {
+	return dbconnectionstring.Schema
+}
+
+func (dbconnectionstring *DBConnectionString) GetActive() string {
+	return dbconnectionstring.Active
+}
+
+func (dbconnectionstring *DBConnectionString) GetSYSCreated() string {
+	return dbconnectionstring.SYSCreated
+}
+
+func (dbconnectionstring *DBConnectionString) GetSYSWho() string {
+	return dbconnectionstring.SYSWho
+}
+
+func (dbconnectionstring *DBConnectionString) GetSYSHost() string {
+	return dbconnectionstring.SYSHost
+}
+
+func (dbconnectionstring *DBConnectionString) GetSYSUpdated() string {
+	return dbconnectionstring.SYSUpdated
+}
+
+func (dbconnectionstring *DBConnectionString) SetID(ID string) *DBConnectionString {
+	dbconnectionstring.ID = ID
+	return dbconnectionstring
+}
+
+func (dbconnectionstring *DBConnectionString) SetServer(Server string) *DBConnectionString {
+	dbconnectionstring.Server = Server
+	return dbconnectionstring
+}
+
+func (dbconnectionstring *DBConnectionString) SetPort(Port string) *DBConnectionString {
+	dbconnectionstring.Port = Port
+	return dbconnectionstring
+}
+
+func (dbconnectionstring *DBConnectionString) SetUser(User string) *DBConnectionString {
+	dbconnectionstring.User = User
+	return dbconnectionstring
+}
+
+func (dbconnectionstring *DBConnectionString) SetPassword(Password string) *DBConnectionString {
+	dbconnectionstring.Password = Password
+	return dbconnectionstring
+}
+
+func (dbconnectionstring *DBConnectionString) SetDatabase(Database string) *DBConnectionString {
+	dbconnectionstring.Database = Database
+	return dbconnectionstring
+}
+
+func (dbconnectionstring *DBConnectionString) SetSchema(Schema string) *DBConnectionString {
+	dbconnectionstring.Schema = Schema
+	return dbconnectionstring
+}
+
+func (dbconnectionstring *DBConnectionString) SetActive(Active string) *DBConnectionString {
+	dbconnectionstring.Active = Active
+	return dbconnectionstring
+}
+
+func (dbconnectionstring *DBConnectionString) SetSYSCreated(SYSCreated string) *DBConnectionString {
+	dbconnectionstring.SYSCreated = SYSCreated
+	return dbconnectionstring
+}
+
+func (dbconnectionstring *DBConnectionString) SetSYSWho(SYSWho string) *DBConnectionString {
+	dbconnectionstring.SYSWho = SYSWho
+	return dbconnectionstring
+}
+
+func (dbconnectionstring *DBConnectionString) SetSYSHost(SYSHost string) *DBConnectionString {
+	dbconnectionstring.SYSHost = SYSHost
+	return dbconnectionstring
+}
+
+func (dbconnectionstring *DBConnectionString) SetSYSUpdated(SYSUpdated string) *DBConnectionString {
+	dbconnectionstring.SYSUpdated = SYSUpdated
+	return dbconnectionstring
+}
+func (dateitem *DateItem) GetToday() string {
+	return dateitem.Today
+}
+
+func (dateitem *DateItem) GetInternal() time.Time {
+	return dateitem.Internal
+}
+
+func (dateitem *DateItem) GetDefault() string {
+	return dateitem.Default
+}
+
+func (dateitem *DateItem) GetYYYYMMDD() string {
+	return dateitem.YYYYMMDD
+}
+
+func (dateitem *DateItem) GetPICKEpoch() string {
+	return dateitem.PICKEpoch
+}
+
+func (dateitem *DateItem) SetToday(Today string) *DateItem {
+	dateitem.Today = Today
+	return dateitem
+}
+
+func (dateitem *DateItem) SetInternal(Internal time.Time) *DateItem {
+	dateitem.Internal = Internal
+	return dateitem
+}
+
+func (dateitem *DateItem) SetDefault(Default string) *DateItem {
+	dateitem.Default = Default
+	return dateitem
+}
+
+func (dateitem *DateItem) SetYYYYMMDD(YYYYMMDD string) *DateItem {
+	dateitem.YYYYMMDD = YYYYMMDD
+	return dateitem
+}
+
+func (dateitem *DateItem) SetPICKEpoch(PICKEpoch string) *DateItem {
+	dateitem.PICKEpoch = PICKEpoch
+	return dateitem
 }

@@ -2,12 +2,15 @@ package application
 
 import (
 	"database/sql"
+	"encoding/gob"
 	"html/template"
-	"log"
 	"net/http"
+	"net/url"
+	"strings"
 
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/mt1976/ebEstimates/dao"
+	"github.com/mt1976/ebEstimates/logs"
 )
 
 const GET = "GET"
@@ -76,8 +79,32 @@ func ExecuteTemplate(tname string, w http.ResponseWriter, r *http.Request, data 
 	t[tname] = template.Must(template.ParseFiles(baseTemplateID, headerTemplateID))
 	err := t[tname].Execute(w, data)
 	if err != nil {
-		log.Println("Error executing template: " + err.Error())
+		logs.Warning("Error executing template: " + err.Error())
 	}
+}
+
+func ExecuteRedirect(inRoute string, w http.ResponseWriter, r *http.Request, thisID string, thisQuery string, data interface{}) {
+	// //fmt.Printf("tname: %v\n", tname)
+	// fmt.Printf("inName: %v\n", inRoute)
+	// fmt.Printf("path: %v\n", objName)
+	// fmt.Printf("thisID: %v\n", thisID)
+	// fmt.Printf("thisQuery: %v\n", thisQuery)
+
+	path := firstDir(inRoute)
+
+	tname := core.URI_SEP + path + core.URI_SEP + core.URI_QUERY + thisID + "=" + thisQuery
+	errText := core.ContextState + "=" + core.ContextState_ERROR
+	if !strings.Contains(path, errText) {
+		//	path = path + core.ExceptionHandlingPageSuffix
+		tname = tname + "&" + errText
+	}
+
+	logs.Redirecting(tname)
+
+	gob.Register(data)
+	core.SessionManager.Put(r.Context(), thisQuery, data)
+
+	http.Redirect(w, r, tname, http.StatusSeeOther)
 }
 
 func addActivity(in string, what string, r *http.Request) string {
@@ -101,4 +128,14 @@ func getCheckBoxValue(field string, r *http.Request) string {
 	} else {
 		return core.FALSE
 	}
+}
+
+func firstDir(input_url string) string {
+
+	u, err := url.Parse(input_url)
+	if err != nil {
+		logs.Warning(err.Error())
+	}
+
+	return u.Path[1 : strings.Index(u.Path[1:], "/")+1]
 }

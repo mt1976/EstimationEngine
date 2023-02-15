@@ -9,77 +9,73 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 24/01/2023 at 13:18:08
+// Date & Time		    : 15/02/2023 at 10:17:33
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
-//DocType defines the datamolde for the DocType object
+//DocType defines the datamodel for the DocType object
 type DocType struct {
-
-
-SYSId       string
-SYSId_props FieldProperties
-DocTypeID       string
-DocTypeID_props FieldProperties
-Code       string
-Code_props FieldProperties
-Name       string
-Name_props FieldProperties
-SYSCreated       string
-SYSCreated_props FieldProperties
-SYSCreatedBy       string
-SYSCreatedBy_props FieldProperties
-SYSCreatedHost       string
-SYSCreatedHost_props FieldProperties
-SYSUpdated       string
-SYSUpdated_props FieldProperties
-SYSUpdatedBy       string
-SYSUpdatedBy_props FieldProperties
-SYSUpdatedHost       string
-SYSUpdatedHost_props FieldProperties
-SYSDeleted       string
-SYSDeleted_props FieldProperties
-SYSDeletedBy       string
-SYSDeletedBy_props FieldProperties
-SYSDeletedHost       string
-SYSDeletedHost_props FieldProperties
-SYSDbVersion       string
-SYSDbVersion_props FieldProperties
-Comments       string
-Comments_props FieldProperties
- // Any lookups will be added below
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Field Definitions
+	//
+	SYSId       string
+	DocTypeID       string
+	Code       string
+	Name       string
+	SYSCreated       string
+	SYSCreatedBy       string
+	SYSCreatedHost       string
+	SYSUpdated       string
+	SYSUpdatedBy       string
+	SYSUpdatedHost       string
+	SYSDeleted       string
+	SYSDeletedBy       string
+	SYSDeletedHost       string
+	SYSDbVersion       string
+	Comments       string
+	//
+	// Field Properties
+	//
+	SYSId_props FieldProperties
+	DocTypeID_props FieldProperties
+	Code_props FieldProperties
+	Name_props FieldProperties
+	SYSCreated_props FieldProperties
+	SYSCreatedBy_props FieldProperties
+	SYSCreatedHost_props FieldProperties
+	SYSUpdated_props FieldProperties
+	SYSUpdatedBy_props FieldProperties
+	SYSUpdatedHost_props FieldProperties
+	SYSDeleted_props FieldProperties
+	SYSDeletedBy_props FieldProperties
+	SYSDeletedHost_props FieldProperties
+	SYSDbVersion_props FieldProperties
+	Comments_props FieldProperties
+	//
+ 	// Any lookups will be added below
+	//
 
 }
 
 const (
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
+	DocType_Name      = "DocType"
 	DocType_Title       = "Document Types"
 	DocType_SQLTable    = "docTypeStore"
 	DocType_SQLSearchID = "docTypeID"
 	DocType_QueryString = "DocTypeID"
 	///
-	/// Handler Defintions
+	/// Template Path Defintions
 	///
 	DocType_Template     = "DocType"
-	DocType_TemplateList = "/DocType/DocType_List"
-	DocType_TemplateView = "/DocType/DocType_View"
-	DocType_TemplateEdit = "/DocType/DocType_Edit"
-	DocType_TemplateNew  = "/DocType/DocType_New"
+	DocType_TemplateList = "/DocType/DocTypeList"
+	DocType_TemplateView = "/DocType/DocTypeView"
+	DocType_TemplateEdit = "/DocType/DocTypeEdit"
+	DocType_TemplateNew  = "/DocType/DocTypeNew"
 	///
-	/// Handler Monitor Paths
+	/// URI Handler Paths
 	///
 	DocType_Path       = "/API/DocType/"
 	DocType_PathList   = "/DocTypeList/"
@@ -88,14 +84,17 @@ const (
 	DocType_PathNew    = "/DocTypeNew/"
 	DocType_PathSave   = "/DocTypeSave/"
 	DocType_PathDelete = "/DocTypeDelete/"
-	///
+	// Redirects - On Server Side Error
+	DocType_PathEditException   = "/DocTypeEditException/"
+	DocType_PathNewException    = "/DocTypeNewException/"
+	//
 	//DocType_Redirect provides a page to return to aftern an action
 	DocType_Redirect = DocType_PathList
 	
-	///
-	///
-	/// SQL Field Definitions
-	///
+	//
+	//
+	// SQL Field Definitions
+	//
 	DocType_SYSId_sql   = "_id" // SYSId is a Int
 	DocType_DocTypeID_sql   = "docTypeID" // DocTypeID is a String
 	DocType_Code_sql   = "code" // Code is a String
@@ -111,9 +110,7 @@ const (
 	DocType_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
 	DocType_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
 	DocType_Comments_sql   = "comments" // Comments is a String
-
-	/// Definitions End
-	///
+///
 	/// Application Field Definitions
 	///
 	DocType_SYSId_scrn   = "SYSId" // SYSId is a Int
@@ -131,20 +128,19 @@ const (
 	DocType_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
 	DocType_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
 	DocType_Comments_scrn   = "Comments" // Comments is a String
-
-	/// Definitions End
-	///
+///
 )
 
-//doctype_PageList provides the information for the template for a list of DocTypes
+//DocType_PageList provides the information for the template for a list of DocTypes
 type DocType_PageList struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
 	UserRole         string
 	Title            string
 	PageTitle        string
-	ItemsOnPage 	 int
-	ItemList  		 []DocType
+	// Context & Permisions
 	Context	 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -152,51 +148,21 @@ type DocType_PageList struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	// Page Data
+	ItemsOnPage 	 int
+	ItemList  		 []DocType
 }
 
-//doctype_Page provides the information for the template for an individual DocType
+//DocType_Page provides the information for the template for an individual DocType
 type DocType_Page struct {
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
 	UserRole    	 string
 	Title       	 string
 	PageTitle   	 string
-	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//	
-	SYSId         string
-	SYSId_props     FieldProperties
-	DocTypeID         string
-	DocTypeID_props     FieldProperties
-	Code         string
-	Code_props     FieldProperties
-	Name         string
-	Name_props     FieldProperties
-	SYSCreated         string
-	SYSCreated_props     FieldProperties
-	SYSCreatedBy         string
-	SYSCreatedBy_props     FieldProperties
-	SYSCreatedHost         string
-	SYSCreatedHost_props     FieldProperties
-	SYSUpdated         string
-	SYSUpdated_props     FieldProperties
-	SYSUpdatedBy         string
-	SYSUpdatedBy_props     FieldProperties
-	SYSUpdatedHost         string
-	SYSUpdatedHost_props     FieldProperties
-	SYSDeleted         string
-	SYSDeleted_props     FieldProperties
-	SYSDeletedBy         string
-	SYSDeletedBy_props     FieldProperties
-	SYSDeletedHost         string
-	SYSDeletedHost_props     FieldProperties
-	SYSDbVersion         string
-	SYSDbVersion_props     FieldProperties
-	Comments         string
-	Comments_props     FieldProperties
-	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+	/// Context & Permisions
 	Context	 		 appContext
 	BlockEdit		 bool
 	BlockSave 		 bool
@@ -204,4 +170,39 @@ type DocType_Page struct {
 	BlockDelete		 bool
 	BlockValidate	 bool
 	BlockView		 bool
+	/// Fields Definitions
+	SYSId         string
+	DocTypeID         string
+	Code         string
+	Name         string
+	SYSCreated         string
+	SYSCreatedBy         string
+	SYSCreatedHost         string
+	SYSUpdated         string
+	SYSUpdatedBy         string
+	SYSUpdatedHost         string
+	SYSDeleted         string
+	SYSDeletedBy         string
+	SYSDeletedHost         string
+	SYSDbVersion         string
+	Comments         string
+	/// Field Properties
+	SYSId_props     FieldProperties
+	DocTypeID_props     FieldProperties
+	Code_props     FieldProperties
+	Name_props     FieldProperties
+	SYSCreated_props     FieldProperties
+	SYSCreatedBy_props     FieldProperties
+	SYSCreatedHost_props     FieldProperties
+	SYSUpdated_props     FieldProperties
+	SYSUpdatedBy_props     FieldProperties
+	SYSUpdatedHost_props     FieldProperties
+	SYSDeleted_props     FieldProperties
+	SYSDeletedBy_props     FieldProperties
+	SYSDeletedHost_props     FieldProperties
+	SYSDbVersion_props     FieldProperties
+	Comments_props     FieldProperties
+	/// Lookups
+	/// END OF DEFINITIONS
+	///
 }

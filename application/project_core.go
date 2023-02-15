@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 24/01/2023 at 13:18:10
+// Date & Time		    : 07/02/2023 at 18:52:38
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //Project_Publish annouces the endpoints available for this object
-//Project_Publish - Auto generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local
+//Project_Publish - Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
 func Project_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.Project_Path, Project_Handler)
 	mux.HandleFunc(dm.Project_PathList, Project_HandlerList)
@@ -38,17 +38,17 @@ func Project_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.Project_Title)
     core.Catalog_Add(dm.Project_Title, dm.Project_Path, "", dm.Project_QueryString, "Application")
 	// 
-	// Auto generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Project_HandlerList is the handler for the list page
 //Allows Listing of Project records
-//Project_HandlerList - Auto generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local
+//Project_HandlerList - Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
 func Project_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -78,7 +78,7 @@ func Project_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	ExecuteTemplate(dm.Project_TemplateList, w, r, pageDetail)
 	// 
-	// Auto generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -86,10 +86,10 @@ func Project_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //Project_HandlerView is the handler used to View a page
 //Allows Viewing for an existing Project record
-//Project_HandlerView - Auto generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Project_HandlerView - Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Project_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -118,17 +118,17 @@ func Project_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Project_TemplateView, w, r, pageDetail)
 	// 
-	// Auto generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Project_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing Project record and then allows the user to save the changes
-//Project_HandlerEdit - Auto generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Project_HandlerEdit - Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Project_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -157,17 +157,17 @@ func Project_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Project_TemplateEdit, w, r, pageDetail)
 	// 
-	// Auto generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Project_HandlerSave is the handler used process the saving of an Project
 //It is called from the Edit and New pages
-//Project_HandlerSave  - Auto generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Project_HandlerSave  - Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Project_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -185,17 +185,17 @@ func Project_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	dao.Project_Store(item,r)	
 	http.Redirect(w, r, dm.Project_Redirect, http.StatusFound)
 	// 
-	// Auto generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Project_HandlerNew is the handler used process the creation of an Project
 //It will create a new Project and then redirect to the Edit page
-//Project_HandlerNew  - Auto generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Project_HandlerNew  - Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Project_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -222,7 +222,7 @@ func Project_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Project_TemplateNew, w, r, pageDetail)
 	// 
-	// Auto generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }	
 
@@ -231,7 +231,7 @@ func Project_HandlerNew(w http.ResponseWriter, r *http.Request) {
 //project_PopulatePage Builds/Populates the Project Page 
 func project_PopulatePage(rD dm.Project, pageDetail dm.Project_Page) dm.Project_Page {
 	// START
-	// Auto generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.ProjectID = rD.ProjectID
@@ -265,7 +265,7 @@ func project_PopulatePage(rD dm.Project, pageDetail dm.Project_Page) dm.Project_
 	pageDetail.NoEstimationSessions = rD.NoEstimationSessions
 	
 	//
-	// Automatically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
+	// Automatically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local - Enrichment Fields Below
 	//
 	
 	
@@ -375,7 +375,7 @@ func project_PopulatePage(rD dm.Project, pageDetail dm.Project_Page) dm.Project_
 	pageDetail.NoEstimationSessions_props = rD.NoEstimationSessions_props
 	
 	// 
-	// Auto generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 return pageDetail
 }	
@@ -384,11 +384,11 @@ return pageDetail
 //project_DataFromRequest is used process the content of an HTTP Request and return an instance of an Project
 func project_DataFromRequest(r *http.Request) dm.Project {
 	// START
-	// Auto generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	var item dm.Project
 	// FIELD SET START
-	// Auto generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 		item.SYSId = r.FormValue(dm.Project_SYSId_scrn)
 		item.ProjectID = r.FormValue(dm.Project_ProjectID_scrn)
@@ -421,7 +421,7 @@ func project_DataFromRequest(r *http.Request) dm.Project {
 		item.NoEstimationSessions = r.FormValue(dm.Project_NoEstimationSessions_scrn)
 	
 	// 
-	// Auto generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return item
 }

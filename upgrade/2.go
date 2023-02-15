@@ -71,7 +71,7 @@ func upgrade_2_data_item(dbVer_str string, process datamodel.Data) (string, erro
 	//dumpProcess(b4, process)
 	logs.Information("Upgrade 2", fmt.Sprintf("OldClass: %s NewClass: %s NewCategory: %s", process.Class, newClass, newCategory))
 	dao.Data_Delete(b4.DataID)
-	err := dao.Data_StoreSystem(process)
+	_, err := dao.Data_StoreSystem(process)
 	if err != nil {
 		return "", err
 	}

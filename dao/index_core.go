@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 25/01/2023 at 14:40:46
+// Date & Time		    : 07/02/2023 at 18:52:37
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -28,7 +28,7 @@ var Index_SQLbase string
 var Index_QualifiedName string
 func init(){
 	Index_QualifiedName = get_TableName(core.ApplicationSQLSchema(), dm.Index_SQLTable)
-	Index_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + Index_QualifiedName
+	Index_SQLbase =  das.SELECTALL + das.FROM + Index_QualifiedName
 }
 
 // Index_GetList() returns a list of all Index records
@@ -44,7 +44,7 @@ func Index_GetListFiltered(filter string) (int, []dm.Index, error) {
 	
 	tsql := Index_SQLbase
 	if filter != "" {
-		tsql = tsql + " " + core.DB_WHERE + " " + filter
+		tsql = tsql + " " + das.WHERE + filter
 	}
 	count, indexList, _, _ := index_Fetch(tsql)
 	
@@ -58,16 +58,16 @@ func Index_GetByID(id string) (int, dm.Index, error) {
 
 
 	tsql := Index_SQLbase
-	tsql = tsql + " " + core.DB_WHERE + " " + dm.Index_SQLSearchID + core.DB_EQ + "'" + id + "'"
+	tsql = tsql + " " + das.WHERE + dm.Index_SQLSearchID + das.EQ + das.ID(id)
 	_, _, indexItem, _ := index_Fetch(tsql)
 
 	// START
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	indexItem.IndexID,indexItem.IndexID_props = Index_IndexID_impl (GET,id,indexItem.IndexID,indexItem,indexItem.IndexID_props)
 	indexItem.Link,indexItem.Link_props = Index_Link_impl (GET,id,indexItem.Link,indexItem,indexItem.Link_props)
 	// 
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, indexItem, nil
 }
@@ -78,16 +78,11 @@ func Index_GetByID(id string) (int, dm.Index, error) {
 func Index_Delete(id string) {
 
 
-
-
 // Uses Hard Delete
 	object_Table := Index_QualifiedName
-	tsql := core.DB_DELETE+" "+core.DB_FROM+" " + object_Table
-	tsql = tsql + " " + core.DB_WHERE + " " + dm.Index_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-	
-	
+	tsql := das.DELETE + das.FROM + object_Table
+	tsql = tsql + " " + das.WHERE + dm.Index_SQLSearchID + das.EQ + das.ID(id)
+	das.Execute(tsql)	
 
 	
 }
@@ -138,21 +133,21 @@ func Index_StoreSystem(r dm.Index) error {
 func Index_Validate(r dm.Index) (dm.Index, error) {
 	var err error
 	// START
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.IndexID,r.IndexID_props = Index_IndexID_impl (PUT,r.IndexID,r.IndexID,r,r.IndexID_props)
 	r.Link,r.Link_props = Index_Link_impl (PUT,r.IndexID,r.Link,r,r.Link_props)
 	// 
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
 	// START
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r, _, err = Index_ObjectValidation_impl(PUT, r.IndexID, r)
 	// 
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	
 
@@ -208,7 +203,7 @@ logs.Storing("Index",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Index_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Index_IndexID_sql, r.IndexID)
@@ -229,12 +224,12 @@ logs.Storing("Index",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Index_KeyValue_sql, r.KeyValue)
 		
 	// 
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
-	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + Index_QualifiedName
+	tsql := das.INSERT + das.INTO + Index_QualifiedName
 	tsql = tsql + " (" + fields(ts) + ")"
-	tsql = tsql + " "+core.DB_VALUES +" (" + values(ts) + ")"
+	tsql = tsql + " "+das.VALUES +"(" + values(ts) + ")"
 
 	Index_Delete(r.IndexID)
 	das.Execute(tsql)
@@ -262,7 +257,7 @@ func index_Fetch(tsql string) (int, []dm.Index, dm.Index, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Index_SYSId_sql, "0")
 	   recItem.IndexID  = get_String(rec, dm.Index_IndexID_sql, "")
@@ -302,7 +297,7 @@ func index_Fetch(tsql string) (int, []dm.Index, dm.Index, error) {
 	
 	
 	// 
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -332,12 +327,12 @@ func Index_New() (int, []dm.Index, dm.Index, error) {
 	
 
 	// START
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.IndexID,r.IndexID_props = Index_IndexID_impl (NEW,r.IndexID,r.IndexID,r,r.IndexID_props)
 	r.Link,r.Link_props = Index_Link_impl (NEW,r.IndexID,r.Link,r,r.Link_props)
 	// 
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

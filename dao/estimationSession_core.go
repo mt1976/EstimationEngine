@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 25/01/2023 at 14:14:53
+// Date & Time		    : 07/02/2023 at 18:52:35
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -28,7 +28,7 @@ var EstimationSession_SQLbase string
 var EstimationSession_QualifiedName string
 func init(){
 	EstimationSession_QualifiedName = get_TableName(core.ApplicationSQLSchema(), dm.EstimationSession_SQLTable)
-	EstimationSession_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + EstimationSession_QualifiedName
+	EstimationSession_SQLbase =  das.SELECTALL + das.FROM + EstimationSession_QualifiedName
 }
 
 // EstimationSession_GetList() returns a list of all EstimationSession records
@@ -44,7 +44,7 @@ func EstimationSession_GetListFiltered(filter string) (int, []dm.EstimationSessi
 	
 	tsql := EstimationSession_SQLbase
 	if filter != "" {
-		tsql = tsql + " " + core.DB_WHERE + " " + filter
+		tsql = tsql + " " + das.WHERE + filter
 	}
 	count, estimationsessionList, _, _ := estimationsession_Fetch(tsql)
 	
@@ -86,11 +86,11 @@ func EstimationSession_GetByID(id string) (int, dm.EstimationSession, error) {
 
 
 	tsql := EstimationSession_SQLbase
-	tsql = tsql + " " + core.DB_WHERE + " " + dm.EstimationSession_SQLSearchID + core.DB_EQ + "'" + id + "'"
+	tsql = tsql + " " + das.WHERE + dm.EstimationSession_SQLSearchID + das.EQ + das.ID(id)
 	_, _, estimationsessionItem, _ := estimationsession_Fetch(tsql)
 
 	// START
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	estimationsessionItem.EstimationSessionID,estimationsessionItem.EstimationSessionID_props = EstimationSession_EstimationSessionID_impl (GET,id,estimationsessionItem.EstimationSessionID,estimationsessionItem,estimationsessionItem.EstimationSessionID_props)
 	estimationsessionItem.EstimationStateID,estimationsessionItem.EstimationStateID_props = EstimationSession_EstimationStateID_impl (GET,id,estimationsessionItem.EstimationStateID,estimationsessionItem,estimationsessionItem.EstimationStateID_props)
@@ -126,7 +126,7 @@ func EstimationSession_GetByID(id string) (int, dm.EstimationSession, error) {
 	estimationsessionItem.ADOURI,estimationsessionItem.ADOURI_props = EstimationSession_ADOURI_impl (GET,id,estimationsessionItem.ADOURI,estimationsessionItem,estimationsessionItem.ADOURI_props)
 	estimationsessionItem.NoActiveFeatures,estimationsessionItem.NoActiveFeatures_props = EstimationSession_NoActiveFeatures_impl (GET,id,estimationsessionItem.NoActiveFeatures,estimationsessionItem,estimationsessionItem.NoActiveFeatures_props)
 	// 
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, estimationsessionItem, nil
 }
@@ -137,16 +137,11 @@ func EstimationSession_GetByID(id string) (int, dm.EstimationSession, error) {
 func EstimationSession_Delete(id string) {
 
 
-
-
 // Uses Hard Delete
 	object_Table := EstimationSession_QualifiedName
-	tsql := core.DB_DELETE+" "+core.DB_FROM+" " + object_Table
-	tsql = tsql + " " + core.DB_WHERE + " " + dm.EstimationSession_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-	
-	
+	tsql := das.DELETE + das.FROM + object_Table
+	tsql = tsql + " " + das.WHERE + dm.EstimationSession_SQLSearchID + das.EQ + das.ID(id)
+	das.Execute(tsql)	
 
 	
 }
@@ -207,7 +202,7 @@ func EstimationSession_StoreSystem(r dm.EstimationSession) error {
 func EstimationSession_Validate(r dm.EstimationSession) (dm.EstimationSession, error) {
 	var err error
 	// START
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.EstimationSessionID,r.EstimationSessionID_props = EstimationSession_EstimationSessionID_impl (PUT,r.EstimationSessionID,r.EstimationSessionID,r,r.EstimationSessionID_props)
 	r.EstimationStateID,r.EstimationStateID_props = EstimationSession_EstimationStateID_impl (PUT,r.EstimationSessionID,r.EstimationStateID,r,r.EstimationStateID_props)
@@ -243,16 +238,16 @@ func EstimationSession_Validate(r dm.EstimationSession) (dm.EstimationSession, e
 	r.ADOURI,r.ADOURI_props = EstimationSession_ADOURI_impl (PUT,r.EstimationSessionID,r.ADOURI,r,r.ADOURI_props)
 	r.NoActiveFeatures,r.NoActiveFeatures_props = EstimationSession_NoActiveFeatures_impl (PUT,r.EstimationSessionID,r.NoActiveFeatures,r,r.NoActiveFeatures_props)
 	// 
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
 	// START
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r, _, err = EstimationSession_ObjectValidation_impl(PUT, r.EstimationSessionID, r)
 	// 
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	
 
@@ -358,7 +353,7 @@ logs.Storing("EstimationSession",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.EstimationSession_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.EstimationSession_EstimationSessionID_sql, r.EstimationSessionID)
@@ -429,12 +424,12 @@ logs.Storing("EstimationSession",fmt.Sprintf("%v", r))
 	
 		
 	// 
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
-	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + EstimationSession_QualifiedName
+	tsql := das.INSERT + das.INTO + EstimationSession_QualifiedName
 	tsql = tsql + " (" + fields(ts) + ")"
-	tsql = tsql + " "+core.DB_VALUES +" (" + values(ts) + ")"
+	tsql = tsql + " "+das.VALUES +"(" + values(ts) + ")"
 
 	EstimationSession_Delete(r.EstimationSessionID)
 	das.Execute(tsql)
@@ -462,7 +457,7 @@ func estimationsession_Fetch(tsql string) (int, []dm.EstimationSession, dm.Estim
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.EstimationSession_SYSId_sql, "0")
 	   recItem.EstimationSessionID  = get_String(rec, dm.EstimationSession_EstimationSessionID_sql, "")
@@ -602,7 +597,7 @@ func estimationsession_Fetch(tsql string) (int, []dm.EstimationSession, dm.Estim
 	   recItem.NoActiveFeatures  = EstimationSession_NoActiveFeatures_OnFetch_impl (recItem)
 	
 	// 
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -632,7 +627,7 @@ func EstimationSession_New() (int, []dm.EstimationSession, dm.EstimationSession,
 	
 
 	// START
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.EstimationSessionID,r.EstimationSessionID_props = EstimationSession_EstimationSessionID_impl (NEW,r.EstimationSessionID,r.EstimationSessionID,r,r.EstimationSessionID_props)
 	r.EstimationStateID,r.EstimationStateID_props = EstimationSession_EstimationStateID_impl (NEW,r.EstimationSessionID,r.EstimationStateID,r,r.EstimationStateID_props)
@@ -668,7 +663,7 @@ func EstimationSession_New() (int, []dm.EstimationSession, dm.EstimationSession,
 	r.ADOURI,r.ADOURI_props = EstimationSession_ADOURI_impl (NEW,r.EstimationSessionID,r.ADOURI,r,r.ADOURI_props)
 	r.NoActiveFeatures,r.NoActiveFeatures_props = EstimationSession_NoActiveFeatures_impl (NEW,r.EstimationSessionID,r.NoActiveFeatures,r,r.NoActiveFeatures_props)
 	// 
-	// Dynamically generated 25/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

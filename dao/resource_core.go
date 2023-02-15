@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 24/01/2023 at 13:18:11
+// Date & Time		    : 07/02/2023 at 18:52:38
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -28,7 +28,7 @@ var Resource_SQLbase string
 var Resource_QualifiedName string
 func init(){
 	Resource_QualifiedName = get_TableName(core.ApplicationSQLSchema(), dm.Resource_SQLTable)
-	Resource_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + Resource_QualifiedName
+	Resource_SQLbase =  das.SELECTALL + das.FROM + Resource_QualifiedName
 }
 
 // Resource_GetList() returns a list of all Resource records
@@ -44,7 +44,7 @@ func Resource_GetListFiltered(filter string) (int, []dm.Resource, error) {
 	
 	tsql := Resource_SQLbase
 	if filter != "" {
-		tsql = tsql + " " + core.DB_WHERE + " " + filter
+		tsql = tsql + " " + das.WHERE + filter
 	}
 	count, resourceList, _, _ := resource_Fetch(tsql)
 	
@@ -86,14 +86,14 @@ func Resource_GetByID(id string) (int, dm.Resource, error) {
 
 
 	tsql := Resource_SQLbase
-	tsql = tsql + " " + core.DB_WHERE + " " + dm.Resource_SQLSearchID + core.DB_EQ + "'" + id + "'"
+	tsql = tsql + " " + das.WHERE + dm.Resource_SQLSearchID + das.EQ + das.ID(id)
 	_, _, resourceItem, _ := resource_Fetch(tsql)
 
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return 1, resourceItem, nil
 }
@@ -104,16 +104,11 @@ func Resource_GetByID(id string) (int, dm.Resource, error) {
 func Resource_Delete(id string) {
 
 
-
-
 // Uses Hard Delete
 	object_Table := Resource_QualifiedName
-	tsql := core.DB_DELETE+" "+core.DB_FROM+" " + object_Table
-	tsql = tsql + " " + core.DB_WHERE + " " + dm.Resource_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-	
-	
+	tsql := das.DELETE + das.FROM + object_Table
+	tsql = tsql + " " + das.WHERE + dm.Resource_SQLSearchID + das.EQ + das.ID(id)
+	das.Execute(tsql)	
 
 	
 }
@@ -174,10 +169,10 @@ func Resource_StoreSystem(r dm.Resource) error {
 func Resource_Validate(r dm.Resource) (dm.Resource, error) {
 	var err error
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -237,7 +232,7 @@ logs.Storing("Resource",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Resource_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Resource_ResourceID_sql, r.ResourceID)
@@ -261,12 +256,12 @@ logs.Storing("Resource",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Resource_Comments_sql, r.Comments)
 		
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
-	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + Resource_QualifiedName
+	tsql := das.INSERT + das.INTO + Resource_QualifiedName
 	tsql = tsql + " (" + fields(ts) + ")"
-	tsql = tsql + " "+core.DB_VALUES +" (" + values(ts) + ")"
+	tsql = tsql + " "+das.VALUES +"(" + values(ts) + ")"
 
 	Resource_Delete(r.ResourceID)
 	das.Execute(tsql)
@@ -294,7 +289,7 @@ func resource_Fetch(tsql string) (int, []dm.Resource, dm.Resource, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Resource_SYSId_sql, "0")
 	   recItem.ResourceID  = get_String(rec, dm.Resource_ResourceID_sql, "")
@@ -340,7 +335,7 @@ func resource_Fetch(tsql string) (int, []dm.Resource, dm.Resource, error) {
 	
 	
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -370,10 +365,10 @@ func Resource_New() (int, []dm.Resource, dm.Resource, error) {
 	
 
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 

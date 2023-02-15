@@ -1,7 +1,6 @@
 package dao
 
 import (
-	"github.com/mt1976/ebEstimates/core"
 	dm "github.com/mt1976/ebEstimates/datamodel"
 	logs "github.com/mt1976/ebEstimates/logs"
 )
@@ -54,27 +53,10 @@ func Data_Update_impl(id string, rec dm.Data, usr string) error { return nil }
 // Dynamically generated 04/01/2023 by matttownsend (Matt Townsend) on silicon.local
 // END - Validation API/Callout
 
-func Data_ObjectValidation_impl(iAction string, iId string, iRec dm.Data) (dm.Data, string, error) {
-	logs.Callout("Data", "ObjectValidation", VAL+"-"+iAction, iId)
-	switch iAction {
-	case VAL:
-
-	case NEW:
-
-	case PUT:
-		iRec.Value = core.SQL_Escape(iRec.Value)
-	case GET:
-		iRec.Value = core.SQL_UnEscape(iRec.Value)
-	default:
-		logs.Warning("Data" + " - Invalid Action [" + iAction + "]")
-	}
-	return iRec, "", nil
-}
-
 func Data_DataID_OnStore_impl(fieldval string, rec dm.Data, usr string) (string, error) {
 	logs.Callout("Data", dm.Data_DataID_scrn, PUT, rec.DataID)
-	fieldval = data_BuildID(rec.Class, rec.Field, rec.Category)
-	return fieldval, nil
+	rtnval := data_BuildID(rec.Class, rec.Field, rec.Category)
+	return rtnval, nil
 }
 
 func Data_DataID_OnFetch_impl(rec dm.Data) string {

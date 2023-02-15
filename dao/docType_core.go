@@ -8,18 +8,17 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 24/01/2023 at 13:18:08
+// Date & Time		    : 15/02/2023 at 10:17:33
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-
+	"errors"
 	"fmt"
 	"net/http"
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/google/uuid"
 	das  "github.com/mt1976/ebEstimates/das"
-
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
 )
@@ -28,14 +27,12 @@ var DocType_SQLbase string
 var DocType_QualifiedName string
 func init(){
 	DocType_QualifiedName = get_TableName(core.ApplicationSQLSchema(), dm.DocType_SQLTable)
-	DocType_SQLbase =  core.DB_SELECT + " "+ core.DB_ALL + " " + core.DB_FROM + " " + DocType_QualifiedName
+	DocType_SQLbase =  das.SELECTALL + das.FROM + DocType_QualifiedName
 }
 
 // DocType_GetList() returns a list of all DocType records
 func DocType_GetList() (int, []dm.DocType, error) {
-	
 	count, doctypeList, err := DocType_GetListFiltered("")
-	
 	return count, doctypeList, err
 }
 
@@ -44,7 +41,7 @@ func DocType_GetListFiltered(filter string) (int, []dm.DocType, error) {
 	
 	tsql := DocType_SQLbase
 	if filter != "" {
-		tsql = tsql + " " + core.DB_WHERE + " " + filter
+		tsql = tsql + " " + das.WHERE + filter
 	}
 	count, doctypeList, _, _ := doctype_Fetch(tsql)
 	
@@ -86,17 +83,26 @@ func DocType_GetByID(id string) (int, dm.DocType, error) {
 
 
 	tsql := DocType_SQLbase
-	tsql = tsql + " " + core.DB_WHERE + " " + dm.DocType_SQLSearchID + core.DB_EQ + "'" + id + "'"
+	tsql = tsql + " " + das.WHERE + dm.DocType_SQLSearchID + das.EQ + das.ID(id)
 	_, _, doctypeItem, _ := doctype_Fetch(tsql)
 
-	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
-	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+
+	doctypeItem = DocType_PostGet(doctypeItem,id)
+
 	return 1, doctypeItem, nil
 }
+
+func DocType_PostGet(doctypeItem dm.DocType,id string) dm.DocType {
+	// START
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	doctypeItem.Code,doctypeItem.Code_props = DocType_Code_validate_impl (GET,id,doctypeItem.Code,doctypeItem,doctypeItem.Code_props)
+	// 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// END
+	return doctypeItem
+}
+
 
 
 
@@ -104,32 +110,14 @@ func DocType_GetByID(id string) (int, dm.DocType, error) {
 func DocType_Delete(id string) {
 
 
-
-
 // Uses Hard Delete
 	object_Table := DocType_QualifiedName
-	tsql := core.DB_DELETE+" "+core.DB_FROM+" " + object_Table
-	tsql = tsql + " " + core.DB_WHERE + " " + dm.DocType_SQLSearchID + " = '" + id + "'"
-
-	das.Execute(tsql)
-	
-	
+	tsql := das.DELETE + das.FROM + object_Table
+	tsql = tsql + " " + das.WHERE + dm.DocType_SQLSearchID + das.EQ + das.ID(id)
+	das.Execute(tsql)	
 
 	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	
 	// DocType_SoftDeleteByID() soft deletes a single DocType record
@@ -139,13 +127,16 @@ func DocType_SoftDelete(id string) {
 		doctypeItem.SYSDeletedBy = Audit_Update("", Audit_Host())
 		doctypeItem.SYSDeleted = Audit_Update("", Audit_TimeStamp())
 		doctypeItem.SYSDeletedHost = Audit_Update("", Audit_Host())
-		DocType_StoreSystem(doctypeItem)
+		_,err := DocType_StoreSystem(doctypeItem)
+		if err != nil {
+			logs.Error("DocType_SoftDelete()",err)
+		}
 }
 	
 
 
 // DocType_Store() saves/stores a DocType record to the database
-func DocType_Store(r dm.DocType,req *http.Request) error {
+func DocType_Store(r dm.DocType,req *http.Request) (dm.DocType,error) {
 
 	r, err := DocType_Validate(r)
 	if err == nil {
@@ -154,11 +145,11 @@ func DocType_Store(r dm.DocType,req *http.Request) error {
 		logs.Information("DocType_Store()", err.Error())
 	}
 
-	return err
+	return r, err
 }
 
 // DocType_StoreSystem() saves/stores a DocType record to the database
-func DocType_StoreSystem(r dm.DocType) error {
+func DocType_StoreSystem(r dm.DocType) (dm.DocType,error) {
 	
 	r, err := DocType_Validate(r)
 	if err == nil {
@@ -167,17 +158,21 @@ func DocType_StoreSystem(r dm.DocType) error {
 		logs.Information("DocType_Store()", err.Error())
 	}
 
-	return err
+	return r, err
 }
 
 // DocType_Validate() validates for saves/stores a DocType record to the database
 func DocType_Validate(r dm.DocType) (dm.DocType, error) {
 	var err error
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
+	r.Code,r.Code_props = DocType_Code_validate_impl (PUT,r.DocTypeID,r.Code,r,r.Code_props)
+	if r.Code_props.MsgMessage != "" {
+		err = errors.New(r.Code_props.MsgMessage)
+	}
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -191,33 +186,11 @@ func doctype_Save(r dm.DocType,usr string) error {
 
     var err error
 
-
-
-	
-
 	if len(r.DocTypeID) == 0 {
 		r.DocTypeID = DocType_NewID(r)
 	}
 
-// If there are fields below, create the methods in dao\doctype_impl.go
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
+// If there are fields below, create the methods in dao\doctype_impl.go  r.Code,err = DocType_Code_OnStore_impl (r.Code,r,usr)
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
 	r.SYSCreatedHost = Audit_Update(r.SYSCreatedHost,Audit_Host())
@@ -232,7 +205,7 @@ logs.Storing("DocType",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.DocType_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.DocType_DocTypeID_sql, r.DocTypeID)
@@ -251,12 +224,12 @@ logs.Storing("DocType",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.DocType_Comments_sql, r.Comments)
 		
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
-	tsql := core.DB_INSERT + " " + core.DB_INTO + " " + DocType_QualifiedName
+	tsql := das.INSERT + das.INTO + DocType_QualifiedName
 	tsql = tsql + " (" + fields(ts) + ")"
-	tsql = tsql + " "+core.DB_VALUES +" (" + values(ts) + ")"
+	tsql = tsql + " "+das.VALUES +"(" + values(ts) + ")"
 
 	DocType_Delete(r.DocTypeID)
 	das.Execute(tsql)
@@ -284,7 +257,7 @@ func doctype_Fetch(tsql string) (int, []dm.DocType, dm.DocType, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.DocType_SYSId_sql, "0")
 	   recItem.DocTypeID  = get_String(rec, dm.DocType_DocTypeID_sql, "")
@@ -302,25 +275,8 @@ func doctype_Fetch(tsql string) (int, []dm.DocType, dm.DocType, error) {
 	   recItem.SYSDbVersion  = get_String(rec, dm.DocType_SYSDbVersion_sql, "")
 	   recItem.Comments  = get_String(rec, dm.DocType_Comments_sql, "")
 	
-	// If there are fields below, create the methods in adaptor\DocType_impl.go
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// If there are fields below, create the methods in adaptor\DocType_impl.go   recItem.Code  = DocType_Code_OnFetch_impl (recItem)// 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -335,7 +291,7 @@ func doctype_Fetch(tsql string) (int, []dm.DocType, dm.DocType, error) {
 
 func DocType_NewID(r dm.DocType) string {
 	
-			id := uuid.New().String()
+	id := uuid.New().String()
 	
 	return id
 }
@@ -350,14 +306,13 @@ func DocType_New() (int, []dm.DocType, dm.DocType, error) {
 	
 
 	// START
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
+	r.Code,r.Code_props = DocType_Code_validate_impl (NEW,r.DocTypeID,r.Code,r,r.Code_props)
+	
 	// 
-	// Dynamically generated 24/01/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
-
-
 	rList = append(rList, r)
-
 	return 1, rList, r, nil
 }

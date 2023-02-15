@@ -14,7 +14,7 @@ package dao
 // ----------------------------------------------------------------
 
 import (
-	core "github.com/mt1976/ebEstimates/core"
+	"github.com/mt1976/ebEstimates/das"
 
 	dm "github.com/mt1976/ebEstimates/datamodel"
 )
@@ -23,7 +23,7 @@ import (
 func EstimationState_GetByCode(id string) (int, dm.EstimationState, error) {
 
 	tsql := EstimationState_SQLbase
-	tsql = tsql + " " + core.DB_WHERE + " " + dm.EstimationState_Code_sql + core.DB_EQ + "'" + id + "'"
+	tsql = tsql + " " + das.WHERE + dm.EstimationState_Code_sql + das.EQ + das.ID(id)
 	_, _, estimationstateItem, _ := estimationstate_Fetch(tsql)
 
 	// START

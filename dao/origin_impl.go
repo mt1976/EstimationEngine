@@ -16,6 +16,7 @@ package dao
 import (
 	"github.com/bojanz/currency"
 	core "github.com/mt1976/ebEstimates/core"
+	"github.com/mt1976/ebEstimates/das"
 	logs "github.com/mt1976/ebEstimates/logs"
 
 	dm "github.com/mt1976/ebEstimates/datamodel"
@@ -40,9 +41,9 @@ func Origin_GetByCode(id string) (int, dm.Origin, error) {
 // Origin_GetList() returns a list of all Origin records
 func Origin_GetActiveList() (int, []dm.Origin, error) {
 
-	tsql := core.DB_SELECT + " " + core.DB_ALL + " " + core.DB_FROM + " " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Origin_SQLTable)
-	tsql = tsql + " " + core.DB_WHERE + " datalength(" + dm.Project_SYSDeleted_sql + ") = 0"
-	tsql = tsql + " " + core.DB_SORTBY + " " + dm.Origin_Code_sql
+	tsql := das.SELECTALL + das.FROM + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Origin_SQLTable)
+	tsql = tsql + " " + das.WHERE + das.ISNULL(dm.Project_SYSDeleted_sql)
+	tsql = tsql + " " + das.SORTBY + dm.Origin_Code_sql
 	count, originList, _, _ := origin_Fetch(tsql)
 
 	for i := 0; i < count; i++ {

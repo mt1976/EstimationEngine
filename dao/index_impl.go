@@ -2,10 +2,12 @@ package dao
 
 import (
 	"errors"
+	"fmt"
 
 	core "github.com/mt1976/ebEstimates/core"
 	dm "github.com/mt1976/ebEstimates/datamodel"
 	"github.com/mt1976/ebEstimates/logs"
+	"github.com/tj/go-spin"
 )
 
 // Indexer is the interface that wraps the basic Index method.
@@ -60,9 +62,12 @@ func Indexer_Put(KeyClass string, KeyField string, KeyID string, KeyValue string
 func Indexer_Rebuild() error {
 	// Get all list of index entries
 	_, indexEntries, _ := Index_GetList()
+	s := spin.New()
 
 	// Loop through the index entries
 	for _, indexEntry := range indexEntries {
+		fmt.Printf("\r  \033[36mProcessing\033[m %s ", s.Next())
+
 		_, err := Indexer_Put(indexEntry.KeyClass, indexEntry.KeyName, indexEntry.KeyID, indexEntry.KeyValue)
 		if err != nil {
 			return errors.New("unable to rebuild index for " + indexEntry.KeyClass + " " + indexEntry.KeyName + " " + indexEntry.KeyID + " " + indexEntry.KeyValue)
