@@ -19,6 +19,6 @@
 
 # Go workspace file
 go.work
-data/images/avatars/
+data/images/avatars/*.png
 *.DS_Store
 .DS_Store

@@ -1,0 +1,2 @@
+Do not delete this file. It is required to create the path to support the avatars folder
+This can be exposed in docker to keep the images outside of the container.
