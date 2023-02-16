@@ -318,7 +318,7 @@ func Fatal(s string, e error) {
 
 func Panic(s string, e error) {
 	msg_raw(log_Panic, s, e.Error(), colour.Red)
-	log.Panicln(colour.Red + s + e.Error())
+	log.Panicln(e.Error())
 }
 
 func Publish(w string, v string) {
