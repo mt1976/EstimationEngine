@@ -14,7 +14,7 @@ func Query(db *sql.DB, query string) ([]map[string]interface{}, int, error) {
 
 	rows, err1 := db.Query(query) // Note: Ignoring errors for brevity
 	if err1 != nil {
-		log.Panic(err1.Error())
+		logs.Panic("Query Error", err1)
 	}
 	cols, _ := rows.Columns()
 	noResults := 0
