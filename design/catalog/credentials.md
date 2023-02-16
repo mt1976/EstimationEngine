@@ -44,12 +44,12 @@ SQL Table Key | **id**
 | Field Name| Type | Mandatory | Core | Virtual | Overide | Lookup [^2]| Lookup Object      | Lookup Field Source         | Lookup Return Value                | Inputable [^3]|DB Column|Default Value| No Change | Callout | Internal | Display | Mask |
 | -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
 |**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|text||
-|**Id**|String|false|true|false|true|||||N|Id||true|false|false|text||
+|**Id**|String|false|true|false|true|||||NH|Id||true|false|false|text||
 |**Username**|String|true|true|false|false|||||Y|Username||false|false|false|text||
 |**Password**|String|false|true|false|true|||||NH|Password||false|false|false|password||
 |**Firstname**|String|false|true|false|false|||||Y|Firstname||false|false|false|text||
 |**Lastname**|String|false|true|false|false|||||Y|Lastname||false|false|false|text||
-|**Knownas**|String|false|true|false|false|||||Y|Knownas||false|false|false|text||
+|**Knownas**|String|false|true|false|true|||||NH|Knownas||false|false|false|text||
 |**Email**|String|false|true|false|true|||||Y|Email||false|false|false|email||
 |**Issued**|String|false|true|false|true|||||N|Issued||false|false|false|datetime||
 |**Expiry**|String|false|true|false|true|||||N|Expiry||false|false|false|datetime||
@@ -92,7 +92,7 @@ SQL Table Key | **id**
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **15/02/2023** at **10:44:41**
+Date & Time		     | **16/02/2023** at **12:41:49**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

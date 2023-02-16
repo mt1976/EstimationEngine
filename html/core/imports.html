@@ -100,7 +100,7 @@
     <div class="d-flex align-items-center">
       <!-- Avatar -->
       <div class="dropdown">
-        <a class="dropdown-toggle d-flex align-items-center hidden-arrow position-relative" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">  <img src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" class="rounded-circle me-2" height="32" alt="Black and White Portrait of a Man" loading="lazy"/>{{if .SessionInfo.UnreadMessages}}<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{.SessionInfo.UnreadMessages}}</span>{{end}}</a>
+        <a class="dropdown-toggle d-flex align-items-center hidden-arrow position-relative" href="#" id="navbarDropdownMenuAvatar" role="button" data-mdb-toggle="dropdown" aria-expanded="false">  <img src="{{if .SessionInfo.Avatar}}{{.SessionInfo.Avatar}}{{else}}/assets/android-chrome-48x48.png{{end}}" class="rounded-circle me-2" height="32" alt="Black and White Portrait of a Man" loading="lazy"/>{{if .SessionInfo.UnreadMessages}}<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{.SessionInfo.UnreadMessages}}</span>{{end}}</a>
         <ul
           class="dropdown-menu dropdown-menu-end scrollabe-menu" 
           role="menu"

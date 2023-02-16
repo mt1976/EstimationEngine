@@ -18,6 +18,7 @@ type loginPage struct {
 	LicenceLink      string
 	ResponseMessage  string
 	CompanyName      string
+	Environment      string
 }
 
 func LoginLogout_Publish_Impl(mux http.ServeMux) {
@@ -47,6 +48,11 @@ func LoginLogout_HandlerLogin(w http.ResponseWriter, r *http.Request) {
 		LicenceLink:      ApplicationGetLicenseLink(),
 		ResponseMessage:  SecurityViolation,
 		CompanyName:      ApplicationCompanyName(),
+		Environment:      ApplicationEnvironment(),
+	}
+
+	if loginPageContent.Environment == "PROD" {
+		loginPageContent.Environment = ""
 	}
 
 	//fmt.Println("Page Data", loginPageContent)

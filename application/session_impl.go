@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
+	"github.com/nullrocks/identicon"
 
 	core "github.com/mt1976/ebEstimates/core"
 	dao "github.com/mt1976/ebEstimates/dao"
@@ -20,6 +21,7 @@ import (
 type sessionToken struct {
 	SecurityViolation string
 	ResponseCode      string
+	UID               string
 }
 
 // Session_Publish annouces the endpoints available for this object
@@ -52,6 +54,9 @@ func Session_HandlerValidateLogin(w http.ResponseWriter, r *http.Request) {
 		logs.Result("Redirecting to: /", "/home")
 		//fmt.Printf("core.SessionManager.Get(r.Context(), core.SessionUserName): %v\n", core.SessionManager.Get(r.Context(), core.SessionUserName))
 		//spew.Dump(r.Context())
+		// Generate a avatar
+		GenerateAvatar(uName, tok.UID)
+
 		// Store Last Login Details
 		dao.Data_Put("Credentials", uName, "LastLogin", time.Now().Format(core.DATEMSG))
 		http.Redirect(w, r, "/home", http.StatusFound)
@@ -61,6 +66,37 @@ func Session_HandlerValidateLogin(w http.ResponseWriter, r *http.Request) {
 		core.ServiceMessageAction(tok.SecurityViolation, Session_GetUserName(r), tok.ResponseCode)
 		http.Redirect(w, r, "/logout", http.StatusFound)
 	}
+}
+
+func GenerateAvatar(seed string, id string) {
+	logs.Information("Generating Avatar for: ", seed+" "+id)
+	// New Generator: Rehuse
+	ig, err := identicon.New(
+		core.ApplicationToken(), // Namespace
+		7,                       // Number of blocks (Size)
+		7,                       // Density
+	)
+
+	if err != nil {
+		panic(err) // Invalid Size or Density
+	}
+
+	username := seed             // Text - decides the resulting figure
+	ii, err := ig.Draw(username) // Generate an IdentIcon
+
+	if err != nil {
+		panic(err) // Text is empty
+	}
+
+	// File writer
+	pwd, _ := os.Getwd()
+	filenamepath := pwd + "/data/images/avatars/" + id + ".png"
+	logs.Information("Avatar File: ", filenamepath)
+	img, _ := os.Create(filenamepath)
+	defer img.Close()
+	// Takes the size in pixels and any io.Writer
+	ii.Png(300, img) // 300px * 300px
+	logs.Information("Avatar Generated: ", filenamepath)
 }
 
 func session_ValidateLogin(appToken string, username string, password string, r *http.Request) sessionToken {
@@ -73,6 +109,7 @@ func session_ValidateLogin(appToken string, username string, password string, r 
 	var s sessionToken
 	s.SecurityViolation = ""
 	s.ResponseCode = ""
+	s.UID = ""
 
 	_, cred, _ := dao.Credentials_GetByUserName(username)
 	if len(cred.Id) == 0 {
@@ -121,6 +158,7 @@ func session_ValidateLogin(appToken string, username string, password string, r 
 
 	s.SecurityViolation = ""
 	s.ResponseCode = "200"
+	s.UID = cred.Id
 
 	core.SessionManager.Put(r.Context(), core.SessionRole, cred.RoleType)
 	core.SessionManager.Put(r.Context(), core.SessionNavi, core.GetNavigationID(cred.RoleType))
@@ -313,6 +351,7 @@ func Session_GetSessionInfo(r *http.Request) (dm.SessionInfo, error) {
 	s.AppServerDate = time.Now().Format(core.DATEFORMAT)
 	s.HostName = core.SystemHostname
 	s.DateSyncIssue = ""
+	s.Avatar = ""
 
 	s.Type = "Primary"
 	if core.IsChildInstance {
@@ -329,6 +368,10 @@ func Session_GetSessionInfo(r *http.Request) (dm.SessionInfo, error) {
 	////fmt.Printf("s: %v\n", s)
 	//spew.Dump(s)
 	//fmt.Printf("s: %v\n", s)
+	UID := Session_GetUserUUID(r)
+	s.Avatar = "/data/images/avatars/" + UID + ".png"
+	logs.Information("Acccesing", s.Avatar)
+
 	return s, nil
 }
 

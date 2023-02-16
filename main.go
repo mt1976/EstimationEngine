@@ -70,7 +70,7 @@ func main() {
 
 	httpPort := ":" + core.ApplicationHTTPPort()
 
-	if core.ApplicationEnvironment() == "development" {
+	if core.ApplicationEnvironment() != "PROD" {
 
 		http.ListenAndServe(httpPort, core.SessionManager.LoadAndSave(mux))
 
@@ -139,6 +139,7 @@ func publishGUIEndpoints() *http.ServeMux {
 	mux := http.NewServeMux()
 
 	mux.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
+	mux.Handle("/data/images/avatars/", http.StripPrefix("/data/images/avatars/", http.FileServer(http.Dir("data/images/avatars"))))
 
 	core.LoginLogout_Publish_Impl(*mux)
 	application.Resources_Publish_Impl(*mux)

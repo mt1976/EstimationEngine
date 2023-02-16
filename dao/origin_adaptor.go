@@ -62,27 +62,92 @@ func Origin_NoActiveProjects_OnFetch_impl(rec dm.Origin) string {
 // Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 // END - PUT API/Callout
 
-// START - Validation API/Callout
-// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
-//
-// Origin_StateID_impl provides validation/actions for StateID
-func Origin_StateID_impl(iAction string, iId string, iValue string, iRec dm.Origin, fP dm.FieldProperties) (string, dm.FieldProperties) {
-	logs.Callout("Origin", dm.Origin_StateID_scrn, VAL+"-"+iAction, iId)
+// ----------------------------------------------------------------
+// BEGIN Origin_Code
+// BEGIN Origin_Code
+// BEGIN Origin_Code
+// ----------------------------------------------------------------
+// Origin_Code_OnStore_impl provides the implementation for the callout
+func Origin_Code_OnStore_impl(fieldval string, rec dm.Origin, usr string) (string, error) {
+	logs.Callout("Origin", dm.Origin_Code_scrn, PUT, rec.OriginID)
+	Indexer_Put("Origin", dm.Origin_Code_scrn, rec.OriginID, fieldval)
+	return fieldval, nil
+}
+
+// ----------------------------------------------------------------
+// Origin_Code_OnFetch_impl provides the implementation for the callout
+func Origin_Code_OnFetch_impl(rec dm.Origin) string {
+	logs.Callout("Origin", dm.Origin_Code_scrn, GET, rec.OriginID)
+
+	return rec.Code
+}
+
+// ----------------------------------------------------------------
+// Origin_Code_impl provides validation/actions for Code
+func Origin_Code_impl(iAction string, iId string, iValue string, iRec dm.Origin, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("Origin", dm.Origin_Code_scrn, VAL+"-"+iAction, iId)
 	return iValue, fP
 }
 
-// Origin_Rate_impl provides validation/actions for Rate
-func Origin_Rate_impl(iAction string, iId string, iValue string, iRec dm.Origin, fP dm.FieldProperties) (string, dm.FieldProperties) {
-	logs.Callout("Origin", dm.Origin_Rate_scrn, VAL+"-"+iAction, iId)
+// ----------------------------------------------------------------
+// END   Origin_Code
+// END   Origin_Code
+// END   Origin_Code
+// ----------------------------------------------------------------
+
+// ----------------------------------------------------------------
+// BEGIN Origin_FullName
+// BEGIN Origin_FullName
+// BEGIN Origin_FullName
+// ----------------------------------------------------------------
+// Origin_FullName_OnStore_impl provides the implementation for the callout
+func Origin_FullName_OnStore_impl(fieldval string, rec dm.Origin, usr string) (string, error) {
+	logs.Callout("Origin", dm.Origin_FullName_scrn, PUT, rec.OriginID)
+	Indexer_Put("Origin", dm.Origin_FullName_scrn, rec.OriginID, fieldval)
+
+	return fieldval, nil
+}
+
+// ----------------------------------------------------------------
+// Origin_FullName_OnFetch_impl provides the implementation for the callout
+func Origin_FullName_OnFetch_impl(rec dm.Origin) string {
+	logs.Callout("Origin", dm.Origin_FullName_scrn, GET, rec.OriginID)
+	return rec.FullName
+}
+
+// ----------------------------------------------------------------
+// Origin_FullName_impl provides validation/actions for FullName
+func Origin_FullName_impl(iAction string, iId string, iValue string, iRec dm.Origin, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("Origin", dm.Origin_FullName_scrn, VAL+"-"+iAction, iId)
 	return iValue, fP
 }
 
-// Origin_NoActiveProjects_impl provides validation/actions for NoActiveProjects
-func Origin_NoActiveProjects_impl(iAction string, iId string, iValue string, iRec dm.Origin, fP dm.FieldProperties) (string, dm.FieldProperties) {
-	logs.Callout("Origin", dm.Origin_NoActiveProjects_scrn, VAL+"-"+iAction, iId)
-	return iValue, fP
+// ----------------------------------------------------------------
+// END   Origin_FullName
+// END   Origin_FullName
+// END   Origin_FullName
+// ----------------------------------------------------------------
+
+// ----------------------------------------------------------------
+// BEGIN Origin_StartDate
+// BEGIN Origin_StartDate
+// BEGIN Origin_StartDate
+// ----------------------------------------------------------------
+// Origin_StartDate_OnStore_impl provides the implementation for the callout
+func Origin_StartDate_OnStore_impl(fieldval string, rec dm.Origin, usr string) (string, error) {
+	logs.Callout("Origin", dm.Origin_StartDate_scrn, PUT, rec.OriginID)
+	return fieldval, nil
 }
 
-//
-// Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
-// END - Validation API/Callout
+// ----------------------------------------------------------------
+// Origin_StartDate_OnFetch_impl provides the implementation for the callout
+func Origin_StartDate_OnFetch_impl(rec dm.Origin) string {
+	logs.Callout("Origin", dm.Origin_StartDate_scrn, GET, rec.OriginID)
+	return rec.StartDate
+}
+
+// ----------------------------------------------------------------
+// END   Origin_StartDate
+// END   Origin_StartDate
+// END   Origin_StartDate
+// ----------------------------------------------------------------

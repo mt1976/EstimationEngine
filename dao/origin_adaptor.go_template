@@ -16,7 +16,7 @@ import (
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
 	// Template Generator   : Einsteinium [r5-23.01.23]
-	// Date & Time		    : 15/02/2023 at 10:44:45
+	// Date & Time		    : 16/02/2023 at 10:11:36
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in origin_impl.go
@@ -114,6 +114,28 @@ import (
 	// END   Origin_Rate
 	// END   Origin_Rate
 	// END   Origin_Rate
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN Origin_StartDate
+	// BEGIN Origin_StartDate
+	// BEGIN Origin_StartDate
+	// ----------------------------------------------------------------
+	// Origin_StartDate_OnStore_impl provides the implementation for the callout
+	func Origin_StartDate_OnStore_impl (fieldval string,rec dm.Origin,usr string) (string,error)  {
+		logs.Callout("Origin", dm.Origin_StartDate_scrn, PUT, rec.OriginID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// Origin_StartDate_OnFetch_impl provides the implementation for the callout	
+	func Origin_StartDate_OnFetch_impl (rec dm.Origin)(string) {
+		logs.Callout("Origin", dm.Origin_StartDate_scrn, GET, rec.OriginID)
+		return rec.StartDate
+	}
+	// ----------------------------------------------------------------
+	// END   Origin_StartDate
+	// END   Origin_StartDate
+	// END   Origin_StartDate
 	// ----------------------------------------------------------------
 
 	// ----------------------------------------------------------------

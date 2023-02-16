@@ -52,8 +52,7 @@ of Simple CSS Waves-->
               src="/assets/company.png"
               class="img-fluid"
               style="
-                max-height: 300px;
-                max-width: 300px;
+                max-height: 3rem;
                 margin-top: 1rem;
                 margin-bottom: 1rem;
               "
@@ -66,8 +65,7 @@ of Simple CSS Waves-->
               src="/assets/logo.png"
               class="img-fluid"
               style="
-                max-height: 100px;
-                max-width: 100px;
+                max-height: 10rem;
                 margin-top: 1rem;
                 margin-bottom: 1rem;
               "
@@ -125,7 +123,7 @@ of Simple CSS Waves-->
               <button
                 type="submit"
                 value=""
-                class="btn btn-link btn-lg ms-3"
+                class="btn btn-light btn-lg ms-3"
                 style="float: right"
                 formaction="/request?msg=NEW"
                 method="GET"
@@ -137,6 +135,7 @@ of Simple CSS Waves-->
         </div>
 
         <div class="card-footer small text-muted">
+          <center><div class="h3" style="color:red;text-weight:bolder;text-decoration: underline overline #FF3028;"><blink>{{.Environment}}</blink></div></center>
           <center>
             <b>This software is for use by authorised {{if .CompanyName  }}{{.CompanyName}}{{end}} persons only.</b>
           </center>

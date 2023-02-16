@@ -51,7 +51,7 @@ SQL Table Key | **originID**
 |**FullName**|String|false|true|false|true|||||H|fullName||false|true|false|text||
 |**Rate**|String|false|true|false|true|||||Y|rate||false|true|false|text||
 |**Notes**|String|false|true|false|true|||||Y|notes||false|false|false|textarea||
-|**StartDate**|String|false|true|false|true|||||Y|startDate||false|false|false|date|yyyy-mm-dd|
+|**StartDate**|String|false|true|false|true|||||Y|startDate||false|true|false|date|yyyy-mm-dd|
 |**EndDate**|String|false|true|false|true|||||Y|endDate||false|false|false|date|yyyy-mm-dd|
 |**SYSCreated**|String|false|true|false|false|||||NH|_created||false|false|true|text||
 |**SYSCreatedBy**|String|false|true|false|false|||||NH|_createdBy||false|false|true|text||
@@ -68,7 +68,7 @@ SQL Table Key | **originID**
 |**Comments**|String|false|true|false|false|||||Y|comments||false|false|false|text||
 |**ProjectManager**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|projectManager||false|false|false|text||
 |**AccountManager**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|accountManager||false|false|false|text||
-|**NoActiveProjects**|String|false|false|true|false|||||N|||false|true|false|text||
+|**NoActiveProjects**|String|false|false|true|true|||||N|||false|true|false|text||
 
 
 ##  Artifacts Generated
@@ -92,7 +92,7 @@ SQL Table Key | **originID**
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **15/02/2023** at **10:44:45**
+Date & Time		     | **16/02/2023** at **10:11:36**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---
