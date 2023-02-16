@@ -12,12 +12,10 @@ import (
 
 func Query(db *sql.DB, query string) ([]map[string]interface{}, int, error) {
 
-	//log.Println("Query:", query)
-	//if query containts dbo.transalationStore then dont do anything
-	if !(strings.Contains(query, "dbo.translationStore")) {
-		logs.Query(query)
+	rows, err1 := db.Query(query) // Note: Ignoring errors for brevity
+	if err1 != nil {
+		log.Panic(err1.Error())
 	}
-	rows, _ := db.Query(query) // Note: Ignoring errors for brevity
 	cols, _ := rows.Columns()
 	noResults := 0
 	recs := []map[string]interface{}{}
