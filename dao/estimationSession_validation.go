@@ -7,6 +7,7 @@ import (
 	core "github.com/mt1976/ebEstimates/core"
 	dm "github.com/mt1976/ebEstimates/datamodel"
 	logs "github.com/mt1976/ebEstimates/logs"
+	"golang.org/x/exp/slices"
 )
 
 // ----------------------------------------------------------------
@@ -686,7 +687,15 @@ func EstimationSession_TrackerID_OnStore_impl(fieldval string, rec dm.Estimation
 
 	state := rec.EstimationStateID
 
-	if state == "WRIT" && fieldval == "" {
+	assignRSCstatus, err := Data_GetArray("Estimation", "Assign_RSC_States", "Settings")
+	if err != nil {
+		//	logs.Information("Assign_RSC_States", err.Error())
+		assignRSCstatus = []string{"WRIT"}
+	}
+
+	//fmt.Printf("assignRSCstatus: %v\n", assignRSCstatus)
+
+	if slices.Contains(assignRSCstatus, state) && (fieldval == "" || len(fieldval) == 0) {
 		_, proj, err := Project_GetByID(rec.ProjectID)
 		if err != nil {
 			return "", err

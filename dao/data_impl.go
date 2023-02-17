@@ -138,8 +138,10 @@ func data_BuildID(class string, field string, category string) string {
 
 func Data_GetArray(class string, field string, category string) ([]string, error) {
 	value, err := Data_Get(class, field, category)
+	//logs.Information("Data_GetArray", value)
+	//logs.Information("Data_GetArray", err.Error())
 	if err != nil {
-		return strings.Split(value, ","), nil
+		return nil, nil
 	}
-	return nil, err
+	return strings.Split(value, ","), err
 }

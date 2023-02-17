@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 17/02/2023 at 15:49:10
+// Date & Time		    : 17/02/2023 at 17:23:39
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -340,7 +340,41 @@ func estimationsession_Save(r dm.EstimationSession, usr string) error {
 		r.EstimationSessionID = EstimationSession_NewID(r)
 	}
 
-	// If there are fields below, create the methods in dao\estimationsession_impl.go  r.EstimationSessionID,err = EstimationSession_EstimationSessionID_OnStore_impl (r.EstimationSessionID,r,usr)  r.EstimationStateID,err = EstimationSession_EstimationStateID_OnStore_impl (r.EstimationStateID,r,usr)  r.AdoID,err = EstimationSession_AdoID_OnStore_impl (r.AdoID,r,usr)  r.FreshdeskID,err = EstimationSession_FreshdeskID_OnStore_impl (r.FreshdeskID,r,usr)  r.TrackerID,err = EstimationSession_TrackerID_OnStore_impl (r.TrackerID,r,usr)  r.Approver,err = EstimationSession_Approver_OnStore_impl (r.Approver,r,usr)  r.IssueDate,err = EstimationSession_IssueDate_OnStore_impl (r.IssueDate,r,usr)  r.ExpiryDate,err = EstimationSession_ExpiryDate_OnStore_impl (r.ExpiryDate,r,usr)  r.Origin,err = EstimationSession_Origin_OnStore_impl (r.Origin,r,usr)  r.OriginStateID,err = EstimationSession_OriginStateID_OnStore_impl (r.OriginStateID,r,usr)  r.OriginState,err = EstimationSession_OriginState_OnStore_impl (r.OriginState,r,usr)  r.OriginDocTypeID,err = EstimationSession_OriginDocTypeID_OnStore_impl (r.OriginDocTypeID,r,usr)  r.OriginDocType,err = EstimationSession_OriginDocType_OnStore_impl (r.OriginDocType,r,usr)  r.OriginCode,err = EstimationSession_OriginCode_OnStore_impl (r.OriginCode,r,usr)  r.OriginName,err = EstimationSession_OriginName_OnStore_impl (r.OriginName,r,usr)  r.OriginRate,err = EstimationSession_OriginRate_OnStore_impl (r.OriginRate,r,usr)  r.ProjectProfileID,err = EstimationSession_ProjectProfileID_OnStore_impl (r.ProjectProfileID,r,usr)  r.ProjectProfile,err = EstimationSession_ProjectProfile_OnStore_impl (r.ProjectProfile,r,usr)  r.ProjectDefaultReleases,err = EstimationSession_ProjectDefaultReleases_OnStore_impl (r.ProjectDefaultReleases,r,usr)  r.ProjectDefaultReleaseHours,err = EstimationSession_ProjectDefaultReleaseHours_OnStore_impl (r.ProjectDefaultReleaseHours,r,usr)  r.ProjectBlendedRate,err = EstimationSession_ProjectBlendedRate_OnStore_impl (r.ProjectBlendedRate,r,usr)  r.ProjectStateID,err = EstimationSession_ProjectStateID_OnStore_impl (r.ProjectStateID,r,usr)  r.ProjectState,err = EstimationSession_ProjectState_OnStore_impl (r.ProjectState,r,usr)  r.ProjectName,err = EstimationSession_ProjectName_OnStore_impl (r.ProjectName,r,usr)  r.ProjectStartDate,err = EstimationSession_ProjectStartDate_OnStore_impl (r.ProjectStartDate,r,usr)  r.ProjectEndDate,err = EstimationSession_ProjectEndDate_OnStore_impl (r.ProjectEndDate,r,usr)  r.ProfileSupportUpliftPerc,err = EstimationSession_ProfileSupportUpliftPerc_OnStore_impl (r.ProfileSupportUpliftPerc,r,usr)  r.CCY,err = EstimationSession_CCY_OnStore_impl (r.CCY,r,usr)  r.CCYCode,err = EstimationSession_CCYCode_OnStore_impl (r.CCYCode,r,usr)  r.EffortTotal,err = EstimationSession_EffortTotal_OnStore_impl (r.EffortTotal,r,usr)  r.FreshDeskURI,err = EstimationSession_FreshDeskURI_OnStore_impl (r.FreshDeskURI,r,usr)  r.ADOURI,err = EstimationSession_ADOURI_OnStore_impl (r.ADOURI,r,usr)  r.NoActiveFeatures,err = EstimationSession_NoActiveFeatures_OnStore_impl (r.NoActiveFeatures,r,usr)
+	// If there are fields below, create the methods in dao\estimationsession_impl.go
+	r.EstimationSessionID, err = EstimationSession_EstimationSessionID_OnStore_impl(r.EstimationSessionID, r, usr)
+	r.EstimationStateID, err = EstimationSession_EstimationStateID_OnStore_impl(r.EstimationStateID, r, usr)
+	r.AdoID, err = EstimationSession_AdoID_OnStore_impl(r.AdoID, r, usr)
+	r.FreshdeskID, err = EstimationSession_FreshdeskID_OnStore_impl(r.FreshdeskID, r, usr)
+	r.TrackerID, err = EstimationSession_TrackerID_OnStore_impl(r.TrackerID, r, usr)
+	r.Approver, err = EstimationSession_Approver_OnStore_impl(r.Approver, r, usr)
+	r.IssueDate, err = EstimationSession_IssueDate_OnStore_impl(r.IssueDate, r, usr)
+	r.ExpiryDate, err = EstimationSession_ExpiryDate_OnStore_impl(r.ExpiryDate, r, usr)
+	r.Origin, err = EstimationSession_Origin_OnStore_impl(r.Origin, r, usr)
+	r.OriginStateID, err = EstimationSession_OriginStateID_OnStore_impl(r.OriginStateID, r, usr)
+	r.OriginState, err = EstimationSession_OriginState_OnStore_impl(r.OriginState, r, usr)
+	r.OriginDocTypeID, err = EstimationSession_OriginDocTypeID_OnStore_impl(r.OriginDocTypeID, r, usr)
+	r.OriginDocType, err = EstimationSession_OriginDocType_OnStore_impl(r.OriginDocType, r, usr)
+	r.OriginCode, err = EstimationSession_OriginCode_OnStore_impl(r.OriginCode, r, usr)
+	r.OriginName, err = EstimationSession_OriginName_OnStore_impl(r.OriginName, r, usr)
+	r.OriginRate, err = EstimationSession_OriginRate_OnStore_impl(r.OriginRate, r, usr)
+	r.ProjectProfileID, err = EstimationSession_ProjectProfileID_OnStore_impl(r.ProjectProfileID, r, usr)
+	r.ProjectProfile, err = EstimationSession_ProjectProfile_OnStore_impl(r.ProjectProfile, r, usr)
+	r.ProjectDefaultReleases, err = EstimationSession_ProjectDefaultReleases_OnStore_impl(r.ProjectDefaultReleases, r, usr)
+	r.ProjectDefaultReleaseHours, err = EstimationSession_ProjectDefaultReleaseHours_OnStore_impl(r.ProjectDefaultReleaseHours, r, usr)
+	r.ProjectBlendedRate, err = EstimationSession_ProjectBlendedRate_OnStore_impl(r.ProjectBlendedRate, r, usr)
+	r.ProjectStateID, err = EstimationSession_ProjectStateID_OnStore_impl(r.ProjectStateID, r, usr)
+	r.ProjectState, err = EstimationSession_ProjectState_OnStore_impl(r.ProjectState, r, usr)
+	r.ProjectName, err = EstimationSession_ProjectName_OnStore_impl(r.ProjectName, r, usr)
+	r.ProjectStartDate, err = EstimationSession_ProjectStartDate_OnStore_impl(r.ProjectStartDate, r, usr)
+	r.ProjectEndDate, err = EstimationSession_ProjectEndDate_OnStore_impl(r.ProjectEndDate, r, usr)
+	r.ProfileSupportUpliftPerc, err = EstimationSession_ProfileSupportUpliftPerc_OnStore_impl(r.ProfileSupportUpliftPerc, r, usr)
+	r.CCY, err = EstimationSession_CCY_OnStore_impl(r.CCY, r, usr)
+	r.CCYCode, err = EstimationSession_CCYCode_OnStore_impl(r.CCYCode, r, usr)
+	r.EffortTotal, err = EstimationSession_EffortTotal_OnStore_impl(r.EffortTotal, r, usr)
+	r.FreshDeskURI, err = EstimationSession_FreshDeskURI_OnStore_impl(r.FreshDeskURI, r, usr)
+	r.ADOURI, err = EstimationSession_ADOURI_OnStore_impl(r.ADOURI, r, usr)
+	r.NoActiveFeatures, err = EstimationSession_NoActiveFeatures_OnStore_impl(r.NoActiveFeatures, r, usr)
+
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
 	r.SYSCreatedHost = Audit_Update(r.SYSCreatedHost, Audit_Host())
