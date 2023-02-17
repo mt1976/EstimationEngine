@@ -685,6 +685,7 @@ func EstimationSession_TrackerID_OnStore_impl(fieldval string, rec dm.Estimation
 
 	Indexer_Put("EstimationSession", dm.EstimationSession_TrackerID_scrn, rec.EstimationSessionID, fieldval)
 
+	//spew.Dump(rec)
 	state := rec.EstimationStateID
 
 	assignRSCstatus, err := Data_GetArray("Estimation", "Assign_RSC_States", "Settings")
@@ -695,7 +696,14 @@ func EstimationSession_TrackerID_OnStore_impl(fieldval string, rec dm.Estimation
 
 	//fmt.Printf("assignRSCstatus: %v\n", assignRSCstatus)
 
-	if slices.Contains(assignRSCstatus, state) && (fieldval == "" || len(fieldval) == 0) {
+	testVal := rec.TrackerID
+
+	//logs.Information("fieldval", fieldval)
+	//logs.Information("testVal", testVal)
+	//logs.Information("state", state)
+	//fmt.Printf("assignRSCstatus: %v\n", assignRSCstatus)
+	if slices.Contains(assignRSCstatus, state) && (testVal == "" || len(testVal) == 0) {
+		logs.Information("Assign_RSC_States", "Assigning RSC")
 		_, proj, err := Project_GetByID(rec.ProjectID)
 		if err != nil {
 			return "", err

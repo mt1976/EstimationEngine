@@ -6,6 +6,7 @@ require (
 	github.com/TwiN/go-color v1.4.0
 	github.com/alexedwards/scs/v2 v2.5.0
 	github.com/bojanz/currency v1.1.0
+	github.com/davecgh/go-spew v1.1.1
 	github.com/denisenkom/go-mssqldb v0.12.3
 	github.com/dustin/go-humanize v1.0.1
 	github.com/gocarina/gocsv v0.0.0-20230123225133-763e25b40669
@@ -14,6 +15,7 @@ require (
 	github.com/jimlawless/cfg v0.0.0-20160326141742-136e0c264d31
 	github.com/leekchan/accounting v1.0.0
 	github.com/lnquy/cron v1.1.1
+	github.com/nullrocks/identicon v0.0.0-20180626043057-7875f45b0022
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/spf13/viper v1.15.0
 	github.com/tj/go-spin v1.1.0
@@ -32,7 +34,6 @@ require (
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/magiconair/properties v1.8.7 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
-	github.com/nullrocks/identicon v0.0.0-20180626043057-7875f45b0022 // indirect
 	github.com/pelletier/go-toml/v2 v2.0.6 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
 	github.com/shopspring/decimal v1.3.1 // indirect
