@@ -265,14 +265,24 @@ func EstimationSession_EffortTotal_OnFetch_impl(rec dm.EstimationSession) string
 }
 func EstimationSession_FreshDeskURI_OnFetch_impl(rec dm.EstimationSession) string {
 	logs.Callout("EstimationSession", "FreshDeskURI", GET, rec.EstimationSessionID)
-	rtn := core.ApplicationProperties["freshdeskticketuri"]
-	rtn = core.ReplaceWildcard(rtn, "ID", rec.FreshdeskID)
+
+	rtn := ""
+	if rec.FreshdeskID != "" {
+		stub, _ := Data_Get("System", "FreshDesk_URI", "Setting")
+		rtn = core.ReplaceWildcard(stub, "ID", rec.FreshdeskID)
+	}
+
 	return rtn
 }
 func EstimationSession_ADOURI_OnFetch_impl(rec dm.EstimationSession) string {
 	logs.Callout("EstimationSession", dm.EstimationSession_ADOURI_scrn, GET, rec.EstimationSessionID)
-	rtn := core.ApplicationProperties["adoticketuri"]
-	rtn = core.ReplaceWildcard(rtn, "ID", rec.AdoID)
+
+	rtn := ""
+	if rec.AdoID != "" {
+		stub, _ := Data_Get("System", "ADO_URI", "Setting")
+		rtn = core.ReplaceWildcard(stub, "ID", rec.AdoID)
+	}
+
 	return rtn
 }
 func EstimationSession_NoActiveFeatures_OnFetch_impl(rec dm.EstimationSession) string {
@@ -476,19 +486,31 @@ func EstimationSession_EffortTotal_validate_impl(iAction string, iId string, iVa
 // EstimationSession_FreshDeskURI_impl provides validation/actions for FreshDeskURI
 func EstimationSession_FreshDeskURI_validate_impl(iAction string, iId string, iValue string, iRec dm.EstimationSession, fP dm.FieldProperties) (string, dm.FieldProperties) {
 	logs.Callout("EstimationSession", dm.EstimationSession_FreshDeskURI_scrn, VAL+"-"+iAction, iId)
-	return iValue, fP
+	rtn := ""
+	logs.Warning("Generate FreshDesk URI")
+	if iRec.FreshdeskID != "" {
+		stub, _ := Data_Get("System", "FreshDesk_URI", "Setting")
+		rtn = core.ReplaceWildcard(stub, "ID", iRec.FreshdeskID)
+	}
+	return rtn, fP
 }
 
 // EstimationSession_ADOURI_impl provides validation/actions for ADOURI
 func EstimationSession_ADOURI_validate_impl(iAction string, iId string, iValue string, iRec dm.EstimationSession, fP dm.FieldProperties) (string, dm.FieldProperties) {
 	logs.Callout("EstimationSession", dm.EstimationSession_ADOURI_scrn, VAL+"-"+iAction, iId)
-	return iValue, fP
+	logs.Warning("Generate ADO URI")
+	rtn := ""
+	if iRec.AdoID != "" {
+		stub, _ := Data_Get("System", "ADO_URI", "Setting")
+		rtn = core.ReplaceWildcard(stub, "ID", iRec.AdoID)
+	}
+	return rtn, fP
 }
 
 // EstimationSession_NoActiveFeatures_impl provides validation/actions for NoActiveFeatures
 func EstimationSession_NoActiveFeatures_validate_impl(iAction string, iId string, iValue string, iRec dm.EstimationSession, fP dm.FieldProperties) (string, dm.FieldProperties) {
 	logs.Callout("EstimationSession", dm.EstimationSession_NoActiveFeatures_scrn, VAL+"-"+iAction, iId)
-	return iValue, fP
+	return "999", fP
 }
 
 //

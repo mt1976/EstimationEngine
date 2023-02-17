@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 16/02/2023 at 10:11:36
+// Date & Time		    : 17/02/2023 at 15:31:28
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -92,7 +92,7 @@ func Origin_GetByID(id string) (int, dm.Origin, error) {
 
 func Origin_PostGet(originItem dm.Origin, id string) dm.Origin {
 	// START
-	// Dynamically generated 16/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	originItem.StateID, originItem.StateID_props = Origin_StateID_validate_impl(GET, id, originItem.StateID, originItem, originItem.StateID_props)
 	originItem.Code, originItem.Code_props = Origin_Code_validate_impl(GET, id, originItem.Code, originItem, originItem.Code_props)
@@ -101,7 +101,7 @@ func Origin_PostGet(originItem dm.Origin, id string) dm.Origin {
 	originItem.StartDate, originItem.StartDate_props = Origin_StartDate_validate_impl(GET, id, originItem.StartDate, originItem, originItem.StartDate_props)
 	originItem.NoActiveProjects, originItem.NoActiveProjects_props = Origin_NoActiveProjects_validate_impl(GET, id, originItem.NoActiveProjects, originItem, originItem.NoActiveProjects_props)
 	//
-	// Dynamically generated 16/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	return originItem
 }
@@ -160,7 +160,7 @@ func Origin_StoreSystem(r dm.Origin) (dm.Origin, error) {
 func Origin_Validate(r dm.Origin) (dm.Origin, error) {
 	var err error
 	// START
-	// Dynamically generated 16/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	r.StateID, r.StateID_props = Origin_StateID_validate_impl(PUT, r.OriginID, r.StateID, r, r.StateID_props)
 	if r.StateID_props.MsgMessage != "" {
@@ -187,7 +187,7 @@ func Origin_Validate(r dm.Origin) (dm.Origin, error) {
 		err = errors.New(r.NoActiveProjects_props.MsgMessage)
 	}
 	//
-	// Dynamically generated 16/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//
 
@@ -220,7 +220,7 @@ func origin_Save(r dm.Origin, usr string) error {
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 16/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	ts = addData(ts, dm.Origin_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Origin_OriginID_sql, r.OriginID)
@@ -249,7 +249,7 @@ func origin_Save(r dm.Origin, usr string) error {
 	ts = addData(ts, dm.Origin_AccountManager_sql, r.AccountManager)
 
 	//
-	// Dynamically generated 16/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 	tsql := das.INSERT + das.INTO + Origin_QualifiedName
@@ -278,7 +278,7 @@ func origin_Fetch(tsql string) (int, []dm.Origin, dm.Origin, error) {
 
 		rec := returnList[i]
 		// START
-		// Dynamically generated 16/02/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local
 		//
 		recItem.SYSId = get_Int(rec, dm.Origin_SYSId_sql, "0")
 		recItem.OriginID = get_String(rec, dm.Origin_OriginID_sql, "")
@@ -314,7 +314,7 @@ func origin_Fetch(tsql string) (int, []dm.Origin, dm.Origin, error) {
 		recItem.StartDate = Origin_StartDate_OnFetch_impl(recItem)
 		recItem.NoActiveProjects = Origin_NoActiveProjects_OnFetch_impl(recItem)
 		//
-		// Dynamically generated 16/02/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local
 		// END
 		///
 		//Add to the list
@@ -339,7 +339,7 @@ func Origin_New() (int, []dm.Origin, dm.Origin, error) {
 	var rList []dm.Origin
 
 	// START
-	// Dynamically generated 16/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	r.StateID, r.StateID_props = Origin_StateID_validate_impl(NEW, r.OriginID, r.StateID, r, r.StateID_props)
 	r.Code, r.Code_props = Origin_Code_validate_impl(NEW, r.OriginID, r.Code, r, r.Code_props)
@@ -349,7 +349,7 @@ func Origin_New() (int, []dm.Origin, dm.Origin, error) {
 	r.NoActiveProjects, r.NoActiveProjects_props = Origin_NoActiveProjects_validate_impl(NEW, r.OriginID, r.NoActiveProjects, r, r.NoActiveProjects_props)
 
 	//
-	// Dynamically generated 16/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

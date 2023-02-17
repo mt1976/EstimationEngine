@@ -48,7 +48,7 @@ SQL Table Key | **originID**
 |**StateID**|String|false|true|false|false|OL∀|OriginState|OriginState_OriginStateID|OriginState_Name|Y|stateID||false|true|false|text||
 |**DocTypeID**|String|false|true|false|false|OL∀|DocType|DocType_DocTypeID||Y|docTypeID||false|false|false|text||
 |**Code**|String|false|true|false|true|||||H|code||true|true|false|text||
-|**FullName**|String|false|true|false|true|||||H|fullName||false|true|false|text||
+|**FullName**|String|false|true|false|true|||||Y|fullName||false|true|false|text||
 |**Rate**|String|false|true|false|true|||||Y|rate||false|true|false|text||
 |**Notes**|String|false|true|false|true|||||Y|notes||false|false|false|textarea||
 |**StartDate**|String|false|true|false|true|||||Y|startDate||false|true|false|date|yyyy-mm-dd|
@@ -92,7 +92,7 @@ SQL Table Key | **originID**
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **16/02/2023** at **10:11:36**
+Date & Time		     | **17/02/2023** at **15:31:28**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---
