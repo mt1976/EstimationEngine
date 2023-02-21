@@ -11,16 +11,16 @@ type Lookup_Item struct {
 }
 
 type FieldProperties struct {
-	MsgType         string
-	MsgMessage      string
-	MsgLog          bool
-	MsgGlyph        string
+	MsgType    string
+	MsgMessage string
+	//MsgLog          bool
+	//MsgGlyph        string
 	MsgFeedBackType string
-	InputType       string
-	InputMessage    string
-	InputLog        bool
-	InputGlyph      string
-	DefaultValue    string
+	//InputType       string
+	//InputMessage    string
+	//InputLog        bool
+	//InputGlyph      string
+	//DefaultValue    string
 }
 
 func NewFieldProperties() *FieldProperties {
@@ -30,8 +30,8 @@ func NewFieldProperties() *FieldProperties {
 func AddFieldMessage(fP FieldProperties, typeStr string, message string, log bool, glyph string) FieldProperties {
 	fP.MsgType = typeStr
 	fP.MsgMessage = message
-	fP.MsgLog = log
-	fP.MsgGlyph = glyph
+	//fP.MsgLog = log
+	//fP.MsgGlyph = glyph
 	fP.MsgFeedBackType = "form-helper"
 	if fP.MsgType == core.FieldMessage_POSITIVE {
 		fP.MsgFeedBackType = "valid-feedback"
