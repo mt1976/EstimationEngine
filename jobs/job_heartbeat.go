@@ -33,7 +33,7 @@ func HeartBeat_Run() {
 	core.Log_uptime()
 
 	MSG_TXT := dao.Translate("JobMessage", "Uptime = %v")
-	message := fmt.Sprintf(MSG_TXT, core.Uptime())
+	message := fmt.Sprintf(MSG_TXT, core.ApplicationUpTime())
 
 	application.Schedule_Update(HeartBeat_Job(), message)
 	logs.EndJob(HeartBeat_Job().Name)

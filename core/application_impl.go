@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/alexedwards/scs/v2"
+	"github.com/hako/durafmt"
 	logs "github.com/mt1976/ebEstimates/logs"
 )
 
@@ -13,7 +14,11 @@ func Uptime() time.Duration {
 }
 
 func Log_uptime() {
-	logs.System("App Uptime : " + Uptime().String())
+	logs.System("App Uptime : " + ApplicationUpTime())
+}
+
+func ApplicationUpTime() string {
+	return durafmt.Parse(Uptime()).String()
 }
 
 func Initialise() {
