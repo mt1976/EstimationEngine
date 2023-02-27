@@ -69,6 +69,7 @@ SQL Table Key | **id**
 |**SYSActivity**|String|false|true|false|false|||||NH|_activity||false|false|true|text||
 |**SYSDbVersion**|String|false|true|false|false|||||NH|_dbVersion||false|false|true|text||
 |**EmailNotifications**|String|false|true|false|false|LL|tf|||Y|emailNotifications||false|false|false|text||
+|**PasswordExpiry**|String|false|true|false|false|||||Y|passwordExpiry||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -92,7 +93,7 @@ SQL Table Key | **id**
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **16/02/2023** at **12:41:49**
+Date & Time		     | **25/02/2023** at **19:04:38**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

@@ -151,6 +151,8 @@ func publishGUIEndpoints() *http.ServeMux {
 
 	application.Credentials_Publish(*mux)
 	application.CredentialsAction_Publish(*mux)
+	application.CredentialsPassword_Publish(*mux)
+	application.CredentialsPassword_Publish_Impl(*mux)
 
 	application.Message_Publish(*mux)
 

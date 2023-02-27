@@ -183,6 +183,7 @@ func SendMailToResource(resourceID string, MSG_SUBJECT string, MSG_BODY string) 
 }
 
 func SetFieldError(fP dm.FieldProperties, msg string) dm.FieldProperties {
+	msg = Translate("Error", msg)
 	fP.MsgType = "is-invalid"
 	if len(fP.MsgMessage) > 0 {
 		fP.MsgMessage = fP.MsgMessage + ", " + msg
@@ -190,10 +191,12 @@ func SetFieldError(fP dm.FieldProperties, msg string) dm.FieldProperties {
 		fP.MsgMessage = msg
 	}
 	fP.MsgFeedBackType = "invalid-feedback"
+	logs.Warning("SetFieldError: " + msg)
 	return fP
 }
 
 func SetFieldMandatory(fP dm.FieldProperties, msg string) dm.FieldProperties {
+	msg = Translate("Information", msg)
 	fP.MsgType = "is-invalid"
 	if len(fP.MsgMessage) > 0 {
 		fP.MsgMessage = fP.MsgMessage + ", " + msg
@@ -205,6 +208,7 @@ func SetFieldMandatory(fP dm.FieldProperties, msg string) dm.FieldProperties {
 }
 
 func SetFieldGood(fP dm.FieldProperties, msg string) dm.FieldProperties {
+	msg = Translate("Praise", msg)
 	fP.MsgType = "is-invalid"
 	if len(fP.MsgMessage) > 0 {
 		fP.MsgMessage = fP.MsgMessage + ", " + msg

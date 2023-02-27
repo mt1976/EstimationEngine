@@ -484,7 +484,7 @@ func AddActivity_ForProcess(in string, what string, process string) string {
 	return AddActivity_ForUser(in, what, process)
 }
 
-func AddActivity_ForUser(in string, what string, un string) string {
+func AddActivity_ForUser(in string, what string, userName string) string {
 	if what == "" {
 		return in
 	}
@@ -492,11 +492,12 @@ func AddActivity_ForUser(in string, what string, un string) string {
 	what = strings.ReplaceAll(what, "'", "")
 	//logs.Information("Activity", what+" "+un)
 
-	tm := time.Now().Format("02/01/2006 15:04:05")
+	tm := time.Now().Format(DATETIMEFORMATUSER)
+
 	if in == "" {
-		return tm + " " + un + " : " + what
+		return tm + " " + userName + " : " + what
 	}
-	out := in + "\n" + tm + " " + un + " : " + what
+	out := in + "\n" + tm + " " + userName + " : " + what
 	return out
 }
 

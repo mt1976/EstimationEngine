@@ -62,9 +62,19 @@ func Session_HandlerValidateLogin(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, "/home", http.StatusFound)
 
 	} else {
-		core.SecurityViolation = tok.SecurityViolation
-		core.ServiceMessageAction(tok.SecurityViolation, Session_GetUserName(r), tok.ResponseCode)
-		http.Redirect(w, r, "/logout", http.StatusFound)
+		if tok.ResponseCode == "303" {
+			// Special Case - User neets to change password
+			core.SecurityViolation = ""
+			core.ServiceMessageAction("ACCESS GRANTED TO CHANGE PASSWORD", Session_GetUserName(r), tok.ResponseCode)
+			GenerateAvatar(uName, tok.UID)
+			logs.Result("Redirecting to: ", dm.CredentialsPassword_PathChange)
+			dao.Data_Put("Credentials", uName, "LastLogin", time.Now().Format(core.DATEMSG))
+			http.Redirect(w, r, dm.CredentialsPassword_PathChange+"?ID=", http.StatusFound)
+		} else {
+			core.SecurityViolation = tok.SecurityViolation
+			core.ServiceMessageAction(tok.SecurityViolation, Session_GetUserName(r), tok.ResponseCode)
+			http.Redirect(w, r, "/logout", http.StatusFound)
+		}
 	}
 }
 
@@ -91,12 +101,15 @@ func GenerateAvatar(seed string, id string) {
 	// File writer
 	pwd, _ := os.Getwd()
 	filenamepath := pwd + "/data/images/avatars/" + id + ".png"
-	logs.Information("Avatar File: ", filenamepath)
+	// check if the file exists
+	//logs.Information("Avatar File: ", filenamepath)
+
 	img, _ := os.Create(filenamepath)
 	defer img.Close()
+
 	// Takes the size in pixels and any io.Writer
 	ii.Png(300, img) // 300px * 300px
-	logs.Information("Avatar Generated: ", filenamepath)
+	logs.Information("Avatar Used: ", filenamepath)
 }
 
 func session_ValidateLogin(appToken string, username string, password string, r *http.Request) sessionToken {
@@ -115,17 +128,20 @@ func session_ValidateLogin(appToken string, username string, password string, r 
 	if len(cred.Id) == 0 {
 		s.ResponseCode = "512"
 		s.SecurityViolation = "SECURITY VIOLATION"
+		logs.Warning("Username not found: " + username)
 		return s
 	}
 
 	if cred.Username != username {
 		s.ResponseCode = "512"
 		s.SecurityViolation = "SECURITY VIOLATION"
+		logs.Warning("Username does not match: " + cred.Username)
 		return s
 	}
 	if len(cred.Expiry) == 0 {
 		s.ResponseCode = "512"
 		s.SecurityViolation = "SECURITY VIOLATION"
+		logs.Warning("Expiry Date is empty: " + cred.Expiry)
 		return s
 	}
 
@@ -154,20 +170,53 @@ func session_ValidateLogin(appToken string, username string, password string, r 
 	}
 
 	//TODO: insert password check here - start
+	if cred.Password == "" && cred.PasswordExpiry == "" {
+		s.ResponseCode = "303"
+		s.SecurityViolation = "SET VIOLATION"
+		logs.Warning("Password and Password Expiry are empty")
+		activateSession(r, cred)
+		return s
+	}
+
+	if cred.PasswordExpiry == "" {
+		s.ResponseCode = "303"
+		s.SecurityViolation = "RESET VIOLATION"
+		logs.Warning("Password Expiry is empty")
+		activateSession(r, cred)
+		//Redirect to change password screen (need to set a special response code)
+		return s
+	}
+	// Check Password Expiry
+	pwdExpiry, err := time.Parse(core.DATEFORMAT, cred.PasswordExpiry)
+	if pwdExpiry.Before(now) {
+		s.ResponseCode = "303"
+		s.SecurityViolation = "PASSWORD EXPIRED"
+		logs.Warning("Password Expired " + now.String() + " After " + pwdExpiry.Format(core.DATEFORMAT))
+		//Redirect to change password screen (need to set a special response code)
+		activateSession(r, cred)
+		return s
+	}
+
+	// Check Password Hash matches
+	if cred.Password != "" {
+		// Check Password Hash matches
+
+		if !core.CheckPasswordHash(password, cred.Password) {
+			s.ResponseCode = "512"
+			s.SecurityViolation = "SECURITY VIOLATION"
+			logs.Warning("Password does not match")
+			return s
+		}
+	}
+
+	//
 	//TODO: insert password check here - end
 
 	s.SecurityViolation = ""
 	s.ResponseCode = "200"
 	s.UID = cred.Id
 
-	core.SessionManager.Put(r.Context(), core.SessionRole, cred.RoleType)
-	core.SessionManager.Put(r.Context(), core.SessionNavi, core.GetNavigationID(cred.RoleType))
-	core.SessionManager.Put(r.Context(), core.SessionKnowAs, cred.Knownas)
-	core.SessionManager.Put(r.Context(), core.SessionUserName, cred.Username)
-	core.SessionManager.Put(r.Context(), core.SessionAppToken, core.ApplicationToken())
-	core.SessionManager.Put(r.Context(), core.SessionUUID, cred.Id)
-	core.SessionManager.Put(r.Context(), core.SessionSecurityViolation, "")
-	core.SessionManager.Put(r.Context(), core.SessionTokenID, Session_CreateToken(r))
+	activateSession(r, cred)
 
 	//fmt.Printf("cred.RoleType: %v\n", cred.RoleType)
 	//fmt.Printf("core.GetNavigationID(cred.RoleType): %v\n", core.GetNavigationID(cred.RoleType))
@@ -184,6 +233,17 @@ func session_ValidateLogin(appToken string, username string, password string, r 
 	//fmt.Printf("core.SessionManager.Get(r.Context(), core.SessionUserName): %v\n", core.SessionManager.Get(r.Context(), core.SessionUserName))
 
 	return s
+}
+
+func activateSession(r *http.Request, cred dm.Credentials) {
+	core.SessionManager.Put(r.Context(), core.SessionRole, cred.RoleType)
+	core.SessionManager.Put(r.Context(), core.SessionNavi, core.GetNavigationID(cred.RoleType))
+	core.SessionManager.Put(r.Context(), core.SessionKnowAs, cred.Knownas)
+	core.SessionManager.Put(r.Context(), core.SessionUserName, cred.Username)
+	core.SessionManager.Put(r.Context(), core.SessionAppToken, core.ApplicationToken())
+	core.SessionManager.Put(r.Context(), core.SessionUUID, cred.Id)
+	core.SessionManager.Put(r.Context(), core.SessionSecurityViolation, "")
+	core.SessionManager.Put(r.Context(), core.SessionTokenID, Session_CreateToken(r))
 }
 
 // Session_Validate is cheese

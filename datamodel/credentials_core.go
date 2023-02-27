@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 16/02/2023 at 12:41:49
+// Date & Time		    : 25/02/2023 at 19:04:38
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Credentials defines the datamodel for the Credentials object
 type Credentials struct {
-	// Dynamically generated 16/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 25/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -45,6 +45,7 @@ type Credentials struct {
 	SYSActivity       string
 	SYSDbVersion       string
 	EmailNotifications       string
+	PasswordExpiry       string
 	//
 	// Field Properties
 	//
@@ -74,6 +75,7 @@ type Credentials struct {
 	SYSActivity_props FieldProperties
 	SYSDbVersion_props FieldProperties
 	EmailNotifications_props FieldProperties
+	PasswordExpiry_props FieldProperties
 	//
  	// Any lookups will be added below
 	//
@@ -83,7 +85,7 @@ type Credentials struct {
 	}
 
 const (
-	// Dynamically generated 16/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 25/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	Credentials_Name      = "Credentials"
 	Credentials_Title       = "Credentials"
@@ -145,6 +147,7 @@ const (
 	Credentials_SYSActivity_sql   = "_activity" // SYSActivity is a String
 	Credentials_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
 	Credentials_EmailNotifications_sql   = "emailNotifications" // EmailNotifications is a String
+	Credentials_PasswordExpiry_sql   = "passwordExpiry" // PasswordExpiry is a String
 ///
 	/// Application Field Definitions
 	///
@@ -174,12 +177,13 @@ const (
 	Credentials_SYSActivity_scrn   = "SYSActivity" // SYSActivity is a String
 	Credentials_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
 	Credentials_EmailNotifications_scrn   = "EmailNotifications" // EmailNotifications is a String
+	Credentials_PasswordExpiry_scrn   = "PasswordExpiry" // PasswordExpiry is a String
 ///
 )
 
 //Credentials_PageList provides the information for the template for a list of Credentialss
 type Credentials_PageList struct {
-	// Dynamically generated 16/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 25/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -201,7 +205,7 @@ type Credentials_PageList struct {
 
 //Credentials_Page provides the information for the template for an individual Credentials
 type Credentials_Page struct {
-	// Dynamically generated 16/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 25/02/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
@@ -243,6 +247,7 @@ type Credentials_Page struct {
 	SYSActivity         string
 	SYSDbVersion         string
 	EmailNotifications         string
+	PasswordExpiry         string
 	/// Field Properties
 	SYSId_props     FieldProperties
 	Id_props     FieldProperties
@@ -270,6 +275,7 @@ type Credentials_Page struct {
 	SYSActivity_props     FieldProperties
 	SYSDbVersion_props     FieldProperties
 	EmailNotifications_props     FieldProperties
+	PasswordExpiry_props     FieldProperties
 	/// Lookups
 	RoleType_lookup    []Lookup_Item
 	State_lookup    []Lookup_Item

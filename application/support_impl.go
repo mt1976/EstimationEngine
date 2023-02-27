@@ -85,12 +85,14 @@ func ExecuteTemplate(tname string, w http.ResponseWriter, r *http.Request, data 
 
 func ExecuteRedirect(inRoute string, w http.ResponseWriter, r *http.Request, thisID string, thisQuery string, data interface{}) {
 	// //fmt.Printf("tname: %v\n", tname)
-	// fmt.Printf("inName: %v\n", inRoute)
-	// fmt.Printf("path: %v\n", objName)
-	// fmt.Printf("thisID: %v\n", thisID)
-	// fmt.Printf("thisQuery: %v\n", thisQuery)
+	//fmt.Printf("inRoute: %v\n", inRoute)
+	//fmt.Printf("inRoute: %v\n", thisID)
+	//fmt.Printf("thisID: %v\n", thisID)
+	//fmt.Printf("thisQuery: %v\n", thisQuery)
 
 	path := firstDir(inRoute)
+
+	//fmt.Printf("path: %v\n", path)
 
 	tname := core.URI_SEP + path + core.URI_SEP + core.URI_QUERY + thisID + "=" + thisQuery
 	errText := core.ContextState + "=" + core.ContextState_ERROR
@@ -98,9 +100,9 @@ func ExecuteRedirect(inRoute string, w http.ResponseWriter, r *http.Request, thi
 		//	path = path + core.ExceptionHandlingPageSuffix
 		tname = tname + "&" + errText
 	}
-
+	//fmt.Printf("tname: %v\n", tname)
 	logs.Redirecting(tname)
-
+	//fmt.Printf("data: %v\n", data)
 	gob.Register(data)
 	core.SessionManager.Put(r.Context(), thisQuery, data)
 
@@ -137,5 +139,27 @@ func firstDir(input_url string) string {
 		logs.Warning(err.Error())
 	}
 
-	return u.Path[1 : strings.Index(u.Path[1:], "/")+1]
+	// fmt.Printf("u: %v\n", u)
+	// fmt.Printf("u.Host: %v\n", u.Host)
+	// fmt.Printf("u.Path: %v\n", u.Path)
+	// fmt.Printf("u.RawQuery: %v\n", u.RawQuery)
+	// fmt.Printf("u.Fragment: %v\n", u.Fragment)
+	// fmt.Printf("u.Scheme: %v\n", u.Scheme)
+
+	workingPath := u.Path
+	if workingPath == "" {
+		return ""
+	}
+	noSlashs := strings.Count(workingPath, "/")
+	//fmt.Printf("noSlashs: %v\n", noSlashs)
+	if noSlashs == 0 {
+		return "/" + workingPath
+	}
+	if noSlashs == 1 {
+		return workingPath
+	}
+
+	rtnValue := workingPath[1 : strings.Index(workingPath[1:], "/")+1]
+
+	return rtnValue
 }
