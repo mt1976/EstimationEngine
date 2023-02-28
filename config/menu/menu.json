@@ -44,17 +44,6 @@
       "SectionName": "Configuration",
       "SectionNodes": [
         {
-          "MenuID": "b8db9941-bf2a-426e-9d35-e03790ed266e",
-          "MenuText": "Resources",
-          "MenuGlyph": "fas fa-cogs",
-          "MenuHREF": "/ResourceList",
-          "MenuOnClick": "",
-          "MenuTextClass": "text-secondary"
-        },
-        {
-          "MenuBreak": "true"
-        },
-        {
           "MenuID": "80f47cfa-7205-41b3-ac5d-cb760ca3b0b7",
           "MenuText": "Profile",
           "MenuGlyph": "fas fa-sliders-h",
@@ -67,6 +56,14 @@
           "MenuText": "Confidence",
           "MenuGlyph": "fas fa-thumbs-up",
           "MenuHREF": "/ConfidenceList",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-secondary"
+        },
+        {
+          "MenuID": "b8db9941-bf2a-426e-9d35-e03790ed266e",
+          "MenuText": "Resources",
+          "MenuGlyph": "fas fa-user-cog",
+          "MenuHREF": "/ResourceList",
           "MenuOnClick": "",
           "MenuTextClass": "text-secondary"
         },
@@ -84,7 +81,7 @@
         {
           "MenuID": "90c56611-425f-4c53-be05-4bbfc93bdaa5",
           "MenuText": "Document Types",
-          "MenuGlyph": "fas fa-file-alt",
+          "MenuGlyph": "fas fa-cogs",
           "MenuHREF": "/DocTypeList",
           "MenuOnClick": "",
           "MenuTextClass": "text-secondary"
@@ -128,6 +125,33 @@
           "MenuTextClass": "text-warning"
         },
         {
+          "MenuID": "701c1f21-ba5e-4d1c-972b-d3422317d321",
+          "MenuText": "User Roles",
+          "MenuGlyph": "fas fa-users-cog",
+          "MenuHREF": "/UserRoleList",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-warning"
+        },
+        {
+          "MenuID": "1beab4f6-05a9-4ea2-b49a-996b91bbec36",
+          "MenuText": "System Properties",
+          "MenuGlyph": "fas fa-table",
+          "MenuHREF": "/DataList",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-warning"
+        },
+        {
+          "MenuID": "f80b37b8-f309-4b4a-93fd-b4cecbf33472",
+          "MenuText": "Message Translation",
+          "MenuGlyph": "fas fa-language",
+          "MenuHREF": "/TranslationList",
+          "MenuOnClick": "",
+          "MenuTextClass": "text-warning"
+        },
+        {
+          "MenuBreak": "true"
+        },
+        {
           "MenuID": "da98ab1a-9562-4e1a-a6c8-c5b1cee31f67",
           "MenuText": "Scheduler",
           "MenuGlyph": "far fa-clock",
@@ -149,26 +173,7 @@
           "MenuGlyph": "fas fa-inbox",
           "MenuHREF": "/InboxList",
           "MenuOnClick": "",
-          "MenuTextClass": "text-secondary"
-        },
-        {
-          "MenuID": "da8c7cef-608e-4e44-9028-30b8cb09b401",
-          "MenuText": "My Inbox",
-          "MenuGlyph": "fas fa-inbox",
-          "MenuHREF": "/MyInboxList",
-          "MenuOnClick": "",
           "MenuTextClass": "text-info"
-        },
-        {
-          "MenuID": "701c1f21-ba5e-4d1c-972b-d3422317d321",
-          "MenuText": "User Roles",
-          "MenuGlyph": "fas fa-users-cog",
-          "MenuHREF": "/UserRoleList",
-          "MenuOnClick": "",
-          "MenuTextClass": "text-warning"
-        },
-        {
-          "MenuBreak": "true"
         },
         {
           "MenuID": "b63ec0d9-bc32-43f4-a922-48a7d63428c9",
@@ -179,51 +184,19 @@
           "MenuTextClass": "text-info"
         },
         {
-          "MenuBreak": "true"
-        },
-
-        {
-          "MenuID": "f80b37b8-f309-4b4a-93fd-b4cecbf33472",
-          "MenuText": "Message Translation",
-          "MenuGlyph": "fas fa-language",
-          "MenuHREF": "/TranslationList",
-          "MenuOnClick": "",
-          "MenuTextClass": "text-info"
-        }
-        ,
-        {
-          "MenuBreak": "true"
-        },
-        {
-          "MenuID": "1beab4f6-05a9-4ea2-b49a-996b91bbec36",
-          "MenuText": "System Properties",
-          "MenuGlyph": "fas fa-table",
-          "MenuHREF": "/DataList",
-          "MenuOnClick": "",
-          "MenuTextClass": ""
-        }
-        ,
-        {
-          "MenuBreak": "true"
-        },
-
-        {
           "MenuID": "ceecfdee-b92f-4965-8dbc-5a382b5315d6",
           "MenuText": "Index",
           "MenuGlyph": "fas fa-search",
           "MenuHREF": "/IndexList",
           "MenuOnClick": "",
-          "MenuTextClass": ""
+          "MenuTextClass": "text-info"
         }
-
-
       ]
     },
     {
       "SectionID": "99",
       "SectionName": "About",
       "SectionNodes": [
-        
         {
           "MenuID": "f4cbafd2-3fca-405f-97fa-66ba105e8152",
           "MenuText": "API Catalog",
