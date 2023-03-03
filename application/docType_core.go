@@ -202,7 +202,7 @@ func DocType_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// 
 	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
-}
+} 
 
 
 //DocType_HandlerNew is the handler used process the creation of an DocType
