@@ -1,0 +1,6 @@
+dataID,class,field,value,category
+RGF0YS1CYXNlLVNldHRpbmcuUnVsZS5GaWx0ZXI=,Data,Base,datalength(_deleted) = 0,Setting.Rule.Filter
+U3lzdGVtLUFETy1TZXR0aW5nLlVSSQ==,System,ADO,https://dev.azure.com/EurobaseInternationalGroup/Siena/_workitems/edit/{{ID}}/	,Setting.URI
+U3lzdGVtLUZyZXNoRGVzay1TZXR0aW5nLlVSSQ==,System,FreshDesk,https://eurobase.freshdesk.com/a/tickets/{{ID}},Setting.URI
+RXN0aW1hdGlvbi1Bc3NpZ25fUlNDX1N0YXRlcy1TZXR0aW5ncw==,Estimation,Assign_RSC_States,WRIT,Settings
+U3lzdGVtLUNsb3NlZFN0YXRlcy1Qcm9qZWN0,System,ClosedStates,"DONE,CANX",Project

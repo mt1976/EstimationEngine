@@ -16,7 +16,7 @@ import (
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
 	// Template Generator   : Einsteinium [r5-23.01.23]
-	// Date & Time		    : 15/02/2023 at 10:44:42
+	// Date & Time		    : 04/03/2023 at 19:05:10
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in data_impl.go
@@ -46,32 +46,11 @@ import (
 	// These are the the default implementations, which do nothing
 
 	// ----------------------------------------------------------------
-	// BEGIN Data_DataID
-	// BEGIN Data_DataID
-	// BEGIN Data_DataID
-	// ----------------------------------------------------------------
-	// Data_DataID_OnStore_impl provides the implementation for the callout
-	func Data_DataID_OnStore_impl (fieldval string,rec dm.Data,usr string) (string,error)  {
-		logs.Callout("Data", dm.Data_DataID_scrn, PUT, rec.DataID)
-		return fieldval,nil
-	}
-	// ----------------------------------------------------------------
-	// Data_DataID_OnFetch_impl provides the implementation for the callout	
-	func Data_DataID_OnFetch_impl (rec dm.Data)(string) {
-		logs.Callout("Data", dm.Data_DataID_scrn, GET, rec.DataID)
-		return rec.DataID
-	}
-	// ----------------------------------------------------------------
 	// Data_DataID_validate_impl provides validation/actions for DataID
 	func Data_DataID_validate_impl (iAction string, iId string, iValue string, iRec dm.Data, fP dm.FieldProperties) (string, dm.FieldProperties) {
 		logs.Callout("Data", dm.Data_DataID_scrn, VAL +"-"+iAction, iId)
 		return iValue,fP
 	}
-	// ----------------------------------------------------------------
-	// END   Data_DataID
-	// END   Data_DataID
-	// END   Data_DataID
-	// ----------------------------------------------------------------
 
 	// ----------------------------------------------------------------
 	// Automatically generated code ends here

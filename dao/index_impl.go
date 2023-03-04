@@ -32,13 +32,13 @@ func Indexer_Put(KeyClass string, KeyField string, KeyID string, KeyValue string
 	iRec.KeyValue = KeyValue
 
 	prefix := ""
-	iRec.Link, _ = Data_Get(iRec.KeyClass, iRec.KeyName, "IndexLink")
+	iRec.Link, _ = Data_Get(iRec.KeyClass, iRec.KeyName, dm.Data_Category_Indexer)
 	iRec.Link = prefix + iRec.Link
 
 	if iRec.Link == "" {
 		iRec.Link = "/{{VALUE}}"
 		logs.Warning("Indexer Content Not found " + core.DQuote(iRec.KeyClass) + " " + core.DQuote(iRec.KeyName) + " using " + core.DQuote(iRec.Link))
-		Data_Put(iRec.KeyClass, iRec.KeyName, "IndexLink", iRec.Link)
+		Data_Put(iRec.KeyClass, iRec.KeyName, dm.Data_Category_Indexer, iRec.Link)
 	}
 	//iRec.Link = fmt.Sprintf(iRec.Link, iRec.KeyID)
 

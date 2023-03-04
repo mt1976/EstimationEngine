@@ -22,9 +22,11 @@ func CredentialsPassword_Job_impl(j dm.JobDefinition) dm.JobDefinition {
 
 func CredentialsPassword_Run_impl() (string, error) {
 
+	objectName := dao.Translate("ObjectName", "Credentials")
+
 	message := ""
 	/// CONTENT STARTS
-	warningPeriod, err := dao.Data_GetInt("Password", "PasswordExpiryWarning", "Settings")
+	warningPeriod, err := dao.Data_GetInt(objectName, "Password_Expiry_Notification_Period", dm.Data_Category_Setting)
 	if err != nil {
 		return message, err
 	}

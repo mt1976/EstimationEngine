@@ -64,7 +64,7 @@ func FeatureNew_HandlerSetup(w http.ResponseWriter, r *http.Request) {
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
 	pageDetail = featurenew_PopulatePage(rD, pageDetail)
-	pageDetail.EstimationSession = esID
+	pageDetail.EstimationSessionID = esID
 
 	_, es, _ := dao.EstimationSession_GetByID(esID)
 	_, proj, _ := dao.Project_GetByID(es.ProjectID)
@@ -98,18 +98,18 @@ func FeatureNew_HandlerCreate(w http.ResponseWriter, r *http.Request) {
 	logs.Processing("New ID: " + newID)
 
 	item.FeatureID = newID
-	item.EstimationSessionID = r.FormValue(dm.FeatureNew_EstimationSession_scrn)
+	item.EstimationSessionID = r.FormValue(dm.FeatureNew_EstimationSessionID_scrn)
 	item.Name = r.FormValue(dm.FeatureNew_Name_scrn)
-	item.DevEstimate = r.FormValue(dm.FeatureNew_DevEstimate_scrn)
-	item.ConfidenceID = r.FormValue(dm.FeatureNew_Confidence_scrn)
-	item.Developer = r.FormValue(dm.FeatureNew_Developer_scrn)
+	item.DevEstimate = r.FormValue(dm.FeatureNew_DeveloperEstimate_scrn)
+	item.ConfidenceID = r.FormValue(dm.FeatureNew_ConfidenceCODE_scrn)
+	item.Developer = r.FormValue(dm.FeatureNew_DeveloperResource_scrn)
 
 	fop := featurenew_DataFromRequest(r)
-	item.EstimationSessionID = fop.EstimationSession
+	item.EstimationSessionID = fop.EstimationSessionID
 	item.Name = fop.Name
-	item.DevEstimate = fop.DevEstimate
-	item.ConfidenceID = fop.Confidence
-	item.Developer = fop.Developer
+	item.DevEstimate = fop.DeveloperEstimate
+	item.ConfidenceID = fop.ConfidenceCODE
+	item.Developer = fop.DeveloperResource
 	item.Description = fop.Description
 	item.Comments = fop.Comments
 	item.AdoID = fop.DevOpsID
@@ -131,6 +131,7 @@ func FeatureNew_HandlerCreate(w http.ResponseWriter, r *http.Request) {
 	//item.Notes = tm + Session_GetUserName(r) + ": Created"
 
 	msgTXT := "New Feature Created"
+	msgTXT = dao.Translate("Message", msgTXT)
 	item.Notes = addActivity(item.Notes, msgTXT, r)
 
 	dao.Feature_Store(item, r)

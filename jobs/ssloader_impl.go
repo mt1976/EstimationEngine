@@ -3,7 +3,6 @@ package jobs
 import (
 	"fmt"
 	"os"
-	"strconv"
 	"strings"
 	"time"
 
@@ -33,7 +32,7 @@ type RSC struct {
 type RSCs []*RSC
 
 func ssloader_Job_impl(j dm.JobDefinition) dm.JobDefinition {
-	j.Name = "Spreadsheet"
+	j.Name = "SpreadsheetLoader"
 	j.Period = ""
 	j.Description = "Load Data from Old Tracker Spreadsheet"
 	j.Type = core.Adhoc
@@ -44,45 +43,44 @@ func ssloader_Job_impl(j dm.JobDefinition) dm.JobDefinition {
 func ssloader_Run_impl() (string, error) {
 
 	message := ""
+	jobName := ssloader_Job().Name
 
 	//Get Path from Data to Spreadsheet
-	ssPath, err := dao.Data_Get(ssloader_Job().Name, "Path", "Importer")
+	ssPath, err := dao.Data_Get(jobName, JOB_IN_PATH, dm.Data_Category_Path)
 	if err != nil {
-		return "No Location Specified for " + ssloader_Job().Name, err
+		return "No Location Specified for " + jobName, err
 	}
 	if ssPath == "" {
 		return "No Spreadsheet at path" + core.DQuote(ssPath), nil
 	}
 
 	//Get Mode from Data
-	ssMode, err := dao.Data_Get(ssloader_Job().Name, "Mode", "Importer")
+	ssMode, err := dao.Data_Get(jobName, JOB_MODE, dm.Data_Category_State)
 	if err != nil {
-		return "No Mode Specified for " + ssloader_Job().Name, err
+		return "No Mode Specified for " + jobName, err
 	}
 	if ssMode != "Trial" && ssMode != "Live" {
-		return "Invalid Mode " + core.DQuote(ssMode) + " for " + ssloader_Job().Name, err
+		return "Invalid Mode " + core.DQuote(ssMode) + " for " + jobName, err
 	}
-	trialMode := false
-	if ssMode == "Trial" {
-		trialMode = true
-		logs.Warning("Trial Mode : Projects,Estimations & Features will not be updated")
-	}
+	
+	trialMode := TrialMode(ssMode)
+
 	if ssMode == "Done" {
-		return ssloader_Job().Name + " is Done", nil
+		return jobName + " is Done", nil
 	}
 	if ssMode != "Trial" && ssMode != "Live" {
-		return "Invalid Mode " + core.DQuote(ssMode) + " for " + ssloader_Job().Name, err
+		return "Invalid Mode " + core.DQuote(ssMode) + " for " + jobName, err
 	}
 	//Load Spreadsheet
 	ss, err := os.ReadFile(ssPath)
 	if err != nil {
-		return "Unable to Find Spreadsheet for " + ssloader_Job().Name, err
+		return "Unable to Find Spreadsheet for " + jobName, err
 	}
 	content := string(ss)
 	if len(content) == 0 {
-		return "No Content in Spreadsheet for " + ssloader_Job().Name, err
+		return "No Content in Spreadsheet for " + jobName, err
 	}
-	//logs.Information(ssloader_Job().Name, strconv.Itoa(len(content)))
+	//logs.Information(jobName, strconv.Itoa(len(content)))
 	in, err := os.Open(ssPath)
 	if err != nil {
 		panic(err)
@@ -133,7 +131,7 @@ func ssloader_Run_impl() (string, error) {
 		if projErr != nil {
 			return "Unable to Find/Generate Project for " + core.DQuote(newRSC.Customer), projErr
 		}
-		proj.Notes = core.AddActivity_ForProcess(proj.Notes, core.DQuote(newRSC.Desc)+" loaded from Spreadsheet "+today, ssloader_Job().Name)
+		proj.Notes = core.AddActivity_ForProcess(proj.Notes, core.DQuote(newRSC.Desc)+" loaded from Spreadsheet "+today, jobName)
 		proj.ProjectAnalyst = "--"
 		proj.ProjectEngineer = "--"
 		proj.ProjectManager = origin.ProjectManager
@@ -166,15 +164,11 @@ func ssloader_Run_impl() (string, error) {
 
 	//logs.Information("Spreadsheet", content)
 	//Load Data into Database
-	message = strconv.Itoa(noWorkItems) + " Work Items Processed"
-	ok, _ := dao.Data_Put(ssloader_Job().Name, "LastRun", "Importer", time.Now().Format(core.DATEMSG))
-	ok, _ = dao.Data_Put(ssloader_Job().Name, "LastRunPath", "Importer", ssPath)
-	ok, _ = dao.Data_Put(ssloader_Job().Name, "LastRunMessage", "Importer", message)
-	ok, _ = dao.Data_Put(ssloader_Job().Name, "LastRunMode", "Importer", ssMode)
-	ok, _ = dao.Data_Put(ssloader_Job().Name, "Mode", "Importer", "Done")
-	if ok == "" {
-		message = "Unable to Update Data for " + ssloader_Job().Name
+	ret := RecordJobStatusInfo(message, noWorkItems, JOB_ACTION_IMPORT, jobName, ssPath, "", ssMode)
+	if ret != "" {
+		message = "Unable to Update Data for " + jobName + " " + ret
 	}
+
 	return message, nil
 }
 

@@ -21,12 +21,22 @@ import (
 	core "github.com/mt1976/ebEstimates/core"
 	das "github.com/mt1976/ebEstimates/das"
 	"github.com/mt1976/ebEstimates/logs"
+	"golang.org/x/exp/slices"
 
 	dm "github.com/mt1976/ebEstimates/datamodel"
 )
 
-// Data_GetByID() returns a single Data record
+// Data_Get() returns a single Data record
 func Data_Get(class string, field string, category string) (string, error) {
+
+	if class == "" || field == "" || category == "" {
+		return "", errors.New("invalid parameters passed to Data_Get" + class + "-" + field + "-" + category)
+	}
+	// If the category passed is not in the valid list then return error
+	if !slices.Contains(dm.Data_Category_List, category) {
+		return "", errors.New("invalid category passed to Data_Get - " + category)
+	}
+
 	logs.Query("Data_Get " + class + "-" + field + "-" + category)
 	id := data_BuildID(class, field, category)
 
@@ -42,6 +52,7 @@ func Data_Get(class string, field string, category string) (string, error) {
 	if dataItem.DataID == "" {
 		logs.Warning("Data_Get - No Content found for Data " + core.DQuote(id))
 		_, err := Data_Put(class, field, category, "")
+
 		return "", err
 	}
 
@@ -50,7 +61,16 @@ func Data_Get(class string, field string, category string) (string, error) {
 
 // Data_Put() returns a single Data record
 func Data_Put(class string, field string, category string, value string) (string, error) {
-	//logs.Information("Data_Put", class+"-"+field+"-"+value)
+	logs.Information("Data_Put", class+"-"+category+"-"+field+"-"+value)
+	if class == "" || field == "" || category == "" {
+		return "", errors.New("invalid parameters passed to Data_Put" + class + "-" + field + "-" + category)
+	}
+	// If the category passed is not in the valid list then return error
+	if !slices.Contains(dm.Data_Category_List, category) {
+		return "", errors.New("invalid category passed to Data_Put - " + category)
+	}
+
+	logs.Information("Data_Put", class+"-"+category+"-"+field)
 	id := data_BuildID(class, field, category)
 	//logs.Information("Data_Put ID", id)
 	dataItem := dm.Data{}
@@ -71,7 +91,7 @@ func data_GetSEQ(docType string) (int, string, error) {
 		return 0, "", nil
 	}
 
-	rtnVal, err := Data_GetInt("System", docType, "SEQ")
+	rtnVal, err := Data_GetInt("System", docType, dm.Data_Category_Sequence)
 	if err != nil {
 		return 0, "", err
 	}
@@ -84,7 +104,7 @@ func data_PutSEQ(docType string, seq int) error {
 		return errors.New("invalid parameters passed to data_PutSEQ")
 	}
 
-	_, err := Data_Put("System", docType, "SEQ", strconv.Itoa(seq))
+	_, err := Data_Put("System", docType, dm.Data_Category_Sequence, strconv.Itoa(seq))
 	if err != nil {
 		return err
 	}
@@ -137,6 +157,7 @@ func data_BuildID(class string, field string, category string) string {
 }
 
 func Data_GetArray(class string, field string, category string) ([]string, error) {
+
 	value, err := Data_Get(class, field, category)
 	//logs.Information("Data_GetArray", value)
 	//logs.Information("Data_GetArray", err.Error())
@@ -144,4 +165,15 @@ func Data_GetArray(class string, field string, category string) ([]string, error
 		return nil, nil
 	}
 	return strings.Split(value, ","), err
+}
+
+// Data_GetMigrateable returns a list of Data records that can be migrated
+func Data_GetMigrateable() (int, []dm.Data, error) {
+
+	tsql := Data_SQLbase
+	tsql = tsql + " " + das.WHERE + dm.Data_Migrate_sql + das.EQ + das.VALUE(das.TRUE)
+	logs.Query(tsql)
+	noItems, dataItems, _, err := data_Fetch(tsql)
+
+	return noItems, dataItems, err
 }

@@ -23,8 +23,10 @@ func Origin_Run_impl() (string, error) {
 
 	message := ""
 
+	objectName := dao.Translate("ObjectName", "Origin")
+
 	/// CONTENT STARTS
-	contractExpiryPeriod, err0 := dao.Data_GetInt("Contract", "Expiry", "Setting")
+	contractExpiryPeriod, err0 := dao.Data_GetInt(objectName, "Contract_Expiry_Notification_Period", "Setting")
 	if err0 != nil {
 		return message, err0
 	}

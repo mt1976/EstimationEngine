@@ -15,7 +15,7 @@ Friendly Name|**System Properties**|
 * **Edit** (/Data/DataEdit)
 * **Save** (/Data/DataSave)
 * **New** (/Data/DataNew)
-
+* **Delete** (/Data/DataDelete)
 
 
 
@@ -58,6 +58,7 @@ SQL Table Key | **dataID**
 |**SYSDeletedHost**|String|false|true|false|false|||||NH|_deletedHost||false|false|true|text||
 |**SYSDbVersion**|String|false|true|false|false|||||NH|_dbVersion||false|false|true|text||
 |**Category**|String|true|true|false|true|||||N|category||false|false|false|text||
+|**Migrate**|String|false|true|false|false|LL|tf|||Y|migrate||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -68,6 +69,7 @@ SQL Table Key | **dataID**
 | code | **validation** | /dao/data_validation.go_template |
 | code | **dao** | /dao/data_core.go |
 | code | **datamodel** | /datamodel/data_core.go |
+| code | **job** | /jobs/data_core.go |
 | code | **menu** | /design/menu/data.json |
 | html | **list** | /DataList.html |
 | html | **view** | /DataView.html |
@@ -79,7 +81,7 @@ SQL Table Key | **dataID**
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **15/02/2023** at **10:44:42**
+Date & Time		     | **04/03/2023** at **19:05:10**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

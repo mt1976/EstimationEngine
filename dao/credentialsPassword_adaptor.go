@@ -56,7 +56,9 @@ func CredentialsPassword_Delete_impl(id string) error { return nil }
 func CredentialsPassword_Update_impl(id string, rec dm.CredentialsPassword, usr string) error {
 	logs.Storing("CredentialsPassword", id+"-"+rec.UserName)
 	// This will update the relevant credentials, updateding the password, and the password expiry date
-	passwordLife, _ := Data_GetInt("Password", "Life", "Setting")
+	objectName := Translate("Credentials", "EstimationSession")
+
+	passwordLife, _ := Data_GetInt(objectName, "Life", dm.Data_Category_Setting)
 	fmt.Printf("passwordLife: %v\n", passwordLife)
 	if passwordLife == 0 {
 		logs.Warning("CredentialsPassword - Unable to get Password Life from Data - Using 30 days")

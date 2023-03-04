@@ -20,4 +20,6 @@ const (
 	LIKE      = "LIKE "
 	EQ        = "="
 	SELECTALL = SELECT + ALL
+	TRUE      = "true"
+	FALSE     = "false"
 )

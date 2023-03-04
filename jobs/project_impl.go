@@ -22,17 +22,19 @@ func Project_Job_impl(j dm.JobDefinition) dm.JobDefinition {
 
 func Project_Run_impl() (string, error) {
 
+	objectName := dao.Translate("ObjectName", "Project")
+
 	message := ""
 	/// CONTENT STARTS
-	period, err0 := dao.Data_GetInt("Project", "DueWarning", "Setting")
+	period, err0 := dao.Data_GetInt(objectName, "Due_Notification_Period", dm.Data_Category_Setting)
 	if err0 != nil {
 		return message, err0
 	}
-	overdueState, err1 := dao.Data_GetString("Project", "OverdueState", "Setting")
+	overdueState, err1 := dao.Data_GetString(objectName, "Overdue_State", dm.Data_Category_State)
 	if err1 != nil {
 		return message, err1
 	}
-	closedStates, err2 := dao.Data_GetArray("Project", "ClosedStates", "Setting")
+	closedStates, err2 := dao.Data_GetArray(objectName, "Closed_States_List", dm.Data_Category_StateRule)
 	if err2 != nil {
 		return message, err2
 	}

@@ -6,7 +6,7 @@
 |Endpoint 	    |**/Resource...** [^1]|
 |Endpoint Query |**ResourceID**|
 |REST API|**/API/Resource/**|
-Glyph|**fas fa-cogs** ()
+Glyph|**fas fa-user-cog** ()
 Friendly Name|**Resource**|
 |For Project    |github.com/mt1976/ebEstimates/|
 
@@ -85,7 +85,7 @@ SQL Table Key | **resourceID**
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **15/02/2023** at **10:44:47**
+Date & Time		     | **03/03/2023** at **17:00:59**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

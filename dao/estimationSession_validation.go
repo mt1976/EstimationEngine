@@ -269,7 +269,7 @@ func EstimationSession_FreshDeskURI_OnFetch_impl(rec dm.EstimationSession) strin
 
 	rtn := ""
 	if rec.FreshdeskID != "" {
-		stub, _ := Data_Get("System", "FreshDesk_URI", "Setting")
+		stub, _ := Data_Get("System", "FreshDesk", dm.Data_Category_URI)
 		rtn = core.ReplaceWildcard(stub, "ID", rec.FreshdeskID)
 	}
 
@@ -280,7 +280,7 @@ func EstimationSession_ADOURI_OnFetch_impl(rec dm.EstimationSession) string {
 
 	rtn := ""
 	if rec.AdoID != "" {
-		stub, _ := Data_Get("System", "ADO_URI", "Setting")
+		stub, _ := Data_Get("System", "ADO", dm.Data_Category_URI)
 		rtn = core.ReplaceWildcard(stub, "ID", rec.AdoID)
 	}
 
@@ -490,7 +490,7 @@ func EstimationSession_FreshDeskURI_validate_impl(iAction string, iId string, iV
 	rtn := ""
 	logs.Warning("Generate FreshDesk URI")
 	if iRec.FreshdeskID != "" {
-		stub, _ := Data_Get("System", "FreshDesk_URI", "Setting")
+		stub, _ := Data_Get("System", "FreshDesk", dm.Data_Category_URI)
 		rtn = core.ReplaceWildcard(stub, "ID", iRec.FreshdeskID)
 	}
 	return rtn, fP
@@ -502,7 +502,7 @@ func EstimationSession_ADOURI_validate_impl(iAction string, iId string, iValue s
 	logs.Warning("Generate ADO URI")
 	rtn := ""
 	if iRec.AdoID != "" {
-		stub, _ := Data_Get("System", "ADO_URI", "Setting")
+		stub, _ := Data_Get("System", "ADO", dm.Data_Category_URI)
 		rtn = core.ReplaceWildcard(stub, "ID", iRec.AdoID)
 	}
 	return rtn, fP
@@ -547,11 +547,13 @@ func EstimationSession_ExpiryDate_OnStore_impl(fieldval string, rec dm.Estimatio
 	issuedState, _ := Data_GetString("Quote", "Issued", "State")
 	expiredState, _ := Data_GetString("Quote", "Expired", "State")
 
+	objectName := Translate("ObjectName", "EstimationSession")
+
 	switch rec.EstimationStateID {
 	case issuedState:
 		// Get Expiroty Date 30 days from today
 		if fieldval == "" {
-			expPeriod, _ := Data_GetInt("Quote", "Expiry", "Period")
+			expPeriod, _ := Data_GetInt(objectName, "Quote_Expiry_Notification_Period", dm.Data_Category_Setting)
 			logs.Information("Expiry Period: ", strconv.Itoa(expPeriod))
 			expiry := time.Now().AddDate(0, 0, expPeriod).Format(core.DATEFORMAT)
 			return expiry, nil
@@ -687,8 +689,8 @@ func EstimationSession_TrackerID_OnStore_impl(fieldval string, rec dm.Estimation
 
 	//spew.Dump(rec)
 	state := rec.EstimationStateID
-
-	assignRSCstatus, err := Data_GetArray("Estimation", "Assign_RSC_States", "Settings")
+	objectName := Translate("ObjectName", "EstimationSession")
+	assignRSCstatus, err := Data_GetArray(objectName, "Assign_RSC_No_OnState", dm.Data_Category_State)
 	if err != nil {
 		//	logs.Information("Assign_RSC_States", err.Error())
 		assignRSCstatus = []string{"WRIT"}

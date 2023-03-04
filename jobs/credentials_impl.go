@@ -30,7 +30,9 @@ func Credentials_Run_impl() (string, error) {
 	// ------------------
 	//period, err0 := strconv.Atoi(core.GetApplicationProperty("credentialsprompt"))
 
-	period, err0 := dao.Data_GetInt("Credentials", "ExpiryWarning", "Setting")
+	objectName := dao.Translate("ObjectName", "Credentials")
+
+	period, err0 := dao.Data_GetInt(objectName, "Expiry_Warning_Notification_Period", dm.Data_Category_Setting)
 
 	warn := period
 	if err0 != nil {

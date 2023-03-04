@@ -38,10 +38,11 @@ func Start() {
 		Project_Register(c)
 		ssloader_Register(c)
 		Index_Register(c)
+		Data_Register(c)
+		SessionHouseKeeping_Register(c)
+		Credentials_Register(c)
 	}
 	//ExternalMessage_Register(c)
-	SessionHouseKeeping_Register(c)
-	Credentials_Register(c)
 	Database_Register(c)
 
 	//DataDispatcher_Register(c, "MARKET", "*/10 6-21 * * 1-5")

@@ -42,6 +42,7 @@
                           
                           
                           <th class="text-center">Category</th>
+                          <th class="text-center">Migrate</th>
                           <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
                         </tr>
                       </thead>
@@ -64,13 +65,14 @@
                           
                           
                           <td class="align-middle" >{{.Category}}</td>
+                          <td class="align-middle" >{{.Migrate}}</td>
                           
                           <td class="align-middle text-center" style="width:1px;padding:0px;padding-top:1rem;">
                               <form action="/home" method="POST" class="d-flex justify-content-center">
                                   <div class="btn-group" id="ActionButtonGroup2">
                                     <button type="submit" value="" class="btn btn-sm btn-info " formaction="/DataView?DataID={{.DataID}}" method="POST" title="View System Properties"><i class="far fa-eye"></i>View</button>
                                     <button type="submit" value="" class="btn btn-sm btn-warning " formaction="/DataEdit?DataID={{.DataID}}" method="POST" title="Edit System Properties"><i class="fas fa-edit"></i>Edit</button>
-                                    
+                                    <button type="submit" value="" class="btn btn-sm btn-danger " formaction="/DataDelete?DataID={{.DataID}}" method="POST" title="Delete System Properties"><i class="fas fa-trash"></i>Delete</button>
                                   </div>
                                 </form>
                           </td>
@@ -95,6 +97,7 @@
                           
                           
                           <th class="text-center">Category</th>
+                          <th class="text-center">Migrate</th>
                           <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
                         </tr>
                       </tfoot>

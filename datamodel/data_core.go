@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 15/02/2023 at 10:44:42
+// Date & Time		    : 04/03/2023 at 19:05:10
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Data defines the datamodel for the Data object
 type Data struct {
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -35,6 +35,7 @@ type Data struct {
 	SYSDeletedHost       string
 	SYSDbVersion       string
 	Category       string
+	Migrate       string
 	//
 	// Field Properties
 	//
@@ -54,13 +55,15 @@ type Data struct {
 	SYSDeletedHost_props FieldProperties
 	SYSDbVersion_props FieldProperties
 	Category_props FieldProperties
+	Migrate_props FieldProperties
 	//
  	// Any lookups will be added below
 	//
+	Migrate_lookup []Lookup_Item
 	}
 
 const (
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	Data_Name      = "Data"
 	Data_Title       = "System Properties"
@@ -112,6 +115,7 @@ const (
 	Data_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
 	Data_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
 	Data_Category_sql   = "category" // Category is a String
+	Data_Migrate_sql   = "migrate" // Migrate is a String
 ///
 	/// Application Field Definitions
 	///
@@ -131,12 +135,13 @@ const (
 	Data_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
 	Data_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
 	Data_Category_scrn   = "Category" // Category is a String
+	Data_Migrate_scrn   = "Migrate" // Migrate is a String
 ///
 )
 
 //Data_PageList provides the information for the template for a list of Datas
 type Data_PageList struct {
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -158,7 +163,7 @@ type Data_PageList struct {
 
 //Data_Page provides the information for the template for an individual Data
 type Data_Page struct {
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
@@ -190,6 +195,7 @@ type Data_Page struct {
 	SYSDeletedHost         string
 	SYSDbVersion         string
 	Category         string
+	Migrate         string
 	/// Field Properties
 	SYSId_props     FieldProperties
 	DataID_props     FieldProperties
@@ -207,7 +213,9 @@ type Data_Page struct {
 	SYSDeletedHost_props     FieldProperties
 	SYSDbVersion_props     FieldProperties
 	Category_props     FieldProperties
+	Migrate_props     FieldProperties
 	/// Lookups
+	Migrate_lookup    []Lookup_Item
 	
 	/// END OF DEFINITIONS
 	///

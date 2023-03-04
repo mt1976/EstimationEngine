@@ -9,12 +9,11 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 15/02/2023 at 10:44:42
+// Date & Time		    : 04/03/2023 at 19:05:10
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
-	"errors"
 	"fmt"
 	"net/http"
 
@@ -23,6 +22,7 @@ import (
 	das "github.com/mt1976/ebEstimates/das"
 	dm "github.com/mt1976/ebEstimates/datamodel"
 	logs "github.com/mt1976/ebEstimates/logs"
+	"github.com/pkg/errors"
 )
 
 var Data_SQLbase string
@@ -65,27 +65,21 @@ func Data_GetByID(id string) (int, dm.Data, error) {
 
 func Data_PostGet(dataItem dm.Data, id string) dm.Data {
 	// START
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	dataItem.DataID, dataItem.DataID_props = Data_DataID_validate_impl(GET, id, dataItem.DataID, dataItem, dataItem.DataID_props)
 	//
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	return dataItem
 }
 
 // Data_DeleteByID() deletes a single Data record
 func Data_Delete(id string) {
-
-	// Uses Hard Delete
-	object_Table := Data_QualifiedName
-	tsql := das.DELETE + das.FROM + object_Table
-	tsql = tsql + " " + das.WHERE + dm.Data_SQLSearchID + das.EQ + das.ID(id)
-	das.Execute(tsql)
-
+	Data_SoftDelete(id)
 }
 
-// Data_SoftDeleteByID() soft deletes a single Data record
+// Data_SoftDelete(id string) soft deletes a single Data record
 func Data_SoftDelete(id string) {
 	//Uses Soft Delete
 	_, dataItem, _ := Data_GetByID(id)
@@ -96,6 +90,18 @@ func Data_SoftDelete(id string) {
 	if err != nil {
 		logs.Error("Data_SoftDelete()", err)
 	}
+}
+
+// Data_HardDelete(id string) soft deletes a single Data record
+func Data_HardDelete(id string) {
+	// Uses Hard Delete
+	object_Table := Data_QualifiedName
+	tsql := das.DELETE + das.FROM + object_Table
+	tsql = tsql + " " + das.WHERE + dm.Data_SQLSearchID + das.EQ + das.ID(id)
+	das.Execute(tsql)
+	//if err != nil {
+	//	logs.Error("Data_SoftDelete()",err)
+	//}
 }
 
 // Data_Store() saves/stores a Data record to the database
@@ -124,27 +130,42 @@ func Data_StoreSystem(r dm.Data) (dm.Data, error) {
 	return r, err
 }
 
+// Data_StoreProcess() saves/stores a Data record to the database
+func Data_StoreProcess(r dm.Data, operator string) (dm.Data, error) {
+
+	processUser := Audit_Host() + core.ID_SEP + operator
+
+	r, err := Data_Validate(r)
+	if err == nil {
+		err = data_Save(r, processUser)
+	} else {
+		logs.Information("Data_StoreProcess()", err.Error())
+	}
+
+	return r, err
+}
+
 // Data_Validate() validates for saves/stores a Data record to the database
 func Data_Validate(r dm.Data) (dm.Data, error) {
 	var err error
 	// START
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	r.DataID, r.DataID_props = Data_DataID_validate_impl(PUT, r.DataID, r.DataID, r, r.DataID_props)
 	if r.DataID_props.MsgMessage != "" {
 		err = errors.New(r.DataID_props.MsgMessage)
 	}
 	//
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//
 
 	// START
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	r, _, err = Data_ObjectValidation_impl(PUT, r.DataID, r)
 	//
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 	return r, err
@@ -161,7 +182,9 @@ func data_Save(r dm.Data, usr string) error {
 		r.DataID = Data_NewID(r)
 	}
 
-	// If there are fields below, create the methods in dao\data_impl.go  r.DataID,err = Data_DataID_OnStore_impl (r.DataID,r,usr)
+	// If there are fields below, create the methods in dao\data_impl.go
+	r.DataID, err = Data_DataID_OnStore_impl(r.DataID, r, usr)
+
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
 	r.SYSCreatedHost = Audit_Update(r.SYSCreatedHost, Audit_Host())
@@ -176,7 +199,7 @@ func data_Save(r dm.Data, usr string) error {
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	ts = addData(ts, dm.Data_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Data_DataID_sql, r.DataID)
@@ -194,16 +217,17 @@ func data_Save(r dm.Data, usr string) error {
 	ts = addData(ts, dm.Data_SYSDeletedHost_sql, r.SYSDeletedHost)
 	ts = addData(ts, dm.Data_SYSDbVersion_sql, r.SYSDbVersion)
 	ts = addData(ts, dm.Data_Category_sql, r.Category)
+	ts = addData(ts, dm.Data_Migrate_sql, r.Migrate)
 
 	//
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 	tsql := das.INSERT + das.INTO + Data_QualifiedName
 	tsql = tsql + " (" + fields(ts) + ")"
 	tsql = tsql + " " + das.VALUES + "(" + values(ts) + ")"
 
-	Data_Delete(r.DataID)
+	Data_HardDelete(r.DataID)
 	das.Execute(tsql)
 
 	return err
@@ -225,7 +249,7 @@ func data_Fetch(tsql string) (int, []dm.Data, dm.Data, error) {
 
 		rec := returnList[i]
 		// START
-		// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		//
 		recItem.SYSId = get_Int(rec, dm.Data_SYSId_sql, "0")
 		recItem.DataID = get_String(rec, dm.Data_DataID_sql, "")
@@ -243,9 +267,12 @@ func data_Fetch(tsql string) (int, []dm.Data, dm.Data, error) {
 		recItem.SYSDeletedHost = get_String(rec, dm.Data_SYSDeletedHost_sql, "")
 		recItem.SYSDbVersion = get_String(rec, dm.Data_SYSDbVersion_sql, "")
 		recItem.Category = get_String(rec, dm.Data_Category_sql, "")
+		recItem.Migrate = get_String(rec, dm.Data_Migrate_sql, "")
 
-		// If there are fields below, create the methods in adaptor\Data_impl.go   recItem.DataID  = Data_DataID_OnFetch_impl (recItem)//
-		// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+		// If there are fields below, create the methods in dao\Data_adaptor.go
+		recItem.DataID = Data_DataID_OnFetch_impl(recItem)
+		//
+		// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		// END
 		///
 		//Add to the list
@@ -270,12 +297,12 @@ func Data_New() (int, []dm.Data, dm.Data, error) {
 	var rList []dm.Data
 
 	// START
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	r.DataID, r.DataID_props = Data_DataID_validate_impl(NEW, r.DataID, r.DataID, r, r.DataID_props)
 
 	//
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

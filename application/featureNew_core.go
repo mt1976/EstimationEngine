@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 15/02/2023 at 10:44:44
+// Date & Time		    : 03/03/2023 at 13:56:51
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //FeatureNew_Publish annouces the endpoints available for this object
-//FeatureNew_Publish - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+//FeatureNew_Publish - Auto generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func FeatureNew_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.FeatureNew_Path, FeatureNew_Handler)
 	//Cannot List via GUI
@@ -38,7 +38,7 @@ func FeatureNew_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.FeatureNew_Title)
     core.Catalog_Add(dm.FeatureNew_Title, dm.FeatureNew_Path, "", dm.FeatureNew_QueryString, "Application")
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
@@ -46,10 +46,10 @@ func FeatureNew_Publish(mux http.ServeMux) {
 
 //FeatureNew_HandlerView is the handler used to View a page
 //Allows Viewing for an existing FeatureNew record
-//FeatureNew_HandlerView - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//FeatureNew_HandlerView - Auto generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func FeatureNew_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -78,17 +78,17 @@ func FeatureNew_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.FeatureNew_TemplateView, w, r, pageDetail)
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //FeatureNew_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing FeatureNew record and then allows the user to save the changes
-//FeatureNew_HandlerEdit - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//FeatureNew_HandlerEdit - Auto generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func FeatureNew_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -125,17 +125,17 @@ func FeatureNew_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.FeatureNew_TemplateEdit, w, r, pageDetail)
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //FeatureNew_HandlerSave is the handler used process the saving of an FeatureNew
 //It is called from the Edit and New pages
-//FeatureNew_HandlerSave  - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//FeatureNew_HandlerSave  - Auto generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func FeatureNew_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -156,21 +156,21 @@ func FeatureNew_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, dm.FeatureNew_Redirect, http.StatusFound)
 	} else {
 		logs.Information(dm.FeatureNew_Name, errStore.Error())
-		http.Redirect(w, r, r.Referer(), http.StatusFound)
+		//http.Redirect(w, r, r.Referer(), http.StatusFound)
 		ExecuteRedirect(r.Referer(), w, r,dm.FeatureNew_QueryString,itemID,item)
 	}
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //FeatureNew_HandlerNew is the handler used process the creation of an FeatureNew
 //It will create a new FeatureNew and then redirect to the Edit page
-//FeatureNew_HandlerNew  - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//FeatureNew_HandlerNew  - Auto generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func FeatureNew_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -208,97 +208,97 @@ func FeatureNew_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.FeatureNew_TemplateNew, w, r, pageDetail)
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }	
 
 
 
 //featurenew_PopulatePage Builds/Populates the FeatureNew Page 
-//featurenew_PopulatePage Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//featurenew_PopulatePage Auto generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func featurenew_PopulatePage(rD dm.FeatureNew, pageDetail dm.FeatureNew_Page) dm.FeatureNew_Page {
 	// Real DB Fields
 	pageDetail.ID = rD.ID
-	pageDetail.EstimationSession = rD.EstimationSession
+	pageDetail.EstimationSessionID = rD.EstimationSessionID
 	pageDetail.Name = rD.Name
-	pageDetail.DevEstimate = rD.DevEstimate
-	pageDetail.Confidence = rD.Confidence
-	pageDetail.Developer = rD.Developer
-	pageDetail.Comments = rD.Comments
+	pageDetail.DeveloperEstimate = rD.DeveloperEstimate
+	pageDetail.DeveloperResource = rD.DeveloperResource
+	pageDetail.AnalystEstimate = rD.AnalystEstimate
+	pageDetail.AnalystResource = rD.AnalystResource
+	pageDetail.ConfidenceCODE = rD.ConfidenceCODE
+	pageDetail.ProductManagerResource = rD.ProductManagerResource
+	pageDetail.ProjectManagerResource = rD.ProjectManagerResource
 	pageDetail.Description = rD.Description
+	pageDetail.Comments = rD.Comments
 	pageDetail.DevOpsID = rD.DevOpsID
 	pageDetail.FreshDeskID = rD.FreshDeskID
 	pageDetail.RSCID = rD.RSCID
 	pageDetail.OtherID = rD.OtherID
 	pageDetail.OtherID2 = rD.OtherID2
-	pageDetail.Analyst = rD.Analyst
-	pageDetail.ProductManager = rD.ProductManager
-	pageDetail.ProjectManager = rD.ProjectManager
 	pageDetail.DefaultProfile = rD.DefaultProfile
 	pageDetail.ActualProfile = rD.ActualProfile
 	// Add Pseudo/Extra Fields
 	// Enrichment Fields 
 	 
-	pageDetail.EstimationSession_lookup = dao.EstimationSession_GetLookup()
+	pageDetail.EstimationSessionID_lookup = dao.EstimationSession_GetFilteredLookup("FeatureNew","EstimationSessionID")
 	 
-	pageDetail.Confidence_lookup = dao.Confidence_GetFilteredLookup("FeatureNew","Confidence")
+	pageDetail.DeveloperResource_lookup = dao.Resource_GetFilteredLookup("FeatureNew","DeveloperResource")
 	 
-	pageDetail.Developer_lookup = dao.Resource_GetFilteredLookup("FeatureNew","Developer")
+	pageDetail.AnalystResource_lookup = dao.Resource_GetFilteredLookup("FeatureNew","AnalystResource")
 	 
-	pageDetail.Analyst_lookup = dao.Resource_GetFilteredLookup("FeatureNew","Analyst")
+	pageDetail.ConfidenceCODE_lookup = dao.Confidence_GetFilteredLookup("FeatureNew","ConfidenceCODE")
 	 
-	pageDetail.ProductManager_lookup = dao.Resource_GetFilteredLookup("FeatureNew","ProductManager")
+	pageDetail.ProductManagerResource_lookup = dao.Resource_GetFilteredLookup("FeatureNew","ProductManagerResource")
 	 
-	pageDetail.ProjectManager_lookup = dao.Resource_GetFilteredLookup("FeatureNew","ProjectManager")
+	pageDetail.ProjectManagerResource_lookup = dao.Resource_GetFilteredLookup("FeatureNew","ProjectManagerResource")
 	 
 	pageDetail.DefaultProfile_lookup = dao.Profile_GetFilteredLookup("FeatureNew","DefaultProfile")
 	 
 	pageDetail.ActualProfile_lookup = dao.Profile_GetFilteredLookup("FeatureNew","ActualProfile")
 	pageDetail.ID_props = rD.ID_props
-	pageDetail.EstimationSession_props = rD.EstimationSession_props
+	pageDetail.EstimationSessionID_props = rD.EstimationSessionID_props
 	pageDetail.Name_props = rD.Name_props
-	pageDetail.DevEstimate_props = rD.DevEstimate_props
-	pageDetail.Confidence_props = rD.Confidence_props
-	pageDetail.Developer_props = rD.Developer_props
-	pageDetail.Comments_props = rD.Comments_props
+	pageDetail.DeveloperEstimate_props = rD.DeveloperEstimate_props
+	pageDetail.DeveloperResource_props = rD.DeveloperResource_props
+	pageDetail.AnalystEstimate_props = rD.AnalystEstimate_props
+	pageDetail.AnalystResource_props = rD.AnalystResource_props
+	pageDetail.ConfidenceCODE_props = rD.ConfidenceCODE_props
+	pageDetail.ProductManagerResource_props = rD.ProductManagerResource_props
+	pageDetail.ProjectManagerResource_props = rD.ProjectManagerResource_props
 	pageDetail.Description_props = rD.Description_props
+	pageDetail.Comments_props = rD.Comments_props
 	pageDetail.DevOpsID_props = rD.DevOpsID_props
 	pageDetail.FreshDeskID_props = rD.FreshDeskID_props
 	pageDetail.RSCID_props = rD.RSCID_props
 	pageDetail.OtherID_props = rD.OtherID_props
 	pageDetail.OtherID2_props = rD.OtherID2_props
-	pageDetail.Analyst_props = rD.Analyst_props
-	pageDetail.ProductManager_props = rD.ProductManager_props
-	pageDetail.ProjectManager_props = rD.ProjectManager_props
 	pageDetail.DefaultProfile_props = rD.DefaultProfile_props
 	pageDetail.ActualProfile_props = rD.ActualProfile_props
 	return pageDetail
-}	
-
-
+}
 //featurenew_DataFromRequest is used process the content of an HTTP Request and return an instance of an FeatureNew
-//featurenew_DataFromRequest Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//featurenew_DataFromRequest Auto generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func featurenew_DataFromRequest(r *http.Request) dm.FeatureNew {
 
 	var item dm.FeatureNew
 		item.ID = r.FormValue(dm.FeatureNew_ID_scrn)
-		item.EstimationSession = r.FormValue(dm.FeatureNew_EstimationSession_scrn)
+		item.EstimationSessionID = r.FormValue(dm.FeatureNew_EstimationSessionID_scrn)
 		item.Name = r.FormValue(dm.FeatureNew_Name_scrn)
-		item.DevEstimate = r.FormValue(dm.FeatureNew_DevEstimate_scrn)
-		item.Confidence = r.FormValue(dm.FeatureNew_Confidence_scrn)
-		item.Developer = r.FormValue(dm.FeatureNew_Developer_scrn)
-		item.Comments = r.FormValue(dm.FeatureNew_Comments_scrn)
+		item.DeveloperEstimate = r.FormValue(dm.FeatureNew_DeveloperEstimate_scrn)
+		item.DeveloperResource = r.FormValue(dm.FeatureNew_DeveloperResource_scrn)
+		item.AnalystEstimate = r.FormValue(dm.FeatureNew_AnalystEstimate_scrn)
+		item.AnalystResource = r.FormValue(dm.FeatureNew_AnalystResource_scrn)
+		item.ConfidenceCODE = r.FormValue(dm.FeatureNew_ConfidenceCODE_scrn)
+		item.ProductManagerResource = r.FormValue(dm.FeatureNew_ProductManagerResource_scrn)
+		item.ProjectManagerResource = r.FormValue(dm.FeatureNew_ProjectManagerResource_scrn)
 		item.Description = r.FormValue(dm.FeatureNew_Description_scrn)
+		item.Comments = r.FormValue(dm.FeatureNew_Comments_scrn)
 		item.DevOpsID = r.FormValue(dm.FeatureNew_DevOpsID_scrn)
 		item.FreshDeskID = r.FormValue(dm.FeatureNew_FreshDeskID_scrn)
 		item.RSCID = r.FormValue(dm.FeatureNew_RSCID_scrn)
 		item.OtherID = r.FormValue(dm.FeatureNew_OtherID_scrn)
 		item.OtherID2 = r.FormValue(dm.FeatureNew_OtherID2_scrn)
-		item.Analyst = r.FormValue(dm.FeatureNew_Analyst_scrn)
-		item.ProductManager = r.FormValue(dm.FeatureNew_ProductManager_scrn)
-		item.ProjectManager = r.FormValue(dm.FeatureNew_ProjectManager_scrn)
 		item.DefaultProfile = r.FormValue(dm.FeatureNew_DefaultProfile_scrn)
 		item.ActualProfile = r.FormValue(dm.FeatureNew_ActualProfile_scrn)
 	return item
 }
-

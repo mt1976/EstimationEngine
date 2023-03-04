@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 15/02/2023 at 10:44:44
+// Date & Time		    : 03/03/2023 at 13:56:51
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -59,10 +59,10 @@ func FeatureNew_GetByID(id string) (int, dm.FeatureNew, error) {
 
 func FeatureNew_PostGet(featurenewItem dm.FeatureNew,id string) dm.FeatureNew {
 	// START
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return featurenewItem
 }
@@ -112,10 +112,10 @@ func FeatureNew_StoreSystem(r dm.FeatureNew) (dm.FeatureNew,error) {
 func FeatureNew_Validate(r dm.FeatureNew) (dm.FeatureNew, error) {
 	var err error
 	// START
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// 
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	//
 	
@@ -134,6 +134,7 @@ func featurenew_Save(r dm.FeatureNew,usr string) error {
 	}
 
 // If there are fields below, create the methods in dao\featurenew_impl.go
+
 logs.Storing("FeatureNew",fmt.Sprintf("%v", r))
 
 // Please Create Functions Below in the adaptor/FeatureNew_impl.go file
@@ -174,11 +175,11 @@ func FeatureNew_New() (int, []dm.FeatureNew, dm.FeatureNew, error) {
 	
 
 	// START
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	
 	// 
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

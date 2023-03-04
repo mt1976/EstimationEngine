@@ -39,10 +39,12 @@ func EstimationSession_Job_impl(j dm.JobDefinition) dm.JobDefinition {
 // EstimationSession_Run initiates and runs the job as per the period.
 func EstimationSession_Run_impl() (string, error) {
 
+	objectName := dao.Translate("ObjectName", "EstimationSession")
+
 	//GEt a list of unprocessed messages from EstimationSession
-	expiredState, _ := dao.Data_GetString("Quote", "ExpiredState", "Setting")
-	issuedState, _ := dao.Data_GetString("Quote", "IssuedState", "Setting")
-	expiryPeriod, _ := dao.Data_GetInt("Quote", "Expiry", "Setting")
+	expiredState, _ := dao.Data_GetString(objectName, "Quote_Expired_State", dm.Data_Category_State)
+	issuedState, _ := dao.Data_GetString(objectName, "Quote_Issued_State", dm.Data_Category_State)
+	expiryPeriod, _ := dao.Data_GetInt(objectName, "Quote_Expiry_Notification_Period", dm.Data_Category_Setting)
 	logs.Information("Expired State: ", expiredState)
 	logs.Information("Issued State: ", issuedState)
 	logs.Information("Expiry Period: ", fmt.Sprintf("%d", expiryPeriod))
