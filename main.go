@@ -115,7 +115,7 @@ func publishAPIEndpoints() {
 	logs.Break()
 	logs.Header("Publish API")
 	logs.Break()
-	core.Catalog_List()
+	core.API.ListRoutes()
 
 	logs.Success("API Published")
 }

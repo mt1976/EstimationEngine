@@ -36,7 +36,7 @@ func Catalog_Publish_impl(mux http.ServeMux) {
 	//Cannot Save via GUI
 	//Cannot Delete via GUI
 	logs.Publish("Application", dm.Catalog_Title)
-	core.Catalog_Add(dm.Catalog_Title, dm.Catalog_Path, "", dm.Catalog_QueryString, "Application")
+	core.API.AddRoute(dm.Catalog_Title, dm.Catalog_Path, "", dm.Catalog_QueryString, "Application")
 	//
 	// Auto generated 08/12/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END

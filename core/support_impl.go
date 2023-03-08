@@ -400,8 +400,8 @@ func ApplicationSQLSchemaParent() string {
 	return GetDatabaseProperty("parentschema")
 }
 
-func GetSQLSchema(in map[string]string) string {
-	return GetDatabaseProperty("schema")
+func GetSQLSchema(in Congiguration) string {
+	return ApplicationPropertiesDB.Get("schema")
 }
 
 func ApplicationSQLSchema() string {
@@ -457,7 +457,7 @@ func ApplicationToken() string {
 }
 
 func SetApplicationSQLDatabase(db string) {
-	ApplicationPropertiesDB["database"] = db
+	ApplicationPropertiesDB.Override("database", db)
 }
 
 func DataLoaderArtifactRepository() string {

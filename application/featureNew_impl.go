@@ -30,7 +30,7 @@ func FeatureNew_Publish_Impl(mux http.ServeMux) {
 	mux.HandleFunc(dm.FeatureNew_PathCreate, FeatureNew_HandlerCreate)
 	//Cannot Delete via GUI
 	logs.Publish("Implementation", dm.FeatureNew_Title)
-	core.Catalog_Add(dm.FeatureNew_Title, dm.FeatureNew_Path, "", dm.FeatureNew_QueryString, "Application")
+	core.API.AddRoute(dm.FeatureNew_Title, dm.FeatureNew_Path, "", dm.FeatureNew_QueryString, "Application")
 }
 
 // FeatureNew_HandlerSetup is the handler used generate the Setup page

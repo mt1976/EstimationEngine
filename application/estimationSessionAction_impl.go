@@ -29,7 +29,7 @@ func EstimationSessionAction_Publish_Impl(mux http.ServeMux) {
 	mux.HandleFunc(dm.EstimationSessionAction_PathStore, EstimationSessionAction_HandlerStore)
 	//Cannot Delete via GUI
 	logs.Publish("Application", dm.EstimationSessionAction_Title)
-	core.Catalog_Add(dm.EstimationSessionAction_Title, dm.EstimationSessionAction_Path, "", dm.EstimationSessionAction_QueryString, "Application")
+	core.API.AddRoute(dm.EstimationSessionAction_Title, dm.EstimationSessionAction_Path, "", dm.EstimationSessionAction_QueryString, "Application")
 }
 
 // EstimationSessionAction_HandlerEdit is the handler used generate the Edit page

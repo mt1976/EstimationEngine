@@ -20,13 +20,13 @@ var SecurityViolation = ""
 var DB *sql.DB
 var SystemHostname string
 
-var ApplicationProperties map[string]string
-var ApplicationPropertiesDB map[string]string
-var ApplicationStubLists map[string]string
+var ApplicationProperties Congiguration
+var ApplicationPropertiesDB Congiguration
+var ApplicationStubLists Congiguration
 var ApplicationDB *sql.DB
 
-var InstanceProperties map[string]string
-var MasterPropertiesDB map[string]string
+var InstanceProperties Congiguration
+var MasterPropertiesDB Congiguration
 var MasterDB *sql.DB
 
 var SessionManager *scs.SessionManager
@@ -34,6 +34,7 @@ var Emailer *gomail.Dialer
 
 var IsChildInstance bool
 var ApplicationCache Cache
+var API Catalog
 
 type DBConnectionString struct {
 	ID         string
@@ -57,12 +58,31 @@ type DateItem struct {
 	YYYYMMDD  string
 	PICKEpoch string
 }
+type Congiguration struct {
+	properties map[string]string
+}
+type CongigurationInterface interface {
+	Load(string) map[string]string
+	Get(string) string
+	Override(string, string)
+}
+
+func (c *Congiguration) Load(inPropertiesFile string) map[string]string {
+	c.properties = getPropertiesFromFile(inPropertiesFile)
+	return c.properties
+}
+func (c *Congiguration) Get(inProperty string) string {
+	return c.properties[inProperty]
+}
+func (c *Congiguration) Override(inProperty string, inValue string) {
+	c.properties[inProperty] = inValue
+}
 
 // GetApplicationProperty returns the value of a property configuration for the application
 // GetApplicationProperty checks the environment variable APP_<PROPERTY> first and if not found uses the value in the properties file
 func GetApplicationProperty(inProperty string) string {
 	low_var := strings.ToLower(inProperty)
-	rtn_var := ApplicationProperties[low_var]
+	rtn_var := ApplicationProperties.Get(low_var)
 	env_var := "APP_" + strings.ToUpper(inProperty)
 
 	//logs.Accessing("GetApplicationProperty : " + inProperty + " " + env_var)
@@ -81,7 +101,7 @@ func GetApplicationProperty(inProperty string) string {
 // GetDatabaseProperty checks the environment variable DB_<PROPERTY> first and if not found uses the value in the properties file
 func GetDatabaseProperty(inProperty string) string {
 	//logs.Accessing("GetDatabaseProperty : " + inProperty)
-	rtn_var := ApplicationPropertiesDB[inProperty]
+	rtn_var := ApplicationPropertiesDB.Get(inProperty)
 	env_var := "DB_" + strings.ToUpper(inProperty)
 	logs.Accessing("GetDBProperty : " + inProperty + " " + env_var)
 	xxx := os.Getenv(env_var)

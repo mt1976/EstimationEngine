@@ -48,13 +48,13 @@ func PokeDatabase(DB *sql.DB) error {
 	return errordb
 }
 
-func connect(mssqlConfig map[string]string) (*sql.DB, error) {
+func connect(mssqlConfig Congiguration) (*sql.DB, error) {
 
-	server := mssqlConfig["server"]
-	user := mssqlConfig["user"]
-	password := mssqlConfig["password"]
-	port := mssqlConfig["port"]
-	database := mssqlConfig["database"]
+	server := mssqlConfig.Get("server")
+	user := mssqlConfig.Get("user")
+	password := mssqlConfig.Get("password")
+	port := mssqlConfig.Get("port")
+	database := mssqlConfig.Get("database")
 	//	instance := mssqlConfig["instance"]
 	if database != "master" {
 		//log.Println("Information   : Attemping connection to " + server + " " + database)
@@ -90,17 +90,17 @@ func connect(mssqlConfig map[string]string) (*sql.DB, error) {
 }
 
 // DataStoreConnect connects application to its datastore database
-func Database_Connect(mssqlConfig map[string]string) (*sql.DB, error) {
+func Database_Connect(mssqlConfig Congiguration) (*sql.DB, error) {
 	// Connect to SQL Server DB
 	//mssqlConfig := getProperties(config)
 
 	var returnDB *sql.DB
-	database := mssqlConfig["database"]
-	instance := mssqlConfig["instance"]
+	database := mssqlConfig.Get("database")
+	instance := mssqlConfig.Get("instance")
 
-	logs.Message("Connecting", mssqlConfig["server"]+" "+database+" "+instance)
+	logs.Message("Connecting", mssqlConfig.Get("server")+" "+database+" "+instance)
 
-	mssqlConfig["database"] = "master"
+	mssqlConfig.Override("database", "master")
 
 	dbInstance, errConnect := connect(mssqlConfig)
 	if errConnect != nil {
@@ -108,7 +108,7 @@ func Database_Connect(mssqlConfig map[string]string) (*sql.DB, error) {
 		//log.Panic(errConnect.Error())
 	}
 
-	mssqlConfig["database"] = database
+	mssqlConfig.Override("database", database)
 
 	dbName := database
 	if len(instance) != 0 {
@@ -147,8 +147,8 @@ func Database_Connect(mssqlConfig map[string]string) (*sql.DB, error) {
 		// returnDB = newDBInstance
 	} else {
 		logs.Success("Database " + dbName + " exists Created: " + result2)
-		if len(mssqlConfig["instance"]) != 0 {
-			mssqlConfig["database"] = database + "-" + mssqlConfig["instance"]
+		if len(mssqlConfig.Get("instance")) != 0 {
+			mssqlConfig.Override("database", database+"-"+mssqlConfig.Get("instance"))
 		}
 		newDBInstance, errReCon := connect(mssqlConfig)
 		if errReCon != nil {
@@ -158,7 +158,7 @@ func Database_Connect(mssqlConfig map[string]string) (*sql.DB, error) {
 	}
 	//log.Printf("%d %s", returnDB.Stats().OpenConnections, mssqlConfig["database"])
 	//fmt.Printf("%s\n", result)
-	logs.Success("Connected to " + mssqlConfig["server"] + " " + mssqlConfig["database"])
+	logs.Success("Connected to " + mssqlConfig.Get("server") + " " + mssqlConfig.Get("database"))
 	return returnDB, errConnect
 }
 
@@ -175,13 +175,13 @@ func Database_Create(dbInstance *sql.DB, mssqlConfig map[string]string, dbName s
 
 }
 
-func Database_Poke(dbInstance *sql.DB, mssqlConfig map[string]string) *sql.DB {
-	logs.Poke(fmt.Sprintf("Server '%s' Database '%s' Schema '%s'", mssqlConfig["server"], mssqlConfig["database"], mssqlConfig["schema"]), "")
+func Database_Poke(dbInstance *sql.DB, m Congiguration) *sql.DB {
+	logs.Poke(fmt.Sprintf("Server '%s' Database '%s' Schema '%s'", m.Get("server"), m.Get("database"), m.Get("schema")), "")
 	err := dbInstance.Ping()
 	if err != nil {
-		logs.Error(fmt.Sprintf("Reconnecting  : Server '%s' Database '%s' Schema '%s'", mssqlConfig["server"], mssqlConfig["database"], mssqlConfig["schema"]), err)
+		logs.Error(fmt.Sprintf("Reconnecting  : Server '%s' Database '%s' Schema '%s'", m.Get("server"), m.Get("database"), m.Get("schema")), err)
 		// Try to reconnect
-		dbInstance, err = Database_Connect(mssqlConfig)
+		dbInstance, err = Database_Connect(m)
 		if err != nil {
 			log.Println(err.Error())
 		}

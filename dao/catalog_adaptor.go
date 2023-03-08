@@ -55,8 +55,8 @@ func Catalog_GetList_impl() (int, []dm.Catalog, error) {
 
 	//	count, apiList, _, _ := adaptor.Catalog_GetList_impl()
 	var apiList []dm.Catalog
-	count := len(core.Catalog)
-	for _, v := range core.Catalog {
+	count := len(core.API.Items)
+	for _, v := range core.API.Items {
 		apiList = append(apiList, dm.Catalog{ID: v.ID, Descr: v.Descr, Endpoint: v.Path, Query: v.Query, Source: v.Source})
 	}
 	return count, apiList, nil
@@ -68,7 +68,7 @@ func Catalog_GetByID_impl(id string) (int, dm.Catalog, error) {
 	//_, _, apiItem, _ := adaptor.Catalog_GetByID_impl(id)
 	var apiItem dm.Catalog
 
-	for _, v := range core.Catalog {
+	for _, v := range core.API.Items {
 		if v.ID == id {
 			apiItem = dm.Catalog{ID: v.ID, Descr: v.Descr, Endpoint: v.Path, Query: v.Query, Source: v.Source}
 		}

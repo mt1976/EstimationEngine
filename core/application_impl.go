@@ -1,6 +1,7 @@
 package core
 
 import (
+	"fmt"
 	"os"
 	"time"
 
@@ -35,10 +36,24 @@ func Initialise() {
 
 	PreInitialise()
 
-	ApplicationProperties = getPropertiesFromFile(APPCONFIG)
-	ApplicationPropertiesDB = getPropertiesFromFile(DATASTORECONFIG)
-	InstanceProperties = getPropertiesFromFile(INSTANCECONFIG)
-	ApplicationStubLists = getPropertiesFromFile(APPSTUBLISTS)
+	//ApplicationProperties = getPropertiesFromFile(APPCONFIG)
+	//ApplicationPropertiesDB = getPropertiesFromFile(DATASTORECONFIG)
+	//InstanceProperties = getPropertiesFromFile(INSTANCECONFIG)
+	//ApplicationStubLists = getPropertiesFromFile(APPSTUBLISTS)
+
+	//var ApplicationProperties Congiguration
+	ApplicationProperties.Load(APPCONFIG)
+	//var ApplicationPropertiesDB Congiguration
+	ApplicationPropertiesDB.Load(DATASTORECONFIG)
+	//var InstanceProperties Congiguration
+	InstanceProperties.Load(INSTANCECONFIG)
+	//ßvar ApplicationStubLists Congiguration
+	ApplicationStubLists.Load(APPSTUBLISTS)
+
+	fmt.Printf("ApplicationProperties: %v\n", ApplicationProperties)
+	fmt.Printf("ApplicationPropertiesDB: %v\n", ApplicationPropertiesDB)
+	fmt.Printf("InstanceProperties: %v\n", InstanceProperties)
+	fmt.Printf("ApplicationStubLists: %v\n", ApplicationStubLists)
 
 	ApplicationCache.init()
 	logs.Information("Initialisation", ApplicationCache.Stat())
