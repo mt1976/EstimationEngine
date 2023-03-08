@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 06/03/2023 at 17:13:45
+// Date & Time		    : 08/03/2023 at 18:42:23
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //EstimationSession defines the datamodel for the EstimationSession object
 type EstimationSession struct {
-	// Dynamically generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -167,7 +167,7 @@ type EstimationSession struct {
 	}
 
 const (
-	// Dynamically generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	EstimationSession_Name      = "EstimationSession"
 	EstimationSession_Title       = "Estimation Session"
@@ -345,7 +345,7 @@ const (
 
 //EstimationSession_PageList provides the information for the template for a list of EstimationSessions
 type EstimationSession_PageList struct {
-	// Dynamically generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -367,7 +367,7 @@ type EstimationSession_PageList struct {
 
 //EstimationSession_Page provides the information for the template for an individual EstimationSession
 type EstimationSession_Page struct {
-	// Dynamically generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem

@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 04/03/2023 at 20:14:11
+// Date & Time		    : 08/03/2023 at 18:42:23
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //EstimationState_Publish annouces the endpoints available for this object
-//EstimationState_Publish - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//EstimationState_Publish - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func EstimationState_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.EstimationState_Path, EstimationState_Handler)
 	mux.HandleFunc(dm.EstimationState_PathList, EstimationState_HandlerList)
@@ -36,19 +36,19 @@ func EstimationState_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.EstimationState_PathSave, EstimationState_HandlerSave)
 	mux.HandleFunc(dm.EstimationState_PathDelete, EstimationState_HandlerDelete)
 	logs.Publish("Application", dm.EstimationState_Title)
-    core.Catalog_Add(dm.EstimationState_Title, dm.EstimationState_Path, "", dm.EstimationState_QueryString, "Application")
+    core.API.AddRoute(dm.EstimationState_Title, dm.EstimationState_Path, "", dm.EstimationState_QueryString, "Application")
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //EstimationState_HandlerList is the handler for the list page
 //Allows Listing of EstimationState records
-//EstimationState_HandlerList - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//EstimationState_HandlerList - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func EstimationState_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -84,9 +84,11 @@ func EstimationState_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 	
-	ExecuteTemplate(dm.EstimationState_TemplateList, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("EstimationState", "List", dm.EstimationState_TemplateList)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -94,10 +96,10 @@ func EstimationState_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //EstimationState_HandlerView is the handler used to View a page
 //Allows Viewing for an existing EstimationState record
-//EstimationState_HandlerView - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//EstimationState_HandlerView - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func EstimationState_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -124,19 +126,21 @@ func EstimationState_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = estimationstate_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.EstimationState_TemplateView, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("EstimationState", "View", dm.EstimationState_TemplateView)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //EstimationState_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing EstimationState record and then allows the user to save the changes
-//EstimationState_HandlerEdit - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//EstimationState_HandlerEdit - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func EstimationState_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -171,19 +175,22 @@ func EstimationState_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = estimationstate_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.EstimationState_TemplateEdit, w, r, pageDetail)
+
+	nextTemplate :=  NextTemplate("EstimationState", "Edit", dm.EstimationState_TemplateEdit)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //EstimationState_HandlerSave is the handler used process the saving of an EstimationState
 //It is called from the Edit and New pages
-//EstimationState_HandlerSave  - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//EstimationState_HandlerSave  - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func EstimationState_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -200,25 +207,26 @@ func EstimationState_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	item := estimationstate_DataFromRequest(r)
 	
 	item, errStore := dao.EstimationState_Store(item,r)
-	if errStore == nil {	
-		http.Redirect(w, r, dm.EstimationState_Redirect, http.StatusFound)
+	if errStore == nil {
+		nextTemplate :=  NextTemplate("EstimationState", "Save", dm.EstimationState_Redirect)
+		http.Redirect(w, r, nextTemplate, http.StatusFound)
 	} else {
 		logs.Information(dm.EstimationState_Name, errStore.Error())
 		//http.Redirect(w, r, r.Referer(), http.StatusFound)
 		ExecuteRedirect(r.Referer(), w, r,dm.EstimationState_QueryString,itemID,item)
 	}
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //EstimationState_HandlerNew is the handler used process the creation of an EstimationState
 //It will create a new EstimationState and then redirect to the Edit page
-//EstimationState_HandlerNew  - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//EstimationState_HandlerNew  - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func EstimationState_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -254,19 +262,20 @@ func EstimationState_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = estimationstate_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.EstimationState_TemplateNew, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("EstimationState", "New", dm.EstimationState_TemplateNew)
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }	
 
 
 //EstimationState_HandlerDelete is the handler used process the deletion of an EstimationState
 // It will delete the EstimationState and then redirect to the List page
-//EstimationState_HandlerDelete - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//EstimationState_HandlerDelete - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func EstimationState_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -282,15 +291,16 @@ func EstimationState_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	dao.EstimationState_Delete(searchID)	
 
-	http.Redirect(w, r, dm.EstimationState_Redirect, http.StatusFound)
+	nextTemplate :=  NextTemplate("EstimationState", "Delete", dm.EstimationState_Redirect)
+	http.Redirect(w, r, nextTemplate, http.StatusFound)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //estimationstate_PopulatePage Builds/Populates the EstimationState Page 
-//estimationstate_PopulatePage Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//estimationstate_PopulatePage Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func estimationstate_PopulatePage(rD dm.EstimationState, pageDetail dm.EstimationState_Page) dm.EstimationState_Page {
 	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
@@ -334,7 +344,7 @@ func estimationstate_PopulatePage(rD dm.EstimationState, pageDetail dm.Estimatio
 	return pageDetail
 }
 //estimationstate_DataFromRequest is used process the content of an HTTP Request and return an instance of an EstimationState
-//estimationstate_DataFromRequest Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//estimationstate_DataFromRequest Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func estimationstate_DataFromRequest(r *http.Request) dm.EstimationState {
 
 	var item dm.EstimationState

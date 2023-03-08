@@ -16,7 +16,7 @@ func SessionHouseKeeping_Job() dm.JobDefinition {
 	var j dm.JobDefinition
 	j.ID = "SESSION"
 	j.Name = "Session"
-	j.Period = "*/15 * * * *"
+	j.Period = "*/5 * * * *"
 	j.Description = "Session Management"
 	j.Type = core.HouseKeeping
 	return j
@@ -36,6 +36,7 @@ func SessionHouseKeeping_Run() {
 	if err != nil {
 		logs.Error("SessionHouseKeeping_Run", err)
 	}
+
 	/// CONTENT ENDS
 	application.Schedule_Update(SessionHouseKeeping_Job(), message)
 	logs.EndJob(SessionHouseKeeping_Job().Name)
@@ -68,6 +69,10 @@ func Session_HouseKeeping() (string, error) {
 		}
 	}
 	noActive := noSessions - noProcess
+
+	core.ApplicationCache = core.ApplicationCache.Housekeep()
+	fmt.Printf("core.ApplicationCache.Stat(): %v\n", core.ApplicationCache.Stat())
+
 	MSG := dao.Translate("SessionExpiries", "Expired %d of %d sessions, %d active")
 	MSG = fmt.Sprintf(MSG, noProcess, noSessions, noActive)
 	return MSG, nil

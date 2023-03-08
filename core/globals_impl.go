@@ -20,20 +20,20 @@ var SecurityViolation = ""
 var DB *sql.DB
 var SystemHostname string
 
-var ApplicationProperties Congiguration
-var ApplicationPropertiesDB Congiguration
-var ApplicationStubLists Congiguration
+var ApplicationProperties Configuration
+var ApplicationPropertiesDB Configuration
+var ApplicationStubLists Configuration
+var ApplicationCache Cache
 var ApplicationDB *sql.DB
 
-var InstanceProperties Congiguration
-var MasterPropertiesDB Congiguration
+var InstanceProperties Configuration
+var MasterPropertiesDB Configuration
 var MasterDB *sql.DB
 
 var SessionManager *scs.SessionManager
 var Emailer *gomail.Dialer
 
 var IsChildInstance bool
-var ApplicationCache Cache
 var API Catalog
 
 type DBConnectionString struct {
@@ -58,7 +58,7 @@ type DateItem struct {
 	YYYYMMDD  string
 	PICKEpoch string
 }
-type Congiguration struct {
+type Configuration struct {
 	properties map[string]string
 }
 type CongigurationInterface interface {
@@ -67,14 +67,15 @@ type CongigurationInterface interface {
 	Override(string, string)
 }
 
-func (c *Congiguration) Load(inPropertiesFile string) map[string]string {
+func (c *Configuration) Load(inPropertiesFile string) map[string]string {
 	c.properties = getPropertiesFromFile(inPropertiesFile)
 	return c.properties
 }
-func (c *Congiguration) Get(inProperty string) string {
+func (c *Configuration) Get(inProperty string) string {
+	logs.Information("Get", inProperty)
 	return c.properties[inProperty]
 }
-func (c *Congiguration) Override(inProperty string, inValue string) {
+func (c *Configuration) Override(inProperty string, inValue string) {
 	c.properties[inProperty] = inValue
 }
 

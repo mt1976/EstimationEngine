@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 04/03/2023 at 20:14:13
+// Date & Time		    : 08/03/2023 at 18:42:25
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -90,10 +90,10 @@ func Profile_GetByID(id string) (int, dm.Profile, error) {
 
 func Profile_PostGet(profileItem dm.Profile, id string) dm.Profile {
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	//
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	return profileItem
 }
@@ -171,11 +171,8 @@ func Profile_StoreProcess(r dm.Profile, operator string) (dm.Profile, error) {
 func Profile_Validate(r dm.Profile) (dm.Profile, error) {
 	var err error
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
-	//
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 	//
 
 	return r, err
@@ -208,7 +205,7 @@ func profile_Save(r dm.Profile, usr string) error {
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	ts = addData(ts, dm.Profile_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Profile_ProfileID_sql, r.ProfileID)
@@ -245,7 +242,7 @@ func profile_Save(r dm.Profile, usr string) error {
 	ts = addData(ts, dm.Profile_TrainingPerc_sql, r.TrainingPerc)
 
 	//
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 	tsql := das.INSERT + das.INTO + Profile_QualifiedName
@@ -274,7 +271,7 @@ func profile_Fetch(tsql string) (int, []dm.Profile, dm.Profile, error) {
 
 		rec := returnList[i]
 		// START
-		// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		//
 		recItem.SYSId = get_Int(rec, dm.Profile_SYSId_sql, "0")
 		recItem.ProfileID = get_String(rec, dm.Profile_ProfileID_sql, "")
@@ -312,7 +309,7 @@ func profile_Fetch(tsql string) (int, []dm.Profile, dm.Profile, error) {
 
 		// If there are fields below, create the methods in dao\Profile_adaptor.go
 		//
-		// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		// END
 		///
 		//Add to the list
@@ -337,11 +334,11 @@ func Profile_New() (int, []dm.Profile, dm.Profile, error) {
 	var rList []dm.Profile
 
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 
 	//
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

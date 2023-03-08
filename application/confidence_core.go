@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 04/03/2023 at 20:14:09
+// Date & Time		    : 08/03/2023 at 18:42:22
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //Confidence_Publish annouces the endpoints available for this object
-//Confidence_Publish - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//Confidence_Publish - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Confidence_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.Confidence_Path, Confidence_Handler)
 	mux.HandleFunc(dm.Confidence_PathList, Confidence_HandlerList)
@@ -36,19 +36,19 @@ func Confidence_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Confidence_PathSave, Confidence_HandlerSave)
 	mux.HandleFunc(dm.Confidence_PathDelete, Confidence_HandlerDelete)
 	logs.Publish("Application", dm.Confidence_Title)
-    core.Catalog_Add(dm.Confidence_Title, dm.Confidence_Path, "", dm.Confidence_QueryString, "Application")
+    core.API.AddRoute(dm.Confidence_Title, dm.Confidence_Path, "", dm.Confidence_QueryString, "Application")
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Confidence_HandlerList is the handler for the list page
 //Allows Listing of Confidence records
-//Confidence_HandlerList - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//Confidence_HandlerList - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Confidence_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -84,9 +84,11 @@ func Confidence_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 	
-	ExecuteTemplate(dm.Confidence_TemplateList, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("Confidence", "List", dm.Confidence_TemplateList)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -94,10 +96,10 @@ func Confidence_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //Confidence_HandlerView is the handler used to View a page
 //Allows Viewing for an existing Confidence record
-//Confidence_HandlerView - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Confidence_HandlerView - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Confidence_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -124,19 +126,21 @@ func Confidence_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = confidence_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.Confidence_TemplateView, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("Confidence", "View", dm.Confidence_TemplateView)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Confidence_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing Confidence record and then allows the user to save the changes
-//Confidence_HandlerEdit - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Confidence_HandlerEdit - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Confidence_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -171,19 +175,22 @@ func Confidence_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = confidence_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.Confidence_TemplateEdit, w, r, pageDetail)
+
+	nextTemplate :=  NextTemplate("Confidence", "Edit", dm.Confidence_TemplateEdit)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Confidence_HandlerSave is the handler used process the saving of an Confidence
 //It is called from the Edit and New pages
-//Confidence_HandlerSave  - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Confidence_HandlerSave  - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Confidence_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -200,25 +207,26 @@ func Confidence_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	item := confidence_DataFromRequest(r)
 	
 	item, errStore := dao.Confidence_Store(item,r)
-	if errStore == nil {	
-		http.Redirect(w, r, dm.Confidence_Redirect, http.StatusFound)
+	if errStore == nil {
+		nextTemplate :=  NextTemplate("Confidence", "Save", dm.Confidence_Redirect)
+		http.Redirect(w, r, nextTemplate, http.StatusFound)
 	} else {
 		logs.Information(dm.Confidence_Name, errStore.Error())
 		//http.Redirect(w, r, r.Referer(), http.StatusFound)
 		ExecuteRedirect(r.Referer(), w, r,dm.Confidence_QueryString,itemID,item)
 	}
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Confidence_HandlerNew is the handler used process the creation of an Confidence
 //It will create a new Confidence and then redirect to the Edit page
-//Confidence_HandlerNew  - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Confidence_HandlerNew  - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Confidence_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -254,19 +262,20 @@ func Confidence_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = confidence_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.Confidence_TemplateNew, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("Confidence", "New", dm.Confidence_TemplateNew)
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }	
 
 
 //Confidence_HandlerDelete is the handler used process the deletion of an Confidence
 // It will delete the Confidence and then redirect to the List page
-//Confidence_HandlerDelete - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Confidence_HandlerDelete - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Confidence_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -282,15 +291,16 @@ func Confidence_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	dao.Confidence_Delete(searchID)	
 
-	http.Redirect(w, r, dm.Confidence_Redirect, http.StatusFound)
+	nextTemplate :=  NextTemplate("Confidence", "Delete", dm.Confidence_Redirect)
+	http.Redirect(w, r, nextTemplate, http.StatusFound)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //confidence_PopulatePage Builds/Populates the Confidence Page 
-//confidence_PopulatePage Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//confidence_PopulatePage Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func confidence_PopulatePage(rD dm.Confidence, pageDetail dm.Confidence_Page) dm.Confidence_Page {
 	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
@@ -332,7 +342,7 @@ func confidence_PopulatePage(rD dm.Confidence, pageDetail dm.Confidence_Page) dm
 	return pageDetail
 }
 //confidence_DataFromRequest is used process the content of an HTTP Request and return an instance of an Confidence
-//confidence_DataFromRequest Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//confidence_DataFromRequest Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func confidence_DataFromRequest(r *http.Request) dm.Confidence {
 
 	var item dm.Confidence

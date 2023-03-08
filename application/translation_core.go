@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 04/03/2023 at 20:14:14
+// Date & Time		    : 08/03/2023 at 18:42:26
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //Translation_Publish annouces the endpoints available for this object
-//Translation_Publish - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//Translation_Publish - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Translation_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.Translation_Path, Translation_Handler)
 	mux.HandleFunc(dm.Translation_PathList, Translation_HandlerList)
@@ -36,19 +36,19 @@ func Translation_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Translation_PathSave, Translation_HandlerSave)
 	//Cannot Delete via GUI
 	logs.Publish("Application", dm.Translation_Title)
-    core.Catalog_Add(dm.Translation_Title, dm.Translation_Path, "", dm.Translation_QueryString, "Application")
+    core.API.AddRoute(dm.Translation_Title, dm.Translation_Path, "", dm.Translation_QueryString, "Application")
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Translation_HandlerList is the handler for the list page
 //Allows Listing of Translation records
-//Translation_HandlerList - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//Translation_HandlerList - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Translation_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -84,9 +84,11 @@ func Translation_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 	
-	ExecuteTemplate(dm.Translation_TemplateList, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("Translation", "List", dm.Translation_TemplateList)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -94,10 +96,10 @@ func Translation_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //Translation_HandlerView is the handler used to View a page
 //Allows Viewing for an existing Translation record
-//Translation_HandlerView - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Translation_HandlerView - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Translation_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -124,19 +126,21 @@ func Translation_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = translation_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.Translation_TemplateView, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("Translation", "View", dm.Translation_TemplateView)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Translation_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing Translation record and then allows the user to save the changes
-//Translation_HandlerEdit - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Translation_HandlerEdit - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Translation_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -171,19 +175,22 @@ func Translation_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = translation_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.Translation_TemplateEdit, w, r, pageDetail)
+
+	nextTemplate :=  NextTemplate("Translation", "Edit", dm.Translation_TemplateEdit)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Translation_HandlerSave is the handler used process the saving of an Translation
 //It is called from the Edit and New pages
-//Translation_HandlerSave  - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Translation_HandlerSave  - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Translation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -200,15 +207,16 @@ func Translation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	item := translation_DataFromRequest(r)
 	
 	item, errStore := dao.Translation_Store(item,r)
-	if errStore == nil {	
-		http.Redirect(w, r, dm.Translation_Redirect, http.StatusFound)
+	if errStore == nil {
+		nextTemplate :=  NextTemplate("Translation", "Save", dm.Translation_Redirect)
+		http.Redirect(w, r, nextTemplate, http.StatusFound)
 	} else {
 		logs.Information(dm.Translation_Name, errStore.Error())
 		//http.Redirect(w, r, r.Referer(), http.StatusFound)
 		ExecuteRedirect(r.Referer(), w, r,dm.Translation_QueryString,itemID,item)
 	}
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
@@ -216,7 +224,7 @@ func Translation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 
 //translation_PopulatePage Builds/Populates the Translation Page 
-//translation_PopulatePage Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//translation_PopulatePage Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func translation_PopulatePage(rD dm.Translation, pageDetail dm.Translation_Page) dm.Translation_Page {
 	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
@@ -254,7 +262,7 @@ func translation_PopulatePage(rD dm.Translation, pageDetail dm.Translation_Page)
 	return pageDetail
 }
 //translation_DataFromRequest is used process the content of an HTTP Request and return an instance of an Translation
-//translation_DataFromRequest Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//translation_DataFromRequest Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func translation_DataFromRequest(r *http.Request) dm.Translation {
 
 	var item dm.Translation

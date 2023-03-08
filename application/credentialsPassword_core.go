@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 04/03/2023 at 20:14:10
+// Date & Time		    : 08/03/2023 at 18:42:23
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //CredentialsPassword_Publish annouces the endpoints available for this object
-//CredentialsPassword_Publish - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//CredentialsPassword_Publish - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func CredentialsPassword_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	//No API
 	//Cannot List via GUI
@@ -38,7 +38,7 @@ func CredentialsPassword_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.CredentialsPassword_Title)
     //No API
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
@@ -46,10 +46,10 @@ func CredentialsPassword_Publish(mux http.ServeMux) {
 
 //CredentialsPassword_HandlerView is the handler used to View a page
 //Allows Viewing for an existing CredentialsPassword record
-//CredentialsPassword_HandlerView - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//CredentialsPassword_HandlerView - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func CredentialsPassword_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -76,19 +76,21 @@ func CredentialsPassword_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = credentialspassword_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.CredentialsPassword_TemplateView, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("CredentialsPassword", "View", dm.CredentialsPassword_TemplateView)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //CredentialsPassword_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing CredentialsPassword record and then allows the user to save the changes
-//CredentialsPassword_HandlerEdit - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//CredentialsPassword_HandlerEdit - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func CredentialsPassword_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -123,19 +125,22 @@ func CredentialsPassword_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = credentialspassword_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.CredentialsPassword_TemplateEdit, w, r, pageDetail)
+
+	nextTemplate :=  NextTemplate("CredentialsPassword", "Edit", dm.CredentialsPassword_TemplateEdit)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //CredentialsPassword_HandlerSave is the handler used process the saving of an CredentialsPassword
 //It is called from the Edit and New pages
-//CredentialsPassword_HandlerSave  - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//CredentialsPassword_HandlerSave  - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func CredentialsPassword_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -152,25 +157,26 @@ func CredentialsPassword_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	item := credentialspassword_DataFromRequest(r)
 	
 	item, errStore := dao.CredentialsPassword_Store(item,r)
-	if errStore == nil {	
-		http.Redirect(w, r, dm.CredentialsPassword_Redirect, http.StatusFound)
+	if errStore == nil {
+		nextTemplate :=  NextTemplate("CredentialsPassword", "Save", dm.CredentialsPassword_Redirect)
+		http.Redirect(w, r, nextTemplate, http.StatusFound)
 	} else {
 		logs.Information(dm.CredentialsPassword_Name, errStore.Error())
 		//http.Redirect(w, r, r.Referer(), http.StatusFound)
 		ExecuteRedirect(r.Referer(), w, r,dm.CredentialsPassword_QueryString,itemID,item)
 	}
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //CredentialsPassword_HandlerNew is the handler used process the creation of an CredentialsPassword
 //It will create a new CredentialsPassword and then redirect to the Edit page
-//CredentialsPassword_HandlerNew  - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//CredentialsPassword_HandlerNew  - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func CredentialsPassword_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -206,16 +212,17 @@ func CredentialsPassword_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = credentialspassword_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.CredentialsPassword_TemplateNew, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("CredentialsPassword", "New", dm.CredentialsPassword_TemplateNew)
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }	
 
 
 
 //credentialspassword_PopulatePage Builds/Populates the CredentialsPassword Page 
-//credentialspassword_PopulatePage Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//credentialspassword_PopulatePage Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func credentialspassword_PopulatePage(rD dm.CredentialsPassword, pageDetail dm.CredentialsPassword_Page) dm.CredentialsPassword_Page {
 	// Real DB Fields
 	pageDetail.ID = rD.ID
@@ -233,7 +240,7 @@ func credentialspassword_PopulatePage(rD dm.CredentialsPassword, pageDetail dm.C
 	return pageDetail
 }
 //credentialspassword_DataFromRequest is used process the content of an HTTP Request and return an instance of an CredentialsPassword
-//credentialspassword_DataFromRequest Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//credentialspassword_DataFromRequest Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func credentialspassword_DataFromRequest(r *http.Request) dm.CredentialsPassword {
 
 	var item dm.CredentialsPassword

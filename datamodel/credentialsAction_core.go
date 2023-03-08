@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 04/03/2023 at 20:14:10
+// Date & Time		    : 08/03/2023 at 18:42:23
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //CredentialsAction defines the datamodel for the CredentialsAction object
 type CredentialsAction struct {
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -38,7 +38,7 @@ type CredentialsAction struct {
 	}
 
 const (
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	CredentialsAction_Name      = "CredentialsAction"
 	CredentialsAction_Title       = "Credentials Actions"
@@ -89,7 +89,7 @@ const (
 
 //CredentialsAction_PageList provides the information for the template for a list of CredentialsActions
 type CredentialsAction_PageList struct {
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -111,7 +111,7 @@ type CredentialsAction_PageList struct {
 
 //CredentialsAction_Page provides the information for the template for an individual CredentialsAction
 type CredentialsAction_Page struct {
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem

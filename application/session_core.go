@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 04/03/2023 at 20:14:14
+// Date & Time		    : 08/03/2023 at 18:42:26
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //Session_Publish annouces the endpoints available for this object
-//Session_Publish - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//Session_Publish - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Session_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	//No API
 	mux.HandleFunc(dm.Session_PathList, Session_HandlerList)
@@ -38,17 +38,17 @@ func Session_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.Session_Title)
     //No API
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Session_HandlerList is the handler for the list page
 //Allows Listing of Session records
-//Session_HandlerList - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//Session_HandlerList - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Session_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -84,9 +84,11 @@ func Session_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 	
-	ExecuteTemplate(dm.Session_TemplateList, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("Session", "List", dm.Session_TemplateList)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -94,10 +96,10 @@ func Session_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //Session_HandlerView is the handler used to View a page
 //Allows Viewing for an existing Session record
-//Session_HandlerView - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Session_HandlerView - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Session_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -124,9 +126,11 @@ func Session_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = session_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.Session_TemplateView, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("Session", "View", dm.Session_TemplateView)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
@@ -134,10 +138,10 @@ func Session_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 //Session_HandlerSave is the handler used process the saving of an Session
 //It is called from the Edit and New pages
-//Session_HandlerSave  - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Session_HandlerSave  - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Session_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -154,15 +158,16 @@ func Session_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	item := session_DataFromRequest(r)
 	
 	item, errStore := dao.Session_Store(item,r)
-	if errStore == nil {	
-		http.Redirect(w, r, dm.Session_Redirect, http.StatusFound)
+	if errStore == nil {
+		nextTemplate :=  NextTemplate("Session", "Save", dm.Session_Redirect)
+		http.Redirect(w, r, nextTemplate, http.StatusFound)
 	} else {
 		logs.Information(dm.Session_Name, errStore.Error())
 		//http.Redirect(w, r, r.Referer(), http.StatusFound)
 		ExecuteRedirect(r.Referer(), w, r,dm.Session_QueryString,itemID,item)
 	}
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
@@ -170,7 +175,7 @@ func Session_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 
 //session_PopulatePage Builds/Populates the Session Page 
-//session_PopulatePage Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//session_PopulatePage Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func session_PopulatePage(rD dm.Session, pageDetail dm.Session_Page) dm.Session_Page {
 	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
@@ -236,7 +241,7 @@ func session_PopulatePage(rD dm.Session, pageDetail dm.Session_Page) dm.Session_
 	return pageDetail
 }
 //session_DataFromRequest is used process the content of an HTTP Request and return an instance of an Session
-//session_DataFromRequest Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//session_DataFromRequest Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func session_DataFromRequest(r *http.Request) dm.Session {
 
 	var item dm.Session

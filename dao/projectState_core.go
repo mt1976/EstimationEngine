@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 04/03/2023 at 20:14:14
+// Date & Time		    : 08/03/2023 at 18:42:25
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -90,10 +90,10 @@ func ProjectState_GetByID(id string) (int, dm.ProjectState, error) {
 
 func ProjectState_PostGet(projectstateItem dm.ProjectState, id string) dm.ProjectState {
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	//
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	return projectstateItem
 }
@@ -171,11 +171,8 @@ func ProjectState_StoreProcess(r dm.ProjectState, operator string) (dm.ProjectSt
 func ProjectState_Validate(r dm.ProjectState) (dm.ProjectState, error) {
 	var err error
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
-	//
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 	//
 
 	return r, err
@@ -208,7 +205,7 @@ func projectstate_Save(r dm.ProjectState, usr string) error {
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	ts = addData(ts, dm.ProjectState_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.ProjectState_ProjectStateID_sql, r.ProjectStateID)
@@ -228,7 +225,7 @@ func projectstate_Save(r dm.ProjectState, usr string) error {
 	ts = addData(ts, dm.ProjectState_Notify_sql, r.Notify)
 
 	//
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 	tsql := das.INSERT + das.INTO + ProjectState_QualifiedName
@@ -257,7 +254,7 @@ func projectstate_Fetch(tsql string) (int, []dm.ProjectState, dm.ProjectState, e
 
 		rec := returnList[i]
 		// START
-		// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		//
 		recItem.SYSId = get_Int(rec, dm.ProjectState_SYSId_sql, "0")
 		recItem.ProjectStateID = get_String(rec, dm.ProjectState_ProjectStateID_sql, "")
@@ -278,7 +275,7 @@ func projectstate_Fetch(tsql string) (int, []dm.ProjectState, dm.ProjectState, e
 
 		// If there are fields below, create the methods in dao\ProjectState_adaptor.go
 		//
-		// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		// END
 		///
 		//Add to the list
@@ -303,11 +300,11 @@ func ProjectState_New() (int, []dm.ProjectState, dm.ProjectState, error) {
 	var rList []dm.ProjectState
 
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 
 	//
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

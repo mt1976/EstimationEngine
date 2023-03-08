@@ -732,18 +732,21 @@ func Feature_CCY_OnFetch_impl(rec dm.Feature) string {
 	//	return ""
 
 	esID := rec.EstimationSessionID
+	//logs.Information("Cache Read : EstimationSession", esID)
 	es := CacheRead(dm.EstimationSession_Name, esID).(dm.EstimationSession)
 	// _, es, err := EstimationSession_GetByID(esID)
 	// if err != nil {
 	// 	return "GBP"
 	// }
 	projID := es.ProjectID
+	//logs.Information("Cache Read : Project", projID)
 	proj := CacheRead(dm.Project_Name, projID).(dm.Project)
 	// _, proj, err := Project_GetByID(projID)
 	// if err != nil {
 	// 	return "GBP"
 	// }
 	origID := proj.OriginID
+	//logs.Information("Cache Read : Origin", origID)
 	orig := CacheRead(dm.Origin_Name, origID).(dm.Origin)
 	// _, orig, err := Origin_GetByCode(origID)
 	// if err != nil {

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 04/03/2023 at 20:14:13
+// Date & Time		    : 08/03/2023 at 18:42:25
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -93,11 +93,11 @@ func ProjectAction_GetByID(id string) (int, dm.ProjectAction, error) {
 
 func ProjectAction_PostGet(projectactionItem dm.ProjectAction,id string) dm.ProjectAction {
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	projectactionItem.NoEstimationSessions,projectactionItem.NoEstimationSessions_props = ProjectAction_NoEstimationSessions_validate_impl (GET,id,projectactionItem.NoEstimationSessions,projectactionItem,projectactionItem.NoEstimationSessions_props)
 	// 
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return projectactionItem
 }
@@ -166,16 +166,14 @@ func ProjectAction_StoreProcess(r dm.ProjectAction, operator string) (dm.Project
 func ProjectAction_Validate(r dm.ProjectAction) (dm.ProjectAction, error) {
 	var err error
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.NoEstimationSessions,r.NoEstimationSessions_props = ProjectAction_NoEstimationSessions_validate_impl (PUT,r.ProjectID,r.NoEstimationSessions,r,r.NoEstimationSessions_props)
 	if r.NoEstimationSessions_props.MsgMessage != "" {
 		err = errors.New(r.NoEstimationSessions_props.MsgMessage)
 	}
 	// 
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-	//
+
 	
 
 	return r,err
@@ -208,7 +206,7 @@ logs.Storing("ProjectAction",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.ProjectAction_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.ProjectAction_ProjectID_sql, r.ProjectID)
@@ -241,7 +239,7 @@ logs.Storing("ProjectAction",fmt.Sprintf("%v", r))
 	
 		
 	// 
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := das.INSERT + das.INTO + ProjectAction_QualifiedName
@@ -250,6 +248,8 @@ logs.Storing("ProjectAction",fmt.Sprintf("%v", r))
 
 	ProjectAction_HardDelete(r.ProjectID)
 	das.Execute(tsql)
+
+	
 
 
 
@@ -274,7 +274,7 @@ func projectaction_Fetch(tsql string) (int, []dm.ProjectAction, dm.ProjectAction
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.ProjectAction_SYSId_sql, "0")
 	   recItem.ProjectID  = get_String(rec, dm.ProjectAction_ProjectID_sql, "")
@@ -309,7 +309,7 @@ func projectaction_Fetch(tsql string) (int, []dm.ProjectAction, dm.ProjectAction
 	// If there are fields below, create the methods in dao\ProjectAction_adaptor.go
 	   recItem.NoEstimationSessions  = ProjectAction_NoEstimationSessions_OnFetch_impl (recItem)
 	// 
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -339,12 +339,12 @@ func ProjectAction_New() (int, []dm.ProjectAction, dm.ProjectAction, error) {
 	
 
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.NoEstimationSessions,r.NoEstimationSessions_props = ProjectAction_NoEstimationSessions_validate_impl (NEW,r.ProjectID,r.NoEstimationSessions,r,r.NoEstimationSessions_props)
 	
 	// 
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

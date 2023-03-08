@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 04/03/2023 at 20:14:13
+// Date & Time		    : 08/03/2023 at 18:42:25
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Profile defines the datamodel for the Profile object
 type Profile struct {
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -94,7 +94,7 @@ type Profile struct {
 	}
 
 const (
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	Profile_Name      = "Profile"
 	Profile_Title       = "Profile"
@@ -204,7 +204,7 @@ const (
 
 //Profile_PageList provides the information for the template for a list of Profiles
 type Profile_PageList struct {
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -226,7 +226,7 @@ type Profile_PageList struct {
 
 //Profile_Page provides the information for the template for an individual Profile
 type Profile_Page struct {
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem

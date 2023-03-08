@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 04/03/2023 at 20:14:10
+// Date & Time		    : 08/03/2023 at 18:42:23
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //DocType_Publish annouces the endpoints available for this object
-//DocType_Publish - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//DocType_Publish - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func DocType_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.DocType_Path, DocType_Handler)
 	mux.HandleFunc(dm.DocType_PathList, DocType_HandlerList)
@@ -36,19 +36,19 @@ func DocType_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.DocType_PathSave, DocType_HandlerSave)
 	mux.HandleFunc(dm.DocType_PathDelete, DocType_HandlerDelete)
 	logs.Publish("Application", dm.DocType_Title)
-    core.Catalog_Add(dm.DocType_Title, dm.DocType_Path, "", dm.DocType_QueryString, "Application")
+    core.API.AddRoute(dm.DocType_Title, dm.DocType_Path, "", dm.DocType_QueryString, "Application")
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //DocType_HandlerList is the handler for the list page
 //Allows Listing of DocType records
-//DocType_HandlerList - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//DocType_HandlerList - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func DocType_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -84,9 +84,11 @@ func DocType_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 	
-	ExecuteTemplate(dm.DocType_TemplateList, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("DocType", "List", dm.DocType_TemplateList)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -94,10 +96,10 @@ func DocType_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //DocType_HandlerView is the handler used to View a page
 //Allows Viewing for an existing DocType record
-//DocType_HandlerView - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//DocType_HandlerView - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func DocType_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -124,19 +126,21 @@ func DocType_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = doctype_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.DocType_TemplateView, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("DocType", "View", dm.DocType_TemplateView)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //DocType_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing DocType record and then allows the user to save the changes
-//DocType_HandlerEdit - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//DocType_HandlerEdit - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func DocType_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -171,19 +175,22 @@ func DocType_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = doctype_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.DocType_TemplateEdit, w, r, pageDetail)
+
+	nextTemplate :=  NextTemplate("DocType", "Edit", dm.DocType_TemplateEdit)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //DocType_HandlerSave is the handler used process the saving of an DocType
 //It is called from the Edit and New pages
-//DocType_HandlerSave  - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//DocType_HandlerSave  - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func DocType_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -200,25 +207,26 @@ func DocType_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	item := doctype_DataFromRequest(r)
 	
 	item, errStore := dao.DocType_Store(item,r)
-	if errStore == nil {	
-		http.Redirect(w, r, dm.DocType_Redirect, http.StatusFound)
+	if errStore == nil {
+		nextTemplate :=  NextTemplate("DocType", "Save", dm.DocType_Redirect)
+		http.Redirect(w, r, nextTemplate, http.StatusFound)
 	} else {
 		logs.Information(dm.DocType_Name, errStore.Error())
 		//http.Redirect(w, r, r.Referer(), http.StatusFound)
 		ExecuteRedirect(r.Referer(), w, r,dm.DocType_QueryString,itemID,item)
 	}
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //DocType_HandlerNew is the handler used process the creation of an DocType
 //It will create a new DocType and then redirect to the Edit page
-//DocType_HandlerNew  - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//DocType_HandlerNew  - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func DocType_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -254,19 +262,20 @@ func DocType_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = doctype_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.DocType_TemplateNew, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("DocType", "New", dm.DocType_TemplateNew)
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }	
 
 
 //DocType_HandlerDelete is the handler used process the deletion of an DocType
 // It will delete the DocType and then redirect to the List page
-//DocType_HandlerDelete - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//DocType_HandlerDelete - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func DocType_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -282,15 +291,16 @@ func DocType_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	dao.DocType_Delete(searchID)	
 
-	http.Redirect(w, r, dm.DocType_Redirect, http.StatusFound)
+	nextTemplate :=  NextTemplate("DocType", "Delete", dm.DocType_Redirect)
+	http.Redirect(w, r, nextTemplate, http.StatusFound)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //doctype_PopulatePage Builds/Populates the DocType Page 
-//doctype_PopulatePage Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//doctype_PopulatePage Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func doctype_PopulatePage(rD dm.DocType, pageDetail dm.DocType_Page) dm.DocType_Page {
 	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
@@ -328,7 +338,7 @@ func doctype_PopulatePage(rD dm.DocType, pageDetail dm.DocType_Page) dm.DocType_
 	return pageDetail
 }
 //doctype_DataFromRequest is used process the content of an HTTP Request and return an instance of an DocType
-//doctype_DataFromRequest Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//doctype_DataFromRequest Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func doctype_DataFromRequest(r *http.Request) dm.DocType {
 
 	var item dm.DocType

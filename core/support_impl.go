@@ -400,7 +400,7 @@ func ApplicationSQLSchemaParent() string {
 	return GetDatabaseProperty("parentschema")
 }
 
-func GetSQLSchema(in Congiguration) string {
+func GetSQLSchema(in Configuration) string {
 	return ApplicationPropertiesDB.Get("schema")
 }
 

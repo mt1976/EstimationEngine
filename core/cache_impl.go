@@ -2,14 +2,17 @@ package core
 
 import (
 	"fmt"
+	"strconv"
 	"time"
 
-	"github.com/mt1976/ebEstimates/logs"
+	logs "github.com/mt1976/ebEstimates/logs"
 )
 
 type Cache struct {
 	content map[string]interface{}
+	used    map[string]bool
 	expiry  map[string]time.Time
+	keys    []string
 	maxsize int
 	payload int
 	life    int
@@ -21,75 +24,150 @@ type CacheInterface interface {
 	KeyGen(object string, id string) string
 	KeyExists(key string) bool
 	Stat() string
+	Start()
+	CheckExpiry(key string) bool
+	GetKeys() []string
+	Housekeep()
 }
 
-var cache Cache
+// var cache Cache
+func (c Cache) Housekeep() Cache {
+	logs.Warning("Housekeep " + strconv.Itoa(len(c.keys)))
+	for i, v := range c.keys {
+		fmt.Printf("i: %v\n", i)
+		fmt.Printf("v: %v\n", v)
+		c.ExpiryProcessing(v)
+	}
+	logs.Warning("Housekeep " + strconv.Itoa(len(c.keys)) + " complete")
+	return c
+}
 
-// var cache map[string]interface{}
-// var cache_expiry map[string]time.Time
-// var cache_maxsize int
-// var cache_payload int
-// var cache_life int
-
-func (c Cache) Add(key string, val interface{}) {
-	if c.payload >= c.maxsize {
-		c.init()
+func (c Cache) Add(key string, val interface{}) Cache {
+	//logs.Information("Add", key)
+	//fmt.Printf("c.payload: %v\n", c.payload)
+	//fmt.Printf("c.maxsize: %v\n", c.maxsize)
+	if len(c.content) >= c.maxsize {
+		c.Housekeep()
+	}
+	if len(c.content) >= c.maxsize {
+		c.Start()
 	}
 	if !c.KeyExists(key) {
-		c.payload++
+		c.keys = append(c.keys, key)
+		c.payload = c.payload + 1
 		c.expiry[key] = time.Now().Add(time.Duration(c.life) * time.Second)
+		c.content[key] = val
+		c.used[key] = true
+		//fmt.Printf("c.payload: %v\n", c.payload)
+		//fmt.Printf("c.expiry[key]: %v\n", c.expiry[key])
 	}
-	c.content[key] = val
+
+	//fmt.Printf("val: %v\n", val)
+	//fmt.Printf("c: %v\n", c)
+	//logs.Information("Cache", c.Stat())
+	return c
 }
 
 func (c Cache) OK(key string) bool {
+	//logs.Information("OK", key)
 	if !c.KeyExists(key) {
+		//logs.Information("OK", "Not Found")
 		return false
 	}
-	if time.Now().Before(c.expiry[key]) {
-		return false
+	//logs.Information("OK", "Found")
+	//fmt.Printf("c.expiry[key]: %v\n", c.expiry[key])
+	_, rtnval := c.ExpiryProcessing(key)
+	if rtnval {
+		return !rtnval
 	}
+	//logs.Information("OK", c.Stat())
 	return true
 }
 
+func (c Cache) ExpiryProcessing(key string) (Cache, bool) {
+	if time.Now().After(c.expiry[key]) {
+		logs.Warning("Cache Expiry: " + key + c.expiry[key].String())
+		delete(c.content, key)
+		delete(c.expiry, key)
+		delete(c.used, key)
+		remove(c.keys, key)
+		c.payload = c.payload - 1
+		return c, true
+	}
+	return c, false
+}
+
 func (c Cache) Get(key string) interface{} {
-	return cache.content[key]
+	//logs.Information("Get", key)
+	return c.content[key]
 }
 
 func (c Cache) KeyGen(object string, id string) string {
+	//logs.Information("KeyGen", object+ID_SEP+id)
 	return object + ID_SEP + id
 }
 
 func (c Cache) KeyExists(key string) bool {
-	_, ok := c.content[key]
-	return ok
+	return c.used[key]
 }
 
-func (c Cache) init() {
-	logs.Information("Cache", "Initialising")
-	cache := Cache{}
-	cache.content = make(map[string]interface{})
-	cache.expiry = make(map[string]time.Time)
+func (c Cache) Start() Cache {
+	//logs.Information("Start", "Setting up Cache")
+	//cache := Cache{}
+	c.content = make(map[string]interface{})
+	c.expiry = make(map[string]time.Time)
+	c.used = make(map[string]bool)
+	c.payload = 0
+	c.keys = make([]string, 0)
 
-	cache.payload = 0
-
-	cm_val := StringToInt(GetApplicationProperty("cache_maxsize"))
+	cm_val := StringToInt(ApplicationProperties.Get("cache_maxsize"))
 	if cm_val > 0 {
-		cache.maxsize = cm_val
+		c.maxsize = cm_val
 	} else {
-		cache.maxsize = 1000
+		c.maxsize = 1000
 	}
-
-	cl_val := StringToInt(GetApplicationProperty("cache_life"))
+	//logs.Information("Start Cache MaxSize", strconv.Itoa(c.maxsize))
+	cl_val := StringToInt(ApplicationProperties.Get("cache_life"))
 	if cl_val > 0 {
-		cache.life = cl_val
+		c.life = cl_val
 	} else {
-		cache.life = 60
+		c.life = 10
 	}
+	//logs.Information("Start Cache Life", strconv.Itoa(c.life))
 	//fmt.Printf("cache: %v\n", cache)
-	logs.Information("Cache", fmt.Sprintf("Initialised - Size: %v Max: %v Life: %v", cache.payload, cache.maxsize, cache.life))
+	//logs.Information("Start Cache", c.Stat())
+	return c
 }
 
 func (c Cache) Stat() string {
-	return fmt.Sprintf("Cache Status: %v/%v %v", cache.payload, cache.maxsize, cache.life)
+	// fmt.Printf("c.payload: %v\n", c.payload)
+	// fmt.Printf("c.maxsize: %v\n", c.maxsize)
+	// fmt.Printf("c.life: %v\n", c.life)
+	// //fmt.Printf("c.content: %v\n", c.content)
+
+	// x := len(c.content)
+	// fmt.Printf("len(c.content): %v\n", x)
+	// for k, v := range c.content {
+	// 	fmt.Printf("k: %v, v: %v\n", k, v)
+	// }
+	// y := len(c.used)
+	// fmt.Printf("len(c.used): %v\n", y)
+	// for k, v := range c.used {
+	// 	fmt.Printf("k: %v, v: %v\n", k, v)
+	// }
+	// z := len(c.expiry)
+	// for k, t := range c.expiry {
+	// 	fmt.Printf("k: %v, t: %v\n", k, t)
+	// }
+	//fmt.Printf("len(c.expiry): %v\n", z)
+	return fmt.Sprintf("Cache Status: %v/%v %vsecs", len(c.content), c.maxsize, c.life)
+}
+
+func remove(s []string, r string) []string {
+	for i, v := range s {
+		if v == r {
+			return append(s[:i], s[i+1:]...)
+		}
+	}
+	return s
 }

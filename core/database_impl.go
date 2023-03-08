@@ -48,7 +48,7 @@ func PokeDatabase(DB *sql.DB) error {
 	return errordb
 }
 
-func connect(mssqlConfig Congiguration) (*sql.DB, error) {
+func connect(mssqlConfig Configuration) (*sql.DB, error) {
 
 	server := mssqlConfig.Get("server")
 	user := mssqlConfig.Get("user")
@@ -90,7 +90,7 @@ func connect(mssqlConfig Congiguration) (*sql.DB, error) {
 }
 
 // DataStoreConnect connects application to its datastore database
-func Database_Connect(mssqlConfig Congiguration) (*sql.DB, error) {
+func Database_Connect(mssqlConfig Configuration) (*sql.DB, error) {
 	// Connect to SQL Server DB
 	//mssqlConfig := getProperties(config)
 
@@ -175,7 +175,7 @@ func Database_Create(dbInstance *sql.DB, mssqlConfig map[string]string, dbName s
 
 }
 
-func Database_Poke(dbInstance *sql.DB, m Congiguration) *sql.DB {
+func Database_Poke(dbInstance *sql.DB, m Configuration) *sql.DB {
 	logs.Poke(fmt.Sprintf("Server '%s' Database '%s' Schema '%s'", m.Get("server"), m.Get("database"), m.Get("schema")), "")
 	err := dbInstance.Ping()
 	if err != nil {

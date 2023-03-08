@@ -54,9 +54,10 @@ func Initialise() {
 	fmt.Printf("ApplicationPropertiesDB: %v\n", ApplicationPropertiesDB)
 	fmt.Printf("InstanceProperties: %v\n", InstanceProperties)
 	fmt.Printf("ApplicationStubLists: %v\n", ApplicationStubLists)
-
-	ApplicationCache.init()
+	var appCache Cache
+	ApplicationCache = appCache.Start()
 	logs.Information("Initialisation", ApplicationCache.Stat())
+	//fmt.Printf("ApplicationCache: %v\n", ApplicationCache)
 
 	IsChildInstance = false
 	if len(GetDatabaseProperty("instance")) != 0 {

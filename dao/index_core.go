@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 04/03/2023 at 20:14:12
+// Date & Time		    : 08/03/2023 at 18:42:24
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -66,12 +66,12 @@ func Index_GetByID(id string) (int, dm.Index, error) {
 
 func Index_PostGet(indexItem dm.Index,id string) dm.Index {
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	indexItem.IndexID,indexItem.IndexID_props = Index_IndexID_validate_impl (GET,id,indexItem.IndexID,indexItem,indexItem.IndexID_props)
 	indexItem.Link,indexItem.Link_props = Index_Link_validate_impl (GET,id,indexItem.Link,indexItem,indexItem.Link_props)
 	// 
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return indexItem
 }
@@ -140,7 +140,7 @@ func Index_StoreProcess(r dm.Index, operator string) (dm.Index,error) {
 func Index_Validate(r dm.Index) (dm.Index, error) {
 	var err error
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.IndexID,r.IndexID_props = Index_IndexID_validate_impl (PUT,r.IndexID,r.IndexID,r,r.IndexID_props)
 	if r.IndexID_props.MsgMessage != "" {
@@ -151,17 +151,14 @@ func Index_Validate(r dm.Index) (dm.Index, error) {
 		err = errors.New(r.Link_props.MsgMessage)
 	}
 	// 
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-	//
+
 	
-	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
-	r, _, err = Index_ObjectValidation_impl(PUT, r.IndexID, r)
-	// 
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+	// Cross Validation
+	var errVal error
+	r, _, errVal = Index_ObjectValidation_impl(PUT, r.IndexID, r)
+	if errVal != nil {
+		err = errVal
+	}
 	
 
 	return r,err
@@ -195,7 +192,7 @@ logs.Storing("Index",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Index_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Index_IndexID_sql, r.IndexID)
@@ -216,7 +213,7 @@ logs.Storing("Index",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Index_KeyValue_sql, r.KeyValue)
 		
 	// 
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := das.INSERT + das.INTO + Index_QualifiedName
@@ -225,6 +222,8 @@ logs.Storing("Index",fmt.Sprintf("%v", r))
 
 	Index_HardDelete(r.IndexID)
 	das.Execute(tsql)
+
+	
 
 
 
@@ -249,7 +248,7 @@ func index_Fetch(tsql string) (int, []dm.Index, dm.Index, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Index_SYSId_sql, "0")
 	   recItem.IndexID  = get_String(rec, dm.Index_IndexID_sql, "")
@@ -273,7 +272,7 @@ func index_Fetch(tsql string) (int, []dm.Index, dm.Index, error) {
 	   recItem.IndexID  = Index_IndexID_OnFetch_impl (recItem)
 	   recItem.Link  = Index_Link_OnFetch_impl (recItem)
 	// 
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -303,13 +302,13 @@ func Index_New() (int, []dm.Index, dm.Index, error) {
 	
 
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.IndexID,r.IndexID_props = Index_IndexID_validate_impl (NEW,r.IndexID,r.IndexID,r,r.IndexID_props)
 	r.Link,r.Link_props = Index_Link_validate_impl (NEW,r.IndexID,r.Link,r,r.Link_props)
 	
 	// 
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

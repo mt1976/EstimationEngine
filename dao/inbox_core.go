@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 04/03/2023 at 20:14:12
+// Date & Time		    : 08/03/2023 at 18:42:24
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -64,10 +64,10 @@ func Inbox_GetByID(id string) (int, dm.Inbox, error) {
 
 func Inbox_PostGet(inboxItem dm.Inbox, id string) dm.Inbox {
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	//
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	return inboxItem
 }
@@ -132,11 +132,8 @@ func Inbox_StoreProcess(r dm.Inbox, operator string) (dm.Inbox, error) {
 func Inbox_Validate(r dm.Inbox) (dm.Inbox, error) {
 	var err error
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
-	//
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 	//
 
 	return r, err
@@ -169,7 +166,7 @@ func inbox_Save(r dm.Inbox, usr string) error {
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	ts = addData(ts, dm.Inbox_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Inbox_SYSCreated_sql, r.SYSCreated)
@@ -193,7 +190,7 @@ func inbox_Save(r dm.Inbox, usr string) error {
 	ts = addData(ts, dm.Inbox_SYSDbVersion_sql, r.SYSDbVersion)
 
 	//
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 	tsql := das.INSERT + das.INTO + Inbox_QualifiedName
@@ -222,7 +219,7 @@ func inbox_Fetch(tsql string) (int, []dm.Inbox, dm.Inbox, error) {
 
 		rec := returnList[i]
 		// START
-		// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		//
 		recItem.SYSId = get_Int(rec, dm.Inbox_SYSId_sql, "0")
 		recItem.SYSCreated = get_String(rec, dm.Inbox_SYSCreated_sql, "")
@@ -247,7 +244,7 @@ func inbox_Fetch(tsql string) (int, []dm.Inbox, dm.Inbox, error) {
 
 		// If there are fields below, create the methods in dao\Inbox_adaptor.go
 		//
-		// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		// END
 		///
 		//Add to the list
@@ -272,11 +269,11 @@ func Inbox_New() (int, []dm.Inbox, dm.Inbox, error) {
 	var rList []dm.Inbox
 
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 
 	//
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

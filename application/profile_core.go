@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 04/03/2023 at 20:14:13
+// Date & Time		    : 08/03/2023 at 18:42:25
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //Profile_Publish annouces the endpoints available for this object
-//Profile_Publish - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//Profile_Publish - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Profile_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.Profile_Path, Profile_Handler)
 	mux.HandleFunc(dm.Profile_PathList, Profile_HandlerList)
@@ -36,19 +36,19 @@ func Profile_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Profile_PathSave, Profile_HandlerSave)
 	mux.HandleFunc(dm.Profile_PathDelete, Profile_HandlerDelete)
 	logs.Publish("Application", dm.Profile_Title)
-    core.Catalog_Add(dm.Profile_Title, dm.Profile_Path, "", dm.Profile_QueryString, "Application")
+    core.API.AddRoute(dm.Profile_Title, dm.Profile_Path, "", dm.Profile_QueryString, "Application")
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Profile_HandlerList is the handler for the list page
 //Allows Listing of Profile records
-//Profile_HandlerList - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//Profile_HandlerList - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Profile_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -84,9 +84,11 @@ func Profile_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 	
-	ExecuteTemplate(dm.Profile_TemplateList, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("Profile", "List", dm.Profile_TemplateList)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -94,10 +96,10 @@ func Profile_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //Profile_HandlerView is the handler used to View a page
 //Allows Viewing for an existing Profile record
-//Profile_HandlerView - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Profile_HandlerView - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Profile_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -124,19 +126,21 @@ func Profile_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = profile_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.Profile_TemplateView, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("Profile", "View", dm.Profile_TemplateView)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Profile_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing Profile record and then allows the user to save the changes
-//Profile_HandlerEdit - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Profile_HandlerEdit - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Profile_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -171,19 +175,22 @@ func Profile_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = profile_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.Profile_TemplateEdit, w, r, pageDetail)
+
+	nextTemplate :=  NextTemplate("Profile", "Edit", dm.Profile_TemplateEdit)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Profile_HandlerSave is the handler used process the saving of an Profile
 //It is called from the Edit and New pages
-//Profile_HandlerSave  - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Profile_HandlerSave  - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Profile_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -200,25 +207,26 @@ func Profile_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	item := profile_DataFromRequest(r)
 	
 	item, errStore := dao.Profile_Store(item,r)
-	if errStore == nil {	
-		http.Redirect(w, r, dm.Profile_Redirect, http.StatusFound)
+	if errStore == nil {
+		nextTemplate :=  NextTemplate("Profile", "Save", dm.Profile_Redirect)
+		http.Redirect(w, r, nextTemplate, http.StatusFound)
 	} else {
 		logs.Information(dm.Profile_Name, errStore.Error())
 		//http.Redirect(w, r, r.Referer(), http.StatusFound)
 		ExecuteRedirect(r.Referer(), w, r,dm.Profile_QueryString,itemID,item)
 	}
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Profile_HandlerNew is the handler used process the creation of an Profile
 //It will create a new Profile and then redirect to the Edit page
-//Profile_HandlerNew  - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Profile_HandlerNew  - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Profile_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -254,19 +262,20 @@ func Profile_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = profile_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.Profile_TemplateNew, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("Profile", "New", dm.Profile_TemplateNew)
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }	
 
 
 //Profile_HandlerDelete is the handler used process the deletion of an Profile
 // It will delete the Profile and then redirect to the List page
-//Profile_HandlerDelete - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Profile_HandlerDelete - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Profile_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -282,15 +291,16 @@ func Profile_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	dao.Profile_Delete(searchID)	
 
-	http.Redirect(w, r, dm.Profile_Redirect, http.StatusFound)
+	nextTemplate :=  NextTemplate("Profile", "Delete", dm.Profile_Redirect)
+	http.Redirect(w, r, nextTemplate, http.StatusFound)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //profile_PopulatePage Builds/Populates the Profile Page 
-//profile_PopulatePage Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//profile_PopulatePage Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func profile_PopulatePage(rD dm.Profile, pageDetail dm.Profile_Page) dm.Profile_Page {
 	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
@@ -364,7 +374,7 @@ func profile_PopulatePage(rD dm.Profile, pageDetail dm.Profile_Page) dm.Profile_
 	return pageDetail
 }
 //profile_DataFromRequest is used process the content of an HTTP Request and return an instance of an Profile
-//profile_DataFromRequest Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//profile_DataFromRequest Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func profile_DataFromRequest(r *http.Request) dm.Profile {
 
 	var item dm.Profile

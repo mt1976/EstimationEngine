@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 04/03/2023 at 20:14:13
+// Date & Time		    : 08/03/2023 at 18:42:24
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -90,10 +90,10 @@ func OriginState_GetByID(id string) (int, dm.OriginState, error) {
 
 func OriginState_PostGet(originstateItem dm.OriginState, id string) dm.OriginState {
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	//
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	return originstateItem
 }
@@ -171,11 +171,8 @@ func OriginState_StoreProcess(r dm.OriginState, operator string) (dm.OriginState
 func OriginState_Validate(r dm.OriginState) (dm.OriginState, error) {
 	var err error
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
-	//
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 	//
 
 	return r, err
@@ -208,7 +205,7 @@ func originstate_Save(r dm.OriginState, usr string) error {
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	ts = addData(ts, dm.OriginState_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.OriginState_OriginStateID_sql, r.OriginStateID)
@@ -228,7 +225,7 @@ func originstate_Save(r dm.OriginState, usr string) error {
 	ts = addData(ts, dm.OriginState_Notify_sql, r.Notify)
 
 	//
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 	tsql := das.INSERT + das.INTO + OriginState_QualifiedName
@@ -257,7 +254,7 @@ func originstate_Fetch(tsql string) (int, []dm.OriginState, dm.OriginState, erro
 
 		rec := returnList[i]
 		// START
-		// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		//
 		recItem.SYSId = get_Int(rec, dm.OriginState_SYSId_sql, "0")
 		recItem.OriginStateID = get_String(rec, dm.OriginState_OriginStateID_sql, "")
@@ -278,7 +275,7 @@ func originstate_Fetch(tsql string) (int, []dm.OriginState, dm.OriginState, erro
 
 		// If there are fields below, create the methods in dao\OriginState_adaptor.go
 		//
-		// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		// END
 		///
 		//Add to the list
@@ -303,11 +300,11 @@ func OriginState_New() (int, []dm.OriginState, dm.OriginState, error) {
 	var rList []dm.OriginState
 
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 
 	//
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

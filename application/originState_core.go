@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 04/03/2023 at 20:14:13
+// Date & Time		    : 08/03/2023 at 18:42:24
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //OriginState_Publish annouces the endpoints available for this object
-//OriginState_Publish - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//OriginState_Publish - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func OriginState_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.OriginState_Path, OriginState_Handler)
 	mux.HandleFunc(dm.OriginState_PathList, OriginState_HandlerList)
@@ -36,19 +36,19 @@ func OriginState_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.OriginState_PathSave, OriginState_HandlerSave)
 	mux.HandleFunc(dm.OriginState_PathDelete, OriginState_HandlerDelete)
 	logs.Publish("Application", dm.OriginState_Title)
-    core.Catalog_Add(dm.OriginState_Title, dm.OriginState_Path, "", dm.OriginState_QueryString, "Application")
+    core.API.AddRoute(dm.OriginState_Title, dm.OriginState_Path, "", dm.OriginState_QueryString, "Application")
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //OriginState_HandlerList is the handler for the list page
 //Allows Listing of OriginState records
-//OriginState_HandlerList - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//OriginState_HandlerList - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func OriginState_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -84,9 +84,11 @@ func OriginState_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 	
-	ExecuteTemplate(dm.OriginState_TemplateList, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("OriginState", "List", dm.OriginState_TemplateList)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -94,10 +96,10 @@ func OriginState_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //OriginState_HandlerView is the handler used to View a page
 //Allows Viewing for an existing OriginState record
-//OriginState_HandlerView - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//OriginState_HandlerView - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func OriginState_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -124,19 +126,21 @@ func OriginState_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = originstate_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.OriginState_TemplateView, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("OriginState", "View", dm.OriginState_TemplateView)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //OriginState_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing OriginState record and then allows the user to save the changes
-//OriginState_HandlerEdit - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//OriginState_HandlerEdit - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func OriginState_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -171,19 +175,22 @@ func OriginState_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = originstate_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.OriginState_TemplateEdit, w, r, pageDetail)
+
+	nextTemplate :=  NextTemplate("OriginState", "Edit", dm.OriginState_TemplateEdit)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //OriginState_HandlerSave is the handler used process the saving of an OriginState
 //It is called from the Edit and New pages
-//OriginState_HandlerSave  - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//OriginState_HandlerSave  - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func OriginState_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -200,25 +207,26 @@ func OriginState_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	item := originstate_DataFromRequest(r)
 	
 	item, errStore := dao.OriginState_Store(item,r)
-	if errStore == nil {	
-		http.Redirect(w, r, dm.OriginState_Redirect, http.StatusFound)
+	if errStore == nil {
+		nextTemplate :=  NextTemplate("OriginState", "Save", dm.OriginState_Redirect)
+		http.Redirect(w, r, nextTemplate, http.StatusFound)
 	} else {
 		logs.Information(dm.OriginState_Name, errStore.Error())
 		//http.Redirect(w, r, r.Referer(), http.StatusFound)
 		ExecuteRedirect(r.Referer(), w, r,dm.OriginState_QueryString,itemID,item)
 	}
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //OriginState_HandlerNew is the handler used process the creation of an OriginState
 //It will create a new OriginState and then redirect to the Edit page
-//OriginState_HandlerNew  - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//OriginState_HandlerNew  - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func OriginState_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -254,19 +262,20 @@ func OriginState_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = originstate_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.OriginState_TemplateNew, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("OriginState", "New", dm.OriginState_TemplateNew)
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }	
 
 
 //OriginState_HandlerDelete is the handler used process the deletion of an OriginState
 // It will delete the OriginState and then redirect to the List page
-//OriginState_HandlerDelete - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//OriginState_HandlerDelete - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func OriginState_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -282,15 +291,16 @@ func OriginState_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	dao.OriginState_Delete(searchID)	
 
-	http.Redirect(w, r, dm.OriginState_Redirect, http.StatusFound)
+	nextTemplate :=  NextTemplate("OriginState", "Delete", dm.OriginState_Redirect)
+	http.Redirect(w, r, nextTemplate, http.StatusFound)
 	// 
-	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //originstate_PopulatePage Builds/Populates the OriginState Page 
-//originstate_PopulatePage Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//originstate_PopulatePage Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func originstate_PopulatePage(rD dm.OriginState, pageDetail dm.OriginState_Page) dm.OriginState_Page {
 	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
@@ -330,7 +340,7 @@ func originstate_PopulatePage(rD dm.OriginState, pageDetail dm.OriginState_Page)
 	return pageDetail
 }
 //originstate_DataFromRequest is used process the content of an HTTP Request and return an instance of an OriginState
-//originstate_DataFromRequest Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//originstate_DataFromRequest Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func originstate_DataFromRequest(r *http.Request) dm.OriginState {
 
 	var item dm.OriginState

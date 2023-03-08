@@ -80,7 +80,7 @@ Store|<ul><li>**Implement in Adaptor**</li><li>func FeatureNew_NewID_impl(rec dm
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **06/03/2023** at **16:40:50**
+Date & Time		     | **08/03/2023** at **18:42:24**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

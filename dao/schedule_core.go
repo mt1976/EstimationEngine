@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 04/03/2023 at 20:14:14
+// Date & Time		    : 08/03/2023 at 18:42:25
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -64,10 +64,10 @@ func Schedule_GetByID(id string) (int, dm.Schedule, error) {
 
 func Schedule_PostGet(scheduleItem dm.Schedule, id string) dm.Schedule {
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	//
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	return scheduleItem
 }
@@ -132,11 +132,8 @@ func Schedule_StoreProcess(r dm.Schedule, operator string) (dm.Schedule, error) 
 func Schedule_Validate(r dm.Schedule) (dm.Schedule, error) {
 	var err error
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
-	//
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 	//
 
 	return r, err
@@ -169,7 +166,7 @@ func schedule_Save(r dm.Schedule, usr string) error {
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	ts = addData(ts, dm.Schedule_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Schedule_Id_sql, r.Id)
@@ -193,7 +190,7 @@ func schedule_Save(r dm.Schedule, usr string) error {
 	ts = addData(ts, dm.Schedule_SYSDbVersion_sql, r.SYSDbVersion)
 
 	//
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 	tsql := das.INSERT + das.INTO + Schedule_QualifiedName
@@ -222,7 +219,7 @@ func schedule_Fetch(tsql string) (int, []dm.Schedule, dm.Schedule, error) {
 
 		rec := returnList[i]
 		// START
-		// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		//
 		recItem.SYSId = get_Int(rec, dm.Schedule_SYSId_sql, "0")
 		recItem.Id = get_String(rec, dm.Schedule_Id_sql, "")
@@ -247,7 +244,7 @@ func schedule_Fetch(tsql string) (int, []dm.Schedule, dm.Schedule, error) {
 
 		// If there are fields below, create the methods in dao\Schedule_adaptor.go
 		//
-		// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		// END
 		///
 		//Add to the list
@@ -272,11 +269,11 @@ func Schedule_New() (int, []dm.Schedule, dm.Schedule, error) {
 	var rList []dm.Schedule
 
 	// START
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 
 	//
-	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil
