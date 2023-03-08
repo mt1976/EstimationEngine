@@ -43,12 +43,13 @@ const (
 	SessionSecurityViolation = "4097340829"
 	SessionAppToken          = "1117429826"
 
-	ID_SEP      = "|"
-	LIST_SEP    = ","
-	LIST_ID_SEP = "|"
-	URI_SEP     = "/" // used to separate the path from the query
-	URI_QUERY   = "?" // used to separate the query from the path
-	URI_SPECIAL = "_" // used to identify a special query variable
+	ID_SEP             = "|"
+	LIST_SEP           = ","
+	LIST_ID_SEP        = "|"
+	URI_SEP            = "/" // used to separate the path from the query
+	URI_QUERY          = "?" // used to separate the query from the path
+	URI_SPECIAL        = "_" // used to identify a special query variable
+	ACTIVITY_SEPERATOR = " " + ID_SEP + " "
 
 	Tick         = "☑️"
 	WarningLabel = "⚠️"

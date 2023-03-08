@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 17/02/2023 at 17:23:39
+// Date & Time		    : 06/03/2023 at 17:13:45
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //EstimationSession defines the datamodel for the EstimationSession object
 type EstimationSession struct {
-	// Dynamically generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -23,7 +23,7 @@ type EstimationSession struct {
 	EstimationSessionID       string
 	ProjectID       string
 	EstimationStateID       string
-	Notes       string
+	Activity       string
 	Releases       string
 	Total       string
 	Contingency       string
@@ -93,7 +93,7 @@ type EstimationSession struct {
 	EstimationSessionID_props FieldProperties
 	ProjectID_props FieldProperties
 	EstimationStateID_props FieldProperties
-	Notes_props FieldProperties
+	Activity_props FieldProperties
 	Releases_props FieldProperties
 	Total_props FieldProperties
 	Contingency_props FieldProperties
@@ -167,7 +167,7 @@ type EstimationSession struct {
 	}
 
 const (
-	// Dynamically generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	EstimationSession_Name      = "EstimationSession"
 	EstimationSession_Title       = "Estimation Session"
@@ -207,7 +207,7 @@ const (
 	EstimationSession_EstimationSessionID_sql   = "estimationSessionID" // EstimationSessionID is a String
 	EstimationSession_ProjectID_sql   = "projectID" // ProjectID is a String
 	EstimationSession_EstimationStateID_sql   = "estimationStateID" // EstimationStateID is a String
-	EstimationSession_Notes_sql   = "notes" // Notes is a String
+	EstimationSession_Activity_sql   = "activity" // Activity is a String
 	EstimationSession_Releases_sql   = "releases" // Releases is a String
 	EstimationSession_Total_sql   = "total" // Total is a String
 	EstimationSession_Contingency_sql   = "contingency" // Contingency is a String
@@ -277,7 +277,7 @@ const (
 	EstimationSession_EstimationSessionID_scrn   = "EstimationSessionID" // EstimationSessionID is a String
 	EstimationSession_ProjectID_scrn   = "ProjectID" // ProjectID is a String
 	EstimationSession_EstimationStateID_scrn   = "EstimationStateID" // EstimationStateID is a String
-	EstimationSession_Notes_scrn   = "Notes" // Notes is a String
+	EstimationSession_Activity_scrn   = "Activity" // Activity is a String
 	EstimationSession_Releases_scrn   = "Releases" // Releases is a String
 	EstimationSession_Total_scrn   = "Total" // Total is a String
 	EstimationSession_Contingency_scrn   = "Contingency" // Contingency is a String
@@ -345,7 +345,7 @@ const (
 
 //EstimationSession_PageList provides the information for the template for a list of EstimationSessions
 type EstimationSession_PageList struct {
-	// Dynamically generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -367,7 +367,7 @@ type EstimationSession_PageList struct {
 
 //EstimationSession_Page provides the information for the template for an individual EstimationSession
 type EstimationSession_Page struct {
-	// Dynamically generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
@@ -387,7 +387,7 @@ type EstimationSession_Page struct {
 	EstimationSessionID         string
 	ProjectID         string
 	EstimationStateID         string
-	Notes         string
+	Activity         string
 	Releases         string
 	Total         string
 	Contingency         string
@@ -455,7 +455,7 @@ type EstimationSession_Page struct {
 	EstimationSessionID_props     FieldProperties
 	ProjectID_props     FieldProperties
 	EstimationStateID_props     FieldProperties
-	Notes_props     FieldProperties
+	Activity_props     FieldProperties
 	Releases_props     FieldProperties
 	Total_props     FieldProperties
 	Contingency_props     FieldProperties

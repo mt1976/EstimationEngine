@@ -12,6 +12,8 @@ import (
 
 func Query(db *sql.DB, query string) ([]map[string]interface{}, int, error) {
 
+	logs.Database("Execute :", query)
+
 	rows, err1 := db.Query(query) // Note: Ignoring errors for brevity
 	if err1 != nil {
 		logs.Panic("Query Error", err1)

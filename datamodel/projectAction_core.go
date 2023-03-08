@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 15/02/2023 at 10:44:46
+// Date & Time		    : 04/03/2023 at 20:14:13
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //ProjectAction defines the datamodel for the ProjectAction object
 type ProjectAction struct {
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -92,7 +92,7 @@ type ProjectAction struct {
 	}
 
 const (
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	ProjectAction_Name      = "ProjectAction"
 	ProjectAction_Title       = "ProjectAction"
@@ -193,7 +193,7 @@ const (
 
 //ProjectAction_PageList provides the information for the template for a list of ProjectActions
 type ProjectAction_PageList struct {
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -215,7 +215,7 @@ type ProjectAction_PageList struct {
 
 //ProjectAction_Page provides the information for the template for an individual ProjectAction
 type ProjectAction_Page struct {
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem

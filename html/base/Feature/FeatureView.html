@@ -60,10 +60,10 @@
             <div class="row mb-3"  >
                 <div class="col">
                 
-                  <select id="ConfidenceID" name="ConfidenceID" class="select" data-mdb-filter="true" disabled>
-                  {{range .ConfidenceID_lookup}}<option value="{{.ID}}" {{if eq .ID $.ConfidenceID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  <select id="ConfidenceCODE" name="ConfidenceCODE" class="select" data-mdb-filter="true" disabled>
+                  {{range .ConfidenceCODE_lookup}}<option value="{{.ID}}" {{if eq .ID $.ConfidenceCODE}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
                   </select>
-                  <label class="form-label select-label" for="ConfidenceID" disabled>ConfidenceID</label>
+                  <label class="form-label select-label" for="ConfidenceCODE" disabled>ConfidenceCODE</label>
                 
                 </div>
             </div>
@@ -87,23 +87,9 @@
                 
                     <div class="form-outline">
                         
-                            <input type="number" class="form-control" id="DevEstimate" aria-describedby="DevEstimateHelp" placeholder="" disabled value="{{.DevEstimate}}" data-mdb-input-mask="" step="0.25"></input>
+                            <input type="number" class="form-control" id="DevelopmentEstimate" aria-describedby="DevelopmentEstimateHelp" placeholder="" disabled value="{{.DevelopmentEstimate}}" data-mdb-input-mask="" step="0.25"></input>
                         
-                        <label class="form-label" for="DevEstimate">DevEstimate</label>
-                        
-                    </div>
-                
-                </div>
-            </div>
-             
-            <div class="row mb-3"  >
-                <div class="col">
-                
-                    <div class="form-outline">
-                        
-                            <input type="number" class="form-control" id="DevUplift" aria-describedby="DevUpliftHelp" placeholder="" disabled value="{{.DevUplift}}" data-mdb-input-mask="" step="0.25"></input>
-                        
-                        <label class="form-label" for="DevUplift">DevUplift</label>
+                        <label class="form-label" for="DevelopmentEstimate">DevelopmentEstimate</label>
                         
                     </div>
                 
@@ -115,9 +101,23 @@
                 
                     <div class="form-outline">
                         
-                            <input type="number" class="form-control" id="Reqs" aria-describedby="ReqsHelp" placeholder="" disabled value="{{.Reqs}}" data-mdb-input-mask="" step="0.25"></input>
+                            <input type="number" class="form-control" id="DevelopmentFactored" aria-describedby="DevelopmentFactoredHelp" placeholder="" disabled value="{{.DevelopmentFactored}}" data-mdb-input-mask="" step="0.25"></input>
                         
-                        <label class="form-label" for="Reqs">Reqs</label>
+                        <label class="form-label" for="DevelopmentFactored">DevelopmentFactored</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="number" class="form-control" id="Requirements" aria-describedby="RequirementsHelp" placeholder="" disabled value="{{.Requirements}}" data-mdb-input-mask="" step="0.25"></input>
+                        
+                        <label class="form-label" for="Requirements">Requirements</label>
                         
                     </div>
                 
@@ -143,9 +143,9 @@
                 
                     <div class="form-outline">
                         
-                            <input type="number" class="form-control" id="Docs" aria-describedby="DocsHelp" placeholder="" disabled value="{{.Docs}}" data-mdb-input-mask="" step="0.25"></input>
+                            <input type="number" class="form-control" id="Documentation" aria-describedby="DocumentationHelp" placeholder="" disabled value="{{.Documentation}}" data-mdb-input-mask="" step="0.25"></input>
                         
-                        <label class="form-label" for="Docs">Docs</label>
+                        <label class="form-label" for="Documentation">Documentation</label>
                         
                     </div>
                 
@@ -157,9 +157,9 @@
                 
                     <div class="form-outline">
                         
-                            <input type="number" class="form-control" id="Mgt" aria-describedby="MgtHelp" placeholder="" disabled value="{{.Mgt}}" data-mdb-input-mask="" step="0.25"></input>
+                            <input type="number" class="form-control" id="Management" aria-describedby="ManagementHelp" placeholder="" disabled value="{{.Management}}" data-mdb-input-mask="" step="0.25"></input>
                         
-                        <label class="form-label" for="Mgt">Mgt</label>
+                        <label class="form-label" for="Management">Management</label>
                         
                     </div>
                 
@@ -407,10 +407,10 @@
             <div class="row mb-3"  >
                 <div class="col">
                 
-                  <select id="Developer" name="Developer" class="select" data-mdb-filter="true" disabled>
-                  {{range .Developer_lookup}}<option value="{{.ID}}" {{if eq .ID $.Developer}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  <select id="DeveloperResource" name="DeveloperResource" class="select" data-mdb-filter="true" disabled>
+                  {{range .DeveloperResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.DeveloperResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
                   </select>
-                  <label class="form-label select-label" for="Developer" disabled>Developer</label>
+                  <label class="form-label select-label" for="DeveloperResource" disabled>DeveloperResource</label>
                 
                 </div>
             </div>
@@ -418,10 +418,10 @@
             <div class="row mb-3"  >
                 <div class="col">
                 
-                  <select id="Approver" name="Approver" class="select" data-mdb-filter="true" disabled>
-                  {{range .Approver_lookup}}<option value="{{.ID}}" {{if eq .ID $.Approver}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  <select id="ApproverResource" name="ApproverResource" class="select" data-mdb-filter="true" disabled>
+                  {{range .ApproverResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.ApproverResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
                   </select>
-                  <label class="form-label select-label" for="Approver" disabled>Approver</label>
+                  <label class="form-label select-label" for="ApproverResource" disabled>ApproverResource</label>
                 
                 </div>
             </div>
@@ -431,9 +431,9 @@
                 
                     <div class="form-outline">
                         
-                            <textarea class="form-control" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder=""  disabled value="{{.Notes}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Notes}}</textarea>
+                            <textarea class="form-control" id="Activity" name="Activity" aria-describedby="ActivityHelp" placeholder=""  disabled value="{{.Activity}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Activity}}</textarea>
                         
-                        <label class="form-label" for="Notes">Notes</label>
+                        <label class="form-label" for="Activity">Activity</label>
                         
                     </div>
                 
@@ -443,13 +443,10 @@
             <div class="row mb-3"  >
                 <div class="col">
                 
-                    <div class="form-outline">
-                        
-                            <input type="text" class="form-control" id="OffProfile" aria-describedby="OffProfileHelp" placeholder="" disabled value="{{.OffProfile}}" data-mdb-input-mask="" ></input>
-                        
-                        <label class="form-label" for="OffProfile">OffProfile</label>
-                        
-                    </div>
+                  <select id="OffProfile" name="OffProfile" class="select" data-mdb-filter="true" disabled>
+                  {{range .OffProfile_lookup}}<option value="{{.ID}}" {{if eq .ID $.OffProfile}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="OffProfile" disabled>OffProfile</label>
                 
                 </div>
             </div>
@@ -459,7 +456,7 @@
                 
                     <div class="form-outline">
                         
-                            <input type="text" class="form-control" id="OffProfileJustification" aria-describedby="OffProfileJustificationHelp" placeholder="" disabled value="{{.OffProfileJustification}}" data-mdb-input-mask="" ></input>
+                            <textarea class="form-control" id="OffProfileJustification" name="OffProfileJustification" aria-describedby="OffProfileJustificationHelp" placeholder=""  disabled value="{{.OffProfileJustification}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.OffProfileJustification}}</textarea>
                         
                         <label class="form-label" for="OffProfileJustification">OffProfileJustification</label>
                         
@@ -487,23 +484,9 @@
                 
                     <div class="form-outline">
                         
-                            <input type="text" class="form-control" id="DfReqs" aria-describedby="DfReqsHelp" placeholder="" disabled value="{{.DfReqs}}" data-mdb-input-mask="" ></input>
+                            <input type="text" class="form-control" id="RequirementsDefault" aria-describedby="RequirementsDefaultHelp" placeholder="" disabled value="{{.RequirementsDefault}}" data-mdb-input-mask="" ></input>
                         
-                        <label class="form-label" for="DfReqs">DfReqs</label>
-                        
-                    </div>
-                
-                </div>
-            </div>
-             
-            <div class="row mb-3"  >
-                <div class="col">
-                
-                    <div class="form-outline">
-                        
-                            <input type="text" class="form-control" id="DfAnalystTest" aria-describedby="DfAnalystTestHelp" placeholder="" disabled value="{{.DfAnalystTest}}" data-mdb-input-mask="" ></input>
-                        
-                        <label class="form-label" for="DfAnalystTest">DfAnalystTest</label>
+                        <label class="form-label" for="RequirementsDefault">RequirementsDefault</label>
                         
                     </div>
                 
@@ -515,23 +498,9 @@
                 
                     <div class="form-outline">
                         
-                            <input type="text" class="form-control" id="DfDocs" aria-describedby="DfDocsHelp" placeholder="" disabled value="{{.DfDocs}}" data-mdb-input-mask="" ></input>
+                            <input type="text" class="form-control" id="AnalystTestDefault" aria-describedby="AnalystTestDefaultHelp" placeholder="" disabled value="{{.AnalystTestDefault}}" data-mdb-input-mask="" ></input>
                         
-                        <label class="form-label" for="DfDocs">DfDocs</label>
-                        
-                    </div>
-                
-                </div>
-            </div>
-             
-            <div class="row mb-3"  >
-                <div class="col">
-                
-                    <div class="form-outline">
-                        
-                            <input type="text" class="form-control" id="Dfmgt" aria-describedby="DfmgtHelp" placeholder="" disabled value="{{.Dfmgt}}" data-mdb-input-mask="" ></input>
-                        
-                        <label class="form-label" for="Dfmgt">Dfmgt</label>
+                        <label class="form-label" for="AnalystTestDefault">AnalystTestDefault</label>
                         
                     </div>
                 
@@ -543,23 +512,9 @@
                 
                     <div class="form-outline">
                         
-                            <input type="text" class="form-control" id="DfuatSupport" aria-describedby="DfuatSupportHelp" placeholder="" disabled value="{{.DfuatSupport}}" data-mdb-input-mask="" ></input>
+                            <input type="text" class="form-control" id="DocumentationDefault" aria-describedby="DocumentationDefaultHelp" placeholder="" disabled value="{{.DocumentationDefault}}" data-mdb-input-mask="" ></input>
                         
-                        <label class="form-label" for="DfuatSupport">DfuatSupport</label>
-                        
-                    </div>
-                
-                </div>
-            </div>
-             
-            <div class="row mb-3"  >
-                <div class="col">
-                
-                    <div class="form-outline">
-                        
-                            <input type="text" class="form-control" id="Dfmarketing" aria-describedby="DfmarketingHelp" placeholder="" disabled value="{{.Dfmarketing}}" data-mdb-input-mask="" ></input>
-                        
-                        <label class="form-label" for="Dfmarketing">Dfmarketing</label>
+                        <label class="form-label" for="DocumentationDefault">DocumentationDefault</label>
                         
                     </div>
                 
@@ -571,9 +526,9 @@
                 
                     <div class="form-outline">
                         
-                            <input type="text" class="form-control" id="Dfcontingency" aria-describedby="DfcontingencyHelp" placeholder="" disabled value="{{.Dfcontingency}}" data-mdb-input-mask="" ></input>
+                            <input type="text" class="form-control" id="ManagementDefault" aria-describedby="ManagementDefaultHelp" placeholder="" disabled value="{{.ManagementDefault}}" data-mdb-input-mask="" ></input>
                         
-                        <label class="form-label" for="Dfcontingency">Dfcontingency</label>
+                        <label class="form-label" for="ManagementDefault">ManagementDefault</label>
                         
                     </div>
                 
@@ -585,9 +540,51 @@
                 
                     <div class="form-outline">
                         
-                            <input type="text" class="form-control" id="DfdevUplift" aria-describedby="DfdevUpliftHelp" placeholder="" disabled value="{{.DfdevUplift}}" data-mdb-input-mask="" ></input>
+                            <input type="text" class="form-control" id="UatSupportDefault" aria-describedby="UatSupportDefaultHelp" placeholder="" disabled value="{{.UatSupportDefault}}" data-mdb-input-mask="" ></input>
                         
-                        <label class="form-label" for="DfdevUplift">DfdevUplift</label>
+                        <label class="form-label" for="UatSupportDefault">UatSupportDefault</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="MarketingDefault" aria-describedby="MarketingDefaultHelp" placeholder="" disabled value="{{.MarketingDefault}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="MarketingDefault">MarketingDefault</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="ContingencyDefault" aria-describedby="ContingencyDefaultHelp" placeholder="" disabled value="{{.ContingencyDefault}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="ContingencyDefault">ContingencyDefault</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="DevelopmentFactoredDefault" aria-describedby="DevelopmentFactoredDefaultHelp" placeholder="" disabled value="{{.DevelopmentFactoredDefault}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="DevelopmentFactoredDefault">DevelopmentFactoredDefault</label>
                         
                     </div>
                 
@@ -653,10 +650,10 @@
             <div class="row mb-3"  >
                 <div class="col">
                 
-                  <select id="Analyst" name="Analyst" class="select" data-mdb-filter="true" disabled>
-                  {{range .Analyst_lookup}}<option value="{{.ID}}" {{if eq .ID $.Analyst}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  <select id="AnalystResource" name="AnalystResource" class="select" data-mdb-filter="true" disabled>
+                  {{range .AnalystResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.AnalystResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
                   </select>
-                  <label class="form-label select-label" for="Analyst" disabled>Analyst</label>
+                  <label class="form-label select-label" for="AnalystResource" disabled>AnalystResource</label>
                 
                 </div>
             </div>
@@ -664,10 +661,10 @@
             <div class="row mb-3"  >
                 <div class="col">
                 
-                  <select id="ProductManager" name="ProductManager" class="select" data-mdb-filter="true" disabled>
-                  {{range .ProductManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProductManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  <select id="ProductManagerResource" name="ProductManagerResource" class="select" data-mdb-filter="true" disabled>
+                  {{range .ProductManagerResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProductManagerResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
                   </select>
-                  <label class="form-label select-label" for="ProductManager" disabled>ProductManager</label>
+                  <label class="form-label select-label" for="ProductManagerResource" disabled>ProductManagerResource</label>
                 
                 </div>
             </div>
@@ -675,10 +672,10 @@
             <div class="row mb-3"  >
                 <div class="col">
                 
-                  <select id="ProjectManager" name="ProjectManager" class="select" data-mdb-filter="true" disabled>
-                  {{range .ProjectManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  <select id="ProjectManagerResource" name="ProjectManagerResource" class="select" data-mdb-filter="true" disabled>
+                  {{range .ProjectManagerResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManagerResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
                   </select>
-                  <label class="form-label select-label" for="ProjectManager" disabled>ProjectManager</label>
+                  <label class="form-label select-label" for="ProjectManagerResource" disabled>ProjectManagerResource</label>
                 
                 </div>
             </div>
@@ -702,9 +699,9 @@
                 
                     <div class="form-outline">
                         
-                            <input type="number" class="form-control" id="DfTraining" aria-describedby="DfTrainingHelp" placeholder="" disabled value="{{.DfTraining}}" data-mdb-input-mask="" step="0.25"></input>
+                            <input type="text" class="form-control" id="TrainingDefault" aria-describedby="TrainingDefaultHelp" placeholder="" disabled value="{{.TrainingDefault}}" data-mdb-input-mask="" ></input>
                         
-                        <label class="form-label" for="DfTraining">DfTraining</label>
+                        <label class="form-label" for="TrainingDefault">TrainingDefault</label>
                         
                     </div>
                 
@@ -714,10 +711,10 @@
             <div class="row mb-3"  >
                 <div class="col">
                 
-                  <select id="DefaultProfile" name="DefaultProfile" class="select" data-mdb-filter="true" disabled>
-                  {{range .DefaultProfile_lookup}}<option value="{{.ID}}" {{if eq .ID $.DefaultProfile}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  <select id="ProfileDefault" name="ProfileDefault" class="select" data-mdb-filter="true" disabled>
+                  {{range .ProfileDefault_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProfileDefault}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
                   </select>
-                  <label class="form-label select-label" for="DefaultProfile" disabled>DefaultProfile</label>
+                  <label class="form-label select-label" for="ProfileDefault" disabled>ProfileDefault</label>
                 
                 </div>
             </div>
@@ -725,10 +722,192 @@
             <div class="row mb-3"  >
                 <div class="col">
                 
-                  <select id="ActualProfile" name="ActualProfile" class="select" data-mdb-filter="true" disabled>
-                  {{range .ActualProfile_lookup}}<option value="{{.ID}}" {{if eq .ID $.ActualProfile}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  <select id="ProfileSelected" name="ProfileSelected" class="select" data-mdb-filter="true" disabled>
+                  {{range .ProfileSelected_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProfileSelected}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
                   </select>
-                  <label class="form-label select-label" for="ActualProfile" disabled>ActualProfile</label>
+                  <label class="form-label select-label" for="ProfileSelected" disabled>ProfileSelected</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="number" class="form-control" id="EstimateEffort" aria-describedby="EstimateEffortHelp" placeholder="" disabled value="{{.EstimateEffort}}" data-mdb-input-mask="" step="0.25"></input>
+                        
+                        <label class="form-label" for="EstimateEffort">EstimateEffort</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  hidden>
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="EstimateEffortDefault" aria-describedby="EstimateEffortDefaultHelp" placeholder="" disabled value="{{.EstimateEffortDefault}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="EstimateEffortDefault">EstimateEffortDefault</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="number" class="form-control" id="AnalystEstimate" aria-describedby="AnalystEstimateHelp" placeholder="" disabled value="{{.AnalystEstimate}}" data-mdb-input-mask="" step="0.25"></input>
+                        
+                        <label class="form-label" for="AnalystEstimate">AnalystEstimate</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="number" class="form-control" id="TotalDefault" aria-describedby="TotalDefaultHelp" placeholder="" disabled value="{{.TotalDefault}}" data-mdb-input-mask="" step="0.25"></input>
+                        
+                        <label class="form-label" for="TotalDefault">TotalDefault</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="OriginName" aria-describedby="OriginNameHelp" placeholder="" disabled value="{{.OriginName}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="OriginName">OriginName</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="ProjectName" aria-describedby="ProjectNameHelp" placeholder="" disabled value="{{.ProjectName}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="ProjectName">ProjectName</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="OriginID" aria-describedby="OriginIDHelp" placeholder="" disabled value="{{.OriginID}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="OriginID">OriginID</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="ProjectID" aria-describedby="ProjectIDHelp" placeholder="" disabled value="{{.ProjectID}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="ProjectID">ProjectID</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="ProfileSelectedOld" aria-describedby="ProfileSelectedOldHelp" placeholder="" disabled value="{{.ProfileSelectedOld}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="ProfileSelectedOld">ProfileSelectedOld</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="CCY" aria-describedby="CCYHelp" placeholder="" disabled value="{{.CCY}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="CCY">CCY</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="RoundTo" aria-describedby="RoundToHelp" placeholder="" disabled value="{{.RoundTo}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="RoundTo">RoundTo</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="OriginCode" aria-describedby="OriginCodeHelp" placeholder="" disabled value="{{.OriginCode}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="OriginCode">OriginCode</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="EstimationSessionName" aria-describedby="EstimationSessionNameHelp" placeholder="" disabled value="{{.EstimationSessionName}}" data-mdb-input-mask="" ></input>
+                        
+                        <label class="form-label" for="EstimationSessionName">EstimationSessionName</label>
+                        
+                    </div>
                 
                 </div>
             </div>

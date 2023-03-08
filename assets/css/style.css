@@ -144,7 +144,10 @@ body{
     background-color: var(--custom-primary-colour) !important;
   }
 
- 
+  .btn-outline-primary {
+    color: var(--custom-primary-colour);
+    border-color: var(--custom-primary-colour);
+}
 
   .btn-info{
     background-color: var(--custom-info-colour) !important;

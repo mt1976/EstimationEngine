@@ -16,7 +16,7 @@ Friendly Name|**Origin State**|
 * **Edit** (/OriginState/OriginStateEdit)
 * **Save** (/OriginState/OriginStateSave)
 * **New** (/OriginState/OriginStateNew)
-
+* **Delete** (/OriginState/OriginStateDelete)
 
 
 
@@ -81,7 +81,7 @@ SQL Table Key | **originStateID**
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **15/02/2023** at **10:44:45**
+Date & Time		     | **04/03/2023** at **20:14:13**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

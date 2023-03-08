@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 17/02/2023 at 17:23:39
+// Date & Time		    : 06/03/2023 at 17:13:45
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //EstimationSession_Publish annouces the endpoints available for this object
-//EstimationSession_Publish - Auto generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local
+//EstimationSession_Publish - Auto generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func EstimationSession_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.EstimationSession_Path, EstimationSession_Handler)
 	mux.HandleFunc(dm.EstimationSession_PathList, EstimationSession_HandlerList)
@@ -34,21 +34,21 @@ func EstimationSession_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.EstimationSession_PathEdit, EstimationSession_HandlerEdit)
 	mux.HandleFunc(dm.EstimationSession_PathNew, EstimationSession_HandlerNew)
 	mux.HandleFunc(dm.EstimationSession_PathSave, EstimationSession_HandlerSave)
-	//Cannot Delete via GUI
+	mux.HandleFunc(dm.EstimationSession_PathDelete, EstimationSession_HandlerDelete)
 	logs.Publish("Application", dm.EstimationSession_Title)
     core.Catalog_Add(dm.EstimationSession_Title, dm.EstimationSession_Path, "", dm.EstimationSession_QueryString, "Application")
 	// 
-	// Auto generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //EstimationSession_HandlerList is the handler for the list page
 //Allows Listing of EstimationSession records
-//EstimationSession_HandlerList - Auto generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local
+//EstimationSession_HandlerList - Auto generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func EstimationSession_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -63,7 +63,15 @@ func EstimationSession_HandlerList(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	var returnList []dm.EstimationSession
-	noItems, returnList, _ := dao.EstimationSession_GetList()
+
+	objectName := dao.Translate("ObjectName", "EstimationSession")
+	reqField := "Base"
+	filter,_ := dao.Data_GetString(objectName, reqField, dm.Data_Category_FilterRule)
+	if filter == "" {
+		logs.Warning("No filter found : " + reqField + " for Object: " + objectName)
+	} 
+
+	noItems, returnList, _ := dao.EstimationSession_GetListFiltered(filter)
 
 	pageDetail := dm.EstimationSession_PageList{
 		Title:            CardTitle(dm.EstimationSession_Title, core.Action_List),
@@ -76,9 +84,11 @@ func EstimationSession_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 	
-	ExecuteTemplate(dm.EstimationSession_TemplateList, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("EstimationSession", "List", dm.EstimationSession_TemplateList)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -86,10 +96,10 @@ func EstimationSession_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //EstimationSession_HandlerView is the handler used to View a page
 //Allows Viewing for an existing EstimationSession record
-//EstimationSession_HandlerView - Auto generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//EstimationSession_HandlerView - Auto generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func EstimationSession_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -116,19 +126,21 @@ func EstimationSession_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = estimationsession_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.EstimationSession_TemplateView, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("EstimationSession", "View", dm.EstimationSession_TemplateView)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //EstimationSession_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing EstimationSession record and then allows the user to save the changes
-//EstimationSession_HandlerEdit - Auto generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//EstimationSession_HandlerEdit - Auto generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func EstimationSession_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -163,19 +175,22 @@ func EstimationSession_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = estimationsession_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.EstimationSession_TemplateEdit, w, r, pageDetail)
+
+	nextTemplate :=  NextTemplate("EstimationSession", "Edit", dm.EstimationSession_TemplateEdit)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //EstimationSession_HandlerSave is the handler used process the saving of an EstimationSession
 //It is called from the Edit and New pages
-//EstimationSession_HandlerSave  - Auto generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//EstimationSession_HandlerSave  - Auto generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func EstimationSession_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -192,25 +207,26 @@ func EstimationSession_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	item := estimationsession_DataFromRequest(r)
 	
 	item, errStore := dao.EstimationSession_Store(item,r)
-	if errStore == nil {	
-		http.Redirect(w, r, dm.EstimationSession_Redirect, http.StatusFound)
+	if errStore == nil {
+		nextTemplate :=  NextTemplate("EstimationSession", "Save", dm.EstimationSession_Redirect)
+		http.Redirect(w, r, nextTemplate, http.StatusFound)
 	} else {
 		logs.Information(dm.EstimationSession_Name, errStore.Error())
-		http.Redirect(w, r, r.Referer(), http.StatusFound)
+		//http.Redirect(w, r, r.Referer(), http.StatusFound)
 		ExecuteRedirect(r.Referer(), w, r,dm.EstimationSession_QueryString,itemID,item)
 	}
 	// 
-	// Auto generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //EstimationSession_HandlerNew is the handler used process the creation of an EstimationSession
 //It will create a new EstimationSession and then redirect to the Edit page
-//EstimationSession_HandlerNew  - Auto generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//EstimationSession_HandlerNew  - Auto generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func EstimationSession_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -246,23 +262,52 @@ func EstimationSession_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = estimationsession_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.EstimationSession_TemplateNew, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("EstimationSession", "New", dm.EstimationSession_TemplateNew)
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }	
 
 
+//EstimationSession_HandlerDelete is the handler used process the deletion of an EstimationSession
+// It will delete the EstimationSession and then redirect to the List page
+//EstimationSession_HandlerDelete - Auto generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+func EstimationSession_HandlerDelete(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Mandatory Security Validation
+	//
+	if !(Session_Validate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	//
+	// Code Continues Below
+	//
+	logs.Servicing(r.URL.Path)
+	searchID := core.GetURLparam(r, dm.EstimationSession_QueryString)
+
+	dao.EstimationSession_Delete(searchID)	
+
+	nextTemplate :=  NextTemplate("EstimationSession", "Delete", dm.EstimationSession_Redirect)
+	http.Redirect(w, r, nextTemplate, http.StatusFound)
+	// 
+	// Auto generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// END
+}
+
 
 //estimationsession_PopulatePage Builds/Populates the EstimationSession Page 
-//estimationsession_PopulatePage Auto generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//estimationsession_PopulatePage Auto generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func estimationsession_PopulatePage(rD dm.EstimationSession, pageDetail dm.EstimationSession_Page) dm.EstimationSession_Page {
 	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.EstimationSessionID = rD.EstimationSessionID
 	pageDetail.ProjectID = rD.ProjectID
 	pageDetail.EstimationStateID = rD.EstimationStateID
-	pageDetail.Notes = rD.Notes
+	pageDetail.Activity = rD.Activity
 	pageDetail.Releases = rD.Releases
 	pageDetail.Total = rD.Total
 	pageDetail.Contingency = rD.Contingency
@@ -341,7 +386,7 @@ func estimationsession_PopulatePage(rD dm.EstimationSession, pageDetail dm.Estim
 	pageDetail.EstimationSessionID_props = rD.EstimationSessionID_props
 	pageDetail.ProjectID_props = rD.ProjectID_props
 	pageDetail.EstimationStateID_props = rD.EstimationStateID_props
-	pageDetail.Notes_props = rD.Notes_props
+	pageDetail.Activity_props = rD.Activity_props
 	pageDetail.Releases_props = rD.Releases_props
 	pageDetail.Total_props = rD.Total_props
 	pageDetail.Contingency_props = rD.Contingency_props
@@ -405,11 +450,9 @@ func estimationsession_PopulatePage(rD dm.EstimationSession, pageDetail dm.Estim
 	pageDetail.ADOURI_props = rD.ADOURI_props
 	pageDetail.NoActiveFeatures_props = rD.NoActiveFeatures_props
 	return pageDetail
-}	
-
-
+}
 //estimationsession_DataFromRequest is used process the content of an HTTP Request and return an instance of an EstimationSession
-//estimationsession_DataFromRequest Auto generated 17/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//estimationsession_DataFromRequest Auto generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func estimationsession_DataFromRequest(r *http.Request) dm.EstimationSession {
 
 	var item dm.EstimationSession
@@ -417,7 +460,7 @@ func estimationsession_DataFromRequest(r *http.Request) dm.EstimationSession {
 		item.EstimationSessionID = r.FormValue(dm.EstimationSession_EstimationSessionID_scrn)
 		item.ProjectID = r.FormValue(dm.EstimationSession_ProjectID_scrn)
 		item.EstimationStateID = r.FormValue(dm.EstimationSession_EstimationStateID_scrn)
-		item.Notes = r.FormValue(dm.EstimationSession_Notes_scrn)
+		item.Activity = r.FormValue(dm.EstimationSession_Activity_scrn)
 		item.Releases = r.FormValue(dm.EstimationSession_Releases_scrn)
 		item.Total = r.FormValue(dm.EstimationSession_Total_scrn)
 		item.Contingency = r.FormValue(dm.EstimationSession_Contingency_scrn)
@@ -482,4 +525,3 @@ func estimationsession_DataFromRequest(r *http.Request) dm.EstimationSession {
 		item.NoActiveFeatures = r.FormValue(dm.EstimationSession_NoActiveFeatures_scrn)
 	return item
 }
-

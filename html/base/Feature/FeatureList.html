@@ -29,14 +29,14 @@
                           
                           
                           <th class="text-center">EstimationSessionID</th>
-                          <th class="text-center">ConfidenceID</th>
+                          <th class="text-center">ConfidenceCODE</th>
                           <th class="text-center">Name</th>
-                          <th class="text-center">DevEstimate</th>
-                          <th class="text-center">DevUplift</th>
-                          <th class="text-center">Reqs</th>
+                          <th class="text-center">DevelopmentEstimate</th>
+                          <th class="text-center">DevelopmentFactored</th>
+                          <th class="text-center">Requirements</th>
                           <th class="text-center">AnalystTest</th>
-                          <th class="text-center">Docs</th>
-                          <th class="text-center">Mgt</th>
+                          <th class="text-center">Documentation</th>
+                          <th class="text-center">Management</th>
                           <th class="text-center">UatSupport</th>
                           <th class="text-center">Marketing</th>
                           <th class="text-center">Contingency</th>
@@ -54,31 +54,44 @@
                           
                           
                           
-                          <th class="text-center">Developer</th>
-                          <th class="text-center">Approver</th>
-                          <th class="text-center">Notes</th>
+                          <th class="text-center">DeveloperResource</th>
+                          <th class="text-center">ApproverResource</th>
+                          <th class="text-center">Activity</th>
                           <th class="text-center">OffProfile</th>
                           <th class="text-center">OffProfileJustification</th>
                           
-                          <th class="text-center">DfReqs</th>
-                          <th class="text-center">DfAnalystTest</th>
-                          <th class="text-center">DfDocs</th>
-                          <th class="text-center">Dfmgt</th>
-                          <th class="text-center">DfuatSupport</th>
-                          <th class="text-center">Dfmarketing</th>
-                          <th class="text-center">Dfcontingency</th>
-                          <th class="text-center">DfdevUplift</th>
+                          <th class="text-center">RequirementsDefault</th>
+                          <th class="text-center">AnalystTestDefault</th>
+                          <th class="text-center">DocumentationDefault</th>
+                          <th class="text-center">ManagementDefault</th>
+                          <th class="text-center">UatSupportDefault</th>
+                          <th class="text-center">MarketingDefault</th>
+                          <th class="text-center">ContingencyDefault</th>
+                          <th class="text-center">DevelopmentFactoredDefault</th>
                           <th class="text-center">Total</th>
                           
                           <th class="text-center">Comments</th>
                           <th class="text-center">Description</th>
-                          <th class="text-center">Analyst</th>
-                          <th class="text-center">ProductManager</th>
-                          <th class="text-center">ProjectManager</th>
+                          <th class="text-center">AnalystResource</th>
+                          <th class="text-center">ProductManagerResource</th>
+                          <th class="text-center">ProjectManagerResource</th>
                           <th class="text-center">Training</th>
-                          <th class="text-center">DfTraining</th>
-                          <th class="text-center">DefaultProfile</th>
-                          <th class="text-center">ActualProfile</th>
+                          <th class="text-center">TrainingDefault</th>
+                          <th class="text-center">ProfileDefault</th>
+                          <th class="text-center">ProfileSelected</th>
+                          <th class="text-center">EstimateEffort</th>
+                          
+                          <th class="text-center">AnalystEstimate</th>
+                          <th class="text-center">TotalDefault</th>
+                          <th class="text-center">OriginName</th>
+                          <th class="text-center">ProjectName</th>
+                          <th class="text-center">OriginID</th>
+                          <th class="text-center">ProjectID</th>
+                          <th class="text-center">ProfileSelectedOld</th>
+                          <th class="text-center">CCY</th>
+                          <th class="text-center">RoundTo</th>
+                          <th class="text-center">OriginCode</th>
+                          <th class="text-center">EstimationSessionName</th>
                           <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
                         </tr>
                       </thead>
@@ -88,14 +101,14 @@
                           
                           
                           <td class="align-middle" >{{.EstimationSessionID}}</td>
-                          <td class="align-middle" >{{.ConfidenceID}}</td>
+                          <td class="align-middle" >{{.ConfidenceCODE}}</td>
                           <td class="align-middle" >{{.Name}}</td>
-                          <td class="align-middle" >{{.DevEstimate}}</td>
-                          <td class="align-middle" >{{.DevUplift}}</td>
-                          <td class="align-middle" >{{.Reqs}}</td>
+                          <td class="align-middle" >{{.DevelopmentEstimate}}</td>
+                          <td class="align-middle" >{{.DevelopmentFactored}}</td>
+                          <td class="align-middle" >{{.Requirements}}</td>
                           <td class="align-middle" >{{.AnalystTest}}</td>
-                          <td class="align-middle" >{{.Docs}}</td>
-                          <td class="align-middle" >{{.Mgt}}</td>
+                          <td class="align-middle" >{{.Documentation}}</td>
+                          <td class="align-middle" >{{.Management}}</td>
                           <td class="align-middle" >{{.UatSupport}}</td>
                           <td class="align-middle" >{{.Marketing}}</td>
                           <td class="align-middle" >{{.Contingency}}</td>
@@ -113,38 +126,51 @@
                           
                           
                           
-                          <td class="align-middle" >{{.Developer}}</td>
-                          <td class="align-middle" >{{.Approver}}</td>
-                          <td class="align-middle" >{{.Notes}}</td>
+                          <td class="align-middle" >{{.DeveloperResource}}</td>
+                          <td class="align-middle" >{{.ApproverResource}}</td>
+                          <td class="align-middle" >{{.Activity}}</td>
                           <td class="align-middle" >{{.OffProfile}}</td>
                           <td class="align-middle" >{{.OffProfileJustification}}</td>
                           
-                          <td class="align-middle" >{{.DfReqs}}</td>
-                          <td class="align-middle" >{{.DfAnalystTest}}</td>
-                          <td class="align-middle" >{{.DfDocs}}</td>
-                          <td class="align-middle" >{{.Dfmgt}}</td>
-                          <td class="align-middle" >{{.DfuatSupport}}</td>
-                          <td class="align-middle" >{{.Dfmarketing}}</td>
-                          <td class="align-middle" >{{.Dfcontingency}}</td>
-                          <td class="align-middle" >{{.DfdevUplift}}</td>
+                          <td class="align-middle" >{{.RequirementsDefault}}</td>
+                          <td class="align-middle" >{{.AnalystTestDefault}}</td>
+                          <td class="align-middle" >{{.DocumentationDefault}}</td>
+                          <td class="align-middle" >{{.ManagementDefault}}</td>
+                          <td class="align-middle" >{{.UatSupportDefault}}</td>
+                          <td class="align-middle" >{{.MarketingDefault}}</td>
+                          <td class="align-middle" >{{.ContingencyDefault}}</td>
+                          <td class="align-middle" >{{.DevelopmentFactoredDefault}}</td>
                           <td class="align-middle" >{{.Total}}</td>
                           
                           <td class="align-middle" >{{.Comments}}</td>
                           <td class="align-middle" >{{.Description}}</td>
-                          <td class="align-middle" >{{.Analyst}}</td>
-                          <td class="align-middle" >{{.ProductManager}}</td>
-                          <td class="align-middle" >{{.ProjectManager}}</td>
+                          <td class="align-middle" >{{.AnalystResource}}</td>
+                          <td class="align-middle" >{{.ProductManagerResource}}</td>
+                          <td class="align-middle" >{{.ProjectManagerResource}}</td>
                           <td class="align-middle" >{{.Training}}</td>
-                          <td class="align-middle" >{{.DfTraining}}</td>
-                          <td class="align-middle" >{{.DefaultProfile}}</td>
-                          <td class="align-middle" >{{.ActualProfile}}</td>
+                          <td class="align-middle" >{{.TrainingDefault}}</td>
+                          <td class="align-middle" >{{.ProfileDefault}}</td>
+                          <td class="align-middle" >{{.ProfileSelected}}</td>
+                          <td class="align-middle" >{{.EstimateEffort}}</td>
+                          
+                          <td class="align-middle" >{{.AnalystEstimate}}</td>
+                          <td class="align-middle" >{{.TotalDefault}}</td>
+                          <td class="align-middle" >{{.OriginName}}</td>
+                          <td class="align-middle" >{{.ProjectName}}</td>
+                          <td class="align-middle" >{{.OriginID}}</td>
+                          <td class="align-middle" >{{.ProjectID}}</td>
+                          <td class="align-middle" >{{.ProfileSelectedOld}}</td>
+                          <td class="align-middle" >{{.CCY}}</td>
+                          <td class="align-middle" >{{.RoundTo}}</td>
+                          <td class="align-middle" >{{.OriginCode}}</td>
+                          <td class="align-middle" >{{.EstimationSessionName}}</td>
                           
                           <td class="align-middle text-center" style="width:1px;padding:0px;padding-top:1rem;">
                               <form action="/home" method="POST" class="d-flex justify-content-center">
                                   <div class="btn-group" id="ActionButtonGroup2">
                                     <button type="submit" value="" class="btn btn-sm btn-info " formaction="/FeatureView?FeatureID={{.FeatureID}}" method="POST" title="View Feature"><i class="far fa-eye"></i>View</button>
                                     <button type="submit" value="" class="btn btn-sm btn-warning " formaction="/FeatureEdit?FeatureID={{.FeatureID}}" method="POST" title="Edit Feature"><i class="fas fa-edit"></i>Edit</button>
-                                    
+                                    <button type="submit" value="" class="btn btn-sm btn-danger " formaction="/FeatureDelete?FeatureID={{.FeatureID}}" method="POST" title="Delete Feature"><i class="fas fa-trash"></i>Delete</button>
                                   </div>
                                 </form>
                           </td>
@@ -156,14 +182,14 @@
                           
                           
                           <th class="text-center">EstimationSessionID</th>
-                          <th class="text-center">ConfidenceID</th>
+                          <th class="text-center">ConfidenceCODE</th>
                           <th class="text-center">Name</th>
-                          <th class="text-center">DevEstimate</th>
-                          <th class="text-center">DevUplift</th>
-                          <th class="text-center">Reqs</th>
+                          <th class="text-center">DevelopmentEstimate</th>
+                          <th class="text-center">DevelopmentFactored</th>
+                          <th class="text-center">Requirements</th>
                           <th class="text-center">AnalystTest</th>
-                          <th class="text-center">Docs</th>
-                          <th class="text-center">Mgt</th>
+                          <th class="text-center">Documentation</th>
+                          <th class="text-center">Management</th>
                           <th class="text-center">UatSupport</th>
                           <th class="text-center">Marketing</th>
                           <th class="text-center">Contingency</th>
@@ -181,31 +207,44 @@
                           
                           
                           
-                          <th class="text-center">Developer</th>
-                          <th class="text-center">Approver</th>
-                          <th class="text-center">Notes</th>
+                          <th class="text-center">DeveloperResource</th>
+                          <th class="text-center">ApproverResource</th>
+                          <th class="text-center">Activity</th>
                           <th class="text-center">OffProfile</th>
                           <th class="text-center">OffProfileJustification</th>
                           
-                          <th class="text-center">DfReqs</th>
-                          <th class="text-center">DfAnalystTest</th>
-                          <th class="text-center">DfDocs</th>
-                          <th class="text-center">Dfmgt</th>
-                          <th class="text-center">DfuatSupport</th>
-                          <th class="text-center">Dfmarketing</th>
-                          <th class="text-center">Dfcontingency</th>
-                          <th class="text-center">DfdevUplift</th>
+                          <th class="text-center">RequirementsDefault</th>
+                          <th class="text-center">AnalystTestDefault</th>
+                          <th class="text-center">DocumentationDefault</th>
+                          <th class="text-center">ManagementDefault</th>
+                          <th class="text-center">UatSupportDefault</th>
+                          <th class="text-center">MarketingDefault</th>
+                          <th class="text-center">ContingencyDefault</th>
+                          <th class="text-center">DevelopmentFactoredDefault</th>
                           <th class="text-center">Total</th>
                           
                           <th class="text-center">Comments</th>
                           <th class="text-center">Description</th>
-                          <th class="text-center">Analyst</th>
-                          <th class="text-center">ProductManager</th>
-                          <th class="text-center">ProjectManager</th>
+                          <th class="text-center">AnalystResource</th>
+                          <th class="text-center">ProductManagerResource</th>
+                          <th class="text-center">ProjectManagerResource</th>
                           <th class="text-center">Training</th>
-                          <th class="text-center">DfTraining</th>
-                          <th class="text-center">DefaultProfile</th>
-                          <th class="text-center">ActualProfile</th>
+                          <th class="text-center">TrainingDefault</th>
+                          <th class="text-center">ProfileDefault</th>
+                          <th class="text-center">ProfileSelected</th>
+                          <th class="text-center">EstimateEffort</th>
+                          
+                          <th class="text-center">AnalystEstimate</th>
+                          <th class="text-center">TotalDefault</th>
+                          <th class="text-center">OriginName</th>
+                          <th class="text-center">ProjectName</th>
+                          <th class="text-center">OriginID</th>
+                          <th class="text-center">ProjectID</th>
+                          <th class="text-center">ProfileSelectedOld</th>
+                          <th class="text-center">CCY</th>
+                          <th class="text-center">RoundTo</th>
+                          <th class="text-center">OriginCode</th>
+                          <th class="text-center">EstimationSessionName</th>
                           <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
                         </tr>
                       </tfoot>

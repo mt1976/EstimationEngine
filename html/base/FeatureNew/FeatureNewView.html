@@ -62,7 +62,7 @@
                 
                     <div class="form-outline">
                         
-                            <input type="text" class="form-control" id="DeveloperEstimate" aria-describedby="DeveloperEstimateHelp" placeholder="" disabled value="{{.DeveloperEstimate}}" data-mdb-input-mask="" ></input>
+                            <input type="number" class="form-control" id="DeveloperEstimate" aria-describedby="DeveloperEstimateHelp" placeholder="" disabled value="{{.DeveloperEstimate}}" data-mdb-input-mask="" step="0.25"></input>
                         
                         <label class="form-label" for="DeveloperEstimate">DeveloperEstimate</label>
                         
@@ -85,9 +85,20 @@
             <div class="row mb-3"  >
                 <div class="col">
                 
+                  <select id="ConfidenceCODE" name="ConfidenceCODE" class="select" data-mdb-filter="true" disabled>
+                  {{range .ConfidenceCODE_lookup}}<option value="{{.ID}}" {{if eq .ID $.ConfidenceCODE}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  </select>
+                  <label class="form-label select-label" for="ConfidenceCODE" disabled>ConfidenceCODE</label>
+                
+                </div>
+            </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
                     <div class="form-outline">
                         
-                            <input type="text" class="form-control" id="AnalystEstimate" aria-describedby="AnalystEstimateHelp" placeholder="" disabled value="{{.AnalystEstimate}}" data-mdb-input-mask="" ></input>
+                            <input type="number" class="form-control" id="AnalystEstimate" aria-describedby="AnalystEstimateHelp" placeholder="" disabled value="{{.AnalystEstimate}}" data-mdb-input-mask="" step="0.25"></input>
                         
                         <label class="form-label" for="AnalystEstimate">AnalystEstimate</label>
                         
@@ -110,58 +121,11 @@
             <div class="row mb-3"  >
                 <div class="col">
                 
-                  <select id="ConfidenceCODE" name="ConfidenceCODE" class="select" data-mdb-filter="true" disabled>
-                  {{range .ConfidenceCODE_lookup}}<option value="{{.ID}}" {{if eq .ID $.ConfidenceCODE}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
-                  </select>
-                  <label class="form-label select-label" for="ConfidenceCODE" disabled>ConfidenceCODE</label>
-                
-                </div>
-            </div>
-             
-            <div class="row mb-3"  >
-                <div class="col">
-                
-                  <select id="ProductManagerResource" name="ProductManagerResource" class="select" data-mdb-filter="true" disabled>
-                  {{range .ProductManagerResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProductManagerResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
-                  </select>
-                  <label class="form-label select-label" for="ProductManagerResource" disabled>ProductManagerResource</label>
-                
-                </div>
-            </div>
-             
-            <div class="row mb-3"  >
-                <div class="col">
-                
-                  <select id="ProjectManagerResource" name="ProjectManagerResource" class="select" data-mdb-filter="true" disabled>
-                  {{range .ProjectManagerResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManagerResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
-                  </select>
-                  <label class="form-label select-label" for="ProjectManagerResource" disabled>ProjectManagerResource</label>
-                
-                </div>
-            </div>
-             
-            <div class="row mb-3"  >
-                <div class="col">
-                
                     <div class="form-outline">
                         
-                            <input type="text" class="form-control" id="Description" aria-describedby="DescriptionHelp" placeholder="" disabled value="{{.Description}}" data-mdb-input-mask="" ></input>
+                            <input type="number" class="form-control" id="EstimateEffort" aria-describedby="EstimateEffortHelp" placeholder="" disabled value="{{.EstimateEffort}}" data-mdb-input-mask="" step="0.25"></input>
                         
-                        <label class="form-label" for="Description">Description</label>
-                        
-                    </div>
-                
-                </div>
-            </div>
-             
-            <div class="row mb-3"  >
-                <div class="col">
-                
-                    <div class="form-outline">
-                        
-                            <input type="text" class="form-control" id="Comments" aria-describedby="CommentsHelp" placeholder="" disabled value="{{.Comments}}" data-mdb-input-mask="" ></input>
-                        
-                        <label class="form-label" for="Comments">Comments</label>
+                        <label class="form-label" for="EstimateEffort">EstimateEffort</label>
                         
                     </div>
                 
@@ -241,10 +205,10 @@
             <div class="row mb-3"  >
                 <div class="col">
                 
-                  <select id="DefaultProfile" name="DefaultProfile" class="select" data-mdb-filter="true" disabled>
-                  {{range .DefaultProfile_lookup}}<option value="{{.ID}}" {{if eq .ID $.DefaultProfile}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  <select id="ProfileDefault" name="ProfileDefault" class="select" data-mdb-filter="true" disabled>
+                  {{range .ProfileDefault_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProfileDefault}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
                   </select>
-                  <label class="form-label select-label" for="DefaultProfile" disabled>DefaultProfile</label>
+                  <label class="form-label select-label" for="ProfileDefault" disabled>ProfileDefault</label>
                 
                 </div>
             </div>
@@ -252,10 +216,10 @@
             <div class="row mb-3"  >
                 <div class="col">
                 
-                  <select id="ActualProfile" name="ActualProfile" class="select" data-mdb-filter="true" disabled>
-                  {{range .ActualProfile_lookup}}<option value="{{.ID}}" {{if eq .ID $.ActualProfile}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  <select id="ProfileSelected" name="ProfileSelected" class="select" data-mdb-filter="true" disabled>
+                  {{range .ProfileSelected_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProfileSelected}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
                   </select>
-                  <label class="form-label select-label" for="ActualProfile" disabled>ActualProfile</label>
+                  <label class="form-label select-label" for="ProfileSelected" disabled>ProfileSelected</label>
                 
                 </div>
             </div>

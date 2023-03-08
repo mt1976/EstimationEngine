@@ -9,27 +9,27 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 15/02/2023 at 10:44:43
+// Date & Time		    : 07/03/2023 at 16:42:06
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Feature defines the datamodel for the Feature object
 type Feature struct {
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
 	SYSId       string
 	FeatureID       string
 	EstimationSessionID       string
-	ConfidenceID       string
+	ConfidenceCODE       string
 	Name       string
-	DevEstimate       string
-	DevUplift       string
-	Reqs       string
+	DevelopmentEstimate       string
+	DevelopmentFactored       string
+	Requirements       string
 	AnalystTest       string
-	Docs       string
-	Mgt       string
+	Documentation       string
+	Management       string
 	UatSupport       string
 	Marketing       string
 	Contingency       string
@@ -47,45 +47,58 @@ type Feature struct {
 	SYSDeleted       string
 	SYSDeletedBy       string
 	SYSDeletedHost       string
-	Developer       string
-	Approver       string
-	Notes       string
+	DeveloperResource       string
+	ApproverResource       string
+	Activity       string
 	OffProfile       string
 	OffProfileJustification       string
 	SYSActivity       string
-	DfReqs       string
-	DfAnalystTest       string
-	DfDocs       string
-	Dfmgt       string
-	DfuatSupport       string
-	Dfmarketing       string
-	Dfcontingency       string
-	DfdevUplift       string
+	RequirementsDefault       string
+	AnalystTestDefault       string
+	DocumentationDefault       string
+	ManagementDefault       string
+	UatSupportDefault       string
+	MarketingDefault       string
+	ContingencyDefault       string
+	DevelopmentFactoredDefault       string
 	Total       string
 	SYSDbVersion       string
 	Comments       string
 	Description       string
-	Analyst       string
-	ProductManager       string
-	ProjectManager       string
+	AnalystResource       string
+	ProductManagerResource       string
+	ProjectManagerResource       string
 	Training       string
-	DfTraining       string
-	DefaultProfile       string
-	ActualProfile       string
+	TrainingDefault       string
+	ProfileDefault       string
+	ProfileSelected       string
+	EstimateEffort       string
+	EstimateEffortDefault       string
+	AnalystEstimate       string
+	TotalDefault       string
+	OriginName       string
+	ProjectName       string
+	OriginID       string
+	ProjectID       string
+	ProfileSelectedOld       string
+	CCY       string
+	RoundTo       string
+	OriginCode       string
+	EstimationSessionName       string
 	//
 	// Field Properties
 	//
 	SYSId_props FieldProperties
 	FeatureID_props FieldProperties
 	EstimationSessionID_props FieldProperties
-	ConfidenceID_props FieldProperties
+	ConfidenceCODE_props FieldProperties
 	Name_props FieldProperties
-	DevEstimate_props FieldProperties
-	DevUplift_props FieldProperties
-	Reqs_props FieldProperties
+	DevelopmentEstimate_props FieldProperties
+	DevelopmentFactored_props FieldProperties
+	Requirements_props FieldProperties
 	AnalystTest_props FieldProperties
-	Docs_props FieldProperties
-	Mgt_props FieldProperties
+	Documentation_props FieldProperties
+	Management_props FieldProperties
 	UatSupport_props FieldProperties
 	Marketing_props FieldProperties
 	Contingency_props FieldProperties
@@ -103,47 +116,61 @@ type Feature struct {
 	SYSDeleted_props FieldProperties
 	SYSDeletedBy_props FieldProperties
 	SYSDeletedHost_props FieldProperties
-	Developer_props FieldProperties
-	Approver_props FieldProperties
-	Notes_props FieldProperties
+	DeveloperResource_props FieldProperties
+	ApproverResource_props FieldProperties
+	Activity_props FieldProperties
 	OffProfile_props FieldProperties
 	OffProfileJustification_props FieldProperties
 	SYSActivity_props FieldProperties
-	DfReqs_props FieldProperties
-	DfAnalystTest_props FieldProperties
-	DfDocs_props FieldProperties
-	Dfmgt_props FieldProperties
-	DfuatSupport_props FieldProperties
-	Dfmarketing_props FieldProperties
-	Dfcontingency_props FieldProperties
-	DfdevUplift_props FieldProperties
+	RequirementsDefault_props FieldProperties
+	AnalystTestDefault_props FieldProperties
+	DocumentationDefault_props FieldProperties
+	ManagementDefault_props FieldProperties
+	UatSupportDefault_props FieldProperties
+	MarketingDefault_props FieldProperties
+	ContingencyDefault_props FieldProperties
+	DevelopmentFactoredDefault_props FieldProperties
 	Total_props FieldProperties
 	SYSDbVersion_props FieldProperties
 	Comments_props FieldProperties
 	Description_props FieldProperties
-	Analyst_props FieldProperties
-	ProductManager_props FieldProperties
-	ProjectManager_props FieldProperties
+	AnalystResource_props FieldProperties
+	ProductManagerResource_props FieldProperties
+	ProjectManagerResource_props FieldProperties
 	Training_props FieldProperties
-	DfTraining_props FieldProperties
-	DefaultProfile_props FieldProperties
-	ActualProfile_props FieldProperties
+	TrainingDefault_props FieldProperties
+	ProfileDefault_props FieldProperties
+	ProfileSelected_props FieldProperties
+	EstimateEffort_props FieldProperties
+	EstimateEffortDefault_props FieldProperties
+	AnalystEstimate_props FieldProperties
+	TotalDefault_props FieldProperties
+	OriginName_props FieldProperties
+	ProjectName_props FieldProperties
+	OriginID_props FieldProperties
+	ProjectID_props FieldProperties
+	ProfileSelectedOld_props FieldProperties
+	CCY_props FieldProperties
+	RoundTo_props FieldProperties
+	OriginCode_props FieldProperties
+	EstimationSessionName_props FieldProperties
 	//
  	// Any lookups will be added below
 	//
 	EstimationSessionID_lookup []Lookup_Item
-	ConfidenceID_lookup []Lookup_Item
-	Developer_lookup []Lookup_Item
-	Approver_lookup []Lookup_Item
-	Analyst_lookup []Lookup_Item
-	ProductManager_lookup []Lookup_Item
-	ProjectManager_lookup []Lookup_Item
-	DefaultProfile_lookup []Lookup_Item
-	ActualProfile_lookup []Lookup_Item
+	ConfidenceCODE_lookup []Lookup_Item
+	DeveloperResource_lookup []Lookup_Item
+	ApproverResource_lookup []Lookup_Item
+	OffProfile_lookup []Lookup_Item
+	AnalystResource_lookup []Lookup_Item
+	ProductManagerResource_lookup []Lookup_Item
+	ProjectManagerResource_lookup []Lookup_Item
+	ProfileDefault_lookup []Lookup_Item
+	ProfileSelected_lookup []Lookup_Item
 	}
 
 const (
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	Feature_Name      = "Feature"
 	Feature_Title       = "Feature"
@@ -182,14 +209,14 @@ const (
 	Feature_SYSId_sql   = "_id" // SYSId is a Int
 	Feature_FeatureID_sql   = "featureID" // FeatureID is a String
 	Feature_EstimationSessionID_sql   = "estimationSessionID" // EstimationSessionID is a String
-	Feature_ConfidenceID_sql   = "confidenceID" // ConfidenceID is a String
+	Feature_ConfidenceCODE_sql   = "confidenceCODE" // ConfidenceCODE is a String
 	Feature_Name_sql   = "name" // Name is a String
-	Feature_DevEstimate_sql   = "devEstimate" // DevEstimate is a String
-	Feature_DevUplift_sql   = "devUplift" // DevUplift is a String
-	Feature_Reqs_sql   = "reqs" // Reqs is a String
+	Feature_DevelopmentEstimate_sql   = "developmentEstimate" // DevelopmentEstimate is a String
+	Feature_DevelopmentFactored_sql   = "developmentFactored" // DevelopmentFactored is a String
+	Feature_Requirements_sql   = "requirements" // Requirements is a String
 	Feature_AnalystTest_sql   = "analystTest" // AnalystTest is a String
-	Feature_Docs_sql   = "docs" // Docs is a String
-	Feature_Mgt_sql   = "mgt" // Mgt is a String
+	Feature_Documentation_sql   = "documentation" // Documentation is a String
+	Feature_Management_sql   = "management" // Management is a String
 	Feature_UatSupport_sql   = "uatSupport" // UatSupport is a String
 	Feature_Marketing_sql   = "marketing" // Marketing is a String
 	Feature_Contingency_sql   = "contingency" // Contingency is a String
@@ -207,45 +234,58 @@ const (
 	Feature_SYSDeleted_sql   = "_deleted" // SYSDeleted is a String
 	Feature_SYSDeletedBy_sql   = "_deletedBy" // SYSDeletedBy is a String
 	Feature_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
-	Feature_Developer_sql   = "developer" // Developer is a String
-	Feature_Approver_sql   = "approver" // Approver is a String
-	Feature_Notes_sql   = "notes" // Notes is a String
+	Feature_DeveloperResource_sql   = "developerResource" // DeveloperResource is a String
+	Feature_ApproverResource_sql   = "approverResource" // ApproverResource is a String
+	Feature_Activity_sql   = "activity" // Activity is a String
 	Feature_OffProfile_sql   = "offProfile" // OffProfile is a String
 	Feature_OffProfileJustification_sql   = "offProfileJustification" // OffProfileJustification is a String
 	Feature_SYSActivity_sql   = "_activity" // SYSActivity is a String
-	Feature_DfReqs_sql   = "dfReqs" // DfReqs is a String
-	Feature_DfAnalystTest_sql   = "dfAnalystTest" // DfAnalystTest is a String
-	Feature_DfDocs_sql   = "dfDocs" // DfDocs is a String
-	Feature_Dfmgt_sql   = "dfmgt" // Dfmgt is a String
-	Feature_DfuatSupport_sql   = "dfuatSupport" // DfuatSupport is a String
-	Feature_Dfmarketing_sql   = "dfmarketing" // Dfmarketing is a String
-	Feature_Dfcontingency_sql   = "dfcontingency" // Dfcontingency is a String
-	Feature_DfdevUplift_sql   = "dfdevUplift" // DfdevUplift is a String
+	Feature_RequirementsDefault_sql   = "requirementsDefault" // RequirementsDefault is a String
+	Feature_AnalystTestDefault_sql   = "analystTestDefault" // AnalystTestDefault is a String
+	Feature_DocumentationDefault_sql   = "documentationDefault" // DocumentationDefault is a String
+	Feature_ManagementDefault_sql   = "managementDefault" // ManagementDefault is a String
+	Feature_UatSupportDefault_sql   = "uatSupportDefault" // UatSupportDefault is a String
+	Feature_MarketingDefault_sql   = "marketingDefault" // MarketingDefault is a String
+	Feature_ContingencyDefault_sql   = "contingencyDefault" // ContingencyDefault is a String
+	Feature_DevelopmentFactoredDefault_sql   = "developmentFactoredDefault" // DevelopmentFactoredDefault is a String
 	Feature_Total_sql   = "total" // Total is a String
 	Feature_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
 	Feature_Comments_sql   = "comments" // Comments is a String
 	Feature_Description_sql   = "description" // Description is a String
-	Feature_Analyst_sql   = "analyst" // Analyst is a String
-	Feature_ProductManager_sql   = "productManager" // ProductManager is a String
-	Feature_ProjectManager_sql   = "projectManager" // ProjectManager is a String
+	Feature_AnalystResource_sql   = "analystResource" // AnalystResource is a String
+	Feature_ProductManagerResource_sql   = "productManagerResource" // ProductManagerResource is a String
+	Feature_ProjectManagerResource_sql   = "projectManagerResource" // ProjectManagerResource is a String
 	Feature_Training_sql   = "training" // Training is a String
-	Feature_DfTraining_sql   = "dfTraining" // DfTraining is a String
-	Feature_DefaultProfile_sql   = "defaultProfile" // DefaultProfile is a String
-	Feature_ActualProfile_sql   = "actualProfile" // ActualProfile is a String
+	Feature_TrainingDefault_sql   = "trainingDefault" // TrainingDefault is a String
+	Feature_ProfileDefault_sql   = "profileDefault" // ProfileDefault is a String
+	Feature_ProfileSelected_sql   = "profileSelected" // ProfileSelected is a String
+	Feature_EstimateEffort_sql   = "estimateEffort" // EstimateEffort is a String
+	Feature_EstimateEffortDefault_sql   = "estimateEffortDefault" // EstimateEffortDefault is a String
+	Feature_AnalystEstimate_sql   = "analystEstimate" // AnalystEstimate is a String
+	Feature_TotalDefault_sql   = "totalDefault" // TotalDefault is a String
+	Feature_OriginName_sql   = "OriginName" // OriginName is a String
+	Feature_ProjectName_sql   = "ProjectName" // ProjectName is a String
+	Feature_OriginID_sql   = "OriginID" // OriginID is a String
+	Feature_ProjectID_sql   = "ProjectID" // ProjectID is a String
+	Feature_ProfileSelectedOld_sql   = "ProfileSelectedOld" // ProfileSelectedOld is a String
+	Feature_CCY_sql   = "CCY" // CCY is a String
+	Feature_RoundTo_sql   = "RoundTo" // RoundTo is a String
+	Feature_OriginCode_sql   = "OriginCode" // OriginCode is a String
+	Feature_EstimationSessionName_sql   = "EstimationSessionName" // EstimationSessionName is a String
 ///
 	/// Application Field Definitions
 	///
 	Feature_SYSId_scrn   = "SYSId" // SYSId is a Int
 	Feature_FeatureID_scrn   = "FeatureID" // FeatureID is a String
 	Feature_EstimationSessionID_scrn   = "EstimationSessionID" // EstimationSessionID is a String
-	Feature_ConfidenceID_scrn   = "ConfidenceID" // ConfidenceID is a String
+	Feature_ConfidenceCODE_scrn   = "ConfidenceCODE" // ConfidenceCODE is a String
 	Feature_Name_scrn   = "Name" // Name is a String
-	Feature_DevEstimate_scrn   = "DevEstimate" // DevEstimate is a String
-	Feature_DevUplift_scrn   = "DevUplift" // DevUplift is a String
-	Feature_Reqs_scrn   = "Reqs" // Reqs is a String
+	Feature_DevelopmentEstimate_scrn   = "DevelopmentEstimate" // DevelopmentEstimate is a String
+	Feature_DevelopmentFactored_scrn   = "DevelopmentFactored" // DevelopmentFactored is a String
+	Feature_Requirements_scrn   = "Requirements" // Requirements is a String
 	Feature_AnalystTest_scrn   = "AnalystTest" // AnalystTest is a String
-	Feature_Docs_scrn   = "Docs" // Docs is a String
-	Feature_Mgt_scrn   = "Mgt" // Mgt is a String
+	Feature_Documentation_scrn   = "Documentation" // Documentation is a String
+	Feature_Management_scrn   = "Management" // Management is a String
 	Feature_UatSupport_scrn   = "UatSupport" // UatSupport is a String
 	Feature_Marketing_scrn   = "Marketing" // Marketing is a String
 	Feature_Contingency_scrn   = "Contingency" // Contingency is a String
@@ -263,37 +303,50 @@ const (
 	Feature_SYSDeleted_scrn   = "SYSDeleted" // SYSDeleted is a String
 	Feature_SYSDeletedBy_scrn   = "SYSDeletedBy" // SYSDeletedBy is a String
 	Feature_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
-	Feature_Developer_scrn   = "Developer" // Developer is a String
-	Feature_Approver_scrn   = "Approver" // Approver is a String
-	Feature_Notes_scrn   = "Notes" // Notes is a String
+	Feature_DeveloperResource_scrn   = "DeveloperResource" // DeveloperResource is a String
+	Feature_ApproverResource_scrn   = "ApproverResource" // ApproverResource is a String
+	Feature_Activity_scrn   = "Activity" // Activity is a String
 	Feature_OffProfile_scrn   = "OffProfile" // OffProfile is a String
 	Feature_OffProfileJustification_scrn   = "OffProfileJustification" // OffProfileJustification is a String
 	Feature_SYSActivity_scrn   = "SYSActivity" // SYSActivity is a String
-	Feature_DfReqs_scrn   = "DfReqs" // DfReqs is a String
-	Feature_DfAnalystTest_scrn   = "DfAnalystTest" // DfAnalystTest is a String
-	Feature_DfDocs_scrn   = "DfDocs" // DfDocs is a String
-	Feature_Dfmgt_scrn   = "Dfmgt" // Dfmgt is a String
-	Feature_DfuatSupport_scrn   = "DfuatSupport" // DfuatSupport is a String
-	Feature_Dfmarketing_scrn   = "Dfmarketing" // Dfmarketing is a String
-	Feature_Dfcontingency_scrn   = "Dfcontingency" // Dfcontingency is a String
-	Feature_DfdevUplift_scrn   = "DfdevUplift" // DfdevUplift is a String
+	Feature_RequirementsDefault_scrn   = "RequirementsDefault" // RequirementsDefault is a String
+	Feature_AnalystTestDefault_scrn   = "AnalystTestDefault" // AnalystTestDefault is a String
+	Feature_DocumentationDefault_scrn   = "DocumentationDefault" // DocumentationDefault is a String
+	Feature_ManagementDefault_scrn   = "ManagementDefault" // ManagementDefault is a String
+	Feature_UatSupportDefault_scrn   = "UatSupportDefault" // UatSupportDefault is a String
+	Feature_MarketingDefault_scrn   = "MarketingDefault" // MarketingDefault is a String
+	Feature_ContingencyDefault_scrn   = "ContingencyDefault" // ContingencyDefault is a String
+	Feature_DevelopmentFactoredDefault_scrn   = "DevelopmentFactoredDefault" // DevelopmentFactoredDefault is a String
 	Feature_Total_scrn   = "Total" // Total is a String
 	Feature_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
 	Feature_Comments_scrn   = "Comments" // Comments is a String
 	Feature_Description_scrn   = "Description" // Description is a String
-	Feature_Analyst_scrn   = "Analyst" // Analyst is a String
-	Feature_ProductManager_scrn   = "ProductManager" // ProductManager is a String
-	Feature_ProjectManager_scrn   = "ProjectManager" // ProjectManager is a String
+	Feature_AnalystResource_scrn   = "AnalystResource" // AnalystResource is a String
+	Feature_ProductManagerResource_scrn   = "ProductManagerResource" // ProductManagerResource is a String
+	Feature_ProjectManagerResource_scrn   = "ProjectManagerResource" // ProjectManagerResource is a String
 	Feature_Training_scrn   = "Training" // Training is a String
-	Feature_DfTraining_scrn   = "DfTraining" // DfTraining is a String
-	Feature_DefaultProfile_scrn   = "DefaultProfile" // DefaultProfile is a String
-	Feature_ActualProfile_scrn   = "ActualProfile" // ActualProfile is a String
+	Feature_TrainingDefault_scrn   = "TrainingDefault" // TrainingDefault is a String
+	Feature_ProfileDefault_scrn   = "ProfileDefault" // ProfileDefault is a String
+	Feature_ProfileSelected_scrn   = "ProfileSelected" // ProfileSelected is a String
+	Feature_EstimateEffort_scrn   = "EstimateEffort" // EstimateEffort is a String
+	Feature_EstimateEffortDefault_scrn   = "EstimateEffortDefault" // EstimateEffortDefault is a String
+	Feature_AnalystEstimate_scrn   = "AnalystEstimate" // AnalystEstimate is a String
+	Feature_TotalDefault_scrn   = "TotalDefault" // TotalDefault is a String
+	Feature_OriginName_scrn   = "OriginName" // OriginName is a String
+	Feature_ProjectName_scrn   = "ProjectName" // ProjectName is a String
+	Feature_OriginID_scrn   = "OriginID" // OriginID is a String
+	Feature_ProjectID_scrn   = "ProjectID" // ProjectID is a String
+	Feature_ProfileSelectedOld_scrn   = "ProfileSelectedOld" // ProfileSelectedOld is a String
+	Feature_CCY_scrn   = "CCY" // CCY is a String
+	Feature_RoundTo_scrn   = "RoundTo" // RoundTo is a String
+	Feature_OriginCode_scrn   = "OriginCode" // OriginCode is a String
+	Feature_EstimationSessionName_scrn   = "EstimationSessionName" // EstimationSessionName is a String
 ///
 )
 
 //Feature_PageList provides the information for the template for a list of Features
 type Feature_PageList struct {
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -315,7 +368,7 @@ type Feature_PageList struct {
 
 //Feature_Page provides the information for the template for an individual Feature
 type Feature_Page struct {
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
@@ -334,14 +387,14 @@ type Feature_Page struct {
 	SYSId         string
 	FeatureID         string
 	EstimationSessionID         string
-	ConfidenceID         string
+	ConfidenceCODE         string
 	Name         string
-	DevEstimate         string
-	DevUplift         string
-	Reqs         string
+	DevelopmentEstimate         string
+	DevelopmentFactored         string
+	Requirements         string
 	AnalystTest         string
-	Docs         string
-	Mgt         string
+	Documentation         string
+	Management         string
 	UatSupport         string
 	Marketing         string
 	Contingency         string
@@ -359,43 +412,56 @@ type Feature_Page struct {
 	SYSDeleted         string
 	SYSDeletedBy         string
 	SYSDeletedHost         string
-	Developer         string
-	Approver         string
-	Notes         string
+	DeveloperResource         string
+	ApproverResource         string
+	Activity         string
 	OffProfile         string
 	OffProfileJustification         string
 	SYSActivity         string
-	DfReqs         string
-	DfAnalystTest         string
-	DfDocs         string
-	Dfmgt         string
-	DfuatSupport         string
-	Dfmarketing         string
-	Dfcontingency         string
-	DfdevUplift         string
+	RequirementsDefault         string
+	AnalystTestDefault         string
+	DocumentationDefault         string
+	ManagementDefault         string
+	UatSupportDefault         string
+	MarketingDefault         string
+	ContingencyDefault         string
+	DevelopmentFactoredDefault         string
 	Total         string
 	SYSDbVersion         string
 	Comments         string
 	Description         string
-	Analyst         string
-	ProductManager         string
-	ProjectManager         string
+	AnalystResource         string
+	ProductManagerResource         string
+	ProjectManagerResource         string
 	Training         string
-	DfTraining         string
-	DefaultProfile         string
-	ActualProfile         string
+	TrainingDefault         string
+	ProfileDefault         string
+	ProfileSelected         string
+	EstimateEffort         string
+	EstimateEffortDefault         string
+	AnalystEstimate         string
+	TotalDefault         string
+	OriginName         string
+	ProjectName         string
+	OriginID         string
+	ProjectID         string
+	ProfileSelectedOld         string
+	CCY         string
+	RoundTo         string
+	OriginCode         string
+	EstimationSessionName         string
 	/// Field Properties
 	SYSId_props     FieldProperties
 	FeatureID_props     FieldProperties
 	EstimationSessionID_props     FieldProperties
-	ConfidenceID_props     FieldProperties
+	ConfidenceCODE_props     FieldProperties
 	Name_props     FieldProperties
-	DevEstimate_props     FieldProperties
-	DevUplift_props     FieldProperties
-	Reqs_props     FieldProperties
+	DevelopmentEstimate_props     FieldProperties
+	DevelopmentFactored_props     FieldProperties
+	Requirements_props     FieldProperties
 	AnalystTest_props     FieldProperties
-	Docs_props     FieldProperties
-	Mgt_props     FieldProperties
+	Documentation_props     FieldProperties
+	Management_props     FieldProperties
 	UatSupport_props     FieldProperties
 	Marketing_props     FieldProperties
 	Contingency_props     FieldProperties
@@ -413,41 +479,55 @@ type Feature_Page struct {
 	SYSDeleted_props     FieldProperties
 	SYSDeletedBy_props     FieldProperties
 	SYSDeletedHost_props     FieldProperties
-	Developer_props     FieldProperties
-	Approver_props     FieldProperties
-	Notes_props     FieldProperties
+	DeveloperResource_props     FieldProperties
+	ApproverResource_props     FieldProperties
+	Activity_props     FieldProperties
 	OffProfile_props     FieldProperties
 	OffProfileJustification_props     FieldProperties
 	SYSActivity_props     FieldProperties
-	DfReqs_props     FieldProperties
-	DfAnalystTest_props     FieldProperties
-	DfDocs_props     FieldProperties
-	Dfmgt_props     FieldProperties
-	DfuatSupport_props     FieldProperties
-	Dfmarketing_props     FieldProperties
-	Dfcontingency_props     FieldProperties
-	DfdevUplift_props     FieldProperties
+	RequirementsDefault_props     FieldProperties
+	AnalystTestDefault_props     FieldProperties
+	DocumentationDefault_props     FieldProperties
+	ManagementDefault_props     FieldProperties
+	UatSupportDefault_props     FieldProperties
+	MarketingDefault_props     FieldProperties
+	ContingencyDefault_props     FieldProperties
+	DevelopmentFactoredDefault_props     FieldProperties
 	Total_props     FieldProperties
 	SYSDbVersion_props     FieldProperties
 	Comments_props     FieldProperties
 	Description_props     FieldProperties
-	Analyst_props     FieldProperties
-	ProductManager_props     FieldProperties
-	ProjectManager_props     FieldProperties
+	AnalystResource_props     FieldProperties
+	ProductManagerResource_props     FieldProperties
+	ProjectManagerResource_props     FieldProperties
 	Training_props     FieldProperties
-	DfTraining_props     FieldProperties
-	DefaultProfile_props     FieldProperties
-	ActualProfile_props     FieldProperties
+	TrainingDefault_props     FieldProperties
+	ProfileDefault_props     FieldProperties
+	ProfileSelected_props     FieldProperties
+	EstimateEffort_props     FieldProperties
+	EstimateEffortDefault_props     FieldProperties
+	AnalystEstimate_props     FieldProperties
+	TotalDefault_props     FieldProperties
+	OriginName_props     FieldProperties
+	ProjectName_props     FieldProperties
+	OriginID_props     FieldProperties
+	ProjectID_props     FieldProperties
+	ProfileSelectedOld_props     FieldProperties
+	CCY_props     FieldProperties
+	RoundTo_props     FieldProperties
+	OriginCode_props     FieldProperties
+	EstimationSessionName_props     FieldProperties
 	/// Lookups
 	EstimationSessionID_lookup    []Lookup_Item
-	ConfidenceID_lookup    []Lookup_Item
-	Developer_lookup    []Lookup_Item
-	Approver_lookup    []Lookup_Item
-	Analyst_lookup    []Lookup_Item
-	ProductManager_lookup    []Lookup_Item
-	ProjectManager_lookup    []Lookup_Item
-	DefaultProfile_lookup    []Lookup_Item
-	ActualProfile_lookup    []Lookup_Item
+	ConfidenceCODE_lookup    []Lookup_Item
+	DeveloperResource_lookup    []Lookup_Item
+	ApproverResource_lookup    []Lookup_Item
+	OffProfile_lookup    []Lookup_Item
+	AnalystResource_lookup    []Lookup_Item
+	ProductManagerResource_lookup    []Lookup_Item
+	ProjectManagerResource_lookup    []Lookup_Item
+	ProfileDefault_lookup    []Lookup_Item
+	ProfileSelected_lookup    []Lookup_Item
 	
 	/// END OF DEFINITIONS
 	///

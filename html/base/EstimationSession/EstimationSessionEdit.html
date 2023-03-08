@@ -71,14 +71,14 @@
         
         </div></div>
        
-        <div class="row mb-3" readonly="true" ><div class="col">
+        <div class="row mb-3"  ><div class="col">
         
             <div class="form-outline">
               
-              <textarea class="form-control {{.Notes_props.MsgType}}" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder="" readonly="true"  value="{{.Notes}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Notes}}</textarea>
+              <input type="text" class="form-control {{.Activity_props.MsgType}}" id="Activity" name="Activity" aria-describedby="ActivityHelp" placeholder=""   value="{{.Activity}}" required data-mdb-input-mask="" />
               
-              <label class="form-label" for="Notes" readonly="true">Notes</label>
-              <div class="{{.Notes_props.MsgFeedBackType}}">{{.Notes_props.MsgMessage}}</div>
+              <label class="form-label" for="Activity" >Activity</label>
+              <div class="{{.Activity_props.MsgFeedBackType}}">{{.Activity_props.MsgMessage}}</div>
             </div>
         
         </div></div>

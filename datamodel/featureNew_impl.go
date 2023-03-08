@@ -26,8 +26,8 @@ const (
 	///
 	/// Handler Monitor Paths
 	///
-	FeatureNew_PathCreate  = "/FeatureCreate/"
-	FeatureNew_PathSetup   = "/FeatureSetup/"
-	FeatureNew_PathRefresh = "/FeatureRefresh/"
+	FeatureNew_PathCreate  = "/FeatureNewCreate/"
+	FeatureNew_PathSetup   = "/FeatureNewSetup/"
+	FeatureNew_PathRefresh = "/FeatureNewRefresh/"
 	///
 )

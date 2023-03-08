@@ -16,7 +16,7 @@ Friendly Name|**Origin**|
 * **Edit** (/Origin/OriginEdit)
 * **Save** (/Origin/OriginSave)
 * **New** (/Origin/OriginNew)
-
+* **Delete** (/Origin/OriginDelete)
 
 
 
@@ -92,7 +92,7 @@ SQL Table Key | **originID**
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **03/03/2023** at **16:54:04**
+Date & Time		     | **04/03/2023** at **20:14:12**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

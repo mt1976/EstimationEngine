@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 15/02/2023 at 10:44:44
+// Date & Time		    : 04/03/2023 at 20:14:12
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //Index_Publish annouces the endpoints available for this object
-//Index_Publish - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+//Index_Publish - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Index_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.Index_Path, Index_Handler)
 	mux.HandleFunc(dm.Index_PathList, Index_HandlerList)
@@ -38,17 +38,17 @@ func Index_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.Index_Title)
     core.Catalog_Add(dm.Index_Title, dm.Index_Path, "", dm.Index_QueryString, "Application")
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Index_HandlerList is the handler for the list page
 //Allows Listing of Index records
-//Index_HandlerList - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+//Index_HandlerList - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Index_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -63,7 +63,15 @@ func Index_HandlerList(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	var returnList []dm.Index
-	noItems, returnList, _ := dao.Index_GetList()
+
+	objectName := dao.Translate("ObjectName", "Index")
+	reqField := "Base"
+	filter,_ := dao.Data_GetString(objectName, reqField, dm.Data_Category_FilterRule)
+	if filter == "" {
+		logs.Warning("No filter found : " + reqField + " for Object: " + objectName)
+	} 
+
+	noItems, returnList, _ := dao.Index_GetListFiltered(filter)
 
 	pageDetail := dm.Index_PageList{
 		Title:            CardTitle(dm.Index_Title, core.Action_List),
@@ -78,7 +86,7 @@ func Index_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	ExecuteTemplate(dm.Index_TemplateList, w, r, pageDetail)
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -86,10 +94,10 @@ func Index_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //Index_HandlerView is the handler used to View a page
 //Allows Viewing for an existing Index record
-//Index_HandlerView - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Index_HandlerView - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Index_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -118,7 +126,7 @@ func Index_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Index_TemplateView, w, r, pageDetail)
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
@@ -126,10 +134,10 @@ func Index_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 //Index_HandlerSave is the handler used process the saving of an Index
 //It is called from the Edit and New pages
-//Index_HandlerSave  - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Index_HandlerSave  - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Index_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -150,11 +158,11 @@ func Index_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, dm.Index_Redirect, http.StatusFound)
 	} else {
 		logs.Information(dm.Index_Name, errStore.Error())
-		http.Redirect(w, r, r.Referer(), http.StatusFound)
+		//http.Redirect(w, r, r.Referer(), http.StatusFound)
 		ExecuteRedirect(r.Referer(), w, r,dm.Index_QueryString,itemID,item)
 	}
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
@@ -162,7 +170,7 @@ func Index_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 
 //index_PopulatePage Builds/Populates the Index Page 
-//index_PopulatePage Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//index_PopulatePage Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func index_PopulatePage(rD dm.Index, pageDetail dm.Index_Page) dm.Index_Page {
 	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
@@ -202,11 +210,9 @@ func index_PopulatePage(rD dm.Index, pageDetail dm.Index_Page) dm.Index_Page {
 	pageDetail.SYSDbVersion_props = rD.SYSDbVersion_props
 	pageDetail.KeyValue_props = rD.KeyValue_props
 	return pageDetail
-}	
-
-
+}
 //index_DataFromRequest is used process the content of an HTTP Request and return an instance of an Index
-//index_DataFromRequest Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//index_DataFromRequest Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func index_DataFromRequest(r *http.Request) dm.Index {
 
 	var item dm.Index
@@ -229,4 +235,3 @@ func index_DataFromRequest(r *http.Request) dm.Index {
 		item.KeyValue = r.FormValue(dm.Index_KeyValue_scrn)
 	return item
 }
-

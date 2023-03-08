@@ -54,28 +54,28 @@
 <h4 class="text-muted">Identification</h4>
             <div class="row mb-3"  ><div class="col">
          
-            <div class="form-outline mandatory">
+            <div class="form-outline">
 
             
                 <input type="text" class="form-control {{.Code_props.MsgType}}" id="Code" name="Code" aria-describedby="CodeHelp" placeholder=""  value="{{.Code}}"  data-mdb-input-mask="">
             
            
            
-              <label class="form-label" for="Code" >Code</label>
+              <label class="form-label text-danger" for="Code" >Code</label>
               <div class="{{.Code_props.MsgFeedBackType}}">{{.Code_props.MsgMessage}}</div>
             </div>
                   
           </div>
           <div class="col">
          
-            <div class="form-outline mandatory">
+            <div class="form-outline">
 
             
                 <input type="text" class="form-control {{.FullName_props.MsgType}}" id="FullName" name="FullName" aria-describedby="FullNameHelp" placeholder=""  value="{{.FullName}}"  data-mdb-input-mask="">
             
            
            
-              <label class="form-label" for="FullName" >FullName</label>
+              <label class="form-label text-danger" for="FullName" >Business/Origin Full Name</label>
               <div class="{{.FullName_props.MsgFeedBackType}}">{{.FullName_props.MsgMessage}}</div>
             </div>
                   
@@ -118,14 +118,14 @@
           
           <div class="col">
          
-            <div class="form-outline mandatory">
+            <div class="form-outline">
 
             
                 <input type="text" class="form-control {{.Rate_props.MsgType}}" id="Rate" name="Rate" aria-describedby="RateHelp" placeholder=""  value="{{.Rate}}" required data-mdb-input-mask="">
             
            
            
-              <label class="form-label" for="Rate" >Charge Rate</label>
+              <label class="form-label text-danger" for="Rate" >Charge Rate</label>
               <div class="{{.Rate_props.MsgFeedBackType}}">{{.Rate_props.MsgMessage}}</div>
             </div>
                   

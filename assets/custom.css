@@ -289,6 +289,12 @@ body {
     border-color: var(--custom-primary-colour);
 }
 
+.btn-outline-primary {
+    color: white;
+    background-color: var(--custom-primary-colour);
+    border-color: var(--custom-primary-colour);
+}
+
 .text-primary {
     color: var(--custom-primary-colour) !important;
     font-weight: normal !important;

@@ -28,6 +28,9 @@ const (
 	Feature_SoftDelete_Path        = "/FeatureRemove/"
 	Feature_SoftDelete_QueryString = Feature_QueryString
 	Feature_PathStore              = "/FeatureStore/"
+	Feature_PathCreate             = "/FeatureCreate/"
+
+	Feature_TemplateCreate = "/Feature/FeatureCreate"
 	///
 
 )

@@ -15,6 +15,7 @@ const (
 	Data_Category_Info       = Data_Category_Data + ".Info"
 	Data_Category_Sequence   = Data_Category_Data + ".Sequence"
 	Data_Category_State      = Data_Category_Data + ".State"
+	Data_Category_NextAction = Data_Category_Setting + ".Next.Action"
 )
 
 var Data_Category_List = []string{
@@ -31,4 +32,5 @@ var Data_Category_List = []string{
 	Data_Category_Info,
 	Data_Category_Sequence,
 	Data_Category_State,
+	Data_Category_NextAction,
 }

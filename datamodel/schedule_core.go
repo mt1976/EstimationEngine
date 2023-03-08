@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 15/02/2023 at 10:44:47
+// Date & Time		    : 04/03/2023 at 20:14:14
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Schedule defines the datamodel for the Schedule object
 type Schedule struct {
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -68,7 +68,7 @@ type Schedule struct {
 	}
 
 const (
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	Schedule_Name      = "Schedule"
 	Schedule_Title       = "Scheduler"
@@ -152,7 +152,7 @@ const (
 
 //Schedule_PageList provides the information for the template for a list of Schedules
 type Schedule_PageList struct {
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -174,7 +174,7 @@ type Schedule_PageList struct {
 
 //Schedule_Page provides the information for the template for an individual Schedule
 type Schedule_Page struct {
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem

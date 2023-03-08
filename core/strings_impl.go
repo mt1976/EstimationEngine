@@ -41,6 +41,12 @@ func ReplaceSpecialChars(in string) string {
 	return newStr
 }
 
+func EscapeSQL(in string) string {
+	newStr := strings.ReplaceAll(in, "'", "''")
+	newStr = strings.ReplaceAll(newStr, ",", "','")
+	return newStr
+}
+
 // Convert time.Time to string
 func TimeToString(t time.Time) string {
 	//fmt.Printf("t: %v\n", t)

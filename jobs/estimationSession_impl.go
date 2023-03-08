@@ -68,7 +68,7 @@ func EstimationSession_Run_impl() (string, error) {
 				logs.Warning("Estimate has no issue date : " + v.Name)
 				v.EstimationStateID = expiredState
 				v.IssueDate = today
-				v.Notes = core.AddActivity(v.Notes, "Estimate Issued with no Issue Date - Adding "+today+" as Issue Date")
+				v.Activity = core.AddActivity(v.Activity, "Estimate Issued with no Issue Date - Adding "+today+" as Issue Date")
 				noIssuedDateAdded++
 				upd = true
 			}
@@ -78,16 +78,16 @@ func EstimationSession_Run_impl() (string, error) {
 				thisIssueDate, _ := time.Parse(core.DATEFORMAT, v.IssueDate)
 				thisExpiryDate := thisIssueDate.AddDate(0, 0, expiryPeriod)
 				v.ExpiryDate = thisExpiryDate.Format(core.DATEFORMAT)
-				v.Notes = core.AddActivity(v.Notes, "Estimate Issued with no Expiry Date - Adding "+v.ExpiryDate+" as Expiry Date ")
+				v.Activity = core.AddActivity(v.Activity, "Estimate Issued with no Expiry Date - Adding "+v.ExpiryDate+" as Expiry Date ")
 				MSG_TXT := "%s + %d days = %s"
 				MSG_TXT = fmt.Sprintf(MSG_TXT, v.IssueDate, expiryPeriod, v.ExpiryDate)
 				logs.Information("Expiry Date: ", MSG_TXT)
-				v.Notes = core.AddActivity(v.Notes, "Estimate Issued on "+v.IssueDate)
-				v.Notes = core.AddActivity(v.Notes, MSG_TXT)
+				v.Activity = core.AddActivity(v.Activity, "Estimate Issued on "+v.IssueDate)
+				v.Activity = core.AddActivity(v.Activity, MSG_TXT)
 				if thisExpiryDate.Before(time.Now()) {
 					v.EstimationStateID = expiredState
 					//Add a note to the session
-					v.Notes = core.AddActivity(v.Notes, "Estimate expired on "+v.ExpiryDate)
+					v.Activity = core.AddActivity(v.Activity, "Estimate expired on "+v.ExpiryDate)
 				}
 				upd = true
 				noExpiryDateAdded++
@@ -98,7 +98,7 @@ func EstimationSession_Run_impl() (string, error) {
 			if thisExpiryDate.Before(time.Now()) {
 				logs.Warning("Estimate has expired : " + v.Name)
 				v.EstimationStateID = expiredState
-				v.Notes = core.AddActivity(v.Notes, "Estimate expired on "+v.ExpiryDate)
+				v.Activity = core.AddActivity(v.Activity, "Estimate expired on "+v.ExpiryDate)
 				upd = true
 				noExpired++
 			}

@@ -14,9 +14,7 @@ package application
 // ----------------------------------------------------------------
 
 import (
-	"fmt"
 	"net/http"
-	"strconv"
 
 	core "github.com/mt1976/ebEstimates/core"
 	dao "github.com/mt1976/ebEstimates/dao"
@@ -35,7 +33,7 @@ func FeatureNew_Publish_Impl(mux http.ServeMux) {
 	core.Catalog_Add(dm.FeatureNew_Title, dm.FeatureNew_Path, "", dm.FeatureNew_QueryString, "Application")
 }
 
-// FeatureNew_HandlerEdit is the handler used generate the Edit page
+// FeatureNew_HandlerSetup is the handler used generate the Setup page
 func FeatureNew_HandlerSetup(w http.ResponseWriter, r *http.Request) {
 	// Mandatory Security Validation
 	if !(Session_Validate(w, r)) {
@@ -61,6 +59,7 @@ func FeatureNew_HandlerSetup(w http.ResponseWriter, r *http.Request) {
 		UserRole:  Session_GetUserRole(r),
 	}
 
+	// Take the data from the request (FeatureNew) and populate the page
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 
 	pageDetail = featurenew_PopulatePage(rD, pageDetail)
@@ -70,10 +69,12 @@ func FeatureNew_HandlerSetup(w http.ResponseWriter, r *http.Request) {
 	_, proj, _ := dao.Project_GetByID(es.ProjectID)
 
 	pageDetail.Name = proj.Name
-	pageDetail.DefaultProfile = proj.ProfileID
-	pageDetail.ActualProfile = proj.ProfileID
+	pageDetail.ProfileDefault = proj.ProfileID
+	pageDetail.ProfileSelected = proj.ProfileID
 
-	ExecuteTemplate(dm.FeatureNew_TemplateSetup, w, r, pageDetail)
+	nextTemplate := NextTemplate("FeatureNew", "Setup", dm.FeatureNew_TemplateSetup)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 }
 
 // FeatureNew_HandlerSave is the handler used process the saving of an FeatureNew
@@ -100,174 +101,62 @@ func FeatureNew_HandlerCreate(w http.ResponseWriter, r *http.Request) {
 	item.FeatureID = newID
 	item.EstimationSessionID = r.FormValue(dm.FeatureNew_EstimationSessionID_scrn)
 	item.Name = r.FormValue(dm.FeatureNew_Name_scrn)
-	item.DevEstimate = r.FormValue(dm.FeatureNew_DeveloperEstimate_scrn)
-	item.ConfidenceID = r.FormValue(dm.FeatureNew_ConfidenceCODE_scrn)
-	item.Developer = r.FormValue(dm.FeatureNew_DeveloperResource_scrn)
+	item.DevelopmentEstimate = r.FormValue(dm.FeatureNew_DeveloperEstimate_scrn)
+	item.ConfidenceCODE = r.FormValue(dm.FeatureNew_ConfidenceCODE_scrn)
+	item.DeveloperResource = r.FormValue(dm.FeatureNew_DeveloperResource_scrn)
 
 	fop := featurenew_DataFromRequest(r)
+
 	item.EstimationSessionID = fop.EstimationSessionID
 	item.Name = fop.Name
-	item.DevEstimate = fop.DeveloperEstimate
-	item.ConfidenceID = fop.ConfidenceCODE
-	item.Developer = fop.DeveloperResource
-	item.Description = fop.Description
-	item.Comments = fop.Comments
+	item.DevelopmentEstimate = fop.DeveloperEstimate
+	item.AnalystEstimate = fop.AnalystEstimate
+	item.ConfidenceCODE = fop.ConfidenceCODE
+	item.DeveloperResource = fop.DeveloperResource
+	item.AnalystResource = fop.AnalystResource
 	item.AdoID = fop.DevOpsID
 	item.FreshdeskID = fop.FreshDeskID
 	item.TrackerID = fop.RSCID
 	item.ExtRef = fop.OtherID
 	item.ExtRef2 = fop.OtherID2
-	item.ActualProfile = fop.ActualProfile
-	item.DefaultProfile = fop.DefaultProfile
+	item.ProfileDefault = fop.ProfileDefault
+	item.ProfileSelected = fop.ProfileSelected
+	item.EstimateEffort = fop.EstimateEffort
+	if item.EstimateEffort == "" {
+		item.EstimateEffort = "0"
+	}
+	item.OffProfile = core.FALSE
 
-	item = Feature_CalcDefaults(item)
-	//
-	// Dynamically generated 29/11/2022 by matttownsend (Matt Townsend) on silicon.local
-	// END
-
-	//spew.Dump(item)
-
-	//tm := time.Now().Format("02/01/2006 ")
-	//item.Notes = tm + Session_GetUserName(r) + ": Created"
+	item = dao.Feature_CalcDefaults(item, true)
 
 	msgTXT := "New Feature Created"
 	msgTXT = dao.Translate("Message", msgTXT)
-	item.Notes = addActivity(item.Notes, msgTXT, r)
+	item.Activity = addActivity(item.Activity, msgTXT, r)
+	item.SYSActivity = addActivity(item.SYSActivity, msgTXT, r)
 
-	dao.Feature_Store(item, r)
+	logs.Warning("FeatureNew_HandlerCreate: IN  " + item.FeatureID)
+	logs.Warning("FeatureNew_HandlerCreate: IN  " + item.FeatureID)
+	logs.Warning("FeatureNew_HandlerCreate: IN  " + item.FeatureID)
+	logs.Warning("FeatureNew_HandlerCreate: IN  " + item.FeatureID)
+	_, err := dao.Feature_Store(item, r)
+	logs.Warning("FeatureNew_HandlerCreate: OUT " + item.FeatureID)
+	logs.Warning("FeatureNew_HandlerCreate: OUT " + item.FeatureID)
+	logs.Warning("FeatureNew_HandlerCreate: OUT " + item.FeatureID)
+	logs.Warning("FeatureNew_HandlerCreate: OUT " + item.FeatureID)
 
-	Estimationsession_Calculate(item.EstimationSessionID)
+	if err != nil {
+		logs.Warning(err.Error())
+	}
 
-	REDR := dm.Feature_ByEstimationSession_PathList + "?" + dm.Feature_ByEstimationSession_QueryString + "=" + item.EstimationSessionID
+	//time.Sleep(30 * time.Second) // Sleeps for 30 seconds
+	//dao.Feature_Validate(item, err)
+
+	//go Estimationsession_Calculate(item.EstimationSessionID)
+
+	//REDR := dm.Feature_ByEstimationSession_PathList + "?" + dm.Feature_ByEstimationSession_QueryString + "=" + item.EstimationSessionID
+
+	nextTemplate := NextTemplate("FeatureNew", "Create", dm.Feature_PathEdit)
+
+	REDR := nextTemplate + "?" + dm.Feature_QueryString + "=" + item.FeatureID
 	http.Redirect(w, r, REDR, http.StatusFound)
-}
-
-func Feature_CalcDefaults(item dm.Feature) dm.Feature {
-	// START
-	// Dynamically generated 29/11/2022 by matttownsend (Matt Townsend) on silicon.local
-	//
-
-	// Get Project Profile for this Estimation Session
-	// Get the Estimation Session
-	_, es, _ := dao.EstimationSession_GetByID(item.EstimationSessionID)
-	// Then Get the Project
-	_, p, _ := dao.Project_GetByID(es.ProjectID)
-	// Then Get the Profile
-	_, pp, _ := dao.Profile_GetByCode(p.ProfileID)
-	item.DefaultProfile = p.ProfileID
-	if item.ActualProfile == "" {
-		item.ActualProfile = p.ProfileID
-	}
-	//spew.Dump(pp)
-
-	if item.DevEstimate == "" {
-		return item
-	}
-
-	baseEstimate, _ := strconv.ParseFloat(item.DevEstimate, 64)
-
-	reqPerc, _ := strconv.ParseFloat(pp.REQPerc, 64)
-	anaPerc, _ := strconv.ParseFloat(pp.ANAPerc, 64)
-	docPerc, _ := strconv.ParseFloat(pp.DOCPerc, 64)
-	pmPerc, _ := strconv.ParseFloat(pp.PMPerc, 64)
-	uatPerc, _ := strconv.ParseFloat(pp.UATPerc, 64)
-	gtmPerc, _ := strconv.ParseFloat(pp.GTMPerc, 64)
-	trainPerc, _ := strconv.ParseFloat(pp.TrainingPerc, 64)
-	//supportUpliftPerc, _ := strconv.ParseFloat(pp.SupportUplift, 64)
-
-	// Get the Confidence Factor
-	_, cf, _ := dao.Confidence_GetByCode(item.ConfidenceID)
-	devConfPerc, _ := strconv.ParseFloat(cf.Perc, 64)
-
-	var coreEstimate float64
-	if devConfPerc == 0 {
-		coreEstimate = baseEstimate
-	} else {
-		coreEstimate = baseEstimate + (baseEstimate * (devConfPerc / 100))
-	}
-
-	item.DevUplift = strconv.FormatFloat(coreEstimate, 'f', 2, 64)
-	item.DfdevUplift = item.DevUplift
-
-	reqEstimate := coreEstimate * (reqPerc / 100)
-	item.Reqs = strconv.FormatFloat(reqEstimate, 'f', 2, 64)
-	item.DfReqs = item.Reqs
-
-	anaEstimate := coreEstimate * (anaPerc / 100)
-	item.AnalystTest = strconv.FormatFloat(anaEstimate, 'f', 2, 64)
-	item.DfAnalystTest = item.AnalystTest
-
-	docEstimate := coreEstimate * (docPerc / 100)
-	item.Docs = strconv.FormatFloat(docEstimate, 'f', 2, 64)
-	item.DfDocs = item.Docs
-
-	pmEstimate := coreEstimate * (pmPerc / 100)
-	item.Mgt = strconv.FormatFloat(pmEstimate, 'f', 2, 64)
-	item.Dfmgt = item.Mgt
-
-	uatEstimate := coreEstimate * (uatPerc / 100)
-	item.UatSupport = strconv.FormatFloat(uatEstimate, 'f', 2, 64)
-	item.DfuatSupport = item.UatSupport
-
-	gtmEstimate := coreEstimate * (gtmPerc / 100)
-	item.Marketing = strconv.FormatFloat(gtmEstimate, 'f', 2, 64)
-	item.Dfmarketing = item.Marketing
-
-	trainEstimate := coreEstimate * (trainPerc / 100)
-	item.Training = strconv.FormatFloat(trainEstimate, 'f', 2, 64)
-	item.DfTraining = item.Training
-
-	//totalEstimate := coreEstimate + reqEstimate + anaEstimate + docEstimate + pmEstimate + uatEstimate + gtmEstimate
-	item.Total = feature_CalculateTotal(item)
-	//supportUplift := totalEstimate * (supportUpliftPerc / 100)
-	//item.SupportUplift = strconv.FormatFloat(supportUplift, 'f', 2, 64)
-	msgTXT := "Feature Recalculated"
-	item.Notes = addActivity_System(item.Notes, msgTXT)
-
-	//item.Notes = item.Notes + "\nBase Estimate: " + strconv.FormatFloat(baseEstimate, 'f', 2, 64)
-	msgTXT = "Estimate = Base Estimate + Confidence Factor"
-	msgTXT = dao.Translate("AuditMessage", msgTXT)
-	item.Notes = addActivity_System(item.Notes, msgTXT)
-
-	//item.Notes = item.Notes + "\nDev Confidence: " + strconv.FormatFloat(devConfPerc, 'f', 2, 64)
-	msgTXT = "Estimate = %s + %s% = %s"
-	msgTXT = dao.Translate("AuditMessage", msgTXT)
-	msgTXT = fmt.Sprintf(msgTXT, fts(baseEstimate), fts(devConfPerc), fts(coreEstimate))
-	item.Notes = addActivity_System(item.Notes, msgTXT)
-
-	baseTXT := "| %s | %s | %s | %s | %s | %s | %s | %s | %s |"
-	msgTXT = dao.Translate("AuditMessage", baseTXT)
-	brkTXT := fmt.Sprintf(msgTXT, "---", "---", "---", "---", "---", "---", "---", "---", "---")
-
-	msgTXT = dao.Translate("AuditMessage", baseTXT)
-	hdrTXT := fmt.Sprintf(msgTXT, "TYPE", "DEV", "REQ", "ANA", "DOC", "UAT", "TRG", "MKT", "MGT")
-	item.Notes = addActivity_System(item.Notes, hdrTXT)
-	item.Notes = addActivity_System(item.Notes, brkTXT)
-
-	//item.Notes = item.Notes + "\nDev: " + item.DevEstimate + " | " + "Conf: " + item.ConfidenceID + " | " + "DevUplift: " + item.DevUplift + " | " + "Req: " + item.Reqs + " | " + "Ana: " + item.AnalystTest + " | " + "Doc: " + item.Docs + " | " + "PM: " + item.Mgt + " | " + "UAT: " + item.UatSupport + " | " + "GTM: " + item.Marketing
-	//msgTXT = "Dev: %s | Conf: %s | DevUplift: %s | Req: %s | Ana: %s | Doc: %s | PM: %s | UAT: %s | GTM: %s"
-	//msgTXT = dao.Translate("AuditMessage", baseTXT)
-	msgTXT = fmt.Sprintf(baseTXT, "Profile", fts(devConfPerc+100), fts(reqPerc), fts(anaPerc), fts(docPerc), fts(uatPerc), fts(trainPerc), fts(gtmPerc), fts(pmPerc))
-	item.Notes = addActivity_System(item.Notes, msgTXT)
-
-	msgTXT = fmt.Sprintf(baseTXT, "Result", fts(coreEstimate), fts(reqEstimate), fts(anaEstimate), fts(docEstimate), fts(uatEstimate), fts(trainEstimate), fts(gtmEstimate), fts(pmEstimate))
-	item.Notes = addActivity_System(item.Notes, msgTXT)
-
-	//Total
-	//item.Notes = item.Notes + "\nTotal: " + item.Total
-	msgTXT = "Total: %s"
-	msgTXT = dao.Translate("AuditMessage", msgTXT)
-	msgTXT = fmt.Sprintf(msgTXT, item.Total)
-	item.Notes = addActivity_System(item.Notes, msgTXT)
-
-	//item.Notes = item.Notes + "\nUpdated: " + time.Now().Format("2006-01-02 at 15:04:05")
-	//msgTXT = "Updated: %s"
-	//msgTXT = dao.Translate("AuditMessage", msgTXT)
-	//msgTXT = fmt.Sprintf(msgTXT, time.Now().Format("2006-01-02 at 15:04:05"))
-	//item.Notes = addActivity_System(item.Notes, msgTXT)
-	// Call Feature_RefreshEstimates(item)
-	//
-	// Dynamically generated 29/11/2022 by matttownsend (Matt Townsend) on silicon.local
-	// END
-	return item
 }

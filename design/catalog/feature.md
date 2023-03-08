@@ -16,7 +16,7 @@ Friendly Name|**Feature**|
 * **Edit** (/Feature/FeatureEdit)
 * **Save** (/Feature/FeatureSave)
 * **New** (/Feature/FeatureNew)
-
+* **Delete** (/Feature/FeatureDelete)
 
 
 
@@ -45,18 +45,18 @@ SQL Table Key | **featureID**
 | -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
 |**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|text||
 |**FeatureID**|String|false|true|false|true|||||H|featureID||true|true|false|text||
-|**EstimationSessionID**|String|false|true|false|false|OL|EstimationSession|EstimationSession_EstimationSessionID|EstimationSession_Name|Y|estimationSessionID||false|false|false|text||
-|**ConfidenceID**|String|false|true|false|false|OL∀|Confidence|Confidence_ConfidenceID||Y|confidenceID||false|false|false|text||
-|**Name**|String|true|true|false|false|||||Y|name||false|false|false|text||
-|**DevEstimate**|String|false|true|false|true|||||Y|devEstimate||false|false|false|number||
-|**DevUplift**|String|false|true|false|true|||||Y|devUplift||false|false|false|number||
-|**Reqs**|String|false|true|false|true|||||Y|reqs||false|false|false|number||
-|**AnalystTest**|String|false|true|false|true|||||Y|analystTest||false|false|false|number||
-|**Docs**|String|false|true|false|true|||||Y|docs||false|false|false|number||
-|**Mgt**|String|false|true|false|true|||||Y|mgt||false|false|false|number||
+|**EstimationSessionID**|String|true|true|false|false|OL|EstimationSession|EstimationSession_EstimationSessionID|EstimationSession_Name|N|estimationSessionID||false|true|false|text||
+|**ConfidenceCODE**|String|true|true|false|false|OL∀|Confidence|Confidence_ConfidenceID||Y|confidenceCODE||false|false|false|text||
+|**Name**|String|false|true|false|true|||||Y|name||false|true|false|text||
+|**DevelopmentEstimate**|String|false|true|false|true|||||N|developmentEstimate||false|true|false|number||
+|**DevelopmentFactored**|String|false|true|false|true|||||N|developmentFactored||false|true|false|number||
+|**Requirements**|String|false|true|false|true|||||Y|requirements||false|true|false|number||
+|**AnalystTest**|String|false|true|false|true|||||Y|analystTest||false|true|false|number||
+|**Documentation**|String|false|true|false|true|||||Y|documentation||false|true|false|number||
+|**Management**|String|false|true|false|true|||||Y|management||false|true|false|number||
 |**UatSupport**|String|false|true|false|false|||||Y|uatSupport||false|false|false|text||
-|**Marketing**|String|false|true|false|true|||||Y|marketing||false|false|false|number||
-|**Contingency**|String|false|true|false|true|||||Y|contingency||false|false|false|number||
+|**Marketing**|String|false|true|false|true|||||Y|marketing||false|true|false|number||
+|**Contingency**|String|false|true|false|true|||||Y|contingency||false|true|false|number||
 |**TrackerID**|String|false|true|false|true|||||Y|trackerID||false|true|false|text||
 |**AdoID**|String|false|true|false|true|||||Y|adoID||false|true|false|text||
 |**FreshdeskID**|String|false|true|false|true|||||Y|freshdeskID||false|true|false|text||
@@ -71,31 +71,44 @@ SQL Table Key | **featureID**
 |**SYSDeleted**|String|false|true|false|false|||||NH|_deleted||false|false|true|text||
 |**SYSDeletedBy**|String|false|true|false|false|||||NH|_deletedBy||false|false|true|text||
 |**SYSDeletedHost**|String|false|true|false|false|||||NH|_deletedHost||false|false|true|text||
-|**Developer**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|developer||false|false|false|text||
-|**Approver**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|approver||false|false|false|text||
-|**Notes**|String|false|true|false|true|||||N|notes||false|false|false|textarea||
-|**OffProfile**|String|false|true|false|false|||||Y|offProfile||false|false|false|text||
-|**OffProfileJustification**|String|false|true|false|false|||||Y|offProfileJustification||false|false|false|text||
+|**DeveloperResource**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|developerResource||false|true|false|text||
+|**ApproverResource**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|approverResource||false|true|false|text||
+|**Activity**|String|false|true|false|true|||||N|activity||false|false|false|textarea||
+|**OffProfile**|String|false|true|false|true|LL|tf|||N|offProfile||false|false|false|text||
+|**OffProfileJustification**|String|false|true|false|true|||||Y|offProfileJustification||false|true|false|textarea||
 |**SYSActivity**|String|false|true|false|false|||||NH|_activity||false|false|true|text||
-|**DfReqs**|String|false|true|false|false|||||Y|dfReqs||false|false|false|text||
-|**DfAnalystTest**|String|false|true|false|false|||||Y|dfAnalystTest||false|false|false|text||
-|**DfDocs**|String|false|true|false|false|||||Y|dfDocs||false|false|false|text||
-|**Dfmgt**|String|false|true|false|false|||||Y|dfmgt||false|false|false|text||
-|**DfuatSupport**|String|false|true|false|false|||||Y|dfuatSupport||false|false|false|text||
-|**Dfmarketing**|String|false|true|false|false|||||Y|dfmarketing||false|false|false|text||
-|**Dfcontingency**|String|false|true|false|false|||||Y|dfcontingency||false|false|false|text||
-|**DfdevUplift**|String|false|true|false|false|||||Y|dfdevUplift||false|false|false|text||
-|**Total**|String|false|true|false|true|||||N|total||false|false|false|number||
+|**RequirementsDefault**|String|false|true|false|true|||||N|requirementsDefault||false|false|false|text||
+|**AnalystTestDefault**|String|false|true|false|true|||||N|analystTestDefault||false|false|false|text||
+|**DocumentationDefault**|String|false|true|false|true|||||N|documentationDefault||false|false|false|text||
+|**ManagementDefault**|String|false|true|false|true|||||N|managementDefault||false|false|false|text||
+|**UatSupportDefault**|String|false|true|false|true|||||N|uatSupportDefault||false|false|false|text||
+|**MarketingDefault**|String|false|true|false|true|||||N|marketingDefault||false|false|false|text||
+|**ContingencyDefault**|String|false|true|false|true|||||N|contingencyDefault||false|false|false|text||
+|**DevelopmentFactoredDefault**|String|false|true|false|true|||||N|developmentFactoredDefault||false|false|false|text||
+|**Total**|String|false|true|false|true|||||N|total||false|true|false|number||
 |**SYSDbVersion**|String|false|true|false|false|||||NH|_dbVersion||false|false|true|text||
 |**Comments**|String|false|true|false|true|||||Y|comments||false|false|false|textarea||
 |**Description**|String|false|true|false|true|||||Y|description||false|false|false|textarea||
-|**Analyst**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|analyst||false|false|false|text||
-|**ProductManager**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|productManager||false|false|false|text||
-|**ProjectManager**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|projectManager||false|false|false|text||
-|**Training**|String|false|true|false|true|||||Y|training||false|false|false|number||
-|**DfTraining**|String|false|true|false|true|||||N|dfTraining||false|false|false|number||
-|**DefaultProfile**|String|false|true|false|false|OL∀|Profile|Profile_ProfileID|Profile_Name|N|defaultProfile||false|false|false|text||
-|**ActualProfile**|String|false|true|false|false|OL∀|Profile|Profile_ProfileID|Profile_Name|Y|actualProfile||false|false|false|text||
+|**AnalystResource**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|analystResource||false|false|false|text||
+|**ProductManagerResource**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|productManagerResource||false|false|false|text||
+|**ProjectManagerResource**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|projectManagerResource||false|false|false|text||
+|**Training**|String|false|true|false|true|||||Y|training||false|true|false|number||
+|**TrainingDefault**|String|false|true|false|true|||||N|trainingDefault||false|false|false|text||
+|**ProfileDefault**|String|false|true|false|true|OL|Profile|Profile_ProfileID|Profile_Name|N|profileDefault||false|false|false|text||
+|**ProfileSelected**|String|false|true|false|false|OL∀|Profile|Profile_ProfileID|Profile_Name|Y|profileSelected||false|false|false|text||
+|**EstimateEffort**|String|false|true|false|true|||||Y|estimateEffort||false|true|false|number||
+|**EstimateEffortDefault**|String|false|true|false|true|||||NH|estimateEffortDefault||false|false|false|text||
+|**AnalystEstimate**|String|false|true|false|true|||||N|analystEstimate||false|true|false|number||
+|**TotalDefault**|String|false|true|false|true|||||N|totalDefault||false|false|false|number||
+|**OriginName**|String|false|false|true|true|||||N|||false|true|false|text||
+|**ProjectName**|String|false|false|true|true|||||N|||false|true|false|text||
+|**OriginID**|String|false|false|true|true|||||N|||false|true|false|text||
+|**ProjectID**|String|false|false|true|true|||||N|||false|true|false|text||
+|**ProfileSelectedOld**|String|false|false|true|false|||||N|||false|true|false|text||
+|**CCY**|String|false|false|true|false|||||N|||false|true|false|text||
+|**RoundTo**|String|false|false|true|false|||||N|||false|true|false|text||
+|**OriginCode**|String|false|false|true|true|||||N|||false|true|false|text||
+|**EstimationSessionName**|String|false|false|true|true|||||N|||false|true|false|text||
 
 
 ##  Artifacts Generated
@@ -118,7 +131,7 @@ SQL Table Key | **featureID**
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **15/02/2023** at **10:44:43**
+Date & Time		     | **07/03/2023** at **16:42:06**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

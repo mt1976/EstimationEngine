@@ -16,7 +16,7 @@ import (
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
 	// Template Generator   : Einsteinium [r5-23.01.23]
-	// Date & Time		    : 15/02/2023 at 10:44:42
+	// Date & Time		    : 04/03/2023 at 20:14:10
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in doctype_impl.go
@@ -46,32 +46,11 @@ import (
 	// These are the the default implementations, which do nothing
 
 	// ----------------------------------------------------------------
-	// BEGIN DocType_Code
-	// BEGIN DocType_Code
-	// BEGIN DocType_Code
-	// ----------------------------------------------------------------
-	// DocType_Code_OnStore_impl provides the implementation for the callout
-	func DocType_Code_OnStore_impl (fieldval string,rec dm.DocType,usr string) (string,error)  {
-		logs.Callout("DocType", dm.DocType_Code_scrn, PUT, rec.DocTypeID)
-		return fieldval,nil
-	}
-	// ----------------------------------------------------------------
-	// DocType_Code_OnFetch_impl provides the implementation for the callout	
-	func DocType_Code_OnFetch_impl (rec dm.DocType)(string) {
-		logs.Callout("DocType", dm.DocType_Code_scrn, GET, rec.DocTypeID)
-		return rec.Code
-	}
-	// ----------------------------------------------------------------
 	// DocType_Code_validate_impl provides validation/actions for Code
 	func DocType_Code_validate_impl (iAction string, iId string, iValue string, iRec dm.DocType, fP dm.FieldProperties) (string, dm.FieldProperties) {
 		logs.Callout("DocType", dm.DocType_Code_scrn, VAL +"-"+iAction, iId)
 		return iValue,fP
 	}
-	// ----------------------------------------------------------------
-	// END   DocType_Code
-	// END   DocType_Code
-	// END   DocType_Code
-	// ----------------------------------------------------------------
 
 	// ----------------------------------------------------------------
 	// Automatically generated code ends here

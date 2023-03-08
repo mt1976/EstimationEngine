@@ -3,6 +3,7 @@ package application
 import (
 	"database/sql"
 	"encoding/gob"
+	"fmt"
 	"html/template"
 	"net/http"
 	"net/url"
@@ -10,6 +11,7 @@ import (
 
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/mt1976/ebEstimates/dao"
+	dm "github.com/mt1976/ebEstimates/datamodel"
 	"github.com/mt1976/ebEstimates/logs"
 )
 
@@ -162,4 +164,17 @@ func firstDir(input_url string) string {
 	rtnValue := workingPath[1 : strings.Index(workingPath[1:], "/")+1]
 
 	return rtnValue
+}
+
+func NextTemplate(source string, action string, defaultTemplate string) string {
+	logs.Warning("NextTemplate: " + source + " " + action + " " + defaultTemplate)
+	nextTemplate, err := dao.Data_Get(source, action, dm.Data_Category_NextAction)
+	fmt.Printf("err: %v\n", err)
+	fmt.Printf("nextTemplate: %v\n", nextTemplate)
+	if nextTemplate == "" {
+		fmt.Printf("defaultTemplate: %v\n", defaultTemplate)
+		return defaultTemplate
+	}
+	fmt.Printf("nextTemplate: %v\n", nextTemplate)
+	return nextTemplate
 }

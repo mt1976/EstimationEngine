@@ -66,7 +66,7 @@ Store|<ul><li>**Implement in Adaptor**</li><li>func CredentialsAction_NewID_impl
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **15/02/2023** at **10:44:41**
+Date & Time		     | **04/03/2023** at **20:14:10**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 03/03/2023 at 13:56:51
+// Date & Time		    : 06/03/2023 at 16:40:50
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //FeatureNew defines the datamodel for the FeatureNew object
 type FeatureNew struct {
-	// Dynamically generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -24,20 +24,17 @@ type FeatureNew struct {
 	Name       string
 	DeveloperEstimate       string
 	DeveloperResource       string
+	ConfidenceCODE       string
 	AnalystEstimate       string
 	AnalystResource       string
-	ConfidenceCODE       string
-	ProductManagerResource       string
-	ProjectManagerResource       string
-	Description       string
-	Comments       string
+	EstimateEffort       string
 	DevOpsID       string
 	FreshDeskID       string
 	RSCID       string
 	OtherID       string
 	OtherID2       string
-	DefaultProfile       string
-	ActualProfile       string
+	ProfileDefault       string
+	ProfileSelected       string
 	//
 	// Field Properties
 	//
@@ -46,35 +43,30 @@ type FeatureNew struct {
 	Name_props FieldProperties
 	DeveloperEstimate_props FieldProperties
 	DeveloperResource_props FieldProperties
+	ConfidenceCODE_props FieldProperties
 	AnalystEstimate_props FieldProperties
 	AnalystResource_props FieldProperties
-	ConfidenceCODE_props FieldProperties
-	ProductManagerResource_props FieldProperties
-	ProjectManagerResource_props FieldProperties
-	Description_props FieldProperties
-	Comments_props FieldProperties
+	EstimateEffort_props FieldProperties
 	DevOpsID_props FieldProperties
 	FreshDeskID_props FieldProperties
 	RSCID_props FieldProperties
 	OtherID_props FieldProperties
 	OtherID2_props FieldProperties
-	DefaultProfile_props FieldProperties
-	ActualProfile_props FieldProperties
+	ProfileDefault_props FieldProperties
+	ProfileSelected_props FieldProperties
 	//
  	// Any lookups will be added below
 	//
 	EstimationSessionID_lookup []Lookup_Item
 	DeveloperResource_lookup []Lookup_Item
-	AnalystResource_lookup []Lookup_Item
 	ConfidenceCODE_lookup []Lookup_Item
-	ProductManagerResource_lookup []Lookup_Item
-	ProjectManagerResource_lookup []Lookup_Item
-	DefaultProfile_lookup []Lookup_Item
-	ActualProfile_lookup []Lookup_Item
+	AnalystResource_lookup []Lookup_Item
+	ProfileDefault_lookup []Lookup_Item
+	ProfileSelected_lookup []Lookup_Item
 	}
 
 const (
-	// Dynamically generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	FeatureNew_Name      = "FeatureNew"
 	FeatureNew_Title       = "Create a New Feature"
@@ -114,20 +106,17 @@ const (
 	FeatureNew_Name_sql   = "Name" // Name is a String
 	FeatureNew_DeveloperEstimate_sql   = "DeveloperEstimate" // DeveloperEstimate is a String
 	FeatureNew_DeveloperResource_sql   = "DeveloperResource" // DeveloperResource is a String
+	FeatureNew_ConfidenceCODE_sql   = "ConfidenceCODE" // ConfidenceCODE is a String
 	FeatureNew_AnalystEstimate_sql   = "AnalystEstimate" // AnalystEstimate is a String
 	FeatureNew_AnalystResource_sql   = "AnalystResource" // AnalystResource is a String
-	FeatureNew_ConfidenceCODE_sql   = "ConfidenceCODE" // ConfidenceCODE is a String
-	FeatureNew_ProductManagerResource_sql   = "ProductManagerResource" // ProductManagerResource is a String
-	FeatureNew_ProjectManagerResource_sql   = "ProjectManagerResource" // ProjectManagerResource is a String
-	FeatureNew_Description_sql   = "Description" // Description is a String
-	FeatureNew_Comments_sql   = "Comments" // Comments is a String
+	FeatureNew_EstimateEffort_sql   = "EstimateEffort" // EstimateEffort is a String
 	FeatureNew_DevOpsID_sql   = "DevOpsID" // DevOpsID is a String
 	FeatureNew_FreshDeskID_sql   = "FreshDeskID" // FreshDeskID is a String
 	FeatureNew_RSCID_sql   = "RSCID" // RSCID is a String
 	FeatureNew_OtherID_sql   = "OtherID" // OtherID is a String
 	FeatureNew_OtherID2_sql   = "OtherID2" // OtherID2 is a String
-	FeatureNew_DefaultProfile_sql   = "DefaultProfile" // DefaultProfile is a String
-	FeatureNew_ActualProfile_sql   = "ActualProfile" // ActualProfile is a String
+	FeatureNew_ProfileDefault_sql   = "ProfileDefault" // ProfileDefault is a String
+	FeatureNew_ProfileSelected_sql   = "ProfileSelected" // ProfileSelected is a String
 ///
 	/// Application Field Definitions
 	///
@@ -136,26 +125,23 @@ const (
 	FeatureNew_Name_scrn   = "Name" // Name is a String
 	FeatureNew_DeveloperEstimate_scrn   = "DeveloperEstimate" // DeveloperEstimate is a String
 	FeatureNew_DeveloperResource_scrn   = "DeveloperResource" // DeveloperResource is a String
+	FeatureNew_ConfidenceCODE_scrn   = "ConfidenceCODE" // ConfidenceCODE is a String
 	FeatureNew_AnalystEstimate_scrn   = "AnalystEstimate" // AnalystEstimate is a String
 	FeatureNew_AnalystResource_scrn   = "AnalystResource" // AnalystResource is a String
-	FeatureNew_ConfidenceCODE_scrn   = "ConfidenceCODE" // ConfidenceCODE is a String
-	FeatureNew_ProductManagerResource_scrn   = "ProductManagerResource" // ProductManagerResource is a String
-	FeatureNew_ProjectManagerResource_scrn   = "ProjectManagerResource" // ProjectManagerResource is a String
-	FeatureNew_Description_scrn   = "Description" // Description is a String
-	FeatureNew_Comments_scrn   = "Comments" // Comments is a String
+	FeatureNew_EstimateEffort_scrn   = "EstimateEffort" // EstimateEffort is a String
 	FeatureNew_DevOpsID_scrn   = "DevOpsID" // DevOpsID is a String
 	FeatureNew_FreshDeskID_scrn   = "FreshDeskID" // FreshDeskID is a String
 	FeatureNew_RSCID_scrn   = "RSCID" // RSCID is a String
 	FeatureNew_OtherID_scrn   = "OtherID" // OtherID is a String
 	FeatureNew_OtherID2_scrn   = "OtherID2" // OtherID2 is a String
-	FeatureNew_DefaultProfile_scrn   = "DefaultProfile" // DefaultProfile is a String
-	FeatureNew_ActualProfile_scrn   = "ActualProfile" // ActualProfile is a String
+	FeatureNew_ProfileDefault_scrn   = "ProfileDefault" // ProfileDefault is a String
+	FeatureNew_ProfileSelected_scrn   = "ProfileSelected" // ProfileSelected is a String
 ///
 )
 
 //FeatureNew_PageList provides the information for the template for a list of FeatureNews
 type FeatureNew_PageList struct {
-	// Dynamically generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -177,7 +163,7 @@ type FeatureNew_PageList struct {
 
 //FeatureNew_Page provides the information for the template for an individual FeatureNew
 type FeatureNew_Page struct {
-	// Dynamically generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 06/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
@@ -198,49 +184,41 @@ type FeatureNew_Page struct {
 	Name         string
 	DeveloperEstimate         string
 	DeveloperResource         string
+	ConfidenceCODE         string
 	AnalystEstimate         string
 	AnalystResource         string
-	ConfidenceCODE         string
-	ProductManagerResource         string
-	ProjectManagerResource         string
-	Description         string
-	Comments         string
+	EstimateEffort         string
 	DevOpsID         string
 	FreshDeskID         string
 	RSCID         string
 	OtherID         string
 	OtherID2         string
-	DefaultProfile         string
-	ActualProfile         string
+	ProfileDefault         string
+	ProfileSelected         string
 	/// Field Properties
 	ID_props     FieldProperties
 	EstimationSessionID_props     FieldProperties
 	Name_props     FieldProperties
 	DeveloperEstimate_props     FieldProperties
 	DeveloperResource_props     FieldProperties
+	ConfidenceCODE_props     FieldProperties
 	AnalystEstimate_props     FieldProperties
 	AnalystResource_props     FieldProperties
-	ConfidenceCODE_props     FieldProperties
-	ProductManagerResource_props     FieldProperties
-	ProjectManagerResource_props     FieldProperties
-	Description_props     FieldProperties
-	Comments_props     FieldProperties
+	EstimateEffort_props     FieldProperties
 	DevOpsID_props     FieldProperties
 	FreshDeskID_props     FieldProperties
 	RSCID_props     FieldProperties
 	OtherID_props     FieldProperties
 	OtherID2_props     FieldProperties
-	DefaultProfile_props     FieldProperties
-	ActualProfile_props     FieldProperties
+	ProfileDefault_props     FieldProperties
+	ProfileSelected_props     FieldProperties
 	/// Lookups
 	EstimationSessionID_lookup    []Lookup_Item
 	DeveloperResource_lookup    []Lookup_Item
-	AnalystResource_lookup    []Lookup_Item
 	ConfidenceCODE_lookup    []Lookup_Item
-	ProductManagerResource_lookup    []Lookup_Item
-	ProjectManagerResource_lookup    []Lookup_Item
-	DefaultProfile_lookup    []Lookup_Item
-	ActualProfile_lookup    []Lookup_Item
+	AnalystResource_lookup    []Lookup_Item
+	ProfileDefault_lookup    []Lookup_Item
+	ProfileSelected_lookup    []Lookup_Item
 	
 	/// END OF DEFINITIONS
 	///

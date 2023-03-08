@@ -9,7 +9,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 15/02/2023 at 10:44:43
+// Date & Time		    : 04/03/2023 at 20:14:11
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -143,7 +143,10 @@ func estimationstate_MethodDelete(w http.ResponseWriter, r *http.Request) {
 	//logs.Information("DELETE", deleteID)
 		w.Header().Set("Content-Type", "application/json")
 
-		w.WriteHeader(int(http.StatusMethodNotAllowed))
+	deleteID := core.GetURLparam(r, dm.EstimationState_QueryString)
+
+	dao.EstimationState_Delete(deleteID)
+		w.WriteHeader(int(http.StatusOK))
 
 
 	//fmt.Printf("json_data: %v\n", json_data)

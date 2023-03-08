@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 15/02/2023 at 10:44:43
+// Date & Time		    : 07/03/2023 at 16:42:06
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //Feature_Publish annouces the endpoints available for this object
-//Feature_Publish - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+//Feature_Publish - Auto generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Feature_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.Feature_Path, Feature_Handler)
 	mux.HandleFunc(dm.Feature_PathList, Feature_HandlerList)
@@ -34,21 +34,21 @@ func Feature_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Feature_PathEdit, Feature_HandlerEdit)
 	mux.HandleFunc(dm.Feature_PathNew, Feature_HandlerNew)
 	mux.HandleFunc(dm.Feature_PathSave, Feature_HandlerSave)
-	//Cannot Delete via GUI
+	mux.HandleFunc(dm.Feature_PathDelete, Feature_HandlerDelete)
 	logs.Publish("Application", dm.Feature_Title)
     core.Catalog_Add(dm.Feature_Title, dm.Feature_Path, "", dm.Feature_QueryString, "Application")
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Feature_HandlerList is the handler for the list page
 //Allows Listing of Feature records
-//Feature_HandlerList - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+//Feature_HandlerList - Auto generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Feature_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -63,7 +63,15 @@ func Feature_HandlerList(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	var returnList []dm.Feature
-	noItems, returnList, _ := dao.Feature_GetList()
+
+	objectName := dao.Translate("ObjectName", "Feature")
+	reqField := "Base"
+	filter,_ := dao.Data_GetString(objectName, reqField, dm.Data_Category_FilterRule)
+	if filter == "" {
+		logs.Warning("No filter found : " + reqField + " for Object: " + objectName)
+	} 
+
+	noItems, returnList, _ := dao.Feature_GetListFiltered(filter)
 
 	pageDetail := dm.Feature_PageList{
 		Title:            CardTitle(dm.Feature_Title, core.Action_List),
@@ -76,9 +84,11 @@ func Feature_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
 	
-	ExecuteTemplate(dm.Feature_TemplateList, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("Feature", "List", dm.Feature_TemplateList)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -86,10 +96,10 @@ func Feature_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //Feature_HandlerView is the handler used to View a page
 //Allows Viewing for an existing Feature record
-//Feature_HandlerView - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Feature_HandlerView - Auto generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Feature_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -116,19 +126,21 @@ func Feature_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = feature_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.Feature_TemplateView, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("Feature", "View", dm.Feature_TemplateView)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Feature_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing Feature record and then allows the user to save the changes
-//Feature_HandlerEdit - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Feature_HandlerEdit - Auto generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Feature_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -163,19 +175,22 @@ func Feature_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = feature_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.Feature_TemplateEdit, w, r, pageDetail)
+
+	nextTemplate :=  NextTemplate("Feature", "Edit", dm.Feature_TemplateEdit)
+
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Feature_HandlerSave is the handler used process the saving of an Feature
 //It is called from the Edit and New pages
-//Feature_HandlerSave  - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Feature_HandlerSave  - Auto generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Feature_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -192,25 +207,26 @@ func Feature_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	item := feature_DataFromRequest(r)
 	
 	item, errStore := dao.Feature_Store(item,r)
-	if errStore == nil {	
-		http.Redirect(w, r, dm.Feature_Redirect, http.StatusFound)
+	if errStore == nil {
+		nextTemplate :=  NextTemplate("Feature", "Save", dm.Feature_Redirect)
+		http.Redirect(w, r, nextTemplate, http.StatusFound)
 	} else {
 		logs.Information(dm.Feature_Name, errStore.Error())
-		http.Redirect(w, r, r.Referer(), http.StatusFound)
+		//http.Redirect(w, r, r.Referer(), http.StatusFound)
 		ExecuteRedirect(r.Referer(), w, r,dm.Feature_QueryString,itemID,item)
 	}
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Feature_HandlerNew is the handler used process the creation of an Feature
 //It will create a new Feature and then redirect to the Edit page
-//Feature_HandlerNew  - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Feature_HandlerNew  - Auto generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Feature_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -246,29 +262,58 @@ func Feature_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	pageDetail = feature_PopulatePage(rD , pageDetail) 
 
-	ExecuteTemplate(dm.Feature_TemplateNew, w, r, pageDetail)
+	nextTemplate :=  NextTemplate("Feature", "New", dm.Feature_TemplateNew)
+	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }	
 
 
+//Feature_HandlerDelete is the handler used process the deletion of an Feature
+// It will delete the Feature and then redirect to the List page
+//Feature_HandlerDelete - Auto generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+func Feature_HandlerDelete(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Mandatory Security Validation
+	//
+	if !(Session_Validate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	//
+	// Code Continues Below
+	//
+	logs.Servicing(r.URL.Path)
+	searchID := core.GetURLparam(r, dm.Feature_QueryString)
+
+	dao.Feature_Delete(searchID)	
+
+	nextTemplate :=  NextTemplate("Feature", "Delete", dm.Feature_Redirect)
+	http.Redirect(w, r, nextTemplate, http.StatusFound)
+	// 
+	// Auto generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// END
+}
+
 
 //feature_PopulatePage Builds/Populates the Feature Page 
-//feature_PopulatePage Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//feature_PopulatePage Auto generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func feature_PopulatePage(rD dm.Feature, pageDetail dm.Feature_Page) dm.Feature_Page {
 	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.FeatureID = rD.FeatureID
 	pageDetail.EstimationSessionID = rD.EstimationSessionID
-	pageDetail.ConfidenceID = rD.ConfidenceID
+	pageDetail.ConfidenceCODE = rD.ConfidenceCODE
 	pageDetail.Name = rD.Name
-	pageDetail.DevEstimate = rD.DevEstimate
-	pageDetail.DevUplift = rD.DevUplift
-	pageDetail.Reqs = rD.Reqs
+	pageDetail.DevelopmentEstimate = rD.DevelopmentEstimate
+	pageDetail.DevelopmentFactored = rD.DevelopmentFactored
+	pageDetail.Requirements = rD.Requirements
 	pageDetail.AnalystTest = rD.AnalystTest
-	pageDetail.Docs = rD.Docs
-	pageDetail.Mgt = rD.Mgt
+	pageDetail.Documentation = rD.Documentation
+	pageDetail.Management = rD.Management
 	pageDetail.UatSupport = rD.UatSupport
 	pageDetail.Marketing = rD.Marketing
 	pageDetail.Contingency = rD.Contingency
@@ -286,62 +331,77 @@ func feature_PopulatePage(rD dm.Feature, pageDetail dm.Feature_Page) dm.Feature_
 	pageDetail.SYSDeleted = rD.SYSDeleted
 	pageDetail.SYSDeletedBy = rD.SYSDeletedBy
 	pageDetail.SYSDeletedHost = rD.SYSDeletedHost
-	pageDetail.Developer = rD.Developer
-	pageDetail.Approver = rD.Approver
-	pageDetail.Notes = rD.Notes
+	pageDetail.DeveloperResource = rD.DeveloperResource
+	pageDetail.ApproverResource = rD.ApproverResource
+	pageDetail.Activity = rD.Activity
 	pageDetail.OffProfile = rD.OffProfile
 	pageDetail.OffProfileJustification = rD.OffProfileJustification
 	pageDetail.SYSActivity = rD.SYSActivity
-	pageDetail.DfReqs = rD.DfReqs
-	pageDetail.DfAnalystTest = rD.DfAnalystTest
-	pageDetail.DfDocs = rD.DfDocs
-	pageDetail.Dfmgt = rD.Dfmgt
-	pageDetail.DfuatSupport = rD.DfuatSupport
-	pageDetail.Dfmarketing = rD.Dfmarketing
-	pageDetail.Dfcontingency = rD.Dfcontingency
-	pageDetail.DfdevUplift = rD.DfdevUplift
+	pageDetail.RequirementsDefault = rD.RequirementsDefault
+	pageDetail.AnalystTestDefault = rD.AnalystTestDefault
+	pageDetail.DocumentationDefault = rD.DocumentationDefault
+	pageDetail.ManagementDefault = rD.ManagementDefault
+	pageDetail.UatSupportDefault = rD.UatSupportDefault
+	pageDetail.MarketingDefault = rD.MarketingDefault
+	pageDetail.ContingencyDefault = rD.ContingencyDefault
+	pageDetail.DevelopmentFactoredDefault = rD.DevelopmentFactoredDefault
 	pageDetail.Total = rD.Total
 	pageDetail.SYSDbVersion = rD.SYSDbVersion
 	pageDetail.Comments = rD.Comments
 	pageDetail.Description = rD.Description
-	pageDetail.Analyst = rD.Analyst
-	pageDetail.ProductManager = rD.ProductManager
-	pageDetail.ProjectManager = rD.ProjectManager
+	pageDetail.AnalystResource = rD.AnalystResource
+	pageDetail.ProductManagerResource = rD.ProductManagerResource
+	pageDetail.ProjectManagerResource = rD.ProjectManagerResource
 	pageDetail.Training = rD.Training
-	pageDetail.DfTraining = rD.DfTraining
-	pageDetail.DefaultProfile = rD.DefaultProfile
-	pageDetail.ActualProfile = rD.ActualProfile
+	pageDetail.TrainingDefault = rD.TrainingDefault
+	pageDetail.ProfileDefault = rD.ProfileDefault
+	pageDetail.ProfileSelected = rD.ProfileSelected
+	pageDetail.EstimateEffort = rD.EstimateEffort
+	pageDetail.EstimateEffortDefault = rD.EstimateEffortDefault
+	pageDetail.AnalystEstimate = rD.AnalystEstimate
+	pageDetail.TotalDefault = rD.TotalDefault
 	// Add Pseudo/Extra Fields
+	pageDetail.OriginName = rD.OriginName
+	pageDetail.ProjectName = rD.ProjectName
+	pageDetail.OriginID = rD.OriginID
+	pageDetail.ProjectID = rD.ProjectID
+	pageDetail.ProfileSelectedOld = rD.ProfileSelectedOld
+	pageDetail.CCY = rD.CCY
+	pageDetail.RoundTo = rD.RoundTo
+	pageDetail.OriginCode = rD.OriginCode
+	pageDetail.EstimationSessionName = rD.EstimationSessionName
 	// Enrichment Fields 
 	 
 	pageDetail.EstimationSessionID_lookup = dao.EstimationSession_GetLookup()
 	 
-	pageDetail.ConfidenceID_lookup = dao.Confidence_GetFilteredLookup("Feature","ConfidenceID")
+	pageDetail.ConfidenceCODE_lookup = dao.Confidence_GetFilteredLookup("Feature","ConfidenceCODE")
 	 
-	pageDetail.Developer_lookup = dao.Resource_GetFilteredLookup("Feature","Developer")
+	pageDetail.DeveloperResource_lookup = dao.Resource_GetFilteredLookup("Feature","DeveloperResource")
 	 
-	pageDetail.Approver_lookup = dao.Resource_GetFilteredLookup("Feature","Approver")
+	pageDetail.ApproverResource_lookup = dao.Resource_GetFilteredLookup("Feature","ApproverResource")
+	
+	pageDetail.OffProfile_lookup = dao.StubLists_Get("tf")
 	 
-	pageDetail.Analyst_lookup = dao.Resource_GetFilteredLookup("Feature","Analyst")
+	pageDetail.AnalystResource_lookup = dao.Resource_GetFilteredLookup("Feature","AnalystResource")
 	 
-	pageDetail.ProductManager_lookup = dao.Resource_GetFilteredLookup("Feature","ProductManager")
+	pageDetail.ProductManagerResource_lookup = dao.Resource_GetFilteredLookup("Feature","ProductManagerResource")
 	 
-	pageDetail.ProjectManager_lookup = dao.Resource_GetFilteredLookup("Feature","ProjectManager")
+	pageDetail.ProjectManagerResource_lookup = dao.Resource_GetFilteredLookup("Feature","ProjectManagerResource")
 	 
-	pageDetail.DefaultProfile_lookup = dao.Profile_GetFilteredLookup("Feature","DefaultProfile")
+	pageDetail.ProfileDefault_lookup = dao.Profile_GetLookup()
 	 
-	pageDetail.ActualProfile_lookup = dao.Profile_GetFilteredLookup("Feature","ActualProfile")
+	pageDetail.ProfileSelected_lookup = dao.Profile_GetFilteredLookup("Feature","ProfileSelected")
 	pageDetail.SYSId_props = rD.SYSId_props
 	pageDetail.FeatureID_props = rD.FeatureID_props
 	pageDetail.EstimationSessionID_props = rD.EstimationSessionID_props
-	pageDetail.ConfidenceID_props = rD.ConfidenceID_props
+	pageDetail.ConfidenceCODE_props = rD.ConfidenceCODE_props
 	pageDetail.Name_props = rD.Name_props
-	pageDetail.DevEstimate_props = rD.DevEstimate_props
-	pageDetail.DevUplift_props = rD.DevUplift_props
-	pageDetail.Reqs_props = rD.Reqs_props
+	pageDetail.DevelopmentEstimate_props = rD.DevelopmentEstimate_props
+	pageDetail.DevelopmentFactored_props = rD.DevelopmentFactored_props
+	pageDetail.Requirements_props = rD.Requirements_props
 	pageDetail.AnalystTest_props = rD.AnalystTest_props
-	pageDetail.Docs_props = rD.Docs_props
-	pageDetail.Mgt_props = rD.Mgt_props
+	pageDetail.Documentation_props = rD.Documentation_props
+	pageDetail.Management_props = rD.Management_props
 	pageDetail.UatSupport_props = rD.UatSupport_props
 	pageDetail.Marketing_props = rD.Marketing_props
 	pageDetail.Contingency_props = rD.Contingency_props
@@ -359,51 +419,62 @@ func feature_PopulatePage(rD dm.Feature, pageDetail dm.Feature_Page) dm.Feature_
 	pageDetail.SYSDeleted_props = rD.SYSDeleted_props
 	pageDetail.SYSDeletedBy_props = rD.SYSDeletedBy_props
 	pageDetail.SYSDeletedHost_props = rD.SYSDeletedHost_props
-	pageDetail.Developer_props = rD.Developer_props
-	pageDetail.Approver_props = rD.Approver_props
-	pageDetail.Notes_props = rD.Notes_props
+	pageDetail.DeveloperResource_props = rD.DeveloperResource_props
+	pageDetail.ApproverResource_props = rD.ApproverResource_props
+	pageDetail.Activity_props = rD.Activity_props
 	pageDetail.OffProfile_props = rD.OffProfile_props
 	pageDetail.OffProfileJustification_props = rD.OffProfileJustification_props
 	pageDetail.SYSActivity_props = rD.SYSActivity_props
-	pageDetail.DfReqs_props = rD.DfReqs_props
-	pageDetail.DfAnalystTest_props = rD.DfAnalystTest_props
-	pageDetail.DfDocs_props = rD.DfDocs_props
-	pageDetail.Dfmgt_props = rD.Dfmgt_props
-	pageDetail.DfuatSupport_props = rD.DfuatSupport_props
-	pageDetail.Dfmarketing_props = rD.Dfmarketing_props
-	pageDetail.Dfcontingency_props = rD.Dfcontingency_props
-	pageDetail.DfdevUplift_props = rD.DfdevUplift_props
+	pageDetail.RequirementsDefault_props = rD.RequirementsDefault_props
+	pageDetail.AnalystTestDefault_props = rD.AnalystTestDefault_props
+	pageDetail.DocumentationDefault_props = rD.DocumentationDefault_props
+	pageDetail.ManagementDefault_props = rD.ManagementDefault_props
+	pageDetail.UatSupportDefault_props = rD.UatSupportDefault_props
+	pageDetail.MarketingDefault_props = rD.MarketingDefault_props
+	pageDetail.ContingencyDefault_props = rD.ContingencyDefault_props
+	pageDetail.DevelopmentFactoredDefault_props = rD.DevelopmentFactoredDefault_props
 	pageDetail.Total_props = rD.Total_props
 	pageDetail.SYSDbVersion_props = rD.SYSDbVersion_props
 	pageDetail.Comments_props = rD.Comments_props
 	pageDetail.Description_props = rD.Description_props
-	pageDetail.Analyst_props = rD.Analyst_props
-	pageDetail.ProductManager_props = rD.ProductManager_props
-	pageDetail.ProjectManager_props = rD.ProjectManager_props
+	pageDetail.AnalystResource_props = rD.AnalystResource_props
+	pageDetail.ProductManagerResource_props = rD.ProductManagerResource_props
+	pageDetail.ProjectManagerResource_props = rD.ProjectManagerResource_props
 	pageDetail.Training_props = rD.Training_props
-	pageDetail.DfTraining_props = rD.DfTraining_props
-	pageDetail.DefaultProfile_props = rD.DefaultProfile_props
-	pageDetail.ActualProfile_props = rD.ActualProfile_props
+	pageDetail.TrainingDefault_props = rD.TrainingDefault_props
+	pageDetail.ProfileDefault_props = rD.ProfileDefault_props
+	pageDetail.ProfileSelected_props = rD.ProfileSelected_props
+	pageDetail.EstimateEffort_props = rD.EstimateEffort_props
+	pageDetail.EstimateEffortDefault_props = rD.EstimateEffortDefault_props
+	pageDetail.AnalystEstimate_props = rD.AnalystEstimate_props
+	pageDetail.TotalDefault_props = rD.TotalDefault_props
+	pageDetail.OriginName_props = rD.OriginName_props
+	pageDetail.ProjectName_props = rD.ProjectName_props
+	pageDetail.OriginID_props = rD.OriginID_props
+	pageDetail.ProjectID_props = rD.ProjectID_props
+	pageDetail.ProfileSelectedOld_props = rD.ProfileSelectedOld_props
+	pageDetail.CCY_props = rD.CCY_props
+	pageDetail.RoundTo_props = rD.RoundTo_props
+	pageDetail.OriginCode_props = rD.OriginCode_props
+	pageDetail.EstimationSessionName_props = rD.EstimationSessionName_props
 	return pageDetail
-}	
-
-
+}
 //feature_DataFromRequest is used process the content of an HTTP Request and return an instance of an Feature
-//feature_DataFromRequest Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//feature_DataFromRequest Auto generated 07/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func feature_DataFromRequest(r *http.Request) dm.Feature {
 
 	var item dm.Feature
 		item.SYSId = r.FormValue(dm.Feature_SYSId_scrn)
 		item.FeatureID = r.FormValue(dm.Feature_FeatureID_scrn)
 		item.EstimationSessionID = r.FormValue(dm.Feature_EstimationSessionID_scrn)
-		item.ConfidenceID = r.FormValue(dm.Feature_ConfidenceID_scrn)
+		item.ConfidenceCODE = r.FormValue(dm.Feature_ConfidenceCODE_scrn)
 		item.Name = r.FormValue(dm.Feature_Name_scrn)
-		item.DevEstimate = r.FormValue(dm.Feature_DevEstimate_scrn)
-		item.DevUplift = r.FormValue(dm.Feature_DevUplift_scrn)
-		item.Reqs = r.FormValue(dm.Feature_Reqs_scrn)
+		item.DevelopmentEstimate = r.FormValue(dm.Feature_DevelopmentEstimate_scrn)
+		item.DevelopmentFactored = r.FormValue(dm.Feature_DevelopmentFactored_scrn)
+		item.Requirements = r.FormValue(dm.Feature_Requirements_scrn)
 		item.AnalystTest = r.FormValue(dm.Feature_AnalystTest_scrn)
-		item.Docs = r.FormValue(dm.Feature_Docs_scrn)
-		item.Mgt = r.FormValue(dm.Feature_Mgt_scrn)
+		item.Documentation = r.FormValue(dm.Feature_Documentation_scrn)
+		item.Management = r.FormValue(dm.Feature_Management_scrn)
 		item.UatSupport = r.FormValue(dm.Feature_UatSupport_scrn)
 		item.Marketing = r.FormValue(dm.Feature_Marketing_scrn)
 		item.Contingency = r.FormValue(dm.Feature_Contingency_scrn)
@@ -421,31 +492,43 @@ func feature_DataFromRequest(r *http.Request) dm.Feature {
 		item.SYSDeleted = r.FormValue(dm.Feature_SYSDeleted_scrn)
 		item.SYSDeletedBy = r.FormValue(dm.Feature_SYSDeletedBy_scrn)
 		item.SYSDeletedHost = r.FormValue(dm.Feature_SYSDeletedHost_scrn)
-		item.Developer = r.FormValue(dm.Feature_Developer_scrn)
-		item.Approver = r.FormValue(dm.Feature_Approver_scrn)
-		item.Notes = r.FormValue(dm.Feature_Notes_scrn)
+		item.DeveloperResource = r.FormValue(dm.Feature_DeveloperResource_scrn)
+		item.ApproverResource = r.FormValue(dm.Feature_ApproverResource_scrn)
+		item.Activity = r.FormValue(dm.Feature_Activity_scrn)
 		item.OffProfile = r.FormValue(dm.Feature_OffProfile_scrn)
 		item.OffProfileJustification = r.FormValue(dm.Feature_OffProfileJustification_scrn)
 		item.SYSActivity = r.FormValue(dm.Feature_SYSActivity_scrn)
-		item.DfReqs = r.FormValue(dm.Feature_DfReqs_scrn)
-		item.DfAnalystTest = r.FormValue(dm.Feature_DfAnalystTest_scrn)
-		item.DfDocs = r.FormValue(dm.Feature_DfDocs_scrn)
-		item.Dfmgt = r.FormValue(dm.Feature_Dfmgt_scrn)
-		item.DfuatSupport = r.FormValue(dm.Feature_DfuatSupport_scrn)
-		item.Dfmarketing = r.FormValue(dm.Feature_Dfmarketing_scrn)
-		item.Dfcontingency = r.FormValue(dm.Feature_Dfcontingency_scrn)
-		item.DfdevUplift = r.FormValue(dm.Feature_DfdevUplift_scrn)
+		item.RequirementsDefault = r.FormValue(dm.Feature_RequirementsDefault_scrn)
+		item.AnalystTestDefault = r.FormValue(dm.Feature_AnalystTestDefault_scrn)
+		item.DocumentationDefault = r.FormValue(dm.Feature_DocumentationDefault_scrn)
+		item.ManagementDefault = r.FormValue(dm.Feature_ManagementDefault_scrn)
+		item.UatSupportDefault = r.FormValue(dm.Feature_UatSupportDefault_scrn)
+		item.MarketingDefault = r.FormValue(dm.Feature_MarketingDefault_scrn)
+		item.ContingencyDefault = r.FormValue(dm.Feature_ContingencyDefault_scrn)
+		item.DevelopmentFactoredDefault = r.FormValue(dm.Feature_DevelopmentFactoredDefault_scrn)
 		item.Total = r.FormValue(dm.Feature_Total_scrn)
 		item.SYSDbVersion = r.FormValue(dm.Feature_SYSDbVersion_scrn)
 		item.Comments = r.FormValue(dm.Feature_Comments_scrn)
 		item.Description = r.FormValue(dm.Feature_Description_scrn)
-		item.Analyst = r.FormValue(dm.Feature_Analyst_scrn)
-		item.ProductManager = r.FormValue(dm.Feature_ProductManager_scrn)
-		item.ProjectManager = r.FormValue(dm.Feature_ProjectManager_scrn)
+		item.AnalystResource = r.FormValue(dm.Feature_AnalystResource_scrn)
+		item.ProductManagerResource = r.FormValue(dm.Feature_ProductManagerResource_scrn)
+		item.ProjectManagerResource = r.FormValue(dm.Feature_ProjectManagerResource_scrn)
 		item.Training = r.FormValue(dm.Feature_Training_scrn)
-		item.DfTraining = r.FormValue(dm.Feature_DfTraining_scrn)
-		item.DefaultProfile = r.FormValue(dm.Feature_DefaultProfile_scrn)
-		item.ActualProfile = r.FormValue(dm.Feature_ActualProfile_scrn)
+		item.TrainingDefault = r.FormValue(dm.Feature_TrainingDefault_scrn)
+		item.ProfileDefault = r.FormValue(dm.Feature_ProfileDefault_scrn)
+		item.ProfileSelected = r.FormValue(dm.Feature_ProfileSelected_scrn)
+		item.EstimateEffort = r.FormValue(dm.Feature_EstimateEffort_scrn)
+		item.EstimateEffortDefault = r.FormValue(dm.Feature_EstimateEffortDefault_scrn)
+		item.AnalystEstimate = r.FormValue(dm.Feature_AnalystEstimate_scrn)
+		item.TotalDefault = r.FormValue(dm.Feature_TotalDefault_scrn)
+		item.OriginName = r.FormValue(dm.Feature_OriginName_scrn)
+		item.ProjectName = r.FormValue(dm.Feature_ProjectName_scrn)
+		item.OriginID = r.FormValue(dm.Feature_OriginID_scrn)
+		item.ProjectID = r.FormValue(dm.Feature_ProjectID_scrn)
+		item.ProfileSelectedOld = r.FormValue(dm.Feature_ProfileSelectedOld_scrn)
+		item.CCY = r.FormValue(dm.Feature_CCY_scrn)
+		item.RoundTo = r.FormValue(dm.Feature_RoundTo_scrn)
+		item.OriginCode = r.FormValue(dm.Feature_OriginCode_scrn)
+		item.EstimationSessionName = r.FormValue(dm.Feature_EstimationSessionName_scrn)
 	return item
 }
-

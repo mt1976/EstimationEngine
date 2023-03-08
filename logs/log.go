@@ -225,7 +225,7 @@ func Template(w string) {
 func Accessing(w string) {
 	//msg_info(w, v)
 	if CFG.VerboseMode {
-		msg_raw(log_Accessing, w, "", colour.Green)
+		//msg_raw(log_Accessing, w, "", colour.Green)
 	}
 
 }
@@ -239,22 +239,22 @@ func Post(w string) {
 func Query(w string) {
 	//msg_info(w, v)
 	if CFG.VerboseMode {
-		msg_raw(log_Query, w, Character_Query, colour.White)
+		//msg_raw(log_Query, w, Character_Query, colour.White)
 	}
 }
 
 func Storing(t string, w string) {
-	//msg_info(w, v)
+	//msg_info(w, v)Ac
 	if CFG.VerboseMode {
 
-		msg_raw(log_Storing, t+" "+w, Character_Storing, colour.Yellow)
+		//msg_raw(log_Storing, t+" "+w, Character_Storing, colour.Yellow)
 	}
 }
 
 func Callout(t string, w string, a string, id string) {
 	//msg_info(w, v)
 	if CFG.VerboseMode {
-		msg_raw(log_Callout, t+" "+ColorGreen+w+ColorBoldYellow+" ["+ColorGreen+a+ColorBoldYellow+"] "+ColorWhite+id+ColorBoldYellow, Character_Callout, ColorBoldYellow)
+		//msg_raw(log_Callout, t+" "+ColorGreen+w+ColorBoldYellow+" ["+ColorGreen+a+ColorBoldYellow+"] "+ColorWhite+id+ColorBoldYellow, Character_Callout, ColorBoldYellow)
 	}
 }
 
@@ -268,14 +268,14 @@ func Saving(t string, w string) {
 func Result(w string, r string) {
 	//msg_info(w, v)
 	if CFG.VerboseMode {
-		msg_raw(log_Result, w, Character_Query+" = "+colour.Bold+r, colour.White)
+		//msg_raw(log_Result, w, Character_Query+" = "+colour.Bold+r, colour.White)
 	}
 }
 
 func Database(w string, v string) {
 	//msg_info(w, v)
 	if CFG.VerboseMode {
-		msg_raw(log_Database, w, v, colour.Green)
+		msg_raw(log_Database, w, v, colour.RedBackground)
 	}
 
 }

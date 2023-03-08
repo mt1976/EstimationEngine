@@ -1,6 +1,7 @@
 package dao
 
 import (
+	core "github.com/mt1976/ebEstimates/core"
 	dm "github.com/mt1976/ebEstimates/datamodel"
 	logs "github.com/mt1976/ebEstimates/logs"
 )
@@ -14,7 +15,7 @@ import (
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 15/02/2023 at 10:44:44
+// Date & Time		    : 05/03/2023 at 13:03:29
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 // The following functions should be created in featurenew_impl.go
@@ -23,7 +24,12 @@ import (
 // ----------------------------------------------------------------
 // FeatureNew_ObjectValidation_impl provides Record/Object level validation for FeatureNew
 func FeatureNew_ObjectValidation_impl(iAction string, iId string, iRec dm.FeatureNew) (dm.FeatureNew, string, error) {
-	logs.Callout("FeatureNew", "ObjectValidation", VAL+"-"+iAction, iId)
+	logs.Warning("FeatureNew-ObjectValidation " + VAL + "-" + iAction + "-" + iId)
+	logs.Warning("FeatureNew-ObjectValidation " + VAL + "-" + iAction + "-" + iId)
+	logs.Warning("FeatureNew-ObjectValidation " + VAL + "-" + iAction + "-" + iId)
+	logs.Warning("FeatureNew-ObjectValidation " + VAL + "-" + iAction + "-" + iId)
+	logs.Warning("FeatureNew-ObjectValidation " + VAL + "-" + iAction + "-" + iId)
+
 	switch iAction {
 	case VAL:
 
@@ -42,6 +48,58 @@ func FeatureNew_ObjectValidation_impl(iAction string, iId string, iRec dm.Featur
 //
 // ----------------------------------------------------------------
 // These are the the default implementations, which do nothing
+
+// ----------------------------------------------------------------
+// FeatureNew_DeveloperEstimate_validate_impl provides validation/actions for DeveloperEstimate
+func FeatureNew_DeveloperEstimate_validate_impl(iAction string, iId string, iValue string, iRec dm.FeatureNew, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("FeatureNew", dm.FeatureNew_DeveloperEstimate_scrn, VAL+"-"+iAction, iId)
+	return iValue, fP
+}
+
+// ----------------------------------------------------------------
+// FeatureNew_DeveloperResource_validate_impl provides validation/actions for DeveloperResource
+func FeatureNew_DeveloperResource_validate_impl(iAction string, iId string, iValue string, iRec dm.FeatureNew, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("FeatureNew", dm.FeatureNew_DeveloperResource_scrn, VAL+"-"+iAction, iId)
+
+	//fP = IsValidResource(iValue, fP)
+
+	return iValue, fP
+}
+
+// ----------------------------------------------------------------
+// FeatureNew_AnalystResource_validate_impl provides validation/actions for AnalystResource
+func FeatureNew_AnalystResource_validate_impl(iAction string, iId string, iValue string, iRec dm.FeatureNew, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("FeatureNew", dm.FeatureNew_AnalystResource_scrn, VAL+"-"+iAction, iId)
+	//fP = IsValidResource(iValue, fP)
+	return iValue, fP
+}
+
+// ----------------------------------------------------------------
+// FeatureNew_EstimateEffort_validate_impl provides validation/actions for EstimateEffort
+func FeatureNew_EstimateEffort_validate_impl(iAction string, iId string, iValue string, iRec dm.FeatureNew, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("FeatureNew", dm.FeatureNew_EstimateEffort_scrn, VAL+"-"+iAction, iId)
+	if iAction == VAL {
+		if iValue != "" {
+
+			miniumum, errData := Data_GetFloat("Feature", "Estimation_Effort_Minimum", dm.Data_Category_Setting)
+			if errData != nil {
+				logs.Warning("Unable to get minimum effort from data - assuming 0")
+				return iValue, fP
+			}
+			// If it's not blank, then it must be a valid number
+			effort, err := core.Numeric(iValue)
+			if err != nil {
+				fP = SetFieldError(fP, "must be a valid number")
+				return iValue, fP
+			}
+			if effort < miniumum {
+				fP = SetFieldError(fP, "must be greater than "+core.FloatToString(miniumum))
+				return iValue, fP
+			}
+		}
+	}
+	return iValue, fP
+}
 
 // ----------------------------------------------------------------
 // Automatically generated code ends here

@@ -16,7 +16,7 @@ import (
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
 	// Template Generator   : Einsteinium [r5-23.01.23]
-	// Date & Time		    : 03/03/2023 at 13:56:51
+	// Date & Time		    : 06/03/2023 at 16:40:50
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in featurenew_impl.go
@@ -49,6 +49,94 @@ import (
 	// ----------------------------------------------------------------
 	
 
+
+	// ----------------------------------------------------------------
+	// BEGIN FeatureNew_DeveloperEstimate
+	// BEGIN FeatureNew_DeveloperEstimate
+	// BEGIN FeatureNew_DeveloperEstimate
+	// ----------------------------------------------------------------
+	// FeatureNew_DeveloperEstimate_OnStore_impl provides the implementation for the callout
+	func FeatureNew_DeveloperEstimate_OnStore_impl (fieldval string,rec dm.FeatureNew,usr string) (string,error)  {
+		logs.Callout("FeatureNew", dm.FeatureNew_DeveloperEstimate_scrn, PUT, rec.ID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// FeatureNew_DeveloperEstimate_OnFetch_impl provides the implementation for the callout	
+	func FeatureNew_DeveloperEstimate_OnFetch_impl (rec dm.FeatureNew)(string) {
+		logs.Callout("FeatureNew", dm.FeatureNew_DeveloperEstimate_scrn, GET, rec.ID)
+		return rec.DeveloperEstimate
+	}
+	// ----------------------------------------------------------------
+	// END   FeatureNew_DeveloperEstimate
+	// END   FeatureNew_DeveloperEstimate
+	// END   FeatureNew_DeveloperEstimate
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN FeatureNew_DeveloperResource
+	// BEGIN FeatureNew_DeveloperResource
+	// BEGIN FeatureNew_DeveloperResource
+	// ----------------------------------------------------------------
+	// FeatureNew_DeveloperResource_OnStore_impl provides the implementation for the callout
+	func FeatureNew_DeveloperResource_OnStore_impl (fieldval string,rec dm.FeatureNew,usr string) (string,error)  {
+		logs.Callout("FeatureNew", dm.FeatureNew_DeveloperResource_scrn, PUT, rec.ID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// FeatureNew_DeveloperResource_OnFetch_impl provides the implementation for the callout	
+	func FeatureNew_DeveloperResource_OnFetch_impl (rec dm.FeatureNew)(string) {
+		logs.Callout("FeatureNew", dm.FeatureNew_DeveloperResource_scrn, GET, rec.ID)
+		return rec.DeveloperResource
+	}
+	// ----------------------------------------------------------------
+	// END   FeatureNew_DeveloperResource
+	// END   FeatureNew_DeveloperResource
+	// END   FeatureNew_DeveloperResource
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN FeatureNew_AnalystResource
+	// BEGIN FeatureNew_AnalystResource
+	// BEGIN FeatureNew_AnalystResource
+	// ----------------------------------------------------------------
+	// FeatureNew_AnalystResource_OnStore_impl provides the implementation for the callout
+	func FeatureNew_AnalystResource_OnStore_impl (fieldval string,rec dm.FeatureNew,usr string) (string,error)  {
+		logs.Callout("FeatureNew", dm.FeatureNew_AnalystResource_scrn, PUT, rec.ID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// FeatureNew_AnalystResource_OnFetch_impl provides the implementation for the callout	
+	func FeatureNew_AnalystResource_OnFetch_impl (rec dm.FeatureNew)(string) {
+		logs.Callout("FeatureNew", dm.FeatureNew_AnalystResource_scrn, GET, rec.ID)
+		return rec.AnalystResource
+	}
+	// ----------------------------------------------------------------
+	// END   FeatureNew_AnalystResource
+	// END   FeatureNew_AnalystResource
+	// END   FeatureNew_AnalystResource
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN FeatureNew_EstimateEffort
+	// BEGIN FeatureNew_EstimateEffort
+	// BEGIN FeatureNew_EstimateEffort
+	// ----------------------------------------------------------------
+	// FeatureNew_EstimateEffort_OnStore_impl provides the implementation for the callout
+	func FeatureNew_EstimateEffort_OnStore_impl (fieldval string,rec dm.FeatureNew,usr string) (string,error)  {
+		logs.Callout("FeatureNew", dm.FeatureNew_EstimateEffort_scrn, PUT, rec.ID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// FeatureNew_EstimateEffort_OnFetch_impl provides the implementation for the callout	
+	func FeatureNew_EstimateEffort_OnFetch_impl (rec dm.FeatureNew)(string) {
+		logs.Callout("FeatureNew", dm.FeatureNew_EstimateEffort_scrn, GET, rec.ID)
+		return rec.EstimateEffort
+	}
+	// ----------------------------------------------------------------
+	// END   FeatureNew_EstimateEffort
+	// END   FeatureNew_EstimateEffort
+	// END   FeatureNew_EstimateEffort
+	// ----------------------------------------------------------------
 
 	// ----------------------------------------------------------------
 	// Automatically generated code ends here

@@ -16,7 +16,7 @@ Friendly Name|**Profile**|
 * **Edit** (/Profile/ProfileEdit)
 * **Save** (/Profile/ProfileSave)
 * **New** (/Profile/ProfileNew)
-
+* **Delete** (/Profile/ProfileDelete)
 
 
 
@@ -98,7 +98,7 @@ SQL Table Key | **profileID**
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **15/02/2023** at **10:44:46**
+Date & Time		     | **04/03/2023** at **20:14:13**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

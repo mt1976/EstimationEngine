@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 15/02/2023 at 10:44:44
+// Date & Time		    : 04/03/2023 at 20:14:12
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //Inbox_Publish annouces the endpoints available for this object
-//Inbox_Publish - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+//Inbox_Publish - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Inbox_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.Inbox_Path, Inbox_Handler)
 	mux.HandleFunc(dm.Inbox_PathList, Inbox_HandlerList)
@@ -38,17 +38,17 @@ func Inbox_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.Inbox_Title)
     core.Catalog_Add(dm.Inbox_Title, dm.Inbox_Path, "", dm.Inbox_QueryString, "Application")
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Inbox_HandlerList is the handler for the list page
 //Allows Listing of Inbox records
-//Inbox_HandlerList - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+//Inbox_HandlerList - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Inbox_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -63,7 +63,15 @@ func Inbox_HandlerList(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	var returnList []dm.Inbox
-	noItems, returnList, _ := dao.Inbox_GetList()
+
+	objectName := dao.Translate("ObjectName", "Inbox")
+	reqField := "Base"
+	filter,_ := dao.Data_GetString(objectName, reqField, dm.Data_Category_FilterRule)
+	if filter == "" {
+		logs.Warning("No filter found : " + reqField + " for Object: " + objectName)
+	} 
+
+	noItems, returnList, _ := dao.Inbox_GetListFiltered(filter)
 
 	pageDetail := dm.Inbox_PageList{
 		Title:            CardTitle(dm.Inbox_Title, core.Action_List),
@@ -78,7 +86,7 @@ func Inbox_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	ExecuteTemplate(dm.Inbox_TemplateList, w, r, pageDetail)
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -86,10 +94,10 @@ func Inbox_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //Inbox_HandlerView is the handler used to View a page
 //Allows Viewing for an existing Inbox record
-//Inbox_HandlerView - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Inbox_HandlerView - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Inbox_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -118,7 +126,7 @@ func Inbox_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Inbox_TemplateView, w, r, pageDetail)
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
@@ -126,10 +134,10 @@ func Inbox_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 //Inbox_HandlerSave is the handler used process the saving of an Inbox
 //It is called from the Edit and New pages
-//Inbox_HandlerSave  - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Inbox_HandlerSave  - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Inbox_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -150,11 +158,11 @@ func Inbox_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, dm.Inbox_Redirect, http.StatusFound)
 	} else {
 		logs.Information(dm.Inbox_Name, errStore.Error())
-		http.Redirect(w, r, r.Referer(), http.StatusFound)
+		//http.Redirect(w, r, r.Referer(), http.StatusFound)
 		ExecuteRedirect(r.Referer(), w, r,dm.Inbox_QueryString,itemID,item)
 	}
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
@@ -162,10 +170,10 @@ func Inbox_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 //Inbox_HandlerDelete is the handler used process the deletion of an Inbox
 // It will delete the Inbox and then redirect to the List page
-//Inbox_HandlerDelete - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Inbox_HandlerDelete - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Inbox_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -183,13 +191,13 @@ func Inbox_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 
 	http.Redirect(w, r, dm.Inbox_Redirect, http.StatusFound)
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //inbox_PopulatePage Builds/Populates the Inbox Page 
-//inbox_PopulatePage Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//inbox_PopulatePage Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func inbox_PopulatePage(rD dm.Inbox, pageDetail dm.Inbox_Page) dm.Inbox_Page {
 	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
@@ -239,11 +247,9 @@ func inbox_PopulatePage(rD dm.Inbox, pageDetail dm.Inbox_Page) dm.Inbox_Page {
 	pageDetail.SYSDeletedHost_props = rD.SYSDeletedHost_props
 	pageDetail.SYSDbVersion_props = rD.SYSDbVersion_props
 	return pageDetail
-}	
-
-
+}
 //inbox_DataFromRequest is used process the content of an HTTP Request and return an instance of an Inbox
-//inbox_DataFromRequest Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//inbox_DataFromRequest Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func inbox_DataFromRequest(r *http.Request) dm.Inbox {
 
 	var item dm.Inbox
@@ -269,4 +275,3 @@ func inbox_DataFromRequest(r *http.Request) dm.Inbox {
 		item.SYSDbVersion = r.FormValue(dm.Inbox_SYSDbVersion_scrn)
 	return item
 }
-

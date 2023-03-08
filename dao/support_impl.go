@@ -218,3 +218,34 @@ func SetFieldGood(fP dm.FieldProperties, msg string) dm.FieldProperties {
 	fP.MsgFeedBackType = "invalid-feedback"
 	return fP
 }
+
+func IsValidResource(iValue string, fP dm.FieldProperties) dm.FieldProperties {
+	return fP
+	emptyValue, _ := Data_GetString("System", "Empty_Resource", dm.Data_Category_StateRule)
+	if emptyValue == "" {
+		logs.Warning("No Empty_Resource Rule Set - Assuming '--'")
+		emptyValue = "--"
+	}
+	if iValue == emptyValue {
+		fP = SetFieldError(fP, "must be a valid resource")
+		return fP
+	}
+	if iValue == "" {
+		fP = SetFieldError(fP, "cannot be empty, must be a valid resource")
+		return fP
+	}
+	return fP
+}
+
+func Financial_CCYtoSymbol(inCCY string) string {
+
+	//Get Currencies List
+	ccys := StubLists_Get("ccyhtml")
+
+	for _, ccy := range ccys {
+		if ccy.ID == inCCY {
+			return ccy.Name
+		}
+	}
+	return inCCY
+}

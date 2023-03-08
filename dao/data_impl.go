@@ -34,7 +34,10 @@ func Data_Get(class string, field string, category string) (string, error) {
 	}
 	// If the category passed is not in the valid list then return error
 	if !slices.Contains(dm.Data_Category_List, category) {
-		return "", errors.New("invalid category passed to Data_Get - " + category)
+		msg := "data_Get - invalid category passed to Data_Get - " + category
+		error := errors.New(msg)
+		logs.Fatal(msg, error)
+		return "", error
 	}
 
 	logs.Query("Data_Get " + class + "-" + field + "-" + category)
@@ -143,6 +146,22 @@ func Data_GetInt(class string, field string, category string) (int, error) {
 		return 0, err
 	}
 	rtnVal, err2 := strconv.Atoi(value)
+	if err2 != nil {
+		return 0, nil
+	}
+
+	return rtnVal, nil
+}
+
+func Data_GetFloat(class string, field string, category string) (float64, error) {
+	value, err := Data_Get(class, field, category)
+	if err != nil {
+		return 0, err
+	}
+	if value == "" {
+		return 0, nil
+	}
+	rtnVal, err2 := core.Numeric(value)
 	if err2 != nil {
 		return 0, nil
 	}

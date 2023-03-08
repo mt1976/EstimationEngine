@@ -488,7 +488,7 @@ func EstimationSession_EffortTotal_validate_impl(iAction string, iId string, iVa
 func EstimationSession_FreshDeskURI_validate_impl(iAction string, iId string, iValue string, iRec dm.EstimationSession, fP dm.FieldProperties) (string, dm.FieldProperties) {
 	logs.Callout("EstimationSession", dm.EstimationSession_FreshDeskURI_scrn, VAL+"-"+iAction, iId)
 	rtn := ""
-	logs.Warning("Generate FreshDesk URI")
+	//logs.Warning("Generate FreshDesk URI")
 	if iRec.FreshdeskID != "" {
 		stub, _ := Data_Get("System", "FreshDesk", dm.Data_Category_URI)
 		rtn = core.ReplaceWildcard(stub, "ID", iRec.FreshdeskID)
@@ -499,7 +499,7 @@ func EstimationSession_FreshDeskURI_validate_impl(iAction string, iId string, iV
 // EstimationSession_ADOURI_impl provides validation/actions for ADOURI
 func EstimationSession_ADOURI_validate_impl(iAction string, iId string, iValue string, iRec dm.EstimationSession, fP dm.FieldProperties) (string, dm.FieldProperties) {
 	logs.Callout("EstimationSession", dm.EstimationSession_ADOURI_scrn, VAL+"-"+iAction, iId)
-	logs.Warning("Generate ADO URI")
+	//logs.Warning("Generate ADO URI")
 	rtn := ""
 	if iRec.AdoID != "" {
 		stub, _ := Data_Get("System", "ADO", dm.Data_Category_URI)
@@ -520,7 +520,7 @@ func EstimationSession_NoActiveFeatures_validate_impl(iAction string, iId string
 
 func EstimationSession_IssueDate_OnStore_impl(fieldval string, rec dm.EstimationSession, usr string) (string, error) {
 	logs.Callout("EstimationSession", dm.EstimationSession_IssueDate_scrn, PUT, rec.EstimationSessionID)
-	issuedState, _ := Data_GetString("Quote", "Issued", "State")
+	issuedState, _ := Data_GetString("Quote", "Issued", dm.Data_Category_StateRule)
 	if fieldval == "" && rec.ExpiryDate == "" && rec.EstimationStateID == issuedState {
 		// Get Todays Date yyyy-mm-dd
 		today := time.Now().Format(core.DATEFORMAT)
@@ -544,8 +544,8 @@ func EstimationSession_IssueDate_impl(iAction string, iId string, iValue string,
 func EstimationSession_ExpiryDate_OnStore_impl(fieldval string, rec dm.EstimationSession, usr string) (string, error) {
 	logs.Callout("EstimationSession", dm.EstimationSession_ExpiryDate_scrn, PUT, rec.EstimationSessionID)
 
-	issuedState, _ := Data_GetString("Quote", "Issued", "State")
-	expiredState, _ := Data_GetString("Quote", "Expired", "State")
+	issuedState, _ := Data_GetString("Quote", "Issued", dm.Data_Category_StateRule)
+	expiredState, _ := Data_GetString("Quote", "Expired", dm.Data_Category_StateRule)
 
 	objectName := Translate("ObjectName", "EstimationSession")
 

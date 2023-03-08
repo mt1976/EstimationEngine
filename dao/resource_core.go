@@ -1,4 +1,5 @@
 package dao
+
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/resource.go"
 // ----------------------------------------------------------------
@@ -8,25 +9,27 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 03/03/2023 at 17:00:59
+// Date & Time		    : 04/03/2023 at 20:14:14
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
 	"fmt"
 	"net/http"
-	core "github.com/mt1976/ebEstimates/core"
+
 	"github.com/google/uuid"
-	das  "github.com/mt1976/ebEstimates/das"
-	dm   "github.com/mt1976/ebEstimates/datamodel"
-	logs   "github.com/mt1976/ebEstimates/logs"
+	core "github.com/mt1976/ebEstimates/core"
+	das "github.com/mt1976/ebEstimates/das"
+	dm "github.com/mt1976/ebEstimates/datamodel"
+	logs "github.com/mt1976/ebEstimates/logs"
 )
 
 var Resource_SQLbase string
 var Resource_QualifiedName string
-func init(){
+
+func init() {
 	Resource_QualifiedName = get_TableName(core.ApplicationSQLSchema(), dm.Resource_SQLTable)
-	Resource_SQLbase =  das.SELECTALL + das.FROM + Resource_QualifiedName
+	Resource_SQLbase = das.SELECTALL + das.FROM + Resource_QualifiedName
 }
 
 // Resource_GetList() returns a list of all Resource records
@@ -37,16 +40,15 @@ func Resource_GetList() (int, []dm.Resource, error) {
 
 // Resource_GetListFiltered() returns a filtered list of all Resource records
 func Resource_GetListFiltered(filter string) (int, []dm.Resource, error) {
-	
+
 	tsql := Resource_SQLbase
 	if filter != "" {
 		tsql = tsql + " " + das.WHERE + filter
 	}
 	count, resourceList, _, _ := resource_Fetch(tsql)
-	
+
 	return count, resourceList, nil
 }
-
 
 // Resource_GetLookup() returns a lookup list of all Resource items in lookup format
 func Resource_GetLookup() []dm.Lookup_Item {
@@ -59,14 +61,14 @@ func Resource_GetLookup() []dm.Lookup_Item {
 }
 
 // Resource_GetFilteredLookup() returns a lookup list of all Resource items in lookup format
-func Resource_GetFilteredLookup(requestObject string,requestField string) []dm.Lookup_Item {
+func Resource_GetFilteredLookup(requestObject string, requestField string) []dm.Lookup_Item {
 	var returnList []dm.Lookup_Item
 	objectName := Translate("ObjectName", requestObject)
-	reqField := requestField+"_Resource_Filter"
-	filter,_ := Data_GetString(objectName, reqField, dm.Data_Category_FilterRule)
+	reqField := requestField + "_Resource_Filter"
+	filter, _ := Data_GetString(objectName, reqField, dm.Data_Category_FilterRule)
 	if filter == "" {
 		logs.Warning("Resource_GetFilteredLookup() - No filter found : " + reqField + " for Object: " + objectName)
-	} 
+	}
 	count, resourceList, _ := Resource_GetListFiltered(filter)
 	for i := 0; i < count; i++ {
 		returnList = append(returnList, dm.Lookup_Item{ID: resourceList[i].Code, Name: resourceList[i].Name})
@@ -74,66 +76,60 @@ func Resource_GetFilteredLookup(requestObject string,requestField string) []dm.L
 	return returnList
 }
 
-
-
 // Resource_GetByID() returns a single Resource record
 func Resource_GetByID(id string) (int, dm.Resource, error) {
-
 
 	tsql := Resource_SQLbase
 	tsql = tsql + " " + das.WHERE + dm.Resource_SQLSearchID + das.EQ + das.ID(id)
 	_, _, resourceItem, _ := resource_Fetch(tsql)
 
-
-	resourceItem = Resource_PostGet(resourceItem,id)
+	resourceItem = Resource_PostGet(resourceItem, id)
 
 	return 1, resourceItem, nil
 }
 
-func Resource_PostGet(resourceItem dm.Resource,id string) dm.Resource {
+func Resource_PostGet(resourceItem dm.Resource, id string) dm.Resource {
 	// START
-	// Dynamically generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
-	// 
-	// Dynamically generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	return resourceItem
 }
 
-
-
-
 // Resource_DeleteByID() deletes a single Resource record
 func Resource_Delete(id string) {
+	Resource_SoftDelete(id)
+}
 
+// Resource_SoftDelete(id string) soft deletes a single Resource record
+func Resource_SoftDelete(id string) {
+	//Uses Soft Delete
+	_, resourceItem, _ := Resource_GetByID(id)
+	resourceItem.SYSDeletedBy = Audit_Update("", Audit_Host())
+	resourceItem.SYSDeleted = Audit_Update("", Audit_TimeStamp())
+	resourceItem.SYSDeletedHost = Audit_Update("", Audit_Host())
+	_, err := Resource_StoreSystem(resourceItem)
+	if err != nil {
+		logs.Error("Resource_SoftDelete()", err)
+	}
+}
 
-// Uses Hard Delete
+// Resource_HardDelete(id string) soft deletes a single Resource record
+func Resource_HardDelete(id string) {
+	// Uses Hard Delete
 	object_Table := Resource_QualifiedName
 	tsql := das.DELETE + das.FROM + object_Table
 	tsql = tsql + " " + das.WHERE + dm.Resource_SQLSearchID + das.EQ + das.ID(id)
-	das.Execute(tsql)	
-
-	
+	das.Execute(tsql)
+	//if err != nil {
+	//	logs.Error("Resource_SoftDelete()",err)
+	//}
 }
-
-	
-	// Resource_SoftDeleteByID() soft deletes a single Resource record
-func Resource_SoftDelete(id string) {
-	//Uses Soft Delete
-		_,resourceItem,_ := Resource_GetByID(id)
-		resourceItem.SYSDeletedBy = Audit_Update("", Audit_Host())
-		resourceItem.SYSDeleted = Audit_Update("", Audit_TimeStamp())
-		resourceItem.SYSDeletedHost = Audit_Update("", Audit_Host())
-		_,err := Resource_StoreSystem(resourceItem)
-		if err != nil {
-			logs.Error("Resource_SoftDelete()",err)
-		}
-}
-	
-
 
 // Resource_Store() saves/stores a Resource record to the database
-func Resource_Store(r dm.Resource,req *http.Request) (dm.Resource,error) {
+func Resource_Store(r dm.Resource, req *http.Request) (dm.Resource, error) {
 
 	r, err := Resource_Validate(r)
 	if err == nil {
@@ -146,8 +142,8 @@ func Resource_Store(r dm.Resource,req *http.Request) (dm.Resource,error) {
 }
 
 // Resource_StoreSystem() saves/stores a Resource record to the database
-func Resource_StoreSystem(r dm.Resource) (dm.Resource,error) {
-	
+func Resource_StoreSystem(r dm.Resource) (dm.Resource, error) {
+
 	r, err := Resource_Validate(r)
 	if err == nil {
 		err = resource_Save(r, Audit_Host())
@@ -158,48 +154,61 @@ func Resource_StoreSystem(r dm.Resource) (dm.Resource,error) {
 	return r, err
 }
 
+// Resource_StoreProcess() saves/stores a Resource record to the database
+func Resource_StoreProcess(r dm.Resource, operator string) (dm.Resource, error) {
+
+	r, err := Resource_Validate(r)
+	if err == nil {
+		err = resource_Save(r, operator)
+	} else {
+		logs.Information("Resource_StoreProcess()", err.Error())
+	}
+
+	return r, err
+}
+
 // Resource_Validate() validates for saves/stores a Resource record to the database
 func Resource_Validate(r dm.Resource) (dm.Resource, error) {
 	var err error
 	// START
-	// Dynamically generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
-	// 
-	// Dynamically generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	//
-	
 
-	return r,err
+	return r, err
 }
+
 //
 
 // resource_Save() saves/stores a Resource record to the database
-func resource_Save(r dm.Resource,usr string) error {
+func resource_Save(r dm.Resource, usr string) error {
 
-    var err error
+	var err error
 
 	if len(r.ResourceID) == 0 {
 		r.ResourceID = Resource_NewID(r)
 	}
 
-// If there are fields below, create the methods in dao\resource_impl.go
+	// If there are fields below, create the methods in dao\resource_impl.go
 
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
-	r.SYSCreatedHost = Audit_Update(r.SYSCreatedHost,Audit_Host())
+	r.SYSCreatedHost = Audit_Update(r.SYSCreatedHost, Audit_Host())
 	r.SYSUpdated = Audit_Update("", Audit_TimeStamp())
-	r.SYSUpdatedBy = Audit_Update("",usr)
-	r.SYSUpdatedHost = Audit_Update("",Audit_Host())
+	r.SYSUpdatedBy = Audit_Update("", usr)
+	r.SYSUpdatedHost = Audit_Update("", Audit_Host())
 	r.SYSDbVersion = core.DB_Version()
-	
-logs.Storing("Resource",fmt.Sprintf("%v", r))
 
-//Deal with the if its Application or null add this bit, otherwise dont.
+	logs.Storing("Resource", fmt.Sprintf("%v", r))
+
+	//Deal with the if its Application or null add this bit, otherwise dont.
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	ts = addData(ts, dm.Resource_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Resource_ResourceID_sql, r.ResourceID)
@@ -221,25 +230,21 @@ logs.Storing("Resource",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Resource_Notes_sql, r.Notes)
 	ts = addData(ts, dm.Resource_SYSDbVersion_sql, r.SYSDbVersion)
 	ts = addData(ts, dm.Resource_Comments_sql, r.Comments)
-		
-	// 
-	// Dynamically generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+
+	//
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 	tsql := das.INSERT + das.INTO + Resource_QualifiedName
 	tsql = tsql + " (" + fields(ts) + ")"
-	tsql = tsql + " "+das.VALUES +"(" + values(ts) + ")"
+	tsql = tsql + " " + das.VALUES + "(" + values(ts) + ")"
 
-	Resource_Delete(r.ResourceID)
+	Resource_HardDelete(r.ResourceID)
 	das.Execute(tsql)
-
-
 
 	return err
 
 }
-
-
 
 // resource_Fetch read all Resource's
 func resource_Fetch(tsql string) (int, []dm.Resource, dm.Resource, error) {
@@ -249,73 +254,68 @@ func resource_Fetch(tsql string) (int, []dm.Resource, dm.Resource, error) {
 
 	returnList, noitems, err := das.Query(core.ApplicationDB, tsql)
 	if err != nil {
-		logs.Fatal(err.Error(),err)
+		logs.Fatal(err.Error(), err)
 	}
 
 	for i := 0; i < noitems; i++ {
 
 		rec := returnList[i]
-	// START
-	// Dynamically generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
-	   recItem.SYSId  = get_Int(rec, dm.Resource_SYSId_sql, "0")
-	   recItem.ResourceID  = get_String(rec, dm.Resource_ResourceID_sql, "")
-	   recItem.Code  = get_String(rec, dm.Resource_Code_sql, "")
-	   recItem.Name  = get_String(rec, dm.Resource_Name_sql, "")
-	   recItem.Email  = get_String(rec, dm.Resource_Email_sql, "")
-	   recItem.Class  = get_String(rec, dm.Resource_Class_sql, "")
-	   recItem.SYSCreated  = get_String(rec, dm.Resource_SYSCreated_sql, "")
-	   recItem.SYSCreatedBy  = get_String(rec, dm.Resource_SYSCreatedBy_sql, "")
-	   recItem.SYSCreatedHost  = get_String(rec, dm.Resource_SYSCreatedHost_sql, "")
-	   recItem.SYSUpdated  = get_String(rec, dm.Resource_SYSUpdated_sql, "")
-	   recItem.SYSUpdatedBy  = get_String(rec, dm.Resource_SYSUpdatedBy_sql, "")
-	   recItem.SYSUpdatedHost  = get_String(rec, dm.Resource_SYSUpdatedHost_sql, "")
-	   recItem.SYSDeleted  = get_String(rec, dm.Resource_SYSDeleted_sql, "")
-	   recItem.SYSDeletedBy  = get_String(rec, dm.Resource_SYSDeletedBy_sql, "")
-	   recItem.SYSDeletedHost  = get_String(rec, dm.Resource_SYSDeletedHost_sql, "")
-	   recItem.UserActive  = get_String(rec, dm.Resource_UserActive_sql, "")
-	   recItem.SYSActivity  = get_String(rec, dm.Resource_SYSActivity_sql, "")
-	   recItem.Notes  = get_String(rec, dm.Resource_Notes_sql, "")
-	   recItem.SYSDbVersion  = get_String(rec, dm.Resource_SYSDbVersion_sql, "")
-	   recItem.Comments  = get_String(rec, dm.Resource_Comments_sql, "")
-	
-	// If there are fields below, create the methods in dao\Resource_adaptor.go
-	// 
-	// Dynamically generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
-	///
-	//Add to the list
-	//
+		// START
+		// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		//
+		recItem.SYSId = get_Int(rec, dm.Resource_SYSId_sql, "0")
+		recItem.ResourceID = get_String(rec, dm.Resource_ResourceID_sql, "")
+		recItem.Code = get_String(rec, dm.Resource_Code_sql, "")
+		recItem.Name = get_String(rec, dm.Resource_Name_sql, "")
+		recItem.Email = get_String(rec, dm.Resource_Email_sql, "")
+		recItem.Class = get_String(rec, dm.Resource_Class_sql, "")
+		recItem.SYSCreated = get_String(rec, dm.Resource_SYSCreated_sql, "")
+		recItem.SYSCreatedBy = get_String(rec, dm.Resource_SYSCreatedBy_sql, "")
+		recItem.SYSCreatedHost = get_String(rec, dm.Resource_SYSCreatedHost_sql, "")
+		recItem.SYSUpdated = get_String(rec, dm.Resource_SYSUpdated_sql, "")
+		recItem.SYSUpdatedBy = get_String(rec, dm.Resource_SYSUpdatedBy_sql, "")
+		recItem.SYSUpdatedHost = get_String(rec, dm.Resource_SYSUpdatedHost_sql, "")
+		recItem.SYSDeleted = get_String(rec, dm.Resource_SYSDeleted_sql, "")
+		recItem.SYSDeletedBy = get_String(rec, dm.Resource_SYSDeletedBy_sql, "")
+		recItem.SYSDeletedHost = get_String(rec, dm.Resource_SYSDeletedHost_sql, "")
+		recItem.UserActive = get_String(rec, dm.Resource_UserActive_sql, "")
+		recItem.SYSActivity = get_String(rec, dm.Resource_SYSActivity_sql, "")
+		recItem.Notes = get_String(rec, dm.Resource_Notes_sql, "")
+		recItem.SYSDbVersion = get_String(rec, dm.Resource_SYSDbVersion_sql, "")
+		recItem.Comments = get_String(rec, dm.Resource_Comments_sql, "")
+
+		// If there are fields below, create the methods in dao\Resource_adaptor.go
+		//
+		// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// END
+		///
+		//Add to the list
+		//
 		recList = append(recList, recItem)
 	}
 
 	return noitems, recList, recItem, nil
 }
-	
-
 
 func Resource_NewID(r dm.Resource) string {
-	
+
 	id := uuid.New().String()
-	
+
 	return id
 }
-
-
 
 // resource_Fetch read all Resource's
 func Resource_New() (int, []dm.Resource, dm.Resource, error) {
 
 	var r = dm.Resource{}
 	var rList []dm.Resource
-	
 
 	// START
-	// Dynamically generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
-	
-	// 
-	// Dynamically generated 03/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+
+	//
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

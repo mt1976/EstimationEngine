@@ -57,14 +57,14 @@
                   
           </div><div class="col">
          
-            <div class="form-outline mandatory">
+            <div class="form-outline">
 
             
                 <input type="text" class="form-control {{.Name_props.MsgType}}" id="Name" name="Name" aria-describedby="NameHelp" placeholder="Get the Estimate a meaningful name"  value="{{.Name}}" required data-mdb-input-mask="">
             
            
            
-              <label class="form-label" for="Name" >Name</label>
+              <label class="form-label text-danger" for="Name" >Name</label>
               <div class="{{.Name_props.MsgFeedBackType}}">{{.Name_props.MsgMessage}}</div>
             </div>
                   
@@ -110,16 +110,6 @@
             </select>
             <label class="form-label select-label" for="ProductManager" >Product Manager</label>
             <div class="{{.ProductManager_props.MsgFeedBackType}}">{{.ProductManager_props.MsgMessage}}</div>
-            
-        
-        </div><div class="col">
-        
-            
-            <select id="Approver" name="Approver" class="select" data-mdb-filter="true"  >
-                {{range .Approver_lookup}}<option value="{{.ID}}" {{if eq .ID $.Approver}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
-            </select>
-            <label class="form-label select-label" for="Approver" >Approved By</label>
-            <div class="{{.Approver_props.MsgFeedBackType}}">{{.Approver_props.MsgMessage}}</div>
             
         
         </div></div>
@@ -276,7 +266,7 @@
           </div></div>
 
 
-<h4 class="text-muted">Links</h4>
+<h4 class="text-muted">Links & References</h4>
 
             <div class="row mb-3"  ><div class="col">
          
@@ -287,7 +277,7 @@
             
            
            
-              <label class="form-label" for="AdoID" >Ado ID</label>
+              <label class="form-label" for="AdoID" >ADO ID</label>
               <div class="{{.AdoID_props.MsgFeedBackType}}">{{.AdoID_props.MsgMessage}}</div>
             </div>
                   

@@ -16,7 +16,7 @@ Friendly Name|**Document Types**|
 * **Edit** (/DocType/DocTypeEdit)
 * **Save** (/DocType/DocTypeSave)
 * **New** (/DocType/DocTypeNew)
-
+* **Delete** (/DocType/DocTypeDelete)
 
 
 
@@ -80,7 +80,7 @@ SQL Table Key | **docTypeID**
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **15/02/2023** at **10:44:42**
+Date & Time		     | **04/03/2023** at **20:14:10**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

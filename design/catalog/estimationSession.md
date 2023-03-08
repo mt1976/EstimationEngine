@@ -16,7 +16,7 @@ Friendly Name|**Estimation Session**|
 * **Edit** (/EstimationSession/EstimationSessionEdit)
 * **Save** (/EstimationSession/EstimationSessionSave)
 * **New** (/EstimationSession/EstimationSessionNew)
-
+* **Delete** (/EstimationSession/EstimationSessionDelete)
 
 
 
@@ -47,7 +47,7 @@ SQL Table Key | **estimationSessionID**
 |**EstimationSessionID**|String|false|true|false|true|||||H|estimationSessionID||true|true|false|text||
 |**ProjectID**|String|false|true|false|false|OL|Project|Project_ProjectID|Project_Name|Y|projectID||false|false|false|text||
 |**EstimationStateID**|String|false|true|false|true|OL|EstimationState|EstimationState_EstimationStateID||Y|estimationStateID||false|true|false|text||
-|**Notes**|String|false|true|false|true|||||N|notes||false|false|false|textarea||
+|**Activity**|String|true|true|false|false|||||Y|activity||false|false|false|text||
 |**Releases**|String|false|true|false|false|||||Y|releases||false|false|false|text||
 |**Total**|String|false|true|false|false|||||Y|total||false|false|false|text||
 |**Contingency**|String|false|true|false|false|||||Y|contingency||false|false|false|text||
@@ -133,7 +133,7 @@ SQL Table Key | **estimationSessionID**
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **17/02/2023** at **17:23:39**
+Date & Time		     | **06/03/2023** at **17:13:45**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

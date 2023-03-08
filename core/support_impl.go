@@ -484,20 +484,20 @@ func AddActivity_ForProcess(in string, what string, process string) string {
 	return AddActivity_ForUser(in, what, process)
 }
 
-func AddActivity_ForUser(in string, what string, userName string) string {
-	if what == "" {
-		return in
+func AddActivity_ForUser(auditField string, auditMessage string, ownerIdentity string) string {
+	if auditMessage == "" {
+		return auditField
 	}
-	what = ReplaceSpecialChars(what)
-	what = strings.ReplaceAll(what, "'", "")
+	//auditMessage = ReplaceSpecialChars(auditMessage)
+	auditMessage = EscapeSQL(auditMessage)
 	//logs.Information("Activity", what+" "+un)
 
-	tm := time.Now().Format(DATETIMEFORMATUSER)
-
-	if in == "" {
-		return tm + " " + userName + " : " + what
+	dateTimeNow := time.Now().Format(DATETIMEFORMATUSER)
+	seperator := ACTIVITY_SEPERATOR
+	if auditField == "" {
+		return dateTimeNow + seperator + ownerIdentity + seperator + auditMessage
 	}
-	out := in + "\n" + tm + " " + userName + " : " + what
+	out := auditField + "\n" + dateTimeNow + seperator + ownerIdentity + seperator + auditMessage
 	return out
 }
 

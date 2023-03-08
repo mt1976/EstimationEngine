@@ -1,0 +1,224 @@
+{{template "header" .}}
+{{template "bodydefinition" .}}
+
+<form action="/FeatureCreate/?ID={{.ID}}"
+  method="GET" class="form">
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col h3">
+          <i class="fas fa-tasks me-2"
+            title="ID={{.ID}}"></i><span class="me-2">Add a new feature</span>
+        </div>
+        <div class="col d-flex justify-content-end">
+          <div class="btn-group">
+            
+            <button type="submit" value="" class="btn btn-warning" method="GET" formaction="/FeatureCreate/?ID={{.ID}}" onclick="/FeatureCreate/?ID={{.ID}}" title="Create a New Feature"><i class="fas fa-save me-2"></i>Create</button>
+            
+            <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Create a New Feature"><i class="fas fa-print me-2"></i></i>Print</button>
+            <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+     
+        <div class="row mb-3" readonly="true" hidden><div class="col">
+        
+            <div class="form-outline">
+              
+              <input type="text" class="form-control {{.ID_props.MsgType}}" id="ID" name="ID" aria-describedby="IDHelp" placeholder="" readonly="true"  value="{{.ID}}" required data-mdb-input-mask="" />
+              
+              <label class="form-label" for="ID" readonly="true"><i class="fas fa-key me-2"></i>ID</label>
+              <div class="{{.ID_props.MsgFeedBackType}}">{{.ID_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+       <h4 class="text-muted">Identification</h4>
+        <div class="row mb-3"  ><div class="col">
+        
+             <input type="text" class="form-control" id="EstimationSessionID" name="EstimationSessionID" aria-describedby="NameHelp" placeholder=""  hidden value="{{.EstimationSessionID}}" required data-mdb-input-mask="" />
+
+
+            <select id="EstimationSessionIDDisplay" name="EstimationSessionIDDisplay" class="select" data-mdb-filter="true"  required disabled>
+                {{range .EstimationSessionID_lookup}}<option value="{{.ID}}" {{if eq .ID $.EstimationSessionID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="EstimationSessionIDDisplay" >Estimate</label>
+            <div class="{{.EstimationSessionID_props.MsgFeedBackType}}">{{.EstimationSessionID_props.MsgMessage}}</div>
+            
+        
+        </div>
+        <div class="col">
+        
+            <div class="form-outline mandatory">
+              
+              <input type="text" class="form-control {{.Name_props.MsgType}}" id="Name" name="Name" aria-describedby="NameHelp" placeholder=""   value="{{.Name}}" required data-mdb-input-mask="" required/>
+              
+              <label class="form-label" for="Name" >Name</label>
+              <div class="{{.Name_props.MsgFeedBackType}}">{{.Name_props.MsgMessage}}</div>
+            </div>
+        
+        </div>
+        
+               <div class="col" readonly="true">
+        
+            
+            <select id="DefaultProfile" name="DefaultProfile" class="select" data-mdb-filter="true" readonly="true" disabled>
+                {{range .DefaultProfile_lookup}}<option value="{{.ID}}" {{if eq .ID $.DefaultProfile}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="DefaultProfile" readonly="true">Default Profile</label>
+            <div class="{{.DefaultProfile_props.MsgFeedBackType}}">{{.DefaultProfile_props.MsgMessage}}</div>
+            
+        
+        </div><div class="col">
+        
+            
+            <select id="ActualProfile" name="ActualProfile" class="select" data-mdb-filter="true"  >
+                {{range .ActualProfile_lookup}}<option value="{{.ID}}" {{if eq .ID $.ActualProfile}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ActualProfile" >Actual Profile</label>
+            <div class="{{.ActualProfile_props.MsgFeedBackType}}">{{.ActualProfile_props.MsgMessage}}</div>
+            
+        
+        </div>
+        
+        
+        
+        </div>
+           <div class="row mb-3"  >
+                <div class="col">
+        
+            <div class="form-outline">
+              
+              <textarea class="form-control {{.Description_props.MsgType}}" id="Description" name="Description" aria-describedby="DescriptionHelp" placeholder=""   value="{{.Description}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Description}}</textarea>
+              
+              <label class="form-label" for="Description" >Description</label>
+              <div class="{{.Description_props.MsgFeedBackType}}">{{.Description_props.MsgMessage}}</div>
+            </div>
+        
+        </div>
+            </div>
+            <h4 class="text-muted">Links</h4>
+
+
+  <div class="row mb-3"  >
+  
+  
+          <div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.DevOpsID_props.MsgType}}" id="DevOpsID" name="DevOpsID" aria-describedby="DevOpsIDHelp" placeholder=""  value="{{.DevOpsID}}"  data-mdb-input-mask="" >
+              <label class="form-label" for="DevOpsID" >Azure DevOps ID</label>
+              <div class="{{.DevOpsID_props.MsgFeedBackType}}">{{.DevOpsID_props.MsgMessage}}</div>
+            </div>
+                  
+          </div>
+          
+          <div class="col">
+         
+            <div class="form-outline">
+
+                <input type="text" class="form-control {{.FreshDeskID_props.MsgType}}" id="FreshDeskID" name="FreshDeskID" aria-describedby="FreshDeskIDHelp" placeholder=""  value="{{.FreshDeskID}}"  data-mdb-input-mask="" >
+              <label class="form-label" for="FreshDeskID" >FreshDesk ID</label>
+              <div class="{{.FreshDeskID_props.MsgFeedBackType}}">{{.FreshDeskID_props.MsgMessage}}</div>
+            </div>
+                  
+          </div><div class="col">
+         
+            <div class="form-outline">
+                <input type="text" class="form-control {{.RSCID_props.MsgType}}" id="RSCID" name="RSCID" aria-describedby="RSCIDHelp" placeholder="" disabled value="{{.RSCID}}"  data-mdb-input-mask="" >
+              <label class="form-label" for="RSCID" >RSC/NC No.</label>
+              <div class="{{.RSCID_props.MsgFeedBackType}}">{{.RSCID_props.MsgMessage}}</div>
+            </div>
+                  
+          </div>
+          
+          <div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.OtherID_props.MsgType}}" id="OtherID" name="OtherID" aria-describedby="OtherIDHelp" placeholder=""  value="{{.OtherID}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="OtherID" >Other Ref</label>
+              <div class="{{.OtherID_props.MsgFeedBackType}}">{{.OtherID_props.MsgMessage}}</div>
+            </div>
+                  
+          </div>
+          
+          <div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.OtherID2_props.MsgType}}" id="OtherID2" name="OtherID2" aria-describedby="OtherID2Help" placeholder=""  value="{{.OtherID2}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="OtherID2" >Other Ref 2</label>
+              <div class="{{.OtherID2_props.MsgFeedBackType}}">{{.OtherID2_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+       
+     
+       <h4 class="text-muted">Estimates</h4>
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline mandatory">
+              
+              <input type="number" class="form-control {{.DeveloperEstimate_props.MsgType}}" id="DeveloperEstimate" name="DeveloperEstimate" aria-describedby="DeveloperEstimateHelp" placeholder="" step="0.25"  value="{{.DeveloperEstimate}}"  data-mdb-input-mask="" required/>
+              
+              <label class="form-label" for="DeveloperEstimate" >Engineer Estimate</label>
+              <div class="{{.DeveloperEstimate_props.MsgFeedBackType}}">{{.DeveloperEstimate_props.MsgMessage}}</div>
+            </div>
+        
+        </div>
+        
+        <div class="col">
+        
+            
+            <select id="ConfidenceCODE" name="ConfidenceCODE" class="select" data-mdb-filter="true"  required>
+                {{range .ConfidenceCODE_lookup}}<option value="{{.ID}}" {{if eq .ID $.ConfidenceCODE}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ConfidenceCODE" >ConfidenceCODE</label>
+            <div class="{{.ConfidenceCODE_props.MsgFeedBackType}}">{{.ConfidenceCODE_props.MsgMessage}}</div>
+            
+        
+        </div>
+        
+        <div class="col">
+        
+            
+            <select id="DeveloperResource" name="DeveloperResource" class="select" data-mdb-filter="true"  >
+                {{range .DeveloperResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.DeveloperResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="DeveloperResource" >Engineer</label>
+            <div class="{{.DeveloperResource_props.MsgFeedBackType}}">{{.DeveloperResource_props.MsgMessage}}</div>
+            
+        
+        </div></div>
+        <h4 class="text-muted">Comments</h4>
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <textarea class="form-control {{.Comments_props.MsgType}}" id="Comments" name="Comments" aria-describedby="CommentsHelp" placeholder=""   value="{{.Comments}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Comments}}</textarea>
+              
+              <label class="form-label" for="Comments" >Comments</label>
+              <div class="{{.Comments_props.MsgFeedBackType}}">{{.Comments_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
+      
+    </div>
+    
+  </div>
+</form>
+
+{{template "userfooter" .}}
+{{template "pagefooter" .}}

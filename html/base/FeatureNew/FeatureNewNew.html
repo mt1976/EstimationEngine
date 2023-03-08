@@ -65,7 +65,7 @@
             <div class="form-outline">
 
             
-                <input type="text" class="form-control {{.DeveloperEstimate_props.MsgType}}" id="DeveloperEstimate" name="DeveloperEstimate" aria-describedby="DeveloperEstimateHelp" placeholder=""  value="{{.DeveloperEstimate}}" required data-mdb-input-mask="" >
+                <input type="number" class="form-control {{.DeveloperEstimate_props.MsgType}}" id="DeveloperEstimate" name="DeveloperEstimate" aria-describedby="DeveloperEstimateHelp" placeholder=""  value="{{.DeveloperEstimate}}" required data-mdb-input-mask="" step="0.25">
             
            
            
@@ -77,36 +77,11 @@
 
             <div class="row mb-3"  ><div class="col">
          
-            <select id="DeveloperResource" name="DeveloperResource" class="select" data-mdb-filter="true"  >
+            <select id="DeveloperResource" name="DeveloperResource" class="select" data-mdb-filter="true"  required>
                 {{range .DeveloperResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.DeveloperResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
             </select>
             <label class="form-label select-label" for="DeveloperResource" >DeveloperResource</label>
             <div class="{{.DeveloperResource_props.MsgFeedBackType}}">{{.DeveloperResource_props.MsgMessage}}</div>
-                  
-          </div></div>
-
-            <div class="row mb-3"  ><div class="col">
-         
-            <div class="form-outline">
-
-            
-                <input type="text" class="form-control {{.AnalystEstimate_props.MsgType}}" id="AnalystEstimate" name="AnalystEstimate" aria-describedby="AnalystEstimateHelp" placeholder=""  value="{{.AnalystEstimate}}" required data-mdb-input-mask="" >
-            
-           
-           
-              <label class="form-label" for="AnalystEstimate" >AnalystEstimate</label>
-              <div class="{{.AnalystEstimate_props.MsgFeedBackType}}">{{.AnalystEstimate_props.MsgMessage}}</div>
-            </div>
-                  
-          </div></div>
-
-            <div class="row mb-3"  ><div class="col">
-         
-            <select id="AnalystResource" name="AnalystResource" class="select" data-mdb-filter="true"  >
-                {{range .AnalystResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.AnalystResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
-            </select>
-            <label class="form-label select-label" for="AnalystResource" >AnalystResource</label>
-            <div class="{{.AnalystResource_props.MsgFeedBackType}}">{{.AnalystResource_props.MsgMessage}}</div>
                   
           </div></div>
 
@@ -122,50 +97,40 @@
 
             <div class="row mb-3"  ><div class="col">
          
-            <select id="ProductManagerResource" name="ProductManagerResource" class="select" data-mdb-filter="true"  >
-                {{range .ProductManagerResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProductManagerResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
-            </select>
-            <label class="form-label select-label" for="ProductManagerResource" >ProductManagerResource</label>
-            <div class="{{.ProductManagerResource_props.MsgFeedBackType}}">{{.ProductManagerResource_props.MsgMessage}}</div>
-                  
-          </div></div>
-
-            <div class="row mb-3"  ><div class="col">
-         
-            <select id="ProjectManagerResource" name="ProjectManagerResource" class="select" data-mdb-filter="true"  >
-                {{range .ProjectManagerResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManagerResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
-            </select>
-            <label class="form-label select-label" for="ProjectManagerResource" >ProjectManagerResource</label>
-            <div class="{{.ProjectManagerResource_props.MsgFeedBackType}}">{{.ProjectManagerResource_props.MsgMessage}}</div>
-                  
-          </div></div>
-
-            <div class="row mb-3"  ><div class="col">
-         
             <div class="form-outline">
 
             
-                <input type="text" class="form-control {{.Description_props.MsgType}}" id="Description" name="Description" aria-describedby="DescriptionHelp" placeholder=""  value="{{.Description}}"  data-mdb-input-mask="" >
+                <input type="number" class="form-control {{.AnalystEstimate_props.MsgType}}" id="AnalystEstimate" name="AnalystEstimate" aria-describedby="AnalystEstimateHelp" placeholder=""  value="{{.AnalystEstimate}}"  data-mdb-input-mask="" step="0.25">
             
            
            
-              <label class="form-label" for="Description" >Description</label>
-              <div class="{{.Description_props.MsgFeedBackType}}">{{.Description_props.MsgMessage}}</div>
+              <label class="form-label" for="AnalystEstimate" >AnalystEstimate</label>
+              <div class="{{.AnalystEstimate_props.MsgFeedBackType}}">{{.AnalystEstimate_props.MsgMessage}}</div>
             </div>
                   
           </div></div>
 
             <div class="row mb-3"  ><div class="col">
          
+            <select id="AnalystResource" name="AnalystResource" class="select" data-mdb-filter="true"  required>
+                {{range .AnalystResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.AnalystResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="AnalystResource" >AnalystResource</label>
+            <div class="{{.AnalystResource_props.MsgFeedBackType}}">{{.AnalystResource_props.MsgMessage}}</div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
             <div class="form-outline">
 
             
-                <input type="text" class="form-control {{.Comments_props.MsgType}}" id="Comments" name="Comments" aria-describedby="CommentsHelp" placeholder=""  value="{{.Comments}}"  data-mdb-input-mask="" >
+                <input type="number" class="form-control {{.EstimateEffort_props.MsgType}}" id="EstimateEffort" name="EstimateEffort" aria-describedby="EstimateEffortHelp" placeholder=""  value="{{.EstimateEffort}}"  data-mdb-input-mask="" step="0.25">
             
            
            
-              <label class="form-label" for="Comments" >Comments</label>
-              <div class="{{.Comments_props.MsgFeedBackType}}">{{.Comments_props.MsgMessage}}</div>
+              <label class="form-label" for="EstimateEffort" >EstimateEffort</label>
+              <div class="{{.EstimateEffort_props.MsgFeedBackType}}">{{.EstimateEffort_props.MsgMessage}}</div>
             </div>
                   
           </div></div>
@@ -247,21 +212,21 @@
 
             <div class="row mb-3" readonly="true" ><div class="col">
          
-            <select id="DefaultProfile" name="DefaultProfile" class="select" data-mdb-filter="true" readonly="true" >
-                {{range .DefaultProfile_lookup}}<option value="{{.ID}}" {{if eq .ID $.DefaultProfile}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            <select id="ProfileDefault" name="ProfileDefault" class="select" data-mdb-filter="true" readonly="true" >
+                {{range .ProfileDefault_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProfileDefault}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
             </select>
-            <label class="form-label select-label" for="DefaultProfile" readonly="true">DefaultProfile</label>
-            <div class="{{.DefaultProfile_props.MsgFeedBackType}}">{{.DefaultProfile_props.MsgMessage}}</div>
+            <label class="form-label select-label" for="ProfileDefault" readonly="true">ProfileDefault</label>
+            <div class="{{.ProfileDefault_props.MsgFeedBackType}}">{{.ProfileDefault_props.MsgMessage}}</div>
                   
           </div></div>
 
             <div class="row mb-3"  ><div class="col">
          
-            <select id="ActualProfile" name="ActualProfile" class="select" data-mdb-filter="true"  >
-                {{range .ActualProfile_lookup}}<option value="{{.ID}}" {{if eq .ID $.ActualProfile}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+            <select id="ProfileSelected" name="ProfileSelected" class="select" data-mdb-filter="true"  >
+                {{range .ProfileSelected_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProfileSelected}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
             </select>
-            <label class="form-label select-label" for="ActualProfile" >ActualProfile</label>
-            <div class="{{.ActualProfile_props.MsgFeedBackType}}">{{.ActualProfile_props.MsgMessage}}</div>
+            <label class="form-label select-label" for="ProfileSelected" >ProfileSelected</label>
+            <div class="{{.ProfileSelected_props.MsgFeedBackType}}">{{.ProfileSelected_props.MsgMessage}}</div>
                   
           </div></div>
 

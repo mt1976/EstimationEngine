@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 15/02/2023 at 10:44:46
+// Date & Time		    : 04/03/2023 at 20:14:13
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Project defines the datamodel for the Project object
 type Project struct {
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -92,7 +92,7 @@ type Project struct {
 	}
 
 const (
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	Project_Name      = "Project"
 	Project_Title       = "Project"
@@ -194,7 +194,7 @@ const (
 
 //Project_PageList provides the information for the template for a list of Projects
 type Project_PageList struct {
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -216,7 +216,7 @@ type Project_PageList struct {
 
 //Project_Page provides the information for the template for an individual Project
 type Project_Page struct {
-	// Dynamically generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem

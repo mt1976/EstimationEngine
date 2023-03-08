@@ -136,7 +136,8 @@ func Project_HandlerUpdate(w http.ResponseWriter, r *http.Request) {
 	_, esSessions, _ := dao.EstimationSession_Active_ByProject_GetList(projectID)
 	if len(esSessions) != 0 {
 		for _, esSession := range esSessions {
-			go Estimationsession_Calculate(esSession.EstimationSessionID)
+			trigger := "Project " + item.Name + " was updated (" + item.ProjectID + ")"
+			go dao.Estimationsession_Calculate(esSession.EstimationSessionID, trigger)
 		}
 	}
 

@@ -62,7 +62,7 @@ func ssloader_Run_impl() (string, error) {
 	if ssMode != "Trial" && ssMode != "Live" {
 		return "Invalid Mode " + core.DQuote(ssMode) + " for " + jobName, err
 	}
-	
+
 	trialMode := TrialMode(ssMode)
 
 	if ssMode == "Done" {
@@ -139,7 +139,7 @@ func ssloader_Run_impl() (string, error) {
 		estim := newEstimationSession(proj, newRSC, today, noWorkItems)
 		estim.ProjectManager = origin.ProjectManager
 		feature := newFeature(estim, newRSC, proj, today)
-		feature.ProjectManager = origin.ProjectManager
+		feature.ProjectManagerResource = origin.ProjectManager
 
 		//Save Work Item
 		//if !trialMode {
@@ -176,19 +176,20 @@ func newFeature(estim dm.EstimationSession, newRSC RSC, proj dm.Project, today s
 	var feature dm.Feature
 	feature.FeatureID = dao.Feature_NewID(feature)
 	feature.EstimationSessionID = estim.EstimationSessionID
-	feature.ConfidenceID = "HIGH"
+	feature.ConfidenceCODE = "HIGH"
 	feature.Name = newRSC.Desc
-	feature.DevEstimate = newRSC.Value
+	feature.DevelopmentEstimate = newRSC.Value
 	feature.AdoID = newRSC.ADO
 	feature.TrackerID = newRSC.RSC
 	feature.ExtRef = newRSC.EXTREF
-	feature.DefaultProfile = proj.ProfileID
-	feature.ActualProfile = proj.ProfileID
-	feature.Notes = core.AddActivity_ForProcess(feature.Notes, core.DQuote(newRSC.Desc)+" loaded from Spreadsheet "+today, ssloader_Job().Name)
-	feature.Developer = "--"
-	feature.Approver = "--"
-	feature.ProductManager = "--"
-	feature.ProjectManager = "--"
+	feature.ProfileDefault = proj.ProfileID
+	feature.ProfileSelected = proj.ProfileID
+	feature.Activity = core.AddActivity_ForProcess(feature.Activity, core.DQuote(newRSC.Desc)+" loaded from Spreadsheet "+today, ssloader_Job().Name)
+	feature.DeveloperResource = "--"
+	feature.ApproverResource = "--"
+	feature.ProductManagerResource = "--"
+	feature.ProjectManagerResource = "--"
+	feature.AnalystEstimate = "100"
 	return feature
 }
 
@@ -198,7 +199,7 @@ func newEstimationSession(proj dm.Project, newRSC RSC, today string, noWorkItems
 	estim.ProjectID = proj.ProjectID
 	estim.EstimationStateID = newRSC.Status
 	estim.ProjectProfileID = "ADHC"
-	estim.Notes = core.AddActivity_ForProcess(estim.Notes, core.DQuote(newRSC.Desc)+" loaded from Spreadsheet "+today, ssloader_Job().Name)
+	estim.Activity = core.AddActivity_ForProcess(estim.Activity, core.DQuote(newRSC.Desc)+" loaded from Spreadsheet "+today, ssloader_Job().Name)
 	estim.Name = newRSC.Desc
 	estim.Total = newRSC.Value
 	estim.Name = newRSC.Desc
@@ -222,7 +223,7 @@ func dumpEstimationSession(estim dm.EstimationSession) string {
 func dumpFeature(feature dm.Feature) string {
 	// Feature[Name|Project|Origin|Status]
 	MSG := "Feature[%s|%s|%s|%s]"
-	return fmt.Sprintf(MSG, feature.Name, feature.ConfidenceID, feature.EstimationSessionID, feature.DevEstimate)
+	return fmt.Sprintf(MSG, feature.Name, feature.ConfidenceCODE, feature.EstimationSessionID, feature.DevelopmentEstimate)
 }
 
 func dumpOrigin(origin dm.Origin) string {

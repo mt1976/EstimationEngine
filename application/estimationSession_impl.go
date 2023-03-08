@@ -100,7 +100,7 @@ func EstimationSession_HandlerFormatted(w http.ResponseWriter, r *http.Request) 
 	searchID := core.GetURLparam(r, dm.EstimationSession_QueryString)
 	//_, rD, _ := dao.EstimationSession_GetByID(searchID)
 
-	rD := Estimationsession_Calculate(searchID)
+	rD := dao.Estimationsession_Calculate(searchID, "View Estimation")
 
 	pageDetail := dm.EstimationSession_Page{
 		Title:     CardTitle(dm.EstimationSession_Title, core.Action_View),
@@ -216,7 +216,7 @@ func EstimationSession_HandlerCreate(w http.ResponseWriter, r *http.Request) {
 	msg_TXT := "CREATED -> %s"
 	msg_TXT = dao.Translate("AuditMessage", msg_TXT)
 	msg_TXT = fmt.Sprintf(msg_TXT, item.EstimationStateID)
-	item.Notes = addActivity(item.Notes, msg_TXT, r)
+	item.Activity = addActivity(item.Activity, msg_TXT, r)
 
 	dao.EstimationSession_Store(item, r)
 	REDR := dm.EstimationSession_ByProject_PathList + "/?" + dm.Project_QueryString + "=" + item.ProjectID
@@ -372,15 +372,15 @@ func Estimationsession_Calculate(searchID string) dm.EstimationSession {
 		logs.Information("Feature", strconv.Itoa(thisFeature))
 		//	logs.Information("Feature.Reqs", feature.Reqs)
 
-		Total_Reqs += stf(feature.Reqs)
+		Total_Reqs += stf(feature.Requirements)
 		Total_AnaTest += stf(feature.AnalystTest)
-		Total_Docs += stf(feature.Docs)
-		Total_Mgt += stf(feature.Mgt)
+		Total_Docs += stf(feature.Documentation)
+		Total_Mgt += stf(feature.Management)
 		Total_UAT += stf(feature.UatSupport)
 		Total_MKT += stf(feature.Marketing)
 		//Total_Contingency += stf(feature.Contingency)
-		Total_DevUplift += stf(feature.DevUplift)
-		Total_DevEstimate += stf(feature.DevEstimate)
+		Total_DevUplift += stf(feature.DevelopmentFactored)
+		Total_DevEstimate += stf(feature.DevelopmentEstimate)
 		Total_Training += stf(feature.Training)
 	}
 
@@ -445,7 +445,7 @@ func Estimationsession_Calculate(searchID string) dm.EstimationSession {
 	// Update the Estimation Session Record
 	estUpdateTXT := dao.Translate("AuditMessage", "ESTIMATE UPDATED")
 
-	esRecord.Notes = addActivity_System(esRecord.Notes, estUpdateTXT)
+	esRecord.Activity = addActivity_System(esRecord.Activity, estUpdateTXT)
 
 	dao.EstimationSession_StoreSystem(esRecord)
 
@@ -455,7 +455,7 @@ func Estimationsession_Calculate(searchID string) dm.EstimationSession {
 // rtn Rounds a number to the nearest multiple of the RoundingFactor
 func rtn(number float64, RoundingFactor float64) (float64, error) {
 	// Round to the nearest multiple of the RoundingFactor
-	rtnVal, rtnErr := core.RoundTo(number, RoundingFactor)
+	rtnVal, rtnErr := core.RoundToNearest(number, RoundingFactor)
 	return rtnVal, rtnErr
 }
 
@@ -526,7 +526,8 @@ func EstimationSession_HandlerClone(w http.ResponseWriter, r *http.Request) {
 	// Dynamically generated 28/11/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Clone Features
-	newID, err := EstimationSession_Clone(esID, r)
+	uid := Session_GetUserName(r)
+	newID, err := dao.EstimationSession_Clone(esID, uid)
 	if err != nil {
 		logs.Panic("Cannot Clone Estimation Session {"+esID+"}", err)
 		return
@@ -534,41 +535,6 @@ func EstimationSession_HandlerClone(w http.ResponseWriter, r *http.Request) {
 
 	REDR := dm.EstimationSession_PathEdit + "/?" + dm.EstimationSession_QueryString + "=" + newID
 	http.Redirect(w, r, REDR, http.StatusFound)
-}
-
-func EstimationSession_Clone(esID string, r *http.Request) (string, error) {
-	_, esREC, _ := dao.EstimationSession_GetByID(esID)
-
-	esREC.SYSId = ""
-	cloneID := dao.EstimationSession_NewID(esREC)
-	esREC.EstimationSessionID = cloneID
-	origName := esREC.Name
-	esREC.Name = fmt.Sprintf(dao.Translate("ActionMessage", "%s (Clone)"), esREC.Name)
-	esREC.Notes = r.FormValue(dm.EstimationSession_Notes_scrn)
-
-	esREC.SYSCreated = r.FormValue(dm.EstimationSession_SYSCreated_scrn)
-	esREC.SYSCreatedBy = r.FormValue(dm.EstimationSession_SYSCreatedBy_scrn)
-	esREC.SYSCreatedHost = r.FormValue(dm.EstimationSession_SYSCreatedHost_scrn)
-	esREC.SYSUpdated = r.FormValue(dm.EstimationSession_SYSUpdated_scrn)
-	esREC.SYSUpdatedBy = r.FormValue(dm.EstimationSession_SYSUpdatedBy_scrn)
-	esREC.SYSUpdatedHost = r.FormValue(dm.EstimationSession_SYSUpdatedHost_scrn)
-	esREC.SYSDeleted = r.FormValue(dm.EstimationSession_SYSDeleted_scrn)
-	esREC.SYSDeletedBy = r.FormValue(dm.EstimationSession_SYSDeletedBy_scrn)
-	esREC.SYSDeletedHost = r.FormValue(dm.EstimationSession_SYSDeletedHost_scrn)
-
-	esREC.Notes = addActivity(esREC.Notes, fmt.Sprintf(dao.Translate("Audit Message", "Cloned from %s (%s)"), origName, esREC.EstimationStateID), r)
-
-	dao.EstimationSession_Store(esREC, r)
-
-	_, featureList, _ := dao.Feature_Active_ByEstimationSession_GetList(esID)
-	for _, feature := range featureList {
-		err := Feature_Clone(feature, cloneID, r)
-		if err != nil {
-			logs.Panic("Cannot Clone Feature {"+feature.FeatureID+"}", err)
-			return cloneID, err
-		}
-	}
-	return cloneID, nil
 }
 
 func stf(in string) float64 {

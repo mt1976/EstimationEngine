@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 15/02/2023 at 10:44:40
+// Date & Time		    : 04/03/2023 at 20:14:09
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //Catalog_Publish annouces the endpoints available for this object
-//Catalog_Publish - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+//Catalog_Publish - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Catalog_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.Catalog_Path, Catalog_Handler)
 	mux.HandleFunc(dm.Catalog_PathList, Catalog_HandlerList)
@@ -38,17 +38,17 @@ func Catalog_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.Catalog_Title)
     core.Catalog_Add(dm.Catalog_Title, dm.Catalog_Path, "", dm.Catalog_QueryString, "Application")
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Catalog_HandlerList is the handler for the list page
 //Allows Listing of Catalog records
-//Catalog_HandlerList - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+//Catalog_HandlerList - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Catalog_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -63,7 +63,15 @@ func Catalog_HandlerList(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	var returnList []dm.Catalog
-	noItems, returnList, _ := dao.Catalog_GetList()
+
+	objectName := dao.Translate("ObjectName", "Catalog")
+	reqField := "Base"
+	filter,_ := dao.Data_GetString(objectName, reqField, dm.Data_Category_FilterRule)
+	if filter == "" {
+		logs.Warning("No filter found : " + reqField + " for Object: " + objectName)
+	} 
+
+	noItems, returnList, _ := dao.Catalog_GetListFiltered(filter)
 
 	pageDetail := dm.Catalog_PageList{
 		Title:            CardTitle(dm.Catalog_Title, core.Action_List),
@@ -78,7 +86,7 @@ func Catalog_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	ExecuteTemplate(dm.Catalog_TemplateList, w, r, pageDetail)
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -86,10 +94,10 @@ func Catalog_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //Catalog_HandlerView is the handler used to View a page
 //Allows Viewing for an existing Catalog record
-//Catalog_HandlerView - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Catalog_HandlerView - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Catalog_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -118,7 +126,7 @@ func Catalog_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.Catalog_TemplateView, w, r, pageDetail)
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
@@ -128,7 +136,7 @@ func Catalog_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 
 //catalog_PopulatePage Builds/Populates the Catalog Page 
-//catalog_PopulatePage Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//catalog_PopulatePage Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func catalog_PopulatePage(rD dm.Catalog, pageDetail dm.Catalog_Page) dm.Catalog_Page {
 	// Real DB Fields
 	pageDetail.ID = rD.ID
@@ -144,6 +152,4 @@ func catalog_PopulatePage(rD dm.Catalog, pageDetail dm.Catalog_Page) dm.Catalog_
 	pageDetail.Query_props = rD.Query_props
 	pageDetail.Source_props = rD.Source_props
 	return pageDetail
-}	
-
-
+}

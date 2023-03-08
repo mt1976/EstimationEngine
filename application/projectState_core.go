@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 15/02/2023 at 10:44:47
+// Date & Time		    : 04/03/2023 at 20:14:14
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //ProjectState_Publish annouces the endpoints available for this object
-//ProjectState_Publish - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+//ProjectState_Publish - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func ProjectState_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.ProjectState_Path, ProjectState_Handler)
 	mux.HandleFunc(dm.ProjectState_PathList, ProjectState_HandlerList)
@@ -34,21 +34,21 @@ func ProjectState_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.ProjectState_PathEdit, ProjectState_HandlerEdit)
 	mux.HandleFunc(dm.ProjectState_PathNew, ProjectState_HandlerNew)
 	mux.HandleFunc(dm.ProjectState_PathSave, ProjectState_HandlerSave)
-	//Cannot Delete via GUI
+	mux.HandleFunc(dm.ProjectState_PathDelete, ProjectState_HandlerDelete)
 	logs.Publish("Application", dm.ProjectState_Title)
     core.Catalog_Add(dm.ProjectState_Title, dm.ProjectState_Path, "", dm.ProjectState_QueryString, "Application")
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //ProjectState_HandlerList is the handler for the list page
 //Allows Listing of ProjectState records
-//ProjectState_HandlerList - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+//ProjectState_HandlerList - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func ProjectState_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -63,7 +63,15 @@ func ProjectState_HandlerList(w http.ResponseWriter, r *http.Request) {
 	core.ServiceMessage(inUTL)
 
 	var returnList []dm.ProjectState
-	noItems, returnList, _ := dao.ProjectState_GetList()
+
+	objectName := dao.Translate("ObjectName", "ProjectState")
+	reqField := "Base"
+	filter,_ := dao.Data_GetString(objectName, reqField, dm.Data_Category_FilterRule)
+	if filter == "" {
+		logs.Warning("No filter found : " + reqField + " for Object: " + objectName)
+	} 
+
+	noItems, returnList, _ := dao.ProjectState_GetListFiltered(filter)
 
 	pageDetail := dm.ProjectState_PageList{
 		Title:            CardTitle(dm.ProjectState_Title, core.Action_List),
@@ -78,7 +86,7 @@ func ProjectState_HandlerList(w http.ResponseWriter, r *http.Request) {
 	
 	ExecuteTemplate(dm.ProjectState_TemplateList, w, r, pageDetail)
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -86,10 +94,10 @@ func ProjectState_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //ProjectState_HandlerView is the handler used to View a page
 //Allows Viewing for an existing ProjectState record
-//ProjectState_HandlerView - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//ProjectState_HandlerView - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func ProjectState_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -118,17 +126,17 @@ func ProjectState_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.ProjectState_TemplateView, w, r, pageDetail)
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //ProjectState_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing ProjectState record and then allows the user to save the changes
-//ProjectState_HandlerEdit - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//ProjectState_HandlerEdit - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func ProjectState_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -165,17 +173,17 @@ func ProjectState_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.ProjectState_TemplateEdit, w, r, pageDetail)
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //ProjectState_HandlerSave is the handler used process the saving of an ProjectState
 //It is called from the Edit and New pages
-//ProjectState_HandlerSave  - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//ProjectState_HandlerSave  - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func ProjectState_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -196,21 +204,21 @@ func ProjectState_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, dm.ProjectState_Redirect, http.StatusFound)
 	} else {
 		logs.Information(dm.ProjectState_Name, errStore.Error())
-		http.Redirect(w, r, r.Referer(), http.StatusFound)
+		//http.Redirect(w, r, r.Referer(), http.StatusFound)
 		ExecuteRedirect(r.Referer(), w, r,dm.ProjectState_QueryString,itemID,item)
 	}
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //ProjectState_HandlerNew is the handler used process the creation of an ProjectState
 //It will create a new ProjectState and then redirect to the Edit page
-//ProjectState_HandlerNew  - Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//ProjectState_HandlerNew  - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func ProjectState_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -248,14 +256,41 @@ func ProjectState_HandlerNew(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(dm.ProjectState_TemplateNew, w, r, pageDetail)
 	// 
-	// Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }	
 
 
+//ProjectState_HandlerDelete is the handler used process the deletion of an ProjectState
+// It will delete the ProjectState and then redirect to the List page
+//ProjectState_HandlerDelete - Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+func ProjectState_HandlerDelete(w http.ResponseWriter, r *http.Request) {
+	// START
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	//
+	// Mandatory Security Validation
+	//
+	if !(Session_Validate(w, r)) {
+		core.Logout(w, r)
+		return
+	}
+	//
+	// Code Continues Below
+	//
+	logs.Servicing(r.URL.Path)
+	searchID := core.GetURLparam(r, dm.ProjectState_QueryString)
+
+	dao.ProjectState_Delete(searchID)	
+
+	http.Redirect(w, r, dm.ProjectState_Redirect, http.StatusFound)
+	// 
+	// Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// END
+}
+
 
 //projectstate_PopulatePage Builds/Populates the ProjectState Page 
-//projectstate_PopulatePage Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//projectstate_PopulatePage Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func projectstate_PopulatePage(rD dm.ProjectState, pageDetail dm.ProjectState_Page) dm.ProjectState_Page {
 	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
@@ -297,11 +332,9 @@ func projectstate_PopulatePage(rD dm.ProjectState, pageDetail dm.ProjectState_Pa
 	pageDetail.IsLocked_props = rD.IsLocked_props
 	pageDetail.Notify_props = rD.Notify_props
 	return pageDetail
-}	
-
-
+}
 //projectstate_DataFromRequest is used process the content of an HTTP Request and return an instance of an ProjectState
-//projectstate_DataFromRequest Auto generated 15/02/2023 by matttownsend (Matt Townsend) on silicon.local 
+//projectstate_DataFromRequest Auto generated 04/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func projectstate_DataFromRequest(r *http.Request) dm.ProjectState {
 
 	var item dm.ProjectState
@@ -323,4 +356,3 @@ func projectstate_DataFromRequest(r *http.Request) dm.ProjectState {
 		item.Notify = r.FormValue(dm.ProjectState_Notify_scrn)
 	return item
 }
-

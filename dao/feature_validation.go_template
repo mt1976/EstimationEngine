@@ -16,7 +16,7 @@ import (
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
 	// Template Generator   : Einsteinium [r5-23.01.23]
-	// Date & Time		    : 15/02/2023 at 10:44:43
+	// Date & Time		    : 07/03/2023 at 16:42:06
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in feature_impl.go
@@ -46,172 +46,228 @@ import (
 	// These are the the default implementations, which do nothing
 
 	// ----------------------------------------------------------------
-	// BEGIN Feature_FeatureID
-	// BEGIN Feature_FeatureID
-	// BEGIN Feature_FeatureID
-	// ----------------------------------------------------------------
-	// Feature_FeatureID_OnStore_impl provides the implementation for the callout
-	func Feature_FeatureID_OnStore_impl (fieldval string,rec dm.Feature,usr string) (string,error)  {
-		logs.Callout("Feature", dm.Feature_FeatureID_scrn, PUT, rec.FeatureID)
-		return fieldval,nil
-	}
-	// ----------------------------------------------------------------
-	// Feature_FeatureID_OnFetch_impl provides the implementation for the callout	
-	func Feature_FeatureID_OnFetch_impl (rec dm.Feature)(string) {
-		logs.Callout("Feature", dm.Feature_FeatureID_scrn, GET, rec.FeatureID)
-		return rec.FeatureID
-	}
-	// ----------------------------------------------------------------
 	// Feature_FeatureID_validate_impl provides validation/actions for FeatureID
 	func Feature_FeatureID_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
 		logs.Callout("Feature", dm.Feature_FeatureID_scrn, VAL +"-"+iAction, iId)
 		return iValue,fP
 	}
-	// ----------------------------------------------------------------
-	// END   Feature_FeatureID
-	// END   Feature_FeatureID
-	// END   Feature_FeatureID
-	// ----------------------------------------------------------------
 
 	// ----------------------------------------------------------------
-	// BEGIN Feature_TrackerID
-	// BEGIN Feature_TrackerID
-	// BEGIN Feature_TrackerID
-	// ----------------------------------------------------------------
-	// Feature_TrackerID_OnStore_impl provides the implementation for the callout
-	func Feature_TrackerID_OnStore_impl (fieldval string,rec dm.Feature,usr string) (string,error)  {
-		logs.Callout("Feature", dm.Feature_TrackerID_scrn, PUT, rec.FeatureID)
-		return fieldval,nil
+	// Feature_EstimationSessionID_validate_impl provides validation/actions for EstimationSessionID
+	func Feature_EstimationSessionID_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_EstimationSessionID_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
 	}
+
 	// ----------------------------------------------------------------
-	// Feature_TrackerID_OnFetch_impl provides the implementation for the callout	
-	func Feature_TrackerID_OnFetch_impl (rec dm.Feature)(string) {
-		logs.Callout("Feature", dm.Feature_TrackerID_scrn, GET, rec.FeatureID)
-		return rec.TrackerID
+	// Feature_Name_validate_impl provides validation/actions for Name
+	func Feature_Name_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_Name_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
 	}
+
+	// ----------------------------------------------------------------
+	// Feature_DevelopmentEstimate_validate_impl provides validation/actions for DevelopmentEstimate
+	func Feature_DevelopmentEstimate_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_DevelopmentEstimate_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_DevelopmentFactored_validate_impl provides validation/actions for DevelopmentFactored
+	func Feature_DevelopmentFactored_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_DevelopmentFactored_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_Requirements_validate_impl provides validation/actions for Requirements
+	func Feature_Requirements_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_Requirements_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_AnalystTest_validate_impl provides validation/actions for AnalystTest
+	func Feature_AnalystTest_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_AnalystTest_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_Documentation_validate_impl provides validation/actions for Documentation
+	func Feature_Documentation_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_Documentation_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_Management_validate_impl provides validation/actions for Management
+	func Feature_Management_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_Management_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_Marketing_validate_impl provides validation/actions for Marketing
+	func Feature_Marketing_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_Marketing_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_Contingency_validate_impl provides validation/actions for Contingency
+	func Feature_Contingency_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_Contingency_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
 	// ----------------------------------------------------------------
 	// Feature_TrackerID_validate_impl provides validation/actions for TrackerID
 	func Feature_TrackerID_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
 		logs.Callout("Feature", dm.Feature_TrackerID_scrn, VAL +"-"+iAction, iId)
 		return iValue,fP
 	}
-	// ----------------------------------------------------------------
-	// END   Feature_TrackerID
-	// END   Feature_TrackerID
-	// END   Feature_TrackerID
-	// ----------------------------------------------------------------
 
-	// ----------------------------------------------------------------
-	// BEGIN Feature_AdoID
-	// BEGIN Feature_AdoID
-	// BEGIN Feature_AdoID
-	// ----------------------------------------------------------------
-	// Feature_AdoID_OnStore_impl provides the implementation for the callout
-	func Feature_AdoID_OnStore_impl (fieldval string,rec dm.Feature,usr string) (string,error)  {
-		logs.Callout("Feature", dm.Feature_AdoID_scrn, PUT, rec.FeatureID)
-		return fieldval,nil
-	}
-	// ----------------------------------------------------------------
-	// Feature_AdoID_OnFetch_impl provides the implementation for the callout	
-	func Feature_AdoID_OnFetch_impl (rec dm.Feature)(string) {
-		logs.Callout("Feature", dm.Feature_AdoID_scrn, GET, rec.FeatureID)
-		return rec.AdoID
-	}
 	// ----------------------------------------------------------------
 	// Feature_AdoID_validate_impl provides validation/actions for AdoID
 	func Feature_AdoID_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
 		logs.Callout("Feature", dm.Feature_AdoID_scrn, VAL +"-"+iAction, iId)
 		return iValue,fP
 	}
-	// ----------------------------------------------------------------
-	// END   Feature_AdoID
-	// END   Feature_AdoID
-	// END   Feature_AdoID
-	// ----------------------------------------------------------------
 
-	// ----------------------------------------------------------------
-	// BEGIN Feature_FreshdeskID
-	// BEGIN Feature_FreshdeskID
-	// BEGIN Feature_FreshdeskID
-	// ----------------------------------------------------------------
-	// Feature_FreshdeskID_OnStore_impl provides the implementation for the callout
-	func Feature_FreshdeskID_OnStore_impl (fieldval string,rec dm.Feature,usr string) (string,error)  {
-		logs.Callout("Feature", dm.Feature_FreshdeskID_scrn, PUT, rec.FeatureID)
-		return fieldval,nil
-	}
-	// ----------------------------------------------------------------
-	// Feature_FreshdeskID_OnFetch_impl provides the implementation for the callout	
-	func Feature_FreshdeskID_OnFetch_impl (rec dm.Feature)(string) {
-		logs.Callout("Feature", dm.Feature_FreshdeskID_scrn, GET, rec.FeatureID)
-		return rec.FreshdeskID
-	}
 	// ----------------------------------------------------------------
 	// Feature_FreshdeskID_validate_impl provides validation/actions for FreshdeskID
 	func Feature_FreshdeskID_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
 		logs.Callout("Feature", dm.Feature_FreshdeskID_scrn, VAL +"-"+iAction, iId)
 		return iValue,fP
 	}
-	// ----------------------------------------------------------------
-	// END   Feature_FreshdeskID
-	// END   Feature_FreshdeskID
-	// END   Feature_FreshdeskID
-	// ----------------------------------------------------------------
 
-	// ----------------------------------------------------------------
-	// BEGIN Feature_ExtRef
-	// BEGIN Feature_ExtRef
-	// BEGIN Feature_ExtRef
-	// ----------------------------------------------------------------
-	// Feature_ExtRef_OnStore_impl provides the implementation for the callout
-	func Feature_ExtRef_OnStore_impl (fieldval string,rec dm.Feature,usr string) (string,error)  {
-		logs.Callout("Feature", dm.Feature_ExtRef_scrn, PUT, rec.FeatureID)
-		return fieldval,nil
-	}
-	// ----------------------------------------------------------------
-	// Feature_ExtRef_OnFetch_impl provides the implementation for the callout	
-	func Feature_ExtRef_OnFetch_impl (rec dm.Feature)(string) {
-		logs.Callout("Feature", dm.Feature_ExtRef_scrn, GET, rec.FeatureID)
-		return rec.ExtRef
-	}
 	// ----------------------------------------------------------------
 	// Feature_ExtRef_validate_impl provides validation/actions for ExtRef
 	func Feature_ExtRef_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
 		logs.Callout("Feature", dm.Feature_ExtRef_scrn, VAL +"-"+iAction, iId)
 		return iValue,fP
 	}
-	// ----------------------------------------------------------------
-	// END   Feature_ExtRef
-	// END   Feature_ExtRef
-	// END   Feature_ExtRef
-	// ----------------------------------------------------------------
 
-	// ----------------------------------------------------------------
-	// BEGIN Feature_ExtRef2
-	// BEGIN Feature_ExtRef2
-	// BEGIN Feature_ExtRef2
-	// ----------------------------------------------------------------
-	// Feature_ExtRef2_OnStore_impl provides the implementation for the callout
-	func Feature_ExtRef2_OnStore_impl (fieldval string,rec dm.Feature,usr string) (string,error)  {
-		logs.Callout("Feature", dm.Feature_ExtRef2_scrn, PUT, rec.FeatureID)
-		return fieldval,nil
-	}
-	// ----------------------------------------------------------------
-	// Feature_ExtRef2_OnFetch_impl provides the implementation for the callout	
-	func Feature_ExtRef2_OnFetch_impl (rec dm.Feature)(string) {
-		logs.Callout("Feature", dm.Feature_ExtRef2_scrn, GET, rec.FeatureID)
-		return rec.ExtRef2
-	}
 	// ----------------------------------------------------------------
 	// Feature_ExtRef2_validate_impl provides validation/actions for ExtRef2
 	func Feature_ExtRef2_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
 		logs.Callout("Feature", dm.Feature_ExtRef2_scrn, VAL +"-"+iAction, iId)
 		return iValue,fP
 	}
+
 	// ----------------------------------------------------------------
-	// END   Feature_ExtRef2
-	// END   Feature_ExtRef2
-	// END   Feature_ExtRef2
+	// Feature_DeveloperResource_validate_impl provides validation/actions for DeveloperResource
+	func Feature_DeveloperResource_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_DeveloperResource_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
 	// ----------------------------------------------------------------
+	// Feature_ApproverResource_validate_impl provides validation/actions for ApproverResource
+	func Feature_ApproverResource_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_ApproverResource_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_OffProfileJustification_validate_impl provides validation/actions for OffProfileJustification
+	func Feature_OffProfileJustification_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_OffProfileJustification_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_Total_validate_impl provides validation/actions for Total
+	func Feature_Total_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_Total_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_Training_validate_impl provides validation/actions for Training
+	func Feature_Training_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_Training_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_EstimateEffort_validate_impl provides validation/actions for EstimateEffort
+	func Feature_EstimateEffort_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_EstimateEffort_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_AnalystEstimate_validate_impl provides validation/actions for AnalystEstimate
+	func Feature_AnalystEstimate_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_AnalystEstimate_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_OriginName_validate_impl provides validation/actions for OriginName
+	func Feature_OriginName_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_OriginName_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_ProjectName_validate_impl provides validation/actions for ProjectName
+	func Feature_ProjectName_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_ProjectName_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_OriginID_validate_impl provides validation/actions for OriginID
+	func Feature_OriginID_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_OriginID_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_ProjectID_validate_impl provides validation/actions for ProjectID
+	func Feature_ProjectID_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_ProjectID_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_ProfileSelectedOld_validate_impl provides validation/actions for ProfileSelectedOld
+	func Feature_ProfileSelectedOld_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_ProfileSelectedOld_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_CCY_validate_impl provides validation/actions for CCY
+	func Feature_CCY_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_CCY_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_RoundTo_validate_impl provides validation/actions for RoundTo
+	func Feature_RoundTo_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_RoundTo_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_OriginCode_validate_impl provides validation/actions for OriginCode
+	func Feature_OriginCode_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_OriginCode_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_EstimationSessionName_validate_impl provides validation/actions for EstimationSessionName
+	func Feature_EstimationSessionName_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_EstimationSessionName_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
 
 	// ----------------------------------------------------------------
 	// Automatically generated code ends here
