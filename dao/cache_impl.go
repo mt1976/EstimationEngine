@@ -3,27 +3,27 @@ package dao
 import (
 	core "github.com/mt1976/ebEstimates/core"
 	dm "github.com/mt1976/ebEstimates/datamodel"
+	logs "github.com/mt1976/ebEstimates/logs"
 	"golang.org/x/exp/slices"
 )
 
 var validObjects = []string{dm.Origin_Name, dm.Project_Name, dm.EstimationSession_Name}
 
-func CACHE_Read(object string, id string) interface{} {
-	cacheID := core.CACHE_KeyGen(object, id)
+func CacheRead(object string, id string) interface{} {
+	cacheID := core.ApplicationCache.KeyGen(object, id)
 
 	// Check for valid object
 	if !slices.Contains(validObjects, object) {
 		panic("Invalid Cache object type: " + object)
 	}
 
-	if !core.CACHE_KeyExists(cacheID) {
-		// Branch to appropriate DAO
-		// Read from DB
-		cacheItem := cache_Get_From_DB(object, id)
-		core.CACHE_Add(cacheID, cacheItem)
-		return cacheItem
+	if core.ApplicationCache.OK(cacheID) {
+		return core.ApplicationCache.Get(cacheID)
 	}
-	return core.CACHE_Get(cacheID)
+	cacheItem := cache_Get_From_DB(object, id)
+	core.ApplicationCache.Add(cacheID, cacheItem)
+	logs.Information("Information : ", core.ApplicationCache.Stat())
+	return cacheItem
 }
 
 func cache_Get_From_DB(object string, id string) interface{} {
@@ -41,6 +41,5 @@ func cache_Get_From_DB(object string, id string) interface{} {
 	default:
 		panic("Invalid Cache object type: " + object)
 	}
-
 	return nil
 }

@@ -74,11 +74,11 @@ func Feature_OriginID_OnStore_impl(fieldval string, rec dm.Feature, usr string) 
 func Feature_OriginID_OnFetch_impl(rec dm.Feature) string {
 	logs.Callout("Feature", dm.Feature_OriginID_scrn, GET, rec.FeatureID)
 	esID := rec.EstimationSessionID
-	es := CACHE_Read(dm.EstimationSession_Name, esID).(dm.EstimationSession)
+	es := CacheRead(dm.EstimationSession_Name, esID).(dm.EstimationSession)
 	projID := es.ProjectID
-	proj := CACHE_Read(dm.Project_Name, projID).(dm.Project)
+	proj := CacheRead(dm.Project_Name, projID).(dm.Project)
 	oID := proj.OriginID
-	origin := CACHE_Read(dm.Origin_Name, oID).(dm.Origin)
+	origin := CacheRead(dm.Origin_Name, oID).(dm.Origin)
 	return origin.OriginID
 }
 
@@ -92,7 +92,7 @@ func Feature_ProjectID_OnStore_impl(fieldval string, rec dm.Feature, usr string)
 func Feature_ProjectID_OnFetch_impl(rec dm.Feature) string {
 	logs.Callout("Feature", dm.Feature_ProjectID_scrn, GET, rec.FeatureID)
 	esID := rec.EstimationSessionID
-	es := CACHE_Read(dm.EstimationSession_Name, esID).(dm.EstimationSession)
+	es := CacheRead(dm.EstimationSession_Name, esID).(dm.EstimationSession)
 	return es.ProjectID
 }
 
@@ -107,9 +107,9 @@ func Feature_OriginCode_OnStore_impl(fieldval string, rec dm.Feature, usr string
 func Feature_OriginCode_OnFetch_impl(rec dm.Feature) string {
 	logs.Callout("Feature", dm.Feature_OriginCode_scrn, GET, rec.FeatureID)
 	esID := rec.EstimationSessionID
-	es := CACHE_Read(dm.EstimationSession_Name, esID).(dm.EstimationSession)
+	es := CacheRead(dm.EstimationSession_Name, esID).(dm.EstimationSession)
 	projID := es.ProjectID
-	proj := CACHE_Read(dm.Project_Name, projID).(dm.Project)
+	proj := CacheRead(dm.Project_Name, projID).(dm.Project)
 	return proj.OriginID
 }
 
@@ -124,6 +124,6 @@ func Feature_EstimationSessionName_OnStore_impl(fieldval string, rec dm.Feature,
 func Feature_EstimationSessionName_OnFetch_impl(rec dm.Feature) string {
 	logs.Callout("Feature", dm.Feature_EstimationSessionName_scrn, GET, rec.FeatureID)
 	esID := rec.EstimationSessionID
-	es := CACHE_Read(dm.EstimationSession_Name, esID).(dm.EstimationSession)
+	es := CacheRead(dm.EstimationSession_Name, esID).(dm.EstimationSession)
 	return es.Name
 }

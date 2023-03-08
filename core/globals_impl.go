@@ -33,6 +33,7 @@ var SessionManager *scs.SessionManager
 var Emailer *gomail.Dialer
 
 var IsChildInstance bool
+var ApplicationCache Cache
 
 type DBConnectionString struct {
 	ID         string

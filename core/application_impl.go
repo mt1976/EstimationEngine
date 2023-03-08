@@ -40,7 +40,8 @@ func Initialise() {
 	InstanceProperties = getPropertiesFromFile(INSTANCECONFIG)
 	ApplicationStubLists = getPropertiesFromFile(APPSTUBLISTS)
 
-	cache = make(map[string]interface{})
+	ApplicationCache.init()
+	logs.Information("Initialisation", ApplicationCache.Stat())
 
 	IsChildInstance = false
 	if len(GetDatabaseProperty("instance")) != 0 {

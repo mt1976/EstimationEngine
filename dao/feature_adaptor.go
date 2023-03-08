@@ -623,20 +623,20 @@ func Feature_OriginName_OnFetch_impl(rec dm.Feature) string {
 	logs.Callout("Feature", dm.Feature_OriginName_scrn, GET, rec.FeatureID)
 
 	estID := rec.EstimationSessionID
-	est := CACHE_Read(dm.EstimationSession_Name, estID).(dm.EstimationSession)
+	est := CacheRead(dm.EstimationSession_Name, estID).(dm.EstimationSession)
 	// _, est, err := EstimationSession_GetByID(estID)
 	// if err != nil {
 	// 	return ""
 	// }
 	projID := est.ProjectID
-	proj := CACHE_Read(dm.Project_Name, projID).(dm.Project)
+	proj := CacheRead(dm.Project_Name, projID).(dm.Project)
 	// _, proj, err := Project_GetByID(projID)
 	// if err != nil {
 	// 	return ""
 	// }
 
 	originID := proj.OriginID
-	origin := CACHE_Read(dm.Origin_Name, originID).(dm.Origin)
+	origin := CacheRead(dm.Origin_Name, originID).(dm.Origin)
 	// _, origin, err := Origin_GetByCode(originID)
 	// if err != nil {
 	// 	return ""
@@ -669,13 +669,13 @@ func Feature_ProjectName_OnFetch_impl(rec dm.Feature) string {
 
 	// Get the project from the estimationsession
 	estID := rec.EstimationSessionID
-	est := CACHE_Read(dm.EstimationSession_Name, estID).(dm.EstimationSession)
+	est := CacheRead(dm.EstimationSession_Name, estID).(dm.EstimationSession)
 	// _, est, err := EstimationSession_GetByID(estID)
 	// if err != nil {
 	// 	return ""
 	// }
 	projID := est.ProjectID
-	proj := CACHE_Read(dm.Project_Name, projID).(dm.Project)
+	proj := CacheRead(dm.Project_Name, projID).(dm.Project)
 	// _, proj, err := Project_GetByID(projID)
 	// if err != nil {
 	// 	return ""
@@ -732,19 +732,19 @@ func Feature_CCY_OnFetch_impl(rec dm.Feature) string {
 	//	return ""
 
 	esID := rec.EstimationSessionID
-	es := CACHE_Read(dm.EstimationSession_Name, esID).(dm.EstimationSession)
+	es := CacheRead(dm.EstimationSession_Name, esID).(dm.EstimationSession)
 	// _, es, err := EstimationSession_GetByID(esID)
 	// if err != nil {
 	// 	return "GBP"
 	// }
 	projID := es.ProjectID
-	proj := CACHE_Read(dm.Project_Name, projID).(dm.Project)
+	proj := CacheRead(dm.Project_Name, projID).(dm.Project)
 	// _, proj, err := Project_GetByID(projID)
 	// if err != nil {
 	// 	return "GBP"
 	// }
 	origID := proj.OriginID
-	orig := CACHE_Read(dm.Origin_Name, origID).(dm.Origin)
+	orig := CacheRead(dm.Origin_Name, origID).(dm.Origin)
 	// _, orig, err := Origin_GetByCode(origID)
 	// if err != nil {
 	// 	return "GBP"

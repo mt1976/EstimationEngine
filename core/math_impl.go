@@ -33,6 +33,18 @@ func StringToFloat(in string) float64 {
 	return out
 }
 
+func StringToInt(in string) int {
+	if in == "" {
+		logs.Warning("Cannot convert empty string to int - assuming 0")
+		return 0
+	}
+	out, strErr := strconv.Atoi(in)
+	if strErr != nil {
+		logs.Warning("Cannot convert string to int - " + DQuote(strErr.Error()))
+	}
+	return out
+}
+
 func Numeric(in string) (float64, error) {
 	out, strErr := strconv.ParseFloat(in, 64)
 	if strErr != nil {
