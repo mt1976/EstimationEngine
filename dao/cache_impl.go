@@ -7,7 +7,7 @@ import (
 	"golang.org/x/exp/slices"
 )
 
-var validObjects = []string{dm.Origin_Name, dm.Project_Name, dm.EstimationSession_Name}
+var validObjects = []string{dm.Origin_Name, dm.Project_Name, dm.EstimationSession_Name, dm.Data_Name}
 
 func CacheRead(object string, id string) interface{} {
 	//name := core.ApplicationProperties.Get("appname")
@@ -48,6 +48,9 @@ func cache_Get_From_DB(object string, id string) interface{} {
 	case dm.EstimationSession_Name:
 		_, session, _ := EstimationSession_GetByID(id)
 		return session
+	case dm.Data_Name:
+		_, data, _ := Data_GetByID(id)
+		return data
 	default:
 		panic("Invalid Cache object type: " + object)
 	}
