@@ -11,11 +11,11 @@
       <div class="d-flex col h-100  align-items-right">
         <nav aria-label="breadcrumb" class="align-items-center"> 
           <ol class="breadcrumb  h-100 align-items-center">
-          <li class="breadcrumb-item lead"><a href="/home">Home</a></li>
+                  <li class="breadcrumb-item lead"><a href="/home"><span class="text-primary"><i class="fas fa-home fa-sm me-2"></i></span>Home</a></li>
           <li class="breadcrumb-item lead"><a href="/ProjectsByOrigin/?OriginID={{.OriginID}}">{{.OriginCode}}</a></li>
           <li class="breadcrumb-item lead"><a href="/EstimationSessionByProject/?ProjectID={{.ProjectID}}">{{ printf "%.20s..." .ProjectName}}</a></li>
           <li class="breadcrumb-item lead"><a href="/FeatureByEstimationSession/?EstimationSessionID={{.EstimationSessionID}}">{{ printf "%.20s..." .EstimationSessionName}}</a></li>
-          <li class="breadcrumb-item lead active">{{.Name}}</li>
+            <li class="breadcrumb-item lead active"><span class="text-primary">{{.Name}}</span></li>
 
 
           
@@ -29,14 +29,14 @@
 
 
   <div class="card">
-    <div class="card-header align-items-center">
+    <div class="card-header align-items-center" style="padding-bottom:0;">
       <div class="row align-items-center">
-        <div class="col h3">
-          <i class="fas fa-tasks me-2 text-primary"
-            title="FeatureID={{.FeatureID}}"></i><span class="me-3">Edit Feature : <span class="text-muted">{{.Name}}</span></span>
-        </div>
+               <div class="col h4 align-items-center">
+                    <i class="fas fa-tasks me-2 text-primary" title="FeatureID = {{.FeatureID}}"></i><span class="me-3">Edit Feature : <span class="text-muted">{{.Name}}</span></span>
+                </div>
+
         <div class="col d-flex justify-content-end">
-          <div class="btn-group">
+                    <div class="btn-group float-right" style="margin-bottom:1rem;">
             
             <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/FeatureStore/?FeatureID={{.FeatureID}}" onclick="/FeatureStore/?FeatureID={{.FeatureID}}" title="Save Feature"><i class="fas fa-save me-2"></i>Save</button>
             

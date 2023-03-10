@@ -125,3 +125,22 @@ func Project_Description_impl(iAction string, iId string, iValue string, iRec dm
 // END   Project_Description
 // END   Project_Description
 // ----------------------------------------------------------------
+
+func Project_OriginName_OnStore_impl(fieldval string, rec dm.Project, usr string) (string, error) {
+	logs.Callout("Project", dm.Project_OriginName_scrn, PUT, rec.ProjectID)
+	return fieldval, nil
+}
+
+// ----------------------------------------------------------------
+// Project_OriginName_OnFetch_impl provides the implementation for the callout
+func Project_OriginName_OnFetch_impl(rec dm.Project) string {
+	logs.Callout("Project", dm.Project_OriginName_scrn, GET, rec.ProjectID)
+	originID := rec.OriginID
+	if originID == "" {
+		return ""
+	}
+	//logs.Warning("Project_OriginName_OnFetch_impl IN")
+	origin := CacheRead(dm.Origin_Name, originID).(dm.Origin)
+	//logs.Warning("Project_OriginName_OnFetch_impl OUT")
+	return origin.FullName
+}

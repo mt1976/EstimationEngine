@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 08/03/2023 at 18:42:26
+// Date & Time		    : 10/03/2023 at 19:54:36
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Translation defines the datamodel for the Translation object
 type Translation struct {
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -58,7 +58,7 @@ type Translation struct {
 	}
 
 const (
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	Translation_Name      = "Translation"
 	Translation_Title       = "Message Translation"
@@ -132,7 +132,7 @@ const (
 
 //Translation_PageList provides the information for the template for a list of Translations
 type Translation_PageList struct {
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -154,7 +154,7 @@ type Translation_PageList struct {
 
 //Translation_Page provides the information for the template for an individual Translation
 type Translation_Page struct {
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem

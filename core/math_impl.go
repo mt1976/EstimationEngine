@@ -1,7 +1,6 @@
 package core
 
 import (
-	"fmt"
 	"math"
 	"strconv"
 
@@ -14,10 +13,10 @@ func RoundToNearest(number float64, RoundingFactor float64) (float64, error) {
 	if RoundingFactor == 0 {
 		return number, nil
 	}
-	fmt.Printf("Number: %v\n", number)
-	fmt.Printf("RoundingFactor: %v\n", RoundingFactor)
+	//fmt.Printf("Number: %v\n", number)
+	//fmt.Printf("RoundingFactor: %v\n", RoundingFactor)
 	rtnVal := math.Round(number/RoundingFactor) * RoundingFactor
-	fmt.Printf("rtnVal: %v\n", rtnVal)
+	//fmt.Printf("rtnVal: %v\n", rtnVal)
 	return rtnVal, nil
 }
 

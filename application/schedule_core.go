@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 08/03/2023 at 18:42:25
+// Date & Time		    : 10/03/2023 at 19:54:36
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //Schedule_Publish annouces the endpoints available for this object
-//Schedule_Publish - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//Schedule_Publish - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Schedule_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.Schedule_Path, Schedule_Handler)
 	mux.HandleFunc(dm.Schedule_PathList, Schedule_HandlerList)
@@ -36,19 +36,19 @@ func Schedule_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Schedule_PathSave, Schedule_HandlerSave)
 	//Cannot Delete via GUI
 	logs.Publish("Application", dm.Schedule_Title)
-    core.API.AddRoute(dm.Schedule_Title, dm.Schedule_Path, "", dm.Schedule_QueryString, "Application")
+    core.API = core.API.AddRoute(dm.Schedule_Title, dm.Schedule_Path, "", dm.Schedule_QueryString, "Application")
 	// 
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Schedule_HandlerList is the handler for the list page
 //Allows Listing of Schedule records
-//Schedule_HandlerList - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//Schedule_HandlerList - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Schedule_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -88,7 +88,7 @@ func Schedule_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -96,10 +96,10 @@ func Schedule_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //Schedule_HandlerView is the handler used to View a page
 //Allows Viewing for an existing Schedule record
-//Schedule_HandlerView - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Schedule_HandlerView - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Schedule_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -130,7 +130,7 @@ func Schedule_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
@@ -138,10 +138,10 @@ func Schedule_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 //Schedule_HandlerSave is the handler used process the saving of an Schedule
 //It is called from the Edit and New pages
-//Schedule_HandlerSave  - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Schedule_HandlerSave  - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Schedule_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -167,7 +167,7 @@ func Schedule_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		ExecuteRedirect(r.Referer(), w, r,dm.Schedule_QueryString,itemID,item)
 	}
 	// 
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
@@ -175,7 +175,7 @@ func Schedule_HandlerSave(w http.ResponseWriter, r *http.Request) {
 
 
 //schedule_PopulatePage Builds/Populates the Schedule Page 
-//schedule_PopulatePage Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//schedule_PopulatePage Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func schedule_PopulatePage(rD dm.Schedule, pageDetail dm.Schedule_Page) dm.Schedule_Page {
 	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
@@ -223,7 +223,7 @@ func schedule_PopulatePage(rD dm.Schedule, pageDetail dm.Schedule_Page) dm.Sched
 	return pageDetail
 }
 //schedule_DataFromRequest is used process the content of an HTTP Request and return an instance of an Schedule
-//schedule_DataFromRequest Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//schedule_DataFromRequest Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func schedule_DataFromRequest(r *http.Request) dm.Schedule {
 
 	var item dm.Schedule

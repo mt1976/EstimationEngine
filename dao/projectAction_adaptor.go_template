@@ -16,7 +16,7 @@ import (
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
 	// Template Generator   : Einsteinium [r5-23.01.23]
-	// Date & Time		    : 08/03/2023 at 18:42:25
+	// Date & Time		    : 10/03/2023 at 19:54:35
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in projectaction_impl.go
@@ -48,6 +48,50 @@ import (
 	// END   ProjectAction_NoEstimationSessions
 	// END   ProjectAction_NoEstimationSessions
 	// END   ProjectAction_NoEstimationSessions
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN ProjectAction_OriginName
+	// BEGIN ProjectAction_OriginName
+	// BEGIN ProjectAction_OriginName
+	// ----------------------------------------------------------------
+	// ProjectAction_OriginName_OnStore_impl provides the implementation for the callout
+	func ProjectAction_OriginName_OnStore_impl (fieldval string,rec dm.ProjectAction,usr string) (string,error)  {
+		logs.Callout("ProjectAction", dm.ProjectAction_OriginName_scrn, PUT, rec.ProjectID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// ProjectAction_OriginName_OnFetch_impl provides the implementation for the callout	
+	func ProjectAction_OriginName_OnFetch_impl (rec dm.ProjectAction)(string) {
+		logs.Callout("ProjectAction", dm.ProjectAction_OriginName_scrn, GET, rec.ProjectID)
+		return rec.OriginName
+	}
+	// ----------------------------------------------------------------
+	// END   ProjectAction_OriginName
+	// END   ProjectAction_OriginName
+	// END   ProjectAction_OriginName
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN ProjectAction_OriginKey
+	// BEGIN ProjectAction_OriginKey
+	// BEGIN ProjectAction_OriginKey
+	// ----------------------------------------------------------------
+	// ProjectAction_OriginKey_OnStore_impl provides the implementation for the callout
+	func ProjectAction_OriginKey_OnStore_impl (fieldval string,rec dm.ProjectAction,usr string) (string,error)  {
+		logs.Callout("ProjectAction", dm.ProjectAction_OriginKey_scrn, PUT, rec.ProjectID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// ProjectAction_OriginKey_OnFetch_impl provides the implementation for the callout	
+	func ProjectAction_OriginKey_OnFetch_impl (rec dm.ProjectAction)(string) {
+		logs.Callout("ProjectAction", dm.ProjectAction_OriginKey_scrn, GET, rec.ProjectID)
+		return rec.OriginKey
+	}
+	// ----------------------------------------------------------------
+	// END   ProjectAction_OriginKey
+	// END   ProjectAction_OriginKey
+	// END   ProjectAction_OriginKey
 	// ----------------------------------------------------------------
 
 	// ----------------------------------------------------------------

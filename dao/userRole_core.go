@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 08/03/2023 at 18:42:26
+// Date & Time		    : 10/03/2023 at 19:54:37
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -90,10 +90,10 @@ func UserRole_GetByID(id string) (int, dm.UserRole, error) {
 
 func UserRole_PostGet(userroleItem dm.UserRole, id string) dm.UserRole {
 	// START
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	//
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	return userroleItem
 }
@@ -158,7 +158,7 @@ func UserRole_StoreProcess(r dm.UserRole, operator string) (dm.UserRole, error) 
 func UserRole_Validate(r dm.UserRole) (dm.UserRole, error) {
 	var err error
 	// START
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	//
 
@@ -192,7 +192,7 @@ func userrole_Save(r dm.UserRole, usr string) error {
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	ts = addData(ts, dm.UserRole_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.UserRole_Id_sql, r.Id)
@@ -209,7 +209,7 @@ func userrole_Save(r dm.UserRole, usr string) error {
 	ts = addData(ts, dm.UserRole_SYSDbVersion_sql, r.SYSDbVersion)
 
 	//
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 	tsql := das.INSERT + das.INTO + UserRole_QualifiedName
@@ -238,7 +238,7 @@ func userrole_Fetch(tsql string) (int, []dm.UserRole, dm.UserRole, error) {
 
 		rec := returnList[i]
 		// START
-		// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		//
 		recItem.SYSId = get_Int(rec, dm.UserRole_SYSId_sql, "0")
 		recItem.Id = get_String(rec, dm.UserRole_Id_sql, "")
@@ -256,7 +256,7 @@ func userrole_Fetch(tsql string) (int, []dm.UserRole, dm.UserRole, error) {
 
 		// If there are fields below, create the methods in dao\UserRole_adaptor.go
 		//
-		// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		// END
 		///
 		//Add to the list
@@ -281,11 +281,11 @@ func UserRole_New() (int, []dm.UserRole, dm.UserRole, error) {
 	var rList []dm.UserRole
 
 	// START
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 
 	//
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

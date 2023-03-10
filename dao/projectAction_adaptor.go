@@ -54,3 +54,60 @@ func ProjectAction_NoEstimationSessions_impl(iAction string, iId string, iValue 
 //
 // Dynamically generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 // END - Validation API/Callout
+
+// ----------------------------------------------------------------
+// BEGIN ProjectAction_OriginName
+// BEGIN ProjectAction_OriginName
+// BEGIN ProjectAction_OriginName
+// ----------------------------------------------------------------
+// ProjectAction_OriginName_OnStore_impl provides the implementation for the callout
+func ProjectAction_OriginName_OnStore_impl(fieldval string, rec dm.ProjectAction, usr string) (string, error) {
+	logs.Callout("ProjectAction", dm.ProjectAction_OriginName_scrn, PUT, rec.ProjectID)
+	return fieldval, nil
+}
+
+// ----------------------------------------------------------------
+// ProjectAction_OriginName_OnFetch_impl provides the implementation for the callout
+func ProjectAction_OriginName_OnFetch_impl(rec dm.ProjectAction) string {
+	logs.Callout("ProjectAction", dm.ProjectAction_OriginName_scrn, GET, rec.ProjectID)
+	//fmt.Printf("rec: %v\n", rec)
+	orginID := rec.OriginID
+	if orginID == "" {
+		return ""
+	}
+	origin := CacheRead(dm.Origin_Name, orginID).(dm.Origin)
+
+	return origin.FullName
+}
+
+// ----------------------------------------------------------------
+// END   ProjectAction_OriginName
+// END   ProjectAction_OriginName
+// END   ProjectAction_OriginName
+// ----------------------------------------------------------------
+// ----------------------------------------------------------------
+// BEGIN ProjectAction_OriginKey
+// BEGIN ProjectAction_OriginKey
+// BEGIN ProjectAction_OriginKey
+// ----------------------------------------------------------------
+// ProjectAction_OriginKey_OnStore_impl provides the implementation for the callout
+func ProjectAction_OriginKey_OnStore_impl(fieldval string, rec dm.ProjectAction, usr string) (string, error) {
+	logs.Callout("ProjectAction", dm.ProjectAction_OriginKey_scrn, PUT, rec.ProjectID)
+	return fieldval, nil
+}
+
+// ----------------------------------------------------------------
+// ProjectAction_OriginKey_OnFetch_impl provides the implementation for the callout
+func ProjectAction_OriginKey_OnFetch_impl(rec dm.ProjectAction) string {
+	logs.Callout("ProjectAction", dm.ProjectAction_OriginKey_scrn, GET, rec.ProjectID)
+	originID := rec.OriginID
+	origin := CacheRead(dm.Origin_Name, originID).(dm.Origin)
+
+	return origin.OriginID
+}
+
+// ----------------------------------------------------------------
+// END   ProjectAction_OriginKey
+// END   ProjectAction_OriginKey
+// END   ProjectAction_OriginKey
+// ----------------------------------------------------------------

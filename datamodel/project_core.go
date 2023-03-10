@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 08/03/2023 at 18:42:25
+// Date & Time		    : 10/03/2023 at 19:54:35
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Project defines the datamodel for the Project object
 type Project struct {
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -48,6 +48,7 @@ type Project struct {
 	Releases       string
 	Notes       string
 	NoEstimationSessions       string
+	OriginName       string
 	//
 	// Field Properties
 	//
@@ -80,6 +81,7 @@ type Project struct {
 	Releases_props FieldProperties
 	Notes_props FieldProperties
 	NoEstimationSessions_props FieldProperties
+	OriginName_props FieldProperties
 	//
  	// Any lookups will be added below
 	//
@@ -92,7 +94,7 @@ type Project struct {
 	}
 
 const (
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	Project_Name      = "Project"
 	Project_Title       = "Project"
@@ -157,6 +159,7 @@ const (
 	Project_Releases_sql   = "releases" // Releases is a String
 	Project_Notes_sql   = "notes" // Notes is a String
 	Project_NoEstimationSessions_sql   = "NoEstimationSessions" // NoEstimationSessions is a String
+	Project_OriginName_sql   = "OriginName" // OriginName is a String
 ///
 	/// Application Field Definitions
 	///
@@ -189,12 +192,13 @@ const (
 	Project_Releases_scrn   = "Releases" // Releases is a String
 	Project_Notes_scrn   = "Notes" // Notes is a String
 	Project_NoEstimationSessions_scrn   = "NoEstimationSessions" // NoEstimationSessions is a String
+	Project_OriginName_scrn   = "OriginName" // OriginName is a String
 ///
 )
 
 //Project_PageList provides the information for the template for a list of Projects
 type Project_PageList struct {
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -216,7 +220,7 @@ type Project_PageList struct {
 
 //Project_Page provides the information for the template for an individual Project
 type Project_Page struct {
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
@@ -261,6 +265,7 @@ type Project_Page struct {
 	Releases         string
 	Notes         string
 	NoEstimationSessions         string
+	OriginName         string
 	/// Field Properties
 	SYSId_props     FieldProperties
 	ProjectID_props     FieldProperties
@@ -291,6 +296,7 @@ type Project_Page struct {
 	Releases_props     FieldProperties
 	Notes_props     FieldProperties
 	NoEstimationSessions_props     FieldProperties
+	OriginName_props     FieldProperties
 	/// Lookups
 	OriginID_lookup    []Lookup_Item
 	ProjectStateID_lookup    []Lookup_Item

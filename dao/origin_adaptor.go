@@ -1,8 +1,6 @@
 package dao
 
 import (
-	"strconv"
-
 	dm "github.com/mt1976/ebEstimates/datamodel"
 	logs "github.com/mt1976/ebEstimates/logs"
 )
@@ -53,9 +51,9 @@ func Origin_Rate_OnFetch_impl(rec dm.Origin) string {
 }
 func Origin_NoActiveProjects_OnFetch_impl(rec dm.Origin) string {
 	logs.Callout("Origin", dm.Origin_NoActiveProjects_scrn, GET, rec.OriginID)
-	noProj, _, _ := Project_ByOrigin_Active_GetList(rec.Code)
-	strProj := strconv.Itoa(noProj)
-	return strProj
+	//noProj, _, _ := Project_ByOrigin_Active_GetList(rec.Code)
+	//strProj := strconv.Itoa(noProj)
+	return ""
 }
 
 //

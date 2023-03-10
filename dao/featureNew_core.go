@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 08/03/2023 at 18:42:24
+// Date & Time		    : 10/03/2023 at 19:54:33
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -60,14 +60,14 @@ func FeatureNew_GetByID(id string) (int, dm.FeatureNew, error) {
 
 func FeatureNew_PostGet(featurenewItem dm.FeatureNew,id string) dm.FeatureNew {
 	// START
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	featurenewItem.DeveloperEstimate,featurenewItem.DeveloperEstimate_props = FeatureNew_DeveloperEstimate_validate_impl (GET,id,featurenewItem.DeveloperEstimate,featurenewItem,featurenewItem.DeveloperEstimate_props)
 	featurenewItem.DeveloperResource,featurenewItem.DeveloperResource_props = FeatureNew_DeveloperResource_validate_impl (GET,id,featurenewItem.DeveloperResource,featurenewItem,featurenewItem.DeveloperResource_props)
 	featurenewItem.AnalystResource,featurenewItem.AnalystResource_props = FeatureNew_AnalystResource_validate_impl (GET,id,featurenewItem.AnalystResource,featurenewItem,featurenewItem.AnalystResource_props)
 	featurenewItem.EstimateEffort,featurenewItem.EstimateEffort_props = FeatureNew_EstimateEffort_validate_impl (GET,id,featurenewItem.EstimateEffort,featurenewItem,featurenewItem.EstimateEffort_props)
 	// 
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return featurenewItem
 }
@@ -136,7 +136,7 @@ func FeatureNew_StoreProcess(r dm.FeatureNew, operator string) (dm.FeatureNew,er
 func FeatureNew_Validate(r dm.FeatureNew) (dm.FeatureNew, error) {
 	var err error
 	// START
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.DeveloperEstimate,r.DeveloperEstimate_props = FeatureNew_DeveloperEstimate_validate_impl (PUT,r.ID,r.DeveloperEstimate,r,r.DeveloperEstimate_props)
 	if r.DeveloperEstimate_props.MsgMessage != "" {
@@ -224,7 +224,7 @@ func FeatureNew_New() (int, []dm.FeatureNew, dm.FeatureNew, error) {
 	
 
 	// START
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.DeveloperEstimate,r.DeveloperEstimate_props = FeatureNew_DeveloperEstimate_validate_impl (NEW,r.ID,r.DeveloperEstimate,r,r.DeveloperEstimate_props)
 	r.DeveloperResource,r.DeveloperResource_props = FeatureNew_DeveloperResource_validate_impl (NEW,r.ID,r.DeveloperResource,r,r.DeveloperResource_props)
@@ -232,7 +232,7 @@ func FeatureNew_New() (int, []dm.FeatureNew, dm.FeatureNew, error) {
 	r.EstimateEffort,r.EstimateEffort_props = FeatureNew_EstimateEffort_validate_impl (NEW,r.ID,r.EstimateEffort,r,r.EstimateEffort_props)
 	
 	// 
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

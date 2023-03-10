@@ -1,14 +1,35 @@
 {{template "header" .}}
 {{template "bodydefinition" .}}
     <form action="/FeatureNewSave" method="GET" class="form">
+     <div class="container-fluid">
+   <div class="d-flex row note note-light bg-white shadow-4 mb-3 align-items-center">
+
+      <div class="d-flex col h-100  align-items-right">
+        <nav aria-label="breadcrumb" class="align-items-center"> 
+          <ol class="breadcrumb  h-100 align-items-center">
+                  <li class="breadcrumb-item lead"><a href="/home"><span class="text-primary"><i class="fas fa-home fa-sm me-2"></i></span>Home</a></li>
+          <li class="breadcrumb-item lead"><a href="/ProjectsByOrigin/?OriginID=OROGINCODE">OROGINCODE</a></li>
+          <li class="breadcrumb-item lead"><a href="/EstimationSessionByProject/?ProjectID=PROJECTNAME">PROJECTNAME</a></li>
+          <li class="breadcrumb-item lead"><a href="/FeatureByEstimationSession/?EstimationSessionID={{.EstimationSessionID}}">{{.EstimationSessionID}}</a></li>
+            <li class="breadcrumb-item lead active"><span class="text-primary">New</span></li>
+
+
+          
+          </ol>
+        </nav>
+      </div>
+
+      
+    </div>
+  </div>
       <div class="card">
-        <div class="card-header align-items-center">
+        <div class="card-header align-items-center" style="padding-bottom:0;">
           <div class="row align-items-center">
-             <div class="col h3 align-items-center">
-                    <i class="far fa-plus-square me-2 text-primary" title="New Feature"></i><span class="me-3">Create a new feature</span>
+             <div class="col h4 align-items-center">
+                    <i class="fas fa-tasks me-2 text-primary" title="FeatureID = New"></i><span class="me-3">Create a new feature</span>
                 </div>
             <div class="col d-flex justify-content-end">
-              <div class="btn-group float-right">
+                    <div class="btn-group float-right" style="margin-bottom:1rem;">
               
                 <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/FeatureNewCreate" onclick="/FeatureNewCreate" title="Create a New Feature"><i class="fas fa-save me-2"></i>Create</button>
               
@@ -35,7 +56,7 @@
                   
           </div></div>
 
-            <div class="row mb-3" ><div class="col">
+          <div class="row mb-3" hidden><div class="col hidden">
             <input type="text" class="form-control" id="EstimationSessionID" name="EstimationSessionID" aria-describedby="IDHelp" placeholder="" readonly="" value="{{.EstimationSessionID}}" hidden data-mdb-input-mask="" >
             <select id="EstimationSessionIDDisplay" name="EstimationSessionIDDisplay" class="select" data-mdb-filter="true" disabled required>
                 {{range .EstimationSessionID_lookup}}<option value="{{.ID}}" {{if eq .ID $.EstimationSessionID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}

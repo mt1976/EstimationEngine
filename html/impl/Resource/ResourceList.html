@@ -4,12 +4,14 @@
 
       <div class="card">
        
-            <div class="card-header font-weight-bold" style="padding-bottom:0;">
+            <div class="card-header align-items-center" style="padding-bottom:0;">
               <div class="row d-flex align-items-center">
-                <div class="col d-flex align-items-center"><h3><i class="fas fa-user-cog me-2"></i>{{.Title}}</h3></div>
+                <div class="col h4 align-items-center">
+                  <i class="fas fa-user-cog me-2 text-primary"></i><span class="me-3">{{.Title}}</span>
+                </div>
                 <div class="col d-flex justify-content-end">
-                  <form action="/home" method="GET">
-                    <div class="btn-group" id="ActionButtonGroup">
+                  <form action="/home" method="GET" style="padding:0;">
+                    <div class="btn-group float-right" style="margin-bottom:0rem;">
                     <button type="submit" value="" class="btn btn-primary" formaction="/ResourceNew" method="GET" title="Create a new Resource"><i class="fas fa-plus me-2"></i>New</button>
                     <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2"></i>Cancel</button>
                     </div>
@@ -24,69 +26,8 @@
              
                            
                     <table id="DataTable" class="table table-hover table-responsive" style="width:100%">
-                      <thead class="table-light">
-                        <tr style="background-color:red;">
-                          
-                          
-                          <th class="text-center">Code</th>
-                          <th class="text-center">Name</th>
-                          <th class="text-center">Email</th>
-                          <th class="text-center">Class</th>
-                          
-                          
-                          
-                          
-                          
-                          
-                          
-                          
-                          
-                          <th class="text-center">Active?</th>
-                          
-                          <th class="text-center">Notes</th>
-                          
-                          <th class="text-center">Comments</th>
-                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
-                        </tr>
-                      </thead>
-                      <tbody id="filterTable">
-                        {{range .ItemList}}
-                        <tr>
-                          
-                          
-                          <td class="align-middle" >{{.Code}}</td>
-                          <td class="align-middle" >{{.Name}}</td>
-                          <td class="align-middle" >{{.Email}}</td>
-                          <td class="align-middle text-center" >{{.Class}}</td>
-                          
-                          
-                          
-                          
-                          
-                          
-                          
-                          
-                          
-                          <td class="align-middle text-center" >{{if eq .UserActive "true"}}<i class="fas fa-check text-success"></i>{{else}}<i class="fas fa-times text-danger"></i>{{end}}</td>
-                          
-                          <td class="align-middle" >{{.Notes}}</td>
-                          
-                          <td class="align-middle" >{{.Comments}}</td>
-                          
-                          <td class="text-center" style="width:1px;padding:0px;padding-top:1rem;">
-                           <form action="/home" method="POST" class="d-flex justify-content-center">
-                                                                                  <div class="btn-group" id="ActionButtonGroup2">
-
-                            <button type="submit" value="" class="btn btn-info " formaction="/ResourceView?ResourceID={{.ResourceID}}" method="POST" title="View Resource"><i class="far fa-eye"></i>View</button>
-                            <button type="submit" value="" class="btn btn-warning " formaction="/ResourceEdit?ResourceID={{.ResourceID}}" method="POST" title="Edit Resource"><i class="fas fa-edit"></i>Edit</button>
-                            </div>
-                            </form>
-                          </td>
-                        </tr>
-                        {{end}}
-                      </tbody>
-                       <tfoot class="table-light">
-                        <tr style="background-color:red;">
+                      <thead class="table-primary text-uppercase">
+                        <tr style="">
                           
                           
                           <th class="text-center">Code</th>
@@ -106,7 +47,65 @@
                           
                           <th class="text-center">Notes</th>
                           
-                          <th class="text-center">Comments</th>
+                          <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
+                        </tr>
+                      </thead>
+                      <tbody id="filterTable">
+                        {{range .ItemList}}
+                        <tr>
+                          
+                          
+                          <td class="align-middle text-center text-primary" >{{.Code}}</td>
+                          <td class="align-middle" >{{.Name}}</td>
+                          <td class="align-middle" >{{.Email}}</td>
+                          <td class="align-middle text-center" >{{.Class}}</td>
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <td class="align-middle text-center" >{{if eq .UserActive "true"}}<i class="fas fa-check text-success"></i>{{else}}<i class="fas fa-times text-danger"></i>{{end}}</td>
+                          
+                          <td class="align-middle" >{{.Notes}}</td>
+                          
+                          
+                          <td class="align-middle text-center" style="width:1px;padding:0px;padding-top:1rem;">
+                              <form action="/home" method="POST" class="d-flex justify-content-center">
+                                  <div class="btn-group" id="ActionButtonGroup2">
+                                    <button type="submit" value="" class="btn  btn-info " formaction="/ResourceView?ResourceID={{.ResourceID}}" method="POST" title="View Resource"><i class="far fa-eye"></i></button>
+                                    <button type="submit" value="" class="btn  btn-warning " formaction="/ResourceEdit?ResourceID={{.ResourceID}}" method="POST" title="Edit Resource"><i class="fas fa-edit"></i></button>
+                                    <button type="submit" value="" class="btn  btn-danger " formaction="/ResourceDelete?ResourceID={{.ResourceID}}" method="POST" title="Delete Resource"><i class="fas fa-trash"></i></button>
+                                  </div>
+                                </form>
+                          </td>
+                        </tr>
+                        {{end}}
+                      </tbody>
+                       <tfoot class="table-light text-uppercase">
+                        <tr style="">
+                          
+                          
+                          <th class="text-center">Code</th>
+                          <th class="text-center">Name</th>
+                          <th class="text-center">Email</th>
+                          <th class="text-center">Class</th>
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          <th class="text-center">UserActive</th>
+                          
+                          <th class="text-center">Notes</th>
+                          
                           <th class="text-right"><div class="d-flex justify-content-center">Actions</div></th>
                         </tr>
                       </tfoot>

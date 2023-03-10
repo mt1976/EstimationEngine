@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 08/03/2023 at 18:42:26
+// Date & Time		    : 10/03/2023 at 19:54:37
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //UserRole_Publish annouces the endpoints available for this object
-//UserRole_Publish - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//UserRole_Publish - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func UserRole_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.UserRole_Path, UserRole_Handler)
 	mux.HandleFunc(dm.UserRole_PathList, UserRole_HandlerList)
@@ -36,19 +36,19 @@ func UserRole_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.UserRole_PathSave, UserRole_HandlerSave)
 	mux.HandleFunc(dm.UserRole_PathDelete, UserRole_HandlerDelete)
 	logs.Publish("Application", dm.UserRole_Title)
-    core.API.AddRoute(dm.UserRole_Title, dm.UserRole_Path, "", dm.UserRole_QueryString, "Application")
+    core.API = core.API.AddRoute(dm.UserRole_Title, dm.UserRole_Path, "", dm.UserRole_QueryString, "Application")
 	// 
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //UserRole_HandlerList is the handler for the list page
 //Allows Listing of UserRole records
-//UserRole_HandlerList - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//UserRole_HandlerList - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func UserRole_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -88,7 +88,7 @@ func UserRole_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -96,10 +96,10 @@ func UserRole_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //UserRole_HandlerView is the handler used to View a page
 //Allows Viewing for an existing UserRole record
-//UserRole_HandlerView - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//UserRole_HandlerView - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func UserRole_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -130,17 +130,17 @@ func UserRole_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //UserRole_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing UserRole record and then allows the user to save the changes
-//UserRole_HandlerEdit - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//UserRole_HandlerEdit - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func UserRole_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -180,17 +180,17 @@ func UserRole_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //UserRole_HandlerSave is the handler used process the saving of an UserRole
 //It is called from the Edit and New pages
-//UserRole_HandlerSave  - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//UserRole_HandlerSave  - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func UserRole_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -216,17 +216,17 @@ func UserRole_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		ExecuteRedirect(r.Referer(), w, r,dm.UserRole_QueryString,itemID,item)
 	}
 	// 
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //UserRole_HandlerNew is the handler used process the creation of an UserRole
 //It will create a new UserRole and then redirect to the Edit page
-//UserRole_HandlerNew  - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//UserRole_HandlerNew  - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func UserRole_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -265,17 +265,17 @@ func UserRole_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	nextTemplate :=  NextTemplate("UserRole", "New", dm.UserRole_TemplateNew)
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }	
 
 
 //UserRole_HandlerDelete is the handler used process the deletion of an UserRole
 // It will delete the UserRole and then redirect to the List page
-//UserRole_HandlerDelete - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//UserRole_HandlerDelete - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func UserRole_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -294,13 +294,13 @@ func UserRole_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	nextTemplate :=  NextTemplate("UserRole", "Delete", dm.UserRole_Redirect)
 	http.Redirect(w, r, nextTemplate, http.StatusFound)
 	// 
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //userrole_PopulatePage Builds/Populates the UserRole Page 
-//userrole_PopulatePage Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//userrole_PopulatePage Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func userrole_PopulatePage(rD dm.UserRole, pageDetail dm.UserRole_Page) dm.UserRole_Page {
 	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
@@ -334,7 +334,7 @@ func userrole_PopulatePage(rD dm.UserRole, pageDetail dm.UserRole_Page) dm.UserR
 	return pageDetail
 }
 //userrole_DataFromRequest is used process the content of an HTTP Request and return an instance of an UserRole
-//userrole_DataFromRequest Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//userrole_DataFromRequest Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func userrole_DataFromRequest(r *http.Request) dm.UserRole {
 
 	var item dm.UserRole

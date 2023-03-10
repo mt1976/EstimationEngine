@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 08/03/2023 at 18:42:26
+// Date & Time		    : 10/03/2023 at 19:54:36
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -64,10 +64,10 @@ func Session_GetByID(id string) (int, dm.Session, error) {
 
 func Session_PostGet(sessionItem dm.Session, id string) dm.Session {
 	// START
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	//
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	return sessionItem
 }
@@ -132,7 +132,7 @@ func Session_StoreProcess(r dm.Session, operator string) (dm.Session, error) {
 func Session_Validate(r dm.Session) (dm.Session, error) {
 	var err error
 	// START
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	//
 
@@ -166,7 +166,7 @@ func session_Save(r dm.Session, usr string) error {
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	ts = addData(ts, dm.Session_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Session_Id_sql, r.Id)
@@ -199,7 +199,7 @@ func session_Save(r dm.Session, usr string) error {
 	ts = addData(ts, dm.Session_SYSDbVersion_sql, r.SYSDbVersion)
 
 	//
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 	tsql := das.INSERT + das.INTO + Session_QualifiedName
@@ -228,7 +228,7 @@ func session_Fetch(tsql string) (int, []dm.Session, dm.Session, error) {
 
 		rec := returnList[i]
 		// START
-		// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		//
 		recItem.SYSId = get_Int(rec, dm.Session_SYSId_sql, "0")
 		recItem.Id = get_String(rec, dm.Session_Id_sql, "")
@@ -262,7 +262,7 @@ func session_Fetch(tsql string) (int, []dm.Session, dm.Session, error) {
 
 		// If there are fields below, create the methods in dao\Session_adaptor.go
 		//
-		// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		// END
 		///
 		//Add to the list
@@ -287,11 +287,11 @@ func Session_New() (int, []dm.Session, dm.Session, error) {
 	var rList []dm.Session
 
 	// START
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 
 	//
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

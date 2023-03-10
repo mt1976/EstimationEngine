@@ -50,6 +50,13 @@ func Initialise() {
 	//ßvar ApplicationStubLists Congiguration
 	ApplicationStubLists.Load(APPSTUBLISTS)
 
+	//var API API
+	//var API Cache
+	API := API.Generate()
+	API.ListRoutes()
+	API = API.AddRoute("GET", "/api/author", "Get Author", "author", "author")
+	API = API.AddRoute("GET", "/api/author/{id}", "Get Author", "author", "author")
+	API.ListRoutes()
 	fmt.Printf("ApplicationProperties: %v\n", ApplicationProperties)
 	fmt.Printf("ApplicationPropertiesDB: %v\n", ApplicationPropertiesDB)
 	fmt.Printf("InstanceProperties: %v\n", InstanceProperties)

@@ -1,10 +1,31 @@
 {{template "header" .}}
 {{template "bodydefinition" .}}
     <form action="/EstimationSessionSave" method="GET" class="form">
+  <div class="container-fluid">
+   <div class="d-flex row note note-light bg-white shadow-4 mb-3 align-items-center">
+
+      <div class="d-flex col h-100  align-items-right">
+        <nav aria-label="breadcrumb" class="align-items-center"> 
+          <ol class="breadcrumb  h-100 align-items-center">
+                  <li class="breadcrumb-item lead"><a href="/home"><span class="text-primary"><i class="fas fa-home fa-sm me-2"></i></span>Home</a></li>
+          <li class="breadcrumb-item lead"><a href="/ProjectsByOrigin/?OriginID={{.OriginCode}}">ORIGINCODE</a></li>
+          <li class="breadcrumb-item lead"><a href="/EstimationSessionByProject/?ProjectID=e4500735-f591-4b0c-9458-f6601d14f5da">PROJECTNAME</a></li>
+            <li class="breadcrumb-item lead active"><span class="text-primary">New</span></li>
+
+
+
+          
+          </ol>
+        </nav>
+      </div>
+
+ 
+    </div>
+  </div>
       <div class="card">
         <div class="card-header" style="padding-bottom:0;">
           <div class="row d-flex align-items-center">
-            <div class="col d-flex align-items-center"><h3><i class="fas fa-calculator me-2"></i>Add a new estimation</h3></div>
+            <div class="col d-flex align-items-center"><h4><i class="fas fa-calculator me-2 text-primary"></i>Add a new estimation</h4></div>
             <div class="col d-flex justify-content-end">
               <div class="btn-group" style="margin-bottom:1rem;">
                 <button type="submit" value="" class="btn btn-warning" method="GET" formaction="/EstimationSessionCreate" onclick="/EstimationSessionCreate" title="Create a new estimation"><i class="fas fa-save me-2"></i>Save</button>
@@ -45,7 +66,6 @@
             </div>
                   
           </div></div>
-            <h4 class="text-muted">Identification</h4>
             <div class="row mb-3"  ><div class="col">
               <input type="text" class="form-control" id="ProjectID" name="ProjectID" aria-describedby="ProjectIDHelp" placeholder=""  value="{{.ProjectID}}" required data-mdb-input-mask="" hidden>
 

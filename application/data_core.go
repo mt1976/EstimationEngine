@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 08/03/2023 at 18:42:23
+// Date & Time		    : 10/03/2023 at 19:54:31
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //Data_Publish annouces the endpoints available for this object
-//Data_Publish - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//Data_Publish - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Data_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	//No API
 	mux.HandleFunc(dm.Data_PathList, Data_HandlerList)
@@ -38,17 +38,17 @@ func Data_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.Data_Title)
     //No API
 	// 
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Data_HandlerList is the handler for the list page
 //Allows Listing of Data records
-//Data_HandlerList - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//Data_HandlerList - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Data_HandlerList(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -88,7 +88,7 @@ func Data_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 }
@@ -96,10 +96,10 @@ func Data_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 //Data_HandlerView is the handler used to View a page
 //Allows Viewing for an existing Data record
-//Data_HandlerView - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Data_HandlerView - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Data_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -130,17 +130,17 @@ func Data_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Data_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing Data record and then allows the user to save the changes
-//Data_HandlerEdit - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Data_HandlerEdit - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Data_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -180,17 +180,17 @@ func Data_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Data_HandlerSave is the handler used process the saving of an Data
 //It is called from the Edit and New pages
-//Data_HandlerSave  - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Data_HandlerSave  - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Data_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -216,17 +216,17 @@ func Data_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		ExecuteRedirect(r.Referer(), w, r,dm.Data_QueryString,itemID,item)
 	}
 	// 
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //Data_HandlerNew is the handler used process the creation of an Data
 //It will create a new Data and then redirect to the Edit page
-//Data_HandlerNew  - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Data_HandlerNew  - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Data_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -265,17 +265,17 @@ func Data_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	nextTemplate :=  NextTemplate("Data", "New", dm.Data_TemplateNew)
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }	
 
 
 //Data_HandlerDelete is the handler used process the deletion of an Data
 // It will delete the Data and then redirect to the List page
-//Data_HandlerDelete - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Data_HandlerDelete - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func Data_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -294,13 +294,13 @@ func Data_HandlerDelete(w http.ResponseWriter, r *http.Request) {
 	nextTemplate :=  NextTemplate("Data", "Delete", dm.Data_Redirect)
 	http.Redirect(w, r, nextTemplate, http.StatusFound)
 	// 
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //data_PopulatePage Builds/Populates the Data Page 
-//data_PopulatePage Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//data_PopulatePage Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func data_PopulatePage(rD dm.Data, pageDetail dm.Data_Page) dm.Data_Page {
 	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
@@ -344,7 +344,7 @@ func data_PopulatePage(rD dm.Data, pageDetail dm.Data_Page) dm.Data_Page {
 	return pageDetail
 }
 //data_DataFromRequest is used process the content of an HTTP Request and return an instance of an Data
-//data_DataFromRequest Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//data_DataFromRequest Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func data_DataFromRequest(r *http.Request) dm.Data {
 
 	var item dm.Data

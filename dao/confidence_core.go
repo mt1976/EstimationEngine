@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 08/03/2023 at 18:42:22
+// Date & Time		    : 10/03/2023 at 19:54:30
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -90,10 +90,10 @@ func Confidence_GetByID(id string) (int, dm.Confidence, error) {
 
 func Confidence_PostGet(confidenceItem dm.Confidence, id string) dm.Confidence {
 	// START
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	//
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	return confidenceItem
 }
@@ -171,7 +171,7 @@ func Confidence_StoreProcess(r dm.Confidence, operator string) (dm.Confidence, e
 func Confidence_Validate(r dm.Confidence) (dm.Confidence, error) {
 	var err error
 	// START
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	//
 
@@ -205,7 +205,7 @@ func confidence_Save(r dm.Confidence, usr string) error {
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	ts = addData(ts, dm.Confidence_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Confidence_ConfidenceID_sql, r.ConfidenceID)
@@ -226,7 +226,7 @@ func confidence_Save(r dm.Confidence, usr string) error {
 	ts = addData(ts, dm.Confidence_Comments_sql, r.Comments)
 
 	//
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 	tsql := das.INSERT + das.INTO + Confidence_QualifiedName
@@ -255,7 +255,7 @@ func confidence_Fetch(tsql string) (int, []dm.Confidence, dm.Confidence, error) 
 
 		rec := returnList[i]
 		// START
-		// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		//
 		recItem.SYSId = get_Int(rec, dm.Confidence_SYSId_sql, "0")
 		recItem.ConfidenceID = get_String(rec, dm.Confidence_ConfidenceID_sql, "")
@@ -277,7 +277,7 @@ func confidence_Fetch(tsql string) (int, []dm.Confidence, dm.Confidence, error) 
 
 		// If there are fields below, create the methods in dao\Confidence_adaptor.go
 		//
-		// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		// END
 		///
 		//Add to the list
@@ -302,11 +302,11 @@ func Confidence_New() (int, []dm.Confidence, dm.Confidence, error) {
 	var rList []dm.Confidence
 
 	// START
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 
 	//
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

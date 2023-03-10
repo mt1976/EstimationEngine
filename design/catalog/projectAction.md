@@ -72,6 +72,8 @@ SQL Table Key | **projectID**
 |**Releases**|String|false|true|false|false|||||Y|releases||false|false|false|text||
 |**Notes**|String|false|true|false|true|||||N|notes||false|false|false|textarea||
 |**NoEstimationSessions**|String|false|false|true|false|||||N||0|false|true|false|text||
+|**OriginName**|String|false|false|true|true|||||N|||false|true|false|text||
+|**OriginKey**|String|false|false|true|false|||||N|||false|true|false|text||
 
 
 ##  Artifacts Generated
@@ -90,7 +92,7 @@ SQL Table Key | **projectID**
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **08/03/2023** at **18:42:25**
+Date & Time		     | **10/03/2023** at **19:54:35**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

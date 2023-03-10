@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 08/03/2023 at 18:42:24
+// Date & Time		    : 10/03/2023 at 19:54:33
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //FeatureNew_Publish annouces the endpoints available for this object
-//FeatureNew_Publish - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//FeatureNew_Publish - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func FeatureNew_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	mux.HandleFunc(dm.FeatureNew_Path, FeatureNew_Handler)
 	//Cannot List via GUI
@@ -36,9 +36,9 @@ func FeatureNew_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.FeatureNew_PathSave, FeatureNew_HandlerSave)
 	//Cannot Delete via GUI
 	logs.Publish("Application", dm.FeatureNew_Title)
-    core.API.AddRoute(dm.FeatureNew_Title, dm.FeatureNew_Path, "", dm.FeatureNew_QueryString, "Application")
+    core.API = core.API.AddRoute(dm.FeatureNew_Title, dm.FeatureNew_Path, "", dm.FeatureNew_QueryString, "Application")
 	// 
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
@@ -46,10 +46,10 @@ func FeatureNew_Publish(mux http.ServeMux) {
 
 //FeatureNew_HandlerView is the handler used to View a page
 //Allows Viewing for an existing FeatureNew record
-//FeatureNew_HandlerView - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//FeatureNew_HandlerView - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func FeatureNew_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -80,17 +80,17 @@ func FeatureNew_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //FeatureNew_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing FeatureNew record and then allows the user to save the changes
-//FeatureNew_HandlerEdit - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//FeatureNew_HandlerEdit - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func FeatureNew_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -130,17 +130,17 @@ func FeatureNew_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //FeatureNew_HandlerSave is the handler used process the saving of an FeatureNew
 //It is called from the Edit and New pages
-//FeatureNew_HandlerSave  - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//FeatureNew_HandlerSave  - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func FeatureNew_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -166,17 +166,17 @@ func FeatureNew_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		ExecuteRedirect(r.Referer(), w, r,dm.FeatureNew_QueryString,itemID,item)
 	}
 	// 
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //FeatureNew_HandlerNew is the handler used process the creation of an FeatureNew
 //It will create a new FeatureNew and then redirect to the Edit page
-//FeatureNew_HandlerNew  - Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//FeatureNew_HandlerNew  - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func FeatureNew_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -215,14 +215,14 @@ func FeatureNew_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	nextTemplate :=  NextTemplate("FeatureNew", "New", dm.FeatureNew_TemplateNew)
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }	
 
 
 
 //featurenew_PopulatePage Builds/Populates the FeatureNew Page 
-//featurenew_PopulatePage Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//featurenew_PopulatePage Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func featurenew_PopulatePage(rD dm.FeatureNew, pageDetail dm.FeatureNew_Page) dm.FeatureNew_Page {
 	// Real DB Fields
 	pageDetail.ID = rD.ID
@@ -274,7 +274,7 @@ func featurenew_PopulatePage(rD dm.FeatureNew, pageDetail dm.FeatureNew_Page) dm
 	return pageDetail
 }
 //featurenew_DataFromRequest is used process the content of an HTTP Request and return an instance of an FeatureNew
-//featurenew_DataFromRequest Auto generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//featurenew_DataFromRequest Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func featurenew_DataFromRequest(r *http.Request) dm.FeatureNew {
 
 	var item dm.FeatureNew

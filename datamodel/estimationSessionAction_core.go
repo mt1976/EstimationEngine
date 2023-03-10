@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 08/03/2023 at 18:42:23
+// Date & Time		    : 10/03/2023 at 19:54:32
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //EstimationSessionAction defines the datamodel for the EstimationSessionAction object
 type EstimationSessionAction struct {
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -38,7 +38,7 @@ type EstimationSessionAction struct {
 	}
 
 const (
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	EstimationSessionAction_Name      = "EstimationSessionAction"
 	EstimationSessionAction_Title       = "Estimation Session Actions"
@@ -89,7 +89,7 @@ const (
 
 //EstimationSessionAction_PageList provides the information for the template for a list of EstimationSessionActions
 type EstimationSessionAction_PageList struct {
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -111,7 +111,7 @@ type EstimationSessionAction_PageList struct {
 
 //EstimationSessionAction_Page provides the information for the template for an individual EstimationSessionAction
 type EstimationSessionAction_Page struct {
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem

@@ -6,11 +6,12 @@
       <div class="d-flex col h-100  align-items-right">
         <nav aria-label="breadcrumb" class="align-items-center"> 
           <ol class="breadcrumb  h-100 align-items-center">
-         <li class="breadcrumb-item lead"><a href="/home">Home</a></li>
+                  <li class="breadcrumb-item lead"><a href="/home"><span class="text-primary"><i class="fas fa-home fa-sm me-2"></i></span>Home</a></li>
           <li class="breadcrumb-item lead"><a href="/ProjectsByOrigin/?OriginID={{.OriginID}}">{{.OriginCode}}</a></li>
           <li class="breadcrumb-item lead"><a href="/EstimationSessionByProject/?ProjectID={{.ProjectID}}">{{ printf "%.20s..." .ProjectName}}</a></li>
           <li class="breadcrumb-item lead"><a href="/FeatureByEstimationSession/?EstimationSessionID={{.EstimationSessionID}}">{{ printf "%.20s..." .EstimationSessionName}}</a></li>
-          <li class="breadcrumb-item lead active">{{.Name}}</li>
+            <li class="breadcrumb-item lead active"><span class="text-primary">{{.Name}}</span></li>
+
 
 
           
@@ -22,13 +23,13 @@
     </div>
   </div>
     <div class="card">
-        <div class="card-header align-items-center" >
+        <div class="card-header align-items-center" style="padding-bottom:0;">
             <div class="row align-items-center">
-                <div class="col h3 align-items-center">
+                <div class="col h4 align-items-center">
                     <i class="fas fa-tasks me-2 text-primary" title="FeatureID = {{.FeatureID}}"></i><span class="me-3">View Feature : <span class="text-muted">{{.Name}}</span></span>
                 </div>
                 <div class="col d-flex justify-content-end">
-                    <div class="btn-group float-right">
+                    <div class="btn-group float-right" style="margin-bottom:1rem;">
                         
                         <button type="submit" class="btn btn-warning" method="get" formaction="/FeatureEdit/?FeatureID={{.FeatureID}}"  title="Edit Feature {{.FeatureID}}"><i class="fas fa-pen me-2"></i>Edit</button>
                         <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Feature {{.FeatureID}}"><i class="fas fa-print me-2"></i>Print</button>

@@ -16,7 +16,7 @@ import (
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
 	// Template Generator   : Einsteinium [r5-23.01.23]
-	// Date & Time		    : 08/03/2023 at 18:42:25
+	// Date & Time		    : 10/03/2023 at 19:54:35
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in project_impl.go
@@ -63,6 +63,13 @@ import (
 	// Project_NoEstimationSessions_validate_impl provides validation/actions for NoEstimationSessions
 	func Project_NoEstimationSessions_validate_impl (iAction string, iId string, iValue string, iRec dm.Project, fP dm.FieldProperties) (string, dm.FieldProperties) {
 		logs.Callout("Project", dm.Project_NoEstimationSessions_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Project_OriginName_validate_impl provides validation/actions for OriginName
+	func Project_OriginName_validate_impl (iAction string, iId string, iValue string, iRec dm.Project, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Project", dm.Project_OriginName_scrn, VAL +"-"+iAction, iId)
 		return iValue,fP
 	}
 

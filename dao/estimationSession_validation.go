@@ -178,6 +178,14 @@ func EstimationSession_Approver_OnFetch_impl(rec dm.EstimationSession) string {
 }
 func EstimationSession_Origin_OnFetch_impl(rec dm.EstimationSession) string {
 	logs.Callout("EstimationSession", dm.EstimationSession_Origin_scrn, GET, rec.EstimationSessionID)
+	if rec.Origin != "" {
+		return rec.Origin
+	}
+	if rec.ProjectID != "" {
+		project := CacheRead(dm.Project_Name, rec.ProjectID).(dm.Project)
+		origin := CacheRead(dm.Origin_Name, project.OriginID).(dm.Origin)
+		return origin.OriginID
+	}
 	return rec.Origin
 }
 func EstimationSession_OriginStateID_OnFetch_impl(rec dm.EstimationSession) string {
@@ -198,11 +206,30 @@ func EstimationSession_OriginDocType_OnFetch_impl(rec dm.EstimationSession) stri
 }
 func EstimationSession_OriginCode_OnFetch_impl(rec dm.EstimationSession) string {
 	logs.Callout("EstimationSession", dm.EstimationSession_OriginCode_scrn, GET, rec.EstimationSessionID)
+	if rec.OriginCode != "" {
+		return rec.OriginCode
+	}
+	if rec.ProjectID != "" {
+		project := CacheRead(dm.Project_Name, rec.ProjectID).(dm.Project)
+		originID := project.OriginID
+		origRec := CacheRead(dm.Origin_Name, originID).(dm.Origin)
+		return origRec.Code
+	}
 	return rec.OriginCode
 }
 func EstimationSession_OriginName_OnFetch_impl(rec dm.EstimationSession) string {
 	logs.Callout("EstimationSession", dm.EstimationSession_OriginName_scrn, GET, rec.EstimationSessionID)
-	return rec.OriginName
+	//fmt.Printf("rec: %v\n", rec)
+	if rec.OriginName != "" {
+		return rec.OriginName
+	}
+	if rec.ProjectID != "" {
+		project := CacheRead(dm.Project_Name, rec.ProjectID).(dm.Project)
+		originID := project.OriginID
+		origRec := CacheRead(dm.Origin_Name, originID).(dm.Origin)
+		return origRec.FullName
+	}
+	return ""
 }
 func EstimationSession_OriginRate_OnFetch_impl(rec dm.EstimationSession) string {
 	logs.Callout("EstimationSession", dm.EstimationSession_OriginRate_scrn, GET, rec.EstimationSessionID)
@@ -238,7 +265,15 @@ func EstimationSession_ProjectState_OnFetch_impl(rec dm.EstimationSession) strin
 }
 func EstimationSession_ProjectName_OnFetch_impl(rec dm.EstimationSession) string {
 	logs.Callout("EstimationSession", dm.EstimationSession_ProjectName_scrn, GET, rec.EstimationSessionID)
-	return rec.ProjectName
+	if rec.ProjectName != "" {
+		return rec.ProjectName
+	}
+	if rec.ProjectID != "" {
+		projID := rec.ProjectID
+		projRec := CacheRead(dm.Project_Name, projID).(dm.Project)
+		return projRec.Name
+	}
+	return ""
 }
 func EstimationSession_ProjectStartDate_OnFetch_impl(rec dm.EstimationSession) string {
 	logs.Callout("EstimationSession", dm.EstimationSession_ProjectStartDate_scrn, GET, rec.EstimationSessionID)

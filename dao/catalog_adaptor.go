@@ -1,6 +1,8 @@
 package dao
 
 import (
+	"fmt"
+
 	core "github.com/mt1976/ebEstimates/core"
 	dm "github.com/mt1976/ebEstimates/datamodel"
 )
@@ -55,6 +57,8 @@ func Catalog_GetList_impl() (int, []dm.Catalog, error) {
 
 	//	count, apiList, _, _ := adaptor.Catalog_GetList_impl()
 	var apiList []dm.Catalog
+	fmt.Printf("core.API: %v\n", core.API)
+	core.API.ListRoutes()
 	count := len(core.API.Items)
 	for _, v := range core.API.Items {
 		apiList = append(apiList, dm.Catalog{ID: v.ID, Descr: v.Descr, Endpoint: v.Path, Query: v.Query, Source: v.Source})

@@ -103,3 +103,10 @@ func Project_NoEstimationSessions_validate_impl(iAction string, iId string, iVal
 // ----------------------------------------------------------------
 // Automatically generated code ends here
 // ----------------------------------------------------------------
+
+// ----------------------------------------------------------------
+// Project_OriginName_validate_impl provides validation/actions for OriginName
+func Project_OriginName_validate_impl(iAction string, iId string, iValue string, iRec dm.Project, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("Project", dm.Project_OriginName_scrn, VAL+"-"+iAction, iId)
+	return iValue, fP
+}

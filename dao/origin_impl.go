@@ -23,18 +23,26 @@ import (
 
 // Origin_GetByCode() returns a single Origin record
 func Origin_GetByCode(id string) (int, dm.Origin, error) {
-
+	//logs.Warning("Origin_GetByCode " + id + " " + core.GetSQLSchema(core.ApplicationPropertiesDB))
 	tsql := das.SELECTALL + das.FROM + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.Origin_SQLTable)
 	tsql = tsql + " WHERE " + dm.Origin_Code_sql + "='" + id + "'"
-	_, _, originItem, _ := origin_Fetch(tsql)
-
+	//logs.Warning("Origin GetByCode " + tsql)
+	no, _, originItem, err := origin_Fetch(tsql)
+	//logs.Warning("Query Done")
+	if no == 0 {
+		return no, dm.Origin{}, nil
+	}
+	if no > 1 {
+		return no, dm.Origin{}, nil
+	}
+	//logs.Warning("Origin_GetByCode " + id + " " + originItem.FullName)
 	// START
 	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local
 	//
 	//
 	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
-	return 1, originItem, nil
+	return no, originItem, err
 }
 
 // Origin_GetList() returns a list of all Origin records

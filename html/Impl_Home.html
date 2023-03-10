@@ -9,9 +9,12 @@
       <div class="d-flex col h-100  align-items-right">
         <nav aria-label="breadcrumb" class="align-items-center"> 
           <ol class="breadcrumb  h-100 align-items-center">
-            <li class="breadcrumb-item active text-center lead">Home - Origins</li>
+              <li class="breadcrumb-item lead"><a href="/home"><span class="text-primary"><i class="fas fa-home fa-sm me-2"></i></span>Home</a></li>
+              <li class="breadcrumb-item active lead"><span class="text-primary">Origins</span></li>
           </ol>
         </nav>
+
+        
       </div>
 
       <div class="col h-100 ">
@@ -51,7 +54,7 @@
             <td class="text-center">{{.AccountManager}}</td>
             <td class="align-middle text-center" style="width:1px;">
             <div class="btn-group" role="group" aria-label="Basic example">
-                <a href="/ProjectsByOrigin/?OriginID={{.OriginID}}" class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i class="fas fa-project-diagram fa-fw me-2"></i>Projects&nbsp<small>({{.NoActiveProjects}})</small></a>
+                <a href="/ProjectsByOrigin/?OriginID={{.OriginID}}" class="btn btn-primary btn-sm" role="button" aria-pressed="true"><i class="fas fa-project-diagram fa-fw me-2"></i>Projects</a>
                 <a href="/OriginView/?OriginID={{.OriginID}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="far fa-eye fa-fw me-2"></i>Details</a> 
               <a href="/OriginRemove/?OriginID={{.OriginID}}" class="btn btn-danger btn-sm" role="button" aria-pressed="true" disabled><i class="far fa-trash-alt fa-fw me-2"></i>Remove</a>
             </div>

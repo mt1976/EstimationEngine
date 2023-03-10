@@ -102,8 +102,16 @@ func ProjectAction_HandlerNew_Impl(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	rD.OriginID = originID
+	rD.OriginName = dao.ProjectAction_OriginName_OnFetch_impl(rD)
+	rD.OriginKey = dao.ProjectAction_OriginKey_OnFetch_impl(rD)
+	//pageDetail.OriginName = dao.ProjectAction_OriginName_OnFetch_impl(pageDetail)
+	fmt.Printf("rD.OriginID: %v\n", rD.OriginID)
+	fmt.Printf("rD.OriginName: %v\n", rD.OriginName)
+	fmt.Printf("rD.OriginKey: %v\n", rD.OriginKey)
 	pageDetail = projectaction_PopulatePage(rD, pageDetail)
-
+	fmt.Printf("rD: %v\n", rD)
+	fmt.Printf("pageDetail: %v\n", pageDetail)
 	pageDetail.OriginID = originID
 
 	//spew.Dump(pageDetail)
@@ -120,6 +128,8 @@ func projectaction_PopulatePage(rD dm.ProjectAction, pageDetail dm.ProjectAction
 	pageDetail.SYSId = rD.SYSId
 	pageDetail.ProjectID = rD.ProjectID
 	pageDetail.OriginID = rD.OriginID
+	pageDetail.OriginName = rD.OriginName
+	pageDetail.OriginKey = rD.OriginKey
 	pageDetail.ProjectStateID = rD.ProjectStateID
 	pageDetail.ProfileID = rD.ProfileID
 	pageDetail.Name = rD.Name
@@ -149,6 +159,8 @@ func projectaction_PopulatePage(rD dm.ProjectAction, pageDetail dm.ProjectAction
 	pageDetail.SYSId_props = rD.SYSId_props
 	pageDetail.ProjectID_props = rD.ProjectID_props
 	pageDetail.OriginID_props = rD.OriginID_props
+	pageDetail.OriginName_props = rD.OriginName_props
+	pageDetail.OriginKey_props = rD.OriginKey_props
 	pageDetail.ProjectStateID_props = rD.ProjectStateID_props
 	pageDetail.ProfileID_props = rD.ProfileID_props
 	pageDetail.Name_props = rD.Name_props

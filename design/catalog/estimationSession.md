@@ -91,7 +91,7 @@ SQL Table Key | **estimationSessionID**
 |**OriginDocTypeID**|String|false|false|true|false|||||N|||false|true|false|text||
 |**OriginDocType**|String|false|false|true|false|||||N|||false|true|false|text||
 |**OriginCode**|String|false|false|true|false|||||N|||false|true|false|text||
-|**OriginName**|String|false|false|true|false|||||N|||false|true|false|text||
+|**OriginName**|String|false|false|true|true|||||N|||false|true|false|text||
 |**OriginRate**|String|false|false|true|false|||||N|||false|true|false|text||
 |**ProjectProfileID**|String|false|false|true|false|||||N|||false|true|false|text||
 |**ProjectProfile**|String|false|false|true|false|||||N|||false|true|false|text||
@@ -100,7 +100,7 @@ SQL Table Key | **estimationSessionID**
 |**ProjectBlendedRate**|String|false|false|true|false|||||N|||false|true|false|text||
 |**ProjectStateID**|String|false|false|true|false|||||N|||false|true|false|text||
 |**ProjectState**|String|false|false|true|false|||||N|||false|true|false|text||
-|**ProjectName**|String|false|false|true|false|||||N|||false|true|false|text||
+|**ProjectName**|String|false|false|true|true|||||N|||false|true|false|text||
 |**ProjectStartDate**|String|false|false|true|false|||||N|||false|true|false|text||
 |**ProjectEndDate**|String|false|false|true|false|||||N|||false|true|false|text||
 |**ProfileSupportUpliftPerc**|String|false|false|true|false|||||N|||false|true|false|text||
@@ -133,7 +133,7 @@ SQL Table Key | **estimationSessionID**
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **08/03/2023** at **18:42:23**
+Date & Time		     | **10/03/2023** at **19:54:32**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

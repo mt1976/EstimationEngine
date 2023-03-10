@@ -3,18 +3,23 @@
   <div class="container-fluid">
     <div id="config">
       <div class="card justify-content-center">
-        <div class="card-header font-weight-bold justify-content-center">
-          <div class="row justify-content-center">
-            <div class="col h3">
-              About {{.AppName}}
+      <div class="card-header align-items-center" style="padding-bottom:0;">
+            <div class="row d-flex align-items-center">
+            <div class="col h4 align-items-center" style="padding-bottom:0;">
+              <img
+                src="/assets/android-chrome-48x48.png"
+                height="32"
+                class=""
+                alt="Application Menu Logo"
+                loading="lazy"
+                style="padding-bottom:0;"/> 
+              <span class="align-items-center">About : <span class="text-muted">{{.AppName}}</span></span>
             </div>
             <div class="col d-flex justify-content-end">
-              <form action="/home" method="POST">
-                <div class="btn-group">
+                    <div class="btn-group float-right" style="margin-bottom:1rem;">
                   <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Country"><i class="fas fa-print"></i>&nbsp;&nbsp;Print</button>
                   <button id="close" type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times"></i>&nbsp;&nbsp;Cancel</button>
                 </div>  
-              </form>
             </div>
           </div>
         </div>
@@ -23,7 +28,7 @@
           <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="application" role="tabpanel" aria-labelledby="application-tab">
               <h4 class="text-muted">Application</h4>
-              <h6 style="color:#322a77;">{{.AppName}} - [r{{.AppServerReleaseLevel}}-{{.AppServerReleaseNumber}}] - Code Name "{{.AppServerReleaseID}}"</h6>
+
               <div class="row">
                 <div class="col">
                   <div class="form-outline">                
@@ -166,6 +171,8 @@
                 </div>
               </div>
               {{end}}
+              <hr>
+                            <pre><span style="color:#322a77;">{{.AppName}} - [r{{.AppServerReleaseLevel}}-{{.AppServerReleaseNumber}}] - Code Name "{{.AppServerReleaseID}}"</span></pre>
             </div>
           </div>
         </div>

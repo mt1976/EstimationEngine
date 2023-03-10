@@ -268,7 +268,7 @@ func Saving(t string, w string) {
 func Result(w string, r string) {
 	//msg_info(w, v)
 	if CFG.VerboseMode {
-		//msg_raw(log_Result, w, Character_Query+" = "+colour.Bold+r, colour.White)
+		msg_raw(log_Result, w, Character_Query+" = "+colour.Bold+r, colour.White)
 	}
 }
 

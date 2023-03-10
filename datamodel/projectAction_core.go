@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 08/03/2023 at 18:42:25
+// Date & Time		    : 10/03/2023 at 19:54:35
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //ProjectAction defines the datamodel for the ProjectAction object
 type ProjectAction struct {
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -48,6 +48,8 @@ type ProjectAction struct {
 	Releases       string
 	Notes       string
 	NoEstimationSessions       string
+	OriginName       string
+	OriginKey       string
 	//
 	// Field Properties
 	//
@@ -80,6 +82,8 @@ type ProjectAction struct {
 	Releases_props FieldProperties
 	Notes_props FieldProperties
 	NoEstimationSessions_props FieldProperties
+	OriginName_props FieldProperties
+	OriginKey_props FieldProperties
 	//
  	// Any lookups will be added below
 	//
@@ -92,7 +96,7 @@ type ProjectAction struct {
 	}
 
 const (
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	ProjectAction_Name      = "ProjectAction"
 	ProjectAction_Title       = "ProjectAction"
@@ -156,6 +160,8 @@ const (
 	ProjectAction_Releases_sql   = "releases" // Releases is a String
 	ProjectAction_Notes_sql   = "notes" // Notes is a String
 	ProjectAction_NoEstimationSessions_sql   = "NoEstimationSessions" // NoEstimationSessions is a String
+	ProjectAction_OriginName_sql   = "OriginName" // OriginName is a String
+	ProjectAction_OriginKey_sql   = "OriginKey" // OriginKey is a String
 ///
 	/// Application Field Definitions
 	///
@@ -188,12 +194,14 @@ const (
 	ProjectAction_Releases_scrn   = "Releases" // Releases is a String
 	ProjectAction_Notes_scrn   = "Notes" // Notes is a String
 	ProjectAction_NoEstimationSessions_scrn   = "NoEstimationSessions" // NoEstimationSessions is a String
+	ProjectAction_OriginName_scrn   = "OriginName" // OriginName is a String
+	ProjectAction_OriginKey_scrn   = "OriginKey" // OriginKey is a String
 ///
 )
 
 //ProjectAction_PageList provides the information for the template for a list of ProjectActions
 type ProjectAction_PageList struct {
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -215,7 +223,7 @@ type ProjectAction_PageList struct {
 
 //ProjectAction_Page provides the information for the template for an individual ProjectAction
 type ProjectAction_Page struct {
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
@@ -260,6 +268,8 @@ type ProjectAction_Page struct {
 	Releases         string
 	Notes         string
 	NoEstimationSessions         string
+	OriginName         string
+	OriginKey         string
 	/// Field Properties
 	SYSId_props     FieldProperties
 	ProjectID_props     FieldProperties
@@ -290,6 +300,8 @@ type ProjectAction_Page struct {
 	Releases_props     FieldProperties
 	Notes_props     FieldProperties
 	NoEstimationSessions_props     FieldProperties
+	OriginName_props     FieldProperties
+	OriginKey_props     FieldProperties
 	/// Lookups
 	OriginID_lookup    []Lookup_Item
 	ProjectStateID_lookup    []Lookup_Item

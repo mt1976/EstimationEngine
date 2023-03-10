@@ -65,3 +65,17 @@ func ProjectAction_NoEstimationSessions_validate_impl(iAction string, iId string
 // ----------------------------------------------------------------
 // Automatically generated code ends here
 // ----------------------------------------------------------------
+
+// ----------------------------------------------------------------
+// ProjectAction_OriginName_validate_impl provides validation/actions for OriginName
+func ProjectAction_OriginName_validate_impl(iAction string, iId string, iValue string, iRec dm.ProjectAction, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("ProjectAction", dm.ProjectAction_OriginName_scrn, VAL+"-"+iAction, iId)
+	return iValue, fP
+}
+
+// ----------------------------------------------------------------
+// ProjectAction_OriginKey_validate_impl provides validation/actions for OriginKey
+func ProjectAction_OriginKey_validate_impl(iAction string, iId string, iValue string, iRec dm.ProjectAction, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("ProjectAction", dm.ProjectAction_OriginKey_scrn, VAL+"-"+iAction, iId)
+	return iValue, fP
+}

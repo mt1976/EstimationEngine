@@ -2,20 +2,23 @@
 {{template "bodydefinition" .}}
     <form action="/ProjectActionSave" method="GET" class="form">
       <div class="card">
-        <div class="card-header align-items-center">
-          <div class="row align-items-center">
-             <div class="col h3 align-items-center">
-                    <i class="fas fa-project-diagram me-2" title="ProjectID = NEW"></i><span class="me-3">{{.Title}}</span>
+          <div class="card-header align-items-center" style="padding-bottom:0;">
+            <div class="row d-flex align-items-center">
+
+                <div class="col h4 align-items-center">
+                  <i class="fas fa-project-diagram me-2 text-primary"
+                    title="ProjectID=NEW"></i><span class="me-3">{{.Title}}</span>
                 </div>
-            <div class="col d-flex justify-content-end">
-              <div class="btn-group float-right">
-              
-                <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/ProjectActionSave" onclick="/ProjectActionSave" title="Save ProjectAction"><i class="fas fa-save me-2"></i>Save</button>
-              
-                <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print ProjectAction"><i class="fas fa-print me-2"></i>Print</button>
-                <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
-              </div>
-            </div>
+
+                <div class="col d-flex justify-content-end">
+                  <div class="btn-group float-right" style="margin-bottom:1rem;">
+                  
+                    <button type="submit" value="" class="btn btn-danger" method="GET" formaction="/ProjectActionSave" onclick="/ProjectActionSave" title="Save ProjectAction"><i class="fas fa-save me-2"></i>Save</button>
+                  
+                    <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print ProjectAction"><i class="fas fa-print me-2"></i>Print</button>
+                    <button type="button" value="" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
+                  </div>
+                </div>
           </div>
         </div>
         <div class="card-body">
@@ -424,6 +427,44 @@
             </div>
                   
           </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.OriginName_props.MsgType}}" id="OriginName" name="OriginName" aria-describedby="OriginNameHelp" placeholder="" readonly="true" value="{{.OriginName}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="OriginName" readonly="true">OriginName</label>
+              <div class="{{.OriginName_props.MsgFeedBackType}}">{{.OriginName_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            <div class="row mb-3" readonly="true" ><div class="col">
+         
+            <div class="form-outline">
+
+            
+                <input type="text" class="form-control {{.OriginKey_props.MsgType}}" id="OriginKey" name="OriginKey" aria-describedby="OriginKeyHelp" placeholder="" readonly="true" value="{{.OriginKey}}"  data-mdb-input-mask="" >
+            
+           
+           
+              <label class="form-label" for="OriginKey" readonly="true">OriginKey</label>
+              <div class="{{.OriginKey_props.MsgFeedBackType}}">{{.OriginKey_props.MsgMessage}}</div>
+            </div>
+                  
+          </div></div>
+
+            
+              
+                
+
+            
+              
+                
 
             
               

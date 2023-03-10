@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 08/03/2023 at 18:42:23
+// Date & Time		    : 10/03/2023 at 19:54:31
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -60,14 +60,14 @@ func CredentialsPassword_GetByID(id string) (int, dm.CredentialsPassword, error)
 
 func CredentialsPassword_PostGet(credentialspasswordItem dm.CredentialsPassword,id string) dm.CredentialsPassword {
 	// START
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	credentialspasswordItem.UserName,credentialspasswordItem.UserName_props = CredentialsPassword_UserName_validate_impl (GET,id,credentialspasswordItem.UserName,credentialspasswordItem,credentialspasswordItem.UserName_props)
 	credentialspasswordItem.PasswordOld,credentialspasswordItem.PasswordOld_props = CredentialsPassword_PasswordOld_validate_impl (GET,id,credentialspasswordItem.PasswordOld,credentialspasswordItem,credentialspasswordItem.PasswordOld_props)
 	credentialspasswordItem.PasswordNew,credentialspasswordItem.PasswordNew_props = CredentialsPassword_PasswordNew_validate_impl (GET,id,credentialspasswordItem.PasswordNew,credentialspasswordItem,credentialspasswordItem.PasswordNew_props)
 	credentialspasswordItem.PasswordConfirm,credentialspasswordItem.PasswordConfirm_props = CredentialsPassword_PasswordConfirm_validate_impl (GET,id,credentialspasswordItem.PasswordConfirm,credentialspasswordItem,credentialspasswordItem.PasswordConfirm_props)
 	// 
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return credentialspasswordItem
 }
@@ -136,7 +136,7 @@ func CredentialsPassword_StoreProcess(r dm.CredentialsPassword, operator string)
 func CredentialsPassword_Validate(r dm.CredentialsPassword) (dm.CredentialsPassword, error) {
 	var err error
 	// START
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.UserName,r.UserName_props = CredentialsPassword_UserName_validate_impl (PUT,r.ID,r.UserName,r,r.UserName_props)
 	if r.UserName_props.MsgMessage != "" {
@@ -217,7 +217,7 @@ func CredentialsPassword_New() (int, []dm.CredentialsPassword, dm.CredentialsPas
 	
 
 	// START
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.UserName,r.UserName_props = CredentialsPassword_UserName_validate_impl (NEW,r.ID,r.UserName,r,r.UserName_props)
 	r.PasswordOld,r.PasswordOld_props = CredentialsPassword_PasswordOld_validate_impl (NEW,r.ID,r.PasswordOld,r,r.PasswordOld_props)
@@ -225,7 +225,7 @@ func CredentialsPassword_New() (int, []dm.CredentialsPassword, dm.CredentialsPas
 	r.PasswordConfirm,r.PasswordConfirm_props = CredentialsPassword_PasswordConfirm_validate_impl (NEW,r.ID,r.PasswordConfirm,r,r.PasswordConfirm_props)
 	
 	// 
-	// Dynamically generated 08/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

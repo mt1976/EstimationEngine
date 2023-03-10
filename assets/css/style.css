@@ -1,4 +1,6 @@
 :root {
+    --custom-corporate-light: #D9E2F3;
+    --custom-corporate: #322a77;
     --custom-primary-colour: #322a77;
     --custom-primary-rgb: 50, 42, 119;
     --custom-secondary-colour: #202953;
@@ -11,6 +13,8 @@
     --custom-other-colour: #472A79;
     --custom-other-rgb: 71, 42, 121;
     --custom-font-family: 'Roboto', sans-serif;
+    --custom-font-corporate: 'Raleway', sans-serif;
+
     --custom-code-colour: #77216F;
     --custom-grey: #dedede;
     --custom-placeholder: #757575c9;
@@ -165,4 +169,34 @@ body{
     border-radius: 4px;
 
 
+  }
+
+  .table-corporate {
+    border: 1px solid var(--custom-primary-colour);
+    border-radius: 4px;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    background-color: var(--colour-primary-colour);
+    color: var(--custom-dark-grey);
+    font-weight: bolder;
+  }
+
+  .bg-corporate {
+    background-color: var(--custom-corporate) !important;
+    color: var(--custom-primary-light) !important;
+  }
+
+  .bg-corporate-light {
+    background-color: var(--custom-corporate-light) !important;
+    color: var(--custom-corporate) !important;
+  }
+
+  .text-corporate { 
+    color: var(--custom-corporate) !important;
+    font: 1em sans-serif;
+  }
+
+  .text-corporate-body {
+    color: var(--custom-dark-grey) !important;
+    font: var(--custom-font-corporate);
   }

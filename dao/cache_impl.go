@@ -10,6 +10,7 @@ import (
 var validObjects = []string{dm.Origin_Name, dm.Project_Name, dm.EstimationSession_Name, dm.Data_Name}
 
 func CacheRead(object string, id string) interface{} {
+	//logs.Information("CacheRead", "CacheRead: "+object+core.ID_SEP+id)
 	//name := core.ApplicationProperties.Get("appname")
 	//logs.Information("CacheRead", name)
 	//logs.Warning("CacheRead:" + object + core.ID_SEP + id)
@@ -27,20 +28,28 @@ func CacheRead(object string, id string) interface{} {
 		//logs.Information("Information : ", core.ApplicationCache.Stat())
 		return core.ApplicationCache.Get(cacheID)
 	}
-
+	//logs.Information("CacheRead", "Cache Not Found/Not OK: "+cacheID)
 	cacheItem := cache_Get_From_DB(object, id)
-	logs.Warning("Loading Cache: " + cacheID)
+	//logs.Warning("Loading Cache: " + cacheID)
 	//logs.Information("CacheRead", "Adding to cache: "+cacheID)
 	core.ApplicationCache.Add(cacheID, cacheItem)
-	logs.Information("Information : ", core.ApplicationCache.Stat())
+	//logs.Information("Information : ", core.ApplicationCache.Stat())
 	return cacheItem
 }
 
 func cache_Get_From_DB(object string, id string) interface{} {
-
+	//logs.Warning("cache_Get_From_DB " + object + " " + id)
 	switch object {
 	case dm.Origin_Name:
-		_, origin, _ := Origin_GetByCode(id)
+		logs.Information("cache_Get_From_DB", "Origin_GetByCode: "+id)
+		_, origin, err := Origin_GetByCode(id)
+		//fmt.Printf("no: %v\n", no)
+		//fmt.Printf("origin: %v\n", origin)
+		//fmt.Printf("err: %v\n", err)
+		if err != nil {
+			panic("Origin not found: " + id + err.Error())
+		}
+		//fmt.Printf("origin: %v\n", origin)
 		return origin
 	case dm.Project_Name:
 		_, project, _ := Project_GetByID(id)
