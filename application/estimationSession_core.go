@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 10/03/2023 at 19:54:32
+// Date & Time		    : 10/03/2023 at 22:53:29
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -371,6 +371,7 @@ func estimationsession_PopulatePage(rD dm.EstimationSession, pageDetail dm.Estim
 	pageDetail.FreshDeskURI = rD.FreshDeskURI
 	pageDetail.ADOURI = rD.ADOURI
 	pageDetail.NoActiveFeatures = rD.NoActiveFeatures
+	pageDetail.OriginKey = rD.OriginKey
 	// Enrichment Fields 
 	 
 	pageDetail.ProjectID_lookup = dao.Project_GetLookup()
@@ -449,6 +450,7 @@ func estimationsession_PopulatePage(rD dm.EstimationSession, pageDetail dm.Estim
 	pageDetail.FreshDeskURI_props = rD.FreshDeskURI_props
 	pageDetail.ADOURI_props = rD.ADOURI_props
 	pageDetail.NoActiveFeatures_props = rD.NoActiveFeatures_props
+	pageDetail.OriginKey_props = rD.OriginKey_props
 	return pageDetail
 }
 //estimationsession_DataFromRequest is used process the content of an HTTP Request and return an instance of an EstimationSession
@@ -523,5 +525,6 @@ func estimationsession_DataFromRequest(r *http.Request) dm.EstimationSession {
 		item.FreshDeskURI = r.FormValue(dm.EstimationSession_FreshDeskURI_scrn)
 		item.ADOURI = r.FormValue(dm.EstimationSession_ADOURI_scrn)
 		item.NoActiveFeatures = r.FormValue(dm.EstimationSession_NoActiveFeatures_scrn)
+		item.OriginKey = r.FormValue(dm.EstimationSession_OriginKey_scrn)
 	return item
 }

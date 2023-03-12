@@ -16,7 +16,7 @@ import (
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
 	// Template Generator   : Einsteinium [r5-23.01.23]
-	// Date & Time		    : 10/03/2023 at 19:54:35
+	// Date & Time		    : 10/03/2023 at 22:42:32
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in project_impl.go
@@ -114,6 +114,28 @@ import (
 	// END   Project_OriginName
 	// END   Project_OriginName
 	// END   Project_OriginName
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN Project_OriginKey
+	// BEGIN Project_OriginKey
+	// BEGIN Project_OriginKey
+	// ----------------------------------------------------------------
+	// Project_OriginKey_OnStore_impl provides the implementation for the callout
+	func Project_OriginKey_OnStore_impl (fieldval string,rec dm.Project,usr string) (string,error)  {
+		logs.Callout("Project", dm.Project_OriginKey_scrn, PUT, rec.ProjectID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// Project_OriginKey_OnFetch_impl provides the implementation for the callout	
+	func Project_OriginKey_OnFetch_impl (rec dm.Project)(string) {
+		logs.Callout("Project", dm.Project_OriginKey_scrn, GET, rec.ProjectID)
+		return rec.OriginKey
+	}
+	// ----------------------------------------------------------------
+	// END   Project_OriginKey
+	// END   Project_OriginKey
+	// END   Project_OriginKey
 	// ----------------------------------------------------------------
 
 	// ----------------------------------------------------------------

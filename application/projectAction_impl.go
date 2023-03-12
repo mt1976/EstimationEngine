@@ -68,7 +68,7 @@ func ProjectAction_HandlerSave_Impl(w http.ResponseWriter, r *http.Request) {
 	// Save the Project
 	dao.Project_Store(item, r)
 
-	REDR := dm.Project_Origin_PathList + "?" + dm.Origin_QueryString + "=" + origin.OriginID
+	REDR := dm.Project_PathEdit + "?" + dm.Project_QueryString + "=" + item.ProjectID
 	logs.Information("REDIRECTING TO: ", REDR)
 	http.Redirect(w, r, REDR, http.StatusFound)
 }
@@ -106,12 +106,12 @@ func ProjectAction_HandlerNew_Impl(w http.ResponseWriter, r *http.Request) {
 	rD.OriginName = dao.ProjectAction_OriginName_OnFetch_impl(rD)
 	rD.OriginKey = dao.ProjectAction_OriginKey_OnFetch_impl(rD)
 	//pageDetail.OriginName = dao.ProjectAction_OriginName_OnFetch_impl(pageDetail)
-	fmt.Printf("rD.OriginID: %v\n", rD.OriginID)
-	fmt.Printf("rD.OriginName: %v\n", rD.OriginName)
-	fmt.Printf("rD.OriginKey: %v\n", rD.OriginKey)
+	//fmt.Printf("rD.OriginID: %v\n", rD.OriginID)
+	//fmt.Printf("rD.OriginName: %v\n", rD.OriginName)
+	//fmt.Printf("rD.OriginKey: %v\n", rD.OriginKey)
 	pageDetail = projectaction_PopulatePage(rD, pageDetail)
-	fmt.Printf("rD: %v\n", rD)
-	fmt.Printf("pageDetail: %v\n", pageDetail)
+	//fmt.Printf("rD: %v\n", rD)
+	//fmt.Printf("pageDetail: %v\n", pageDetail)
 	pageDetail.OriginID = originID
 
 	//spew.Dump(pageDetail)

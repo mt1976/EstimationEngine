@@ -16,7 +16,7 @@ import (
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
 	// Template Generator   : Einsteinium [r5-23.01.23]
-	// Date & Time		    : 10/03/2023 at 19:54:34
+	// Date & Time		    : 12/03/2023 at 12:24:54
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in origin_impl.go
@@ -158,6 +158,50 @@ import (
 	// END   Origin_NoActiveProjects
 	// END   Origin_NoActiveProjects
 	// END   Origin_NoActiveProjects
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN Origin_RateOnLoad
+	// BEGIN Origin_RateOnLoad
+	// BEGIN Origin_RateOnLoad
+	// ----------------------------------------------------------------
+	// Origin_RateOnLoad_OnStore_impl provides the implementation for the callout
+	func Origin_RateOnLoad_OnStore_impl (fieldval string,rec dm.Origin,usr string) (string,error)  {
+		logs.Callout("Origin", dm.Origin_RateOnLoad_scrn, PUT, rec.OriginID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// Origin_RateOnLoad_OnFetch_impl provides the implementation for the callout	
+	func Origin_RateOnLoad_OnFetch_impl (rec dm.Origin)(string) {
+		logs.Callout("Origin", dm.Origin_RateOnLoad_scrn, GET, rec.OriginID)
+		return rec.RateOnLoad
+	}
+	// ----------------------------------------------------------------
+	// END   Origin_RateOnLoad
+	// END   Origin_RateOnLoad
+	// END   Origin_RateOnLoad
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN Origin_StatusOnLoad
+	// BEGIN Origin_StatusOnLoad
+	// BEGIN Origin_StatusOnLoad
+	// ----------------------------------------------------------------
+	// Origin_StatusOnLoad_OnStore_impl provides the implementation for the callout
+	func Origin_StatusOnLoad_OnStore_impl (fieldval string,rec dm.Origin,usr string) (string,error)  {
+		logs.Callout("Origin", dm.Origin_StatusOnLoad_scrn, PUT, rec.OriginID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// Origin_StatusOnLoad_OnFetch_impl provides the implementation for the callout	
+	func Origin_StatusOnLoad_OnFetch_impl (rec dm.Origin)(string) {
+		logs.Callout("Origin", dm.Origin_StatusOnLoad_scrn, GET, rec.OriginID)
+		return rec.StatusOnLoad
+	}
+	// ----------------------------------------------------------------
+	// END   Origin_StatusOnLoad
+	// END   Origin_StatusOnLoad
+	// END   Origin_StatusOnLoad
 	// ----------------------------------------------------------------
 
 	// ----------------------------------------------------------------

@@ -44,13 +44,13 @@ SQL Table Key | **Id**
 | -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
 |**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|text||
 |**Id**|String|false|true|false|true|||||H|Id||true|false|false|text||
-|**Apptoken**|String|true|true|false|false|||||Y|Apptoken||false|false|false|text||
+|**Apptoken**|String|false|true|false|true|||||H|Apptoken||false|false|false|text||
 |**Createdate**|String|false|true|false|false|||||Y|Createdate||false|false|false|text||
 |**Createtime**|String|false|true|false|false|||||Y|Createtime||false|false|false|text||
 |**Uniqueid**|String|false|true|false|false|||||Y|Uniqueid||false|false|false|text||
 |**Sessiontoken**|String|false|true|false|false|||||Y|Sessiontoken||false|false|false|text||
 |**Username**|String|false|true|false|false|||||Y|Username||false|false|false|text||
-|**Password**|String|false|true|false|false|||||Y|Password||false|false|false|text||
+|**Password**|String|false|true|false|true|||||H|Password||false|false|false|text||
 |**Userip**|String|false|true|false|false|||||Y|Userip||false|false|false|text||
 |**Userhost**|String|false|true|false|false|||||Y|Userhost||false|false|false|text||
 |**Appip**|String|false|true|false|false|||||Y|Appip||false|false|false|text||
@@ -59,7 +59,7 @@ SQL Table Key | **Id**
 |**Expiry**|String|false|true|false|false|||||Y|Expiry||false|false|false|text||
 |**Expiryraw**|String|false|true|false|false|||||Y|Expiryraw||false|false|false|text||
 |**Expires**|Time|false|true|false|false|||||Y|Expires||false|false|false|text||
-|**Brand**|String|false|true|false|false|||||Y|Brand||false|false|false|text||
+|**Brand**|String|false|true|false|true|||||H|Brand||false|false|false|text||
 |**SessionRole**|String|false|true|false|false|||||Y|SessionRole||false|false|false|text||
 |**SYSCreated**|String|false|true|false|false|||||NH|_created||false|false|true|text||
 |**SYSCreatedBy**|String|false|true|false|false|||||NH|_createdBy||false|false|true|text||
@@ -89,7 +89,7 @@ SQL Table Key | **Id**
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **10/03/2023** at **19:54:36**
+Date & Time		     | **10/03/2023** at **23:49:56**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

@@ -8,9 +8,9 @@
         <nav aria-label="breadcrumb" class="align-items-center"> 
           <ol class="breadcrumb  h-100 align-items-center">
                   <li class="breadcrumb-item lead"><a href="/home"><span class="text-primary"><i class="fas fa-home fa-sm me-2"></i></span>Home</a></li>
-          <li class="breadcrumb-item lead"><a href="/ProjectsByOrigin/?OriginID=OROGINCODE">OROGINCODE</a></li>
-          <li class="breadcrumb-item lead"><a href="/EstimationSessionByProject/?ProjectID=PROJECTNAME">PROJECTNAME</a></li>
-          <li class="breadcrumb-item lead"><a href="/FeatureByEstimationSession/?EstimationSessionID={{.EstimationSessionID}}">{{.EstimationSessionID}}</a></li>
+          <li class="breadcrumb-item lead"><a href="/ProjectsByOrigin/?OriginID={{.OriginID}}">{{.OriginCode}}</a></li>
+          <li class="breadcrumb-item lead"><a href="/EstimationSessionByProject/?ProjectID={{.ProjectID}}">{{.Name}}</a></li>
+          <li class="breadcrumb-item lead"><a href="/FeatureByEstimationSession/?EstimationSessionID={{.EstimationSessionID}}">{{.EstimationSessionName}}</a></li>
             <li class="breadcrumb-item lead active"><span class="text-primary">New</span></li>
 
 

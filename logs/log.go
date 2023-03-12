@@ -48,6 +48,8 @@ const (
 	log_Catalog       = "Catalog"
 	log_Upgrade       = "Upgrade"
 	log_Redirect      = "Redirect"
+	log_Audit         = "Audit"
+	log_Cache         = "Cache"
 
 	ColorReset         = "\033[0m"
 	ColorRed           = "\033[31m"
@@ -82,6 +84,8 @@ const (
 	Character_Schedule = "📅"
 	Character_Upgrade  = "🚀"
 	Character_Redirect = "🔗"
+	Character_Audit    = "📝"
+	Character_Cache    = "🗄️"
 )
 
 type Config struct {
@@ -124,6 +128,13 @@ func Success(s string) {
 	msg_raw(log_Success, s, Character_Tick, colour.Green)
 }
 
+func Cache(action string, status string) {
+	if CFG.VerboseMode {
+		msgTXT := action + " - " + status
+		msg_raw(log_Cache, colour.Bold+msgTXT, Character_Cache, colour.Gray)
+	}
+}
+
 func Upgrade(s string) {
 	//msg_done(s)
 	msg_raw(log_Upgrade, s, Character_Upgrade, colour.Gray)
@@ -164,10 +175,10 @@ func Default(s string, w string) {
 	msg_raw(log_Default, s, w, colour.Purple)
 }
 
-func Email(s string, w string) {
+func Email(who string, content string) {
 	//msg_done(s)
-	MSG_TXT := "Send Email to " + s
-	msg_raw(log_Email, MSG_TXT, w+" "+Character_Email, colour.Purple)
+	MSG_TXT := "Send Email to " + who
+	msg_raw(log_Email, MSG_TXT, content+" "+Character_Email, colour.Purple)
 }
 
 func Information(w string, v string) {
@@ -179,6 +190,10 @@ func Information(w string, v string) {
 	}
 	//msg_raw(log_Info, w, v, colour.Reset)
 
+}
+
+func Audit(what string) {
+	msg_raw(log_Audit, what, Character_Audit, colour.Yellow)
 }
 
 func Processing(s string) {
@@ -225,7 +240,7 @@ func Template(w string) {
 func Accessing(w string) {
 	//msg_info(w, v)
 	if CFG.VerboseMode {
-		//msg_raw(log_Accessing, w, "", colour.Green)
+		msg_raw(log_Accessing, w, "", colour.Green)
 	}
 
 }

@@ -130,7 +130,7 @@ func tsql_AND(tsql string, inField string, inValue string) string {
 
 func StubLists_Get(listName string) []dm.Lookup_Item {
 	listid := strings.ToLower(listName)
-	ctList := core.ApplicationStubLists.Get(listid)
+	ctList := core.ApplicationStubLists.Get_DBProperty(listid)
 	//logs.Success("listName=" + listName)
 	//logs.Success("List=" + ctList)
 	// Turn comma-separated string into a slice of strings
@@ -161,7 +161,7 @@ func getNewFileID() string {
 	return nID
 }
 
-func SendMailToResource(resourceID string, MSG_SUBJECT string, MSG_BODY string) {
+func Resource_SendMail(resourceID string, MSG_SUBJECT string, MSG_BODY string) {
 	_, who, _ := Resource_GetByCode(resourceID)
 	if resourceID == "" {
 		logs.Warning("SendMail: No resourceID - not sending email")

@@ -1,7 +1,6 @@
 package core
 
 import (
-	"fmt"
 	"os"
 	"time"
 
@@ -52,18 +51,18 @@ func Initialise() {
 
 	//var API API
 	//var API Cache
-	API := API.Generate()
-	API.ListRoutes()
-	API = API.AddRoute("GET", "/api/author", "Get Author", "author", "author")
-	API = API.AddRoute("GET", "/api/author/{id}", "Get Author", "author", "author")
-	API.ListRoutes()
-	fmt.Printf("ApplicationProperties: %v\n", ApplicationProperties)
-	fmt.Printf("ApplicationPropertiesDB: %v\n", ApplicationPropertiesDB)
-	fmt.Printf("InstanceProperties: %v\n", InstanceProperties)
-	fmt.Printf("ApplicationStubLists: %v\n", ApplicationStubLists)
+	API.Generate()
+	//API.ListRoutes()
+	//API = API.AddRoute("GET", "/api/author", "Get Author", "author", "author")
+	//API = API.AddRoute("GET", "/api/author/{id}", "Get Author", "author", "author")
+	//API.ListRoutes()
+	// fmt.Printf("ApplicationProperties: %v\n", ApplicationProperties)
+	// fmt.Printf("ApplicationPropertiesDB: %v\n", ApplicationPropertiesDB)
+	// fmt.Printf("InstanceProperties: %v\n", InstanceProperties)
+	// fmt.Printf("ApplicationStubLists: %v\n", ApplicationStubLists)
 	var appCache Cache
 	ApplicationCache = appCache.Start()
-	logs.Information("Initialisation", ApplicationCache.Stat())
+	//logs.Information("Initialisation", ApplicationCache.Stat())
 	//fmt.Printf("ApplicationCache: %v\n", ApplicationCache)
 
 	IsChildInstance = false

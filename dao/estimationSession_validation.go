@@ -779,3 +779,9 @@ func EstimationSession_TrackerID_impl(iAction string, iId string, iValue string,
 // END   EstimationSession_TrackerID
 // END   EstimationSession_TrackerID
 // ----------------------------------------------------------------
+// ----------------------------------------------------------------
+// EstimationSession_OriginKey_validate_impl provides validation/actions for OriginKey
+func EstimationSession_OriginKey_validate_impl(iAction string, iId string, iValue string, iRec dm.EstimationSession, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("EstimationSession", dm.EstimationSession_OriginKey_scrn, VAL+"-"+iAction, iId)
+	return iValue, fP
+}

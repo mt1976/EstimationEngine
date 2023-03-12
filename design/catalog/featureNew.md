@@ -59,6 +59,11 @@ Store|<ul><li>**Implement in Adaptor**</li><li>func FeatureNew_NewID_impl(rec dm
 |**OtherID2**|String|false|true|false|false|||||Y|OtherID2||false|false|false|text||
 |**ProfileDefault**|String|false|true|false|false|OL∀|Profile|Profile_ProfileID|Profile_Name|N|ProfileDefault||false|false|false|text||
 |**ProfileSelected**|String|false|true|false|false|OL∀|Profile|Profile_ProfileID|Profile_Name|Y|ProfileSelected||false|false|false|text||
+|**EstimationSessionName**|String|false|false|true|true|||||NH|||false|true|false|text||
+|**ProjectID**|String|false|false|true|true|||||NH|||false|true|false|text||
+|**OriginCode**|String|false|false|true|false|||||N|||false|true|false|text||
+|**OriginID**|String|false|false|true|true|||||NH|||false|true|false|text||
+|**ProjectName**|String|false|false|true|true|||||NH|||false|true|false|text||
 
 
 ##  Artifacts Generated
@@ -80,7 +85,7 @@ Store|<ul><li>**Implement in Adaptor**</li><li>func FeatureNew_NewID_impl(rec dm
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **10/03/2023** at **19:54:33**
+Date & Time		     | **10/03/2023** at **23:09:40**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

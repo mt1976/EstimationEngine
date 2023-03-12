@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 10/03/2023 at 19:54:33
+// Date & Time		    : 10/03/2023 at 23:09:40
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -35,6 +35,11 @@ type FeatureNew struct {
 	OtherID2       string
 	ProfileDefault       string
 	ProfileSelected       string
+	EstimationSessionName       string
+	ProjectID       string
+	OriginCode       string
+	OriginID       string
+	ProjectName       string
 	//
 	// Field Properties
 	//
@@ -54,6 +59,11 @@ type FeatureNew struct {
 	OtherID2_props FieldProperties
 	ProfileDefault_props FieldProperties
 	ProfileSelected_props FieldProperties
+	EstimationSessionName_props FieldProperties
+	ProjectID_props FieldProperties
+	OriginCode_props FieldProperties
+	OriginID_props FieldProperties
+	ProjectName_props FieldProperties
 	//
  	// Any lookups will be added below
 	//
@@ -117,6 +127,11 @@ const (
 	FeatureNew_OtherID2_sql   = "OtherID2" // OtherID2 is a String
 	FeatureNew_ProfileDefault_sql   = "ProfileDefault" // ProfileDefault is a String
 	FeatureNew_ProfileSelected_sql   = "ProfileSelected" // ProfileSelected is a String
+	FeatureNew_EstimationSessionName_sql   = "EstimationSessionName" // EstimationSessionName is a String
+	FeatureNew_ProjectID_sql   = "ProjectID" // ProjectID is a String
+	FeatureNew_OriginCode_sql   = "OriginCode" // OriginCode is a String
+	FeatureNew_OriginID_sql   = "OriginID" // OriginID is a String
+	FeatureNew_ProjectName_sql   = "ProjectName" // ProjectName is a String
 ///
 	/// Application Field Definitions
 	///
@@ -136,6 +151,11 @@ const (
 	FeatureNew_OtherID2_scrn   = "OtherID2" // OtherID2 is a String
 	FeatureNew_ProfileDefault_scrn   = "ProfileDefault" // ProfileDefault is a String
 	FeatureNew_ProfileSelected_scrn   = "ProfileSelected" // ProfileSelected is a String
+	FeatureNew_EstimationSessionName_scrn   = "EstimationSessionName" // EstimationSessionName is a String
+	FeatureNew_ProjectID_scrn   = "ProjectID" // ProjectID is a String
+	FeatureNew_OriginCode_scrn   = "OriginCode" // OriginCode is a String
+	FeatureNew_OriginID_scrn   = "OriginID" // OriginID is a String
+	FeatureNew_ProjectName_scrn   = "ProjectName" // ProjectName is a String
 ///
 )
 
@@ -195,6 +215,11 @@ type FeatureNew_Page struct {
 	OtherID2         string
 	ProfileDefault         string
 	ProfileSelected         string
+	EstimationSessionName         string
+	ProjectID         string
+	OriginCode         string
+	OriginID         string
+	ProjectName         string
 	/// Field Properties
 	ID_props     FieldProperties
 	EstimationSessionID_props     FieldProperties
@@ -212,6 +237,11 @@ type FeatureNew_Page struct {
 	OtherID2_props     FieldProperties
 	ProfileDefault_props     FieldProperties
 	ProfileSelected_props     FieldProperties
+	EstimationSessionName_props     FieldProperties
+	ProjectID_props     FieldProperties
+	OriginCode_props     FieldProperties
+	OriginID_props     FieldProperties
+	ProjectName_props     FieldProperties
 	/// Lookups
 	EstimationSessionID_lookup    []Lookup_Item
 	DeveloperResource_lookup    []Lookup_Item

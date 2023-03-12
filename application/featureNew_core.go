@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 10/03/2023 at 19:54:33
+// Date & Time		    : 10/03/2023 at 23:09:40
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -242,6 +242,11 @@ func featurenew_PopulatePage(rD dm.FeatureNew, pageDetail dm.FeatureNew_Page) dm
 	pageDetail.ProfileDefault = rD.ProfileDefault
 	pageDetail.ProfileSelected = rD.ProfileSelected
 	// Add Pseudo/Extra Fields
+	pageDetail.EstimationSessionName = rD.EstimationSessionName
+	pageDetail.ProjectID = rD.ProjectID
+	pageDetail.OriginCode = rD.OriginCode
+	pageDetail.OriginID = rD.OriginID
+	pageDetail.ProjectName = rD.ProjectName
 	// Enrichment Fields 
 	 
 	pageDetail.EstimationSessionID_lookup = dao.EstimationSession_GetFilteredLookup("FeatureNew","EstimationSessionID")
@@ -271,6 +276,11 @@ func featurenew_PopulatePage(rD dm.FeatureNew, pageDetail dm.FeatureNew_Page) dm
 	pageDetail.OtherID2_props = rD.OtherID2_props
 	pageDetail.ProfileDefault_props = rD.ProfileDefault_props
 	pageDetail.ProfileSelected_props = rD.ProfileSelected_props
+	pageDetail.EstimationSessionName_props = rD.EstimationSessionName_props
+	pageDetail.ProjectID_props = rD.ProjectID_props
+	pageDetail.OriginCode_props = rD.OriginCode_props
+	pageDetail.OriginID_props = rD.OriginID_props
+	pageDetail.ProjectName_props = rD.ProjectName_props
 	return pageDetail
 }
 //featurenew_DataFromRequest is used process the content of an HTTP Request and return an instance of an FeatureNew
@@ -294,5 +304,10 @@ func featurenew_DataFromRequest(r *http.Request) dm.FeatureNew {
 		item.OtherID2 = r.FormValue(dm.FeatureNew_OtherID2_scrn)
 		item.ProfileDefault = r.FormValue(dm.FeatureNew_ProfileDefault_scrn)
 		item.ProfileSelected = r.FormValue(dm.FeatureNew_ProfileSelected_scrn)
+		item.EstimationSessionName = r.FormValue(dm.FeatureNew_EstimationSessionName_scrn)
+		item.ProjectID = r.FormValue(dm.FeatureNew_ProjectID_scrn)
+		item.OriginCode = r.FormValue(dm.FeatureNew_OriginCode_scrn)
+		item.OriginID = r.FormValue(dm.FeatureNew_OriginID_scrn)
+		item.ProjectName = r.FormValue(dm.FeatureNew_ProjectName_scrn)
 	return item
 }

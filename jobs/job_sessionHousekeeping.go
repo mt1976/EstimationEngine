@@ -72,7 +72,7 @@ func Session_HouseKeeping() (string, error) {
 	// TODO: PLACE A CALL TO DOA.CACHE.HOUSEKEEP - This should resolve the issue.
 	// TODO: CREATE A CACHE HOUSKEEPING JOB
 	core.ApplicationCache = core.ApplicationCache.Housekeep()
-	fmt.Printf("core.ApplicationCache.Stat(): %v\n", core.ApplicationCache.Stat())
+	//fmt.Printf("core.ApplicationCache.Stat(): %v\n", core.ApplicationCache.Stat())
 
 	MSG := dao.Translate("SessionExpiries", "Expired %d of %d sessions, %d active")
 	MSG = fmt.Sprintf(MSG, noProcess, noSessions, noActive)

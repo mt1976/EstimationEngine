@@ -104,3 +104,36 @@ func FeatureNew_EstimateEffort_validate_impl(iAction string, iId string, iValue 
 // ----------------------------------------------------------------
 // Automatically generated code ends here
 // ----------------------------------------------------------------
+// FeatureNew_EstimationSessionName_validate_impl provides validation/actions for EstimationSessionName
+func FeatureNew_EstimationSessionName_validate_impl(iAction string, iId string, iValue string, iRec dm.FeatureNew, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("FeatureNew", dm.FeatureNew_EstimationSessionName_scrn, VAL+"-"+iAction, iId)
+	return iValue, fP
+}
+
+// ----------------------------------------------------------------
+// FeatureNew_ProjectID_validate_impl provides validation/actions for ProjectID
+func FeatureNew_ProjectID_validate_impl(iAction string, iId string, iValue string, iRec dm.FeatureNew, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("FeatureNew", dm.FeatureNew_ProjectID_scrn, VAL+"-"+iAction, iId)
+	return iValue, fP
+}
+
+// ----------------------------------------------------------------
+// FeatureNew_OriginCode_validate_impl provides validation/actions for OriginCode
+func FeatureNew_OriginCode_validate_impl(iAction string, iId string, iValue string, iRec dm.FeatureNew, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("FeatureNew", dm.FeatureNew_OriginCode_scrn, VAL+"-"+iAction, iId)
+	return iValue, fP
+}
+
+// ----------------------------------------------------------------
+// FeatureNew_OriginID_validate_impl provides validation/actions for OriginID
+func FeatureNew_OriginID_validate_impl(iAction string, iId string, iValue string, iRec dm.FeatureNew, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("FeatureNew", dm.FeatureNew_OriginID_scrn, VAL+"-"+iAction, iId)
+	return iValue, fP
+}
+
+// ----------------------------------------------------------------
+// FeatureNew_ProjectName_validate_impl provides validation/actions for ProjectName
+func FeatureNew_ProjectName_validate_impl(iAction string, iId string, iValue string, iRec dm.FeatureNew, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("FeatureNew", dm.FeatureNew_ProjectName_scrn, VAL+"-"+iAction, iId)
+	return iValue, fP
+}

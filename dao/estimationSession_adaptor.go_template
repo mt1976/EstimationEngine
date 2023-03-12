@@ -16,7 +16,7 @@ import (
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
 	// Template Generator   : Einsteinium [r5-23.01.23]
-	// Date & Time		    : 10/03/2023 at 19:54:32
+	// Date & Time		    : 10/03/2023 at 22:53:29
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in estimationsession_impl.go
@@ -752,6 +752,28 @@ import (
 	// END   EstimationSession_NoActiveFeatures
 	// END   EstimationSession_NoActiveFeatures
 	// END   EstimationSession_NoActiveFeatures
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN EstimationSession_OriginKey
+	// BEGIN EstimationSession_OriginKey
+	// BEGIN EstimationSession_OriginKey
+	// ----------------------------------------------------------------
+	// EstimationSession_OriginKey_OnStore_impl provides the implementation for the callout
+	func EstimationSession_OriginKey_OnStore_impl (fieldval string,rec dm.EstimationSession,usr string) (string,error)  {
+		logs.Callout("EstimationSession", dm.EstimationSession_OriginKey_scrn, PUT, rec.EstimationSessionID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// EstimationSession_OriginKey_OnFetch_impl provides the implementation for the callout	
+	func EstimationSession_OriginKey_OnFetch_impl (rec dm.EstimationSession)(string) {
+		logs.Callout("EstimationSession", dm.EstimationSession_OriginKey_scrn, GET, rec.EstimationSessionID)
+		return rec.OriginKey
+	}
+	// ----------------------------------------------------------------
+	// END   EstimationSession_OriginKey
+	// END   EstimationSession_OriginKey
+	// END   EstimationSession_OriginKey
 	// ----------------------------------------------------------------
 
 	// ----------------------------------------------------------------

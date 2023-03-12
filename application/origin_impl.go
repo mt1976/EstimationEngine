@@ -14,7 +14,6 @@ package application
 // ----------------------------------------------------------------
 
 import (
-	"fmt"
 	"net/http"
 
 	core "github.com/mt1976/ebEstimates/core"
@@ -74,32 +73,24 @@ func Origin_HandlerStore(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path + r.FormValue("OriginID"))
+	//spew.Dump(r.Form)
 
 	item := origin_DataFromRequest(r)
+	//spew.Dump(item)
 
-	_, lkOriginState, _ := dao.OriginState_GetByCode(item.StateID)
-
-	if lkOriginState.Notify == core.TRUE {
-		if item.ProjectManager != "" {
-			sendStateChangeEmail(item.ProjectManager, item, lkOriginState)
-		}
-		if item.AccountManager != "" {
-			sendStateChangeEmail(item.AccountManager, item, lkOriginState)
-		}
+	item, errStore := dao.Origin_Store(item, r)
+	if errStore == nil {
+		nextTemplate := NextTemplate("Origin", "Save", dm.Origin_Redirect)
+		http.Redirect(w, r, nextTemplate, http.StatusFound)
+	} else {
+		logs.Information(dm.Origin_Name, errStore.Error())
+		//http.Redirect(w, r, r.Referer(), http.StatusFound)
+		ExecuteRedirect(r.Referer(), w, r, dm.Origin_QueryString, item.OriginID, item)
 	}
 
-	dao.Origin_Store(item, r)
-	REDR := "/home"
-	http.Redirect(w, r, REDR, http.StatusFound)
+	//REDR := "/home"
+	//http.Redirect(w, r, REDR, http.StatusFound)
 	//
 	// Auto generated 03/01/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
-}
-
-func sendStateChangeEmail(who string, rec dm.Origin, lkOriginState dm.OriginState) {
-	MSG_SUBJECT := dao.Translate("Notification", "%s state has been updated")
-	MSG_SUBJECT = fmt.Sprintf(MSG_SUBJECT, rec.FullName)
-	MSG_BODY := dao.Translate("Notification", "Origin %s (%s) state has been changed to %s (%s)")
-	MSG_BODY = fmt.Sprintf(MSG_BODY, rec.FullName, rec.Code, lkOriginState.Name, rec.StateID)
-	dao.SendMailToResource(who, MSG_SUBJECT, MSG_BODY)
 }

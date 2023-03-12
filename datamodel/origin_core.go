@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 10/03/2023 at 19:54:34
+// Date & Time		    : 12/03/2023 at 12:24:54
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Origin defines the datamodel for the Origin object
 type Origin struct {
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 12/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -45,6 +45,8 @@ type Origin struct {
 	ProjectManager       string
 	AccountManager       string
 	NoActiveProjects       string
+	RateOnLoad       string
+	StatusOnLoad       string
 	//
 	// Field Properties
 	//
@@ -74,6 +76,8 @@ type Origin struct {
 	ProjectManager_props FieldProperties
 	AccountManager_props FieldProperties
 	NoActiveProjects_props FieldProperties
+	RateOnLoad_props FieldProperties
+	StatusOnLoad_props FieldProperties
 	//
  	// Any lookups will be added below
 	//
@@ -85,7 +89,7 @@ type Origin struct {
 	}
 
 const (
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 12/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	Origin_Name      = "Origin"
 	Origin_Title       = "Origin"
@@ -147,6 +151,8 @@ const (
 	Origin_ProjectManager_sql   = "projectManager" // ProjectManager is a String
 	Origin_AccountManager_sql   = "accountManager" // AccountManager is a String
 	Origin_NoActiveProjects_sql   = "NoActiveProjects" // NoActiveProjects is a String
+	Origin_RateOnLoad_sql   = "RateOnLoad" // RateOnLoad is a String
+	Origin_StatusOnLoad_sql   = "StatusOnLoad" // StatusOnLoad is a String
 ///
 	/// Application Field Definitions
 	///
@@ -176,12 +182,14 @@ const (
 	Origin_ProjectManager_scrn   = "ProjectManager" // ProjectManager is a String
 	Origin_AccountManager_scrn   = "AccountManager" // AccountManager is a String
 	Origin_NoActiveProjects_scrn   = "NoActiveProjects" // NoActiveProjects is a String
+	Origin_RateOnLoad_scrn   = "RateOnLoad" // RateOnLoad is a String
+	Origin_StatusOnLoad_scrn   = "StatusOnLoad" // StatusOnLoad is a String
 ///
 )
 
 //Origin_PageList provides the information for the template for a list of Origins
 type Origin_PageList struct {
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 12/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -203,7 +211,7 @@ type Origin_PageList struct {
 
 //Origin_Page provides the information for the template for an individual Origin
 type Origin_Page struct {
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 12/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
@@ -245,6 +253,8 @@ type Origin_Page struct {
 	ProjectManager         string
 	AccountManager         string
 	NoActiveProjects         string
+	RateOnLoad         string
+	StatusOnLoad         string
 	/// Field Properties
 	SYSId_props     FieldProperties
 	OriginID_props     FieldProperties
@@ -272,6 +282,8 @@ type Origin_Page struct {
 	ProjectManager_props     FieldProperties
 	AccountManager_props     FieldProperties
 	NoActiveProjects_props     FieldProperties
+	RateOnLoad_props     FieldProperties
+	StatusOnLoad_props     FieldProperties
 	/// Lookups
 	StateID_lookup    []Lookup_Item
 	DocTypeID_lookup    []Lookup_Item

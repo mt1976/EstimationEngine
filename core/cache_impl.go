@@ -38,7 +38,7 @@ func (c Cache) Housekeep() Cache {
 		c.ExpiryProcessing(v)
 	}
 	//logs.Warning("Housekeep " + strconv.Itoa(len(c.keys)) + " complete")
-	logs.Information("Cache", c.Stat())
+	logs.Cache("Housekeeping", c.Stat())
 	return c
 }
 
@@ -61,7 +61,7 @@ func (c Cache) Add(key string, val interface{}) Cache {
 		c.used[key] = true
 		//fmt.Printf("c.payload: %v\n", c.payload)
 		//fmt.Printf("c.expiry[key]: %v\n", c.expiry[key])
-		logs.Information("Cache", c.Stat())
+		logs.Cache("Status", c.Stat())
 	}
 
 	//fmt.Printf("val: %v\n", val)
@@ -89,7 +89,7 @@ func (c Cache) OK(key string) bool {
 
 func (c Cache) ExpiryProcessing(key string) (Cache, bool) {
 	if time.Now().After(c.expiry[key]) {
-		logs.Warning("Cache Expiry: " + key + c.expiry[key].String())
+		logs.Cache("Expiry: "+key+c.expiry[key].String(), c.Stat())
 		delete(c.content, key)
 		delete(c.expiry, key)
 		delete(c.used, key)
@@ -97,7 +97,7 @@ func (c Cache) ExpiryProcessing(key string) (Cache, bool) {
 		c.payload = c.payload - 1
 		return c, true
 	}
-	logs.Information("Cache", c.Stat())
+	logs.Cache("Status", c.Stat())
 	return c, false
 }
 
@@ -124,14 +124,17 @@ func (c Cache) Start() Cache {
 	c.payload = 0
 	c.keys = make(map[string]string)
 
-	cm_val := StringToInt(ApplicationProperties.Get("cache_maxsize"))
+	//fmt.Printf("ApplicationProperties.Get_Property(\"cachemaxsize\"): %v\n", ApplicationProperties.Get_Property("cachemaxsize"))
+
+	cm_val := StringToInt(ApplicationProperties.Get_Property("cachemaxsize"))
 	if cm_val > 0 {
 		c.maxsize = cm_val
 	} else {
 		c.maxsize = 1000
 	}
 	//logs.Information("Start Cache MaxSize", strconv.Itoa(c.maxsize))
-	cl_val := StringToInt(ApplicationProperties.Get("cache_life"))
+	//fmt.Printf("ApplicationProperties.Get_Property(\"cachelife\"): %v\n", ApplicationProperties.Get_Property("cachelife"))
+	cl_val := StringToInt(ApplicationProperties.Get_Property("cachelife"))
 	if cl_val > 0 {
 		c.life = cl_val
 	} else {
@@ -139,7 +142,7 @@ func (c Cache) Start() Cache {
 	}
 	//logs.Information("Start Cache Life", strconv.Itoa(c.life))
 	//fmt.Printf("cache: %v\n", cache)
-	logs.Information("Start Cache", c.Stat())
+	logs.Cache("Start", c.Stat())
 	return c
 }
 
@@ -164,7 +167,7 @@ func (c Cache) Stat() string {
 	// 	fmt.Printf("k: %v, t: %v\n", k, t)
 	// }
 	//fmt.Printf("len(c.expiry): %v\n", z)
-	return fmt.Sprintf("Cache Status: %v/%v %vsecs", len(c.content), c.maxsize, c.life)
+	return fmt.Sprintf("%v/%v %vsecs", len(c.content), c.maxsize, c.life)
 }
 
 func remove(s []string, r string) []string {

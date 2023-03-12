@@ -3,7 +3,6 @@ package application
 import (
 	"database/sql"
 	"encoding/gob"
-	"fmt"
 	"html/template"
 	"net/http"
 	"net/url"
@@ -53,12 +52,17 @@ func PageTitle(pageTitle string, pageSubTitle string) string {
 	pt := dao.Translate("Page", pageTitle)
 	pst := dao.Translate("Action", pageSubTitle)
 	appName := core.ApplicationName()
+	chip := " - "
+	companyName := core.ApplicationCompanyName()
+	if len(companyName) > 0 {
+		companyName = companyName + chip
+	}
 	if len(appName) == 0 {
 		appName = "Application Name"
 	}
-	pageTitle = appName + core.Character_Break + pt
+	pageTitle = companyName + appName + chip + pt
 	if len(pst) > 0 {
-		pageTitle = appName + core.Character_Break + pt + core.Character_Break + pst
+		pageTitle = companyName + appName + chip + pst + core.Character_Break + pt
 	}
 
 	return pageTitle
@@ -168,13 +172,13 @@ func firstDir(input_url string) string {
 
 func NextTemplate(source string, action string, defaultTemplate string) string {
 	logs.Warning("NextTemplate: " + source + " " + action + " " + defaultTemplate)
-	nextTemplate, err := dao.Data_Get(source, action, dm.Data_Category_NextAction)
-	fmt.Printf("err: %v\n", err)
-	fmt.Printf("nextTemplate: %v\n", nextTemplate)
+	nextTemplate, _ := dao.Data_Get(source, action, dm.Data_Category_NextAction)
+	//fmt.Printf("err: %v\n", err)
+	//fmt.Printf("nextTemplate: %v\n", nextTemplate)
 	if nextTemplate == "" {
-		fmt.Printf("defaultTemplate: %v\n", defaultTemplate)
+		//fmt.Printf("defaultTemplate: %v\n", defaultTemplate)
 		return defaultTemplate
 	}
-	fmt.Printf("nextTemplate: %v\n", nextTemplate)
+	//fmt.Printf("nextTemplate: %v\n", nextTemplate)
 	return nextTemplate
 }

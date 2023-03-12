@@ -1,0 +1,7 @@
+dataID,class,field,value,category
+U3lzdGVtLUVtcHR5X1Jlc291cmNlLVNldHRpbmcuUnVsZS5TdGF0ZQ==,System,Empty_Resource,--,Setting.Rule.State
+RmVhdHVyZS1TYXZlLVNldHRpbmcuTmV4dC5BY3Rpb24=,Feature,Save,/FeatureByEstimationSession/?EstimationSessionID={{!ID}},Setting.Next.Action
+T3JpZ2luLUFjY291bnRNYW5hZ2VyX1Jlc291cmNlX0ZpbHRlci1TZXR0aW5nLlJ1bGUuRmlsdGVy,Origin,AccountManager_Resource_Filter,"class IN ('HEPR','PROD')",Setting.Rule.Filter
+T3JpZ2luLVByb2plY3RNYW5hZ2VyX1Jlc291cmNlX0ZpbHRlci1TZXR0aW5nLlJ1bGUuRmlsdGVy,Origin,ProjectManager_Resource_Filter,"class IN ('PRMG','HEDV')",Setting.Rule.Filter
+UHJvamVjdC1Qcm9qZWN0TWFuYWdlcl9SZXNvdXJjZV9GaWx0ZXItU2V0dGluZy5SdWxlLkZpbHRlcg==,Project,ProjectManager_Resource_Filter,"class IN ('PRMG','HEDV')",Setting.Rule.Filter
+Q29uZmlnSW1wb3J0RXhwb3J0LUFjdGlvbi1EYXRhLlN0YXRl,ConfigImportExport,Action,Export,Data.State

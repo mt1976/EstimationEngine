@@ -73,8 +73,8 @@ func Feature_ObjectValidation_impl(iAction string, iId string, iRec dm.Feature) 
 			mTXT_4 = fmt.Sprintf(mTXT_4, iRec.Name, iRec.ApproverResource)
 			mSBJ := Translate("AuditMessage", "Feature Approved - %s")
 			mSBJ = fmt.Sprintf(mSBJ, iRec.Name)
-			SendMailToResource(iRec.ApproverResource, mSBJ, mTXT_4)
-			SendMailToResource(iRec.ProjectManagerResource, mSBJ, mTXT_4)
+			Resource_SendMail(iRec.ApproverResource, mSBJ, mTXT_4)
+			Resource_SendMail(iRec.ProjectManagerResource, mSBJ, mTXT_4)
 		}
 
 	case GET:

@@ -27,7 +27,7 @@
                 </div>
                 <div class="col d-flex justify-content-end">
                     <div class="btn-group float-right" style="margin-bottom:1rem;">
-                        <button type="submit" class="btn btn-primary" method="get" formaction="/EstimationSessionAction_Edit/?EstimationSessionID={{.EstimationSessionID}}&EstimationStateID={{.EstimationStateID}}"  title="Action Estimation Session {{.EstimationSessionID}}"><i class="fas fa-angle-double-right me-2"></i>Action</button>
+                        {{/* <button type="submit" class="btn btn-primary" method="get" formaction="/EstimationSessionAction_Edit/?EstimationSessionID={{.EstimationSessionID}}&EstimationStateID={{.EstimationStateID}}"  title="Action Estimation Session {{.EstimationSessionID}}"><i class="fas fa-angle-double-right me-2"></i>Action</button> */}}
                         <button type="submit" class="btn btn-warning" method="get" formaction="/EstimationSessionEdit/?EstimationSessionID={{.EstimationSessionID}}"  title="Edit Estimation Session {{.EstimationSessionID}}"><i class="fas fa-pen me-2"></i>Edit</button>
                         <button id="print" type="button" class="btn btn-info" onclick="window.print()" title="Print Estimation Session {{.EstimationSessionID}}"><i class="fas fa-print me-2"></i>Print</button>
                         <button type="button" class="btn btn-light" onclick="history.back()" title="Back"><i class="fas fa-times me-2" ></i>Cancel</button>
@@ -153,7 +153,7 @@
                         
                             <input type="text" class="form-control" id="ProjectState" aria-describedby="ProjectStateHelp" placeholder="" disabled value="{{.ProjectState}}" data-mdb-input-mask=""></input>
                         
-                        <label class="form-label" for="ProjectState">Project State</label>
+                        <label class="form-label" for="ProjectState">Project Status</label>
                         
                     </div>
                 
@@ -231,8 +231,70 @@
         
         </div></div>
 
+            <h4 class="text-muted">Links</h4>
+                <div class="row mb-3"  >
+                <div class="col">
+                        <a href="{{.FreshDeskURI}}">
+                   
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="FDID" aria-describedby="FDIDHelp" placeholder="" value="{{.FreshdeskID}}" data-mdb-input-mask="" disabled></input>
+                        
+                        <label class="form-label" for="FDID">FreshDesk</label>
+                        
+                    </div>
+                 </a>          
+                </div>
+                
+                <div class="col">
 
-            <h4 class="text-muted">Estimation</h4>
+                    <a href="{{.ADOURI}}">
+                    <div class="form-outline">
+                        <input type="text" class="form-control" id="ADOID" aria-describedby="ADOIDHelp" placeholder="" value="{{.AdoID}}" data-mdb-input-mask="" disabled></input>
+                        <label class="form-label" for="ADOID">Dev Ops</label>
+
+                    </div>
+                    </a>
+            
+                </div>
+      
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="TrackerID" aria-describedby="TrackerIDHelp" placeholder="" disabled value="{{.TrackerID}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="TrackerID">RSC/NC No.</label>
+                        
+                    </div>
+                
+                </div>
+      
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="EstRef" aria-describedby="EstRefHelp" placeholder="" disabled value="{{.EstRef}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="EstRef">EstRef</label>
+                        
+                    </div>
+                
+                </div>
+        
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <input type="text" class="form-control" id="ExtRef" aria-describedby="ExtRefHelp" placeholder="" disabled value="{{.ExtRef}}" data-mdb-input-mask=""></input>
+                        
+                        <label class="form-label" for="ExtRef">ExtRef</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
+
+            <h4 class="text-muted">Estimation/Quotation</h4>
             <div class="row mb-3"  >
                 
                 <div class="col" hidden>
@@ -298,7 +360,7 @@
                     <tr><td class="text-left text-primary">Implementation</td><td>{{.ImpDays}}</td><td>{{.CCY}} {{.ImpCost}}</td></tr>
                     <tr><td class="text-left text-primary">UAT Support <sup>**</sup></td><td>{{.UatDays}}</td><td>{{.CCY}} {{.UatCost}}</td></tr>
                     <tr><td class="text-left text-primary">Project Management</td><td>{{.MgtDays}}</td><td>{{.CCY}} {{.MgtCost}}</td></tr>
-                    <tr><td class="text-left text-primary">Release</td><td>{{.RelDays}}</td><td>{{.CCY}} {{.RelCost}}</td></tr>
+                    <tr><td class="text-left text-primary">Release(s)<small class="text-muted"> x {{.Releases}}</small></td><td>{{.RelDays}}</td><td>{{.CCY}} {{.RelCost}}</td></tr>
                 </tbody>
                 <tfoot class="bg-corporate-light">
                     <tr><td class="text-left  fw-bolder fs-6">TOTAL</td><td class="fw-bolder ">{{.EffortTotal}}</td><td  class="fw-bolder">{{.CCY}} {{.Total}}</td></tr>
@@ -317,7 +379,7 @@
                     <th>Cost Estimate <sup>*</sup></th>
                 </tr>
                 </thead>
-                <tbody class="bg-corporate-light">
+                <tbody class="bg-corporate-light fw-bolder ">
                     <tr><td class="text-left text-primary">Pre RSC</td><td>{{.ReqDays}}</td><td>{{.CCY}} {{.RegCost}}</td></tr>
                 </tbody>
             </table>
@@ -378,87 +440,8 @@ Please note this estimate is valid for 14 days from Date Issued. After this date
         
         </div></div>
 
-            <h4 class="text-muted">Links</h2>
-<div class="row mb-3"  >
-                <div class="col">
-                        <a href="{{.FreshDeskURI}}">
-                   
-                    <div class="form-outline">
-                        <input type="text" class="form-control" id="FDID" aria-describedby="FDIDHelp" placeholder="" value="{{.FreshdeskID}}" data-mdb-input-mask="" disabled></input>
-                        
-                        <label class="form-label" for="FDID">FreshDesk</label>
-                        
-                    </div>
-                 </a>          
-                </div>
-                
-                <div class="col">
 
-                    <a href="{{.ADOURI}}">
-                    <div class="form-outline">
-                        <input type="text" class="form-control" id="ADOID" aria-describedby="ADOIDHelp" placeholder="" value="{{.AdoID}}" data-mdb-input-mask="" disabled></input>
-                        <label class="form-label" for="ADOID">Dev Ops</label>
-
-                    </div>
-                    </a>
-            
-                </div>
-      
-                <div class="col">
-                
-                    <div class="form-outline">
-                        
-                            <input type="text" class="form-control" id="TrackerID" aria-describedby="TrackerIDHelp" placeholder="" disabled value="{{.TrackerID}}" data-mdb-input-mask=""></input>
-                        
-                        <label class="form-label" for="TrackerID">RSC/NC No.</label>
-                        
-                    </div>
-                
-                </div>
-      
-                <div class="col">
-                
-                    <div class="form-outline">
-                        
-                            <input type="text" class="form-control" id="EstRef" aria-describedby="EstRefHelp" placeholder="" disabled value="{{.EstRef}}" data-mdb-input-mask=""></input>
-                        
-                        <label class="form-label" for="EstRef">EstRef</label>
-                        
-                    </div>
-                
-                </div>
-        
-                <div class="col">
-                
-                    <div class="form-outline">
-                        
-                            <input type="text" class="form-control" id="ExtRef" aria-describedby="ExtRefHelp" placeholder="" disabled value="{{.ExtRef}}" data-mdb-input-mask=""></input>
-                        
-                        <label class="form-label" for="ExtRef">ExtRef</label>
-                        
-                    </div>
-                
-                </div>
-            </div>
-            <h4 class="text-muted">Activity</H4>
-
-
-             
-
-             
-            <div class="row mb-3"  >
-                <div class="col">
-                
-                    <div class="form-outline">
-                        
-                            <textarea class="form-control" id="Activity" name="Activity" aria-describedby="ActivityHelp" placeholder=""  disabled value="{{.Activity}}"  data-mdb-input-mask="" rows="10" maxlength="255">{{.Activity}}</textarea>
-                        
-                        <label class="form-label" for="Activity">Activity</label>
-                        
-                    </div>
-                
-                </div>
-            </div>
+   
              
         
              
@@ -603,6 +586,40 @@ Please note this estimate is valid for 14 days from Date Issued. After this date
           
             
         </div>
+            <div class="accordion-flush" id="activityInformation">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button
+            class="accordion-button btn-sm"
+            type="button"
+            data-mdb-toggle="collapse"
+            data-mdb-target="#collapseActivity"
+            aria-expanded="true"
+            aria-controls="collapseActivity"
+            style="padding-bottom: .75rem; padding-right: 2rem; padding-left: 2rem;">
+            <i class="fas fa-heartbeat fa-fw me-2 text-muted"></i><span class="text-muted">Activity Information</span>
+          </button>
+        </h2>
+        <div id="collapseActivity" class="accordion-collapse collapse" aria-labelledby="headingOne" data-mdb-parent="#activityInformation">
+          <div class="accordion-body" style="padding-left: 2rem;padding-right: 2rem;padding-top: .5rem;">
+            
+              <div class="h4">Activity</div>
+
+                  <div class="row mb-3" readonly="true"  ><div class="col">
+            
+                <div class="form-outline">
+                  
+                  <textarea class="form-control {{.Activity_props.MsgType}}" id="Activity" name="Activity" aria-describedby="ActivityHelp" placeholder="" readonly="true"  value="{{.Activity}}"  data-mdb-input-mask="" rows="10" maxlength="255">{{.Activity}}</textarea>
+                  
+                  <label class="form-label" for="Activity" readonly="true">Activity</label>
+                  <div class="{{.Activity_props.MsgFeedBackType}}">{{.Activity_props.MsgMessage}}</div>
+                </div>
+            
+            </div></div>
+            </div>
+          </div>
+      </div>
+    </div>
         {{template "audit" .}}
     </div>
 </form>

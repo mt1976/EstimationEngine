@@ -8,7 +8,7 @@
         {
           "MenuID": "23f8dae3-0740-49d9-a74b-d31b590c41f3",
           "MenuText": "Origin",
-          "MenuGlyph": "fas fa-building",
+          "MenuGlyph": "fas fa-landmark",
           "MenuHREF": "/OriginList",
           "MenuOnClick": "",
           "MenuTextClass": "text-primary"
@@ -23,7 +23,7 @@
         },
         {
           "MenuID": "e375bb8f-b2e6-4247-b080-b08437da9b3d",
-          "MenuText": "Estimation Session",
+          "MenuText": "Estimation",
           "MenuGlyph": "fas fa-calculator",
           "MenuHREF": "/EstimationSessionList",
           "MenuOnClick": "",

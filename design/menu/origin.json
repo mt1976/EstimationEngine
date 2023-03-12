@@ -1,8 +1,8 @@
 
    '{
-      "MenuID": "2551c2e5-007f-45af-b6b5-2b435f8f2c8c",
+      "MenuID": "a36abbd1-6bf8-4d00-a0e6-bb3c90a7c3f4",
       "MenuText": "Origin",
-      "MenuGlyph": "fas fa-building",
+      "MenuGlyph": "fas fa-landmark",
       "MenuHREF": "/OriginList",
       "MenuOnClick": "",
       "MenuTextClass": ""

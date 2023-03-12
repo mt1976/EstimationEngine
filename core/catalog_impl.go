@@ -1,8 +1,6 @@
 package core
 
 import (
-	"fmt"
-
 	logs "github.com/mt1976/ebEstimates/logs"
 )
 
@@ -30,12 +28,12 @@ func (c Catalog) Generate() Catalog {
 }
 
 func (c Catalog) AddRoute(id string, path string, descr string, query string, src string) Catalog {
-	logs.Information("Adding Route: ", id+" "+path+" "+descr+" "+query+" "+src)
+	//logs.Information("Adding Route: ", id+" "+path+" "+descr+" "+query+" "+src)
 	var catalogItem = CatalogItem{ID: id, Path: path, Descr: descr, Query: query, Source: src}
 	c.Items = append(c.Items, catalogItem)
 	//	fmt.Printf("c: %v\n", c)
-	c.ListRoutes()
-	fmt.Printf("len(c.Items): %v\n", len(c.Items))
+	//c.ListRoutes()
+	//fmt.Printf("len(c.Items): %v\n", len(c.Items))
 
 	//	fmt.Printf("c.Items[0].ID: %v\n", c.Items[0].ID)
 	//	fmt.Printf("c.Items[1].ID: %v\n", c.Items[1].ID)
@@ -43,8 +41,8 @@ func (c Catalog) AddRoute(id string, path string, descr string, query string, sr
 }
 
 func (c Catalog) ListRoutes() {
-	xx := len(c.Items)
-	fmt.Printf("no items: %v\n", xx)
+	//xx := len(c.Items)
+	//fmt.Printf("no items: %v\n", xx)
 	for _, k := range c.Items {
 		logs.Catalog(k.ID, k.Path, k.Query, k.Source)
 	}

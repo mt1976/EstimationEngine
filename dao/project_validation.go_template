@@ -16,7 +16,7 @@ import (
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
 	// Template Generator   : Einsteinium [r5-23.01.23]
-	// Date & Time		    : 10/03/2023 at 19:54:35
+	// Date & Time		    : 10/03/2023 at 22:42:32
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in project_impl.go
@@ -70,6 +70,13 @@ import (
 	// Project_OriginName_validate_impl provides validation/actions for OriginName
 	func Project_OriginName_validate_impl (iAction string, iId string, iValue string, iRec dm.Project, fP dm.FieldProperties) (string, dm.FieldProperties) {
 		logs.Callout("Project", dm.Project_OriginName_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Project_OriginKey_validate_impl provides validation/actions for OriginKey
+	func Project_OriginKey_validate_impl (iAction string, iId string, iValue string, iRec dm.Project, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Project", dm.Project_OriginKey_scrn, VAL +"-"+iAction, iId)
 		return iValue,fP
 	}
 

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 10/03/2023 at 19:54:34
+// Date & Time		    : 12/03/2023 at 12:24:54
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -93,7 +93,7 @@ func Origin_GetByID(id string) (int, dm.Origin, error) {
 
 func Origin_PostGet(originItem dm.Origin,id string) dm.Origin {
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 12/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	originItem.StateID,originItem.StateID_props = Origin_StateID_validate_impl (GET,id,originItem.StateID,originItem,originItem.StateID_props)
 	originItem.Code,originItem.Code_props = Origin_Code_validate_impl (GET,id,originItem.Code,originItem,originItem.Code_props)
@@ -101,8 +101,10 @@ func Origin_PostGet(originItem dm.Origin,id string) dm.Origin {
 	originItem.Rate,originItem.Rate_props = Origin_Rate_validate_impl (GET,id,originItem.Rate,originItem,originItem.Rate_props)
 	originItem.StartDate,originItem.StartDate_props = Origin_StartDate_validate_impl (GET,id,originItem.StartDate,originItem,originItem.StartDate_props)
 	originItem.NoActiveProjects,originItem.NoActiveProjects_props = Origin_NoActiveProjects_validate_impl (GET,id,originItem.NoActiveProjects,originItem,originItem.NoActiveProjects_props)
+	originItem.RateOnLoad,originItem.RateOnLoad_props = Origin_RateOnLoad_validate_impl (GET,id,originItem.RateOnLoad,originItem,originItem.RateOnLoad_props)
+	originItem.StatusOnLoad,originItem.StatusOnLoad_props = Origin_StatusOnLoad_validate_impl (GET,id,originItem.StatusOnLoad,originItem,originItem.StatusOnLoad_props)
 	// 
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 12/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return originItem
 }
@@ -184,7 +186,7 @@ func Origin_StoreProcess(r dm.Origin, operator string) (dm.Origin,error) {
 func Origin_Validate(r dm.Origin) (dm.Origin, error) {
 	var err error
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 12/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.StateID,r.StateID_props = Origin_StateID_validate_impl (PUT,r.OriginID,r.StateID,r,r.StateID_props)
 	if r.StateID_props.MsgMessage != "" {
@@ -210,6 +212,14 @@ func Origin_Validate(r dm.Origin) (dm.Origin, error) {
 	if r.NoActiveProjects_props.MsgMessage != "" {
 		err = errors.New(r.NoActiveProjects_props.MsgMessage)
 	}
+	r.RateOnLoad,r.RateOnLoad_props = Origin_RateOnLoad_validate_impl (PUT,r.OriginID,r.RateOnLoad,r,r.RateOnLoad_props)
+	if r.RateOnLoad_props.MsgMessage != "" {
+		err = errors.New(r.RateOnLoad_props.MsgMessage)
+	}
+	r.StatusOnLoad,r.StatusOnLoad_props = Origin_StatusOnLoad_validate_impl (PUT,r.OriginID,r.StatusOnLoad,r,r.StatusOnLoad_props)
+	if r.StatusOnLoad_props.MsgMessage != "" {
+		err = errors.New(r.StatusOnLoad_props.MsgMessage)
+	}
 	// 
 
 	
@@ -234,6 +244,8 @@ func origin_Save(r dm.Origin,usr string) error {
     r.Rate,err = Origin_Rate_OnStore_impl (r.Rate,r,usr)
     r.StartDate,err = Origin_StartDate_OnStore_impl (r.StartDate,r,usr)
     r.NoActiveProjects,err = Origin_NoActiveProjects_OnStore_impl (r.NoActiveProjects,r,usr)
+    r.RateOnLoad,err = Origin_RateOnLoad_OnStore_impl (r.RateOnLoad,r,usr)
+    r.StatusOnLoad,err = Origin_StatusOnLoad_OnStore_impl (r.StatusOnLoad,r,usr)
 
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
@@ -249,7 +261,7 @@ logs.Storing("Origin",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 12/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Origin_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Origin_OriginID_sql, r.OriginID)
@@ -277,9 +289,11 @@ logs.Storing("Origin",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Origin_ProjectManager_sql, r.ProjectManager)
 	ts = addData(ts, dm.Origin_AccountManager_sql, r.AccountManager)
 	
+	
+	
 		
 	// 
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 12/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := das.INSERT + das.INTO + Origin_QualifiedName
@@ -314,7 +328,7 @@ func origin_Fetch(tsql string) (int, []dm.Origin, dm.Origin, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 12/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Origin_SYSId_sql, "0")
 	   recItem.OriginID  = get_String(rec, dm.Origin_OriginID_sql, "")
@@ -343,6 +357,8 @@ func origin_Fetch(tsql string) (int, []dm.Origin, dm.Origin, error) {
 	   recItem.AccountManager  = get_String(rec, dm.Origin_AccountManager_sql, "")
 	
 	
+	
+	
 	// If there are fields below, create the methods in dao\Origin_adaptor.go
 	   recItem.StateID  = Origin_StateID_OnFetch_impl (recItem)
 	   recItem.Code  = Origin_Code_OnFetch_impl (recItem)
@@ -350,8 +366,10 @@ func origin_Fetch(tsql string) (int, []dm.Origin, dm.Origin, error) {
 	   recItem.Rate  = Origin_Rate_OnFetch_impl (recItem)
 	   recItem.StartDate  = Origin_StartDate_OnFetch_impl (recItem)
 	   recItem.NoActiveProjects  = Origin_NoActiveProjects_OnFetch_impl (recItem)
+	   recItem.RateOnLoad  = Origin_RateOnLoad_OnFetch_impl (recItem)
+	   recItem.StatusOnLoad  = Origin_StatusOnLoad_OnFetch_impl (recItem)
 	// 
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 12/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -381,7 +399,7 @@ func Origin_New() (int, []dm.Origin, dm.Origin, error) {
 	
 
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 12/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.StateID,r.StateID_props = Origin_StateID_validate_impl (NEW,r.OriginID,r.StateID,r,r.StateID_props)
 	r.Code,r.Code_props = Origin_Code_validate_impl (NEW,r.OriginID,r.Code,r,r.Code_props)
@@ -389,9 +407,11 @@ func Origin_New() (int, []dm.Origin, dm.Origin, error) {
 	r.Rate,r.Rate_props = Origin_Rate_validate_impl (NEW,r.OriginID,r.Rate,r,r.Rate_props)
 	r.StartDate,r.StartDate_props = Origin_StartDate_validate_impl (NEW,r.OriginID,r.StartDate,r,r.StartDate_props)
 	r.NoActiveProjects,r.NoActiveProjects_props = Origin_NoActiveProjects_validate_impl (NEW,r.OriginID,r.NoActiveProjects,r,r.NoActiveProjects_props)
+	r.RateOnLoad,r.RateOnLoad_props = Origin_RateOnLoad_validate_impl (NEW,r.OriginID,r.RateOnLoad,r,r.RateOnLoad_props)
+	r.StatusOnLoad,r.StatusOnLoad_props = Origin_StatusOnLoad_validate_impl (NEW,r.OriginID,r.StatusOnLoad,r,r.StatusOnLoad_props)
 	
 	// 
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 12/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

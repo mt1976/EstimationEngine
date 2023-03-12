@@ -401,7 +401,7 @@ func ApplicationSQLSchemaParent() string {
 }
 
 func GetSQLSchema(in Configuration) string {
-	return ApplicationPropertiesDB.Get("schema")
+	return ApplicationPropertiesDB.Get_DBProperty("schema")
 }
 
 func ApplicationSQLSchema() string {
@@ -498,6 +498,9 @@ func AddActivity_ForUser(auditField string, auditMessage string, ownerIdentity s
 		return dateTimeNow + seperator + ownerIdentity + seperator + auditMessage
 	}
 	out := auditField + "\n" + dateTimeNow + seperator + ownerIdentity + seperator + auditMessage
+
+	logs.Audit(dateTimeNow + seperator + ownerIdentity + seperator + auditMessage)
+
 	return out
 }
 

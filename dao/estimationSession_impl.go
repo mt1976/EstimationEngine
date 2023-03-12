@@ -106,11 +106,11 @@ func StatusChangeMessage(action string, val string, rec dm.EstimationSession, us
 	// Send a notification to the Project Manager
 	//_, pm, _ := Resource_GetByCode(thisPM)
 	//core.SendEmail(pm.Email, pm.Name, MSG_TXT, MSG_BODY)
-	SendMailToResource(thisPM, MSG_TXT, MSG_BODY)
+	Resource_SendMail(thisPM, MSG_TXT, MSG_BODY)
 	// Send a notification to the Account Manager
 	//_, am, _ := Resource_GetByCode(origin.AccountManager)
 	//core.SendEmail(am.Email, am.Name, MSG_TXT, MSG_BODY)
-	SendMailToResource(origin.AccountManager, MSG_TXT, MSG_BODY)
+	Resource_SendMail(origin.AccountManager, MSG_TXT, MSG_BODY)
 	return "", nil
 }
 
@@ -145,9 +145,9 @@ func emailRelatedResources(rec dm.EstimationSession) (string, error) {
 	// core.SendEmail(pmEmail.Email, pmEmail.Name, MSG_SUBJECT, MSG_BODY)
 	// core.SendEmail(pdEmail.Email, pdEmail.Name, MSG_SUBJECT, MSG_BODY)
 	// core.SendEmail(acEmail.Email, acEmail.Name, MSG_SUBJECT, MSG_BODY)
-	SendMailToResource(pmEmail, MSG_SUBJECT, MSG_BODY)
-	SendMailToResource(pdEmail, MSG_SUBJECT, MSG_BODY)
-	SendMailToResource(acEmail, MSG_SUBJECT, MSG_BODY)
+	Resource_SendMail(pmEmail, MSG_SUBJECT, MSG_BODY)
+	Resource_SendMail(pdEmail, MSG_SUBJECT, MSG_BODY)
+	Resource_SendMail(acEmail, MSG_SUBJECT, MSG_BODY)
 
 	return "", nil
 }

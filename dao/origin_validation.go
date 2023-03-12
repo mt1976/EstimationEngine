@@ -1,6 +1,7 @@
 package dao
 
 import (
+	"fmt"
 	"time"
 
 	"github.com/mt1976/ebEstimates/core"
@@ -26,13 +27,16 @@ import (
 // ----------------------------------------------------------------
 // Origin_ObjectValidation_impl provides Record/Object level validation for Origin
 func Origin_ObjectValidation_impl(iAction string, iId string, iRec dm.Origin) (dm.Origin, string, error) {
-	logs.Callout("Origin", "ObjectValidation", VAL+"-"+iAction, iId)
+	logs.Warning("Origin ObjectValidation " + VAL + "-" + iAction + " " + iId)
+	fmt.Printf("iRec: %v\n", iRec)
 	switch iAction {
 	case VAL:
 
 	case NEW:
 
 	case PUT:
+
+		// TODO check for duplicate code
 
 	case GET:
 
@@ -57,6 +61,19 @@ func Origin_StateID_validate_impl(iAction string, iId string, iValue string, iRe
 // Origin_Code_validate_impl provides validation/actions for Code
 func Origin_Code_validate_impl(iAction string, iId string, iValue string, iRec dm.Origin, fP dm.FieldProperties) (string, dm.FieldProperties) {
 	logs.Callout("Origin", dm.Origin_Code_scrn, VAL+"-"+iAction, iId)
+	if iValue == "" || len(iValue) < 3 {
+		fP = SetFieldError(fP, "code must be at least 3 characters")
+	}
+	if iValue != "" && len(iValue) > 4 {
+		fP = SetFieldError(fP, "code must be no more than 4 characters")
+	}
+	if iRec.SYSCreated == "" {
+		// New record
+		no, _, _ := Origin_GetByCode(iValue)
+		if no > 0 {
+			fP = SetFieldError(fP, "code must be unique")
+		}
+	}
 	return iValue, fP
 }
 
@@ -95,3 +112,9 @@ func Origin_StartDate_validate_impl(iAction string, iId string, iValue string, i
 // ----------------------------------------------------------------
 // Automatically generated code ends here
 // ----------------------------------------------------------------
+// ----------------------------------------------------------------
+// Origin_StatusOnLoad_validate_impl provides validation/actions for StatusOnLoad
+func Origin_StatusOnLoad_validate_impl(iAction string, iId string, iValue string, iRec dm.Origin, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("Origin", dm.Origin_StatusOnLoad_scrn, VAL+"-"+iAction, iId)
+	return iValue, fP
+}

@@ -198,3 +198,126 @@ func FeatureNew_EstimateEffort_OnFetch_impl(rec dm.FeatureNew) string {
 // ----------------------------------------------------------------
 // Automatically generated code ends here
 // ----------------------------------------------------------------
+// ----------------------------------------------------------------
+// BEGIN FeatureNew_EstimationSessionName
+// BEGIN FeatureNew_EstimationSessionName
+// BEGIN FeatureNew_EstimationSessionName
+// ----------------------------------------------------------------
+// FeatureNew_EstimationSessionName_OnStore_impl provides the implementation for the callout
+func FeatureNew_EstimationSessionName_OnStore_impl(fieldval string, rec dm.FeatureNew, usr string) (string, error) {
+	logs.Callout("FeatureNew", dm.FeatureNew_EstimationSessionName_scrn, PUT, rec.ID)
+	return fieldval, nil
+}
+
+// ----------------------------------------------------------------
+// FeatureNew_EstimationSessionName_OnFetch_impl provides the implementation for the callout
+func FeatureNew_EstimationSessionName_OnFetch_impl(rec dm.FeatureNew) string {
+	logs.Callout("FeatureNew", dm.FeatureNew_EstimationSessionName_scrn, GET, rec.ID)
+	return rec.EstimationSessionName
+}
+
+// ----------------------------------------------------------------
+// END   FeatureNew_EstimationSessionName
+// END   FeatureNew_EstimationSessionName
+// END   FeatureNew_EstimationSessionName
+// ----------------------------------------------------------------
+
+// ----------------------------------------------------------------
+// BEGIN FeatureNew_ProjectID
+// BEGIN FeatureNew_ProjectID
+// BEGIN FeatureNew_ProjectID
+// ----------------------------------------------------------------
+// FeatureNew_ProjectID_OnStore_impl provides the implementation for the callout
+func FeatureNew_ProjectID_OnStore_impl(fieldval string, rec dm.FeatureNew, usr string) (string, error) {
+	logs.Callout("FeatureNew", dm.FeatureNew_ProjectID_scrn, PUT, rec.ID)
+	return fieldval, nil
+}
+
+// ----------------------------------------------------------------
+// FeatureNew_ProjectID_OnFetch_impl provides the implementation for the callout
+func FeatureNew_ProjectID_OnFetch_impl(rec dm.FeatureNew) string {
+	logs.Callout("FeatureNew", dm.FeatureNew_ProjectID_scrn, GET, rec.ID)
+	return rec.ProjectID
+}
+
+// ----------------------------------------------------------------
+// END   FeatureNew_ProjectID
+// END   FeatureNew_ProjectID
+// END   FeatureNew_ProjectID
+// ----------------------------------------------------------------
+
+// ----------------------------------------------------------------
+// BEGIN FeatureNew_OriginCode
+// BEGIN FeatureNew_OriginCode
+// BEGIN FeatureNew_OriginCode
+// ----------------------------------------------------------------
+// FeatureNew_OriginCode_OnStore_impl provides the implementation for the callout
+func FeatureNew_OriginCode_OnStore_impl(fieldval string, rec dm.FeatureNew, usr string) (string, error) {
+	logs.Callout("FeatureNew", dm.FeatureNew_OriginCode_scrn, PUT, rec.ID)
+	return fieldval, nil
+}
+
+// ----------------------------------------------------------------
+// FeatureNew_OriginCode_OnFetch_impl provides the implementation for the callout
+func FeatureNew_OriginCode_OnFetch_impl(rec dm.FeatureNew) string {
+	logs.Callout("FeatureNew", dm.FeatureNew_OriginCode_scrn, GET, rec.ID)
+	return rec.OriginCode
+}
+
+// ----------------------------------------------------------------
+// END   FeatureNew_OriginCode
+// END   FeatureNew_OriginCode
+// END   FeatureNew_OriginCode
+// ----------------------------------------------------------------
+
+// ----------------------------------------------------------------
+// BEGIN FeatureNew_OriginID
+// BEGIN FeatureNew_OriginID
+// BEGIN FeatureNew_OriginID
+// ----------------------------------------------------------------
+// FeatureNew_OriginID_OnStore_impl provides the implementation for the callout
+func FeatureNew_OriginID_OnStore_impl(fieldval string, rec dm.FeatureNew, usr string) (string, error) {
+	logs.Callout("FeatureNew", dm.FeatureNew_OriginID_scrn, PUT, rec.ID)
+	return fieldval, nil
+}
+
+// ----------------------------------------------------------------
+// FeatureNew_OriginID_OnFetch_impl provides the implementation for the callout
+func FeatureNew_OriginID_OnFetch_impl(rec dm.FeatureNew) string {
+	logs.Callout("FeatureNew", dm.FeatureNew_OriginID_scrn, GET, rec.ID)
+	return rec.OriginID
+}
+
+// ----------------------------------------------------------------
+// END   FeatureNew_OriginID
+// END   FeatureNew_OriginID
+// END   FeatureNew_OriginID
+// ----------------------------------------------------------------
+
+// ----------------------------------------------------------------
+// BEGIN FeatureNew_ProjectName
+// BEGIN FeatureNew_ProjectName
+// BEGIN FeatureNew_ProjectName
+// ----------------------------------------------------------------
+// FeatureNew_ProjectName_OnStore_impl provides the implementation for the callout
+func FeatureNew_ProjectName_OnStore_impl(fieldval string, rec dm.FeatureNew, usr string) (string, error) {
+	logs.Callout("FeatureNew", dm.FeatureNew_ProjectName_scrn, PUT, rec.ID)
+	return fieldval, nil
+}
+
+// ----------------------------------------------------------------
+// FeatureNew_ProjectName_OnFetch_impl provides the implementation for the callout
+func FeatureNew_ProjectName_OnFetch_impl(rec dm.FeatureNew) string {
+	logs.Callout("FeatureNew", dm.FeatureNew_ProjectName_scrn, GET, rec.ID)
+	return rec.ProjectName
+}
+
+// ----------------------------------------------------------------
+// END   FeatureNew_ProjectName
+// END   FeatureNew_ProjectName
+// END   FeatureNew_ProjectName
+// ----------------------------------------------------------------
+
+// ----------------------------------------------------------------
+// Automatically generated code ends here
+// ----------------------------------------------------------------

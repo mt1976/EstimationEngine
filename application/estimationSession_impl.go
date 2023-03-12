@@ -160,14 +160,14 @@ func EstimationSession_HandlerFormatted(w http.ResponseWriter, r *http.Request) 
 
 	var totEffort float64
 
-	reqDays, _ := strconv.ParseFloat(rD.ReqDays, 64)
+	//reqDays, _ := strconv.ParseFloat(rD.ReqDays, 64)
 	impDays, _ := strconv.ParseFloat(rD.ImpDays, 64)
 
 	uatDays, _ := strconv.ParseFloat(rD.UatDays, 64)
 	pmDays, _ := strconv.ParseFloat(rD.MgtDays, 64)
 	relDays, _ := strconv.ParseFloat(rD.RelDays, 64)
 
-	totEffort = 0.00 + uatDays + pmDays + relDays + reqDays + impDays
+	totEffort = 0.00 + uatDays + pmDays + relDays + impDays
 
 	pageDetail.EffortTotal = strconv.FormatFloat(totEffort, 'f', 2, 64)
 
@@ -264,6 +264,8 @@ func EstimationSession_HandlerSetup(w http.ResponseWriter, r *http.Request) {
 	}
 
 	pageDetail.Name = proj.Name
+	pageDetail.OriginCode = proj.OriginID
+	pageDetail.OriginKey = dao.CacheRead(dm.Origin_Name, proj.OriginID).(dm.Origin).OriginID
 
 	ExecuteTemplate(dm.EstimationSession_TemplateSetup, w, r, pageDetail)
 }

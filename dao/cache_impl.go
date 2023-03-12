@@ -41,7 +41,7 @@ func cache_Get_From_DB(object string, id string) interface{} {
 	//logs.Warning("cache_Get_From_DB " + object + " " + id)
 	switch object {
 	case dm.Origin_Name:
-		logs.Information("cache_Get_From_DB", "Origin_GetByCode: "+id)
+		//logs.Information("cache_Get_From_DB", "Origin_GetByCode: "+id)
 		_, origin, err := Origin_GetByCode(id)
 		//fmt.Printf("no: %v\n", no)
 		//fmt.Printf("origin: %v\n", origin)

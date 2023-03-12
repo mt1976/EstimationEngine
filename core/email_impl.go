@@ -69,5 +69,6 @@ func SendEmail(to string, name string, subject string, body string) {
 		}
 	} else {
 		logs.Warning("Email not sent to " + to + " - " + subject)
+		logs.Warning("Email Body : " + MSG_BODY)
 	}
 }

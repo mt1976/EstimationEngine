@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 10/03/2023 at 19:54:35
+// Date & Time		    : 10/03/2023 at 22:42:32
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -334,6 +334,7 @@ func project_PopulatePage(rD dm.Project, pageDetail dm.Project_Page) dm.Project_
 	// Add Pseudo/Extra Fields
 	pageDetail.NoEstimationSessions = rD.NoEstimationSessions
 	pageDetail.OriginName = rD.OriginName
+	pageDetail.OriginKey = rD.OriginKey
 	// Enrichment Fields 
 	 
 	pageDetail.OriginID_lookup = dao.Origin_GetLookup()
@@ -377,6 +378,7 @@ func project_PopulatePage(rD dm.Project, pageDetail dm.Project_Page) dm.Project_
 	pageDetail.Notes_props = rD.Notes_props
 	pageDetail.NoEstimationSessions_props = rD.NoEstimationSessions_props
 	pageDetail.OriginName_props = rD.OriginName_props
+	pageDetail.OriginKey_props = rD.OriginKey_props
 	return pageDetail
 }
 //project_DataFromRequest is used process the content of an HTTP Request and return an instance of an Project
@@ -414,5 +416,6 @@ func project_DataFromRequest(r *http.Request) dm.Project {
 		item.Notes = r.FormValue(dm.Project_Notes_scrn)
 		item.NoEstimationSessions = r.FormValue(dm.Project_NoEstimationSessions_scrn)
 		item.OriginName = r.FormValue(dm.Project_OriginName_scrn)
+		item.OriginKey = r.FormValue(dm.Project_OriginKey_scrn)
 	return item
 }

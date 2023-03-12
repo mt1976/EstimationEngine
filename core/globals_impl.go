@@ -71,10 +71,33 @@ func (c *Configuration) Load(inPropertiesFile string) map[string]string {
 	c.properties = getPropertiesFromFile(inPropertiesFile)
 	return c.properties
 }
-func (c *Configuration) Get(inProperty string) string {
-	logs.Information("Get", inProperty)
-	return c.properties[inProperty]
+func (c *Configuration) Get(kind string, inProperty string) string {
+	//logs.Information("Get", inProperty)
+	low_var := strings.ToLower(inProperty)
+	kind = strings.ToUpper(kind)
+	rtn_var := c.properties[low_var]
+	env_var := kind + "_" + strings.ToUpper(inProperty)
+
+	logs.Accessing("Configuration GET : " + inProperty + " " + env_var)
+
+	xxx := os.Getenv(env_var)
+	if xxx != "" {
+		logs.Override(inProperty, rtn_var, env_var, xxx)
+		return xxx
+	}
+	return rtn_var
 }
+
+func (c *Configuration) Get_DBProperty(inProperty string) string {
+	//logs.Information("Get", inProperty)
+	return c.Get("DB", inProperty)
+}
+
+func (c *Configuration) Get_Property(inProperty string) string {
+	//logs.Information("Get", inProperty)
+	return c.Get("APP", inProperty)
+}
+
 func (c *Configuration) Override(inProperty string, inValue string) {
 	c.properties[inProperty] = inValue
 }
@@ -82,35 +105,13 @@ func (c *Configuration) Override(inProperty string, inValue string) {
 // GetApplicationProperty returns the value of a property configuration for the application
 // GetApplicationProperty checks the environment variable APP_<PROPERTY> first and if not found uses the value in the properties file
 func GetApplicationProperty(inProperty string) string {
-	low_var := strings.ToLower(inProperty)
-	rtn_var := ApplicationProperties.Get(low_var)
-	env_var := "APP_" + strings.ToUpper(inProperty)
-
-	//logs.Accessing("GetApplicationProperty : " + inProperty + " " + env_var)
-
-	xxx := os.Getenv(env_var)
-	if xxx != "" {
-		logs.Override(inProperty, rtn_var, env_var, xxx)
-		return xxx
-	}
-
-	//logs.Information("GetApplicationProperty", rtn_var)
-	return rtn_var
+	return ApplicationProperties.Get_Property(inProperty)
 }
 
 // GetDatabaseProperty returns the value of a property configuration for the database
 // GetDatabaseProperty checks the environment variable DB_<PROPERTY> first and if not found uses the value in the properties file
 func GetDatabaseProperty(inProperty string) string {
-	//logs.Accessing("GetDatabaseProperty : " + inProperty)
-	rtn_var := ApplicationPropertiesDB.Get(inProperty)
-	env_var := "DB_" + strings.ToUpper(inProperty)
-	logs.Accessing("GetDBProperty : " + inProperty + " " + env_var)
-	xxx := os.Getenv(env_var)
-	if xxx != "" {
-		logs.Override(inProperty, rtn_var, env_var, xxx)
-		return xxx
-	}
-	return rtn_var
+	return ApplicationPropertiesDB.Get_DBProperty(inProperty)
 }
 
 // Load a Properties File

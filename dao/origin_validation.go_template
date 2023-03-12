@@ -16,7 +16,7 @@ import (
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
 	// Template Generator   : Einsteinium [r5-23.01.23]
-	// Date & Time		    : 10/03/2023 at 19:54:34
+	// Date & Time		    : 12/03/2023 at 12:24:54
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in origin_impl.go
@@ -84,6 +84,20 @@ import (
 	// Origin_NoActiveProjects_validate_impl provides validation/actions for NoActiveProjects
 	func Origin_NoActiveProjects_validate_impl (iAction string, iId string, iValue string, iRec dm.Origin, fP dm.FieldProperties) (string, dm.FieldProperties) {
 		logs.Callout("Origin", dm.Origin_NoActiveProjects_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Origin_RateOnLoad_validate_impl provides validation/actions for RateOnLoad
+	func Origin_RateOnLoad_validate_impl (iAction string, iId string, iValue string, iRec dm.Origin, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Origin", dm.Origin_RateOnLoad_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Origin_StatusOnLoad_validate_impl provides validation/actions for StatusOnLoad
+	func Origin_StatusOnLoad_validate_impl (iAction string, iId string, iValue string, iRec dm.Origin, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Origin", dm.Origin_StatusOnLoad_scrn, VAL +"-"+iAction, iId)
 		return iValue,fP
 	}
 

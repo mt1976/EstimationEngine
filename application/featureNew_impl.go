@@ -72,6 +72,12 @@ func FeatureNew_HandlerSetup(w http.ResponseWriter, r *http.Request) {
 	pageDetail.ProfileDefault = proj.ProfileID
 	pageDetail.ProfileSelected = proj.ProfileID
 
+	pageDetail.ProjectName = proj.Name
+	pageDetail.ProjectID = proj.ProjectID
+	pageDetail.OriginCode = proj.OriginID
+	pageDetail.OriginID = dao.CacheRead(dm.Origin_Name, proj.OriginID).(dm.Origin).OriginID
+	pageDetail.EstimationSessionName = es.Name
+
 	nextTemplate := NextTemplate("FeatureNew", "Setup", dm.FeatureNew_TemplateSetup)
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)

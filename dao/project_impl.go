@@ -15,6 +15,7 @@ package dao
 
 import (
 	core "github.com/mt1976/ebEstimates/core"
+	"github.com/mt1976/ebEstimates/logs"
 
 	dm "github.com/mt1976/ebEstimates/datamodel"
 )
@@ -43,4 +44,30 @@ func Project_GetList_ByCustomerAndName(originID string, name string) (int, dm.Pr
 		return count, dm.Project{}, nil
 	}
 	return count, projectList[0], nil
+}
+
+func Project_UpdateRate(project dm.Project, rate float64) error {
+
+	//Get project status
+	stateID := project.ProjectStateID
+	_, state, err := ProjectState_GetByCode(stateID)
+	if state.IsLocked != core.TRUE {
+
+		newRate := core.FloatToString(rate)
+		project.Notes = core.AddActivity(project.Notes, "Rate updated to "+newRate+" from "+project.DefaultRate)
+
+		//Update the rate
+		project.DefaultRate = newRate
+		project.ProjectRate = newRate
+
+		_, err := Project_StoreSystem(project)
+		if err != nil {
+			logs.Warning("Project_UpdateRate " + err.Error())
+		}
+		if state.Notify == core.TRUE {
+			// TODO: Send email to Account Manager
+			// TODO: Send email to Project Manager
+		}
+	}
+	return err
 }

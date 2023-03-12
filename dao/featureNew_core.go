@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 10/03/2023 at 19:54:33
+// Date & Time		    : 10/03/2023 at 23:09:40
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -66,6 +66,11 @@ func FeatureNew_PostGet(featurenewItem dm.FeatureNew,id string) dm.FeatureNew {
 	featurenewItem.DeveloperResource,featurenewItem.DeveloperResource_props = FeatureNew_DeveloperResource_validate_impl (GET,id,featurenewItem.DeveloperResource,featurenewItem,featurenewItem.DeveloperResource_props)
 	featurenewItem.AnalystResource,featurenewItem.AnalystResource_props = FeatureNew_AnalystResource_validate_impl (GET,id,featurenewItem.AnalystResource,featurenewItem,featurenewItem.AnalystResource_props)
 	featurenewItem.EstimateEffort,featurenewItem.EstimateEffort_props = FeatureNew_EstimateEffort_validate_impl (GET,id,featurenewItem.EstimateEffort,featurenewItem,featurenewItem.EstimateEffort_props)
+	featurenewItem.EstimationSessionName,featurenewItem.EstimationSessionName_props = FeatureNew_EstimationSessionName_validate_impl (GET,id,featurenewItem.EstimationSessionName,featurenewItem,featurenewItem.EstimationSessionName_props)
+	featurenewItem.ProjectID,featurenewItem.ProjectID_props = FeatureNew_ProjectID_validate_impl (GET,id,featurenewItem.ProjectID,featurenewItem,featurenewItem.ProjectID_props)
+	featurenewItem.OriginCode,featurenewItem.OriginCode_props = FeatureNew_OriginCode_validate_impl (GET,id,featurenewItem.OriginCode,featurenewItem,featurenewItem.OriginCode_props)
+	featurenewItem.OriginID,featurenewItem.OriginID_props = FeatureNew_OriginID_validate_impl (GET,id,featurenewItem.OriginID,featurenewItem,featurenewItem.OriginID_props)
+	featurenewItem.ProjectName,featurenewItem.ProjectName_props = FeatureNew_ProjectName_validate_impl (GET,id,featurenewItem.ProjectName,featurenewItem,featurenewItem.ProjectName_props)
 	// 
 	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
@@ -154,6 +159,26 @@ func FeatureNew_Validate(r dm.FeatureNew) (dm.FeatureNew, error) {
 	if r.EstimateEffort_props.MsgMessage != "" {
 		err = errors.New(r.EstimateEffort_props.MsgMessage)
 	}
+	r.EstimationSessionName,r.EstimationSessionName_props = FeatureNew_EstimationSessionName_validate_impl (PUT,r.ID,r.EstimationSessionName,r,r.EstimationSessionName_props)
+	if r.EstimationSessionName_props.MsgMessage != "" {
+		err = errors.New(r.EstimationSessionName_props.MsgMessage)
+	}
+	r.ProjectID,r.ProjectID_props = FeatureNew_ProjectID_validate_impl (PUT,r.ID,r.ProjectID,r,r.ProjectID_props)
+	if r.ProjectID_props.MsgMessage != "" {
+		err = errors.New(r.ProjectID_props.MsgMessage)
+	}
+	r.OriginCode,r.OriginCode_props = FeatureNew_OriginCode_validate_impl (PUT,r.ID,r.OriginCode,r,r.OriginCode_props)
+	if r.OriginCode_props.MsgMessage != "" {
+		err = errors.New(r.OriginCode_props.MsgMessage)
+	}
+	r.OriginID,r.OriginID_props = FeatureNew_OriginID_validate_impl (PUT,r.ID,r.OriginID,r,r.OriginID_props)
+	if r.OriginID_props.MsgMessage != "" {
+		err = errors.New(r.OriginID_props.MsgMessage)
+	}
+	r.ProjectName,r.ProjectName_props = FeatureNew_ProjectName_validate_impl (PUT,r.ID,r.ProjectName,r,r.ProjectName_props)
+	if r.ProjectName_props.MsgMessage != "" {
+		err = errors.New(r.ProjectName_props.MsgMessage)
+	}
 	// 
 
 	
@@ -183,6 +208,11 @@ func featurenew_Save(r dm.FeatureNew,usr string) error {
     r.DeveloperResource,err = FeatureNew_DeveloperResource_OnStore_impl (r.DeveloperResource,r,usr)
     r.AnalystResource,err = FeatureNew_AnalystResource_OnStore_impl (r.AnalystResource,r,usr)
     r.EstimateEffort,err = FeatureNew_EstimateEffort_OnStore_impl (r.EstimateEffort,r,usr)
+    r.EstimationSessionName,err = FeatureNew_EstimationSessionName_OnStore_impl (r.EstimationSessionName,r,usr)
+    r.ProjectID,err = FeatureNew_ProjectID_OnStore_impl (r.ProjectID,r,usr)
+    r.OriginCode,err = FeatureNew_OriginCode_OnStore_impl (r.OriginCode,r,usr)
+    r.OriginID,err = FeatureNew_OriginID_OnStore_impl (r.OriginID,r,usr)
+    r.ProjectName,err = FeatureNew_ProjectName_OnStore_impl (r.ProjectName,r,usr)
 
 logs.Storing("FeatureNew",fmt.Sprintf("%v", r))
 
@@ -230,6 +260,11 @@ func FeatureNew_New() (int, []dm.FeatureNew, dm.FeatureNew, error) {
 	r.DeveloperResource,r.DeveloperResource_props = FeatureNew_DeveloperResource_validate_impl (NEW,r.ID,r.DeveloperResource,r,r.DeveloperResource_props)
 	r.AnalystResource,r.AnalystResource_props = FeatureNew_AnalystResource_validate_impl (NEW,r.ID,r.AnalystResource,r,r.AnalystResource_props)
 	r.EstimateEffort,r.EstimateEffort_props = FeatureNew_EstimateEffort_validate_impl (NEW,r.ID,r.EstimateEffort,r,r.EstimateEffort_props)
+	r.EstimationSessionName,r.EstimationSessionName_props = FeatureNew_EstimationSessionName_validate_impl (NEW,r.ID,r.EstimationSessionName,r,r.EstimationSessionName_props)
+	r.ProjectID,r.ProjectID_props = FeatureNew_ProjectID_validate_impl (NEW,r.ID,r.ProjectID,r,r.ProjectID_props)
+	r.OriginCode,r.OriginCode_props = FeatureNew_OriginCode_validate_impl (NEW,r.ID,r.OriginCode,r,r.OriginCode_props)
+	r.OriginID,r.OriginID_props = FeatureNew_OriginID_validate_impl (NEW,r.ID,r.OriginID,r,r.OriginID_props)
+	r.ProjectName,r.ProjectName_props = FeatureNew_ProjectName_validate_impl (NEW,r.ID,r.ProjectName,r,r.ProjectName_props)
 	
 	// 
 	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 

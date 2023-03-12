@@ -1,5 +1,10 @@
 package dao
 
+import (
+	dm "github.com/mt1976/ebEstimates/datamodel"
+	logs "github.com/mt1976/ebEstimates/logs"
+)
+
 // ----------------------------------------------------------------
 // Automatically generated  "/dao/estimationsession.go"
 // ----------------------------------------------------------------
@@ -14,3 +19,16 @@ package dao
 // ----------------------------------------------------------------
 
 // The following functions should be created in estimationsession_impl.go
+
+// EstimationSession_OriginKey_OnStore_impl provides the implementation for the callout
+func EstimationSession_OriginKey_OnStore_impl(fieldval string, rec dm.EstimationSession, usr string) (string, error) {
+	logs.Callout("EstimationSession", dm.EstimationSession_OriginKey_scrn, PUT, rec.EstimationSessionID)
+	return fieldval, nil
+}
+
+// ----------------------------------------------------------------
+// EstimationSession_OriginKey_OnFetch_impl provides the implementation for the callout
+func EstimationSession_OriginKey_OnFetch_impl(rec dm.EstimationSession) string {
+	logs.Callout("EstimationSession", dm.EstimationSession_OriginKey_scrn, GET, rec.EstimationSessionID)
+	return rec.OriginKey
+}

@@ -8,8 +8,8 @@
         <nav aria-label="breadcrumb" class="align-items-center"> 
           <ol class="breadcrumb  h-100 align-items-center">
                   <li class="breadcrumb-item lead"><a href="/home"><span class="text-primary"><i class="fas fa-home fa-sm me-2"></i></span>Home</a></li>
-          <li class="breadcrumb-item lead"><a href="/ProjectsByOrigin/?OriginID={{.OriginCode}}">ORIGINCODE</a></li>
-          <li class="breadcrumb-item lead"><a href="/EstimationSessionByProject/?ProjectID=e4500735-f591-4b0c-9458-f6601d14f5da">PROJECTNAME</a></li>
+          <li class="breadcrumb-item lead"><a href="/ProjectsByOrigin/?OriginID={{.OriginKey}}">{{.OriginCode}}</a></li>
+          <li class="breadcrumb-item lead"><a href="/EstimationSessionByProject/?ProjectID={{.ProjectID}}">{{.Name}}</a></li>
             <li class="breadcrumb-item lead active"><span class="text-primary">New</span></li>
 
 
@@ -66,7 +66,7 @@
             </div>
                   
           </div></div>
-            <div class="row mb-3"  ><div class="col">
+            <div class="row mb-3"  ><div class="col" hidden>
               <input type="text" class="form-control" id="ProjectID" name="ProjectID" aria-describedby="ProjectIDHelp" placeholder=""  value="{{.ProjectID}}" required data-mdb-input-mask="" hidden>
 
             <select id="ProjectIDDisplay" name="ProjectIDDisplay" class="select" data-mdb-filter="true" disabled >
@@ -96,45 +96,7 @@
             <label class="form-label select-label" for="EstimationStateID" >Status</label>
             <div class="{{.EstimationStateID_props.MsgFeedBackType}}">{{.EstimationStateID_props.MsgMessage}}</div>
                   
-          </div></div>
-
-
-       <h4 class="text-muted">Comments</h4>
-        <div class="row mb-3"  ><div class="col">
-        
-            <div class="form-outline">
-              
-              <textarea class="form-control {{.Comments_props.MsgType}}" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder=""   value="{{.Comments}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Comments}}</textarea>
-              
-              <label class="form-label" for="Notes" >Comments</label>
-              <div class="{{.Comments_props.MsgFeedBackType}}">{{.Comments_props.MsgMessage}}</div>
-            </div>
-        
-        </div></div>
-                            <h4 class="text-muted">Resources</h4>
-            <div class="row mb-3"  ><div class="col">
-        
-            
-            <select id="ProjectManager" name="ProjectManager" class="select" data-mdb-filter="true"  >
-                {{range .ProjectManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
-            </select>
-            <label class="form-label select-label" for="ProjectManager" >Project Manager</label>
-            <div class="{{.ProjectManager_props.MsgFeedBackType}}">{{.ProjectManager_props.MsgMessage}}</div>
-            
-        
-        </div><div class="col">
-        
-            
-            <select id="ProductManager" name="ProductManager" class="select" data-mdb-filter="true"  >
-                {{range .ProductManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProductManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
-            </select>
-            <label class="form-label select-label" for="ProductManager" >Product Manager</label>
-            <div class="{{.ProductManager_props.MsgFeedBackType}}">{{.ProductManager_props.MsgMessage}}</div>
-            
-        
-        </div></div>
-       <h4 class="text-muted">Releases</h4>
-        <div class="row mb-3"  ><div class="col">
+          </div><div class="col">
         
             <div class="form-outline">
               
@@ -145,6 +107,31 @@
             </div>
         
         </div></div>
+
+    
+                            <h4 class="text-muted">Resources</h4>
+            <div class="row mb-3"  ><div class="col">
+        
+            
+            <select id="ProjectManager" name="ProjectManager" class="select" data-mdb-filter="true"  >
+                {{range .ProjectManager_lookup}}<option value="{{if .ID }}{{.ID}}{{else}}--{{end}}" {{if eq .ID $.ProjectManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{if .Name }}{{.Name}}{{else}}--{{end}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ProjectManager" >Project Manager</label>
+            <div class="{{.ProjectManager_props.MsgFeedBackType}}">{{.ProjectManager_props.MsgMessage}}</div>
+            
+        
+        </div><div class="col">
+        
+            
+            <select id="ProductManager" name="ProductManager" class="select" data-mdb-filter="true"  >
+                {{range .ProductManager_lookup}}<option value="{{if .ID }}{{.ID}}{{else}}--{{end}}" {{if eq .ID $.ProductManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{if .Name }}{{.Name}}{{else}}--{{end}}</option>{{end}}
+            </select>
+            <label class="form-label select-label" for="ProductManager" >Product Manager</label>
+            <div class="{{.ProductManager_props.MsgFeedBackType}}">{{.ProductManager_props.MsgMessage}}</div>
+            
+        
+        </div></div>
+
 
 
 
@@ -356,7 +343,18 @@
           </div></div>
 
 
-
+   <h4 class="text-muted">Comments</h4>
+        <div class="row mb-3"  ><div class="col">
+        
+            <div class="form-outline">
+              
+              <textarea class="form-control {{.Comments_props.MsgType}}" id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder=""   value="{{.Comments}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Comments}}</textarea>
+              
+              <label class="form-label" for="Notes" >Comments</label>
+              <div class="{{.Comments_props.MsgFeedBackType}}">{{.Comments_props.MsgMessage}}</div>
+            </div>
+        
+        </div></div>
 
             
               

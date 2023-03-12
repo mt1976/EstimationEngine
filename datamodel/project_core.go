@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 10/03/2023 at 19:54:35
+// Date & Time		    : 10/03/2023 at 22:42:32
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -49,6 +49,7 @@ type Project struct {
 	Notes       string
 	NoEstimationSessions       string
 	OriginName       string
+	OriginKey       string
 	//
 	// Field Properties
 	//
@@ -82,6 +83,7 @@ type Project struct {
 	Notes_props FieldProperties
 	NoEstimationSessions_props FieldProperties
 	OriginName_props FieldProperties
+	OriginKey_props FieldProperties
 	//
  	// Any lookups will be added below
 	//
@@ -160,6 +162,7 @@ const (
 	Project_Notes_sql   = "notes" // Notes is a String
 	Project_NoEstimationSessions_sql   = "NoEstimationSessions" // NoEstimationSessions is a String
 	Project_OriginName_sql   = "OriginName" // OriginName is a String
+	Project_OriginKey_sql   = "OriginKey" // OriginKey is a String
 ///
 	/// Application Field Definitions
 	///
@@ -193,6 +196,7 @@ const (
 	Project_Notes_scrn   = "Notes" // Notes is a String
 	Project_NoEstimationSessions_scrn   = "NoEstimationSessions" // NoEstimationSessions is a String
 	Project_OriginName_scrn   = "OriginName" // OriginName is a String
+	Project_OriginKey_scrn   = "OriginKey" // OriginKey is a String
 ///
 )
 
@@ -266,6 +270,7 @@ type Project_Page struct {
 	Notes         string
 	NoEstimationSessions         string
 	OriginName         string
+	OriginKey         string
 	/// Field Properties
 	SYSId_props     FieldProperties
 	ProjectID_props     FieldProperties
@@ -297,6 +302,7 @@ type Project_Page struct {
 	Notes_props     FieldProperties
 	NoEstimationSessions_props     FieldProperties
 	OriginName_props     FieldProperties
+	OriginKey_props     FieldProperties
 	/// Lookups
 	OriginID_lookup    []Lookup_Item
 	ProjectStateID_lookup    []Lookup_Item

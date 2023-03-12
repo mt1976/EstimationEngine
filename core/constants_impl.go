@@ -67,7 +67,7 @@ const (
 	Character_Heart        = "🫀"
 	Character_Poke         = "👉"
 	Character_Time         = "🕒"
-	Character_Break        = "≫"
+	Character_Break        = " "
 	Character_Monitor      = "👁"
 	Character_Aquirer      = "🛒"
 	Character_Dispatcher   = "📡"

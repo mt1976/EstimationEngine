@@ -11,7 +11,7 @@
         <nav aria-label="breadcrumb" class="align-items-center"> 
           <ol class="breadcrumb  h-100 align-items-center">
             <li class="breadcrumb-item lead"><a href="/home"><span class="text-primary"><i class="fas fa-home fa-sm me-2"></i></span>Home</a></li>
-            <li class="breadcrumb-item lead"><a href="/ProjectsByOrigin/?OriginID={{.OriginID}}">{{.OriginName}}</a></li>
+            <li class="breadcrumb-item lead"><a href="/ProjectsByOrigin/?OriginID={{.OriginKey}}">{{.OriginName}}</a></li>
                         <li class="breadcrumb-item lead active"><span class="text-primary">{{.Name}}</span></li>
           </ol>
         </nav>
@@ -98,7 +98,7 @@
             <select id="ProfileID" name="ProfileID" class="select" data-mdb-filter="true"  >
                 {{range .ProfileID_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProfileID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
             </select>
-            <label class="form-label select-label  text-danger" for="ProfileID" >Estimation Profile</label>
+            <label class="form-label select-label  text-danger" for="ProfileID" >Activity Profile</label>
             <div class="{{.ProfileID_props.MsgFeedBackType}}">{{.ProfileID_props.MsgMessage}}</div>
             
         
@@ -143,7 +143,7 @@
         
             
             <select id="ProjectEngineer" name="ProjectEngineer" class="select" data-mdb-filter="true"  >
-                {{range .ProjectEngineer_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectEngineer}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                {{range .ProjectEngineer_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectEngineer}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{if .Name }}--{{else}}{{.Name}}{{end}}</option>{{end}}
             </select>
             <label class="form-label select-label" for="ProjectEngineer" >Lead Engineer</label>
             <div class="{{.ProjectEngineer_props.MsgFeedBackType}}">{{.ProjectEngineer_props.MsgMessage}}</div>
@@ -153,7 +153,7 @@
         
             
             <select id="ProjectAnalyst" name="ProjectAnalyst" class="select" data-mdb-filter="true"  >
-                {{range .ProjectAnalyst_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectAnalyst}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                {{range .ProjectAnalyst_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectAnalyst}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{if .Name }}--{{else}}{{.Name}}{{end}}</option>{{end}}
             </select>
             <label class="form-label select-label" for="ProjectAnalyst" >Lead Analyst</label>
             <div class="{{.ProjectAnalyst_props.MsgFeedBackType}}">{{.ProjectAnalyst_props.MsgMessage}}</div>
@@ -163,7 +163,7 @@
         
             
             <select id="ProjectManager" name="ProjectManager" class="select" data-mdb-filter="true"  >
-                {{range .ProjectManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                {{range .ProjectManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{if .Name }}--{{else}}{{.Name}}{{end}}</option>{{end}}
             </select>
             <label class="form-label select-label" for="ProjectManager" >Project Manager</label>
             <div class="{{.ProjectManager_props.MsgFeedBackType}}">{{.ProjectManager_props.MsgMessage}}</div>
@@ -361,6 +361,40 @@
       
 
       
+    </div>
+      <div class="accordion-flush" id="notesInformation">
+      <div class="accordion-item">
+        <h2 class="accordion-header" id="headingOne">
+          <button
+            class="accordion-button btn-sm"
+            type="button"
+            data-mdb-toggle="collapse"
+            data-mdb-target="#collapseNotes"
+            aria-expanded="true"
+            aria-controls="collapseNotes"
+            style="padding-bottom: .75rem; padding-right: 2rem; padding-left: 2rem;">
+            <i class="fas fa-heartbeat fa-fw me-2 text-muted"></i><span class="text-muted">Activity Information</span>
+          </button>
+        </h2>
+        <div id="collapseNotes" class="accordion-collapse collapse" aria-labelledby="headingOne" data-mdb-parent="#notesInformation">
+          <div class="accordion-body" style="padding-left: 2rem;padding-right: 2rem;padding-top: .5rem;">
+            
+              <div class="h4">Activity</div>
+
+                  <div class="row mb-3" readonly="true"  ><div class="col">
+            
+                <div class="form-outline">
+                  
+                  <textarea class="form-control " id="Notes" name="Notes" aria-describedby="NotesHelp" placeholder="" readonly="true"  value="{{.Notes}}"  data-mdb-input-mask="" rows="10" maxlength="255">{{.Notes}}</textarea>
+                  
+                  <label class="form-label" for="Notes" readonly="true">Activity</label>
+                  <div class="{{.Notes_props.MsgFeedBackType}}">{{.Notes_props.MsgMessage}}</div>
+                </div>
+            
+            </div></div>
+            </div>
+          </div>
+      </div>
     </div>
     {{template "audit" .}}
   </div>

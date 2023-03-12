@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 10/03/2023 at 19:54:35
+// Date & Time		    : 10/03/2023 at 22:42:32
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -99,6 +99,7 @@ func Project_PostGet(projectItem dm.Project,id string) dm.Project {
 	projectItem.Description,projectItem.Description_props = Project_Description_validate_impl (GET,id,projectItem.Description,projectItem,projectItem.Description_props)
 	projectItem.NoEstimationSessions,projectItem.NoEstimationSessions_props = Project_NoEstimationSessions_validate_impl (GET,id,projectItem.NoEstimationSessions,projectItem,projectItem.NoEstimationSessions_props)
 	projectItem.OriginName,projectItem.OriginName_props = Project_OriginName_validate_impl (GET,id,projectItem.OriginName,projectItem,projectItem.OriginName_props)
+	projectItem.OriginKey,projectItem.OriginKey_props = Project_OriginKey_validate_impl (GET,id,projectItem.OriginKey,projectItem,projectItem.OriginKey_props)
 	// 
 	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
@@ -200,6 +201,10 @@ func Project_Validate(r dm.Project) (dm.Project, error) {
 	if r.OriginName_props.MsgMessage != "" {
 		err = errors.New(r.OriginName_props.MsgMessage)
 	}
+	r.OriginKey,r.OriginKey_props = Project_OriginKey_validate_impl (PUT,r.ProjectID,r.OriginKey,r,r.OriginKey_props)
+	if r.OriginKey_props.MsgMessage != "" {
+		err = errors.New(r.OriginKey_props.MsgMessage)
+	}
 	// 
 
 	
@@ -222,6 +227,7 @@ func project_Save(r dm.Project,usr string) error {
     r.Description,err = Project_Description_OnStore_impl (r.Description,r,usr)
     r.NoEstimationSessions,err = Project_NoEstimationSessions_OnStore_impl (r.NoEstimationSessions,r,usr)
     r.OriginName,err = Project_OriginName_OnStore_impl (r.OriginName,r,usr)
+    r.OriginKey,err = Project_OriginKey_OnStore_impl (r.OriginKey,r,usr)
 
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
@@ -267,6 +273,7 @@ logs.Storing("Project",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Project_ProjectManager_sql, r.ProjectManager)
 	ts = addData(ts, dm.Project_Releases_sql, r.Releases)
 	ts = addData(ts, dm.Project_Notes_sql, r.Notes)
+	
 	
 	
 		
@@ -339,11 +346,13 @@ func project_Fetch(tsql string) (int, []dm.Project, dm.Project, error) {
 	
 	
 	
+	
 	// If there are fields below, create the methods in dao\Project_adaptor.go
 	   recItem.ProjectID  = Project_ProjectID_OnFetch_impl (recItem)
 	   recItem.Description  = Project_Description_OnFetch_impl (recItem)
 	   recItem.NoEstimationSessions  = Project_NoEstimationSessions_OnFetch_impl (recItem)
 	   recItem.OriginName  = Project_OriginName_OnFetch_impl (recItem)
+	   recItem.OriginKey  = Project_OriginKey_OnFetch_impl (recItem)
 	// 
 	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
@@ -381,6 +390,7 @@ func Project_New() (int, []dm.Project, dm.Project, error) {
 	r.Description,r.Description_props = Project_Description_validate_impl (NEW,r.ProjectID,r.Description,r,r.Description_props)
 	r.NoEstimationSessions,r.NoEstimationSessions_props = Project_NoEstimationSessions_validate_impl (NEW,r.ProjectID,r.NoEstimationSessions,r,r.NoEstimationSessions_props)
 	r.OriginName,r.OriginName_props = Project_OriginName_validate_impl (NEW,r.ProjectID,r.OriginName,r,r.OriginName_props)
+	r.OriginKey,r.OriginKey_props = Project_OriginKey_validate_impl (NEW,r.ProjectID,r.OriginKey,r,r.OriginKey_props)
 	
 	// 
 	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 

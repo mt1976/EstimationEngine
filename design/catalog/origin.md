@@ -6,7 +6,7 @@
 |Endpoint 	    |**/Origin...** [^1]|
 |Endpoint Query |**OriginID**|
 |REST API|**/API/Origin/**|
-Glyph|**fas fa-building** ()
+Glyph|**fas fa-landmark** ()
 Friendly Name|**Origin**|
 |For Project    |github.com/mt1976/ebEstimates/|
 
@@ -49,7 +49,7 @@ SQL Table Key | **originID**
 |**DocTypeID**|String|false|true|false|false|OL∀|DocType|DocType_DocTypeID||Y|docTypeID||false|false|false|text||
 |**Code**|String|false|true|false|true|||||H|code||true|true|false|text||
 |**FullName**|String|false|true|false|true|||||Y|fullName||false|true|false|text||
-|**Rate**|String|false|true|false|true|||||Y|rate||false|true|false|text||
+|**Rate**|String|false|true|false|true|||||Y|rate||false|true|false|number||
 |**Notes**|String|false|true|false|true|||||Y|notes||false|false|false|textarea||
 |**StartDate**|String|false|true|false|true|||||Y|startDate||false|true|false|date|yyyy-mm-dd|
 |**EndDate**|String|false|true|false|true|||||Y|endDate||false|false|false|date|yyyy-mm-dd|
@@ -68,7 +68,9 @@ SQL Table Key | **originID**
 |**Comments**|String|false|true|false|false|||||Y|comments||false|false|false|text||
 |**ProjectManager**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|projectManager||false|false|false|text||
 |**AccountManager**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|accountManager||false|false|false|text||
-|**NoActiveProjects**|String|false|false|true|true|||||N|||false|true|false|text||
+|**NoActiveProjects**|String|false|false|true|true|||||NH|||false|true|false|text||
+|**RateOnLoad**|String|false|false|true|true|||||NH|||false|true|false|text||
+|**StatusOnLoad**|String|false|false|true|true|||||NH|||false|true|false|text||
 
 
 ##  Artifacts Generated
@@ -92,7 +94,7 @@ SQL Table Key | **originID**
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **10/03/2023** at **19:54:34**
+Date & Time		     | **12/03/2023** at **12:24:54**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

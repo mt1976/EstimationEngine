@@ -9,7 +9,7 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 10/03/2023 at 19:54:32
+// Date & Time		    : 10/03/2023 at 22:53:29
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -86,6 +86,7 @@ type EstimationSession struct {
 	FreshDeskURI       string
 	ADOURI       string
 	NoActiveFeatures       string
+	OriginKey       string
 	//
 	// Field Properties
 	//
@@ -156,6 +157,7 @@ type EstimationSession struct {
 	FreshDeskURI_props FieldProperties
 	ADOURI_props FieldProperties
 	NoActiveFeatures_props FieldProperties
+	OriginKey_props FieldProperties
 	//
  	// Any lookups will be added below
 	//
@@ -270,6 +272,7 @@ const (
 	EstimationSession_FreshDeskURI_sql   = "FreshDeskURI" // FreshDeskURI is a String
 	EstimationSession_ADOURI_sql   = "ADOURI" // ADOURI is a String
 	EstimationSession_NoActiveFeatures_sql   = "NoActiveFeatures" // NoActiveFeatures is a String
+	EstimationSession_OriginKey_sql   = "OriginKey" // OriginKey is a String
 ///
 	/// Application Field Definitions
 	///
@@ -340,6 +343,7 @@ const (
 	EstimationSession_FreshDeskURI_scrn   = "FreshDeskURI" // FreshDeskURI is a String
 	EstimationSession_ADOURI_scrn   = "ADOURI" // ADOURI is a String
 	EstimationSession_NoActiveFeatures_scrn   = "NoActiveFeatures" // NoActiveFeatures is a String
+	EstimationSession_OriginKey_scrn   = "OriginKey" // OriginKey is a String
 ///
 )
 
@@ -450,6 +454,7 @@ type EstimationSession_Page struct {
 	FreshDeskURI         string
 	ADOURI         string
 	NoActiveFeatures         string
+	OriginKey         string
 	/// Field Properties
 	SYSId_props     FieldProperties
 	EstimationSessionID_props     FieldProperties
@@ -518,6 +523,7 @@ type EstimationSession_Page struct {
 	FreshDeskURI_props     FieldProperties
 	ADOURI_props     FieldProperties
 	NoActiveFeatures_props     FieldProperties
+	OriginKey_props     FieldProperties
 	/// Lookups
 	ProjectID_lookup    []Lookup_Item
 	EstimationStateID_lookup    []Lookup_Item

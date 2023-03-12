@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 10/03/2023 at 19:54:32
+// Date & Time		    : 10/03/2023 at 22:53:29
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -128,6 +128,7 @@ func EstimationSession_PostGet(estimationsessionItem dm.EstimationSession,id str
 	estimationsessionItem.FreshDeskURI,estimationsessionItem.FreshDeskURI_props = EstimationSession_FreshDeskURI_validate_impl (GET,id,estimationsessionItem.FreshDeskURI,estimationsessionItem,estimationsessionItem.FreshDeskURI_props)
 	estimationsessionItem.ADOURI,estimationsessionItem.ADOURI_props = EstimationSession_ADOURI_validate_impl (GET,id,estimationsessionItem.ADOURI,estimationsessionItem,estimationsessionItem.ADOURI_props)
 	estimationsessionItem.NoActiveFeatures,estimationsessionItem.NoActiveFeatures_props = EstimationSession_NoActiveFeatures_validate_impl (GET,id,estimationsessionItem.NoActiveFeatures,estimationsessionItem,estimationsessionItem.NoActiveFeatures_props)
+	estimationsessionItem.OriginKey,estimationsessionItem.OriginKey_props = EstimationSession_OriginKey_validate_impl (GET,id,estimationsessionItem.OriginKey,estimationsessionItem,estimationsessionItem.OriginKey_props)
 	// 
 	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
@@ -345,6 +346,10 @@ func EstimationSession_Validate(r dm.EstimationSession) (dm.EstimationSession, e
 	if r.NoActiveFeatures_props.MsgMessage != "" {
 		err = errors.New(r.NoActiveFeatures_props.MsgMessage)
 	}
+	r.OriginKey,r.OriginKey_props = EstimationSession_OriginKey_validate_impl (PUT,r.EstimationSessionID,r.OriginKey,r,r.OriginKey_props)
+	if r.OriginKey_props.MsgMessage != "" {
+		err = errors.New(r.OriginKey_props.MsgMessage)
+	}
 	// 
 
 	
@@ -396,6 +401,7 @@ func estimationsession_Save(r dm.EstimationSession,usr string) error {
     r.FreshDeskURI,err = EstimationSession_FreshDeskURI_OnStore_impl (r.FreshDeskURI,r,usr)
     r.ADOURI,err = EstimationSession_ADOURI_OnStore_impl (r.ADOURI,r,usr)
     r.NoActiveFeatures,err = EstimationSession_NoActiveFeatures_OnStore_impl (r.NoActiveFeatures,r,usr)
+    r.OriginKey,err = EstimationSession_OriginKey_OnStore_impl (r.OriginKey,r,usr)
 
 	r.SYSCreated = Audit_Update(r.SYSCreated, Audit_TimeStamp())
 	r.SYSCreatedBy = Audit_Update(r.SYSCreatedBy, usr)
@@ -455,6 +461,7 @@ logs.Storing("EstimationSession",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.EstimationSession_Approver_sql, r.Approver)
 	ts = addData(ts, dm.EstimationSession_IssueDate_sql, r.IssueDate)
 	ts = addData(ts, dm.EstimationSession_ExpiryDate_sql, r.ExpiryDate)
+	
 	
 	
 	
@@ -587,6 +594,7 @@ func estimationsession_Fetch(tsql string) (int, []dm.EstimationSession, dm.Estim
 	
 	
 	
+	
 	// If there are fields below, create the methods in dao\EstimationSession_adaptor.go
 	   recItem.EstimationSessionID  = EstimationSession_EstimationSessionID_OnFetch_impl (recItem)
 	   recItem.EstimationStateID  = EstimationSession_EstimationStateID_OnFetch_impl (recItem)
@@ -621,6 +629,7 @@ func estimationsession_Fetch(tsql string) (int, []dm.EstimationSession, dm.Estim
 	   recItem.FreshDeskURI  = EstimationSession_FreshDeskURI_OnFetch_impl (recItem)
 	   recItem.ADOURI  = EstimationSession_ADOURI_OnFetch_impl (recItem)
 	   recItem.NoActiveFeatures  = EstimationSession_NoActiveFeatures_OnFetch_impl (recItem)
+	   recItem.OriginKey  = EstimationSession_OriginKey_OnFetch_impl (recItem)
 	// 
 	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
@@ -687,6 +696,7 @@ func EstimationSession_New() (int, []dm.EstimationSession, dm.EstimationSession,
 	r.FreshDeskURI,r.FreshDeskURI_props = EstimationSession_FreshDeskURI_validate_impl (NEW,r.EstimationSessionID,r.FreshDeskURI,r,r.FreshDeskURI_props)
 	r.ADOURI,r.ADOURI_props = EstimationSession_ADOURI_validate_impl (NEW,r.EstimationSessionID,r.ADOURI,r,r.ADOURI_props)
 	r.NoActiveFeatures,r.NoActiveFeatures_props = EstimationSession_NoActiveFeatures_validate_impl (NEW,r.EstimationSessionID,r.NoActiveFeatures,r,r.NoActiveFeatures_props)
+	r.OriginKey,r.OriginKey_props = EstimationSession_OriginKey_validate_impl (NEW,r.EstimationSessionID,r.OriginKey,r,r.OriginKey_props)
 	
 	// 
 	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 

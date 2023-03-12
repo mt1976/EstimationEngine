@@ -110,3 +110,10 @@ func Project_OriginName_validate_impl(iAction string, iId string, iValue string,
 	logs.Callout("Project", dm.Project_OriginName_scrn, VAL+"-"+iAction, iId)
 	return iValue, fP
 }
+
+// ----------------------------------------------------------------
+// Project_OriginKey_validate_impl provides validation/actions for OriginKey
+func Project_OriginKey_validate_impl(iAction string, iId string, iValue string, iRec dm.Project, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("Project", dm.Project_OriginKey_scrn, VAL+"-"+iAction, iId)
+	return iValue, fP
+}
