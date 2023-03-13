@@ -82,7 +82,7 @@ SQL Table Key | **estimationSessionID**
 |**Comments**|String|false|true|false|true|||||Y|comments||false|false|false|textarea||
 |**ProjectManager**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|projectManager||false|false|false|text||
 |**ProductManager**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|productManager||false|false|false|text||
-|**Approver**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|approver||false|true|false|text||
+|**Approver**|String|false|true|false|true|OL|Resource|Resource_Code|Resource_Name|Y|approver||false|true|false|text||
 |**IssueDate**|String|false|true|false|true|||||Y|IssueDate||false|true|false|date|yyyy-mm-dd|
 |**ExpiryDate**|String|false|true|false|true|||||Y|ExpiryDate||false|true|false|date|yyyy-mm-dd|
 |**Origin**|String|false|false|true|false|||||N|||false|true|false|text||
@@ -134,7 +134,7 @@ SQL Table Key | **estimationSessionID**
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **10/03/2023** at **22:53:29**
+Date & Time		     | **13/03/2023** at **14:22:26**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

@@ -1,0 +1,5 @@
+dataID,class,field,value,category,migrate
+Q29uZmlnSW1wb3J0RXhwb3J0LUluX1BhdGgtU2V0dGluZy5QYXRo,ConfigImportExport,In_Path,/Volumes/External/matttownsend/Documents/GitHub/ebEstimates/data/in/ConfigImportExport/{{ENTITY}}/20230313_155939.csv,Setting.Path,true
+Q29uZmlnSW1wb3J0RXhwb3J0LU91dF9QYXRoLVNldHRpbmcuUGF0aA==,ConfigImportExport,Out_Path,/Volumes/External/matttownsend/Documents/GitHub/ebEstimates/data/out/ConfigImportExport,Setting.Path,true
+Q29uZmlnSW1wb3J0RXhwb3J0LVdoYXQtRGF0YS5TdGF0ZQ==,ConfigImportExport,What,ALL,Data.State,true
+Q29uZmlnSW1wb3J0RXhwb3J0LU1vZGUtRGF0YS5TdGF0ZQ==,ConfigImportExport,Mode,Trial,Data.State,true

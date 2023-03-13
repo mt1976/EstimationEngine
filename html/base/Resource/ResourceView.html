@@ -92,7 +92,7 @@
                 <div class="col">
                 
                   <select id="Class" name="Class" class="select" data-mdb-filter="true" disabled>
-                  {{range .Class_lookup}}<option value="{{.ID}}" {{if eq .ID $.Class}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  {{range .Class_lookup}}<option value="{{.ID}}" {{if eq .ID $.Class}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .Class}}selected{{end}} data-mdb-secondary-text=""></option>
                   </select>
                   <label class="form-label select-label" for="Class" disabled>Class</label>
                 
@@ -229,7 +229,7 @@
                 <div class="col">
                 
                   <select id="UserActive" name="UserActive" class="select" data-mdb-filter="true" disabled>
-                  {{range .UserActive_lookup}}<option value="{{.ID}}" {{if eq .ID $.UserActive}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  {{range .UserActive_lookup}}<option value="{{.ID}}" {{if eq .ID $.UserActive}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .UserActive}}selected{{end}} data-mdb-secondary-text=""></option>
                   </select>
                   <label class="form-label select-label" for="UserActive" disabled>UserActive</label>
                 

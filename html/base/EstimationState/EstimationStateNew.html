@@ -236,20 +236,30 @@
             <div class="row mb-3"  ><div class="col">
          
             <select id="IsLocked" name="IsLocked" class="select" data-mdb-filter="true"  >
-                {{range .IsLocked_lookup}}<option value="{{.ID}}" {{if eq .ID $.IsLocked}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                {{range .IsLocked_lookup}}<option value="{{.ID}}" {{if eq .ID $.IsLocked}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .IsLocked}}selected{{end}} data-mdb-secondary-text=""></option>
             </select>
             <label class="form-label select-label" for="IsLocked" >IsLocked</label>
-            <div class="{{.IsLocked_props.MsgFeedBackType}}">{{.IsLocked_props.MsgMessage}}</div>
+            <div class="text-danger small">{{.IsLocked_props.MsgMessage}}</div>
                   
           </div></div>
 
             <div class="row mb-3"  ><div class="col">
          
             <select id="Notify" name="Notify" class="select" data-mdb-filter="true"  >
-                {{range .Notify_lookup}}<option value="{{.ID}}" {{if eq .ID $.Notify}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                {{range .Notify_lookup}}<option value="{{.ID}}" {{if eq .ID $.Notify}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .Notify}}selected{{end}} data-mdb-secondary-text=""></option>
             </select>
             <label class="form-label select-label" for="Notify" >Notify</label>
-            <div class="{{.Notify_props.MsgFeedBackType}}">{{.Notify_props.MsgMessage}}</div>
+            <div class="text-danger small">{{.Notify_props.MsgMessage}}</div>
+                  
+          </div></div>
+
+            <div class="row mb-3"  ><div class="col">
+         
+            <select id="Migrate" name="Migrate" class="select" data-mdb-filter="true"  >
+                {{range .Migrate_lookup}}<option value="{{.ID}}" {{if eq .ID $.Migrate}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .Migrate}}selected{{end}} data-mdb-secondary-text=""></option>
+            </select>
+            <label class="form-label select-label" for="Migrate" >Migrate</label>
+            <div class="text-danger small">{{.Migrate_props.MsgMessage}}</div>
                   
           </div></div>
 

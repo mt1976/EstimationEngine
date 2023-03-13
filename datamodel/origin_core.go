@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 12/03/2023 at 12:24:54
+// Date & Time		    : 13/03/2023 at 14:22:28
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Origin defines the datamodel for the Origin object
 type Origin struct {
-	// Dynamically generated 12/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -89,7 +89,7 @@ type Origin struct {
 	}
 
 const (
-	// Dynamically generated 12/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	Origin_Name      = "Origin"
 	Origin_Title       = "Origin"
@@ -189,7 +189,7 @@ const (
 
 //Origin_PageList provides the information for the template for a list of Origins
 type Origin_PageList struct {
-	// Dynamically generated 12/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -211,7 +211,7 @@ type Origin_PageList struct {
 
 //Origin_Page provides the information for the template for an individual Origin
 type Origin_Page struct {
-	// Dynamically generated 12/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem

@@ -91,6 +91,10 @@ func Schedule_HandlerDO_Impl(w http.ResponseWriter, r *http.Request) {
 		if thisJob.Type == Data_Job().Type {
 			go Data_Run()
 		}
+	case ClearFiles_Job().Name:
+		if thisJob.Type == ClearFiles_Job().Type {
+			go ClearFiles_Run()
+		}
 	default:
 		//Do nothing
 	}

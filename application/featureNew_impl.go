@@ -47,10 +47,17 @@ func FeatureNew_HandlerSetup(w http.ResponseWriter, r *http.Request) {
 
 	//searchID := core.GetURLparam(r, dm.FeatureNew_QueryString)
 	//_, rD, _ := dao.FeatureNew_GetByID(searchID)
-	var rD dm.FeatureNew
 
 	esID := core.GetURLparam(r, dm.EstimationSession_QueryString)
 	logs.Processing("Estimation Session ID: " + esID)
+	action := core.GetURLparam(r, core.ContextState)
+
+	var rD dm.FeatureNew
+	if action == core.ContextState_ERROR {
+		rD = core.SessionManager.Get(r.Context(), esID).(dm.FeatureNew)
+	} else {
+		_, _, rD, _ = dao.FeatureNew_New()
+	}
 
 	pageDetail := dm.FeatureNew_Page{
 		Title:     CardTitle(dm.FeatureNew_Title, core.Action_Edit),
@@ -97,6 +104,9 @@ func FeatureNew_HandlerCreate(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path + r.FormValue(dm.Feature_QueryString))
 
 	var item dm.Feature
+	//var fn dm.FeatureNew
+
+	fn := featurenew_DataFromRequest(r)
 	// START
 	// Dynamically generated 29/11/2022 by matttownsend (Matt Townsend) on silicon.local
 	//
@@ -140,29 +150,41 @@ func FeatureNew_HandlerCreate(w http.ResponseWriter, r *http.Request) {
 	item.Activity = addActivity(item.Activity, msgTXT, r)
 	item.SYSActivity = addActivity(item.SYSActivity, msgTXT, r)
 
-	logs.Warning("FeatureNew_HandlerCreate: IN  " + item.FeatureID)
-	logs.Warning("FeatureNew_HandlerCreate: IN  " + item.FeatureID)
-	logs.Warning("FeatureNew_HandlerCreate: IN  " + item.FeatureID)
-	logs.Warning("FeatureNew_HandlerCreate: IN  " + item.FeatureID)
-	_, err := dao.Feature_Store(item, r)
-	logs.Warning("FeatureNew_HandlerCreate: OUT " + item.FeatureID)
-	logs.Warning("FeatureNew_HandlerCreate: OUT " + item.FeatureID)
-	logs.Warning("FeatureNew_HandlerCreate: OUT " + item.FeatureID)
-	logs.Warning("FeatureNew_HandlerCreate: OUT " + item.FeatureID)
+	// logs.Warning("FeatureNew_HandlerCreate: IN  " + item.FeatureID)
+	// logs.Warning("FeatureNew_HandlerCreate: IN  " + item.FeatureID)
+	// logs.Warning("FeatureNew_HandlerCreate: IN  " + item.FeatureID)
+	// logs.Warning("FeatureNew_HandlerCreate: IN  " + item.FeatureID)
+	// _, err := dao.Feature_Store(item, r)
+	// logs.Warning("FeatureNew_HandlerCreate: OUT " + item.FeatureID)
+	// logs.Warning("FeatureNew_HandlerCreate: OUT " + item.FeatureID)
+	// logs.Warning("FeatureNew_HandlerCreate: OUT " + item.FeatureID)
+	// logs.Warning("FeatureNew_HandlerCreate: OUT " + item.FeatureID)
 
-	if err != nil {
-		logs.Warning(err.Error())
+	// if err != nil {
+	// 	logs.Warning(err.Error())
+	// }
+
+	// //time.Sleep(30 * time.Second) // Sleeps for 30 seconds
+	// //dao.Feature_Validate(item, err)
+
+	// //go Estimationsession_Calculate(item.EstimationSessionID)
+
+	// //REDR := dm.Feature_ByEstimationSession_PathList + "?" + dm.Feature_ByEstimationSession_QueryString + "=" + item.EstimationSessionID
+
+	// nextTemplate := NextTemplate("FeatureNew", "Create", dm.Feature_PathEdit)
+
+	// REDR := nextTemplate + "?" + dm.Feature_QueryString + "=" + item.FeatureID
+	// http.Redirect(w, r, REDR, http.StatusFound)
+
+	item, errStore := dao.Feature_Store(item, r)
+	if errStore == nil {
+		REDR := dm.Feature_PathEdit + "?" + dm.Feature_QueryString + "=" + item.FeatureID
+		nextTemplate := NextTemplate("FeatureNew", "Save", REDR)
+		http.Redirect(w, r, nextTemplate, http.StatusFound)
+	} else {
+		logs.Information(dm.Feature_Name, errStore.Error())
+		//http.Redirect(w, r, r.Referer(), http.StatusFound)
+		ExecuteRedirect(r.Referer(), w, r, dm.EstimationSession_QueryString, item.EstimationSessionID, fn)
 	}
 
-	//time.Sleep(30 * time.Second) // Sleeps for 30 seconds
-	//dao.Feature_Validate(item, err)
-
-	//go Estimationsession_Calculate(item.EstimationSessionID)
-
-	//REDR := dm.Feature_ByEstimationSession_PathList + "?" + dm.Feature_ByEstimationSession_QueryString + "=" + item.EstimationSessionID
-
-	nextTemplate := NextTemplate("FeatureNew", "Create", dm.Feature_PathEdit)
-
-	REDR := nextTemplate + "?" + dm.Feature_QueryString + "=" + item.FeatureID
-	http.Redirect(w, r, REDR, http.StatusFound)
 }

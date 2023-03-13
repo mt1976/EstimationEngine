@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	core "github.com/mt1976/ebEstimates/core"
+	"github.com/mt1976/ebEstimates/dao"
 	"github.com/mt1976/ebEstimates/logs"
 
 	cron "github.com/robfig/cron/v3"
@@ -29,9 +30,12 @@ func Start() {
 
 	//logit("cron Locale", c.Location().String())
 
-	HeartBeat_Register(c)
-
 	if !core.IsChildInstance {
+		logs.Information("Scheduler", "Clearing Schedule")
+		_, items, _ := dao.Schedule_GetList()
+		for _, item := range items {
+			dao.Schedule_HardDelete(item.Id)
+		}
 		//		RatesFXSpot_Register(c)
 		Origin_Register(c)
 		EstimationSession_Register(c)
@@ -41,8 +45,12 @@ func Start() {
 		Data_Register(c)
 		SessionHouseKeeping_Register(c)
 		Credentials_Register(c)
+		if core.ApplicationEnvironment() != "production" {
+			ClearFiles_Register(c)
+		}
 	}
 	//ExternalMessage_Register(c)
+	HeartBeat_Register(c)
 	Database_Register(c)
 
 	//DataDispatcher_Register(c, "MARKET", "*/10 6-21 * * 1-5")

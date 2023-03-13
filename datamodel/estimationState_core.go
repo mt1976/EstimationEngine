@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 10/03/2023 at 19:54:33
+// Date & Time		    : 13/03/2023 at 14:22:27
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //EstimationState defines the datamodel for the EstimationState object
 type EstimationState struct {
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -35,6 +35,7 @@ type EstimationState struct {
 	SYSDbVersion       string
 	IsLocked       string
 	Notify       string
+	Migrate       string
 	//
 	// Field Properties
 	//
@@ -54,15 +55,17 @@ type EstimationState struct {
 	SYSDbVersion_props FieldProperties
 	IsLocked_props FieldProperties
 	Notify_props FieldProperties
+	Migrate_props FieldProperties
 	//
  	// Any lookups will be added below
 	//
 	IsLocked_lookup []Lookup_Item
 	Notify_lookup []Lookup_Item
+	Migrate_lookup []Lookup_Item
 	}
 
 const (
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	EstimationState_Name      = "EstimationState"
 	EstimationState_Title       = "Estimation State"
@@ -114,6 +117,7 @@ const (
 	EstimationState_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
 	EstimationState_IsLocked_sql   = "isLocked" // IsLocked is a String
 	EstimationState_Notify_sql   = "notify" // Notify is a String
+	EstimationState_Migrate_sql   = "migrate" // Migrate is a String
 ///
 	/// Application Field Definitions
 	///
@@ -133,12 +137,13 @@ const (
 	EstimationState_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
 	EstimationState_IsLocked_scrn   = "IsLocked" // IsLocked is a String
 	EstimationState_Notify_scrn   = "Notify" // Notify is a String
+	EstimationState_Migrate_scrn   = "Migrate" // Migrate is a String
 ///
 )
 
 //EstimationState_PageList provides the information for the template for a list of EstimationStates
 type EstimationState_PageList struct {
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -160,7 +165,7 @@ type EstimationState_PageList struct {
 
 //EstimationState_Page provides the information for the template for an individual EstimationState
 type EstimationState_Page struct {
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
@@ -192,6 +197,7 @@ type EstimationState_Page struct {
 	SYSDbVersion         string
 	IsLocked         string
 	Notify         string
+	Migrate         string
 	/// Field Properties
 	SYSId_props     FieldProperties
 	EstimationStateID_props     FieldProperties
@@ -209,9 +215,11 @@ type EstimationState_Page struct {
 	SYSDbVersion_props     FieldProperties
 	IsLocked_props     FieldProperties
 	Notify_props     FieldProperties
+	Migrate_props     FieldProperties
 	/// Lookups
 	IsLocked_lookup    []Lookup_Item
 	Notify_lookup    []Lookup_Item
+	Migrate_lookup    []Lookup_Item
 	
 	/// END OF DEFINITIONS
 	///

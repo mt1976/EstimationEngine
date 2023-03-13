@@ -90,6 +90,7 @@
                 
                   <select id="StateID" name="StateID" class="select" data-mdb-filter="true" disabled>
                   {{range .StateID_lookup}}<option value="{{.ID}}" {{if eq .ID $.StateID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  <option value="" {{if eq "" .StateID}}selected{{end}} data-mdb-secondary-text=""></option>
                   </select>
                   <label class="form-label select-label" for="StateID" disabled>Status</label>
                 
@@ -99,6 +100,7 @@
                 
                   <select id="DocTypeID" name="DocTypeID" class="select" data-mdb-filter="true" disabled>
                   {{range .DocTypeID_lookup}}<option value="{{.ID}}" {{if eq .ID $.DocTypeID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  <option value="" {{if eq "" .DocTypeID}}selected{{end}} data-mdb-secondary-text=""></option>
                   </select>
                   <label class="form-label select-label" for="DocTypeID" disabled>Type of Document</label>
                 
@@ -107,6 +109,7 @@
                 
                   <select id="Currency" name="Currency" class="select" data-mdb-filter="true" disabled>
                   {{range .Currency_lookup}}<option value="{{.ID}}" {{if eq .ID $.Currency}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  <option value="" {{if eq "" .Currency}}selected{{end}} data-mdb-secondary-text=""></option>
                   </select>
                   <label class="form-label select-label" for="Currency" disabled>Currency</label>
                 
@@ -153,6 +156,7 @@
                 
                   <select id="ProjectManager" name="ProjectManager" class="select" data-mdb-filter="true" disabled>
                   {{range .ProjectManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  <option value="" {{if eq "" .ProjectManager}}selected{{end}} data-mdb-secondary-text=""></option>
                   </select>
                   <label class="form-label select-label" for="ProjectManager" disabled>Project Manager</label>
                 
@@ -164,6 +168,7 @@
                 
                   <select id="AccountManager" name="AccountManager" class="select" data-mdb-filter="true" disabled>
                   {{range .AccountManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.AccountManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  <option value="" {{if eq "" .AccountManager}}selected{{end}} data-mdb-secondary-text=""></option>
                   </select>
                   <label class="form-label select-label" for="AccountManager" disabled>Account Manager</label>
                 

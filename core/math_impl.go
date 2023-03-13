@@ -22,7 +22,7 @@ func RoundToNearest(number float64, RoundingFactor float64) (float64, error) {
 
 func StringToFloat(in string) float64 {
 	if in == "" {
-		logs.Warning("Cannot convert empty string to float - assuming 0")
+		//logs.Warning("Cannot convert empty string to float - assuming 0")
 		return 0
 	}
 	out, strErr := strconv.ParseFloat(in, 64)
@@ -34,7 +34,7 @@ func StringToFloat(in string) float64 {
 
 func StringToInt(in string) int {
 	if in == "" {
-		logs.Warning("Cannot convert empty string to int - assuming 0")
+		//logs.Warning("Cannot convert empty string to int - assuming 0")
 		return 0
 	}
 	out, strErr := strconv.Atoi(in)

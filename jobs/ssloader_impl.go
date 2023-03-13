@@ -14,7 +14,7 @@ import (
 	logs "github.com/mt1976/ebEstimates/logs"
 )
 
-type RSC struct {
+type TrackerItem struct {
 	// Customer,RSC,ADO,EXT REF,Status,Description,RSC Expiry,"Value / Cost","Logged/Raised","Last Update",
 	Customer string `csv:"Customer"`
 	RSC      string `csv:"RSC"`
@@ -29,7 +29,7 @@ type RSC struct {
 	Project  string
 }
 
-type RSCs []*RSC
+type RSCs []*TrackerItem
 
 func ssloader_Job_impl(j dm.JobDefinition) dm.JobDefinition {
 	j.Name = "SpreadsheetLoader"
@@ -89,7 +89,7 @@ func ssloader_Run_impl() (string, error) {
 
 	today := time.Now().Format(core.DATEFORMAT)
 
-	workItems := []*RSC{}
+	workItems := []*TrackerItem{}
 
 	if err := gocsv.UnmarshalFile(in, &workItems); err != nil {
 		panic(err)
@@ -103,7 +103,7 @@ func ssloader_Run_impl() (string, error) {
 		noWorkItems++
 		//fmt.Println("Hello, ", workItem.Desc)
 		// Process Work Item
-		var newRSC RSC
+		var newRSC TrackerItem
 		newRSC.Customer = dao.Translate("RSCCustomer", workItem.Customer)
 		newRSC.RSC = workItem.RSC
 		newRSC.ADO = workItem.ADO
@@ -132,23 +132,19 @@ func ssloader_Run_impl() (string, error) {
 			return "Unable to Find/Generate Project for " + core.DQuote(newRSC.Customer), projErr
 		}
 		proj.Notes = core.AddActivity_ForProcess(proj.Notes, core.DQuote(newRSC.Desc)+" loaded from Spreadsheet "+today, jobName)
-		proj.ProjectAnalyst = "--"
-		proj.ProjectEngineer = "--"
+		proj.ProjectAnalyst = ""
+		proj.ProjectEngineer = ""
 		proj.ProjectManager = origin.ProjectManager
 
 		estim := newEstimationSession(proj, newRSC, today, noWorkItems)
 		estim.ProjectManager = origin.ProjectManager
+
 		feature := newFeature(estim, newRSC, proj, today)
 		feature.ProjectManagerResource = origin.ProjectManager
 
-		//Save Work Item
-		//if !trialMode {
-		//Save Work Item
-		//logs.Storing("Origin", dumpOrigin(origin))
-		//dao.Origin_StoreSystem(origin)
-		logs.Storing("Project", dumpProject(proj))
-		logs.Storing("EstimationSession", dumpEstimationSession(estim))
-		logs.Storing("Feature", dumpFeature(feature))
+		logs.Generate(dumpProject(proj))
+		logs.Generate(dumpEstimationSession(estim))
+		logs.Generate(dumpFeature(feature))
 
 		if !trialMode {
 			dao.Project_StoreSystem(proj)
@@ -172,44 +168,50 @@ func ssloader_Run_impl() (string, error) {
 	return message, nil
 }
 
-func newFeature(estim dm.EstimationSession, newRSC RSC, proj dm.Project, today string) dm.Feature {
+func newFeature(estim dm.EstimationSession, newRSC TrackerItem, proj dm.Project, today string) dm.Feature {
 	var feature dm.Feature
 	feature.FeatureID = dao.Feature_NewID(feature)
 	feature.EstimationSessionID = estim.EstimationSessionID
-	feature.ConfidenceCODE = "HIGH"
+	feature.ConfidenceCODE, _ = dao.Data_Get(ssloader_Job().Name, "Feature_Confidence", dm.Data_Category_Default)
 	feature.Name = newRSC.Desc
-	feature.DevelopmentEstimate = newRSC.Value
+	feature.DevelopmentEstimate = "0"
+	feature.DevelopmentFactored = "0"
+	feature.DevelopmentFactoredDefault = "0"
+	feature.TotalDefault = "0"
+	feature.Total = "0"
 	feature.AdoID = newRSC.ADO
 	feature.TrackerID = newRSC.RSC
 	feature.ExtRef = newRSC.EXTREF
 	feature.ProfileDefault = proj.ProfileID
 	feature.ProfileSelected = proj.ProfileID
 	feature.Activity = core.AddActivity_ForProcess(feature.Activity, core.DQuote(newRSC.Desc)+" loaded from Spreadsheet "+today, ssloader_Job().Name)
-	feature.DeveloperResource = "--"
+	feature.Activity = core.AddActivity_ForProcess(feature.Activity, "Cost = "+newRSC.Value, ssloader_Job().Name)
+	feature.DeveloperResource, _ = dao.Data_Get(ssloader_Job().Name, "Feature_Engineer", dm.Data_Category_Default)
 	feature.ApproverResource = "--"
 	feature.ProductManagerResource = "--"
 	feature.ProjectManagerResource = "--"
-	feature.AnalystEstimate = "100"
+	feature.AnalystResource = "--"
+	feature.AnalystEstimate = "--"
 	return feature
 }
 
-func newEstimationSession(proj dm.Project, newRSC RSC, today string, noWorkItems int) dm.EstimationSession {
+func newEstimationSession(proj dm.Project, newRSC TrackerItem, today string, noWorkItems int) dm.EstimationSession {
 	var estim dm.EstimationSession
 	estim.EstimationSessionID = dao.EstimationSession_NewID(estim)
 	estim.ProjectID = proj.ProjectID
 	estim.EstimationStateID = newRSC.Status
-	estim.ProjectProfileID = "ADHC"
+	estim.ProjectProfileID, _ = dao.Data_Get(ssloader_Job().Name, "Project_Profile", dm.Data_Category_Default)
 	estim.Activity = core.AddActivity_ForProcess(estim.Activity, core.DQuote(newRSC.Desc)+" loaded from Spreadsheet "+today, ssloader_Job().Name)
-	estim.Name = newRSC.Desc
+	estim.Name = newRSC.Desc + " Estimate"
 	estim.Total = newRSC.Value
-	estim.Name = newRSC.Desc
+	estim.Comments = newRSC.Desc
 	estim.AdoID = newRSC.ADO
 	estim.TrackerID = newRSC.EXTREF
 	estim.EstRef = fmt.Sprintf("%d", noWorkItems)
 	estim.ExpiryDate = newRSC.Expiry
-	estim.ProductManager = "--"
-	estim.ProjectManager = "--"
-	estim.Approver = "--"
+	estim.ProductManager = ""
+	estim.ProjectManager = ""
+	estim.Approver = ""
 	estim.ProjectProfile = proj.ProfileID
 	return estim
 }
@@ -281,7 +283,7 @@ func getProject(cust string, project string, origin dm.Origin, trailMode bool) (
 	return proj, nil
 }
 
-func dumpRSC(rsc RSC) {
+func dumpRSC(rsc TrackerItem) {
 	MSG := "RSC[%s|%s|%s|%s|%s|%s|%s|%s|%s|%s|%s]"
 	logs.Generate("RSC:" + fmt.Sprintf(MSG, rsc.Customer, rsc.RSC, rsc.ADO, rsc.EXTREF, rsc.Status, rsc.Desc, rsc.Expiry, rsc.Value, rsc.Logged, rsc.Updated, rsc.Project))
 }

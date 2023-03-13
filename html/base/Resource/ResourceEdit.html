@@ -87,10 +87,10 @@
         
             
             <select id="Class" name="Class" class="select" data-mdb-filter="true"  >
-                {{range .Class_lookup}}<option value="{{.ID}}" {{if eq .ID $.Class}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                {{range .Class_lookup}}<option value="{{.ID}}" {{if eq .ID $.Class}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .Class}}selected{{end}} data-mdb-secondary-text=""></option>
             </select>
             <label class="form-label select-label" for="Class" >Class</label>
-            <div class="{{.Class_props.MsgFeedBackType}}">{{.Class_props.MsgMessage}}</div>
+            <div class="text-danger small">{{.Class_props.MsgMessage}}</div>
             
         
         </div></div>
@@ -207,10 +207,10 @@
         
             
             <select id="UserActive" name="UserActive" class="select" data-mdb-filter="true"  >
-                {{range .UserActive_lookup}}<option value="{{.ID}}" {{if eq .ID $.UserActive}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                {{range .UserActive_lookup}}<option value="{{.ID}}" {{if eq .ID $.UserActive}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .UserActive}}selected{{end}} data-mdb-secondary-text=""></option>
             </select>
             <label class="form-label select-label" for="UserActive" >UserActive</label>
-            <div class="{{.UserActive_props.MsgFeedBackType}}">{{.UserActive_props.MsgMessage}}</div>
+            <div class="text-danger small">{{.UserActive_props.MsgMessage}}</div>
             
         
         </div></div>

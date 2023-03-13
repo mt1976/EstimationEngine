@@ -204,9 +204,11 @@
             
             <select id="ProjectManager" name="ProjectManager" class="select" data-mdb-filter="true" disabled >
                 {{range .ProjectManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                                                                <option value="" {{if eq "" .ProjectManager}}selected{{end}} data-mdb-secondary-text=""></option>
+
             </select>
             <label class="form-label select-label" for="ProjectManager" >Project Manager</label>
-            <div class="{{.ProjectManager_props.MsgFeedBackType}}">{{.ProjectManager_props.MsgMessage}}</div>
+            <div class="text-danger">{{.ProjectManager_props.MsgMessage}}</div>
             
         
         </div><div class="col">
@@ -214,9 +216,11 @@
             
             <select id="ProductManager" name="ProductManager" class="select" data-mdb-filter="true" disabled >
                 {{range .ProductManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProductManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                                                                <option value="" {{if eq "" .ProductManager}}selected{{end}} data-mdb-secondary-text=""></option>
+
             </select>
             <label class="form-label select-label" for="ProductManager" >Product Manager</label>
-            <div class="{{.ProductManager_props.MsgFeedBackType}}">{{.ProductManager_props.MsgMessage}}</div>
+            <div class="text-danger">{{.ProductManager_props.MsgMessage}}</div>
             
         
         </div><div class="col">
@@ -224,9 +228,11 @@
             
             <select id="Approver" name="Approver" class="select" data-mdb-filter="true" disabled >
                 {{range .Approver_lookup}}<option value="{{.ID}}" {{if eq .ID $.Approver}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                                                                <option value="" {{if eq "" .Approver}}selected{{end}} data-mdb-secondary-text=""></option>
+
             </select>
             <label class="form-label select-label" for="Approver" >Approved By</label>
-            <div class="{{.Approver_props.MsgFeedBackType}}">{{.Approver_props.MsgMessage}}</div>
+            <div class="text-danger">{{.Approver_props.MsgMessage}}</div>
             
         
         </div></div>

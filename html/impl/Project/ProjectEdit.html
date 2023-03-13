@@ -87,9 +87,11 @@
             
             <select id="ProjectStateID" name="ProjectStateID" class="select" data-mdb-filter="true"  >
                 {{range .ProjectStateID_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectStateID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                                <option value="" {{if eq "" .ProjectStateID}}selected{{end}} data-mdb-secondary-text=""></option>
+
             </select>
             <label class="form-label select-label  text-danger" for="ProjectStateID" >Status</label>
-            <div class="{{.ProjectStateID_props.MsgFeedBackType}}">{{.ProjectStateID_props.MsgMessage}}</div>
+            <div class="text-danger">{{.ProjectStateID_props.MsgMessage}}</div>
             
         
         </div><div class="col">
@@ -97,9 +99,11 @@
             
             <select id="ProfileID" name="ProfileID" class="select" data-mdb-filter="true"  >
                 {{range .ProfileID_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProfileID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                                                <option value="" {{if eq "" .ProfileID}}selected{{end}} data-mdb-secondary-text=""></option>
+
             </select>
             <label class="form-label select-label  text-danger" for="ProfileID" >Activity Profile</label>
-            <div class="{{.ProfileID_props.MsgFeedBackType}}">{{.ProfileID_props.MsgMessage}}</div>
+            <div class="text-danger">{{.ProfileID_props.MsgMessage}}</div>
             
         
         </div><div class="col">
@@ -128,7 +132,7 @@
                             <div class="col">
          
             <div class="form-outline">
-              <input type="number" class="form-control {{.Releases_props.MsgType}}" id="Releases" name="Releases" aria-describedby="ReleasesHelp" placeholder="No. releases required to deliver Req."  value="{{.Releases}}"  data-mdb-input-mask="" >
+              <input type="number" class="form-control {{.Releases_props.MsgType}}" id="Releases" name="Releases" aria-describedby="ReleasesHelp" placeholder="No. releases required to deliver Req."  value="{{.Releases}}"  data-mdb-input-mask="" required>
               <label class="form-label  text-danger" for="Releases" >Releases</label>
               <div class="{{.Releases_props.MsgFeedBackType}}">{{.Releases_props.MsgMessage}}</div>
             </div>
@@ -143,7 +147,9 @@
         
             
             <select id="ProjectEngineer" name="ProjectEngineer" class="select" data-mdb-filter="true"  >
-                {{range .ProjectEngineer_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectEngineer}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{if .Name }}--{{else}}{{.Name}}{{end}}</option>{{end}}
+                {{range .ProjectEngineer_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectEngineer}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                                                <option value="" {{if eq "" .ProjectEngineer}}selected{{end}} data-mdb-secondary-text=""></option>
+
             </select>
             <label class="form-label select-label" for="ProjectEngineer" >Lead Engineer</label>
             <div class="{{.ProjectEngineer_props.MsgFeedBackType}}">{{.ProjectEngineer_props.MsgMessage}}</div>
@@ -153,7 +159,9 @@
         
             
             <select id="ProjectAnalyst" name="ProjectAnalyst" class="select" data-mdb-filter="true"  >
-                {{range .ProjectAnalyst_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectAnalyst}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{if .Name }}--{{else}}{{.Name}}{{end}}</option>{{end}}
+                {{range .ProjectAnalyst_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectAnalyst}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                                                <option value="" {{if eq "" .ProjectAnalyst}}selected{{end}} data-mdb-secondary-text=""></option>
+
             </select>
             <label class="form-label select-label" for="ProjectAnalyst" >Lead Analyst</label>
             <div class="{{.ProjectAnalyst_props.MsgFeedBackType}}">{{.ProjectAnalyst_props.MsgMessage}}</div>
@@ -163,7 +171,9 @@
         
             
             <select id="ProjectManager" name="ProjectManager" class="select" data-mdb-filter="true"  >
-                {{range .ProjectManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{if .Name }}--{{else}}{{.Name}}{{end}}</option>{{end}}
+                {{range .ProjectManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                                                <option value="" {{if eq "" .ProjectManager}}selected{{end}} data-mdb-secondary-text=""></option>
+
             </select>
             <label class="form-label select-label" for="ProjectManager" >Project Manager</label>
             <div class="{{.ProjectManager_props.MsgFeedBackType}}">{{.ProjectManager_props.MsgMessage}}</div>

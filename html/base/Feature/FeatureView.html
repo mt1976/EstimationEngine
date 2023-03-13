@@ -50,7 +50,7 @@
                 <div class="col">
                 
                   <select id="EstimationSessionID" name="EstimationSessionID" class="select" data-mdb-filter="true" disabled>
-                  {{range .EstimationSessionID_lookup}}<option value="{{.ID}}" {{if eq .ID $.EstimationSessionID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  {{range .EstimationSessionID_lookup}}<option value="{{.ID}}" {{if eq .ID $.EstimationSessionID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .EstimationSessionID}}selected{{end}} data-mdb-secondary-text=""></option>
                   </select>
                   <label class="form-label select-label" for="EstimationSessionID" disabled>EstimationSessionID</label>
                 
@@ -61,7 +61,7 @@
                 <div class="col">
                 
                   <select id="ConfidenceCODE" name="ConfidenceCODE" class="select" data-mdb-filter="true" disabled>
-                  {{range .ConfidenceCODE_lookup}}<option value="{{.ID}}" {{if eq .ID $.ConfidenceCODE}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  {{range .ConfidenceCODE_lookup}}<option value="{{.ID}}" {{if eq .ID $.ConfidenceCODE}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .ConfidenceCODE}}selected{{end}} data-mdb-secondary-text=""></option>
                   </select>
                   <label class="form-label select-label" for="ConfidenceCODE" disabled>ConfidenceCODE</label>
                 
@@ -408,7 +408,7 @@
                 <div class="col">
                 
                   <select id="DeveloperResource" name="DeveloperResource" class="select" data-mdb-filter="true" disabled>
-                  {{range .DeveloperResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.DeveloperResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  {{range .DeveloperResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.DeveloperResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .DeveloperResource}}selected{{end}} data-mdb-secondary-text=""></option>
                   </select>
                   <label class="form-label select-label" for="DeveloperResource" disabled>DeveloperResource</label>
                 
@@ -419,7 +419,7 @@
                 <div class="col">
                 
                   <select id="ApproverResource" name="ApproverResource" class="select" data-mdb-filter="true" disabled>
-                  {{range .ApproverResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.ApproverResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  {{range .ApproverResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.ApproverResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .ApproverResource}}selected{{end}} data-mdb-secondary-text=""></option>
                   </select>
                   <label class="form-label select-label" for="ApproverResource" disabled>ApproverResource</label>
                 
@@ -444,7 +444,7 @@
                 <div class="col">
                 
                   <select id="OffProfile" name="OffProfile" class="select" data-mdb-filter="true" disabled>
-                  {{range .OffProfile_lookup}}<option value="{{.ID}}" {{if eq .ID $.OffProfile}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  {{range .OffProfile_lookup}}<option value="{{.ID}}" {{if eq .ID $.OffProfile}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .OffProfile}}selected{{end}} data-mdb-secondary-text=""></option>
                   </select>
                   <label class="form-label select-label" for="OffProfile" disabled>OffProfile</label>
                 
@@ -651,7 +651,7 @@
                 <div class="col">
                 
                   <select id="AnalystResource" name="AnalystResource" class="select" data-mdb-filter="true" disabled>
-                  {{range .AnalystResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.AnalystResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  {{range .AnalystResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.AnalystResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .AnalystResource}}selected{{end}} data-mdb-secondary-text=""></option>
                   </select>
                   <label class="form-label select-label" for="AnalystResource" disabled>AnalystResource</label>
                 
@@ -662,7 +662,7 @@
                 <div class="col">
                 
                   <select id="ProductManagerResource" name="ProductManagerResource" class="select" data-mdb-filter="true" disabled>
-                  {{range .ProductManagerResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProductManagerResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  {{range .ProductManagerResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProductManagerResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .ProductManagerResource}}selected{{end}} data-mdb-secondary-text=""></option>
                   </select>
                   <label class="form-label select-label" for="ProductManagerResource" disabled>ProductManagerResource</label>
                 
@@ -673,7 +673,7 @@
                 <div class="col">
                 
                   <select id="ProjectManagerResource" name="ProjectManagerResource" class="select" data-mdb-filter="true" disabled>
-                  {{range .ProjectManagerResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManagerResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  {{range .ProjectManagerResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManagerResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .ProjectManagerResource}}selected{{end}} data-mdb-secondary-text=""></option>
                   </select>
                   <label class="form-label select-label" for="ProjectManagerResource" disabled>ProjectManagerResource</label>
                 
@@ -712,7 +712,7 @@
                 <div class="col">
                 
                   <select id="ProfileDefault" name="ProfileDefault" class="select" data-mdb-filter="true" disabled>
-                  {{range .ProfileDefault_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProfileDefault}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  {{range .ProfileDefault_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProfileDefault}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .ProfileDefault}}selected{{end}} data-mdb-secondary-text=""></option>
                   </select>
                   <label class="form-label select-label" for="ProfileDefault" disabled>ProfileDefault</label>
                 
@@ -723,7 +723,7 @@
                 <div class="col">
                 
                   <select id="ProfileSelected" name="ProfileSelected" class="select" data-mdb-filter="true" disabled>
-                  {{range .ProfileSelected_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProfileSelected}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  {{range .ProfileSelected_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProfileSelected}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .ProfileSelected}}selected{{end}} data-mdb-secondary-text=""></option>
                   </select>
                   <label class="form-label select-label" for="ProfileSelected" disabled>ProfileSelected</label>
                 

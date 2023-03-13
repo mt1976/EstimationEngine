@@ -1,0 +1,6 @@
+originStateID,code,name,isLocked,notify
+142a90f9-4ec0-435d-89ef-7148306c8feb,PROS,Prospect,,
+b390e08e-bb4d-40aa-93e3-b6fbf51149f2,EURO,Eurobase,,
+76f4a2b5-b1c7-4a3b-84af-391a402e3d55,LOST,Lost Prospect,true,false
+d36d3e61-1966-4196-ad06-ea8d1f48af6a,CUST,Active Customer,false,true
+036a3e63-8ade-41fa-afbd-3a0b7516d9e9,PAST,Old Customer,true,true

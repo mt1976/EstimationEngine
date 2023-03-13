@@ -59,6 +59,7 @@ SQL Table Key | **projectStateID**
 |**SYSDbVersion**|String|false|true|false|false|||||NH|_dbVersion||false|false|true|text||
 |**IsLocked**|String|false|true|false|false|LL|tf|||Y|isLocked||false|false|false|text||
 |**Notify**|String|false|true|false|false|LL|tf|||Y|notify||false|false|false|text||
+|**Migrate**|String|false|true|false|false|LL|tf|||Y|migrate||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -81,7 +82,7 @@ SQL Table Key | **projectStateID**
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **10/03/2023** at **19:54:35**
+Date & Time		     | **13/03/2023** at **14:22:30**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

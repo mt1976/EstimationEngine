@@ -63,14 +63,23 @@ func ProjectAction_HandlerSave_Impl(w http.ResponseWriter, r *http.Request) {
 	msg_TXT := "CREATED -> %s"
 	msg_TXT = dao.Translate("AuditMessage", msg_TXT)
 	msg_TXT = fmt.Sprintf(msg_TXT, item.ProjectStateID)
-	item.Notes = addActivity(item.Notes, msg_TXT, r)
-
+	item.SYSActivity = addActivity(item.SYSActivity, msg_TXT, r)
+	item.Notes = item.SYSActivity
 	// Save the Project
-	dao.Project_Store(item, r)
 
-	REDR := dm.Project_PathEdit + "?" + dm.Project_QueryString + "=" + item.ProjectID
-	logs.Information("REDIRECTING TO: ", REDR)
-	http.Redirect(w, r, REDR, http.StatusFound)
+	item, errStore := dao.Project_Store(item, r)
+	if errStore == nil {
+		nextTemplate := NextTemplate("ProjectAction", "Save", dm.Project_PathEdit)
+		http.Redirect(w, r, nextTemplate, http.StatusFound)
+	} else {
+		logs.Information(dm.Profile_Name, errStore.Error())
+		//http.Redirect(w, r, r.Referer(), http.StatusFound)
+		ExecuteRedirect(r.Referer(), w, r, dm.Origin_QueryString, item.OriginID, item)
+	}
+
+	//REDR := dm.Project_PathEdit + "?" + dm.Project_QueryString + "=" + item.ProjectID
+	//logs.Information("REDIRECTING TO: ", REDR)
+	//http.Redirect(w, r, REDR, http.StatusFound)
 }
 
 // ProjectAction_HandlerNew is the handler used process the creation of an ProjectAction
@@ -98,7 +107,7 @@ func ProjectAction_HandlerNew_Impl(w http.ResponseWriter, r *http.Request) {
 
 	originID := core.GetURLparam(r, dm.Origin_QueryString)
 	if originID == "" {
-		ExecuteTemplate("html/Impl_Oops.html", w, r, pageDetail)
+		ExecuteTemplate("Impl_Oops", w, r, pageDetail)
 		return
 	}
 

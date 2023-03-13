@@ -191,7 +191,7 @@ func SetFieldError(fP dm.FieldProperties, msg string) dm.FieldProperties {
 		fP.MsgMessage = msg
 	}
 	fP.MsgFeedBackType = "invalid-feedback"
-	logs.Warning("SetFieldError: " + msg)
+	//logs.Warning("SetFieldError: " + msg)
 	return fP
 }
 

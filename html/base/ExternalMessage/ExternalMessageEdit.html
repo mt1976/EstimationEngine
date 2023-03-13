@@ -147,10 +147,10 @@
         
             
             <select id="MessageACKNAK" name="MessageACKNAK" class="select" data-mdb-filter="true"  >
-                {{range .MessageACKNAK_lookup}}<option value="{{.ID}}" {{if eq .ID $.MessageACKNAK}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                {{range .MessageACKNAK_lookup}}<option value="{{.ID}}" {{if eq .ID $.MessageACKNAK}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .MessageACKNAK}}selected{{end}} data-mdb-secondary-text=""></option>
             </select>
             <label class="form-label select-label" for="MessageACKNAK" >MessageACKNAK</label>
-            <div class="{{.MessageACKNAK_props.MsgFeedBackType}}">{{.MessageACKNAK_props.MsgMessage}}</div>
+            <div class="text-danger small">{{.MessageACKNAK_props.MsgMessage}}</div>
             
         
         </div></div>
@@ -327,10 +327,10 @@
         
             
             <select id="ResponseRecieved" name="ResponseRecieved" class="select" data-mdb-filter="true"  >
-                {{range .ResponseRecieved_lookup}}<option value="{{.ID}}" {{if eq .ID $.ResponseRecieved}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                {{range .ResponseRecieved_lookup}}<option value="{{.ID}}" {{if eq .ID $.ResponseRecieved}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .ResponseRecieved}}selected{{end}} data-mdb-secondary-text=""></option>
             </select>
             <label class="form-label select-label" for="ResponseRecieved" >ResponseRecieved</label>
-            <div class="{{.ResponseRecieved_props.MsgFeedBackType}}">{{.ResponseRecieved_props.MsgMessage}}</div>
+            <div class="text-danger small">{{.ResponseRecieved_props.MsgMessage}}</div>
             
         
         </div></div>

@@ -50,7 +50,7 @@
                 <div class="col">
                 
                   <select id="ProjectID" name="ProjectID" class="select" data-mdb-filter="true" disabled>
-                  {{range .ProjectID_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  {{range .ProjectID_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .ProjectID}}selected{{end}} data-mdb-secondary-text=""></option>
                   </select>
                   <label class="form-label select-label" for="ProjectID" disabled>ProjectID</label>
                 
@@ -61,7 +61,7 @@
                 <div class="col">
                 
                   <select id="EstimationStateID" name="EstimationStateID" class="select" data-mdb-filter="true" disabled>
-                  {{range .EstimationStateID_lookup}}<option value="{{.ID}}" {{if eq .ID $.EstimationStateID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  {{range .EstimationStateID_lookup}}<option value="{{.ID}}" {{if eq .ID $.EstimationStateID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .EstimationStateID}}selected{{end}} data-mdb-secondary-text=""></option>
                   </select>
                   <label class="form-label select-label" for="EstimationStateID" disabled>EstimationStateID</label>
                 
@@ -534,7 +534,7 @@
                 <div class="col">
                 
                   <select id="ProjectManager" name="ProjectManager" class="select" data-mdb-filter="true" disabled>
-                  {{range .ProjectManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  {{range .ProjectManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .ProjectManager}}selected{{end}} data-mdb-secondary-text=""></option>
                   </select>
                   <label class="form-label select-label" for="ProjectManager" disabled>ProjectManager</label>
                 
@@ -545,7 +545,7 @@
                 <div class="col">
                 
                   <select id="ProductManager" name="ProductManager" class="select" data-mdb-filter="true" disabled>
-                  {{range .ProductManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProductManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  {{range .ProductManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProductManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .ProductManager}}selected{{end}} data-mdb-secondary-text=""></option>
                   </select>
                   <label class="form-label select-label" for="ProductManager" disabled>ProductManager</label>
                 
@@ -556,7 +556,7 @@
                 <div class="col">
                 
                   <select id="Approver" name="Approver" class="select" data-mdb-filter="true" disabled>
-                  {{range .Approver_lookup}}<option value="{{.ID}}" {{if eq .ID $.Approver}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  {{range .Approver_lookup}}<option value="{{.ID}}" {{if eq .ID $.Approver}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .Approver}}selected{{end}} data-mdb-secondary-text=""></option>
                   </select>
                   <label class="form-label select-label" for="Approver" disabled>Approver</label>
                 

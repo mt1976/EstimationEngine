@@ -111,3 +111,30 @@ func ProjectAction_OriginKey_OnFetch_impl(rec dm.ProjectAction) string {
 // END   ProjectAction_OriginKey
 // END   ProjectAction_OriginKey
 // ----------------------------------------------------------------
+
+// ----------------------------------------------------------------
+// ProjectAction_ProfileID_OnStore_impl provides the implementation for the callout
+func ProjectAction_ProfileID_OnStore_impl(fieldval string, rec dm.ProjectAction, usr string) (string, error) {
+	logs.Callout("ProjectAction", dm.ProjectAction_ProfileID_scrn, PUT, rec.ProjectID)
+	return fieldval, nil
+}
+
+// ----------------------------------------------------------------
+// ProjectAction_ProfileID_OnFetch_impl provides the implementation for the callout
+func ProjectAction_ProfileID_OnFetch_impl(rec dm.ProjectAction) string {
+	logs.Callout("ProjectAction", dm.ProjectAction_ProfileID_scrn, GET, rec.ProjectID)
+	return rec.ProfileID
+}
+
+// ProjectAction_ProjectStateID_OnStore_impl provides the implementation for the callout
+func ProjectAction_ProjectStateID_OnStore_impl(fieldval string, rec dm.ProjectAction, usr string) (string, error) {
+	logs.Callout("ProjectAction", dm.ProjectAction_ProjectStateID_scrn, PUT, rec.ProjectID)
+	return fieldval, nil
+}
+
+// ----------------------------------------------------------------
+// ProjectAction_ProjectStateID_OnFetch_impl provides the implementation for the callout
+func ProjectAction_ProjectStateID_OnFetch_impl(rec dm.ProjectAction) string {
+	logs.Callout("ProjectAction", dm.ProjectAction_ProjectStateID_scrn, GET, rec.ProjectID)
+	return rec.ProjectStateID
+}

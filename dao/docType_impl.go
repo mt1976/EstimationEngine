@@ -15,6 +15,7 @@ package dao
 
 import (
 	core "github.com/mt1976/ebEstimates/core"
+	das "github.com/mt1976/ebEstimates/das"
 
 	dm "github.com/mt1976/ebEstimates/datamodel"
 )
@@ -33,4 +34,18 @@ func DocType_GetByCode(id string) (int, dm.DocType, error) {
 	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	return 1, doctypeItem, nil
+}
+
+func DocType_GetMigrateable() (int, []dm.DocType, error) {
+	tsql := "SELECT * FROM " + get_TableName(core.GetSQLSchema(core.ApplicationPropertiesDB), dm.DocType_SQLTable)
+	tsql = tsql + " WHERE " + dm.DocType_Migrate_sql + das.EQ + das.VALUE(das.TRUE)
+	noItems, doctypeItems, _, _ := doctype_Fetch(tsql)
+
+	// START
+	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local
+	//
+	//
+	// Dynamically generated 27/11/2022 by matttownsend (Matt Townsend) on silicon.local
+	// END
+	return noItems, doctypeItems, nil
 }

@@ -34,3 +34,11 @@ func EstimationState_GetByCode(id string) (int, dm.EstimationState, error) {
 	// END
 	return 1, estimationstateItem, nil
 }
+
+func EstimationState_GetMigrateable() (int, []dm.EstimationState, error) {
+
+	tsql := EstimationState_SQLbase
+	tsql = tsql + " " + das.WHERE + dm.EstimationState_Migrate_sql + das.EQ + das.ID(das.TRUE)
+	_, estimationstateItems, _, _ := estimationstate_Fetch(tsql)
+	return len(estimationstateItems), estimationstateItems, nil
+}

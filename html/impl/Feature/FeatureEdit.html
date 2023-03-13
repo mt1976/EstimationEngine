@@ -131,9 +131,11 @@
             
             <select id="ProjectManagerResource" name="ProjectManagerResource" class="select" data-mdb-filter="true"  >
                 {{range .ProjectManagerResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManagerResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                                                                <option value="" {{if eq "" .ProjectManagerResource}}selected{{end}} data-mdb-secondary-text=""></option>
+
             </select>
             <label class="form-label select-label" for="ProjectManagerResource" >Project Manager</label>
-            <div class="{{.ProjectManagerResource_props.MsgFeedBackType}}">{{.ProjectManagerResource_props.MsgMessage}}</div>
+            <div class="text-danger">{{.ProjectManagerResource_props.MsgMessage}}</div>
             
         
         </div>
@@ -144,9 +146,11 @@
             
             <select id="ProductManagerResource" name="ProductManagerResource" class="select" data-mdb-filter="true"  >
                 {{range .ProductManagerResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProductManagerResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                                                                <option value="" {{if eq "" .ProductManagerResource}}selected{{end}} data-mdb-secondary-text=""></option>
+
             </select>
             <label class="form-label select-label" for="ProductManagerResource" >Product Manager</label>
-            <div class="{{.ProductManagerResource_props.MsgFeedBackType}}">{{.ProductManagerResource_props.MsgMessage}}</div>
+            <div class="text-danger">{{.ProductManagerResource_props.MsgMessage}}</div>
             
         
         </div>
@@ -195,9 +199,11 @@
             
             <select id="DeveloperResource" name="DeveloperResource" class="select" data-mdb-filter="true"  >
                 {{range .DeveloperResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.DeveloperResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                                                                <option value="" {{if eq "" .DeveloperResource}}selected{{end}} data-mdb-secondary-text=""></option>
+
             </select>
             <label class="form-label select-label" for="DeveloperResource" >Engineer</label>
-            <div class="{{.DeveloperResource_props.MsgFeedBackType}}">{{.DeveloperResource_props.MsgMessage}}</div>
+            <div class="text-danger">{{.DeveloperResource_props.MsgMessage}}</div>
             
         
         </div>
@@ -217,9 +223,11 @@
             
             <select id="AnalystResource" name="AnalystResource" class="select" data-mdb-filter="true"  >
                 {{range .AnalystResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.AnalystResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                                                                <option value="" {{if eq "" .AnalystResource}}selected{{end}} data-mdb-secondary-text=""></option>
+
             </select>
             <label class="form-label select-label" for="AnalystResource" >Analyst</label>
-            <div class="{{.AnalystResource_props.MsgFeedBackType}}">{{.AnalystResource_props.MsgMessage}}</div>
+            <div class="text-danger">{{.AnalystResource_props.MsgMessage}}</div>
             
         
         </div></div>
@@ -514,9 +522,10 @@
             
             <select id="ApproverResource" name="ApproverResource" class="select" data-mdb-filter="true"  >
                 {{range .ApproverResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.ApproverResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                                                                <option value="" {{if eq "" .ApproverResource}}selected{{end}} data-mdb-secondary-text=""></option>
             </select>
             <label class="form-label select-label" for="ApproverResource" >Approved By</label>
-            <div class="{{.ApproverResource_props.MsgFeedBackType}}">{{.ApproverResource_props.MsgMessage}}</div>
+            <div class="text-danger">{{.ApproverResource_props.MsgMessage}}</div>
             
         
         </div>

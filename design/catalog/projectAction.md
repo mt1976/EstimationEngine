@@ -46,8 +46,8 @@ SQL Table Key | **projectID**
 |**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|text||
 |**ProjectID**|String|false|true|false|true|||||H|projectID||true|false|false|text||
 |**OriginID**|String|true|true|false|false|OL|Origin|Origin_OriginID|Origin_FullName|Y|originID||true|false|false|text||
-|**ProjectStateID**|String|false|true|false|false|OL∀|ProjectState|ProjectState_ProjectStateID|ProjectState_Name|Y|projectStateID||false|false|false|text||
-|**ProfileID**|String|false|true|false|false|OL∀|Profile|Profile_ProfileID|Profile_Name|Y|profileID||false|false|false|text||
+|**ProjectStateID**|String|false|true|false|false|OL∀|ProjectState|ProjectState_ProjectStateID|ProjectState_Name|Y|projectStateID||false|true|false|text||
+|**ProfileID**|String|false|true|false|true|OL|Profile|Profile_ProfileID|Profile_Name|Y|profileID||false|true|false|text||
 |**Name**|String|true|true|false|false|||||Y|name||false|false|false|text||
 |**Description**|String|false|true|false|true|||||Y|description||false|false|false|textarea||
 |**StartDate**|String|false|true|false|true|||||Y|startDate||false|false|false|date|yyyy-mm-dd|
@@ -92,7 +92,7 @@ SQL Table Key | **projectID**
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **10/03/2023** at **19:54:35**
+Date & Time		     | **13/03/2023** at **14:22:30**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

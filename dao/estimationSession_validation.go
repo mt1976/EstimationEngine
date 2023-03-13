@@ -60,6 +60,7 @@ func EstimationSession_EstimationStateID_OnStore_impl(fieldval string, rec dm.Es
 
 func EstimationSession_Approver_OnStore_impl(fieldval string, rec dm.EstimationSession, usr string) (string, error) {
 	logs.Callout("EstimationSession", dm.EstimationSession_Approver_scrn, PUT, rec.EstimationSessionID)
+
 	return fieldval, nil
 }
 func EstimationSession_Origin_OnStore_impl(fieldval string, rec dm.EstimationSession, usr string) (string, error) {
@@ -343,6 +344,7 @@ func EstimationSession_EstimationSessionID_validate_impl(iAction string, iId str
 // EstimationSession_EstimationStateID_impl provides validation/actions for EstimationStateID
 func EstimationSession_EstimationStateID_validate_impl(iAction string, iId string, iValue string, iRec dm.EstimationSession, fP dm.FieldProperties) (string, dm.FieldProperties) {
 	logs.Callout("EstimationSession", dm.EstimationSession_EstimationStateID_scrn, VAL+"-"+iAction, iId)
+
 	return iValue, fP
 }
 
@@ -370,6 +372,20 @@ func EstimationSession_TrackerID_validate_impl(iAction string, iId string, iValu
 // EstimationSession_Approver_impl provides validation/actions for Approver
 func EstimationSession_Approver_validate_impl(iAction string, iId string, iValue string, iRec dm.EstimationSession, fP dm.FieldProperties) (string, dm.FieldProperties) {
 	logs.Callout("EstimationSession", dm.EstimationSession_Approver_scrn, VAL+"-"+iAction, iId)
+	ReqApproverStatuses, _ := Data_GetArray(dm.EstimationSession_Name, "Requires_Approver_States", dm.Data_Category_State)
+	// fmt.Printf("ReqApproverStatuses: %v\n", ReqApproverStatuses)
+	// fmt.Printf("len(ReqApproverStatuses): %v\n", len(ReqApproverStatuses))
+	// fmt.Printf("iValue: %v\n", iValue)
+	// fmt.Printf("len(iValue): %v\n", len(iValue))
+	// fmt.Printf("iAction: %v\n", iAction)
+	// fmt.Printf("iId: %v\n", iId)
+	// fmt.Printf("iRec: %v\n", iRec)
+	// fmt.Printf("iRec.EstimationSessionID: %v\n", iRec.EstimationStateID)
+	if slices.Contains(ReqApproverStatuses, iRec.EstimationStateID) {
+		if iValue == "" {
+			fP = SetFieldError(fP, "approver is required")
+		}
+	}
 	return iValue, fP
 }
 

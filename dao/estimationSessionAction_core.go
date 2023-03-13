@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 10/03/2023 at 19:54:32
+// Date & Time		    : 13/03/2023 at 14:22:27
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -58,10 +58,10 @@ func EstimationSessionAction_GetByID(id string) (int, dm.EstimationSessionAction
 
 func EstimationSessionAction_PostGet(estimationsessionactionItem dm.EstimationSessionAction, id string) dm.EstimationSessionAction {
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	//
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	return estimationsessionactionItem
 }
@@ -126,7 +126,7 @@ func EstimationSessionAction_StoreProcess(r dm.EstimationSessionAction, operator
 func EstimationSessionAction_Validate(r dm.EstimationSessionAction) (dm.EstimationSessionAction, error) {
 	var err error
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	//
 
@@ -178,11 +178,11 @@ func EstimationSessionAction_New() (int, []dm.EstimationSessionAction, dm.Estima
 	var rList []dm.EstimationSessionAction
 
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 
 	//
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

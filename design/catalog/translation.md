@@ -58,6 +58,7 @@ SQL Table Key | **Id**
 |**SYSDeletedBy**|String|false|true|false|false|||||NH|_deletedBy||false|false|true|text||
 |**SYSDeletedHost**|String|false|true|false|false|||||NH|_deletedHost||false|false|true|text||
 |**SYSDbVersion**|String|false|true|false|false|||||NH|_dbVersion||false|false|true|text||
+|**Migrate**|String|false|true|false|false|LL|tf|||Y|migrate||false|false|false|text||
 
 
 ##  Artifacts Generated
@@ -78,7 +79,7 @@ SQL Table Key | **Id**
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **10/03/2023** at **19:54:36**
+Date & Time		     | **13/03/2023** at **15:47:28**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 10/03/2023 at 19:54:33
+// Date & Time		    : 13/03/2023 at 14:22:27
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Feature defines the datamodel for the Feature object
 type Feature struct {
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -170,7 +170,7 @@ type Feature struct {
 	}
 
 const (
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	Feature_Name      = "Feature"
 	Feature_Title       = "Feature"
@@ -346,7 +346,7 @@ const (
 
 //Feature_PageList provides the information for the template for a list of Features
 type Feature_PageList struct {
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -368,7 +368,7 @@ type Feature_PageList struct {
 
 //Feature_Page provides the information for the template for an individual Feature
 type Feature_Page struct {
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem

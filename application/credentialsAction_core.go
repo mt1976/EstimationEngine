@@ -8,7 +8,7 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 10/03/2023 at 19:54:31
+// Date & Time		    : 13/03/2023 at 14:22:25
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -23,10 +23,10 @@ import (
 )
 
 //CredentialsAction_Publish annouces the endpoints available for this object
-//CredentialsAction_Publish - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//CredentialsAction_Publish - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func CredentialsAction_Publish(mux http.ServeMux) {
 	// START
-	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	//No API
 	//Cannot List via GUI
@@ -38,7 +38,7 @@ func CredentialsAction_Publish(mux http.ServeMux) {
 	logs.Publish("Application", dm.CredentialsAction_Title)
     //No API
 	// 
-	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
@@ -46,10 +46,10 @@ func CredentialsAction_Publish(mux http.ServeMux) {
 
 //CredentialsAction_HandlerView is the handler used to View a page
 //Allows Viewing for an existing CredentialsAction record
-//CredentialsAction_HandlerView - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//CredentialsAction_HandlerView - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func CredentialsAction_HandlerView(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -80,17 +80,17 @@ func CredentialsAction_HandlerView(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //CredentialsAction_HandlerEdit is the handler used generate the Edit page
 //Allows Editing for an existing CredentialsAction record and then allows the user to save the changes
-//CredentialsAction_HandlerEdit - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//CredentialsAction_HandlerEdit - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func CredentialsAction_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	// Mandatory Security Validation
 	//
@@ -130,17 +130,17 @@ func CredentialsAction_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //CredentialsAction_HandlerSave is the handler used process the saving of an CredentialsAction
 //It is called from the Edit and New pages
-//CredentialsAction_HandlerSave  - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//CredentialsAction_HandlerSave  - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func CredentialsAction_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// 
 	// Mandatory Security Validation
 	//
@@ -166,17 +166,17 @@ func CredentialsAction_HandlerSave(w http.ResponseWriter, r *http.Request) {
 		ExecuteRedirect(r.Referer(), w, r,dm.CredentialsAction_QueryString,itemID,item)
 	}
 	// 
-	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }
 
 
 //CredentialsAction_HandlerNew is the handler used process the creation of an CredentialsAction
 //It will create a new CredentialsAction and then redirect to the Edit page
-//CredentialsAction_HandlerNew  - Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//CredentialsAction_HandlerNew  - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func CredentialsAction_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	// START
-	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Mandatory Security Validation
 	//
@@ -215,14 +215,14 @@ func CredentialsAction_HandlerNew(w http.ResponseWriter, r *http.Request) {
 	nextTemplate :=  NextTemplate("CredentialsAction", "New", dm.CredentialsAction_TemplateNew)
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
 	// 
-	// Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 }	
 
 
 
 //credentialsaction_PopulatePage Builds/Populates the CredentialsAction Page 
-//credentialsaction_PopulatePage Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//credentialsaction_PopulatePage Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func credentialsaction_PopulatePage(rD dm.CredentialsAction, pageDetail dm.CredentialsAction_Page) dm.CredentialsAction_Page {
 	// Real DB Fields
 	pageDetail.ID = rD.ID
@@ -242,7 +242,7 @@ func credentialsaction_PopulatePage(rD dm.CredentialsAction, pageDetail dm.Crede
 	return pageDetail
 }
 //credentialsaction_DataFromRequest is used process the content of an HTTP Request and return an instance of an CredentialsAction
-//credentialsaction_DataFromRequest Auto generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//credentialsaction_DataFromRequest Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func credentialsaction_DataFromRequest(r *http.Request) dm.CredentialsAction {
 
 	var item dm.CredentialsAction

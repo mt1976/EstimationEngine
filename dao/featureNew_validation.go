@@ -60,7 +60,9 @@ func FeatureNew_DeveloperEstimate_validate_impl(iAction string, iId string, iVal
 // FeatureNew_DeveloperResource_validate_impl provides validation/actions for DeveloperResource
 func FeatureNew_DeveloperResource_validate_impl(iAction string, iId string, iValue string, iRec dm.FeatureNew, fP dm.FieldProperties) (string, dm.FieldProperties) {
 	logs.Callout("FeatureNew", dm.FeatureNew_DeveloperResource_scrn, VAL+"-"+iAction, iId)
-
+	if iValue == "" {
+		fP = SetFieldError(fP, "engineer is required")
+	}
 	//fP = IsValidResource(iValue, fP)
 
 	return iValue, fP
@@ -135,5 +137,15 @@ func FeatureNew_OriginID_validate_impl(iAction string, iId string, iValue string
 // FeatureNew_ProjectName_validate_impl provides validation/actions for ProjectName
 func FeatureNew_ProjectName_validate_impl(iAction string, iId string, iValue string, iRec dm.FeatureNew, fP dm.FieldProperties) (string, dm.FieldProperties) {
 	logs.Callout("FeatureNew", dm.FeatureNew_ProjectName_scrn, VAL+"-"+iAction, iId)
+	return iValue, fP
+}
+
+// ----------------------------------------------------------------
+// FeatureNew_ConfidenceCODE_validate_impl provides validation/actions for ConfidenceCODE
+func FeatureNew_ConfidenceCODE_validate_impl(iAction string, iId string, iValue string, iRec dm.FeatureNew, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("FeatureNew", dm.FeatureNew_ConfidenceCODE_scrn, VAL+"-"+iAction, iId)
+	if iValue == "" {
+		fP = SetFieldError(fP, "confidence is required")
+	}
 	return iValue, fP
 }

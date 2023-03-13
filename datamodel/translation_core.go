@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 10/03/2023 at 19:54:36
+// Date & Time		    : 13/03/2023 at 15:47:28
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Translation defines the datamodel for the Translation object
 type Translation struct {
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -34,6 +34,7 @@ type Translation struct {
 	SYSDeletedBy       string
 	SYSDeletedHost       string
 	SYSDbVersion       string
+	Migrate       string
 	//
 	// Field Properties
 	//
@@ -52,13 +53,15 @@ type Translation struct {
 	SYSDeletedBy_props FieldProperties
 	SYSDeletedHost_props FieldProperties
 	SYSDbVersion_props FieldProperties
+	Migrate_props FieldProperties
 	//
  	// Any lookups will be added below
 	//
+	Migrate_lookup []Lookup_Item
 	}
 
 const (
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	Translation_Name      = "Translation"
 	Translation_Title       = "Message Translation"
@@ -109,6 +112,7 @@ const (
 	Translation_SYSDeletedBy_sql   = "_deletedBy" // SYSDeletedBy is a String
 	Translation_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
 	Translation_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
+	Translation_Migrate_sql   = "migrate" // Migrate is a String
 ///
 	/// Application Field Definitions
 	///
@@ -127,12 +131,13 @@ const (
 	Translation_SYSDeletedBy_scrn   = "SYSDeletedBy" // SYSDeletedBy is a String
 	Translation_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
 	Translation_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
+	Translation_Migrate_scrn   = "Migrate" // Migrate is a String
 ///
 )
 
 //Translation_PageList provides the information for the template for a list of Translations
 type Translation_PageList struct {
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -154,7 +159,7 @@ type Translation_PageList struct {
 
 //Translation_Page provides the information for the template for an individual Translation
 type Translation_Page struct {
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
@@ -185,6 +190,7 @@ type Translation_Page struct {
 	SYSDeletedBy         string
 	SYSDeletedHost         string
 	SYSDbVersion         string
+	Migrate         string
 	/// Field Properties
 	SYSId_props     FieldProperties
 	Id_props     FieldProperties
@@ -201,7 +207,9 @@ type Translation_Page struct {
 	SYSDeletedBy_props     FieldProperties
 	SYSDeletedHost_props     FieldProperties
 	SYSDbVersion_props     FieldProperties
+	Migrate_props     FieldProperties
 	/// Lookups
+	Migrate_lookup    []Lookup_Item
 	
 	/// END OF DEFINITIONS
 	///

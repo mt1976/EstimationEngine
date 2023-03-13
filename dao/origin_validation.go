@@ -54,6 +54,9 @@ func Origin_ObjectValidation_impl(iAction string, iId string, iRec dm.Origin) (d
 // Origin_StateID_validate_impl provides validation/actions for StateID
 func Origin_StateID_validate_impl(iAction string, iId string, iValue string, iRec dm.Origin, fP dm.FieldProperties) (string, dm.FieldProperties) {
 	logs.Callout("Origin", dm.Origin_StateID_scrn, VAL+"-"+iAction, iId)
+	if iValue == "" {
+		fP = SetFieldError(fP, "state is required")
+	}
 	return iValue, fP
 }
 
@@ -116,5 +119,25 @@ func Origin_StartDate_validate_impl(iAction string, iId string, iValue string, i
 // Origin_StatusOnLoad_validate_impl provides validation/actions for StatusOnLoad
 func Origin_StatusOnLoad_validate_impl(iAction string, iId string, iValue string, iRec dm.Origin, fP dm.FieldProperties) (string, dm.FieldProperties) {
 	logs.Callout("Origin", dm.Origin_StatusOnLoad_scrn, VAL+"-"+iAction, iId)
+	return iValue, fP
+}
+
+// ----------------------------------------------------------------
+// Origin_DocTypeID_validate_impl provides validation/actions for DocTypeID
+func Origin_DocTypeID_validate_impl(iAction string, iId string, iValue string, iRec dm.Origin, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("Origin", dm.Origin_DocTypeID_scrn, VAL+"-"+iAction, iId)
+	if iValue == "" {
+		fP = SetFieldError(fP, "type of document is required")
+	}
+	return iValue, fP
+}
+
+// ----------------------------------------------------------------
+// Origin_Currency_validate_impl provides validation/actions for Currency
+func Origin_Currency_validate_impl(iAction string, iId string, iValue string, iRec dm.Origin, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("Origin", dm.Origin_Currency_scrn, VAL+"-"+iAction, iId)
+	if iValue == "" {
+		fP = SetFieldError(fP, "currency is required")
+	}
 	return iValue, fP
 }

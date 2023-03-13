@@ -16,7 +16,7 @@ import (
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
 	// Template Generator   : Einsteinium [r5-23.01.23]
-	// Date & Time		    : 10/03/2023 at 19:54:35
+	// Date & Time		    : 13/03/2023 at 14:22:30
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in projectaction_impl.go
@@ -44,6 +44,20 @@ import (
 	//
 	// ----------------------------------------------------------------
 	// These are the the default implementations, which do nothing
+
+	// ----------------------------------------------------------------
+	// ProjectAction_ProjectStateID_validate_impl provides validation/actions for ProjectStateID
+	func ProjectAction_ProjectStateID_validate_impl (iAction string, iId string, iValue string, iRec dm.ProjectAction, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("ProjectAction", dm.ProjectAction_ProjectStateID_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// ProjectAction_ProfileID_validate_impl provides validation/actions for ProfileID
+	func ProjectAction_ProfileID_validate_impl (iAction string, iId string, iValue string, iRec dm.ProjectAction, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("ProjectAction", dm.ProjectAction_ProfileID_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
 
 	// ----------------------------------------------------------------
 	// ProjectAction_NoEstimationSessions_validate_impl provides validation/actions for NoEstimationSessions

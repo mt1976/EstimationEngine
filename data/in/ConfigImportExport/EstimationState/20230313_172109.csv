@@ -1,0 +1,19 @@
+estimationStateID,code,name,isLocked,notify,migrate
+45707adb-0dce-47ec-a9bc-e4240f4f2913,PROG,In Progress,false,false,true
+7b03cd60-e867-4389-8eb4-a2e60efdccf4,SCOP,Project Scoping,false,false,true
+af3307a1-c882-4cd6-b6c5-c790bf83ea76,RFR,Ready for Review,false,true,true
+7ffb3d1d-9f66-444d-82b5-e746e43868e7,ISSU,Issued,true,true,true
+472f206f-44ef-424f-b239-c0732ecb3252,QEXP,Quote Expired,true,true,true
+e15f1e7e-f3c2-487e-b11c-f257b8b3e659,APPR,Approved,true,true,true
+8adca315-767c-4cf0-855c-5ca39f884d4b,CANC,Cancelled,true,true,true
+b5879d3b-1b6f-4d7f-bfb0-97550df576ca,CLAP,With Client for Approval,true,true,true
+8366738c-f058-4159-8b91-6dd2f7b08745,HOLD,On-Hold,true,true,true
+c8770b7a-043c-405b-8c4b-c07ae0bec946,REJC,Rejected,true,true,true
+ced0366f-28aa-4125-b051-43cb5874f882,DELV,Delivered,true,false,true
+22a34ad0-577a-4344-aa37-52aa796a7a2d,MGMT,With Management (for approval),true,true,true
+1513ae11-2d48-4ad7-9a08-33751697f83c,LIVE,Live,true,true,true
+cd0a4574-f231-49fc-8a98-ac7196272a00,ENGN,With Engineering,true,true,true
+e9d98039-5060-46e5-819a-851dfb079400,PROD,With Product For Approval,true,true,true
+329f7d86-e828-43e1-b10e-838440ff70ac,WRIT,Writing (Pre-RSC),false,true,true
+efaf1870-08eb-426c-bf09-be9f4ccf4620,CLRV,With Client for Review,false,true,true
+82f7bb9a-3f88-4882-be42-72c48b4ede0b,NEWE,New,false,true,true

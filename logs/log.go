@@ -198,7 +198,7 @@ func Audit(what string) {
 
 func Processing(s string) {
 	//msg_done(s)
-	msg_raw(log_Processing, s, "", colour.White)
+	msg_raw(log_Processing, s, "", colour.CyanBackground)
 }
 
 func Schedule(w string) {

@@ -47,12 +47,12 @@ func Feature_CalcDefaults(item dm.Feature, updateBaseline bool) dm.Feature {
 	// START
 	// Dynamically generated 29/11/2022 by matttownsend (Matt Townsend) on silicon.local
 	//
-	logs.Warning("Feature_CalcDefaults")
-	logs.Warning("Feature_CalcDefaults")
-	fmt.Printf("item.ProfileSelected: %v\n", item.ProfileSelected)
-	fmt.Printf("item.ProfileSelectedOld: %v\n", item.ProfileSelectedOld)
-	logs.Warning("Feature_CalcDefaults")
-	logs.Warning("Feature_CalcDefaults")
+	logs.Information("Recaulcating Feature Defaults", item.Name)
+	// logs.Warning("Feature_CalcDefaults")
+	// fmt.Printf("item.ProfileSelected: %v\n", item.ProfileSelected)
+	// fmt.Printf("item.ProfileSelectedOld: %v\n", item.ProfileSelectedOld)
+	// logs.Warning("Feature_CalcDefaults")
+	// logs.Warning("Feature_CalcDefaults")
 	//fmt.Printf("item: %v\n", item)
 	// Get Project Profile for this Estimation Session
 	// Get the Estimation Session
@@ -73,9 +73,9 @@ func Feature_CalcDefaults(item dm.Feature, updateBaseline bool) dm.Feature {
 	}
 	// Then Get the Profile
 	_, pp, _ := Profile_GetByCode(item.ProfileSelected)
-	fmt.Printf("updateBaseline: %v\n", updateBaseline)
-	fmt.Printf("item.ProfileSelected: %v\n", item.ProfileSelected)
-	fmt.Printf("profile: %v\n", pp)
+	// fmt.Printf("updateBaseline: %v\n", updateBaseline)
+	// fmt.Printf("item.ProfileSelected: %v\n", item.ProfileSelected)
+	// fmt.Printf("profile: %v\n", pp)
 	//spew.Dump(pp)
 
 	uID := item.SYSCreatedBy
@@ -251,8 +251,8 @@ func feature_ValidateEstimate(baseEstimate string, userEstimate string, mismatch
 	//	return mismatch, notes
 	//}
 
-	fmt.Printf("baseEstimate: %v\n", baseEstimate)
-	fmt.Printf("userEstimate: %v\n", userEstimate)
+	//fmt.Printf("baseEstimate: %v\n", baseEstimate)
+	//fmt.Printf("userEstimate: %v\n", userEstimate)
 
 	if baseEstimate == "" {
 		baseEstimate = "0"

@@ -16,7 +16,7 @@ import (
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
 	// Template Generator   : Einsteinium [r5-23.01.23]
-	// Date & Time		    : 12/03/2023 at 12:24:54
+	// Date & Time		    : 13/03/2023 at 14:22:28
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in origin_impl.go
@@ -48,6 +48,28 @@ import (
 	// END   Origin_StateID
 	// END   Origin_StateID
 	// END   Origin_StateID
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN Origin_DocTypeID
+	// BEGIN Origin_DocTypeID
+	// BEGIN Origin_DocTypeID
+	// ----------------------------------------------------------------
+	// Origin_DocTypeID_OnStore_impl provides the implementation for the callout
+	func Origin_DocTypeID_OnStore_impl (fieldval string,rec dm.Origin,usr string) (string,error)  {
+		logs.Callout("Origin", dm.Origin_DocTypeID_scrn, PUT, rec.OriginID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// Origin_DocTypeID_OnFetch_impl provides the implementation for the callout	
+	func Origin_DocTypeID_OnFetch_impl (rec dm.Origin)(string) {
+		logs.Callout("Origin", dm.Origin_DocTypeID_scrn, GET, rec.OriginID)
+		return rec.DocTypeID
+	}
+	// ----------------------------------------------------------------
+	// END   Origin_DocTypeID
+	// END   Origin_DocTypeID
+	// END   Origin_DocTypeID
 	// ----------------------------------------------------------------
 
 	// ----------------------------------------------------------------
@@ -136,6 +158,28 @@ import (
 	// END   Origin_StartDate
 	// END   Origin_StartDate
 	// END   Origin_StartDate
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN Origin_Currency
+	// BEGIN Origin_Currency
+	// BEGIN Origin_Currency
+	// ----------------------------------------------------------------
+	// Origin_Currency_OnStore_impl provides the implementation for the callout
+	func Origin_Currency_OnStore_impl (fieldval string,rec dm.Origin,usr string) (string,error)  {
+		logs.Callout("Origin", dm.Origin_Currency_scrn, PUT, rec.OriginID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// Origin_Currency_OnFetch_impl provides the implementation for the callout	
+	func Origin_Currency_OnFetch_impl (rec dm.Origin)(string) {
+		logs.Callout("Origin", dm.Origin_Currency_scrn, GET, rec.OriginID)
+		return rec.Currency
+	}
+	// ----------------------------------------------------------------
+	// END   Origin_Currency
+	// END   Origin_Currency
+	// END   Origin_Currency
 	// ----------------------------------------------------------------
 
 	// ----------------------------------------------------------------

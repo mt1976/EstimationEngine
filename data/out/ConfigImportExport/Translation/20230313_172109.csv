@@ -1,0 +1,18 @@
+translationID,class,message,translation,migrate
+Tm90aWZpY2F0aW9ufCBzIEVzdGltYXRpb24gcyBoYXMgYmVlbiB1cGRhdGVkIHMgcyA=,Notification,%s: Estimation '%s' has been updated. %s (%s),%s: Estimation '%s' has been updated. %s (%s),true
+TWVzc2FnZXxBIHJlZ2lzdHJhdGlvbiByZXF1ZXN0IGhhcyBiZWVuIHJlY2VpdmVkIGZyb20gcyBzIGZvciBzIFBsZWFzZSByZXZpZXcgdGhlIHJlcXVlc3QgYW5kIGFwcHJvdmUgb3IgcmVqZWN0IGl0IA==,Message,A registration request has been received from %s %s for %s. Please review the request and approve or reject it.,A registration request has been received from %s %s for %s. Please review the request and approve or reject it.,true
+TWVzc2FnZXxOZXcgRmVhdHVyZSBDcmVhdGVk,Message,New Feature Created,New Feature Created,true
+Tm90aWZpY2F0aW9ufCBzIHN0YXRlIGhhcyBiZWVuIHVwZGF0ZWQ=,Notification,%s state has been updated,%s state has been updated,true
+Tm90aWZpY2F0aW9ufE9yaWdpbiBzIHMgc3RhdGUgaGFzIGJlZW4gY2hhbmdlZCB0byBzIHMg,Notification,Origin %s (%s) state has been changed to %s (%s),Origin %s (%s) state has been changed to %s (%s),true
+Tm90aWZpY2F0aW9ufCBzIHJhdGUgaGFzIGJlZW4gdXBkYXRlZA==,Notification,%s rate has been updated,%s rate has been updated,true
+Tm90aWZpY2F0aW9ufFRoZSByYXRlIGZvciBzIHMgaGFzIGJlZW4gY2hhbmdlZCB0byBmcm9tIHMgcyB0byBzIHM=,Notification,The rate for %s (%s) has been changed to from %s%s to %s%s,The rate for %s (%s) has been changed to from %s%s to %s%s,true
+RXJyb3J8c3RhdGUgaXMgcmVxdWlyZWQ=,Error,state is required,state is required,true
+RXJyb3J8dHlwZSBvZiBkb2N1bWVudCBpcyByZXF1aXJlZA==,Error,type of document is required,type of document is required,true
+RXJyb3J8Y3VycmVuY3kgaXMgcmVxdWlyZWQ=,Error,currency is required,currency is required,true
+RXJyb3J8c3RhdHVzIGlzIHJlcXVpcmVk,Error,status is required,status is required,true
+RXJyb3J8YWN0aXZpdHkgcHJvZmlsZSBpcyByZXF1aXJlZA==,Error,activity profile is required,activity profile is required,true
+RXJyb3J8ZW5naW5lZXIgaXMgcmVxdWlyZWQ=,Error,engineer is required,engineer is required,true
+RXJyb3J8Y29uZmlkZW5jZSBpcyByZXF1aXJlZA==,Error,confidence is required,confidence is required,true
+RXJyb3J8YXBwcm92ZXIgaXMgcmVxdWlyZWQ=,Error,approver is required,approver is required,true
+Q2FyZFRpdGxlfE1lc3NhZ2UgVHJhbnNsYXRpb24gTGlzdA==,CardTitle,Message Translation - List,List Translations of System Messages,true
+Q2FyZFRpdGxlfFNjaGVkdWxlciBMaXN0,CardTitle,Scheduler - List,Scheduled Jobs & Processes,true

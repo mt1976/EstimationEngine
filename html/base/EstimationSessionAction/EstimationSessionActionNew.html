@@ -41,20 +41,20 @@
             <div class="row mb-3"  ><div class="col">
          
             <select id="EstimationSession" name="EstimationSession" class="select" data-mdb-filter="true"  required>
-                {{range .EstimationSession_lookup}}<option value="{{.ID}}" {{if eq .ID $.EstimationSession}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                {{range .EstimationSession_lookup}}<option value="{{.ID}}" {{if eq .ID $.EstimationSession}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .EstimationSession}}selected{{end}} data-mdb-secondary-text=""></option>
             </select>
             <label class="form-label select-label" for="EstimationSession" >EstimationSession</label>
-            <div class="{{.EstimationSession_props.MsgFeedBackType}}">{{.EstimationSession_props.MsgMessage}}</div>
+            <div class="text-danger small">{{.EstimationSession_props.MsgMessage}}</div>
                   
           </div></div>
 
             <div class="row mb-3"  ><div class="col">
          
             <select id="Action" name="Action" class="select" data-mdb-filter="true"  required>
-                {{range .Action_lookup}}<option value="{{.ID}}" {{if eq .ID $.Action}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                {{range .Action_lookup}}<option value="{{.ID}}" {{if eq .ID $.Action}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .Action}}selected{{end}} data-mdb-secondary-text=""></option>
             </select>
             <label class="form-label select-label" for="Action" >Action</label>
-            <div class="{{.Action_props.MsgFeedBackType}}">{{.Action_props.MsgMessage}}</div>
+            <div class="text-danger small">{{.Action_props.MsgMessage}}</div>
                   
           </div></div>
 

@@ -1,0 +1,22 @@
+dataID,class,field,value,category
+U3lzdGVtLUVtcHR5X1Jlc291cmNlLVNldHRpbmcuUnVsZS5TdGF0ZQ==,System,Empty_Resource,--,Setting.Rule.State
+RmVhdHVyZS1TYXZlLVNldHRpbmcuTmV4dC5BY3Rpb24=,Feature,Save,/FeatureByEstimationSession/?EstimationSessionID={{!ID}},Setting.Next.Action
+Q29uZmlnSW1wb3J0RXhwb3J0LUFjdGlvbi1EYXRhLlN0YXRl,ConfigImportExport,Action,Export,Data.State
+RmVhdHVyZS1EZXZlbG9wZXJSZXNvdXJjZV9SZXNvdXJjZV9GaWx0ZXItU2V0dGluZy5SdWxlLkZpbHRlcg==,Feature,DeveloperResource_Resource_Filter,"class IN ('DEVE','HEDE','UNAS')",Setting.Rule.Filter
+RmVhdHVyZS1Qcm9qZWN0TWFuYWdlclJlc291cmNlX1Jlc291cmNlX0ZpbHRlci1TZXR0aW5nLlJ1bGUuRmlsdGVy,Feature,ProjectManagerResource_Resource_Filter,"class IN ('PRMG','HEDV','UNAS')",Setting.Rule.Filter
+RmVhdHVyZS1BcHByb3ZlclJlc291cmNlX1Jlc291cmNlX0ZpbHRlci1TZXR0aW5nLlJ1bGUuRmlsdGVy,Feature,ApproverResource_Resource_Filter,"class IN ('GMGR','HEPR','UNAS')",Setting.Rule.Filter
+RmVhdHVyZS1Qcm9kdWN0TWFuYWdlclJlc291cmNlX1Jlc291cmNlX0ZpbHRlci1TZXR0aW5nLlJ1bGUuRmlsdGVy,Feature,ProductManagerResource_Resource_Filter,"class IN ('UNAS','HEPR')",Setting.Rule.Filter
+RXN0aW1hdGlvblNlc3Npb24tUHJvamVjdE1hbmFnZXJfUmVzb3VyY2VfRmlsdGVyLVNldHRpbmcuUnVsZS5GaWx0ZXI=,EstimationSession,ProjectManager_Resource_Filter,"class IN ('PRMG','HEDV','UNAS')",Setting.Rule.Filter
+RXN0aW1hdGlvblNlc3Npb24tUHJvZHVjdE1hbmFnZXJfUmVzb3VyY2VfRmlsdGVyLVNldHRpbmcuUnVsZS5GaWx0ZXI=,EstimationSession,ProductManager_Resource_Filter,"class IN ('UNAS','HEPR')",Setting.Rule.Filter
+RXN0aW1hdGlvblNlc3Npb24tQXBwcm92ZXJfUmVzb3VyY2VfRmlsdGVyLVNldHRpbmcuUnVsZS5GaWx0ZXI=,EstimationSession,Approver_Resource_Filter,"class IN ('GMGR','HEPR','UNAS')",Setting.Rule.Filter
+UHJvamVjdC1Qcm9qZWN0TWFuYWdlcl9SZXNvdXJjZV9GaWx0ZXItU2V0dGluZy5SdWxlLkZpbHRlcg==,Project,ProjectManager_Resource_Filter,"class IN ('PRMG','HEDV','UNAS')",Setting.Rule.Filter
+UHJvamVjdC1Qcm9qZWN0RW5naW5lZXJfUmVzb3VyY2VfRmlsdGVyLVNldHRpbmcuUnVsZS5GaWx0ZXI=,Project,ProjectEngineer_Resource_Filter,"class IN ('DEVE','HEDE','UNAS')",Setting.Rule.Filter
+UHJvamVjdC1Qcm9qZWN0QW5hbHlzdF9SZXNvdXJjZV9GaWx0ZXItU2V0dGluZy5SdWxlLkZpbHRlcg==,Project,ProjectAnalyst_Resource_Filter,"class IN ('UNAS','PROD','ANAL')",Setting.Rule.Filter
+T3JpZ2luLVByb2plY3RNYW5hZ2VyX1Jlc291cmNlX0ZpbHRlci1TZXR0aW5nLlJ1bGUuRmlsdGVy,Origin,ProjectManager_Resource_Filter,"class IN ('PRMG','HEDV','UNAS')",Setting.Rule.Filter
+T3JpZ2luLUFjY291bnRNYW5hZ2VyX1Jlc291cmNlX0ZpbHRlci1TZXR0aW5nLlJ1bGUuRmlsdGVy,Origin,AccountManager_Resource_Filter,"class IN ('UNAS','PROD','HEPR')",Setting.Rule.Filter
+RmVhdHVyZU5ldy1EZXZlbG9wZXJSZXNvdXJjZV9SZXNvdXJjZV9GaWx0ZXItU2V0dGluZy5SdWxlLkZpbHRlcg==,FeatureNew,DeveloperResource_Resource_Filter,"class IN ('DEVE','HEDE','UNAS')",Setting.Rule.Filter
+RmVhdHVyZS1BbmFseXN0UmVzb3VyY2VfUmVzb3VyY2VfRmlsdGVyLVNldHRpbmcuUnVsZS5GaWx0ZXI=,Feature,AnalystResource_Resource_Filter,"class IN ('UNAS','PROD','ANAL')",Setting.Rule.Filter
+RmVhdHVyZU5ldy1BbmFseXN0UmVzb3VyY2VfUmVzb3VyY2VfRmlsdGVyLVNldHRpbmcuUnVsZS5GaWx0ZXI=,FeatureNew,AnalystResource_Resource_Filter,"class IN ('UNAS','PROD','ANAL')",Setting.Rule.Filter
+T3JpZ2luLVNhdmUtU2V0dGluZy5OZXh0LkFjdGlvbg==,Origin,Save,/home,Setting.Next.Action
+RXN0aW1hdGlvblNlc3Npb24tUmVxdWlyZXNfQXBwcm92ZXJfU3RhdGVzLURhdGEuU3RhdGU=,EstimationSession,Requires_Approver_States,"APPR,CLAP,DELV,ISSU,LIVE,",Data.State
+Q29uZmlnSW1wb3J0RXhwb3J0LVdoYXQtRGF0YS5TdGF0ZQ==,ConfigImportExport,What,ALL,Data.State

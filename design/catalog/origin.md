@@ -45,8 +45,8 @@ SQL Table Key | **originID**
 | -- | --  | :--: | :--: | :--: |:--: |:--: |:--: |-- |-- |:--: |-- | --| :--: | :--: | :--: | -- | -- |
 |**SYSId**|Int|true|true|false|false|||||NH|_id|0|false|false|true|text||
 |**OriginID**|String|false|true|false|true|||||H|originID||true|false|false|text||
-|**StateID**|String|false|true|false|false|OL∀|OriginState|OriginState_OriginStateID|OriginState_Name|Y|stateID||false|true|false|text||
-|**DocTypeID**|String|false|true|false|false|OL∀|DocType|DocType_DocTypeID||Y|docTypeID||false|false|false|text||
+|**StateID**|String|false|true|false|true|OL|OriginState|OriginState_OriginStateID|OriginState_Name|Y|stateID||false|true|false|text||
+|**DocTypeID**|String|false|true|false|true|OL|DocType|DocType_DocTypeID||Y|docTypeID||false|true|false|text||
 |**Code**|String|false|true|false|true|||||H|code||true|true|false|text||
 |**FullName**|String|false|true|false|true|||||Y|fullName||false|true|false|text||
 |**Rate**|String|false|true|false|true|||||Y|rate||false|true|false|number||
@@ -63,7 +63,7 @@ SQL Table Key | **originID**
 |**SYSDeletedBy**|String|false|true|false|false|||||NH|_deletedBy||false|false|true|text||
 |**SYSDeletedHost**|String|false|true|false|false|||||NH|_deletedHost||false|false|true|text||
 |**SYSActivity**|String|false|true|false|false|||||NH|_activity||false|false|true|text||
-|**Currency**|String|true|true|false|false|LL|ccy|||Y|currency||false|false|false|text||
+|**Currency**|String|true|true|false|false|LL|ccy|||Y|currency||false|true|false|text||
 |**SYSDbVersion**|String|false|true|false|false|||||NH|_dbVersion||false|false|true|text||
 |**Comments**|String|false|true|false|false|||||Y|comments||false|false|false|text||
 |**ProjectManager**|String|false|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|projectManager||false|false|false|text||
@@ -94,7 +94,7 @@ SQL Table Key | **originID**
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **12/03/2023** at **12:24:54**
+Date & Time		     | **13/03/2023** at **14:22:28**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

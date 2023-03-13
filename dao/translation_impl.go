@@ -4,6 +4,7 @@ import (
 	"strings"
 
 	core "github.com/mt1976/ebEstimates/core"
+	das "github.com/mt1976/ebEstimates/das"
 	dm "github.com/mt1976/ebEstimates/datamodel"
 	"github.com/mt1976/ebEstimates/logs"
 )
@@ -28,7 +29,7 @@ func Translate(class string, message string) string {
 		logs.Information("Translation", err.Error())
 	}
 	// // Check if tis null
-	if (dm.Translation{}) == t {
+	if t.Id == "" {
 		// Create One
 		t.Id = translation_ID
 		t.Class = class
@@ -39,4 +40,12 @@ func Translate(class string, message string) string {
 	// //fmt.Printf("message: %v\n", message)
 	// return t.Translation
 	return t.Translation
+}
+
+func Translation_GetMigrateable() (int, []dm.Translation, error) {
+
+	tsql := Translation_SQLbase
+	tsql = tsql + " " + das.WHERE + dm.Translation_Migrate_sql + das.EQ + das.ID(das.TRUE)
+	_, items, _, _ := translation_Fetch(tsql)
+	return len(items), items, nil
 }

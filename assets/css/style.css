@@ -101,7 +101,7 @@ body{
     border-radius: 5px;
     box-shadow: inset 0 0 0 2px var(--custom-alert) !important;
     background-color: var(--custom-mandatory) !important;
-    border-color: var(--custom-alert) !important;
+    border-color: var(--custom-danger-colour) !important;
 }
 
 .datedisabled {
@@ -227,4 +227,8 @@ body{
   .text-corporate-body {
     color: var(--custom-dark-grey) !important;
     font: var(--custom-font-corporate);
+  }
+
+  .invalid-feedback{
+    color: var(--custom-danger-colour) !important;
   }

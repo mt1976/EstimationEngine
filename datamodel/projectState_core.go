@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 10/03/2023 at 19:54:35
+// Date & Time		    : 13/03/2023 at 14:22:30
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //ProjectState defines the datamodel for the ProjectState object
 type ProjectState struct {
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -35,6 +35,7 @@ type ProjectState struct {
 	SYSDbVersion       string
 	IsLocked       string
 	Notify       string
+	Migrate       string
 	//
 	// Field Properties
 	//
@@ -54,15 +55,17 @@ type ProjectState struct {
 	SYSDbVersion_props FieldProperties
 	IsLocked_props FieldProperties
 	Notify_props FieldProperties
+	Migrate_props FieldProperties
 	//
  	// Any lookups will be added below
 	//
 	IsLocked_lookup []Lookup_Item
 	Notify_lookup []Lookup_Item
+	Migrate_lookup []Lookup_Item
 	}
 
 const (
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	ProjectState_Name      = "ProjectState"
 	ProjectState_Title       = "Project State"
@@ -114,6 +117,7 @@ const (
 	ProjectState_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
 	ProjectState_IsLocked_sql   = "isLocked" // IsLocked is a String
 	ProjectState_Notify_sql   = "notify" // Notify is a String
+	ProjectState_Migrate_sql   = "migrate" // Migrate is a String
 ///
 	/// Application Field Definitions
 	///
@@ -133,12 +137,13 @@ const (
 	ProjectState_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
 	ProjectState_IsLocked_scrn   = "IsLocked" // IsLocked is a String
 	ProjectState_Notify_scrn   = "Notify" // Notify is a String
+	ProjectState_Migrate_scrn   = "Migrate" // Migrate is a String
 ///
 )
 
 //ProjectState_PageList provides the information for the template for a list of ProjectStates
 type ProjectState_PageList struct {
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -160,7 +165,7 @@ type ProjectState_PageList struct {
 
 //ProjectState_Page provides the information for the template for an individual ProjectState
 type ProjectState_Page struct {
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
@@ -192,6 +197,7 @@ type ProjectState_Page struct {
 	SYSDbVersion         string
 	IsLocked         string
 	Notify         string
+	Migrate         string
 	/// Field Properties
 	SYSId_props     FieldProperties
 	ProjectStateID_props     FieldProperties
@@ -209,9 +215,11 @@ type ProjectState_Page struct {
 	SYSDbVersion_props     FieldProperties
 	IsLocked_props     FieldProperties
 	Notify_props     FieldProperties
+	Migrate_props     FieldProperties
 	/// Lookups
 	IsLocked_lookup    []Lookup_Item
 	Notify_lookup    []Lookup_Item
+	Migrate_lookup    []Lookup_Item
 	
 	/// END OF DEFINITIONS
 	///

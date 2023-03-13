@@ -79,3 +79,22 @@ func ProjectAction_OriginKey_validate_impl(iAction string, iId string, iValue st
 	logs.Callout("ProjectAction", dm.ProjectAction_OriginKey_scrn, VAL+"-"+iAction, iId)
 	return iValue, fP
 }
+
+// ProjectAction_ProjectStateID_validate_impl provides validation/actions for ProjectStateID
+func ProjectAction_ProjectStateID_validate_impl(iAction string, iId string, iValue string, iRec dm.ProjectAction, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("ProjectAction", dm.ProjectAction_ProjectStateID_scrn, VAL+"-"+iAction, iId)
+	if iValue == "" {
+		fP = SetFieldError(fP, "status is required")
+	}
+	return iValue, fP
+}
+
+// ----------------------------------------------------------------
+// ProjectAction_ProfileID_validate_impl provides validation/actions for ProfileID
+func ProjectAction_ProfileID_validate_impl(iAction string, iId string, iValue string, iRec dm.ProjectAction, fP dm.FieldProperties) (string, dm.FieldProperties) {
+	logs.Callout("ProjectAction", dm.ProjectAction_ProfileID_scrn, VAL+"-"+iAction, iId)
+	if iValue == "" {
+		fP = SetFieldError(fP, "activity profile is required")
+	}
+	return iValue, fP
+}

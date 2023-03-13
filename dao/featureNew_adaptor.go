@@ -321,3 +321,17 @@ func FeatureNew_ProjectName_OnFetch_impl(rec dm.FeatureNew) string {
 // ----------------------------------------------------------------
 // Automatically generated code ends here
 // ----------------------------------------------------------------
+
+// ----------------------------------------------------------------
+// FeatureNew_ConfidenceCODE_OnStore_impl provides the implementation for the callout
+func FeatureNew_ConfidenceCODE_OnStore_impl(fieldval string, rec dm.FeatureNew, usr string) (string, error) {
+	logs.Callout("FeatureNew", dm.FeatureNew_ConfidenceCODE_scrn, PUT, rec.ID)
+	return fieldval, nil
+}
+
+// ----------------------------------------------------------------
+// FeatureNew_ConfidenceCODE_OnFetch_impl provides the implementation for the callout
+func FeatureNew_ConfidenceCODE_OnFetch_impl(rec dm.FeatureNew) string {
+	logs.Callout("FeatureNew", dm.FeatureNew_ConfidenceCODE_scrn, GET, rec.ID)
+	return rec.ConfidenceCODE
+}

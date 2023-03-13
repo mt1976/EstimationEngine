@@ -189,7 +189,7 @@
                 <div class="col">
                 
                   <select id="MailUnread" name="MailUnread" class="select" data-mdb-filter="true" disabled>
-                  {{range .MailUnread_lookup}}<option value="{{.ID}}" {{if eq .ID $.MailUnread}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  {{range .MailUnread_lookup}}<option value="{{.ID}}" {{if eq .ID $.MailUnread}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .MailUnread}}selected{{end}} data-mdb-secondary-text=""></option>
                   </select>
                   <label class="form-label select-label" for="MailUnread" disabled>MailUnread</label>
                 
@@ -228,7 +228,7 @@
                 <div class="col">
                 
                   <select id="MailAcknowledged" name="MailAcknowledged" class="select" data-mdb-filter="true" disabled>
-                  {{range .MailAcknowledged_lookup}}<option value="{{.ID}}" {{if eq .ID $.MailAcknowledged}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                  {{range .MailAcknowledged_lookup}}<option value="{{.ID}}" {{if eq .ID $.MailAcknowledged}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}<option value="" {{if eq "" .MailAcknowledged}}selected{{end}} data-mdb-secondary-text=""></option>
                   </select>
                   <label class="form-label select-label" for="MailAcknowledged" disabled>MailAcknowledged</label>
                 

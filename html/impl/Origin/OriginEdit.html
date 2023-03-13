@@ -89,6 +89,7 @@
             
             <select id="StateID" name="StateID" class="select" data-mdb-filter="true"  >
                 {{range .StateID_lookup}}<option value="{{.ID}}" {{if eq .ID $.StateID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                <option value="" {{if eq "" .StateID}}selected{{end}} data-mdb-secondary-text=""></option>
             </select>
             <label class="form-label select-label" for="StateID" >Status</label>
             <div class="{{.StateID_props.MsgFeedBackType}}">{{.StateID_props.MsgMessage}}</div>
@@ -101,6 +102,7 @@
             
             <select id="DocTypeID" name="DocTypeID" class="select" data-mdb-filter="true"  >
                 {{range .DocTypeID_lookup}}<option value="{{.ID}}" {{if eq .ID $.DocTypeID}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                <option value="" {{if eq "" .DocTypeID}}selected{{end}} data-mdb-secondary-text=""></option>
             </select>
             <label class="form-label select-label" for="DocTypeID" >Type of Document</label>
             <div class="{{.DocTypeID_props.MsgFeedBackType}}">{{.DocTypeID_props.MsgMessage}}</div>
@@ -112,6 +114,7 @@
             
             <select id="Currency" name="Currency" class="select" data-mdb-filter="true"  required>
                 {{range .Currency_lookup}}<option value="{{.ID}}" {{if eq .ID $.Currency}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                <option value="" {{if eq "" .Currency}}selected{{end}} data-mdb-secondary-text=""></option>
             </select>
             <label class="form-label select-label" for="Currency" >Currency</label>
             <div class="{{.Currency_props.MsgFeedBackType}}">{{.Currency_props.MsgMessage}}</div>
@@ -161,6 +164,7 @@
             
             <select id="ProjectManager" name="ProjectManager" class="select" data-mdb-filter="true"  >
                 {{range .ProjectManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProjectManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                <option value="" {{if eq "" .ProjectManager}}selected{{end}} data-mdb-secondary-text=""></option>
             </select>
             <label class="form-label select-label" for="ProjectManager" >ProjectManager</label>
             <div class="{{.ProjectManager_props.MsgFeedBackType}}">{{.ProjectManager_props.MsgMessage}}</div>
@@ -173,6 +177,7 @@
             
             <select id="AccountManager" name="AccountManager" class="select" data-mdb-filter="true"  >
                 {{range .AccountManager_lookup}}<option value="{{.ID}}" {{if eq .ID $.AccountManager}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                <option value="" {{if eq "" .AccountManager}}selected{{end}} data-mdb-secondary-text=""></option>
             </select>
             <label class="form-label select-label" for="AccountManager" >AccountManager</label>
             <div class="{{.AccountManager_props.MsgFeedBackType}}">{{.AccountManager_props.MsgMessage}}</div>

@@ -27,6 +27,7 @@ const (
 	JOB_DONE                     = "Done"
 	JOB_IN_PATH                  = "In_Path"
 	JOB_OUT_PATH                 = "Out_Path"
+	JOB_WHAT                     = "What"
 )
 
 // SendMailToResource sends an email to a resource, if the resource has an email address and is active

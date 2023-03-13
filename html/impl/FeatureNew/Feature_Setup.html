@@ -85,9 +85,11 @@
          
             <select id="ProfileSelected" name="ProfileSelected" class="select" data-mdb-filter="true"  >
                 {{range .ProfileSelected_lookup}}<option value="{{.ID}}" {{if eq .ID $.ProfileSelected}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                                                                <option value="" {{if eq "" .ProfileSelected}}selected{{end}} data-mdb-secondary-text=""></option>
+
             </select>
             <label class="form-label select-label text-danger" for="ProfileSelected" >Estimation Profile</label>
-            <div class="{{.ProfileSelected_props.MsgFeedBackType}}">{{.ProfileSelected_props.MsgMessage}}</div>
+            <div class="text-danger">{{.ProfileSelected_props.MsgMessage}}</div>
                   
           </div></div>
 
@@ -111,9 +113,11 @@
          
             <select id="DeveloperResource" name="DeveloperResource" class="select" data-mdb-filter="true"  required>
                 {{range .DeveloperResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.DeveloperResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                                                                <option value="" {{if eq "" .DeveloperResource}}selected{{end}} data-mdb-secondary-text=""></option>
+
             </select>
-            <label class="form-label select-label" for="DeveloperResource" >Engineer</label>
-            <div class="{{.DeveloperResource_props.MsgFeedBackType}}">{{.DeveloperResource_props.MsgMessage}}</div>
+            <label class="form-label select-label text-danger" for="DeveloperResource" >Engineer</label>
+            <div class="text-danger">{{.DeveloperResource_props.MsgMessage}}</div>
                   
           </div>
           
@@ -121,9 +125,11 @@
          
             <select id="ConfidenceCODE" name="ConfidenceCODE" class="select" data-mdb-filter="true"  required>
                 {{range .ConfidenceCODE_lookup}}<option value="{{.ID}}" {{if eq .ID $.ConfidenceCODE}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                                                                                <option value="" {{if eq "" .ConfidenceCODE}}selected{{end}} data-mdb-secondary-text=""></option>
+
             </select>
-            <label class="form-label select-label" for="ConfidenceCODE" >Confidence Level</label>
-            <div class="{{.ConfidenceCODE_props.MsgFeedBackType}}">{{.ConfidenceCODE_props.MsgMessage}}</div>
+            <label class="form-label select-label text-danger" for="ConfidenceCODE" >Confidence Level</label>
+            <div class="text-danger">{{.ConfidenceCODE_props.MsgMessage}}</div>
                   
           </div></div>
 
@@ -146,9 +152,11 @@
          
             <select id="AnalystResource" name="AnalystResource" class="select" data-mdb-filter="true"  required>
                 {{range .AnalystResource_lookup}}<option value="{{.ID}}" {{if eq .ID $.AnalystResource}}selected{{end}} data-mdb-secondary-text="{{.ID}}">{{.Name}}</option>{{end}}
+                                                                <option value="" {{if eq "" .AnalystResource}}selected{{end}} data-mdb-secondary-text=""></option>
+
             </select>
             <label class="form-label select-label" for="AnalystResource" >Analyst</label>
-            <div class="{{.AnalystResource_props.MsgFeedBackType}}">{{.AnalystResource_props.MsgMessage}}</div>
+            <div class="text-danger">{{.AnalystResource_props.MsgMessage}}</div>
                   
           </div>
           <div class="col"></div>

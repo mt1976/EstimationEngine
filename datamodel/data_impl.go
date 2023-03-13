@@ -12,6 +12,7 @@ const (
 	Data_Category_Indexer    = Data_Category_Setting + ".Index.URI"
 	Data_Category_URI        = Data_Category_Setting + ".URI"
 	Data_Category_Path       = Data_Category_Setting + ".Path"
+	Data_Category_Default    = Data_Category_Setting + ".Default"
 	Data_Category_Info       = Data_Category_Data + ".Info"
 	Data_Category_Sequence   = Data_Category_Data + ".Sequence"
 	Data_Category_State      = Data_Category_Data + ".State"
@@ -33,4 +34,5 @@ var Data_Category_List = []string{
 	Data_Category_Sequence,
 	Data_Category_State,
 	Data_Category_NextAction,
+	Data_Category_Default,
 }

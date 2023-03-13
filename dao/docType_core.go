@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 10/03/2023 at 19:54:32
+// Date & Time		    : 13/03/2023 at 14:22:26
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -93,11 +93,11 @@ func DocType_GetByID(id string) (int, dm.DocType, error) {
 
 func DocType_PostGet(doctypeItem dm.DocType,id string) dm.DocType {
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	doctypeItem.Code,doctypeItem.Code_props = DocType_Code_validate_impl (GET,id,doctypeItem.Code,doctypeItem,doctypeItem.Code_props)
 	// 
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return doctypeItem
 }
@@ -179,7 +179,7 @@ func DocType_StoreProcess(r dm.DocType, operator string) (dm.DocType,error) {
 func DocType_Validate(r dm.DocType) (dm.DocType, error) {
 	var err error
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.Code,r.Code_props = DocType_Code_validate_impl (PUT,r.DocTypeID,r.Code,r,r.Code_props)
 	if r.Code_props.MsgMessage != "" {
@@ -219,7 +219,7 @@ logs.Storing("DocType",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.DocType_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.DocType_DocTypeID_sql, r.DocTypeID)
@@ -236,9 +236,10 @@ logs.Storing("DocType",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.DocType_SYSDeletedHost_sql, r.SYSDeletedHost)
 	ts = addData(ts, dm.DocType_SYSDbVersion_sql, r.SYSDbVersion)
 	ts = addData(ts, dm.DocType_Comments_sql, r.Comments)
+	ts = addData(ts, dm.DocType_Migrate_sql, r.Migrate)
 		
 	// 
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := das.INSERT + das.INTO + DocType_QualifiedName
@@ -273,7 +274,7 @@ func doctype_Fetch(tsql string) (int, []dm.DocType, dm.DocType, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.DocType_SYSId_sql, "0")
 	   recItem.DocTypeID  = get_String(rec, dm.DocType_DocTypeID_sql, "")
@@ -290,11 +291,12 @@ func doctype_Fetch(tsql string) (int, []dm.DocType, dm.DocType, error) {
 	   recItem.SYSDeletedHost  = get_String(rec, dm.DocType_SYSDeletedHost_sql, "")
 	   recItem.SYSDbVersion  = get_String(rec, dm.DocType_SYSDbVersion_sql, "")
 	   recItem.Comments  = get_String(rec, dm.DocType_Comments_sql, "")
+	   recItem.Migrate  = get_String(rec, dm.DocType_Migrate_sql, "")
 	
 	// If there are fields below, create the methods in dao\DocType_adaptor.go
 	   recItem.Code  = DocType_Code_OnFetch_impl (recItem)
 	// 
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -324,12 +326,12 @@ func DocType_New() (int, []dm.DocType, dm.DocType, error) {
 	
 
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.Code,r.Code_props = DocType_Code_validate_impl (NEW,r.DocTypeID,r.Code,r,r.Code_props)
 	
 	// 
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

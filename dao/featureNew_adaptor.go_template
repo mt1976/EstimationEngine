@@ -16,7 +16,7 @@ import (
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
 	// Template Generator   : Einsteinium [r5-23.01.23]
-	// Date & Time		    : 10/03/2023 at 23:09:40
+	// Date & Time		    : 13/03/2023 at 14:22:28
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in featurenew_impl.go
@@ -92,6 +92,28 @@ import (
 	// END   FeatureNew_DeveloperResource
 	// END   FeatureNew_DeveloperResource
 	// END   FeatureNew_DeveloperResource
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN FeatureNew_ConfidenceCODE
+	// BEGIN FeatureNew_ConfidenceCODE
+	// BEGIN FeatureNew_ConfidenceCODE
+	// ----------------------------------------------------------------
+	// FeatureNew_ConfidenceCODE_OnStore_impl provides the implementation for the callout
+	func FeatureNew_ConfidenceCODE_OnStore_impl (fieldval string,rec dm.FeatureNew,usr string) (string,error)  {
+		logs.Callout("FeatureNew", dm.FeatureNew_ConfidenceCODE_scrn, PUT, rec.ID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// FeatureNew_ConfidenceCODE_OnFetch_impl provides the implementation for the callout	
+	func FeatureNew_ConfidenceCODE_OnFetch_impl (rec dm.FeatureNew)(string) {
+		logs.Callout("FeatureNew", dm.FeatureNew_ConfidenceCODE_scrn, GET, rec.ID)
+		return rec.ConfidenceCODE
+	}
+	// ----------------------------------------------------------------
+	// END   FeatureNew_ConfidenceCODE
+	// END   FeatureNew_ConfidenceCODE
+	// END   FeatureNew_ConfidenceCODE
 	// ----------------------------------------------------------------
 
 	// ----------------------------------------------------------------

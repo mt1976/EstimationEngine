@@ -24,4 +24,48 @@ type DataItemIO struct {
 	Field    string `csv:"field"`
 	Value    string `csv:"value"`
 	Category string `csv:"category"`
+	Migrate  string `csv:"migrate"`
+}
+
+type OriginStateIO struct {
+	OriginStateID string `csv:"originStateID"`
+	Code          string `csv:"code"`
+	Name          string `csv:"name"`
+	IsLocked      string `csv:"isLocked"`
+	Notify        string `csv:"notify"`
+	Migrate       string `csv:"migrate"`
+}
+
+type DocumentTypeIO struct {
+	DocTypeID string `csv:"docTypeID"`
+	Code      string `csv:"code"`
+	Comments  string `csv:"comments"`
+	Name      string `csv:"name"`
+	Migrate   string `csv:"migrate"`
+}
+
+type ProjectStateIO struct {
+	ProjectStateID string `csv:"projectStateID"`
+	Code           string `csv:"code"`
+	Name           string `csv:"name"`
+	IsLocked       string `csv:"isLocked"`
+	Notify         string `csv:"notify"`
+	Migrate        string `csv:"migrate"`
+}
+
+type EstimationStateIO struct {
+	EstimationStateID string `csv:"estimationStateID"`
+	Code              string `csv:"code"`
+	Name              string `csv:"name"`
+	IsLocked          string `csv:"isLocked"`
+	Notify            string `csv:"notify"`
+	Migrate           string `csv:"migrate"`
+}
+
+type TranslationIO struct {
+	TranslationID string `csv:"translationID"`
+	Class         string `csv:"class"`
+	Message       string `csv:"message"`
+	Translation   string `csv:"translation"`
+	Migrate       string `csv:"migrate"`
 }

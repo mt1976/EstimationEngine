@@ -226,3 +226,29 @@ func Origin_StatusOnLoad_OnFetch_impl(rec dm.Origin) string {
 	logs.Callout("Origin", dm.Origin_StatusOnLoad_scrn, GET, rec.OriginID)
 	return rec.StateID
 }
+
+// Origin_DocTypeID_OnStore_impl provides the implementation for the callout
+func Origin_DocTypeID_OnStore_impl(fieldval string, rec dm.Origin, usr string) (string, error) {
+	logs.Callout("Origin", dm.Origin_DocTypeID_scrn, PUT, rec.OriginID)
+	return fieldval, nil
+}
+
+// ----------------------------------------------------------------
+// Origin_DocTypeID_OnFetch_impl provides the implementation for the callout
+func Origin_DocTypeID_OnFetch_impl(rec dm.Origin) string {
+	logs.Callout("Origin", dm.Origin_DocTypeID_scrn, GET, rec.OriginID)
+	return rec.DocTypeID
+}
+
+// Origin_Currency_OnStore_impl provides the implementation for the callout
+func Origin_Currency_OnStore_impl(fieldval string, rec dm.Origin, usr string) (string, error) {
+	logs.Callout("Origin", dm.Origin_Currency_scrn, PUT, rec.OriginID)
+	return fieldval, nil
+}
+
+// ----------------------------------------------------------------
+// Origin_Currency_OnFetch_impl provides the implementation for the callout
+func Origin_Currency_OnFetch_impl(rec dm.Origin) string {
+	logs.Callout("Origin", dm.Origin_Currency_scrn, GET, rec.OriginID)
+	return rec.Currency
+}

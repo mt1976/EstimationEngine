@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 10/03/2023 at 19:54:34
+// Date & Time		    : 13/03/2023 at 14:22:29
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //OriginState defines the datamodel for the OriginState object
 type OriginState struct {
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -35,6 +35,7 @@ type OriginState struct {
 	SYSDbVersion       string
 	IsLocked       string
 	Notify       string
+	Migrate       string
 	//
 	// Field Properties
 	//
@@ -54,13 +55,15 @@ type OriginState struct {
 	SYSDbVersion_props FieldProperties
 	IsLocked_props FieldProperties
 	Notify_props FieldProperties
+	Migrate_props FieldProperties
 	//
  	// Any lookups will be added below
 	//
+	Migrate_lookup []Lookup_Item
 	}
 
 const (
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	OriginState_Name      = "OriginState"
 	OriginState_Title       = "Origin State"
@@ -112,6 +115,7 @@ const (
 	OriginState_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
 	OriginState_IsLocked_sql   = "isLocked" // IsLocked is a String
 	OriginState_Notify_sql   = "notify" // Notify is a String
+	OriginState_Migrate_sql   = "migrate" // Migrate is a String
 ///
 	/// Application Field Definitions
 	///
@@ -131,12 +135,13 @@ const (
 	OriginState_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
 	OriginState_IsLocked_scrn   = "IsLocked" // IsLocked is a String
 	OriginState_Notify_scrn   = "Notify" // Notify is a String
+	OriginState_Migrate_scrn   = "Migrate" // Migrate is a String
 ///
 )
 
 //OriginState_PageList provides the information for the template for a list of OriginStates
 type OriginState_PageList struct {
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -158,7 +163,7 @@ type OriginState_PageList struct {
 
 //OriginState_Page provides the information for the template for an individual OriginState
 type OriginState_Page struct {
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
@@ -190,6 +195,7 @@ type OriginState_Page struct {
 	SYSDbVersion         string
 	IsLocked         string
 	Notify         string
+	Migrate         string
 	/// Field Properties
 	SYSId_props     FieldProperties
 	OriginStateID_props     FieldProperties
@@ -207,7 +213,9 @@ type OriginState_Page struct {
 	SYSDbVersion_props     FieldProperties
 	IsLocked_props     FieldProperties
 	Notify_props     FieldProperties
+	Migrate_props     FieldProperties
 	/// Lookups
+	Migrate_lookup    []Lookup_Item
 	
 	/// END OF DEFINITIONS
 	///

@@ -8,7 +8,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 10/03/2023 at 19:54:33
+// Date & Time		    : 13/03/2023 at 14:22:27
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -93,7 +93,7 @@ func Feature_GetByID(id string) (int, dm.Feature, error) {
 
 func Feature_PostGet(featureItem dm.Feature,id string) dm.Feature {
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	featureItem.FeatureID,featureItem.FeatureID_props = Feature_FeatureID_validate_impl (GET,id,featureItem.FeatureID,featureItem,featureItem.FeatureID_props)
 	featureItem.EstimationSessionID,featureItem.EstimationSessionID_props = Feature_EstimationSessionID_validate_impl (GET,id,featureItem.EstimationSessionID,featureItem,featureItem.EstimationSessionID_props)
@@ -128,7 +128,7 @@ func Feature_PostGet(featureItem dm.Feature,id string) dm.Feature {
 	featureItem.OriginCode,featureItem.OriginCode_props = Feature_OriginCode_validate_impl (GET,id,featureItem.OriginCode,featureItem,featureItem.OriginCode_props)
 	featureItem.EstimationSessionName,featureItem.EstimationSessionName_props = Feature_EstimationSessionName_validate_impl (GET,id,featureItem.EstimationSessionName,featureItem,featureItem.EstimationSessionName_props)
 	// 
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	return featureItem
 }
@@ -210,7 +210,7 @@ func Feature_StoreProcess(r dm.Feature, operator string) (dm.Feature,error) {
 func Feature_Validate(r dm.Feature) (dm.Feature, error) {
 	var err error
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.FeatureID,r.FeatureID_props = Feature_FeatureID_validate_impl (PUT,r.FeatureID,r.FeatureID,r,r.FeatureID_props)
 	if r.FeatureID_props.MsgMessage != "" {
@@ -412,7 +412,7 @@ logs.Storing("Feature",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Feature_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Feature_FeatureID_sql, r.FeatureID)
@@ -482,7 +482,7 @@ logs.Storing("Feature",fmt.Sprintf("%v", r))
 	
 		
 	// 
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := das.INSERT + das.INTO + Feature_QualifiedName
@@ -519,7 +519,7 @@ func feature_Fetch(tsql string) (int, []dm.Feature, dm.Feature, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Feature_SYSId_sql, "0")
 	   recItem.FeatureID  = get_String(rec, dm.Feature_FeatureID_sql, "")
@@ -622,7 +622,7 @@ func feature_Fetch(tsql string) (int, []dm.Feature, dm.Feature, error) {
 	   recItem.OriginCode  = Feature_OriginCode_OnFetch_impl (recItem)
 	   recItem.EstimationSessionName  = Feature_EstimationSessionName_OnFetch_impl (recItem)
 	// 
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -652,7 +652,7 @@ func Feature_New() (int, []dm.Feature, dm.Feature, error) {
 	
 
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.FeatureID,r.FeatureID_props = Feature_FeatureID_validate_impl (NEW,r.FeatureID,r.FeatureID,r,r.FeatureID_props)
 	r.EstimationSessionID,r.EstimationSessionID_props = Feature_EstimationSessionID_validate_impl (NEW,r.FeatureID,r.EstimationSessionID,r,r.EstimationSessionID_props)
@@ -688,7 +688,7 @@ func Feature_New() (int, []dm.Feature, dm.Feature, error) {
 	r.EstimationSessionName,r.EstimationSessionName_props = Feature_EstimationSessionName_validate_impl (NEW,r.FeatureID,r.EstimationSessionName,r,r.EstimationSessionName_props)
 	
 	// 
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

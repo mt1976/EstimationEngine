@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 10/03/2023 at 19:54:33
+// Date & Time		    : 13/03/2023 at 14:22:27
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -90,10 +90,10 @@ func EstimationState_GetByID(id string) (int, dm.EstimationState, error) {
 
 func EstimationState_PostGet(estimationstateItem dm.EstimationState, id string) dm.EstimationState {
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	//
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	return estimationstateItem
 }
@@ -171,7 +171,7 @@ func EstimationState_StoreProcess(r dm.EstimationState, operator string) (dm.Est
 func EstimationState_Validate(r dm.EstimationState) (dm.EstimationState, error) {
 	var err error
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	//
 
@@ -205,7 +205,7 @@ func estimationstate_Save(r dm.EstimationState, usr string) error {
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	ts = addData(ts, dm.EstimationState_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.EstimationState_EstimationStateID_sql, r.EstimationStateID)
@@ -223,9 +223,10 @@ func estimationstate_Save(r dm.EstimationState, usr string) error {
 	ts = addData(ts, dm.EstimationState_SYSDbVersion_sql, r.SYSDbVersion)
 	ts = addData(ts, dm.EstimationState_IsLocked_sql, r.IsLocked)
 	ts = addData(ts, dm.EstimationState_Notify_sql, r.Notify)
+	ts = addData(ts, dm.EstimationState_Migrate_sql, r.Migrate)
 
 	//
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 	tsql := das.INSERT + das.INTO + EstimationState_QualifiedName
@@ -254,7 +255,7 @@ func estimationstate_Fetch(tsql string) (int, []dm.EstimationState, dm.Estimatio
 
 		rec := returnList[i]
 		// START
-		// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		//
 		recItem.SYSId = get_Int(rec, dm.EstimationState_SYSId_sql, "0")
 		recItem.EstimationStateID = get_String(rec, dm.EstimationState_EstimationStateID_sql, "")
@@ -272,10 +273,11 @@ func estimationstate_Fetch(tsql string) (int, []dm.EstimationState, dm.Estimatio
 		recItem.SYSDbVersion = get_String(rec, dm.EstimationState_SYSDbVersion_sql, "")
 		recItem.IsLocked = get_String(rec, dm.EstimationState_IsLocked_sql, "")
 		recItem.Notify = get_String(rec, dm.EstimationState_Notify_sql, "")
+		recItem.Migrate = get_String(rec, dm.EstimationState_Migrate_sql, "")
 
 		// If there are fields below, create the methods in dao\EstimationState_adaptor.go
 		//
-		// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		// END
 		///
 		//Add to the list
@@ -300,11 +302,11 @@ func EstimationState_New() (int, []dm.EstimationState, dm.EstimationState, error
 	var rList []dm.EstimationState
 
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 
 	//
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

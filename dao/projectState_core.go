@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 10/03/2023 at 19:54:35
+// Date & Time		    : 13/03/2023 at 14:22:30
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -90,10 +90,10 @@ func ProjectState_GetByID(id string) (int, dm.ProjectState, error) {
 
 func ProjectState_PostGet(projectstateItem dm.ProjectState, id string) dm.ProjectState {
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	//
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	return projectstateItem
 }
@@ -171,7 +171,7 @@ func ProjectState_StoreProcess(r dm.ProjectState, operator string) (dm.ProjectSt
 func ProjectState_Validate(r dm.ProjectState) (dm.ProjectState, error) {
 	var err error
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	//
 
@@ -205,7 +205,7 @@ func projectstate_Save(r dm.ProjectState, usr string) error {
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	ts = addData(ts, dm.ProjectState_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.ProjectState_ProjectStateID_sql, r.ProjectStateID)
@@ -223,9 +223,10 @@ func projectstate_Save(r dm.ProjectState, usr string) error {
 	ts = addData(ts, dm.ProjectState_SYSDbVersion_sql, r.SYSDbVersion)
 	ts = addData(ts, dm.ProjectState_IsLocked_sql, r.IsLocked)
 	ts = addData(ts, dm.ProjectState_Notify_sql, r.Notify)
+	ts = addData(ts, dm.ProjectState_Migrate_sql, r.Migrate)
 
 	//
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 	tsql := das.INSERT + das.INTO + ProjectState_QualifiedName
@@ -254,7 +255,7 @@ func projectstate_Fetch(tsql string) (int, []dm.ProjectState, dm.ProjectState, e
 
 		rec := returnList[i]
 		// START
-		// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		//
 		recItem.SYSId = get_Int(rec, dm.ProjectState_SYSId_sql, "0")
 		recItem.ProjectStateID = get_String(rec, dm.ProjectState_ProjectStateID_sql, "")
@@ -272,10 +273,11 @@ func projectstate_Fetch(tsql string) (int, []dm.ProjectState, dm.ProjectState, e
 		recItem.SYSDbVersion = get_String(rec, dm.ProjectState_SYSDbVersion_sql, "")
 		recItem.IsLocked = get_String(rec, dm.ProjectState_IsLocked_sql, "")
 		recItem.Notify = get_String(rec, dm.ProjectState_Notify_sql, "")
+		recItem.Migrate = get_String(rec, dm.ProjectState_Migrate_sql, "")
 
 		// If there are fields below, create the methods in dao\ProjectState_adaptor.go
 		//
-		// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		// END
 		///
 		//Add to the list
@@ -300,11 +302,11 @@ func ProjectState_New() (int, []dm.ProjectState, dm.ProjectState, error) {
 	var rList []dm.ProjectState
 
 	// START
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 
 	//
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

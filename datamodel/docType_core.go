@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 10/03/2023 at 19:54:32
+// Date & Time		    : 13/03/2023 at 14:22:26
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //DocType defines the datamodel for the DocType object
 type DocType struct {
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -34,6 +34,7 @@ type DocType struct {
 	SYSDeletedHost       string
 	SYSDbVersion       string
 	Comments       string
+	Migrate       string
 	//
 	// Field Properties
 	//
@@ -52,13 +53,15 @@ type DocType struct {
 	SYSDeletedHost_props FieldProperties
 	SYSDbVersion_props FieldProperties
 	Comments_props FieldProperties
+	Migrate_props FieldProperties
 	//
  	// Any lookups will be added below
 	//
+	Migrate_lookup []Lookup_Item
 	}
 
 const (
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	DocType_Name      = "DocType"
 	DocType_Title       = "Document Types"
@@ -109,6 +112,7 @@ const (
 	DocType_SYSDeletedHost_sql   = "_deletedHost" // SYSDeletedHost is a String
 	DocType_SYSDbVersion_sql   = "_dbVersion" // SYSDbVersion is a String
 	DocType_Comments_sql   = "comments" // Comments is a String
+	DocType_Migrate_sql   = "migrate" // Migrate is a String
 ///
 	/// Application Field Definitions
 	///
@@ -127,12 +131,13 @@ const (
 	DocType_SYSDeletedHost_scrn   = "SYSDeletedHost" // SYSDeletedHost is a String
 	DocType_SYSDbVersion_scrn   = "SYSDbVersion" // SYSDbVersion is a String
 	DocType_Comments_scrn   = "Comments" // Comments is a String
+	DocType_Migrate_scrn   = "Migrate" // Migrate is a String
 ///
 )
 
 //DocType_PageList provides the information for the template for a list of DocTypes
 type DocType_PageList struct {
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -154,7 +159,7 @@ type DocType_PageList struct {
 
 //DocType_Page provides the information for the template for an individual DocType
 type DocType_Page struct {
-	// Dynamically generated 10/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
@@ -185,6 +190,7 @@ type DocType_Page struct {
 	SYSDeletedHost         string
 	SYSDbVersion         string
 	Comments         string
+	Migrate         string
 	/// Field Properties
 	SYSId_props     FieldProperties
 	DocTypeID_props     FieldProperties
@@ -201,7 +207,9 @@ type DocType_Page struct {
 	SYSDeletedHost_props     FieldProperties
 	SYSDbVersion_props     FieldProperties
 	Comments_props     FieldProperties
+	Migrate_props     FieldProperties
 	/// Lookups
+	Migrate_lookup    []Lookup_Item
 	
 	/// END OF DEFINITIONS
 	///

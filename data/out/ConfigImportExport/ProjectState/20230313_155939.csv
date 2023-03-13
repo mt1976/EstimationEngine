@@ -1,0 +1,7 @@
+projectStateID,code,name,isLocked,notify
+fff3e366-630c-4c8a-99e7-5c590a6e559e,PROS,Prospect,,
+d29553ae-00f7-4ea8-9977-87f9585af95a,ACT,Active,,
+b301c83b-3bd8-46c7-87d0-7832469a8826,OVRD,Overdue,,true
+ebf31fed-c2e9-41cc-ae15-ac39cf8af859,TAKE,Data Take-On,true,false
+eb1acee8-56cb-4371-9c26-a2483152afc5,CANX,Cancelled,true,true
+d0d77f9e-9628-40ee-8990-a98772b3a854,DONE,Complete,true,true
