@@ -43,7 +43,7 @@ func Feature_Active_ByEstimationSession_GetList(id string) (int, []dm.Feature, e
 	return count, FeatureList, nil
 }
 
-func Feature_CalcDefaults(item dm.Feature, updateBaseline bool) dm.Feature {
+func Feature_CalcDefaults(item dm.Feature, updateBaseline bool, who string) dm.Feature {
 	// START
 	// Dynamically generated 29/11/2022 by matttownsend (Matt Townsend) on silicon.local
 	//
@@ -78,22 +78,25 @@ func Feature_CalcDefaults(item dm.Feature, updateBaseline bool) dm.Feature {
 	// fmt.Printf("profile: %v\n", pp)
 	//spew.Dump(pp)
 
-	uID := item.SYSCreatedBy
-	if item.SYSUpdatedBy != "" {
-		uID = item.SYSUpdatedBy
+	if who == "" {
+		who = item.SYSCreatedBy
+		if item.SYSUpdatedBy != "" {
+			who = item.SYSUpdatedBy
+		}
 	}
-	if uID == "" {
-		uID = Audit_Host()
+
+	if who == "" {
+		who = Audit_Host()
 	}
 
 	if item.DevelopmentEstimate == "" {
-		item.Activity = core.AddActivity_ForUser(item.Activity, "Development Estimate Is Blank", uID)
+		item.Activity = core.AddActivity_ForUser(item.Activity, "Development Estimate Is Blank", who)
 		item.DevelopmentEstimate = "0.0"
 		logs.Warning("Development Estimate Is Blank")
 	}
 
 	baseEstimate := core.StringToFloat(item.DevelopmentEstimate)
-	roundingFactor := core.StringToFloat(core.GetApplicationProperty("roundhoursto"))
+	roundingFactor, _ := RoundingHours()
 
 	reqPerc := core.StringToFloat(pp.REQPerc)
 	anaPerc := core.StringToFloat(pp.ANAPerc)
@@ -115,32 +118,40 @@ func Feature_CalcDefaults(item dm.Feature, updateBaseline bool) dm.Feature {
 		coreEstimate = baseEstimate + (baseEstimate * (devConfPerc / 100))
 	}
 
-	roundEngEstimate, _ := core.RoundToNearest(coreEstimate, roundingFactor)
+	roundEngEstimate, _ := core.RoundUpTo(coreEstimate, roundingFactor)
 	item.DevelopmentFactoredDefault = core.FloatToString(roundEngEstimate)
 
-	reqEstimate, _ := core.RoundToNearest(coreEstimate*(reqPerc/100), roundingFactor)
-
+	reqEstimate, _ := core.RoundUpTo(coreEstimate*(reqPerc/100), roundingFactor)
 	item.RequirementsDefault = core.FloatToString(reqEstimate)
+	item.RequirementsPerc = core.FloatToString(reqPerc)
 
-	anaEstimate, _ := core.RoundToNearest(coreEstimate*(anaPerc/100), roundingFactor)
+	anaEstimate, _ := core.RoundUpTo(coreEstimate*(anaPerc/100), roundingFactor)
 	item.AnalystTestDefault = core.FloatToString(anaEstimate)
+	item.AnalystTestPerc = core.FloatToString(anaPerc)
 
-	docEstimate, _ := core.RoundToNearest(coreEstimate*(docPerc/100), roundingFactor)
+	docEstimate, _ := core.RoundUpTo(coreEstimate*(docPerc/100), roundingFactor)
 	item.DocumentationDefault = core.FloatToString(docEstimate)
+	item.DocumentationPerc = core.FloatToString(docPerc)
 
-	pmEstimate, _ := core.RoundToNearest(coreEstimate*(pmPerc/100), roundingFactor)
-	item.ManagementDefault = core.FloatToString(pmEstimate)
-
-	uatEstimate, _ := core.RoundToNearest(coreEstimate*(uatPerc/100), roundingFactor)
+	uatEstimate, _ := core.RoundUpTo(coreEstimate*(uatPerc/100), roundingFactor)
 	item.UatSupportDefault = core.FloatToString(uatEstimate)
+	item.UatSupportPerc = core.FloatToString(uatPerc)
 
-	gtmEstimate, _ := core.RoundToNearest(coreEstimate*(gtmPerc/100), roundingFactor)
+	gtmEstimate, _ := core.RoundUpTo(coreEstimate*(gtmPerc/100), roundingFactor)
 	item.MarketingDefault = core.FloatToString(gtmEstimate)
+	item.MarketingPerc = core.FloatToString(gtmPerc)
 
-	trainEstimate, _ := core.RoundToNearest(coreEstimate*(trainPerc/100), roundingFactor)
+	trainEstimate, _ := core.RoundUpTo(coreEstimate*(trainPerc/100), roundingFactor)
 	item.TrainingDefault = core.FloatToString(trainEstimate)
+	item.TrainingPerc = core.FloatToString(trainPerc)
 
 	item.EstimateEffortDefault = item.EstimateEffort
+
+	pmBase := reqEstimate + roundEngEstimate + anaEstimate + docEstimate + uatEstimate + trainEstimate
+
+	pmEstimate, _ := core.RoundUpTo(pmBase*(pmPerc/100), roundingFactor)
+	item.ManagementDefault = core.FloatToString(pmEstimate)
+	item.ManagementPerc = core.FloatToString(pmPerc)
 
 	item.Total = feature_CalculateTotal(item)
 
@@ -162,14 +173,14 @@ func Feature_CalcDefaults(item dm.Feature, updateBaseline bool) dm.Feature {
 	}
 
 	msgTXT := Translate("AuditMessage", "Feature Defaults Recalculated")
-	item.Activity = core.AddActivity_ForUser(item.Activity, msgTXT, uID)
+	item.Activity = core.AddActivity_ForUser(item.Activity, msgTXT, who)
 
 	msgTXT = Translate("AuditMessage", "Estimate = Base Estimate + Confidence Factor")
-	item.Activity = core.AddActivity_ForUser(item.Activity, msgTXT, uID)
+	item.Activity = core.AddActivity_ForUser(item.Activity, msgTXT, who)
 
 	msgTXT = Translate("AuditMessage", "Estimate eq %s plus %sperc eq %s")
 	msgTXT = fmt.Sprintf(msgTXT, core.FloatToString(baseEstimate), core.FloatToString(devConfPerc), core.FloatToString(coreEstimate))
-	item.Activity = core.AddActivity_ForUser(item.Activity, msgTXT, uID)
+	item.Activity = core.AddActivity_ForUser(item.Activity, msgTXT, who)
 
 	msgTXT = Translate("AuditMessage", "| %s | %s | %s | %s | %s | %s | %s | %s | %s |")
 	msgBASE := msgTXT
@@ -177,8 +188,8 @@ func Feature_CalcDefaults(item dm.Feature, updateBaseline bool) dm.Feature {
 
 	//msgTXT = Translate("AuditMessage", baseTXT)
 	hdrTXT := fmt.Sprintf(msgBASE, "TYPE", "DEV", "REQ", "ANA", "DOC", "UAT", "TRG", "MKT", "MGT")
-	item.Activity = core.AddActivity_ForUser(item.Activity, hdrTXT, uID)
-	item.Activity = core.AddActivity_ForUser(item.Activity, brkTXT, uID)
+	item.Activity = core.AddActivity_ForUser(item.Activity, hdrTXT, who)
+	item.Activity = core.AddActivity_ForUser(item.Activity, brkTXT, who)
 
 	msgTXT = fmt.Sprintf(msgBASE, "Profile",
 		core.FloatToString(devConfPerc+100),
@@ -189,7 +200,7 @@ func Feature_CalcDefaults(item dm.Feature, updateBaseline bool) dm.Feature {
 		core.FloatToString(trainPerc),
 		core.FloatToString(gtmPerc),
 		core.FloatToString(pmPerc))
-	item.Activity = core.AddActivity_ForUser(item.Activity, msgTXT, uID)
+	item.Activity = core.AddActivity_ForUser(item.Activity, msgTXT, who)
 
 	msgTXT = fmt.Sprintf(msgBASE, "Result",
 		core.FloatToString(coreEstimate),
@@ -200,11 +211,11 @@ func Feature_CalcDefaults(item dm.Feature, updateBaseline bool) dm.Feature {
 		core.FloatToString(trainEstimate),
 		core.FloatToString(gtmEstimate),
 		core.FloatToString(pmEstimate))
-	item.Activity = core.AddActivity_ForUser(item.Activity, msgTXT, uID)
+	item.Activity = core.AddActivity_ForUser(item.Activity, msgTXT, who)
 
 	msgTXT = Translate("AuditMessage", "Total: %s")
 	msgTXT = fmt.Sprintf(msgTXT, item.Total)
-	item.Activity = core.AddActivity_ForUser(item.Activity, msgTXT, uID)
+	item.Activity = core.AddActivity_ForUser(item.Activity, msgTXT, who)
 
 	//item.TotalDefault = feature_CalculateTotalDefault(item)
 
@@ -229,7 +240,7 @@ func feature_CalculateTotal(item dm.Feature) string {
 
 // feature_CalculateTotal is used to calculate the total of the feature's estimate
 func feature_CalculateTotalDefault(item dm.Feature) string {
-	fmt.Printf("item: %v\n", item)
+	//fmt.Printf("item: %v\n", item)
 	total := 0.0
 	total += core.StringToFloat(item.DevelopmentFactoredDefault)
 	total += core.StringToFloat(item.RequirementsDefault)
@@ -241,7 +252,7 @@ func feature_CalculateTotalDefault(item dm.Feature) string {
 	total += core.StringToFloat(item.ContingencyDefault)
 	total += core.StringToFloat(item.TrainingDefault)
 	total += core.StringToFloat(item.EstimateEffortDefault)
-	fmt.Printf("total: %v\n", total)
+	//fmt.Printf("total: %v\n", total)
 	return core.FloatToString(total)
 }
 

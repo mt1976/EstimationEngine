@@ -27,61 +27,88 @@ import (
 )
 
 // Data_Get() returns a single Data record
-func Data_Get(class string, field string, category string) (string, error) {
-
+func Data_Get(class string, field string, category string, usage string) (string, error) {
+	usage = core.EscapeSQL(usage)
+	logs.Query("Data_Get" + class + "|" + category + "|" + field + "|" + usage)
 	if class == "" || field == "" || category == "" {
-		return "", errors.New("invalid parameters passed to Data_Get" + class + "-" + field + "-" + category)
+		return "", errors.New("invalid parameters passed to Data_Get" + class + "-" + field + "-" + category + "-" + usage)
 	}
 	// If the category passed is not in the valid list then return error
 	if !slices.Contains(dm.Data_Category_List, category) {
 		msg := "data_Get - invalid category passed to Data_Get - " + category
+		logs.Warning(msg)
 		error := errors.New(msg)
 		logs.Fatal(msg, error)
 		return "", error
 	}
 
-	logs.Query("Data_Get " + class + "-" + field + "-" + category)
+	//logs.Query("Data_Get " + class + "-" + field + "-" + category)
 	id := data_BuildID(class, field, category)
 
-	tsql := Data_SQLbase
-	tsql = tsql + " " + das.WHERE + dm.Data_SQLSearchID + das.EQ + das.ID(id)
-	//logs.Information("tsql", tsql)
-	_, _, dataItem, err := data_Fetch(tsql)
-	//logs.Information("dataItem", dataItem.Value)
+	_, dataItem, _ := Data_GetByID(id)
+	//fmt.Printf("dataItem: %v\n", dataItem)
 
-	if err != nil {
-		return dataItem.Value, err
-	}
+	// if err != nil {
+	// 	_, _ = Data_Put(class, field, category, "", usage)
+	// 	return dataItem.Value, err
+	// }
+
 	if dataItem.DataID == "" {
 		logs.Warning("Data_Get - No Content found for Data " + core.DQuote(id))
-		_, err := Data_Put(class, field, category, "")
-
+		_, err := Data_Put(class, field, category, "", usage)
 		return "", err
 	}
 
-	return dataItem.Value, err
+	if (dataItem.Usage == "") || (dataItem.Usage != usage) {
+		logs.Warning("Data_Get - Usage mismatch for Data " + core.DQuote(id))
+		_, err := Data_Put(class, field, category, "", usage)
+		return dataItem.Value, err
+	}
+
+	return dataItem.Value, nil
 }
 
 // Data_Put() returns a single Data record
-func Data_Put(class string, field string, category string, value string) (string, error) {
-	logs.Information("Data_Put", class+"-"+category+"-"+field+"-"+value)
+func Data_Put(class string, field string, category string, value string, usage string) (string, error) {
+	//usage = core.EscapeSQL(usage)
+	//value = core.EscapeSQL(value)
+	//logs.Information("Data_Put", class+"|"+category+"|"+field+"|"+value+"|"+usage)
 	if class == "" || field == "" || category == "" {
 		return "", errors.New("invalid parameters passed to Data_Put" + class + "-" + field + "-" + category)
 	}
 	// If the category passed is not in the valid list then return error
 	if !slices.Contains(dm.Data_Category_List, category) {
+		logs.Warning("Data_Put - invalid category passed to Data_Put - " + category)
 		return "", errors.New("invalid category passed to Data_Put - " + category)
 	}
 
-	logs.Information("Data_Put", class+"-"+category+"-"+field)
+	//logs.Information("Data_Put-Storing", class+"|"+category+"|"+field+"|"+value+"|"+usage)
 	id := data_BuildID(class, field, category)
+
+	//Get the old record
+	_, dataItem, _ := Data_GetByID(id)
 	//logs.Information("Data_Put ID", id)
-	dataItem := dm.Data{}
-	dataItem.DataID = id
-	dataItem.Class = class
-	dataItem.Field = field
-	dataItem.Value = value
+	if dataItem.DataID == "" {
+		dataItem.DataID = id
+		dataItem.Class = class
+		dataItem.Field = field
+		dataItem.Value = value
+		dataItem.Category = category
+		dataItem.Usage = usage
+		dataItem.Migrate = core.FALSE
+	}
+
+	if value != "" {
+		dataItem.Value = value
+	}
 	dataItem.Category = category
+	if usage != dataItem.Usage {
+		dataItem.Usage = usage
+	}
+	if dataItem.Migrate == "" {
+		dataItem.Migrate = core.FALSE
+	}
+	//logs.Storing("Data_Put", id+" | "+dataItem.Class+" | "+dataItem.Field+" | "+dataItem.Value+" | "+dataItem.Category+" | "+dataItem.Usage)
 	_, err2 := Data_StoreSystem(dataItem)
 	if err2 != nil {
 		return "error", err2
@@ -94,7 +121,7 @@ func data_GetSEQ(docType string) (int, string, error) {
 		return 0, "", nil
 	}
 
-	rtnVal, err := Data_GetInt("System", docType, dm.Data_Category_Sequence)
+	rtnVal, err := Data_GetInt("System", docType, dm.Data_Category_Sequence, "Holds a Sequence Number")
 	if err != nil {
 		return 0, "", err
 	}
@@ -107,7 +134,7 @@ func data_PutSEQ(docType string, seq int) error {
 		return errors.New("invalid parameters passed to data_PutSEQ")
 	}
 
-	_, err := Data_Put("System", docType, dm.Data_Category_Sequence, strconv.Itoa(seq))
+	_, err := Data_Put("System", docType, dm.Data_Category_Sequence, strconv.Itoa(seq), "System")
 	if err != nil {
 		return err
 	}
@@ -133,15 +160,15 @@ func Data_NextSEQ(docType string) (int, string, error) {
 }
 
 // Data_GetString() returns a single Data record
-func Data_GetString(class string, field string, category string) (string, error) {
-	value, err := Data_Get(class, field, category)
+func Data_GetString(class string, field string, category string, usage string) (string, error) {
+	value, err := Data_Get(class, field, category, usage)
 	return value, err
 }
 
 // Data_GetByID() returns a single Data record
-func Data_GetInt(class string, field string, category string) (int, error) {
+func Data_GetInt(class string, field string, category string, usage string) (int, error) {
 
-	value, err := Data_Get(class, field, category)
+	value, err := Data_Get(class, field, category, usage)
 	if err != nil {
 		return 0, err
 	}
@@ -153,8 +180,8 @@ func Data_GetInt(class string, field string, category string) (int, error) {
 	return rtnVal, nil
 }
 
-func Data_GetFloat(class string, field string, category string) (float64, error) {
-	value, err := Data_Get(class, field, category)
+func Data_GetFloat(class string, field string, category string, usage string) (float64, error) {
+	value, err := Data_Get(class, field, category, usage)
 	if err != nil {
 		return 0, err
 	}
@@ -175,9 +202,9 @@ func data_BuildID(class string, field string, category string) string {
 	return fieldval
 }
 
-func Data_GetArray(class string, field string, category string) ([]string, error) {
+func Data_GetArray(class string, field string, category string, usage string) ([]string, error) {
 
-	value, err := Data_Get(class, field, category)
+	value, err := Data_Get(class, field, category, usage)
 	//logs.Information("Data_GetArray", value)
 	//logs.Information("Data_GetArray", err.Error())
 	if err != nil {

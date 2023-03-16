@@ -26,10 +26,20 @@ func Origin_Run_impl() (string, error) {
 	objectName := dao.Translate("ObjectName", "Origin")
 
 	/// CONTENT STARTS
-	contractExpiryPeriod, err0 := dao.Data_GetInt(objectName, "Contract_Expiry_Notification_Period", "Setting")
+	msg := "The notification period for contract expiry. In days." + core.TEXTAREA_CR + "Default is " + core.ApplicationProperties.Get_Property("origincontractexpiry") + " days."
+	contractExpiryPeriodString, err_1 := dao.Data_Get(objectName, "Contract_Expiry_Notification_Period", dm.Data_Category_Period, msg)
+	if err_1 != nil {
+		return message, err_1
+	}
+	contractExpiryPeriod, err0 := dao.Data_GetInt(objectName, "Contract_Expiry_Notification_Period", dm.Data_Category_Period, msg)
 	if err0 != nil {
 		return message, err0
 	}
+
+	if contractExpiryPeriodString == "" {
+		contractExpiryPeriod = core.StringToInt(core.ApplicationProperties.Get_Property("origincontractexpiry"))
+	}
+
 	contractExpiryDate := time.Now().AddDate(0, 0, contractExpiryPeriod)
 	// Get the origins list
 	_, origins, err := dao.Origin_GetActiveList()

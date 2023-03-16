@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:27
+// Date & Time		    : 15/03/2023 at 19:24:48
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -57,12 +57,7 @@ func EstimationSessionAction_GetByID(id string) (int, dm.EstimationSessionAction
 }
 
 func EstimationSessionAction_PostGet(estimationsessionactionItem dm.EstimationSessionAction, id string) dm.EstimationSessionAction {
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	//
-	//
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
+
 	return estimationsessionactionItem
 }
 
@@ -125,11 +120,13 @@ func EstimationSessionAction_StoreProcess(r dm.EstimationSessionAction, operator
 // EstimationSessionAction_Validate() validates for saves/stores a EstimationSessionAction record to the database
 func EstimationSessionAction_Validate(r dm.EstimationSessionAction) (dm.EstimationSessionAction, error) {
 	var err error
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	//
-	//
 
+	// Cross Validation
+	var errVal error
+	r, _, errVal = EstimationSessionAction_ObjectValidation_impl(PUT, r.ID, r)
+	if errVal != nil {
+		err = errVal
+	}
 	return r, err
 }
 
@@ -178,11 +175,11 @@ func EstimationSessionAction_New() (int, []dm.EstimationSessionAction, dm.Estima
 	var rList []dm.EstimationSessionAction
 
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 
 	//
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

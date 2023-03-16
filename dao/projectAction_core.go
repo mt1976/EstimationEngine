@@ -8,19 +8,19 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:30
+// Date & Time		    : 15/03/2023 at 19:24:49
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
 	"fmt"
 	"net/http"
+	"errors"
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/google/uuid"
 	das  "github.com/mt1976/ebEstimates/das"
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
-	"github.com/pkg/errors"
 )
 
 var ProjectAction_SQLbase string
@@ -64,7 +64,14 @@ func ProjectAction_GetFilteredLookup(requestObject string,requestField string) [
 	var returnList []dm.Lookup_Item
 	objectName := Translate("ObjectName", requestObject)
 	reqField := requestField+"_ProjectAction_Filter"
-	filter,_ := Data_GetString(objectName, reqField, dm.Data_Category_FilterRule)
+	
+	usage := "Defines a filter for a lookup list of ProjectAction records, when requested by "+requestField+"." + core.TEXTAREA_CR
+	usage = usage + "Fields can be any of those in the underlying DB table." + core.TEXTAREA_CR
+	usage = usage + "Examples Below:" + core.TEXTAREA_CR
+	usage = usage + "* datalength(_deleted) = 0 or " + core.TEXTAREA_CR 
+	usage = usage + "* class IN ('x','y','z')"
+
+	filter,_ := Data_GetString(objectName, reqField, dm.Data_Category_FilterRule,usage)
 	if filter == "" {
 		logs.Warning("ProjectAction_GetFilteredLookup() - No filter found : " + reqField + " for Object: " + objectName)
 	} 
@@ -92,17 +99,12 @@ func ProjectAction_GetByID(id string) (int, dm.ProjectAction, error) {
 }
 
 func ProjectAction_PostGet(projectactionItem dm.ProjectAction,id string) dm.ProjectAction {
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	projectactionItem.ProjectStateID,projectactionItem.ProjectStateID_props = ProjectAction_ProjectStateID_validate_impl (GET,id,projectactionItem.ProjectStateID,projectactionItem,projectactionItem.ProjectStateID_props)
 	projectactionItem.ProfileID,projectactionItem.ProfileID_props = ProjectAction_ProfileID_validate_impl (GET,id,projectactionItem.ProfileID,projectactionItem,projectactionItem.ProfileID_props)
 	projectactionItem.NoEstimationSessions,projectactionItem.NoEstimationSessions_props = ProjectAction_NoEstimationSessions_validate_impl (GET,id,projectactionItem.NoEstimationSessions,projectactionItem,projectactionItem.NoEstimationSessions_props)
 	projectactionItem.OriginName,projectactionItem.OriginName_props = ProjectAction_OriginName_validate_impl (GET,id,projectactionItem.OriginName,projectactionItem,projectactionItem.OriginName_props)
 	projectactionItem.OriginKey,projectactionItem.OriginKey_props = ProjectAction_OriginKey_validate_impl (GET,id,projectactionItem.OriginKey,projectactionItem,projectactionItem.OriginKey_props)
-	// 
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+
 	return projectactionItem
 }
 
@@ -169,9 +171,6 @@ func ProjectAction_StoreProcess(r dm.ProjectAction, operator string) (dm.Project
 // ProjectAction_Validate() validates for saves/stores a ProjectAction record to the database
 func ProjectAction_Validate(r dm.ProjectAction) (dm.ProjectAction, error) {
 	var err error
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	r.ProjectStateID,r.ProjectStateID_props = ProjectAction_ProjectStateID_validate_impl (PUT,r.ProjectID,r.ProjectStateID,r,r.ProjectStateID_props)
 	if r.ProjectStateID_props.MsgMessage != "" {
 		err = errors.New(r.ProjectStateID_props.MsgMessage)
@@ -192,10 +191,13 @@ func ProjectAction_Validate(r dm.ProjectAction) (dm.ProjectAction, error) {
 	if r.OriginKey_props.MsgMessage != "" {
 		err = errors.New(r.OriginKey_props.MsgMessage)
 	}
-	// 
 
-	
-
+	// Cross Validation
+	var errVal error
+	r, _, errVal = ProjectAction_ObjectValidation_impl(PUT, r.ProjectID, r)
+	if errVal != nil {
+		err = errVal
+	}
 	return r,err
 }
 //
@@ -230,7 +232,7 @@ logs.Storing("ProjectAction",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.ProjectAction_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.ProjectAction_ProjectID_sql, r.ProjectID)
@@ -265,7 +267,7 @@ logs.Storing("ProjectAction",fmt.Sprintf("%v", r))
 	
 		
 	// 
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := das.INSERT + das.INTO + ProjectAction_QualifiedName
@@ -300,7 +302,7 @@ func projectaction_Fetch(tsql string) (int, []dm.ProjectAction, dm.ProjectAction
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.ProjectAction_SYSId_sql, "0")
 	   recItem.ProjectID  = get_String(rec, dm.ProjectAction_ProjectID_sql, "")
@@ -341,7 +343,7 @@ func projectaction_Fetch(tsql string) (int, []dm.ProjectAction, dm.ProjectAction
 	   recItem.OriginName  = ProjectAction_OriginName_OnFetch_impl (recItem)
 	   recItem.OriginKey  = ProjectAction_OriginKey_OnFetch_impl (recItem)
 	// 
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -371,7 +373,7 @@ func ProjectAction_New() (int, []dm.ProjectAction, dm.ProjectAction, error) {
 	
 
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.ProjectStateID,r.ProjectStateID_props = ProjectAction_ProjectStateID_validate_impl (NEW,r.ProjectID,r.ProjectStateID,r,r.ProjectStateID_props)
 	r.ProfileID,r.ProfileID_props = ProjectAction_ProfileID_validate_impl (NEW,r.ProjectID,r.ProfileID,r,r.ProfileID_props)
@@ -380,7 +382,7 @@ func ProjectAction_New() (int, []dm.ProjectAction, dm.ProjectAction, error) {
 	r.OriginKey,r.OriginKey_props = ProjectAction_OriginKey_validate_impl (NEW,r.ProjectID,r.OriginKey,r,r.OriginKey_props)
 	
 	// 
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

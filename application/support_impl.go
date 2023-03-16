@@ -172,7 +172,8 @@ func firstDir(input_url string) string {
 
 func NextTemplate(source string, action string, defaultTemplate string) string {
 	logs.Warning("NextTemplate: " + source + " " + action + " " + defaultTemplate)
-	nextTemplate, _ := dao.Data_Get(source, action, dm.Data_Category_NextAction)
+	usage := "Overrides the default 'next action' when a user submits a '" + action + "' action."
+	nextTemplate, _ := dao.Data_Get(source, action, dm.Data_Category_NextAction, usage)
 	//fmt.Printf("err: %v\n", err)
 	//fmt.Printf("nextTemplate: %v\n", nextTemplate)
 	if nextTemplate == "" {

@@ -123,6 +123,8 @@ func FeatureNew_HandlerCreate(w http.ResponseWriter, r *http.Request) {
 
 	fop := featurenew_DataFromRequest(r)
 
+	est := dao.CacheRead(dm.EstimationSession_Name, fop.EstimationSessionID).(dm.EstimationSession)
+
 	item.EstimationSessionID = fop.EstimationSessionID
 	item.Name = fop.Name
 	item.DevelopmentEstimate = fop.DeveloperEstimate
@@ -130,6 +132,8 @@ func FeatureNew_HandlerCreate(w http.ResponseWriter, r *http.Request) {
 	item.ConfidenceCODE = fop.ConfidenceCODE
 	item.DeveloperResource = fop.DeveloperResource
 	item.AnalystResource = fop.AnalystResource
+	item.ProjectManagerResource = est.ProjectManager
+	item.ProductManagerResource = est.ProductManager
 	item.AdoID = fop.DevOpsID
 	item.FreshdeskID = fop.FreshDeskID
 	item.TrackerID = fop.RSCID
@@ -143,7 +147,7 @@ func FeatureNew_HandlerCreate(w http.ResponseWriter, r *http.Request) {
 	}
 	item.OffProfile = core.FALSE
 
-	item = dao.Feature_CalcDefaults(item, true)
+	item = dao.Feature_CalcDefaults(item, true, Session_GetUserName(r))
 
 	msgTXT := "New Feature Created"
 	msgTXT = dao.Translate("Message", msgTXT)

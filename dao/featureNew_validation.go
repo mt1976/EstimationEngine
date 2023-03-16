@@ -82,8 +82,8 @@ func FeatureNew_EstimateEffort_validate_impl(iAction string, iId string, iValue 
 	logs.Callout("FeatureNew", dm.FeatureNew_EstimateEffort_scrn, VAL+"-"+iAction, iId)
 	if iAction == VAL {
 		if iValue != "" {
-
-			miniumum, errData := Data_GetFloat("Feature", "Estimation_Effort_Minimum", dm.Data_Category_Setting)
+			usage := "Minimum effort for a feature, if not specified, then 0 is assumed"
+			miniumum, errData := Data_GetFloat("Feature", "Estimation_Effort_Minimum", dm.Data_Category_Setting, usage)
 			if errData != nil {
 				logs.Warning("Unable to get minimum effort from data - assuming 0")
 				return iValue, fP

@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:29
+// Date & Time		    : 15/03/2023 at 19:24:49
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -65,7 +65,14 @@ func Profile_GetFilteredLookup(requestObject string, requestField string) []dm.L
 	var returnList []dm.Lookup_Item
 	objectName := Translate("ObjectName", requestObject)
 	reqField := requestField + "_Profile_Filter"
-	filter, _ := Data_GetString(objectName, reqField, dm.Data_Category_FilterRule)
+
+	usage := "Defines a filter for a lookup list of Profile records, when requested by " + requestField + "." + core.TEXTAREA_CR
+	usage = usage + "Fields can be any of those in the underlying DB table." + core.TEXTAREA_CR
+	usage = usage + "Examples Below:" + core.TEXTAREA_CR
+	usage = usage + "* datalength(_deleted) = 0 or " + core.TEXTAREA_CR
+	usage = usage + "* class IN ('x','y','z')"
+
+	filter, _ := Data_GetString(objectName, reqField, dm.Data_Category_FilterRule, usage)
 	if filter == "" {
 		logs.Warning("Profile_GetFilteredLookup() - No filter found : " + reqField + " for Object: " + objectName)
 	}
@@ -89,12 +96,7 @@ func Profile_GetByID(id string) (int, dm.Profile, error) {
 }
 
 func Profile_PostGet(profileItem dm.Profile, id string) dm.Profile {
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	//
-	//
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
+
 	return profileItem
 }
 
@@ -170,11 +172,13 @@ func Profile_StoreProcess(r dm.Profile, operator string) (dm.Profile, error) {
 // Profile_Validate() validates for saves/stores a Profile record to the database
 func Profile_Validate(r dm.Profile) (dm.Profile, error) {
 	var err error
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	//
-	//
 
+	// Cross Validation
+	var errVal error
+	r, _, errVal = Profile_ObjectValidation_impl(PUT, r.ProfileID, r)
+	if errVal != nil {
+		err = errVal
+	}
 	return r, err
 }
 
@@ -205,7 +209,7 @@ func profile_Save(r dm.Profile, usr string) error {
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	ts = addData(ts, dm.Profile_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Profile_ProfileID_sql, r.ProfileID)
@@ -242,7 +246,7 @@ func profile_Save(r dm.Profile, usr string) error {
 	ts = addData(ts, dm.Profile_TrainingPerc_sql, r.TrainingPerc)
 
 	//
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 	tsql := das.INSERT + das.INTO + Profile_QualifiedName
@@ -271,7 +275,7 @@ func profile_Fetch(tsql string) (int, []dm.Profile, dm.Profile, error) {
 
 		rec := returnList[i]
 		// START
-		// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		//
 		recItem.SYSId = get_Int(rec, dm.Profile_SYSId_sql, "0")
 		recItem.ProfileID = get_String(rec, dm.Profile_ProfileID_sql, "")
@@ -309,7 +313,7 @@ func profile_Fetch(tsql string) (int, []dm.Profile, dm.Profile, error) {
 
 		// If there are fields below, create the methods in dao\Profile_adaptor.go
 		//
-		// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		// END
 		///
 		//Add to the list
@@ -334,11 +338,11 @@ func Profile_New() (int, []dm.Profile, dm.Profile, error) {
 	var rList []dm.Profile
 
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 
 	//
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

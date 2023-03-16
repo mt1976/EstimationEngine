@@ -42,9 +42,15 @@ func ReplaceSpecialChars(in string) string {
 }
 
 func EscapeSQL(in string) string {
-	newStr := strings.ReplaceAll(in, "'", "''")
-	newStr = strings.ReplaceAll(newStr, ",", "','")
-	return newStr
+	in = strings.ReplaceAll(in, ",", "','")
+	in = strings.ReplaceAll(in, "'", "''")
+	return in
+}
+
+func UnEscapeSQL(in string) string {
+	in = strings.ReplaceAll(in, "''", "'")
+	in = strings.ReplaceAll(in, "','", ",")
+	return in
 }
 
 // Convert time.Time to string
@@ -55,7 +61,7 @@ func TimeToString(t time.Time) string {
 
 func ReplaceWildcard(orig string, replaceThis string, withThis string) string {
 	wrkThis := "{{" + replaceThis + "}}"
-	//log.Printf("Replace %s with %q", wrkThis, withThis)
+	log.Printf("Replace %s with %q", wrkThis, withThis)
 	return strings.ReplaceAll(orig, wrkThis, withThis)
 }
 

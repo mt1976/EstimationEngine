@@ -8,19 +8,19 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:28
+// Date & Time		    : 15/03/2023 at 19:24:48
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
 	"fmt"
 	"net/http"
+	"errors"
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/google/uuid"
 	das  "github.com/mt1976/ebEstimates/das"
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
-	"github.com/pkg/errors"
 )
 
 var Index_SQLbase string
@@ -65,14 +65,9 @@ func Index_GetByID(id string) (int, dm.Index, error) {
 }
 
 func Index_PostGet(indexItem dm.Index,id string) dm.Index {
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	indexItem.IndexID,indexItem.IndexID_props = Index_IndexID_validate_impl (GET,id,indexItem.IndexID,indexItem,indexItem.IndexID_props)
 	indexItem.Link,indexItem.Link_props = Index_Link_validate_impl (GET,id,indexItem.Link,indexItem,indexItem.Link_props)
-	// 
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+
 	return indexItem
 }
 
@@ -139,9 +134,6 @@ func Index_StoreProcess(r dm.Index, operator string) (dm.Index,error) {
 // Index_Validate() validates for saves/stores a Index record to the database
 func Index_Validate(r dm.Index) (dm.Index, error) {
 	var err error
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	r.IndexID,r.IndexID_props = Index_IndexID_validate_impl (PUT,r.IndexID,r.IndexID,r,r.IndexID_props)
 	if r.IndexID_props.MsgMessage != "" {
 		err = errors.New(r.IndexID_props.MsgMessage)
@@ -150,17 +142,13 @@ func Index_Validate(r dm.Index) (dm.Index, error) {
 	if r.Link_props.MsgMessage != "" {
 		err = errors.New(r.Link_props.MsgMessage)
 	}
-	// 
 
-	
 	// Cross Validation
 	var errVal error
 	r, _, errVal = Index_ObjectValidation_impl(PUT, r.IndexID, r)
 	if errVal != nil {
 		err = errVal
 	}
-	
-
 	return r,err
 }
 //
@@ -192,7 +180,7 @@ logs.Storing("Index",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Index_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Index_IndexID_sql, r.IndexID)
@@ -213,7 +201,7 @@ logs.Storing("Index",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Index_KeyValue_sql, r.KeyValue)
 		
 	// 
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := das.INSERT + das.INTO + Index_QualifiedName
@@ -248,7 +236,7 @@ func index_Fetch(tsql string) (int, []dm.Index, dm.Index, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Index_SYSId_sql, "0")
 	   recItem.IndexID  = get_String(rec, dm.Index_IndexID_sql, "")
@@ -272,7 +260,7 @@ func index_Fetch(tsql string) (int, []dm.Index, dm.Index, error) {
 	   recItem.IndexID  = Index_IndexID_OnFetch_impl (recItem)
 	   recItem.Link  = Index_Link_OnFetch_impl (recItem)
 	// 
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -302,13 +290,13 @@ func Index_New() (int, []dm.Index, dm.Index, error) {
 	
 
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.IndexID,r.IndexID_props = Index_IndexID_validate_impl (NEW,r.IndexID,r.IndexID,r,r.IndexID_props)
 	r.Link,r.Link_props = Index_Link_validate_impl (NEW,r.IndexID,r.Link,r,r.Link_props)
 	
 	// 
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

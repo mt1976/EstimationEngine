@@ -55,20 +55,20 @@ func SendMailToResource(resourceID string, MSG_SUBJECT string, MSG_BODY string) 
 // RecordJobStatusInfo records the status of a job
 func RecordJobStatusInfo(message string, noWorkItems int, action string, jobName string, inPath string, outPath string, ssMode string) string {
 	noItemsProcessed := strconv.Itoa(noWorkItems) + " Work Items Processed"
-	dao.Data_Put(jobName, JOB_LAST_RUN, dm.Data_Category_Info, time.Now().Format(core.DATEMSG))
-	dao.Data_Put(jobName, JOB_LAST_RUN_COUNT, dm.Data_Category_Info, noItemsProcessed)
+	dao.Data_Put(jobName, JOB_LAST_RUN, dm.Data_Category_Info, time.Now().Format(core.DATEMSG), "When the job was last run")
+	dao.Data_Put(jobName, JOB_LAST_RUN_COUNT, dm.Data_Category_Info, noItemsProcessed, "Number of work items processed")
 	if action != "" {
-		dao.Data_Put(jobName, JOB_LAST_RUN_ACTION, dm.Data_Category_State, action)
+		dao.Data_Put(jobName, JOB_LAST_RUN_ACTION, dm.Data_Category_State, action, "What the job did")
 	}
 	if inPath != "" {
-		dao.Data_Put(jobName, JOB_LAST_RUN_IN_PATH, dm.Data_Category_Info, inPath)
+		dao.Data_Put(jobName, JOB_LAST_RUN_IN_PATH, dm.Data_Category_Info, inPath, "The input path used")
 	}
 	if outPath != "" {
-		dao.Data_Put(jobName, JOB_LAST_RUN_OUT_PATH, dm.Data_Category_Path, outPath)
+		dao.Data_Put(jobName, JOB_LAST_RUN_OUT_PATH, dm.Data_Category_Path, outPath, "The output path used")
 	}
-	dao.Data_Put(jobName, JOB_LAST_RUN_MESSAGE, dm.Data_Category_Info, message)
-	dao.Data_Put(jobName, JOB_LAST_RUN_MODE, dm.Data_Category_Info, ssMode)
-	dao.Data_Put(jobName, JOB_MODE, dm.Data_Category_State, JOB_DONE)
+	dao.Data_Put(jobName, JOB_LAST_RUN_MESSAGE, dm.Data_Category_Info, message, "The message returned from the job")
+	dao.Data_Put(jobName, JOB_LAST_RUN_MODE, dm.Data_Category_Info, ssMode, "The mode the job was run in")
+	dao.Data_Put(jobName, JOB_MODE, dm.Data_Category_State, JOB_DONE, "")
 	return ""
 }
 

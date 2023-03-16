@@ -16,7 +16,7 @@ import (
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
 	// Template Generator   : Einsteinium [r5-23.01.23]
-	// Date & Time		    : 13/03/2023 at 14:22:27
+	// Date & Time		    : 15/03/2023 at 19:24:48
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in feature_impl.go
@@ -207,6 +207,69 @@ import (
 	}
 
 	// ----------------------------------------------------------------
+	// Feature_RequirementsPerc_validate_impl provides validation/actions for RequirementsPerc
+	func Feature_RequirementsPerc_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_RequirementsPerc_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_AnalystTestPerc_validate_impl provides validation/actions for AnalystTestPerc
+	func Feature_AnalystTestPerc_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_AnalystTestPerc_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_DocumentationPerc_validate_impl provides validation/actions for DocumentationPerc
+	func Feature_DocumentationPerc_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_DocumentationPerc_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_ManagementPerc_validate_impl provides validation/actions for ManagementPerc
+	func Feature_ManagementPerc_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_ManagementPerc_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_UatSupportPerc_validate_impl provides validation/actions for UatSupportPerc
+	func Feature_UatSupportPerc_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_UatSupportPerc_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_MarketingPerc_validate_impl provides validation/actions for MarketingPerc
+	func Feature_MarketingPerc_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_MarketingPerc_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_ContingencyPerc_validate_impl provides validation/actions for ContingencyPerc
+	func Feature_ContingencyPerc_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_ContingencyPerc_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_TrainingPerc_validate_impl provides validation/actions for TrainingPerc
+	func Feature_TrainingPerc_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_TrainingPerc_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
+	// Feature_RoundedTo_validate_impl provides validation/actions for RoundedTo
+	func Feature_RoundedTo_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
+		logs.Callout("Feature", dm.Feature_RoundedTo_scrn, VAL +"-"+iAction, iId)
+		return iValue,fP
+	}
+
+	// ----------------------------------------------------------------
 	// Feature_OriginName_validate_impl provides validation/actions for OriginName
 	func Feature_OriginName_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
 		logs.Callout("Feature", dm.Feature_OriginName_scrn, VAL +"-"+iAction, iId)
@@ -245,13 +308,6 @@ import (
 	// Feature_CCY_validate_impl provides validation/actions for CCY
 	func Feature_CCY_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
 		logs.Callout("Feature", dm.Feature_CCY_scrn, VAL +"-"+iAction, iId)
-		return iValue,fP
-	}
-
-	// ----------------------------------------------------------------
-	// Feature_RoundTo_validate_impl provides validation/actions for RoundTo
-	func Feature_RoundTo_validate_impl (iAction string, iId string, iValue string, iRec dm.Feature, fP dm.FieldProperties) (string, dm.FieldProperties) {
-		logs.Callout("Feature", dm.Feature_RoundTo_scrn, VAL +"-"+iAction, iId)
 		return iValue,fP
 	}
 

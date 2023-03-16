@@ -8,13 +8,14 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:27
+// Date & Time		    : 15/03/2023 at 19:24:48
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
 	
 	"net/http"
+	"strings"
 
 	core    "github.com/mt1976/ebEstimates/core"
 	dao     "github.com/mt1976/ebEstimates/dao"
@@ -23,11 +24,7 @@ import (
 )
 
 //EstimationSessionAction_Publish annouces the endpoints available for this object
-//EstimationSessionAction_Publish - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func EstimationSessionAction_Publish(mux http.ServeMux) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	mux.HandleFunc(dm.EstimationSessionAction_Path, EstimationSessionAction_Handler)
 	//Cannot List via GUI
 	mux.HandleFunc(dm.EstimationSessionAction_PathView, EstimationSessionAction_HandlerView)
@@ -35,30 +32,18 @@ func EstimationSessionAction_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.EstimationSessionAction_PathNew, EstimationSessionAction_HandlerNew)
 	mux.HandleFunc(dm.EstimationSessionAction_PathSave, EstimationSessionAction_HandlerSave)
 	//Cannot Delete via GUI
-	logs.Publish("Application", dm.EstimationSessionAction_Title)
     core.API = core.API.AddRoute(dm.EstimationSessionAction_Title, dm.EstimationSessionAction_Path, "", dm.EstimationSessionAction_QueryString, "Application")
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
+	logs.Publish("Application", dm.EstimationSessionAction_Title)
 }
 
-
-
-//EstimationSessionAction_HandlerView is the handler used to View a page
-//Allows Viewing for an existing EstimationSessionAction record
-//EstimationSessionAction_HandlerView - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//EstimationSessionAction_HandlerView is the handler used to View a EstimationSessionAction database record
 func EstimationSessionAction_HandlerView(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -71,35 +56,23 @@ func EstimationSessionAction_HandlerView(w http.ResponseWriter, r *http.Request)
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = estimationsessionaction_PopulatePage(rD , pageDetail) 
 
 	nextTemplate :=  NextTemplate("EstimationSessionAction", "View", dm.EstimationSessionAction_TemplateView)
+	nextTemplate = estimationsessionaction_URIQueryData(nextTemplate,rD,searchID)
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//EstimationSessionAction_HandlerEdit is the handler used generate the Edit page
-//Allows Editing for an existing EstimationSessionAction record and then allows the user to save the changes
-//EstimationSessionAction_HandlerEdit - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//EstimationSessionAction_HandlerEdit is the handler used to Edit of an existing EstimationSessionAction database record
 func EstimationSessionAction_HandlerEdit(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -112,7 +85,6 @@ func EstimationSessionAction_HandlerEdit(w http.ResponseWriter, r *http.Request)
 	} else {
 		_, rD, _ = dao.EstimationSessionAction_GetByID(searchID)
 	}
-
 	
 	pageDetail := dm.EstimationSessionAction_Page{
 		Title:       CardTitle(dm.EstimationSessionAction_Title, core.Action_Edit),
@@ -120,36 +92,23 @@ func EstimationSessionAction_HandlerEdit(w http.ResponseWriter, r *http.Request)
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = estimationsessionaction_PopulatePage(rD , pageDetail) 
 
-
 	nextTemplate :=  NextTemplate("EstimationSessionAction", "Edit", dm.EstimationSessionAction_TemplateEdit)
+	nextTemplate = estimationsessionaction_URIQueryData(nextTemplate,rD,searchID)
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//EstimationSessionAction_HandlerSave is the handler used process the saving of an EstimationSessionAction
-//It is called from the Edit and New pages
-//EstimationSessionAction_HandlerSave  - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//EstimationSessionAction_HandlerSave is the handler used process the saving of an EstimationSessionAction database record, either new or existing, referenced by Edit & New Handlers.
 func EstimationSessionAction_HandlerSave(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	itemID := r.FormValue("ID")
 	logs.Servicing(r.URL.Path+itemID)
@@ -159,33 +118,22 @@ func EstimationSessionAction_HandlerSave(w http.ResponseWriter, r *http.Request)
 	item, errStore := dao.EstimationSessionAction_Store(item,r)
 	if errStore == nil {
 		nextTemplate :=  NextTemplate("EstimationSessionAction", "Save", dm.EstimationSessionAction_Redirect)
+		nextTemplate = estimationsessionaction_URIQueryData(nextTemplate,item,itemID)
 		http.Redirect(w, r, nextTemplate, http.StatusFound)
 	} else {
 		logs.Information(dm.EstimationSessionAction_Name, errStore.Error())
-		//http.Redirect(w, r, r.Referer(), http.StatusFound)
 		ExecuteRedirect(r.Referer(), w, r,dm.EstimationSessionAction_QueryString,itemID,item)
 	}
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//EstimationSessionAction_HandlerNew is the handler used process the creation of an EstimationSessionAction
-//It will create a new EstimationSessionAction and then redirect to the Edit page
-//EstimationSessionAction_HandlerNew  - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//EstimationSessionAction_HandlerNew is the handler used process the creation of an new EstimationSessionAction database record, then redirect to Edit
 func EstimationSessionAction_HandlerNew(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -199,42 +147,32 @@ func EstimationSessionAction_HandlerNew(w http.ResponseWriter, r *http.Request) 
 		_, _, rD, _ = dao.EstimationSessionAction_New()
 	}
 
-
-
 	pageDetail := dm.EstimationSessionAction_Page{
 		Title:       CardTitle(dm.EstimationSessionAction_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.EstimationSessionAction_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = estimationsessionaction_PopulatePage(rD , pageDetail) 
 
 	nextTemplate :=  NextTemplate("EstimationSessionAction", "New", dm.EstimationSessionAction_TemplateNew)
+	nextTemplate = estimationsessionaction_URIQueryData(nextTemplate,dm.EstimationSessionAction{},searchID)
+
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }	
-
-
-
-//estimationsessionaction_PopulatePage Builds/Populates the EstimationSessionAction Page 
-//estimationsessionaction_PopulatePage Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//estimationsessionaction_PopulatePage Builds/Populates the EstimationSessionAction Page from an instance of EstimationSessionAction from the Data Model
 func estimationsessionaction_PopulatePage(rD dm.EstimationSessionAction, pageDetail dm.EstimationSessionAction_Page) dm.EstimationSessionAction_Page {
 	// Real DB Fields
 	pageDetail.ID = rD.ID
 	pageDetail.EstimationSession = rD.EstimationSession
 	pageDetail.Action = rD.Action
 	pageDetail.Notes = rD.Notes
-	// Add Pseudo/Extra Fields
-	// Enrichment Fields 
-	 
+	// Add Pseudo/Extra Fields, fields that are not in the DB but are used in the UI
+	// Enrichment content, content used provide lookups,lists etc
 	pageDetail.EstimationSession_lookup = dao.EstimationSession_GetLookup()
-	 
 	pageDetail.Action_lookup = dao.EstimationState_GetLookup()
+	// Add the Properties for the Fields
 	pageDetail.ID_props = rD.ID_props
 	pageDetail.EstimationSession_props = rD.EstimationSession_props
 	pageDetail.Action_props = rD.Action_props
@@ -242,13 +180,23 @@ func estimationsessionaction_PopulatePage(rD dm.EstimationSessionAction, pageDet
 	return pageDetail
 }
 //estimationsessionaction_DataFromRequest is used process the content of an HTTP Request and return an instance of an EstimationSessionAction
-//estimationsessionaction_DataFromRequest Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func estimationsessionaction_DataFromRequest(r *http.Request) dm.EstimationSessionAction {
-
 	var item dm.EstimationSessionAction
-		item.ID = r.FormValue(dm.EstimationSessionAction_ID_scrn)
-		item.EstimationSession = r.FormValue(dm.EstimationSessionAction_EstimationSession_scrn)
-		item.Action = r.FormValue(dm.EstimationSessionAction_Action_scrn)
-		item.Notes = r.FormValue(dm.EstimationSessionAction_Notes_scrn)
+	item.ID = r.FormValue(dm.EstimationSessionAction_ID_scrn)
+	item.EstimationSession = r.FormValue(dm.EstimationSessionAction_EstimationSession_scrn)
+	item.Action = r.FormValue(dm.EstimationSessionAction_Action_scrn)
+	item.Notes = r.FormValue(dm.EstimationSessionAction_Notes_scrn)
 	return item
+}
+//estimationsessionaction_URIQueryData is used to replace the wildcards in the URI Query Path with the values from the EstimationSessionAction Data Model
+func estimationsessionaction_URIQueryData(queryPath string,item dm.EstimationSessionAction,itemID string) string {
+	if queryPath == "" {
+		return ""
+	}
+	queryPath = core.ReplaceWildcard(queryPath, strings.ToUpper("ID"), itemID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.EstimationSessionAction_ID_scrn), item.ID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.EstimationSessionAction_EstimationSession_scrn), item.EstimationSession)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.EstimationSessionAction_Action_scrn), item.Action)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.EstimationSessionAction_Notes_scrn), item.Notes)
+	return queryPath
 }

@@ -1,7 +1,6 @@
 package dao
 
 import (
-	"github.com/mt1976/ebEstimates/core"
 	dm "github.com/mt1976/ebEstimates/datamodel"
 	logs "github.com/mt1976/ebEstimates/logs"
 )
@@ -768,19 +767,19 @@ func Feature_CCY_OnFetch_impl(rec dm.Feature) string {
 // BEGIN Feature_RoundTo
 // BEGIN Feature_RoundTo
 // ----------------------------------------------------------------
-// Feature_RoundTo_OnStore_impl provides the implementation for the callout
-func Feature_RoundTo_OnStore_impl(fieldval string, rec dm.Feature, usr string) (string, error) {
-	logs.Callout("Feature", dm.Feature_RoundTo_scrn, PUT, rec.FeatureID)
-	return fieldval, nil
-}
+// // Feature_RoundTo_OnStore_impl provides the implementation for the callout
+// func Feature_RoundTo_OnStore_impl(fieldval string, rec dm.Feature, usr string) (string, error) {
+// 	logs.Callout("Feature", dm.Feature_RoundedTo_scrn, PUT, rec.FeatureID)
+// 	return fieldval, nil
+// }
 
-// ----------------------------------------------------------------
-// Feature_RoundTo_OnFetch_impl provides the implementation for the callout
-func Feature_RoundTo_OnFetch_impl(rec dm.Feature) string {
-	logs.Callout("Feature", dm.Feature_RoundTo_scrn, GET, rec.FeatureID)
-	//core.GetApplicationProperty("roundhoursto")
-	return core.GetApplicationProperty("roundhoursto")
-}
+// // ----------------------------------------------------------------
+// // Feature_RoundTo_OnFetch_impl provides the implementation for the callout
+// func Feature_RoundTo_OnFetch_impl(rec dm.Feature) string {
+// 	logs.Callout("Feature", dm.Feature_RoundedTo_scrn, GET, rec.FeatureID)
+// 	//core.GetApplicationProperty("roundhoursto")
+// 	return core.GetApplicationProperty("roundhoursto")
+// }
 
 func feature_PostPutAction_impl(id string, rec dm.Feature, usr string) error {
 	logs.Callout("Feature", "PostPutAction", PUT, rec.FeatureID)

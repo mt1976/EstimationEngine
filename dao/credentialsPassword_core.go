@@ -8,19 +8,19 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:26
+// Date & Time		    : 15/03/2023 at 19:24:47
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
 	"fmt"
 	"net/http"
+	"errors"
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/google/uuid"
 	das  "github.com/mt1976/ebEstimates/das"
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
-	"github.com/pkg/errors"
 )
 
 var CredentialsPassword_SQLbase string
@@ -59,16 +59,11 @@ func CredentialsPassword_GetByID(id string) (int, dm.CredentialsPassword, error)
 }
 
 func CredentialsPassword_PostGet(credentialspasswordItem dm.CredentialsPassword,id string) dm.CredentialsPassword {
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	credentialspasswordItem.UserName,credentialspasswordItem.UserName_props = CredentialsPassword_UserName_validate_impl (GET,id,credentialspasswordItem.UserName,credentialspasswordItem,credentialspasswordItem.UserName_props)
 	credentialspasswordItem.PasswordOld,credentialspasswordItem.PasswordOld_props = CredentialsPassword_PasswordOld_validate_impl (GET,id,credentialspasswordItem.PasswordOld,credentialspasswordItem,credentialspasswordItem.PasswordOld_props)
 	credentialspasswordItem.PasswordNew,credentialspasswordItem.PasswordNew_props = CredentialsPassword_PasswordNew_validate_impl (GET,id,credentialspasswordItem.PasswordNew,credentialspasswordItem,credentialspasswordItem.PasswordNew_props)
 	credentialspasswordItem.PasswordConfirm,credentialspasswordItem.PasswordConfirm_props = CredentialsPassword_PasswordConfirm_validate_impl (GET,id,credentialspasswordItem.PasswordConfirm,credentialspasswordItem,credentialspasswordItem.PasswordConfirm_props)
-	// 
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+
 	return credentialspasswordItem
 }
 
@@ -135,9 +130,6 @@ func CredentialsPassword_StoreProcess(r dm.CredentialsPassword, operator string)
 // CredentialsPassword_Validate() validates for saves/stores a CredentialsPassword record to the database
 func CredentialsPassword_Validate(r dm.CredentialsPassword) (dm.CredentialsPassword, error) {
 	var err error
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	r.UserName,r.UserName_props = CredentialsPassword_UserName_validate_impl (PUT,r.ID,r.UserName,r,r.UserName_props)
 	if r.UserName_props.MsgMessage != "" {
 		err = errors.New(r.UserName_props.MsgMessage)
@@ -154,10 +146,13 @@ func CredentialsPassword_Validate(r dm.CredentialsPassword) (dm.CredentialsPassw
 	if r.PasswordConfirm_props.MsgMessage != "" {
 		err = errors.New(r.PasswordConfirm_props.MsgMessage)
 	}
-	// 
 
-	
-
+	// Cross Validation
+	var errVal error
+	r, _, errVal = CredentialsPassword_ObjectValidation_impl(PUT, r.ID, r)
+	if errVal != nil {
+		err = errVal
+	}
 	return r,err
 }
 //
@@ -217,7 +212,7 @@ func CredentialsPassword_New() (int, []dm.CredentialsPassword, dm.CredentialsPas
 	
 
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.UserName,r.UserName_props = CredentialsPassword_UserName_validate_impl (NEW,r.ID,r.UserName,r,r.UserName_props)
 	r.PasswordOld,r.PasswordOld_props = CredentialsPassword_PasswordOld_validate_impl (NEW,r.ID,r.PasswordOld,r,r.PasswordOld_props)
@@ -225,7 +220,7 @@ func CredentialsPassword_New() (int, []dm.CredentialsPassword, dm.CredentialsPas
 	r.PasswordConfirm,r.PasswordConfirm_props = CredentialsPassword_PasswordConfirm_validate_impl (NEW,r.ID,r.PasswordConfirm,r,r.PasswordConfirm_props)
 	
 	// 
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

@@ -8,13 +8,14 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:27
+// Date & Time		    : 15/03/2023 at 19:24:48
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
 	
 	"net/http"
+	"strings"
 
 	core    "github.com/mt1976/ebEstimates/core"
 	dao     "github.com/mt1976/ebEstimates/dao"
@@ -23,11 +24,7 @@ import (
 )
 
 //Feature_Publish annouces the endpoints available for this object
-//Feature_Publish - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Feature_Publish(mux http.ServeMux) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	mux.HandleFunc(dm.Feature_Path, Feature_Handler)
 	mux.HandleFunc(dm.Feature_PathList, Feature_HandlerList)
 	mux.HandleFunc(dm.Feature_PathView, Feature_HandlerView)
@@ -35,29 +32,18 @@ func Feature_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Feature_PathNew, Feature_HandlerNew)
 	mux.HandleFunc(dm.Feature_PathSave, Feature_HandlerSave)
 	mux.HandleFunc(dm.Feature_PathDelete, Feature_HandlerDelete)
-	logs.Publish("Application", dm.Feature_Title)
     core.API = core.API.AddRoute(dm.Feature_Title, dm.Feature_Path, "", dm.Feature_QueryString, "Application")
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
+	logs.Publish("Application", dm.Feature_Title)
 }
 
-
-//Feature_HandlerList is the handler for the list page
-//Allows Listing of Feature records
-//Feature_HandlerList - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//Feature_HandlerList is the handler for the Feature list page
 func Feature_HandlerList(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
@@ -66,7 +52,13 @@ func Feature_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 	objectName := dao.Translate("ObjectName", "Feature")
 	reqField := "Base"
-	filter,_ := dao.Data_GetString(objectName, reqField, dm.Data_Category_FilterRule)
+	usage := "Defines a filter for the list of Feature records." + core.TEXTAREA_CR
+	usage = usage + "Fields can be any of those in the underlying DB table." + core.TEXTAREA_CR
+	usage = usage + "Examples Below:" + core.TEXTAREA_CR
+	usage = usage + "* datalength(_deleted) = 0 or " + core.TEXTAREA_CR 
+	usage = usage + "* class IN ('x','y','z')"
+	
+	filter,_ := dao.Data_GetString(objectName, reqField, dm.Data_Category_FilterRule,usage)
 	if filter == "" {
 		logs.Warning("No filter found : " + reqField + " for Object: " + objectName)
 	} 
@@ -81,34 +73,20 @@ func Feature_HandlerList(w http.ResponseWriter, r *http.Request) {
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-	
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-	
+
 	nextTemplate :=  NextTemplate("Feature", "List", dm.Feature_TemplateList)
-
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
-
 }
 
-
-//Feature_HandlerView is the handler used to View a page
-//Allows Viewing for an existing Feature record
-//Feature_HandlerView - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Feature_HandlerView is the handler used to View a Feature database record
 func Feature_HandlerView(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -121,35 +99,23 @@ func Feature_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = feature_PopulatePage(rD , pageDetail) 
 
 	nextTemplate :=  NextTemplate("Feature", "View", dm.Feature_TemplateView)
+	nextTemplate = feature_URIQueryData(nextTemplate,rD,searchID)
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//Feature_HandlerEdit is the handler used generate the Edit page
-//Allows Editing for an existing Feature record and then allows the user to save the changes
-//Feature_HandlerEdit - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Feature_HandlerEdit is the handler used to Edit of an existing Feature database record
 func Feature_HandlerEdit(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -162,7 +128,6 @@ func Feature_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	} else {
 		_, rD, _ = dao.Feature_GetByID(searchID)
 	}
-
 	
 	pageDetail := dm.Feature_Page{
 		Title:       CardTitle(dm.Feature_Title, core.Action_Edit),
@@ -170,36 +135,23 @@ func Feature_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = feature_PopulatePage(rD , pageDetail) 
 
-
 	nextTemplate :=  NextTemplate("Feature", "Edit", dm.Feature_TemplateEdit)
+	nextTemplate = feature_URIQueryData(nextTemplate,rD,searchID)
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//Feature_HandlerSave is the handler used process the saving of an Feature
-//It is called from the Edit and New pages
-//Feature_HandlerSave  - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Feature_HandlerSave is the handler used process the saving of an Feature database record, either new or existing, referenced by Edit & New Handlers.
 func Feature_HandlerSave(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	itemID := r.FormValue("FeatureID")
 	logs.Servicing(r.URL.Path+itemID)
@@ -209,33 +161,22 @@ func Feature_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	item, errStore := dao.Feature_Store(item,r)
 	if errStore == nil {
 		nextTemplate :=  NextTemplate("Feature", "Save", dm.Feature_Redirect)
+		nextTemplate = feature_URIQueryData(nextTemplate,item,itemID)
 		http.Redirect(w, r, nextTemplate, http.StatusFound)
 	} else {
 		logs.Information(dm.Feature_Name, errStore.Error())
-		//http.Redirect(w, r, r.Referer(), http.StatusFound)
 		ExecuteRedirect(r.Referer(), w, r,dm.Feature_QueryString,itemID,item)
 	}
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//Feature_HandlerNew is the handler used process the creation of an Feature
-//It will create a new Feature and then redirect to the Edit page
-//Feature_HandlerNew  - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Feature_HandlerNew is the handler used process the creation of an new Feature database record, then redirect to Edit
 func Feature_HandlerNew(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -249,58 +190,39 @@ func Feature_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		_, _, rD, _ = dao.Feature_New()
 	}
 
-
-
 	pageDetail := dm.Feature_Page{
 		Title:       CardTitle(dm.Feature_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Feature_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = feature_PopulatePage(rD , pageDetail) 
 
 	nextTemplate :=  NextTemplate("Feature", "New", dm.Feature_TemplateNew)
+	nextTemplate = feature_URIQueryData(nextTemplate,dm.Feature{},searchID)
+
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }	
 
-
-//Feature_HandlerDelete is the handler used process the deletion of an Feature
-// It will delete the Feature and then redirect to the List page
-//Feature_HandlerDelete - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Feature_HandlerDelete is the handler used process the deletion of an Feature database record. May be Hard or SoftDelete.
 func Feature_HandlerDelete(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
-	//
 	// Code Continues Below
-	//
 	logs.Servicing(r.URL.Path)
 	searchID := core.GetURLparam(r, dm.Feature_QueryString)
-
+	// DAO Call to Delete Feature Record, may be SoftDelete or HardDelete depending on the DAO implementation
 	dao.Feature_Delete(searchID)	
 
 	nextTemplate :=  NextTemplate("Feature", "Delete", dm.Feature_Redirect)
+	nextTemplate = feature_URIQueryData(nextTemplate,dm.Feature{},searchID)
 	http.Redirect(w, r, nextTemplate, http.StatusFound)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
-
-
-//feature_PopulatePage Builds/Populates the Feature Page 
-//feature_PopulatePage Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//feature_PopulatePage Builds/Populates the Feature Page from an instance of Feature from the Data Model
 func feature_PopulatePage(rD dm.Feature, pageDetail dm.Feature_Page) dm.Feature_Page {
 	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
@@ -360,37 +282,36 @@ func feature_PopulatePage(rD dm.Feature, pageDetail dm.Feature_Page) dm.Feature_
 	pageDetail.EstimateEffortDefault = rD.EstimateEffortDefault
 	pageDetail.AnalystEstimate = rD.AnalystEstimate
 	pageDetail.TotalDefault = rD.TotalDefault
-	// Add Pseudo/Extra Fields
+	pageDetail.RequirementsPerc = rD.RequirementsPerc
+	pageDetail.AnalystTestPerc = rD.AnalystTestPerc
+	pageDetail.DocumentationPerc = rD.DocumentationPerc
+	pageDetail.ManagementPerc = rD.ManagementPerc
+	pageDetail.UatSupportPerc = rD.UatSupportPerc
+	pageDetail.MarketingPerc = rD.MarketingPerc
+	pageDetail.ContingencyPerc = rD.ContingencyPerc
+	pageDetail.TrainingPerc = rD.TrainingPerc
+	pageDetail.RoundedTo = rD.RoundedTo
+	// Add Pseudo/Extra Fields, fields that are not in the DB but are used in the UI
 	pageDetail.OriginName = rD.OriginName
 	pageDetail.ProjectName = rD.ProjectName
 	pageDetail.OriginID = rD.OriginID
 	pageDetail.ProjectID = rD.ProjectID
 	pageDetail.ProfileSelectedOld = rD.ProfileSelectedOld
 	pageDetail.CCY = rD.CCY
-	pageDetail.RoundTo = rD.RoundTo
 	pageDetail.OriginCode = rD.OriginCode
 	pageDetail.EstimationSessionName = rD.EstimationSessionName
-	// Enrichment Fields 
-	 
+	// Enrichment content, content used provide lookups,lists etc
 	pageDetail.EstimationSessionID_lookup = dao.EstimationSession_GetLookup()
-	 
 	pageDetail.ConfidenceCODE_lookup = dao.Confidence_GetFilteredLookup("Feature","ConfidenceCODE")
-	 
 	pageDetail.DeveloperResource_lookup = dao.Resource_GetFilteredLookup("Feature","DeveloperResource")
-	 
 	pageDetail.ApproverResource_lookup = dao.Resource_GetFilteredLookup("Feature","ApproverResource")
-	
 	pageDetail.OffProfile_lookup = dao.StubLists_Get("tf")
-	 
 	pageDetail.AnalystResource_lookup = dao.Resource_GetFilteredLookup("Feature","AnalystResource")
-	 
 	pageDetail.ProductManagerResource_lookup = dao.Resource_GetFilteredLookup("Feature","ProductManagerResource")
-	 
 	pageDetail.ProjectManagerResource_lookup = dao.Resource_GetFilteredLookup("Feature","ProjectManagerResource")
-	 
 	pageDetail.ProfileDefault_lookup = dao.Profile_GetLookup()
-	 
 	pageDetail.ProfileSelected_lookup = dao.Profile_GetFilteredLookup("Feature","ProfileSelected")
+	// Add the Properties for the Fields
 	pageDetail.SYSId_props = rD.SYSId_props
 	pageDetail.FeatureID_props = rD.FeatureID_props
 	pageDetail.EstimationSessionID_props = rD.EstimationSessionID_props
@@ -448,87 +369,171 @@ func feature_PopulatePage(rD dm.Feature, pageDetail dm.Feature_Page) dm.Feature_
 	pageDetail.EstimateEffortDefault_props = rD.EstimateEffortDefault_props
 	pageDetail.AnalystEstimate_props = rD.AnalystEstimate_props
 	pageDetail.TotalDefault_props = rD.TotalDefault_props
+	pageDetail.RequirementsPerc_props = rD.RequirementsPerc_props
+	pageDetail.AnalystTestPerc_props = rD.AnalystTestPerc_props
+	pageDetail.DocumentationPerc_props = rD.DocumentationPerc_props
+	pageDetail.ManagementPerc_props = rD.ManagementPerc_props
+	pageDetail.UatSupportPerc_props = rD.UatSupportPerc_props
+	pageDetail.MarketingPerc_props = rD.MarketingPerc_props
+	pageDetail.ContingencyPerc_props = rD.ContingencyPerc_props
+	pageDetail.TrainingPerc_props = rD.TrainingPerc_props
+	pageDetail.RoundedTo_props = rD.RoundedTo_props
 	pageDetail.OriginName_props = rD.OriginName_props
 	pageDetail.ProjectName_props = rD.ProjectName_props
 	pageDetail.OriginID_props = rD.OriginID_props
 	pageDetail.ProjectID_props = rD.ProjectID_props
 	pageDetail.ProfileSelectedOld_props = rD.ProfileSelectedOld_props
 	pageDetail.CCY_props = rD.CCY_props
-	pageDetail.RoundTo_props = rD.RoundTo_props
 	pageDetail.OriginCode_props = rD.OriginCode_props
 	pageDetail.EstimationSessionName_props = rD.EstimationSessionName_props
 	return pageDetail
 }
 //feature_DataFromRequest is used process the content of an HTTP Request and return an instance of an Feature
-//feature_DataFromRequest Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func feature_DataFromRequest(r *http.Request) dm.Feature {
-
 	var item dm.Feature
-		item.SYSId = r.FormValue(dm.Feature_SYSId_scrn)
-		item.FeatureID = r.FormValue(dm.Feature_FeatureID_scrn)
-		item.EstimationSessionID = r.FormValue(dm.Feature_EstimationSessionID_scrn)
-		item.ConfidenceCODE = r.FormValue(dm.Feature_ConfidenceCODE_scrn)
-		item.Name = r.FormValue(dm.Feature_Name_scrn)
-		item.DevelopmentEstimate = r.FormValue(dm.Feature_DevelopmentEstimate_scrn)
-		item.DevelopmentFactored = r.FormValue(dm.Feature_DevelopmentFactored_scrn)
-		item.Requirements = r.FormValue(dm.Feature_Requirements_scrn)
-		item.AnalystTest = r.FormValue(dm.Feature_AnalystTest_scrn)
-		item.Documentation = r.FormValue(dm.Feature_Documentation_scrn)
-		item.Management = r.FormValue(dm.Feature_Management_scrn)
-		item.UatSupport = r.FormValue(dm.Feature_UatSupport_scrn)
-		item.Marketing = r.FormValue(dm.Feature_Marketing_scrn)
-		item.Contingency = r.FormValue(dm.Feature_Contingency_scrn)
-		item.TrackerID = r.FormValue(dm.Feature_TrackerID_scrn)
-		item.AdoID = r.FormValue(dm.Feature_AdoID_scrn)
-		item.FreshdeskID = r.FormValue(dm.Feature_FreshdeskID_scrn)
-		item.ExtRef = r.FormValue(dm.Feature_ExtRef_scrn)
-		item.ExtRef2 = r.FormValue(dm.Feature_ExtRef2_scrn)
-		item.SYSCreated = r.FormValue(dm.Feature_SYSCreated_scrn)
-		item.SYSCreatedBy = r.FormValue(dm.Feature_SYSCreatedBy_scrn)
-		item.SYSCreatedHost = r.FormValue(dm.Feature_SYSCreatedHost_scrn)
-		item.SYSUpdated = r.FormValue(dm.Feature_SYSUpdated_scrn)
-		item.SYSUpdatedBy = r.FormValue(dm.Feature_SYSUpdatedBy_scrn)
-		item.SYSUpdatedHost = r.FormValue(dm.Feature_SYSUpdatedHost_scrn)
-		item.SYSDeleted = r.FormValue(dm.Feature_SYSDeleted_scrn)
-		item.SYSDeletedBy = r.FormValue(dm.Feature_SYSDeletedBy_scrn)
-		item.SYSDeletedHost = r.FormValue(dm.Feature_SYSDeletedHost_scrn)
-		item.DeveloperResource = r.FormValue(dm.Feature_DeveloperResource_scrn)
-		item.ApproverResource = r.FormValue(dm.Feature_ApproverResource_scrn)
-		item.Activity = r.FormValue(dm.Feature_Activity_scrn)
-		item.OffProfile = r.FormValue(dm.Feature_OffProfile_scrn)
-		item.OffProfileJustification = r.FormValue(dm.Feature_OffProfileJustification_scrn)
-		item.SYSActivity = r.FormValue(dm.Feature_SYSActivity_scrn)
-		item.RequirementsDefault = r.FormValue(dm.Feature_RequirementsDefault_scrn)
-		item.AnalystTestDefault = r.FormValue(dm.Feature_AnalystTestDefault_scrn)
-		item.DocumentationDefault = r.FormValue(dm.Feature_DocumentationDefault_scrn)
-		item.ManagementDefault = r.FormValue(dm.Feature_ManagementDefault_scrn)
-		item.UatSupportDefault = r.FormValue(dm.Feature_UatSupportDefault_scrn)
-		item.MarketingDefault = r.FormValue(dm.Feature_MarketingDefault_scrn)
-		item.ContingencyDefault = r.FormValue(dm.Feature_ContingencyDefault_scrn)
-		item.DevelopmentFactoredDefault = r.FormValue(dm.Feature_DevelopmentFactoredDefault_scrn)
-		item.Total = r.FormValue(dm.Feature_Total_scrn)
-		item.SYSDbVersion = r.FormValue(dm.Feature_SYSDbVersion_scrn)
-		item.Comments = r.FormValue(dm.Feature_Comments_scrn)
-		item.Description = r.FormValue(dm.Feature_Description_scrn)
-		item.AnalystResource = r.FormValue(dm.Feature_AnalystResource_scrn)
-		item.ProductManagerResource = r.FormValue(dm.Feature_ProductManagerResource_scrn)
-		item.ProjectManagerResource = r.FormValue(dm.Feature_ProjectManagerResource_scrn)
-		item.Training = r.FormValue(dm.Feature_Training_scrn)
-		item.TrainingDefault = r.FormValue(dm.Feature_TrainingDefault_scrn)
-		item.ProfileDefault = r.FormValue(dm.Feature_ProfileDefault_scrn)
-		item.ProfileSelected = r.FormValue(dm.Feature_ProfileSelected_scrn)
-		item.EstimateEffort = r.FormValue(dm.Feature_EstimateEffort_scrn)
-		item.EstimateEffortDefault = r.FormValue(dm.Feature_EstimateEffortDefault_scrn)
-		item.AnalystEstimate = r.FormValue(dm.Feature_AnalystEstimate_scrn)
-		item.TotalDefault = r.FormValue(dm.Feature_TotalDefault_scrn)
-		item.OriginName = r.FormValue(dm.Feature_OriginName_scrn)
-		item.ProjectName = r.FormValue(dm.Feature_ProjectName_scrn)
-		item.OriginID = r.FormValue(dm.Feature_OriginID_scrn)
-		item.ProjectID = r.FormValue(dm.Feature_ProjectID_scrn)
-		item.ProfileSelectedOld = r.FormValue(dm.Feature_ProfileSelectedOld_scrn)
-		item.CCY = r.FormValue(dm.Feature_CCY_scrn)
-		item.RoundTo = r.FormValue(dm.Feature_RoundTo_scrn)
-		item.OriginCode = r.FormValue(dm.Feature_OriginCode_scrn)
-		item.EstimationSessionName = r.FormValue(dm.Feature_EstimationSessionName_scrn)
+	item.SYSId = r.FormValue(dm.Feature_SYSId_scrn)
+	item.FeatureID = r.FormValue(dm.Feature_FeatureID_scrn)
+	item.EstimationSessionID = r.FormValue(dm.Feature_EstimationSessionID_scrn)
+	item.ConfidenceCODE = r.FormValue(dm.Feature_ConfidenceCODE_scrn)
+	item.Name = r.FormValue(dm.Feature_Name_scrn)
+	item.DevelopmentEstimate = r.FormValue(dm.Feature_DevelopmentEstimate_scrn)
+	item.DevelopmentFactored = r.FormValue(dm.Feature_DevelopmentFactored_scrn)
+	item.Requirements = r.FormValue(dm.Feature_Requirements_scrn)
+	item.AnalystTest = r.FormValue(dm.Feature_AnalystTest_scrn)
+	item.Documentation = r.FormValue(dm.Feature_Documentation_scrn)
+	item.Management = r.FormValue(dm.Feature_Management_scrn)
+	item.UatSupport = r.FormValue(dm.Feature_UatSupport_scrn)
+	item.Marketing = r.FormValue(dm.Feature_Marketing_scrn)
+	item.Contingency = r.FormValue(dm.Feature_Contingency_scrn)
+	item.TrackerID = r.FormValue(dm.Feature_TrackerID_scrn)
+	item.AdoID = r.FormValue(dm.Feature_AdoID_scrn)
+	item.FreshdeskID = r.FormValue(dm.Feature_FreshdeskID_scrn)
+	item.ExtRef = r.FormValue(dm.Feature_ExtRef_scrn)
+	item.ExtRef2 = r.FormValue(dm.Feature_ExtRef2_scrn)
+	item.SYSCreated = r.FormValue(dm.Feature_SYSCreated_scrn)
+	item.SYSCreatedBy = r.FormValue(dm.Feature_SYSCreatedBy_scrn)
+	item.SYSCreatedHost = r.FormValue(dm.Feature_SYSCreatedHost_scrn)
+	item.SYSUpdated = r.FormValue(dm.Feature_SYSUpdated_scrn)
+	item.SYSUpdatedBy = r.FormValue(dm.Feature_SYSUpdatedBy_scrn)
+	item.SYSUpdatedHost = r.FormValue(dm.Feature_SYSUpdatedHost_scrn)
+	item.SYSDeleted = r.FormValue(dm.Feature_SYSDeleted_scrn)
+	item.SYSDeletedBy = r.FormValue(dm.Feature_SYSDeletedBy_scrn)
+	item.SYSDeletedHost = r.FormValue(dm.Feature_SYSDeletedHost_scrn)
+	item.DeveloperResource = r.FormValue(dm.Feature_DeveloperResource_scrn)
+	item.ApproverResource = r.FormValue(dm.Feature_ApproverResource_scrn)
+	item.Activity = r.FormValue(dm.Feature_Activity_scrn)
+	item.OffProfile = r.FormValue(dm.Feature_OffProfile_scrn)
+	item.OffProfileJustification = r.FormValue(dm.Feature_OffProfileJustification_scrn)
+	item.SYSActivity = r.FormValue(dm.Feature_SYSActivity_scrn)
+	item.RequirementsDefault = r.FormValue(dm.Feature_RequirementsDefault_scrn)
+	item.AnalystTestDefault = r.FormValue(dm.Feature_AnalystTestDefault_scrn)
+	item.DocumentationDefault = r.FormValue(dm.Feature_DocumentationDefault_scrn)
+	item.ManagementDefault = r.FormValue(dm.Feature_ManagementDefault_scrn)
+	item.UatSupportDefault = r.FormValue(dm.Feature_UatSupportDefault_scrn)
+	item.MarketingDefault = r.FormValue(dm.Feature_MarketingDefault_scrn)
+	item.ContingencyDefault = r.FormValue(dm.Feature_ContingencyDefault_scrn)
+	item.DevelopmentFactoredDefault = r.FormValue(dm.Feature_DevelopmentFactoredDefault_scrn)
+	item.Total = r.FormValue(dm.Feature_Total_scrn)
+	item.SYSDbVersion = r.FormValue(dm.Feature_SYSDbVersion_scrn)
+	item.Comments = r.FormValue(dm.Feature_Comments_scrn)
+	item.Description = r.FormValue(dm.Feature_Description_scrn)
+	item.AnalystResource = r.FormValue(dm.Feature_AnalystResource_scrn)
+	item.ProductManagerResource = r.FormValue(dm.Feature_ProductManagerResource_scrn)
+	item.ProjectManagerResource = r.FormValue(dm.Feature_ProjectManagerResource_scrn)
+	item.Training = r.FormValue(dm.Feature_Training_scrn)
+	item.TrainingDefault = r.FormValue(dm.Feature_TrainingDefault_scrn)
+	item.ProfileDefault = r.FormValue(dm.Feature_ProfileDefault_scrn)
+	item.ProfileSelected = r.FormValue(dm.Feature_ProfileSelected_scrn)
+	item.EstimateEffort = r.FormValue(dm.Feature_EstimateEffort_scrn)
+	item.EstimateEffortDefault = r.FormValue(dm.Feature_EstimateEffortDefault_scrn)
+	item.AnalystEstimate = r.FormValue(dm.Feature_AnalystEstimate_scrn)
+	item.TotalDefault = r.FormValue(dm.Feature_TotalDefault_scrn)
+	item.RequirementsPerc = r.FormValue(dm.Feature_RequirementsPerc_scrn)
+	item.AnalystTestPerc = r.FormValue(dm.Feature_AnalystTestPerc_scrn)
+	item.DocumentationPerc = r.FormValue(dm.Feature_DocumentationPerc_scrn)
+	item.ManagementPerc = r.FormValue(dm.Feature_ManagementPerc_scrn)
+	item.UatSupportPerc = r.FormValue(dm.Feature_UatSupportPerc_scrn)
+	item.MarketingPerc = r.FormValue(dm.Feature_MarketingPerc_scrn)
+	item.ContingencyPerc = r.FormValue(dm.Feature_ContingencyPerc_scrn)
+	item.TrainingPerc = r.FormValue(dm.Feature_TrainingPerc_scrn)
+	item.RoundedTo = r.FormValue(dm.Feature_RoundedTo_scrn)
+	item.OriginName = r.FormValue(dm.Feature_OriginName_scrn)
+	item.ProjectName = r.FormValue(dm.Feature_ProjectName_scrn)
+	item.OriginID = r.FormValue(dm.Feature_OriginID_scrn)
+	item.ProjectID = r.FormValue(dm.Feature_ProjectID_scrn)
+	item.ProfileSelectedOld = r.FormValue(dm.Feature_ProfileSelectedOld_scrn)
+	item.CCY = r.FormValue(dm.Feature_CCY_scrn)
+	item.OriginCode = r.FormValue(dm.Feature_OriginCode_scrn)
+	item.EstimationSessionName = r.FormValue(dm.Feature_EstimationSessionName_scrn)
 	return item
+}
+//feature_URIQueryData is used to replace the wildcards in the URI Query Path with the values from the Feature Data Model
+func feature_URIQueryData(queryPath string,item dm.Feature,itemID string) string {
+	if queryPath == "" {
+		return ""
+	}
+	queryPath = core.ReplaceWildcard(queryPath, strings.ToUpper("ID"), itemID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_FeatureID_scrn), item.FeatureID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_EstimationSessionID_scrn), item.EstimationSessionID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_ConfidenceCODE_scrn), item.ConfidenceCODE)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_Name_scrn), item.Name)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_DevelopmentEstimate_scrn), item.DevelopmentEstimate)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_DevelopmentFactored_scrn), item.DevelopmentFactored)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_Requirements_scrn), item.Requirements)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_AnalystTest_scrn), item.AnalystTest)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_Documentation_scrn), item.Documentation)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_Management_scrn), item.Management)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_UatSupport_scrn), item.UatSupport)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_Marketing_scrn), item.Marketing)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_Contingency_scrn), item.Contingency)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_TrackerID_scrn), item.TrackerID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_AdoID_scrn), item.AdoID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_FreshdeskID_scrn), item.FreshdeskID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_ExtRef_scrn), item.ExtRef)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_ExtRef2_scrn), item.ExtRef2)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_DeveloperResource_scrn), item.DeveloperResource)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_ApproverResource_scrn), item.ApproverResource)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_Activity_scrn), item.Activity)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_OffProfile_scrn), item.OffProfile)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_OffProfileJustification_scrn), item.OffProfileJustification)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_RequirementsDefault_scrn), item.RequirementsDefault)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_AnalystTestDefault_scrn), item.AnalystTestDefault)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_DocumentationDefault_scrn), item.DocumentationDefault)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_ManagementDefault_scrn), item.ManagementDefault)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_UatSupportDefault_scrn), item.UatSupportDefault)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_MarketingDefault_scrn), item.MarketingDefault)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_ContingencyDefault_scrn), item.ContingencyDefault)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_DevelopmentFactoredDefault_scrn), item.DevelopmentFactoredDefault)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_Total_scrn), item.Total)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_Comments_scrn), item.Comments)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_Description_scrn), item.Description)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_AnalystResource_scrn), item.AnalystResource)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_ProductManagerResource_scrn), item.ProductManagerResource)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_ProjectManagerResource_scrn), item.ProjectManagerResource)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_Training_scrn), item.Training)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_TrainingDefault_scrn), item.TrainingDefault)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_ProfileDefault_scrn), item.ProfileDefault)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_ProfileSelected_scrn), item.ProfileSelected)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_EstimateEffort_scrn), item.EstimateEffort)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_EstimateEffortDefault_scrn), item.EstimateEffortDefault)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_AnalystEstimate_scrn), item.AnalystEstimate)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_TotalDefault_scrn), item.TotalDefault)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_RequirementsPerc_scrn), item.RequirementsPerc)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_AnalystTestPerc_scrn), item.AnalystTestPerc)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_DocumentationPerc_scrn), item.DocumentationPerc)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_ManagementPerc_scrn), item.ManagementPerc)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_UatSupportPerc_scrn), item.UatSupportPerc)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_MarketingPerc_scrn), item.MarketingPerc)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_ContingencyPerc_scrn), item.ContingencyPerc)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_TrainingPerc_scrn), item.TrainingPerc)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_RoundedTo_scrn), item.RoundedTo)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_OriginName_scrn), item.OriginName)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_ProjectName_scrn), item.ProjectName)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_OriginID_scrn), item.OriginID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_ProjectID_scrn), item.ProjectID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_ProfileSelectedOld_scrn), item.ProfileSelectedOld)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_CCY_scrn), item.CCY)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_OriginCode_scrn), item.OriginCode)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Feature_EstimationSessionName_scrn), item.EstimationSessionName)
+	return queryPath
 }

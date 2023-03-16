@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:26
+// Date & Time		    : 15/03/2023 at 19:24:47
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //CredentialsPassword defines the datamodel for the CredentialsPassword object
 type CredentialsPassword struct {
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -38,7 +38,7 @@ type CredentialsPassword struct {
 	}
 
 const (
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	CredentialsPassword_Name      = "CredentialsPassword"
 	CredentialsPassword_Title       = "Credentials Password"
@@ -91,7 +91,7 @@ const (
 
 //CredentialsPassword_PageList provides the information for the template for a list of CredentialsPasswords
 type CredentialsPassword_PageList struct {
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -113,7 +113,7 @@ type CredentialsPassword_PageList struct {
 
 //CredentialsPassword_Page provides the information for the template for an individual CredentialsPassword
 type CredentialsPassword_Page struct {
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem

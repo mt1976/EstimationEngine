@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:27
+// Date & Time		    : 15/03/2023 at 19:24:48
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -65,7 +65,14 @@ func EstimationState_GetFilteredLookup(requestObject string, requestField string
 	var returnList []dm.Lookup_Item
 	objectName := Translate("ObjectName", requestObject)
 	reqField := requestField + "_EstimationState_Filter"
-	filter, _ := Data_GetString(objectName, reqField, dm.Data_Category_FilterRule)
+
+	usage := "Defines a filter for a lookup list of EstimationState records, when requested by " + requestField + "." + core.TEXTAREA_CR
+	usage = usage + "Fields can be any of those in the underlying DB table." + core.TEXTAREA_CR
+	usage = usage + "Examples Below:" + core.TEXTAREA_CR
+	usage = usage + "* datalength(_deleted) = 0 or " + core.TEXTAREA_CR
+	usage = usage + "* class IN ('x','y','z')"
+
+	filter, _ := Data_GetString(objectName, reqField, dm.Data_Category_FilterRule, usage)
 	if filter == "" {
 		logs.Warning("EstimationState_GetFilteredLookup() - No filter found : " + reqField + " for Object: " + objectName)
 	}
@@ -89,12 +96,7 @@ func EstimationState_GetByID(id string) (int, dm.EstimationState, error) {
 }
 
 func EstimationState_PostGet(estimationstateItem dm.EstimationState, id string) dm.EstimationState {
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	//
-	//
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
+
 	return estimationstateItem
 }
 
@@ -170,11 +172,13 @@ func EstimationState_StoreProcess(r dm.EstimationState, operator string) (dm.Est
 // EstimationState_Validate() validates for saves/stores a EstimationState record to the database
 func EstimationState_Validate(r dm.EstimationState) (dm.EstimationState, error) {
 	var err error
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	//
-	//
 
+	// Cross Validation
+	var errVal error
+	r, _, errVal = EstimationState_ObjectValidation_impl(PUT, r.EstimationStateID, r)
+	if errVal != nil {
+		err = errVal
+	}
 	return r, err
 }
 
@@ -205,7 +209,7 @@ func estimationstate_Save(r dm.EstimationState, usr string) error {
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	ts = addData(ts, dm.EstimationState_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.EstimationState_EstimationStateID_sql, r.EstimationStateID)
@@ -226,7 +230,7 @@ func estimationstate_Save(r dm.EstimationState, usr string) error {
 	ts = addData(ts, dm.EstimationState_Migrate_sql, r.Migrate)
 
 	//
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 	tsql := das.INSERT + das.INTO + EstimationState_QualifiedName
@@ -255,7 +259,7 @@ func estimationstate_Fetch(tsql string) (int, []dm.EstimationState, dm.Estimatio
 
 		rec := returnList[i]
 		// START
-		// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		//
 		recItem.SYSId = get_Int(rec, dm.EstimationState_SYSId_sql, "0")
 		recItem.EstimationStateID = get_String(rec, dm.EstimationState_EstimationStateID_sql, "")
@@ -277,7 +281,7 @@ func estimationstate_Fetch(tsql string) (int, []dm.EstimationState, dm.Estimatio
 
 		// If there are fields below, create the methods in dao\EstimationState_adaptor.go
 		//
-		// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		// END
 		///
 		//Add to the list
@@ -302,11 +306,11 @@ func EstimationState_New() (int, []dm.EstimationState, dm.EstimationState, error
 	var rList []dm.EstimationState
 
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 
 	//
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

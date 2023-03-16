@@ -8,13 +8,14 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 15:47:28
+// Date & Time		    : 15/03/2023 at 19:24:50
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
 	
 	"net/http"
+	"strings"
 
 	core    "github.com/mt1976/ebEstimates/core"
 	dao     "github.com/mt1976/ebEstimates/dao"
@@ -23,11 +24,7 @@ import (
 )
 
 //Translation_Publish annouces the endpoints available for this object
-//Translation_Publish - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Translation_Publish(mux http.ServeMux) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	mux.HandleFunc(dm.Translation_Path, Translation_Handler)
 	mux.HandleFunc(dm.Translation_PathList, Translation_HandlerList)
 	mux.HandleFunc(dm.Translation_PathView, Translation_HandlerView)
@@ -35,29 +32,18 @@ func Translation_Publish(mux http.ServeMux) {
 	//Cannot Create via GUI
 	mux.HandleFunc(dm.Translation_PathSave, Translation_HandlerSave)
 	//Cannot Delete via GUI
-	logs.Publish("Application", dm.Translation_Title)
     core.API = core.API.AddRoute(dm.Translation_Title, dm.Translation_Path, "", dm.Translation_QueryString, "Application")
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
+	logs.Publish("Application", dm.Translation_Title)
 }
 
-
-//Translation_HandlerList is the handler for the list page
-//Allows Listing of Translation records
-//Translation_HandlerList - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//Translation_HandlerList is the handler for the Translation list page
 func Translation_HandlerList(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
@@ -66,7 +52,13 @@ func Translation_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 	objectName := dao.Translate("ObjectName", "Translation")
 	reqField := "Base"
-	filter,_ := dao.Data_GetString(objectName, reqField, dm.Data_Category_FilterRule)
+	usage := "Defines a filter for the list of Translation records." + core.TEXTAREA_CR
+	usage = usage + "Fields can be any of those in the underlying DB table." + core.TEXTAREA_CR
+	usage = usage + "Examples Below:" + core.TEXTAREA_CR
+	usage = usage + "* datalength(_deleted) = 0 or " + core.TEXTAREA_CR 
+	usage = usage + "* class IN ('x','y','z')"
+	
+	filter,_ := dao.Data_GetString(objectName, reqField, dm.Data_Category_FilterRule,usage)
 	if filter == "" {
 		logs.Warning("No filter found : " + reqField + " for Object: " + objectName)
 	} 
@@ -81,34 +73,20 @@ func Translation_HandlerList(w http.ResponseWriter, r *http.Request) {
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-	
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-	
+
 	nextTemplate :=  NextTemplate("Translation", "List", dm.Translation_TemplateList)
-
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
-
 }
 
-
-//Translation_HandlerView is the handler used to View a page
-//Allows Viewing for an existing Translation record
-//Translation_HandlerView - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Translation_HandlerView is the handler used to View a Translation database record
 func Translation_HandlerView(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -121,35 +99,23 @@ func Translation_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = translation_PopulatePage(rD , pageDetail) 
 
 	nextTemplate :=  NextTemplate("Translation", "View", dm.Translation_TemplateView)
+	nextTemplate = translation_URIQueryData(nextTemplate,rD,searchID)
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//Translation_HandlerEdit is the handler used generate the Edit page
-//Allows Editing for an existing Translation record and then allows the user to save the changes
-//Translation_HandlerEdit - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Translation_HandlerEdit is the handler used to Edit of an existing Translation database record
 func Translation_HandlerEdit(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -162,7 +128,6 @@ func Translation_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	} else {
 		_, rD, _ = dao.Translation_GetByID(searchID)
 	}
-
 	
 	pageDetail := dm.Translation_Page{
 		Title:       CardTitle(dm.Translation_Title, core.Action_Edit),
@@ -170,36 +135,23 @@ func Translation_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = translation_PopulatePage(rD , pageDetail) 
 
-
 	nextTemplate :=  NextTemplate("Translation", "Edit", dm.Translation_TemplateEdit)
+	nextTemplate = translation_URIQueryData(nextTemplate,rD,searchID)
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//Translation_HandlerSave is the handler used process the saving of an Translation
-//It is called from the Edit and New pages
-//Translation_HandlerSave  - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Translation_HandlerSave is the handler used process the saving of an Translation database record, either new or existing, referenced by Edit & New Handlers.
 func Translation_HandlerSave(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	itemID := r.FormValue("Id")
 	logs.Servicing(r.URL.Path+itemID)
@@ -209,22 +161,14 @@ func Translation_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	item, errStore := dao.Translation_Store(item,r)
 	if errStore == nil {
 		nextTemplate :=  NextTemplate("Translation", "Save", dm.Translation_Redirect)
+		nextTemplate = translation_URIQueryData(nextTemplate,item,itemID)
 		http.Redirect(w, r, nextTemplate, http.StatusFound)
 	} else {
 		logs.Information(dm.Translation_Name, errStore.Error())
-		//http.Redirect(w, r, r.Referer(), http.StatusFound)
 		ExecuteRedirect(r.Referer(), w, r,dm.Translation_QueryString,itemID,item)
 	}
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
-
-
-
-
-//translation_PopulatePage Builds/Populates the Translation Page 
-//translation_PopulatePage Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//translation_PopulatePage Builds/Populates the Translation Page from an instance of Translation from the Data Model
 func translation_PopulatePage(rD dm.Translation, pageDetail dm.Translation_Page) dm.Translation_Page {
 	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
@@ -243,10 +187,10 @@ func translation_PopulatePage(rD dm.Translation, pageDetail dm.Translation_Page)
 	pageDetail.SYSDeletedHost = rD.SYSDeletedHost
 	pageDetail.SYSDbVersion = rD.SYSDbVersion
 	pageDetail.Migrate = rD.Migrate
-	// Add Pseudo/Extra Fields
-	// Enrichment Fields 
-	
+	// Add Pseudo/Extra Fields, fields that are not in the DB but are used in the UI
+	// Enrichment content, content used provide lookups,lists etc
 	pageDetail.Migrate_lookup = dao.StubLists_Get("tf")
+	// Add the Properties for the Fields
 	pageDetail.SYSId_props = rD.SYSId_props
 	pageDetail.Id_props = rD.Id_props
 	pageDetail.Class_props = rD.Class_props
@@ -266,25 +210,36 @@ func translation_PopulatePage(rD dm.Translation, pageDetail dm.Translation_Page)
 	return pageDetail
 }
 //translation_DataFromRequest is used process the content of an HTTP Request and return an instance of an Translation
-//translation_DataFromRequest Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func translation_DataFromRequest(r *http.Request) dm.Translation {
-
 	var item dm.Translation
-		item.SYSId = r.FormValue(dm.Translation_SYSId_scrn)
-		item.Id = r.FormValue(dm.Translation_Id_scrn)
-		item.Class = r.FormValue(dm.Translation_Class_scrn)
-		item.Message = r.FormValue(dm.Translation_Message_scrn)
-		item.Translation = r.FormValue(dm.Translation_Translation_scrn)
-		item.SYSCreated = r.FormValue(dm.Translation_SYSCreated_scrn)
-		item.SYSUpdated = r.FormValue(dm.Translation_SYSUpdated_scrn)
-		item.SYSCreatedBy = r.FormValue(dm.Translation_SYSCreatedBy_scrn)
-		item.SYSCreatedHost = r.FormValue(dm.Translation_SYSCreatedHost_scrn)
-		item.SYSUpdatedBy = r.FormValue(dm.Translation_SYSUpdatedBy_scrn)
-		item.SYSUpdatedHost = r.FormValue(dm.Translation_SYSUpdatedHost_scrn)
-		item.SYSDeleted = r.FormValue(dm.Translation_SYSDeleted_scrn)
-		item.SYSDeletedBy = r.FormValue(dm.Translation_SYSDeletedBy_scrn)
-		item.SYSDeletedHost = r.FormValue(dm.Translation_SYSDeletedHost_scrn)
-		item.SYSDbVersion = r.FormValue(dm.Translation_SYSDbVersion_scrn)
-		item.Migrate = r.FormValue(dm.Translation_Migrate_scrn)
+	item.SYSId = r.FormValue(dm.Translation_SYSId_scrn)
+	item.Id = r.FormValue(dm.Translation_Id_scrn)
+	item.Class = r.FormValue(dm.Translation_Class_scrn)
+	item.Message = r.FormValue(dm.Translation_Message_scrn)
+	item.Translation = r.FormValue(dm.Translation_Translation_scrn)
+	item.SYSCreated = r.FormValue(dm.Translation_SYSCreated_scrn)
+	item.SYSUpdated = r.FormValue(dm.Translation_SYSUpdated_scrn)
+	item.SYSCreatedBy = r.FormValue(dm.Translation_SYSCreatedBy_scrn)
+	item.SYSCreatedHost = r.FormValue(dm.Translation_SYSCreatedHost_scrn)
+	item.SYSUpdatedBy = r.FormValue(dm.Translation_SYSUpdatedBy_scrn)
+	item.SYSUpdatedHost = r.FormValue(dm.Translation_SYSUpdatedHost_scrn)
+	item.SYSDeleted = r.FormValue(dm.Translation_SYSDeleted_scrn)
+	item.SYSDeletedBy = r.FormValue(dm.Translation_SYSDeletedBy_scrn)
+	item.SYSDeletedHost = r.FormValue(dm.Translation_SYSDeletedHost_scrn)
+	item.SYSDbVersion = r.FormValue(dm.Translation_SYSDbVersion_scrn)
+	item.Migrate = r.FormValue(dm.Translation_Migrate_scrn)
 	return item
+}
+//translation_URIQueryData is used to replace the wildcards in the URI Query Path with the values from the Translation Data Model
+func translation_URIQueryData(queryPath string,item dm.Translation,itemID string) string {
+	if queryPath == "" {
+		return ""
+	}
+	queryPath = core.ReplaceWildcard(queryPath, strings.ToUpper("ID"), itemID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Translation_Id_scrn), item.Id)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Translation_Class_scrn), item.Class)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Translation_Message_scrn), item.Message)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Translation_Translation_scrn), item.Translation)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Translation_Migrate_scrn), item.Migrate)
+	return queryPath
 }

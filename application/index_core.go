@@ -8,13 +8,14 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:28
+// Date & Time		    : 15/03/2023 at 19:24:48
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
 	
 	"net/http"
+	"strings"
 
 	core    "github.com/mt1976/ebEstimates/core"
 	dao     "github.com/mt1976/ebEstimates/dao"
@@ -23,11 +24,7 @@ import (
 )
 
 //Index_Publish annouces the endpoints available for this object
-//Index_Publish - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Index_Publish(mux http.ServeMux) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	mux.HandleFunc(dm.Index_Path, Index_Handler)
 	mux.HandleFunc(dm.Index_PathList, Index_HandlerList)
 	mux.HandleFunc(dm.Index_PathView, Index_HandlerView)
@@ -35,29 +32,18 @@ func Index_Publish(mux http.ServeMux) {
 	//Cannot Create via GUI
 	mux.HandleFunc(dm.Index_PathSave, Index_HandlerSave)
 	//Cannot Delete via GUI
-	logs.Publish("Application", dm.Index_Title)
     core.API = core.API.AddRoute(dm.Index_Title, dm.Index_Path, "", dm.Index_QueryString, "Application")
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
+	logs.Publish("Application", dm.Index_Title)
 }
 
-
-//Index_HandlerList is the handler for the list page
-//Allows Listing of Index records
-//Index_HandlerList - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//Index_HandlerList is the handler for the Index list page
 func Index_HandlerList(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
@@ -66,7 +52,13 @@ func Index_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 	objectName := dao.Translate("ObjectName", "Index")
 	reqField := "Base"
-	filter,_ := dao.Data_GetString(objectName, reqField, dm.Data_Category_FilterRule)
+	usage := "Defines a filter for the list of Index records." + core.TEXTAREA_CR
+	usage = usage + "Fields can be any of those in the underlying DB table." + core.TEXTAREA_CR
+	usage = usage + "Examples Below:" + core.TEXTAREA_CR
+	usage = usage + "* datalength(_deleted) = 0 or " + core.TEXTAREA_CR 
+	usage = usage + "* class IN ('x','y','z')"
+	
+	filter,_ := dao.Data_GetString(objectName, reqField, dm.Data_Category_FilterRule,usage)
 	if filter == "" {
 		logs.Warning("No filter found : " + reqField + " for Object: " + objectName)
 	} 
@@ -81,34 +73,20 @@ func Index_HandlerList(w http.ResponseWriter, r *http.Request) {
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-	
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-	
+
 	nextTemplate :=  NextTemplate("Index", "List", dm.Index_TemplateList)
-
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
-
 }
 
-
-//Index_HandlerView is the handler used to View a page
-//Allows Viewing for an existing Index record
-//Index_HandlerView - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Index_HandlerView is the handler used to View a Index database record
 func Index_HandlerView(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -121,36 +99,23 @@ func Index_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = index_PopulatePage(rD , pageDetail) 
 
 	nextTemplate :=  NextTemplate("Index", "View", dm.Index_TemplateView)
+	nextTemplate = index_URIQueryData(nextTemplate,rD,searchID)
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-
-//Index_HandlerSave is the handler used process the saving of an Index
-//It is called from the Edit and New pages
-//Index_HandlerSave  - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Index_HandlerSave is the handler used process the saving of an Index database record, either new or existing, referenced by Edit & New Handlers.
 func Index_HandlerSave(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	itemID := r.FormValue("IndexID")
 	logs.Servicing(r.URL.Path+itemID)
@@ -160,22 +125,14 @@ func Index_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	item, errStore := dao.Index_Store(item,r)
 	if errStore == nil {
 		nextTemplate :=  NextTemplate("Index", "Save", dm.Index_Redirect)
+		nextTemplate = index_URIQueryData(nextTemplate,item,itemID)
 		http.Redirect(w, r, nextTemplate, http.StatusFound)
 	} else {
 		logs.Information(dm.Index_Name, errStore.Error())
-		//http.Redirect(w, r, r.Referer(), http.StatusFound)
 		ExecuteRedirect(r.Referer(), w, r,dm.Index_QueryString,itemID,item)
 	}
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
-
-
-
-
-//index_PopulatePage Builds/Populates the Index Page 
-//index_PopulatePage Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//index_PopulatePage Builds/Populates the Index Page from an instance of Index from the Data Model
 func index_PopulatePage(rD dm.Index, pageDetail dm.Index_Page) dm.Index_Page {
 	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
@@ -195,8 +152,9 @@ func index_PopulatePage(rD dm.Index, pageDetail dm.Index_Page) dm.Index_Page {
 	pageDetail.SYSDeletedHost = rD.SYSDeletedHost
 	pageDetail.SYSDbVersion = rD.SYSDbVersion
 	pageDetail.KeyValue = rD.KeyValue
-	// Add Pseudo/Extra Fields
-	// Enrichment Fields 
+	// Add Pseudo/Extra Fields, fields that are not in the DB but are used in the UI
+	// Enrichment content, content used provide lookups,lists etc
+	// Add the Properties for the Fields
 	pageDetail.SYSId_props = rD.SYSId_props
 	pageDetail.IndexID_props = rD.IndexID_props
 	pageDetail.KeyClass_props = rD.KeyClass_props
@@ -217,26 +175,38 @@ func index_PopulatePage(rD dm.Index, pageDetail dm.Index_Page) dm.Index_Page {
 	return pageDetail
 }
 //index_DataFromRequest is used process the content of an HTTP Request and return an instance of an Index
-//index_DataFromRequest Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func index_DataFromRequest(r *http.Request) dm.Index {
-
 	var item dm.Index
-		item.SYSId = r.FormValue(dm.Index_SYSId_scrn)
-		item.IndexID = r.FormValue(dm.Index_IndexID_scrn)
-		item.KeyClass = r.FormValue(dm.Index_KeyClass_scrn)
-		item.KeyName = r.FormValue(dm.Index_KeyName_scrn)
-		item.KeyID = r.FormValue(dm.Index_KeyID_scrn)
-		item.Link = r.FormValue(dm.Index_Link_scrn)
-		item.SYSCreated = r.FormValue(dm.Index_SYSCreated_scrn)
-		item.SYSCreatedBy = r.FormValue(dm.Index_SYSCreatedBy_scrn)
-		item.SYSCreatedHost = r.FormValue(dm.Index_SYSCreatedHost_scrn)
-		item.SYSUpdated = r.FormValue(dm.Index_SYSUpdated_scrn)
-		item.SYSUpdatedBy = r.FormValue(dm.Index_SYSUpdatedBy_scrn)
-		item.SYSUpdatedHost = r.FormValue(dm.Index_SYSUpdatedHost_scrn)
-		item.SYSDeleted = r.FormValue(dm.Index_SYSDeleted_scrn)
-		item.SYSDeletedBy = r.FormValue(dm.Index_SYSDeletedBy_scrn)
-		item.SYSDeletedHost = r.FormValue(dm.Index_SYSDeletedHost_scrn)
-		item.SYSDbVersion = r.FormValue(dm.Index_SYSDbVersion_scrn)
-		item.KeyValue = r.FormValue(dm.Index_KeyValue_scrn)
+	item.SYSId = r.FormValue(dm.Index_SYSId_scrn)
+	item.IndexID = r.FormValue(dm.Index_IndexID_scrn)
+	item.KeyClass = r.FormValue(dm.Index_KeyClass_scrn)
+	item.KeyName = r.FormValue(dm.Index_KeyName_scrn)
+	item.KeyID = r.FormValue(dm.Index_KeyID_scrn)
+	item.Link = r.FormValue(dm.Index_Link_scrn)
+	item.SYSCreated = r.FormValue(dm.Index_SYSCreated_scrn)
+	item.SYSCreatedBy = r.FormValue(dm.Index_SYSCreatedBy_scrn)
+	item.SYSCreatedHost = r.FormValue(dm.Index_SYSCreatedHost_scrn)
+	item.SYSUpdated = r.FormValue(dm.Index_SYSUpdated_scrn)
+	item.SYSUpdatedBy = r.FormValue(dm.Index_SYSUpdatedBy_scrn)
+	item.SYSUpdatedHost = r.FormValue(dm.Index_SYSUpdatedHost_scrn)
+	item.SYSDeleted = r.FormValue(dm.Index_SYSDeleted_scrn)
+	item.SYSDeletedBy = r.FormValue(dm.Index_SYSDeletedBy_scrn)
+	item.SYSDeletedHost = r.FormValue(dm.Index_SYSDeletedHost_scrn)
+	item.SYSDbVersion = r.FormValue(dm.Index_SYSDbVersion_scrn)
+	item.KeyValue = r.FormValue(dm.Index_KeyValue_scrn)
 	return item
+}
+//index_URIQueryData is used to replace the wildcards in the URI Query Path with the values from the Index Data Model
+func index_URIQueryData(queryPath string,item dm.Index,itemID string) string {
+	if queryPath == "" {
+		return ""
+	}
+	queryPath = core.ReplaceWildcard(queryPath, strings.ToUpper("ID"), itemID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Index_IndexID_scrn), item.IndexID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Index_KeyClass_scrn), item.KeyClass)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Index_KeyName_scrn), item.KeyName)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Index_KeyID_scrn), item.KeyID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Index_Link_scrn), item.Link)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Index_KeyValue_scrn), item.KeyValue)
+	return queryPath
 }

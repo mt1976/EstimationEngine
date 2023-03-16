@@ -26,15 +26,15 @@ func Project_Run_impl() (string, error) {
 
 	message := ""
 	/// CONTENT STARTS
-	period, err0 := dao.Data_GetInt(objectName, "Due_Notification_Period", dm.Data_Category_Setting)
+	period, err0 := dao.Data_GetInt(objectName, "Due_Notification_Period", dm.Data_Category_Setting, "The notification period for projects due to expire. In days.")
 	if err0 != nil {
 		return message, err0
 	}
-	overdueState, err1 := dao.Data_GetString(objectName, "Overdue_State", dm.Data_Category_State)
+	overdueState, err1 := dao.Data_GetString(objectName, "Overdue_State", dm.Data_Category_State, "The state to which a project is moved when it is overdue.")
 	if err1 != nil {
 		return message, err1
 	}
-	closedStates, err2 := dao.Data_GetArray(objectName, "Closed_States_List", dm.Data_Category_StateRule)
+	closedStates, err2 := dao.Data_GetArray(objectName, "Closed_States_List", dm.Data_Category_StateRule, "The list of states that are considered closed.")
 	if err2 != nil {
 		return message, err2
 	}

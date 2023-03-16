@@ -8,19 +8,19 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:28
+// Date & Time		    : 15/03/2023 at 19:24:48
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
 	"fmt"
 	"net/http"
+	"errors"
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/google/uuid"
 	das  "github.com/mt1976/ebEstimates/das"
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
-	"github.com/pkg/errors"
 )
 
 var FeatureNew_SQLbase string
@@ -59,9 +59,6 @@ func FeatureNew_GetByID(id string) (int, dm.FeatureNew, error) {
 }
 
 func FeatureNew_PostGet(featurenewItem dm.FeatureNew,id string) dm.FeatureNew {
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	featurenewItem.DeveloperEstimate,featurenewItem.DeveloperEstimate_props = FeatureNew_DeveloperEstimate_validate_impl (GET,id,featurenewItem.DeveloperEstimate,featurenewItem,featurenewItem.DeveloperEstimate_props)
 	featurenewItem.DeveloperResource,featurenewItem.DeveloperResource_props = FeatureNew_DeveloperResource_validate_impl (GET,id,featurenewItem.DeveloperResource,featurenewItem,featurenewItem.DeveloperResource_props)
 	featurenewItem.ConfidenceCODE,featurenewItem.ConfidenceCODE_props = FeatureNew_ConfidenceCODE_validate_impl (GET,id,featurenewItem.ConfidenceCODE,featurenewItem,featurenewItem.ConfidenceCODE_props)
@@ -72,9 +69,7 @@ func FeatureNew_PostGet(featurenewItem dm.FeatureNew,id string) dm.FeatureNew {
 	featurenewItem.OriginCode,featurenewItem.OriginCode_props = FeatureNew_OriginCode_validate_impl (GET,id,featurenewItem.OriginCode,featurenewItem,featurenewItem.OriginCode_props)
 	featurenewItem.OriginID,featurenewItem.OriginID_props = FeatureNew_OriginID_validate_impl (GET,id,featurenewItem.OriginID,featurenewItem,featurenewItem.OriginID_props)
 	featurenewItem.ProjectName,featurenewItem.ProjectName_props = FeatureNew_ProjectName_validate_impl (GET,id,featurenewItem.ProjectName,featurenewItem,featurenewItem.ProjectName_props)
-	// 
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+
 	return featurenewItem
 }
 
@@ -141,9 +136,6 @@ func FeatureNew_StoreProcess(r dm.FeatureNew, operator string) (dm.FeatureNew,er
 // FeatureNew_Validate() validates for saves/stores a FeatureNew record to the database
 func FeatureNew_Validate(r dm.FeatureNew) (dm.FeatureNew, error) {
 	var err error
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	r.DeveloperEstimate,r.DeveloperEstimate_props = FeatureNew_DeveloperEstimate_validate_impl (PUT,r.ID,r.DeveloperEstimate,r,r.DeveloperEstimate_props)
 	if r.DeveloperEstimate_props.MsgMessage != "" {
 		err = errors.New(r.DeveloperEstimate_props.MsgMessage)
@@ -184,17 +176,13 @@ func FeatureNew_Validate(r dm.FeatureNew) (dm.FeatureNew, error) {
 	if r.ProjectName_props.MsgMessage != "" {
 		err = errors.New(r.ProjectName_props.MsgMessage)
 	}
-	// 
 
-	
 	// Cross Validation
 	var errVal error
 	r, _, errVal = FeatureNew_ObjectValidation_impl(PUT, r.ID, r)
 	if errVal != nil {
 		err = errVal
 	}
-	
-
 	return r,err
 }
 //
@@ -260,7 +248,7 @@ func FeatureNew_New() (int, []dm.FeatureNew, dm.FeatureNew, error) {
 	
 
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.DeveloperEstimate,r.DeveloperEstimate_props = FeatureNew_DeveloperEstimate_validate_impl (NEW,r.ID,r.DeveloperEstimate,r,r.DeveloperEstimate_props)
 	r.DeveloperResource,r.DeveloperResource_props = FeatureNew_DeveloperResource_validate_impl (NEW,r.ID,r.DeveloperResource,r,r.DeveloperResource_props)
@@ -274,7 +262,7 @@ func FeatureNew_New() (int, []dm.FeatureNew, dm.FeatureNew, error) {
 	r.ProjectName,r.ProjectName_props = FeatureNew_ProjectName_validate_impl (NEW,r.ID,r.ProjectName,r,r.ProjectName_props)
 	
 	// 
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

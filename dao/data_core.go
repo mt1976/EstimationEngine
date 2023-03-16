@@ -8,19 +8,19 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:26
+// Date & Time		    : 15/03/2023 at 19:24:47
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
 	"fmt"
 	"net/http"
+	"errors"
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/google/uuid"
 	das  "github.com/mt1976/ebEstimates/das"
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
-	"github.com/pkg/errors"
 )
 
 var Data_SQLbase string
@@ -65,13 +65,8 @@ func Data_GetByID(id string) (int, dm.Data, error) {
 }
 
 func Data_PostGet(dataItem dm.Data,id string) dm.Data {
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	dataItem.DataID,dataItem.DataID_props = Data_DataID_validate_impl (GET,id,dataItem.DataID,dataItem,dataItem.DataID_props)
-	// 
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+
 	return dataItem
 }
 
@@ -151,24 +146,17 @@ func Data_StoreProcess(r dm.Data, operator string) (dm.Data,error) {
 // Data_Validate() validates for saves/stores a Data record to the database
 func Data_Validate(r dm.Data) (dm.Data, error) {
 	var err error
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	r.DataID,r.DataID_props = Data_DataID_validate_impl (PUT,r.DataID,r.DataID,r,r.DataID_props)
 	if r.DataID_props.MsgMessage != "" {
 		err = errors.New(r.DataID_props.MsgMessage)
 	}
-	// 
 
-	
 	// Cross Validation
 	var errVal error
 	r, _, errVal = Data_ObjectValidation_impl(PUT, r.DataID, r)
 	if errVal != nil {
 		err = errVal
 	}
-	
-
 	return r,err
 }
 //
@@ -199,7 +187,7 @@ logs.Storing("Data",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Data_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Data_DataID_sql, r.DataID)
@@ -218,9 +206,10 @@ logs.Storing("Data",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Data_SYSDbVersion_sql, r.SYSDbVersion)
 	ts = addData(ts, dm.Data_Category_sql, r.Category)
 	ts = addData(ts, dm.Data_Migrate_sql, r.Migrate)
+	ts = addData(ts, dm.Data_Usage_sql, r.Usage)
 		
 	// 
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := das.INSERT + das.INTO + Data_QualifiedName
@@ -255,7 +244,7 @@ func data_Fetch(tsql string) (int, []dm.Data, dm.Data, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Data_SYSId_sql, "0")
 	   recItem.DataID  = get_String(rec, dm.Data_DataID_sql, "")
@@ -274,11 +263,12 @@ func data_Fetch(tsql string) (int, []dm.Data, dm.Data, error) {
 	   recItem.SYSDbVersion  = get_String(rec, dm.Data_SYSDbVersion_sql, "")
 	   recItem.Category  = get_String(rec, dm.Data_Category_sql, "")
 	   recItem.Migrate  = get_String(rec, dm.Data_Migrate_sql, "")
+	   recItem.Usage  = get_String(rec, dm.Data_Usage_sql, "")
 	
 	// If there are fields below, create the methods in dao\Data_adaptor.go
 	   recItem.DataID  = Data_DataID_OnFetch_impl (recItem)
 	// 
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -308,12 +298,12 @@ func Data_New() (int, []dm.Data, dm.Data, error) {
 	
 
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.DataID,r.DataID_props = Data_DataID_validate_impl (NEW,r.DataID,r.DataID,r,r.DataID_props)
 	
 	// 
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

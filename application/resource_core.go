@@ -8,13 +8,14 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:30
+// Date & Time		    : 15/03/2023 at 19:24:50
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
 	
 	"net/http"
+	"strings"
 
 	core    "github.com/mt1976/ebEstimates/core"
 	dao     "github.com/mt1976/ebEstimates/dao"
@@ -23,11 +24,7 @@ import (
 )
 
 //Resource_Publish annouces the endpoints available for this object
-//Resource_Publish - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Resource_Publish(mux http.ServeMux) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	mux.HandleFunc(dm.Resource_Path, Resource_Handler)
 	mux.HandleFunc(dm.Resource_PathList, Resource_HandlerList)
 	mux.HandleFunc(dm.Resource_PathView, Resource_HandlerView)
@@ -35,29 +32,18 @@ func Resource_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Resource_PathNew, Resource_HandlerNew)
 	mux.HandleFunc(dm.Resource_PathSave, Resource_HandlerSave)
 	mux.HandleFunc(dm.Resource_PathDelete, Resource_HandlerDelete)
-	logs.Publish("Application", dm.Resource_Title)
     core.API = core.API.AddRoute(dm.Resource_Title, dm.Resource_Path, "", dm.Resource_QueryString, "Application")
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
+	logs.Publish("Application", dm.Resource_Title)
 }
 
-
-//Resource_HandlerList is the handler for the list page
-//Allows Listing of Resource records
-//Resource_HandlerList - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//Resource_HandlerList is the handler for the Resource list page
 func Resource_HandlerList(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
@@ -66,7 +52,13 @@ func Resource_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 	objectName := dao.Translate("ObjectName", "Resource")
 	reqField := "Base"
-	filter,_ := dao.Data_GetString(objectName, reqField, dm.Data_Category_FilterRule)
+	usage := "Defines a filter for the list of Resource records." + core.TEXTAREA_CR
+	usage = usage + "Fields can be any of those in the underlying DB table." + core.TEXTAREA_CR
+	usage = usage + "Examples Below:" + core.TEXTAREA_CR
+	usage = usage + "* datalength(_deleted) = 0 or " + core.TEXTAREA_CR 
+	usage = usage + "* class IN ('x','y','z')"
+	
+	filter,_ := dao.Data_GetString(objectName, reqField, dm.Data_Category_FilterRule,usage)
 	if filter == "" {
 		logs.Warning("No filter found : " + reqField + " for Object: " + objectName)
 	} 
@@ -81,34 +73,20 @@ func Resource_HandlerList(w http.ResponseWriter, r *http.Request) {
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-	
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-	
+
 	nextTemplate :=  NextTemplate("Resource", "List", dm.Resource_TemplateList)
-
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
-
 }
 
-
-//Resource_HandlerView is the handler used to View a page
-//Allows Viewing for an existing Resource record
-//Resource_HandlerView - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Resource_HandlerView is the handler used to View a Resource database record
 func Resource_HandlerView(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -121,35 +99,23 @@ func Resource_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = resource_PopulatePage(rD , pageDetail) 
 
 	nextTemplate :=  NextTemplate("Resource", "View", dm.Resource_TemplateView)
+	nextTemplate = resource_URIQueryData(nextTemplate,rD,searchID)
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//Resource_HandlerEdit is the handler used generate the Edit page
-//Allows Editing for an existing Resource record and then allows the user to save the changes
-//Resource_HandlerEdit - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Resource_HandlerEdit is the handler used to Edit of an existing Resource database record
 func Resource_HandlerEdit(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -162,7 +128,6 @@ func Resource_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	} else {
 		_, rD, _ = dao.Resource_GetByID(searchID)
 	}
-
 	
 	pageDetail := dm.Resource_Page{
 		Title:       CardTitle(dm.Resource_Title, core.Action_Edit),
@@ -170,36 +135,23 @@ func Resource_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = resource_PopulatePage(rD , pageDetail) 
 
-
 	nextTemplate :=  NextTemplate("Resource", "Edit", dm.Resource_TemplateEdit)
+	nextTemplate = resource_URIQueryData(nextTemplate,rD,searchID)
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//Resource_HandlerSave is the handler used process the saving of an Resource
-//It is called from the Edit and New pages
-//Resource_HandlerSave  - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Resource_HandlerSave is the handler used process the saving of an Resource database record, either new or existing, referenced by Edit & New Handlers.
 func Resource_HandlerSave(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	itemID := r.FormValue("ResourceID")
 	logs.Servicing(r.URL.Path+itemID)
@@ -209,33 +161,22 @@ func Resource_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	item, errStore := dao.Resource_Store(item,r)
 	if errStore == nil {
 		nextTemplate :=  NextTemplate("Resource", "Save", dm.Resource_Redirect)
+		nextTemplate = resource_URIQueryData(nextTemplate,item,itemID)
 		http.Redirect(w, r, nextTemplate, http.StatusFound)
 	} else {
 		logs.Information(dm.Resource_Name, errStore.Error())
-		//http.Redirect(w, r, r.Referer(), http.StatusFound)
 		ExecuteRedirect(r.Referer(), w, r,dm.Resource_QueryString,itemID,item)
 	}
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//Resource_HandlerNew is the handler used process the creation of an Resource
-//It will create a new Resource and then redirect to the Edit page
-//Resource_HandlerNew  - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Resource_HandlerNew is the handler used process the creation of an new Resource database record, then redirect to Edit
 func Resource_HandlerNew(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -249,58 +190,39 @@ func Resource_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		_, _, rD, _ = dao.Resource_New()
 	}
 
-
-
 	pageDetail := dm.Resource_Page{
 		Title:       CardTitle(dm.Resource_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Resource_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = resource_PopulatePage(rD , pageDetail) 
 
 	nextTemplate :=  NextTemplate("Resource", "New", dm.Resource_TemplateNew)
+	nextTemplate = resource_URIQueryData(nextTemplate,dm.Resource{},searchID)
+
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }	
 
-
-//Resource_HandlerDelete is the handler used process the deletion of an Resource
-// It will delete the Resource and then redirect to the List page
-//Resource_HandlerDelete - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Resource_HandlerDelete is the handler used process the deletion of an Resource database record. May be Hard or SoftDelete.
 func Resource_HandlerDelete(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
-	//
 	// Code Continues Below
-	//
 	logs.Servicing(r.URL.Path)
 	searchID := core.GetURLparam(r, dm.Resource_QueryString)
-
+	// DAO Call to Delete Resource Record, may be SoftDelete or HardDelete depending on the DAO implementation
 	dao.Resource_Delete(searchID)	
 
 	nextTemplate :=  NextTemplate("Resource", "Delete", dm.Resource_Redirect)
+	nextTemplate = resource_URIQueryData(nextTemplate,dm.Resource{},searchID)
 	http.Redirect(w, r, nextTemplate, http.StatusFound)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
-
-
-//resource_PopulatePage Builds/Populates the Resource Page 
-//resource_PopulatePage Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//resource_PopulatePage Builds/Populates the Resource Page from an instance of Resource from the Data Model
 func resource_PopulatePage(rD dm.Resource, pageDetail dm.Resource_Page) dm.Resource_Page {
 	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
@@ -323,12 +245,11 @@ func resource_PopulatePage(rD dm.Resource, pageDetail dm.Resource_Page) dm.Resou
 	pageDetail.Notes = rD.Notes
 	pageDetail.SYSDbVersion = rD.SYSDbVersion
 	pageDetail.Comments = rD.Comments
-	// Add Pseudo/Extra Fields
-	// Enrichment Fields 
-	
+	// Add Pseudo/Extra Fields, fields that are not in the DB but are used in the UI
+	// Enrichment content, content used provide lookups,lists etc
 	pageDetail.Class_lookup = dao.StubLists_Get("resourcetype")
-	
 	pageDetail.UserActive_lookup = dao.StubLists_Get("tf")
+	// Add the Properties for the Fields
 	pageDetail.SYSId_props = rD.SYSId_props
 	pageDetail.ResourceID_props = rD.ResourceID_props
 	pageDetail.Code_props = rD.Code_props
@@ -352,29 +273,43 @@ func resource_PopulatePage(rD dm.Resource, pageDetail dm.Resource_Page) dm.Resou
 	return pageDetail
 }
 //resource_DataFromRequest is used process the content of an HTTP Request and return an instance of an Resource
-//resource_DataFromRequest Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func resource_DataFromRequest(r *http.Request) dm.Resource {
-
 	var item dm.Resource
-		item.SYSId = r.FormValue(dm.Resource_SYSId_scrn)
-		item.ResourceID = r.FormValue(dm.Resource_ResourceID_scrn)
-		item.Code = r.FormValue(dm.Resource_Code_scrn)
-		item.Name = r.FormValue(dm.Resource_Name_scrn)
-		item.Email = r.FormValue(dm.Resource_Email_scrn)
-		item.Class = r.FormValue(dm.Resource_Class_scrn)
-		item.SYSCreated = r.FormValue(dm.Resource_SYSCreated_scrn)
-		item.SYSCreatedBy = r.FormValue(dm.Resource_SYSCreatedBy_scrn)
-		item.SYSCreatedHost = r.FormValue(dm.Resource_SYSCreatedHost_scrn)
-		item.SYSUpdated = r.FormValue(dm.Resource_SYSUpdated_scrn)
-		item.SYSUpdatedBy = r.FormValue(dm.Resource_SYSUpdatedBy_scrn)
-		item.SYSUpdatedHost = r.FormValue(dm.Resource_SYSUpdatedHost_scrn)
-		item.SYSDeleted = r.FormValue(dm.Resource_SYSDeleted_scrn)
-		item.SYSDeletedBy = r.FormValue(dm.Resource_SYSDeletedBy_scrn)
-		item.SYSDeletedHost = r.FormValue(dm.Resource_SYSDeletedHost_scrn)
-		item.UserActive = r.FormValue(dm.Resource_UserActive_scrn)
-		item.SYSActivity = r.FormValue(dm.Resource_SYSActivity_scrn)
-		item.Notes = r.FormValue(dm.Resource_Notes_scrn)
-		item.SYSDbVersion = r.FormValue(dm.Resource_SYSDbVersion_scrn)
-		item.Comments = r.FormValue(dm.Resource_Comments_scrn)
+	item.SYSId = r.FormValue(dm.Resource_SYSId_scrn)
+	item.ResourceID = r.FormValue(dm.Resource_ResourceID_scrn)
+	item.Code = r.FormValue(dm.Resource_Code_scrn)
+	item.Name = r.FormValue(dm.Resource_Name_scrn)
+	item.Email = r.FormValue(dm.Resource_Email_scrn)
+	item.Class = r.FormValue(dm.Resource_Class_scrn)
+	item.SYSCreated = r.FormValue(dm.Resource_SYSCreated_scrn)
+	item.SYSCreatedBy = r.FormValue(dm.Resource_SYSCreatedBy_scrn)
+	item.SYSCreatedHost = r.FormValue(dm.Resource_SYSCreatedHost_scrn)
+	item.SYSUpdated = r.FormValue(dm.Resource_SYSUpdated_scrn)
+	item.SYSUpdatedBy = r.FormValue(dm.Resource_SYSUpdatedBy_scrn)
+	item.SYSUpdatedHost = r.FormValue(dm.Resource_SYSUpdatedHost_scrn)
+	item.SYSDeleted = r.FormValue(dm.Resource_SYSDeleted_scrn)
+	item.SYSDeletedBy = r.FormValue(dm.Resource_SYSDeletedBy_scrn)
+	item.SYSDeletedHost = r.FormValue(dm.Resource_SYSDeletedHost_scrn)
+	item.UserActive = r.FormValue(dm.Resource_UserActive_scrn)
+	item.SYSActivity = r.FormValue(dm.Resource_SYSActivity_scrn)
+	item.Notes = r.FormValue(dm.Resource_Notes_scrn)
+	item.SYSDbVersion = r.FormValue(dm.Resource_SYSDbVersion_scrn)
+	item.Comments = r.FormValue(dm.Resource_Comments_scrn)
 	return item
+}
+//resource_URIQueryData is used to replace the wildcards in the URI Query Path with the values from the Resource Data Model
+func resource_URIQueryData(queryPath string,item dm.Resource,itemID string) string {
+	if queryPath == "" {
+		return ""
+	}
+	queryPath = core.ReplaceWildcard(queryPath, strings.ToUpper("ID"), itemID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Resource_ResourceID_scrn), item.ResourceID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Resource_Code_scrn), item.Code)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Resource_Name_scrn), item.Name)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Resource_Email_scrn), item.Email)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Resource_Class_scrn), item.Class)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Resource_UserActive_scrn), item.UserActive)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Resource_Notes_scrn), item.Notes)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Resource_Comments_scrn), item.Comments)
+	return queryPath
 }

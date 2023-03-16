@@ -49,7 +49,7 @@ func ProjectAction_HandlerSave_Impl(w http.ResponseWriter, r *http.Request) {
 	logs.Servicing(r.URL.Path + r.FormValue("ProjectID"))
 
 	item := project_DataFromRequest(r)
-
+	item.ProjectID = dao.Project_NewID(item)
 	// Get Origin by Code
 	_, origin, _ := dao.Origin_GetByCode(item.OriginID)
 	item.DefaultRate = origin.Rate
@@ -70,6 +70,7 @@ func ProjectAction_HandlerSave_Impl(w http.ResponseWriter, r *http.Request) {
 	item, errStore := dao.Project_Store(item, r)
 	if errStore == nil {
 		nextTemplate := NextTemplate("ProjectAction", "Save", dm.Project_PathEdit)
+		nextTemplate = core.ReplaceWildcard(nextTemplate, "ID", item.ProjectID)
 		http.Redirect(w, r, nextTemplate, http.StatusFound)
 	} else {
 		logs.Information(dm.Profile_Name, errStore.Error())

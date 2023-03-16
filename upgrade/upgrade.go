@@ -92,17 +92,17 @@ func Upgrade() (string, error) {
 }
 
 func updateVersions(dbRelease_int int64, appRelease_str string) (bool, string, error) {
-	_, e := dao.Data_Put(upSystem, upPreviousVersion, dm.Data_Category_Database, dbVersionFormat(dbRelease_int))
+	_, e := dao.Data_Put(upSystem, upPreviousVersion, dm.Data_Category_Database, dbVersionFormat(dbRelease_int), "The previous version of the database")
 	if e != nil {
 		logs.Error("Upgrade", e)
 		return true, "Upgrade - " + e.Error(), e
 	}
-	_, e = dao.Data_Put(upSystem, upVersion, dm.Data_Category_Database, appRelease_str)
+	_, e = dao.Data_Put(upSystem, upVersion, dm.Data_Category_Database, appRelease_str, "The current version of the database")
 	if e != nil {
 		logs.Error("Upgrade", e)
 		return true, "Upgrade - " + e.Error(), e
 	}
-	_, e = dao.Data_Put(upSystem, upLastTime, dm.Data_Category_Database, time.Now().Format(core.DATEMSG))
+	_, e = dao.Data_Put(upSystem, upLastTime, dm.Data_Category_Database, time.Now().Format(core.DATEMSG), "When the update was performed")
 	if e != nil {
 		logs.Error("Upgrade", e)
 		return true, "Upgrade - " + e.Error(), e
@@ -111,11 +111,12 @@ func updateVersions(dbRelease_int int64, appRelease_str string) (bool, string, e
 }
 
 func getDBReleaseLevel(appRel string) (int64, error) {
-	dbRelease, _ := dao.Data_Get(upSystem, upVersion, dm.Data_Category_Database)
+	usage := "The current version of the database"
+	dbRelease, _ := dao.Data_Get(upSystem, upVersion, dm.Data_Category_Database, usage)
 	if dbRelease == "" {
 		logs.Warning("Upgrade - No Database Version Found")
 		dbRelease = "0000"
-		dao.Data_Put(upSystem, upVersion, dm.Data_Category_Database, dbRelease)
+		dao.Data_Put(upSystem, upVersion, dm.Data_Category_Database, dbRelease, usage)
 	}
 	rtnValue, e := strconv.ParseInt(dbRelease, 10, 64)
 	if e != nil {

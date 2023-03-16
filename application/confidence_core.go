@@ -8,13 +8,14 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:25
+// Date & Time		    : 15/03/2023 at 19:24:47
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
 	
 	"net/http"
+	"strings"
 
 	core    "github.com/mt1976/ebEstimates/core"
 	dao     "github.com/mt1976/ebEstimates/dao"
@@ -23,11 +24,7 @@ import (
 )
 
 //Confidence_Publish annouces the endpoints available for this object
-//Confidence_Publish - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Confidence_Publish(mux http.ServeMux) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	mux.HandleFunc(dm.Confidence_Path, Confidence_Handler)
 	mux.HandleFunc(dm.Confidence_PathList, Confidence_HandlerList)
 	mux.HandleFunc(dm.Confidence_PathView, Confidence_HandlerView)
@@ -35,29 +32,18 @@ func Confidence_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Confidence_PathNew, Confidence_HandlerNew)
 	mux.HandleFunc(dm.Confidence_PathSave, Confidence_HandlerSave)
 	mux.HandleFunc(dm.Confidence_PathDelete, Confidence_HandlerDelete)
-	logs.Publish("Application", dm.Confidence_Title)
     core.API = core.API.AddRoute(dm.Confidence_Title, dm.Confidence_Path, "", dm.Confidence_QueryString, "Application")
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
+	logs.Publish("Application", dm.Confidence_Title)
 }
 
-
-//Confidence_HandlerList is the handler for the list page
-//Allows Listing of Confidence records
-//Confidence_HandlerList - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//Confidence_HandlerList is the handler for the Confidence list page
 func Confidence_HandlerList(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
@@ -66,7 +52,13 @@ func Confidence_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 	objectName := dao.Translate("ObjectName", "Confidence")
 	reqField := "Base"
-	filter,_ := dao.Data_GetString(objectName, reqField, dm.Data_Category_FilterRule)
+	usage := "Defines a filter for the list of Confidence records." + core.TEXTAREA_CR
+	usage = usage + "Fields can be any of those in the underlying DB table." + core.TEXTAREA_CR
+	usage = usage + "Examples Below:" + core.TEXTAREA_CR
+	usage = usage + "* datalength(_deleted) = 0 or " + core.TEXTAREA_CR 
+	usage = usage + "* class IN ('x','y','z')"
+	
+	filter,_ := dao.Data_GetString(objectName, reqField, dm.Data_Category_FilterRule,usage)
 	if filter == "" {
 		logs.Warning("No filter found : " + reqField + " for Object: " + objectName)
 	} 
@@ -81,34 +73,20 @@ func Confidence_HandlerList(w http.ResponseWriter, r *http.Request) {
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-	
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-	
+
 	nextTemplate :=  NextTemplate("Confidence", "List", dm.Confidence_TemplateList)
-
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
-
 }
 
-
-//Confidence_HandlerView is the handler used to View a page
-//Allows Viewing for an existing Confidence record
-//Confidence_HandlerView - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Confidence_HandlerView is the handler used to View a Confidence database record
 func Confidence_HandlerView(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -121,35 +99,23 @@ func Confidence_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = confidence_PopulatePage(rD , pageDetail) 
 
 	nextTemplate :=  NextTemplate("Confidence", "View", dm.Confidence_TemplateView)
+	nextTemplate = confidence_URIQueryData(nextTemplate,rD,searchID)
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//Confidence_HandlerEdit is the handler used generate the Edit page
-//Allows Editing for an existing Confidence record and then allows the user to save the changes
-//Confidence_HandlerEdit - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Confidence_HandlerEdit is the handler used to Edit of an existing Confidence database record
 func Confidence_HandlerEdit(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -162,7 +128,6 @@ func Confidence_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	} else {
 		_, rD, _ = dao.Confidence_GetByID(searchID)
 	}
-
 	
 	pageDetail := dm.Confidence_Page{
 		Title:       CardTitle(dm.Confidence_Title, core.Action_Edit),
@@ -170,36 +135,23 @@ func Confidence_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = confidence_PopulatePage(rD , pageDetail) 
 
-
 	nextTemplate :=  NextTemplate("Confidence", "Edit", dm.Confidence_TemplateEdit)
+	nextTemplate = confidence_URIQueryData(nextTemplate,rD,searchID)
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//Confidence_HandlerSave is the handler used process the saving of an Confidence
-//It is called from the Edit and New pages
-//Confidence_HandlerSave  - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Confidence_HandlerSave is the handler used process the saving of an Confidence database record, either new or existing, referenced by Edit & New Handlers.
 func Confidence_HandlerSave(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	itemID := r.FormValue("ConfidenceID")
 	logs.Servicing(r.URL.Path+itemID)
@@ -209,33 +161,22 @@ func Confidence_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	item, errStore := dao.Confidence_Store(item,r)
 	if errStore == nil {
 		nextTemplate :=  NextTemplate("Confidence", "Save", dm.Confidence_Redirect)
+		nextTemplate = confidence_URIQueryData(nextTemplate,item,itemID)
 		http.Redirect(w, r, nextTemplate, http.StatusFound)
 	} else {
 		logs.Information(dm.Confidence_Name, errStore.Error())
-		//http.Redirect(w, r, r.Referer(), http.StatusFound)
 		ExecuteRedirect(r.Referer(), w, r,dm.Confidence_QueryString,itemID,item)
 	}
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//Confidence_HandlerNew is the handler used process the creation of an Confidence
-//It will create a new Confidence and then redirect to the Edit page
-//Confidence_HandlerNew  - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Confidence_HandlerNew is the handler used process the creation of an new Confidence database record, then redirect to Edit
 func Confidence_HandlerNew(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -249,58 +190,39 @@ func Confidence_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		_, _, rD, _ = dao.Confidence_New()
 	}
 
-
-
 	pageDetail := dm.Confidence_Page{
 		Title:       CardTitle(dm.Confidence_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Confidence_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = confidence_PopulatePage(rD , pageDetail) 
 
 	nextTemplate :=  NextTemplate("Confidence", "New", dm.Confidence_TemplateNew)
+	nextTemplate = confidence_URIQueryData(nextTemplate,dm.Confidence{},searchID)
+
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }	
 
-
-//Confidence_HandlerDelete is the handler used process the deletion of an Confidence
-// It will delete the Confidence and then redirect to the List page
-//Confidence_HandlerDelete - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Confidence_HandlerDelete is the handler used process the deletion of an Confidence database record. May be Hard or SoftDelete.
 func Confidence_HandlerDelete(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
-	//
 	// Code Continues Below
-	//
 	logs.Servicing(r.URL.Path)
 	searchID := core.GetURLparam(r, dm.Confidence_QueryString)
-
+	// DAO Call to Delete Confidence Record, may be SoftDelete or HardDelete depending on the DAO implementation
 	dao.Confidence_Delete(searchID)	
 
 	nextTemplate :=  NextTemplate("Confidence", "Delete", dm.Confidence_Redirect)
+	nextTemplate = confidence_URIQueryData(nextTemplate,dm.Confidence{},searchID)
 	http.Redirect(w, r, nextTemplate, http.StatusFound)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
-
-
-//confidence_PopulatePage Builds/Populates the Confidence Page 
-//confidence_PopulatePage Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//confidence_PopulatePage Builds/Populates the Confidence Page from an instance of Confidence from the Data Model
 func confidence_PopulatePage(rD dm.Confidence, pageDetail dm.Confidence_Page) dm.Confidence_Page {
 	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
@@ -320,8 +242,9 @@ func confidence_PopulatePage(rD dm.Confidence, pageDetail dm.Confidence_Page) dm
 	pageDetail.Notes = rD.Notes
 	pageDetail.SYSDbVersion = rD.SYSDbVersion
 	pageDetail.Comments = rD.Comments
-	// Add Pseudo/Extra Fields
-	// Enrichment Fields 
+	// Add Pseudo/Extra Fields, fields that are not in the DB but are used in the UI
+	// Enrichment content, content used provide lookups,lists etc
+	// Add the Properties for the Fields
 	pageDetail.SYSId_props = rD.SYSId_props
 	pageDetail.ConfidenceID_props = rD.ConfidenceID_props
 	pageDetail.Code_props = rD.Code_props
@@ -342,26 +265,38 @@ func confidence_PopulatePage(rD dm.Confidence, pageDetail dm.Confidence_Page) dm
 	return pageDetail
 }
 //confidence_DataFromRequest is used process the content of an HTTP Request and return an instance of an Confidence
-//confidence_DataFromRequest Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func confidence_DataFromRequest(r *http.Request) dm.Confidence {
-
 	var item dm.Confidence
-		item.SYSId = r.FormValue(dm.Confidence_SYSId_scrn)
-		item.ConfidenceID = r.FormValue(dm.Confidence_ConfidenceID_scrn)
-		item.Code = r.FormValue(dm.Confidence_Code_scrn)
-		item.Name = r.FormValue(dm.Confidence_Name_scrn)
-		item.Perc = r.FormValue(dm.Confidence_Perc_scrn)
-		item.SYSCreated = r.FormValue(dm.Confidence_SYSCreated_scrn)
-		item.SYSCreatedBy = r.FormValue(dm.Confidence_SYSCreatedBy_scrn)
-		item.SYSCreatedHost = r.FormValue(dm.Confidence_SYSCreatedHost_scrn)
-		item.SYSUpdated = r.FormValue(dm.Confidence_SYSUpdated_scrn)
-		item.SYSUpdatedBy = r.FormValue(dm.Confidence_SYSUpdatedBy_scrn)
-		item.SYSUpdatedHost = r.FormValue(dm.Confidence_SYSUpdatedHost_scrn)
-		item.SYSDeleted = r.FormValue(dm.Confidence_SYSDeleted_scrn)
-		item.SYSDeletedBy = r.FormValue(dm.Confidence_SYSDeletedBy_scrn)
-		item.SYSDeletedHost = r.FormValue(dm.Confidence_SYSDeletedHost_scrn)
-		item.Notes = r.FormValue(dm.Confidence_Notes_scrn)
-		item.SYSDbVersion = r.FormValue(dm.Confidence_SYSDbVersion_scrn)
-		item.Comments = r.FormValue(dm.Confidence_Comments_scrn)
+	item.SYSId = r.FormValue(dm.Confidence_SYSId_scrn)
+	item.ConfidenceID = r.FormValue(dm.Confidence_ConfidenceID_scrn)
+	item.Code = r.FormValue(dm.Confidence_Code_scrn)
+	item.Name = r.FormValue(dm.Confidence_Name_scrn)
+	item.Perc = r.FormValue(dm.Confidence_Perc_scrn)
+	item.SYSCreated = r.FormValue(dm.Confidence_SYSCreated_scrn)
+	item.SYSCreatedBy = r.FormValue(dm.Confidence_SYSCreatedBy_scrn)
+	item.SYSCreatedHost = r.FormValue(dm.Confidence_SYSCreatedHost_scrn)
+	item.SYSUpdated = r.FormValue(dm.Confidence_SYSUpdated_scrn)
+	item.SYSUpdatedBy = r.FormValue(dm.Confidence_SYSUpdatedBy_scrn)
+	item.SYSUpdatedHost = r.FormValue(dm.Confidence_SYSUpdatedHost_scrn)
+	item.SYSDeleted = r.FormValue(dm.Confidence_SYSDeleted_scrn)
+	item.SYSDeletedBy = r.FormValue(dm.Confidence_SYSDeletedBy_scrn)
+	item.SYSDeletedHost = r.FormValue(dm.Confidence_SYSDeletedHost_scrn)
+	item.Notes = r.FormValue(dm.Confidence_Notes_scrn)
+	item.SYSDbVersion = r.FormValue(dm.Confidence_SYSDbVersion_scrn)
+	item.Comments = r.FormValue(dm.Confidence_Comments_scrn)
 	return item
+}
+//confidence_URIQueryData is used to replace the wildcards in the URI Query Path with the values from the Confidence Data Model
+func confidence_URIQueryData(queryPath string,item dm.Confidence,itemID string) string {
+	if queryPath == "" {
+		return ""
+	}
+	queryPath = core.ReplaceWildcard(queryPath, strings.ToUpper("ID"), itemID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Confidence_ConfidenceID_scrn), item.ConfidenceID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Confidence_Code_scrn), item.Code)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Confidence_Name_scrn), item.Name)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Confidence_Perc_scrn), item.Perc)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Confidence_Notes_scrn), item.Notes)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Confidence_Comments_scrn), item.Comments)
+	return queryPath
 }

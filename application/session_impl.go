@@ -47,6 +47,8 @@ func Session_HandlerValidateLogin(w http.ResponseWriter, r *http.Request) {
 	//fmt.Printf("tok: %v\n", tok)
 	//fmt.Printf("uName: %v\n", uName)
 	//fmt.Printf("uPassword: %v\n", uPassword)
+	lastLoginUsageText := "The last sucessful login for a user."
+	faildLoginUsageText := "The last failed login for a user."
 
 	if tok.ResponseCode == "200" {
 		core.SecurityViolation = ""
@@ -58,7 +60,7 @@ func Session_HandlerValidateLogin(w http.ResponseWriter, r *http.Request) {
 		GenerateAvatar(uName, tok.UID)
 
 		// Store Last Login Details
-		dao.Data_Put("Credentials", uName, "LastLogin", time.Now().Format(core.DATEMSG))
+		dao.Data_Put("Credentials", uName, dm.Data_Category_LastSuccesfulLogin, time.Now().Format(core.DATEMSG), lastLoginUsageText)
 		http.Redirect(w, r, "/home", http.StatusFound)
 
 	} else {
@@ -68,11 +70,12 @@ func Session_HandlerValidateLogin(w http.ResponseWriter, r *http.Request) {
 			core.ServiceMessageAction("ACCESS GRANTED TO CHANGE PASSWORD", Session_GetUserName(r), tok.ResponseCode)
 			GenerateAvatar(uName, tok.UID)
 			logs.Result("Redirecting to: ", dm.CredentialsPassword_PathChange)
-			dao.Data_Put("Credentials", uName, "LastLogin", time.Now().Format(core.DATEMSG))
+			dao.Data_Put("Credentials", uName, dm.Data_Category_LastSuccesfulLogin, time.Now().Format(core.DATEMSG), lastLoginUsageText)
 			http.Redirect(w, r, dm.CredentialsPassword_PathChange+"?ID=", http.StatusFound)
 		} else {
 			core.SecurityViolation = tok.SecurityViolation
 			core.ServiceMessageAction(tok.SecurityViolation, Session_GetUserName(r), tok.ResponseCode)
+			dao.Data_Put("Credentials", uName, dm.Data_Category_LastFailedLogin, time.Now().Format(core.DATEMSG), faildLoginUsageText)
 			http.Redirect(w, r, "/logout", http.StatusFound)
 		}
 	}

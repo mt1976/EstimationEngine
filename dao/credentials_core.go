@@ -8,19 +8,19 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:25
+// Date & Time		    : 15/03/2023 at 19:24:47
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
 	"fmt"
 	"net/http"
+	"errors"
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/google/uuid"
 	das  "github.com/mt1976/ebEstimates/das"
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
-	"github.com/pkg/errors"
 )
 
 var Credentials_SQLbase string
@@ -64,7 +64,14 @@ func Credentials_GetFilteredLookup(requestObject string,requestField string) []d
 	var returnList []dm.Lookup_Item
 	objectName := Translate("ObjectName", requestObject)
 	reqField := requestField+"_Credentials_Filter"
-	filter,_ := Data_GetString(objectName, reqField, dm.Data_Category_FilterRule)
+	
+	usage := "Defines a filter for a lookup list of Credentials records, when requested by "+requestField+"." + core.TEXTAREA_CR
+	usage = usage + "Fields can be any of those in the underlying DB table." + core.TEXTAREA_CR
+	usage = usage + "Examples Below:" + core.TEXTAREA_CR
+	usage = usage + "* datalength(_deleted) = 0 or " + core.TEXTAREA_CR 
+	usage = usage + "* class IN ('x','y','z')"
+
+	filter,_ := Data_GetString(objectName, reqField, dm.Data_Category_FilterRule,usage)
 	if filter == "" {
 		logs.Warning("Credentials_GetFilteredLookup() - No filter found : " + reqField + " for Object: " + objectName)
 	} 
@@ -92,13 +99,8 @@ func Credentials_GetByID(id string) (int, dm.Credentials, error) {
 }
 
 func Credentials_PostGet(credentialsItem dm.Credentials,id string) dm.Credentials {
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	credentialsItem.State,credentialsItem.State_props = Credentials_State_validate_impl (GET,id,credentialsItem.State,credentialsItem,credentialsItem.State_props)
-	// 
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+
 	return credentialsItem
 }
 
@@ -165,24 +167,17 @@ func Credentials_StoreProcess(r dm.Credentials, operator string) (dm.Credentials
 // Credentials_Validate() validates for saves/stores a Credentials record to the database
 func Credentials_Validate(r dm.Credentials) (dm.Credentials, error) {
 	var err error
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	r.State,r.State_props = Credentials_State_validate_impl (PUT,r.Id,r.State,r,r.State_props)
 	if r.State_props.MsgMessage != "" {
 		err = errors.New(r.State_props.MsgMessage)
 	}
-	// 
 
-	
 	// Cross Validation
 	var errVal error
 	r, _, errVal = Credentials_ObjectValidation_impl(PUT, r.Id, r)
 	if errVal != nil {
 		err = errVal
 	}
-	
-
 	return r,err
 }
 //
@@ -213,7 +208,7 @@ logs.Storing("Credentials",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Credentials_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Credentials_Id_sql, r.Id)
@@ -244,7 +239,7 @@ logs.Storing("Credentials",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Credentials_PasswordExpiry_sql, r.PasswordExpiry)
 		
 	// 
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := das.INSERT + das.INTO + Credentials_QualifiedName
@@ -279,7 +274,7 @@ func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, erro
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Credentials_SYSId_sql, "0")
 	   recItem.Id  = get_String(rec, dm.Credentials_Id_sql, "")
@@ -312,7 +307,7 @@ func credentials_Fetch(tsql string) (int, []dm.Credentials, dm.Credentials, erro
 	// If there are fields below, create the methods in dao\Credentials_adaptor.go
 	   recItem.State  = Credentials_State_OnFetch_impl (recItem)
 	// 
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -342,12 +337,12 @@ func Credentials_New() (int, []dm.Credentials, dm.Credentials, error) {
 	
 
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.State,r.State_props = Credentials_State_validate_impl (NEW,r.Id,r.State,r,r.State_props)
 	
 	// 
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

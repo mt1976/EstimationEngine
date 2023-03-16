@@ -47,7 +47,7 @@ Store|<ul><li>**Implement in Adaptor**</li><li>func FeatureNew_NewID_impl(rec dm
 |**EstimationSessionID**|String|true|true|false|false|OL∀|EstimationSession|EstimationSessionID_EstimationSessionID|EstimationSession_Name|Y|EstimationSessionID||false|false|false|text||
 |**Name**|String|true|true|false|false|||||Y|Name||false|false|false|text||
 |**DeveloperEstimate**|String|true|true|false|true|||||Y|DeveloperEstimate||false|true|false|number||
-|**DeveloperResource**|String|true|true|false|true|OL|Resource|Resource_Code|Resource_Name|Y|DeveloperResource||false|true|false|text||
+|**DeveloperResource**|String|true|true|false|true|OL∀|Resource|Resource_Code|Resource_Name|Y|DeveloperResource||false|true|false|text||
 |**ConfidenceCODE**|String|true|true|false|true|OL|Confidence|Confidence_Code|EstimationState_Name|Y|ConfidenceCODE||false|true|false|text|true|
 |**AnalystEstimate**|String|false|true|false|true|||||Y|AnalystEstimate||false|false|false|number||
 |**AnalystResource**|String|true|true|false|false|OL∀|Resource|Resource_Code|Resource_Name|Y|AnalystResource||false|true|false|text||
@@ -85,7 +85,7 @@ Store|<ul><li>**Implement in Adaptor**</li><li>func FeatureNew_NewID_impl(rec dm
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **13/03/2023** at **14:22:28**
+Date & Time		     | **15/03/2023** at **19:24:48**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

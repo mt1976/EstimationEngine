@@ -8,13 +8,14 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:32
+// Date & Time		    : 15/03/2023 at 19:24:50
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
 	
 	"net/http"
+	"strings"
 
 	core    "github.com/mt1976/ebEstimates/core"
 	dao     "github.com/mt1976/ebEstimates/dao"
@@ -23,11 +24,7 @@ import (
 )
 
 //UserRole_Publish annouces the endpoints available for this object
-//UserRole_Publish - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func UserRole_Publish(mux http.ServeMux) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	mux.HandleFunc(dm.UserRole_Path, UserRole_Handler)
 	mux.HandleFunc(dm.UserRole_PathList, UserRole_HandlerList)
 	mux.HandleFunc(dm.UserRole_PathView, UserRole_HandlerView)
@@ -35,29 +32,18 @@ func UserRole_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.UserRole_PathNew, UserRole_HandlerNew)
 	mux.HandleFunc(dm.UserRole_PathSave, UserRole_HandlerSave)
 	mux.HandleFunc(dm.UserRole_PathDelete, UserRole_HandlerDelete)
-	logs.Publish("Application", dm.UserRole_Title)
     core.API = core.API.AddRoute(dm.UserRole_Title, dm.UserRole_Path, "", dm.UserRole_QueryString, "Application")
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
+	logs.Publish("Application", dm.UserRole_Title)
 }
 
-
-//UserRole_HandlerList is the handler for the list page
-//Allows Listing of UserRole records
-//UserRole_HandlerList - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//UserRole_HandlerList is the handler for the UserRole list page
 func UserRole_HandlerList(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
@@ -66,7 +52,13 @@ func UserRole_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 	objectName := dao.Translate("ObjectName", "UserRole")
 	reqField := "Base"
-	filter,_ := dao.Data_GetString(objectName, reqField, dm.Data_Category_FilterRule)
+	usage := "Defines a filter for the list of UserRole records." + core.TEXTAREA_CR
+	usage = usage + "Fields can be any of those in the underlying DB table." + core.TEXTAREA_CR
+	usage = usage + "Examples Below:" + core.TEXTAREA_CR
+	usage = usage + "* datalength(_deleted) = 0 or " + core.TEXTAREA_CR 
+	usage = usage + "* class IN ('x','y','z')"
+	
+	filter,_ := dao.Data_GetString(objectName, reqField, dm.Data_Category_FilterRule,usage)
 	if filter == "" {
 		logs.Warning("No filter found : " + reqField + " for Object: " + objectName)
 	} 
@@ -81,34 +73,20 @@ func UserRole_HandlerList(w http.ResponseWriter, r *http.Request) {
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-	
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-	
+
 	nextTemplate :=  NextTemplate("UserRole", "List", dm.UserRole_TemplateList)
-
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
-
 }
 
-
-//UserRole_HandlerView is the handler used to View a page
-//Allows Viewing for an existing UserRole record
-//UserRole_HandlerView - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//UserRole_HandlerView is the handler used to View a UserRole database record
 func UserRole_HandlerView(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -121,35 +99,23 @@ func UserRole_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = userrole_PopulatePage(rD , pageDetail) 
 
 	nextTemplate :=  NextTemplate("UserRole", "View", dm.UserRole_TemplateView)
+	nextTemplate = userrole_URIQueryData(nextTemplate,rD,searchID)
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//UserRole_HandlerEdit is the handler used generate the Edit page
-//Allows Editing for an existing UserRole record and then allows the user to save the changes
-//UserRole_HandlerEdit - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//UserRole_HandlerEdit is the handler used to Edit of an existing UserRole database record
 func UserRole_HandlerEdit(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -162,7 +128,6 @@ func UserRole_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	} else {
 		_, rD, _ = dao.UserRole_GetByID(searchID)
 	}
-
 	
 	pageDetail := dm.UserRole_Page{
 		Title:       CardTitle(dm.UserRole_Title, core.Action_Edit),
@@ -170,36 +135,23 @@ func UserRole_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = userrole_PopulatePage(rD , pageDetail) 
 
-
 	nextTemplate :=  NextTemplate("UserRole", "Edit", dm.UserRole_TemplateEdit)
+	nextTemplate = userrole_URIQueryData(nextTemplate,rD,searchID)
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//UserRole_HandlerSave is the handler used process the saving of an UserRole
-//It is called from the Edit and New pages
-//UserRole_HandlerSave  - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//UserRole_HandlerSave is the handler used process the saving of an UserRole database record, either new or existing, referenced by Edit & New Handlers.
 func UserRole_HandlerSave(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	itemID := r.FormValue("Id")
 	logs.Servicing(r.URL.Path+itemID)
@@ -209,33 +161,22 @@ func UserRole_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	item, errStore := dao.UserRole_Store(item,r)
 	if errStore == nil {
 		nextTemplate :=  NextTemplate("UserRole", "Save", dm.UserRole_Redirect)
+		nextTemplate = userrole_URIQueryData(nextTemplate,item,itemID)
 		http.Redirect(w, r, nextTemplate, http.StatusFound)
 	} else {
 		logs.Information(dm.UserRole_Name, errStore.Error())
-		//http.Redirect(w, r, r.Referer(), http.StatusFound)
 		ExecuteRedirect(r.Referer(), w, r,dm.UserRole_QueryString,itemID,item)
 	}
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//UserRole_HandlerNew is the handler used process the creation of an UserRole
-//It will create a new UserRole and then redirect to the Edit page
-//UserRole_HandlerNew  - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//UserRole_HandlerNew is the handler used process the creation of an new UserRole database record, then redirect to Edit
 func UserRole_HandlerNew(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -249,58 +190,39 @@ func UserRole_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		_, _, rD, _ = dao.UserRole_New()
 	}
 
-
-
 	pageDetail := dm.UserRole_Page{
 		Title:       CardTitle(dm.UserRole_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.UserRole_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = userrole_PopulatePage(rD , pageDetail) 
 
 	nextTemplate :=  NextTemplate("UserRole", "New", dm.UserRole_TemplateNew)
+	nextTemplate = userrole_URIQueryData(nextTemplate,dm.UserRole{},searchID)
+
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }	
 
-
-//UserRole_HandlerDelete is the handler used process the deletion of an UserRole
-// It will delete the UserRole and then redirect to the List page
-//UserRole_HandlerDelete - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//UserRole_HandlerDelete is the handler used process the deletion of an UserRole database record. May be Hard or SoftDelete.
 func UserRole_HandlerDelete(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
-	//
 	// Code Continues Below
-	//
 	logs.Servicing(r.URL.Path)
 	searchID := core.GetURLparam(r, dm.UserRole_QueryString)
-
+	// DAO Call to Delete UserRole Record, may be SoftDelete or HardDelete depending on the DAO implementation
 	dao.UserRole_Delete(searchID)	
 
 	nextTemplate :=  NextTemplate("UserRole", "Delete", dm.UserRole_Redirect)
+	nextTemplate = userrole_URIQueryData(nextTemplate,dm.UserRole{},searchID)
 	http.Redirect(w, r, nextTemplate, http.StatusFound)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
-
-
-//userrole_PopulatePage Builds/Populates the UserRole Page 
-//userrole_PopulatePage Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//userrole_PopulatePage Builds/Populates the UserRole Page from an instance of UserRole from the Data Model
 func userrole_PopulatePage(rD dm.UserRole, pageDetail dm.UserRole_Page) dm.UserRole_Page {
 	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
@@ -316,8 +238,9 @@ func userrole_PopulatePage(rD dm.UserRole, pageDetail dm.UserRole_Page) dm.UserR
 	pageDetail.SYSDeletedBy = rD.SYSDeletedBy
 	pageDetail.SYSDeletedHost = rD.SYSDeletedHost
 	pageDetail.SYSDbVersion = rD.SYSDbVersion
-	// Add Pseudo/Extra Fields
-	// Enrichment Fields 
+	// Add Pseudo/Extra Fields, fields that are not in the DB but are used in the UI
+	// Enrichment content, content used provide lookups,lists etc
+	// Add the Properties for the Fields
 	pageDetail.SYSId_props = rD.SYSId_props
 	pageDetail.Id_props = rD.Id_props
 	pageDetail.Name_props = rD.Name_props
@@ -334,22 +257,30 @@ func userrole_PopulatePage(rD dm.UserRole, pageDetail dm.UserRole_Page) dm.UserR
 	return pageDetail
 }
 //userrole_DataFromRequest is used process the content of an HTTP Request and return an instance of an UserRole
-//userrole_DataFromRequest Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func userrole_DataFromRequest(r *http.Request) dm.UserRole {
-
 	var item dm.UserRole
-		item.SYSId = r.FormValue(dm.UserRole_SYSId_scrn)
-		item.Id = r.FormValue(dm.UserRole_Id_scrn)
-		item.Name = r.FormValue(dm.UserRole_Name_scrn)
-		item.SYSCreatedBy = r.FormValue(dm.UserRole_SYSCreatedBy_scrn)
-		item.SYSCreatedHost = r.FormValue(dm.UserRole_SYSCreatedHost_scrn)
-		item.SYSUpdatedBy = r.FormValue(dm.UserRole_SYSUpdatedBy_scrn)
-		item.SYSUpdatedHost = r.FormValue(dm.UserRole_SYSUpdatedHost_scrn)
-		item.SYSUpdated = r.FormValue(dm.UserRole_SYSUpdated_scrn)
-		item.SYSCreated = r.FormValue(dm.UserRole_SYSCreated_scrn)
-		item.SYSDeleted = r.FormValue(dm.UserRole_SYSDeleted_scrn)
-		item.SYSDeletedBy = r.FormValue(dm.UserRole_SYSDeletedBy_scrn)
-		item.SYSDeletedHost = r.FormValue(dm.UserRole_SYSDeletedHost_scrn)
-		item.SYSDbVersion = r.FormValue(dm.UserRole_SYSDbVersion_scrn)
+	item.SYSId = r.FormValue(dm.UserRole_SYSId_scrn)
+	item.Id = r.FormValue(dm.UserRole_Id_scrn)
+	item.Name = r.FormValue(dm.UserRole_Name_scrn)
+	item.SYSCreatedBy = r.FormValue(dm.UserRole_SYSCreatedBy_scrn)
+	item.SYSCreatedHost = r.FormValue(dm.UserRole_SYSCreatedHost_scrn)
+	item.SYSUpdatedBy = r.FormValue(dm.UserRole_SYSUpdatedBy_scrn)
+	item.SYSUpdatedHost = r.FormValue(dm.UserRole_SYSUpdatedHost_scrn)
+	item.SYSUpdated = r.FormValue(dm.UserRole_SYSUpdated_scrn)
+	item.SYSCreated = r.FormValue(dm.UserRole_SYSCreated_scrn)
+	item.SYSDeleted = r.FormValue(dm.UserRole_SYSDeleted_scrn)
+	item.SYSDeletedBy = r.FormValue(dm.UserRole_SYSDeletedBy_scrn)
+	item.SYSDeletedHost = r.FormValue(dm.UserRole_SYSDeletedHost_scrn)
+	item.SYSDbVersion = r.FormValue(dm.UserRole_SYSDbVersion_scrn)
 	return item
+}
+//userrole_URIQueryData is used to replace the wildcards in the URI Query Path with the values from the UserRole Data Model
+func userrole_URIQueryData(queryPath string,item dm.UserRole,itemID string) string {
+	if queryPath == "" {
+		return ""
+	}
+	queryPath = core.ReplaceWildcard(queryPath, strings.ToUpper("ID"), itemID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.UserRole_Id_scrn), item.Id)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.UserRole_Name_scrn), item.Name)
+	return queryPath
 }

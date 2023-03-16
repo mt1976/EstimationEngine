@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:29
+// Date & Time		    : 15/03/2023 at 19:24:49
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -65,7 +65,14 @@ func OriginState_GetFilteredLookup(requestObject string, requestField string) []
 	var returnList []dm.Lookup_Item
 	objectName := Translate("ObjectName", requestObject)
 	reqField := requestField + "_OriginState_Filter"
-	filter, _ := Data_GetString(objectName, reqField, dm.Data_Category_FilterRule)
+
+	usage := "Defines a filter for a lookup list of OriginState records, when requested by " + requestField + "." + core.TEXTAREA_CR
+	usage = usage + "Fields can be any of those in the underlying DB table." + core.TEXTAREA_CR
+	usage = usage + "Examples Below:" + core.TEXTAREA_CR
+	usage = usage + "* datalength(_deleted) = 0 or " + core.TEXTAREA_CR
+	usage = usage + "* class IN ('x','y','z')"
+
+	filter, _ := Data_GetString(objectName, reqField, dm.Data_Category_FilterRule, usage)
 	if filter == "" {
 		logs.Warning("OriginState_GetFilteredLookup() - No filter found : " + reqField + " for Object: " + objectName)
 	}
@@ -89,12 +96,7 @@ func OriginState_GetByID(id string) (int, dm.OriginState, error) {
 }
 
 func OriginState_PostGet(originstateItem dm.OriginState, id string) dm.OriginState {
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	//
-	//
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
+
 	return originstateItem
 }
 
@@ -170,11 +172,13 @@ func OriginState_StoreProcess(r dm.OriginState, operator string) (dm.OriginState
 // OriginState_Validate() validates for saves/stores a OriginState record to the database
 func OriginState_Validate(r dm.OriginState) (dm.OriginState, error) {
 	var err error
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	//
-	//
 
+	// Cross Validation
+	var errVal error
+	r, _, errVal = OriginState_ObjectValidation_impl(PUT, r.OriginStateID, r)
+	if errVal != nil {
+		err = errVal
+	}
 	return r, err
 }
 
@@ -205,7 +209,7 @@ func originstate_Save(r dm.OriginState, usr string) error {
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	ts = addData(ts, dm.OriginState_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.OriginState_OriginStateID_sql, r.OriginStateID)
@@ -226,7 +230,7 @@ func originstate_Save(r dm.OriginState, usr string) error {
 	ts = addData(ts, dm.OriginState_Migrate_sql, r.Migrate)
 
 	//
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 	tsql := das.INSERT + das.INTO + OriginState_QualifiedName
@@ -255,7 +259,7 @@ func originstate_Fetch(tsql string) (int, []dm.OriginState, dm.OriginState, erro
 
 		rec := returnList[i]
 		// START
-		// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		//
 		recItem.SYSId = get_Int(rec, dm.OriginState_SYSId_sql, "0")
 		recItem.OriginStateID = get_String(rec, dm.OriginState_OriginStateID_sql, "")
@@ -277,7 +281,7 @@ func originstate_Fetch(tsql string) (int, []dm.OriginState, dm.OriginState, erro
 
 		// If there are fields below, create the methods in dao\OriginState_adaptor.go
 		//
-		// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		// END
 		///
 		//Add to the list
@@ -302,11 +306,11 @@ func OriginState_New() (int, []dm.OriginState, dm.OriginState, error) {
 	var rList []dm.OriginState
 
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 
 	//
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

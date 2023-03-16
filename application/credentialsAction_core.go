@@ -8,13 +8,14 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:25
+// Date & Time		    : 15/03/2023 at 19:24:47
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
 	
 	"net/http"
+	"strings"
 
 	core    "github.com/mt1976/ebEstimates/core"
 	dao     "github.com/mt1976/ebEstimates/dao"
@@ -23,11 +24,7 @@ import (
 )
 
 //CredentialsAction_Publish annouces the endpoints available for this object
-//CredentialsAction_Publish - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func CredentialsAction_Publish(mux http.ServeMux) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	//No API
 	//Cannot List via GUI
 	mux.HandleFunc(dm.CredentialsAction_PathView, CredentialsAction_HandlerView)
@@ -35,30 +32,18 @@ func CredentialsAction_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.CredentialsAction_PathNew, CredentialsAction_HandlerNew)
 	mux.HandleFunc(dm.CredentialsAction_PathSave, CredentialsAction_HandlerSave)
 	//Cannot Delete via GUI
-	logs.Publish("Application", dm.CredentialsAction_Title)
     //No API
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
+	logs.Publish("Application", dm.CredentialsAction_Title)
 }
 
-
-
-//CredentialsAction_HandlerView is the handler used to View a page
-//Allows Viewing for an existing CredentialsAction record
-//CredentialsAction_HandlerView - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//CredentialsAction_HandlerView is the handler used to View a CredentialsAction database record
 func CredentialsAction_HandlerView(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -71,35 +56,23 @@ func CredentialsAction_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = credentialsaction_PopulatePage(rD , pageDetail) 
 
 	nextTemplate :=  NextTemplate("CredentialsAction", "View", dm.CredentialsAction_TemplateView)
+	nextTemplate = credentialsaction_URIQueryData(nextTemplate,rD,searchID)
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//CredentialsAction_HandlerEdit is the handler used generate the Edit page
-//Allows Editing for an existing CredentialsAction record and then allows the user to save the changes
-//CredentialsAction_HandlerEdit - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//CredentialsAction_HandlerEdit is the handler used to Edit of an existing CredentialsAction database record
 func CredentialsAction_HandlerEdit(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -112,7 +85,6 @@ func CredentialsAction_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	} else {
 		_, rD, _ = dao.CredentialsAction_GetByID(searchID)
 	}
-
 	
 	pageDetail := dm.CredentialsAction_Page{
 		Title:       CardTitle(dm.CredentialsAction_Title, core.Action_Edit),
@@ -120,36 +92,23 @@ func CredentialsAction_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = credentialsaction_PopulatePage(rD , pageDetail) 
 
-
 	nextTemplate :=  NextTemplate("CredentialsAction", "Edit", dm.CredentialsAction_TemplateEdit)
+	nextTemplate = credentialsaction_URIQueryData(nextTemplate,rD,searchID)
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//CredentialsAction_HandlerSave is the handler used process the saving of an CredentialsAction
-//It is called from the Edit and New pages
-//CredentialsAction_HandlerSave  - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//CredentialsAction_HandlerSave is the handler used process the saving of an CredentialsAction database record, either new or existing, referenced by Edit & New Handlers.
 func CredentialsAction_HandlerSave(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	itemID := r.FormValue("ID")
 	logs.Servicing(r.URL.Path+itemID)
@@ -159,33 +118,22 @@ func CredentialsAction_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	item, errStore := dao.CredentialsAction_Store(item,r)
 	if errStore == nil {
 		nextTemplate :=  NextTemplate("CredentialsAction", "Save", dm.CredentialsAction_Redirect)
+		nextTemplate = credentialsaction_URIQueryData(nextTemplate,item,itemID)
 		http.Redirect(w, r, nextTemplate, http.StatusFound)
 	} else {
 		logs.Information(dm.CredentialsAction_Name, errStore.Error())
-		//http.Redirect(w, r, r.Referer(), http.StatusFound)
 		ExecuteRedirect(r.Referer(), w, r,dm.CredentialsAction_QueryString,itemID,item)
 	}
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//CredentialsAction_HandlerNew is the handler used process the creation of an CredentialsAction
-//It will create a new CredentialsAction and then redirect to the Edit page
-//CredentialsAction_HandlerNew  - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//CredentialsAction_HandlerNew is the handler used process the creation of an new CredentialsAction database record, then redirect to Edit
 func CredentialsAction_HandlerNew(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -199,42 +147,32 @@ func CredentialsAction_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		_, _, rD, _ = dao.CredentialsAction_New()
 	}
 
-
-
 	pageDetail := dm.CredentialsAction_Page{
 		Title:       CardTitle(dm.CredentialsAction_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.CredentialsAction_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = credentialsaction_PopulatePage(rD , pageDetail) 
 
 	nextTemplate :=  NextTemplate("CredentialsAction", "New", dm.CredentialsAction_TemplateNew)
+	nextTemplate = credentialsaction_URIQueryData(nextTemplate,dm.CredentialsAction{},searchID)
+
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }	
-
-
-
-//credentialsaction_PopulatePage Builds/Populates the CredentialsAction Page 
-//credentialsaction_PopulatePage Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//credentialsaction_PopulatePage Builds/Populates the CredentialsAction Page from an instance of CredentialsAction from the Data Model
 func credentialsaction_PopulatePage(rD dm.CredentialsAction, pageDetail dm.CredentialsAction_Page) dm.CredentialsAction_Page {
 	// Real DB Fields
 	pageDetail.ID = rD.ID
 	pageDetail.User = rD.User
 	pageDetail.Action = rD.Action
 	pageDetail.Notes = rD.Notes
-	// Add Pseudo/Extra Fields
-	// Enrichment Fields 
-	 
+	// Add Pseudo/Extra Fields, fields that are not in the DB but are used in the UI
+	// Enrichment content, content used provide lookups,lists etc
 	pageDetail.User_lookup = dao.Credentials_GetLookup()
-	
 	pageDetail.Action_lookup = dao.StubLists_Get("credentialStates")
+	// Add the Properties for the Fields
 	pageDetail.ID_props = rD.ID_props
 	pageDetail.User_props = rD.User_props
 	pageDetail.Action_props = rD.Action_props
@@ -242,13 +180,23 @@ func credentialsaction_PopulatePage(rD dm.CredentialsAction, pageDetail dm.Crede
 	return pageDetail
 }
 //credentialsaction_DataFromRequest is used process the content of an HTTP Request and return an instance of an CredentialsAction
-//credentialsaction_DataFromRequest Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func credentialsaction_DataFromRequest(r *http.Request) dm.CredentialsAction {
-
 	var item dm.CredentialsAction
-		item.ID = r.FormValue(dm.CredentialsAction_ID_scrn)
-		item.User = r.FormValue(dm.CredentialsAction_User_scrn)
-		item.Action = r.FormValue(dm.CredentialsAction_Action_scrn)
-		item.Notes = r.FormValue(dm.CredentialsAction_Notes_scrn)
+	item.ID = r.FormValue(dm.CredentialsAction_ID_scrn)
+	item.User = r.FormValue(dm.CredentialsAction_User_scrn)
+	item.Action = r.FormValue(dm.CredentialsAction_Action_scrn)
+	item.Notes = r.FormValue(dm.CredentialsAction_Notes_scrn)
 	return item
+}
+//credentialsaction_URIQueryData is used to replace the wildcards in the URI Query Path with the values from the CredentialsAction Data Model
+func credentialsaction_URIQueryData(queryPath string,item dm.CredentialsAction,itemID string) string {
+	if queryPath == "" {
+		return ""
+	}
+	queryPath = core.ReplaceWildcard(queryPath, strings.ToUpper("ID"), itemID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.CredentialsAction_ID_scrn), item.ID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.CredentialsAction_User_scrn), item.User)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.CredentialsAction_Action_scrn), item.Action)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.CredentialsAction_Notes_scrn), item.Notes)
+	return queryPath
 }

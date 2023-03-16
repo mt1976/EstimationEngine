@@ -34,31 +34,33 @@ func Data_Run_impl() (string, error) {
 	action := ""
 
 	//Get Mode from Data Settings and branch
-	ssMode, err := dao.Data_Get(jobName, JOB_MODE, dm.Data_Category_State)
+	ssMode, err := dao.Data_Get(jobName, JOB_MODE, dm.Data_Category_State, "The mode of operation. Trial or Live. Done = Finished")
 	if err != nil {
 		return "No Mode Specified for " + jobName, err
 	}
 
 	//Get Action from Data
-	action, err = dao.Data_Get(jobName, JOB_ACTION, dm.Data_Category_State)
+	action, err = dao.Data_Get(jobName, JOB_ACTION, dm.Data_Category_State, "The action to perform. Import or Export")
 	if err != nil {
 		return "No Action Specified for " + jobName, err
 	}
 
 	//Get inPath from Data
-	inPath, err = dao.Data_Get(jobName, JOB_IN_PATH, dm.Data_Category_Path)
+	msg := "The path to the input file. " + core.TEXTAREA_CR + "{{ENTITY}} is replaced with the entity name being processed."
+	inPath, err = dao.Data_Get(jobName, JOB_IN_PATH, dm.Data_Category_Path, msg)
 	if err != nil {
 		return "No Input Path Specified for " + jobName, err
 	}
 
 	//Get outPath from Data
-	outPath, err = dao.Data_Get(jobName, JOB_OUT_PATH, dm.Data_Category_Path)
+	outPath, err = dao.Data_Get(jobName, JOB_OUT_PATH, dm.Data_Category_Path, "The root path to the output file. Folders will be created as required.")
 	if err != nil {
 		return "No Output Path Specified for " + jobName, err
 	}
 
 	//Get What to do from Data
-	what, err := dao.Data_Get(jobName, JOB_WHAT, dm.Data_Category_State)
+	msg = "The entity being proceseed" + core.TEXTAREA_CR + "DATA = Settings" + core.TEXTAREA_CR + "ORIGIN = Origin State" + core.TEXTAREA_CR + "DOCUMENT = Document Type" + core.TEXTAREA_CR + "PROJECT = Project State" + core.TEXTAREA_CR + "ESTIMATION = Estimation State" + core.TEXTAREA_CR + "TRANSLATION = Translations" + core.TEXTAREA_CR + "ALL = All of the above"
+	what, err := dao.Data_Get(jobName, JOB_WHAT, dm.Data_Category_State, msg)
 	what = strings.ToUpper(what)
 	actionUpper := strings.ToUpper(action)
 	switch actionUpper {

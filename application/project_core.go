@@ -8,13 +8,14 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:29
+// Date & Time		    : 15/03/2023 at 19:24:49
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
 	
 	"net/http"
+	"strings"
 
 	core    "github.com/mt1976/ebEstimates/core"
 	dao     "github.com/mt1976/ebEstimates/dao"
@@ -23,11 +24,7 @@ import (
 )
 
 //Project_Publish annouces the endpoints available for this object
-//Project_Publish - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Project_Publish(mux http.ServeMux) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	mux.HandleFunc(dm.Project_Path, Project_Handler)
 	mux.HandleFunc(dm.Project_PathList, Project_HandlerList)
 	mux.HandleFunc(dm.Project_PathView, Project_HandlerView)
@@ -35,29 +32,18 @@ func Project_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Project_PathNew, Project_HandlerNew)
 	mux.HandleFunc(dm.Project_PathSave, Project_HandlerSave)
 	mux.HandleFunc(dm.Project_PathDelete, Project_HandlerDelete)
-	logs.Publish("Application", dm.Project_Title)
     core.API = core.API.AddRoute(dm.Project_Title, dm.Project_Path, "", dm.Project_QueryString, "Application")
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
+	logs.Publish("Application", dm.Project_Title)
 }
 
-
-//Project_HandlerList is the handler for the list page
-//Allows Listing of Project records
-//Project_HandlerList - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//Project_HandlerList is the handler for the Project list page
 func Project_HandlerList(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
@@ -66,7 +52,13 @@ func Project_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 	objectName := dao.Translate("ObjectName", "Project")
 	reqField := "Base"
-	filter,_ := dao.Data_GetString(objectName, reqField, dm.Data_Category_FilterRule)
+	usage := "Defines a filter for the list of Project records." + core.TEXTAREA_CR
+	usage = usage + "Fields can be any of those in the underlying DB table." + core.TEXTAREA_CR
+	usage = usage + "Examples Below:" + core.TEXTAREA_CR
+	usage = usage + "* datalength(_deleted) = 0 or " + core.TEXTAREA_CR 
+	usage = usage + "* class IN ('x','y','z')"
+	
+	filter,_ := dao.Data_GetString(objectName, reqField, dm.Data_Category_FilterRule,usage)
 	if filter == "" {
 		logs.Warning("No filter found : " + reqField + " for Object: " + objectName)
 	} 
@@ -81,34 +73,20 @@ func Project_HandlerList(w http.ResponseWriter, r *http.Request) {
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-	
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-	
+
 	nextTemplate :=  NextTemplate("Project", "List", dm.Project_TemplateList)
-
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
-
 }
 
-
-//Project_HandlerView is the handler used to View a page
-//Allows Viewing for an existing Project record
-//Project_HandlerView - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Project_HandlerView is the handler used to View a Project database record
 func Project_HandlerView(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -121,35 +99,23 @@ func Project_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = project_PopulatePage(rD , pageDetail) 
 
 	nextTemplate :=  NextTemplate("Project", "View", dm.Project_TemplateView)
+	nextTemplate = project_URIQueryData(nextTemplate,rD,searchID)
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//Project_HandlerEdit is the handler used generate the Edit page
-//Allows Editing for an existing Project record and then allows the user to save the changes
-//Project_HandlerEdit - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Project_HandlerEdit is the handler used to Edit of an existing Project database record
 func Project_HandlerEdit(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -162,7 +128,6 @@ func Project_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	} else {
 		_, rD, _ = dao.Project_GetByID(searchID)
 	}
-
 	
 	pageDetail := dm.Project_Page{
 		Title:       CardTitle(dm.Project_Title, core.Action_Edit),
@@ -170,36 +135,23 @@ func Project_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = project_PopulatePage(rD , pageDetail) 
 
-
 	nextTemplate :=  NextTemplate("Project", "Edit", dm.Project_TemplateEdit)
+	nextTemplate = project_URIQueryData(nextTemplate,rD,searchID)
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//Project_HandlerSave is the handler used process the saving of an Project
-//It is called from the Edit and New pages
-//Project_HandlerSave  - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Project_HandlerSave is the handler used process the saving of an Project database record, either new or existing, referenced by Edit & New Handlers.
 func Project_HandlerSave(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	itemID := r.FormValue("ProjectID")
 	logs.Servicing(r.URL.Path+itemID)
@@ -209,33 +161,22 @@ func Project_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	item, errStore := dao.Project_Store(item,r)
 	if errStore == nil {
 		nextTemplate :=  NextTemplate("Project", "Save", dm.Project_Redirect)
+		nextTemplate = project_URIQueryData(nextTemplate,item,itemID)
 		http.Redirect(w, r, nextTemplate, http.StatusFound)
 	} else {
 		logs.Information(dm.Project_Name, errStore.Error())
-		//http.Redirect(w, r, r.Referer(), http.StatusFound)
 		ExecuteRedirect(r.Referer(), w, r,dm.Project_QueryString,itemID,item)
 	}
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//Project_HandlerNew is the handler used process the creation of an Project
-//It will create a new Project and then redirect to the Edit page
-//Project_HandlerNew  - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Project_HandlerNew is the handler used process the creation of an new Project database record, then redirect to Edit
 func Project_HandlerNew(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -249,58 +190,39 @@ func Project_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		_, _, rD, _ = dao.Project_New()
 	}
 
-
-
 	pageDetail := dm.Project_Page{
 		Title:       CardTitle(dm.Project_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Project_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = project_PopulatePage(rD , pageDetail) 
 
 	nextTemplate :=  NextTemplate("Project", "New", dm.Project_TemplateNew)
+	nextTemplate = project_URIQueryData(nextTemplate,dm.Project{},searchID)
+
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }	
 
-
-//Project_HandlerDelete is the handler used process the deletion of an Project
-// It will delete the Project and then redirect to the List page
-//Project_HandlerDelete - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Project_HandlerDelete is the handler used process the deletion of an Project database record. May be Hard or SoftDelete.
 func Project_HandlerDelete(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
-	//
 	// Code Continues Below
-	//
 	logs.Servicing(r.URL.Path)
 	searchID := core.GetURLparam(r, dm.Project_QueryString)
-
+	// DAO Call to Delete Project Record, may be SoftDelete or HardDelete depending on the DAO implementation
 	dao.Project_Delete(searchID)	
 
 	nextTemplate :=  NextTemplate("Project", "Delete", dm.Project_Redirect)
+	nextTemplate = project_URIQueryData(nextTemplate,dm.Project{},searchID)
 	http.Redirect(w, r, nextTemplate, http.StatusFound)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
-
-
-//project_PopulatePage Builds/Populates the Project Page 
-//project_PopulatePage Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//project_PopulatePage Builds/Populates the Project Page from an instance of Project from the Data Model
 func project_PopulatePage(rD dm.Project, pageDetail dm.Project_Page) dm.Project_Page {
 	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
@@ -331,23 +253,18 @@ func project_PopulatePage(rD dm.Project, pageDetail dm.Project_Page) dm.Project_
 	pageDetail.ProjectManager = rD.ProjectManager
 	pageDetail.Releases = rD.Releases
 	pageDetail.Notes = rD.Notes
-	// Add Pseudo/Extra Fields
+	// Add Pseudo/Extra Fields, fields that are not in the DB but are used in the UI
 	pageDetail.NoEstimationSessions = rD.NoEstimationSessions
 	pageDetail.OriginName = rD.OriginName
 	pageDetail.OriginKey = rD.OriginKey
-	// Enrichment Fields 
-	 
+	// Enrichment content, content used provide lookups,lists etc
 	pageDetail.OriginID_lookup = dao.Origin_GetLookup()
-	 
 	pageDetail.ProjectStateID_lookup = dao.ProjectState_GetLookup()
-	 
 	pageDetail.ProfileID_lookup = dao.Profile_GetLookup()
-	 
 	pageDetail.ProjectAnalyst_lookup = dao.Resource_GetFilteredLookup("Project","ProjectAnalyst")
-	 
 	pageDetail.ProjectEngineer_lookup = dao.Resource_GetFilteredLookup("Project","ProjectEngineer")
-	 
 	pageDetail.ProjectManager_lookup = dao.Resource_GetFilteredLookup("Project","ProjectManager")
+	// Add the Properties for the Fields
 	pageDetail.SYSId_props = rD.SYSId_props
 	pageDetail.ProjectID_props = rD.ProjectID_props
 	pageDetail.OriginID_props = rD.OriginID_props
@@ -382,40 +299,65 @@ func project_PopulatePage(rD dm.Project, pageDetail dm.Project_Page) dm.Project_
 	return pageDetail
 }
 //project_DataFromRequest is used process the content of an HTTP Request and return an instance of an Project
-//project_DataFromRequest Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func project_DataFromRequest(r *http.Request) dm.Project {
-
 	var item dm.Project
-		item.SYSId = r.FormValue(dm.Project_SYSId_scrn)
-		item.ProjectID = r.FormValue(dm.Project_ProjectID_scrn)
-		item.OriginID = r.FormValue(dm.Project_OriginID_scrn)
-		item.ProjectStateID = r.FormValue(dm.Project_ProjectStateID_scrn)
-		item.ProfileID = r.FormValue(dm.Project_ProfileID_scrn)
-		item.Name = r.FormValue(dm.Project_Name_scrn)
-		item.Description = r.FormValue(dm.Project_Description_scrn)
-		item.StartDate = r.FormValue(dm.Project_StartDate_scrn)
-		item.EndDate = r.FormValue(dm.Project_EndDate_scrn)
-		item.SYSCreated = r.FormValue(dm.Project_SYSCreated_scrn)
-		item.SYSCreatedBy = r.FormValue(dm.Project_SYSCreatedBy_scrn)
-		item.SYSCreatedHost = r.FormValue(dm.Project_SYSCreatedHost_scrn)
-		item.SYSUpdated = r.FormValue(dm.Project_SYSUpdated_scrn)
-		item.SYSUpdatedBy = r.FormValue(dm.Project_SYSUpdatedBy_scrn)
-		item.SYSUpdatedHost = r.FormValue(dm.Project_SYSUpdatedHost_scrn)
-		item.SYSDeleted = r.FormValue(dm.Project_SYSDeleted_scrn)
-		item.SYSDeletedBy = r.FormValue(dm.Project_SYSDeletedBy_scrn)
-		item.SYSDeletedHost = r.FormValue(dm.Project_SYSDeletedHost_scrn)
-		item.SYSActivity = r.FormValue(dm.Project_SYSActivity_scrn)
-		item.SYSDbVersion = r.FormValue(dm.Project_SYSDbVersion_scrn)
-		item.Comments = r.FormValue(dm.Project_Comments_scrn)
-		item.ProjectRate = r.FormValue(dm.Project_ProjectRate_scrn)
-		item.DefaultRate = r.FormValue(dm.Project_DefaultRate_scrn)
-		item.ProjectAnalyst = r.FormValue(dm.Project_ProjectAnalyst_scrn)
-		item.ProjectEngineer = r.FormValue(dm.Project_ProjectEngineer_scrn)
-		item.ProjectManager = r.FormValue(dm.Project_ProjectManager_scrn)
-		item.Releases = r.FormValue(dm.Project_Releases_scrn)
-		item.Notes = r.FormValue(dm.Project_Notes_scrn)
-		item.NoEstimationSessions = r.FormValue(dm.Project_NoEstimationSessions_scrn)
-		item.OriginName = r.FormValue(dm.Project_OriginName_scrn)
-		item.OriginKey = r.FormValue(dm.Project_OriginKey_scrn)
+	item.SYSId = r.FormValue(dm.Project_SYSId_scrn)
+	item.ProjectID = r.FormValue(dm.Project_ProjectID_scrn)
+	item.OriginID = r.FormValue(dm.Project_OriginID_scrn)
+	item.ProjectStateID = r.FormValue(dm.Project_ProjectStateID_scrn)
+	item.ProfileID = r.FormValue(dm.Project_ProfileID_scrn)
+	item.Name = r.FormValue(dm.Project_Name_scrn)
+	item.Description = r.FormValue(dm.Project_Description_scrn)
+	item.StartDate = r.FormValue(dm.Project_StartDate_scrn)
+	item.EndDate = r.FormValue(dm.Project_EndDate_scrn)
+	item.SYSCreated = r.FormValue(dm.Project_SYSCreated_scrn)
+	item.SYSCreatedBy = r.FormValue(dm.Project_SYSCreatedBy_scrn)
+	item.SYSCreatedHost = r.FormValue(dm.Project_SYSCreatedHost_scrn)
+	item.SYSUpdated = r.FormValue(dm.Project_SYSUpdated_scrn)
+	item.SYSUpdatedBy = r.FormValue(dm.Project_SYSUpdatedBy_scrn)
+	item.SYSUpdatedHost = r.FormValue(dm.Project_SYSUpdatedHost_scrn)
+	item.SYSDeleted = r.FormValue(dm.Project_SYSDeleted_scrn)
+	item.SYSDeletedBy = r.FormValue(dm.Project_SYSDeletedBy_scrn)
+	item.SYSDeletedHost = r.FormValue(dm.Project_SYSDeletedHost_scrn)
+	item.SYSActivity = r.FormValue(dm.Project_SYSActivity_scrn)
+	item.SYSDbVersion = r.FormValue(dm.Project_SYSDbVersion_scrn)
+	item.Comments = r.FormValue(dm.Project_Comments_scrn)
+	item.ProjectRate = r.FormValue(dm.Project_ProjectRate_scrn)
+	item.DefaultRate = r.FormValue(dm.Project_DefaultRate_scrn)
+	item.ProjectAnalyst = r.FormValue(dm.Project_ProjectAnalyst_scrn)
+	item.ProjectEngineer = r.FormValue(dm.Project_ProjectEngineer_scrn)
+	item.ProjectManager = r.FormValue(dm.Project_ProjectManager_scrn)
+	item.Releases = r.FormValue(dm.Project_Releases_scrn)
+	item.Notes = r.FormValue(dm.Project_Notes_scrn)
+	item.NoEstimationSessions = r.FormValue(dm.Project_NoEstimationSessions_scrn)
+	item.OriginName = r.FormValue(dm.Project_OriginName_scrn)
+	item.OriginKey = r.FormValue(dm.Project_OriginKey_scrn)
 	return item
+}
+//project_URIQueryData is used to replace the wildcards in the URI Query Path with the values from the Project Data Model
+func project_URIQueryData(queryPath string,item dm.Project,itemID string) string {
+	if queryPath == "" {
+		return ""
+	}
+	queryPath = core.ReplaceWildcard(queryPath, strings.ToUpper("ID"), itemID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Project_ProjectID_scrn), item.ProjectID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Project_OriginID_scrn), item.OriginID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Project_ProjectStateID_scrn), item.ProjectStateID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Project_ProfileID_scrn), item.ProfileID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Project_Name_scrn), item.Name)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Project_Description_scrn), item.Description)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Project_StartDate_scrn), item.StartDate)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Project_EndDate_scrn), item.EndDate)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Project_Comments_scrn), item.Comments)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Project_ProjectRate_scrn), item.ProjectRate)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Project_DefaultRate_scrn), item.DefaultRate)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Project_ProjectAnalyst_scrn), item.ProjectAnalyst)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Project_ProjectEngineer_scrn), item.ProjectEngineer)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Project_ProjectManager_scrn), item.ProjectManager)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Project_Releases_scrn), item.Releases)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Project_Notes_scrn), item.Notes)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Project_NoEstimationSessions_scrn), item.NoEstimationSessions)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Project_OriginName_scrn), item.OriginName)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Project_OriginKey_scrn), item.OriginKey)
+	return queryPath
 }

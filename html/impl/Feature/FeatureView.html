@@ -172,7 +172,7 @@
         
             <div class="form-outline">
               
-              <input type="number" class="form-control {{.DevelopmentEstimate_props.MsgType}}" id="DevelopmentEstimate" name="DevelopmentEstimate" aria-describedby="DevelopmentEstimateHelp" placeholder="" readonly="true"  value="{{.DevelopmentEstimate}}"  data-mdb-input-mask="" step="{{.RoundTo}}"/>
+              <input type="number" class="form-control {{.DevelopmentEstimate_props.MsgType}}" id="DevelopmentEstimate" name="DevelopmentEstimate" aria-describedby="DevelopmentEstimateHelp" placeholder="" readonly="true"  value="{{.DevelopmentEstimate}}"  data-mdb-input-mask="" step="{{.RoundedTo}}"/>
               
               <label class="form-label" for="DevelopmentEstimate" readonly="true">Engineer Estimate</label>
               <div class="{{.DevelopmentEstimate_props.MsgFeedBackType}}">{{.DevelopmentEstimate_props.MsgMessage}}</div>
@@ -194,7 +194,7 @@
         
             <div class="form-outline">
               
-              <input type="number" class="form-control {{.AnalystEstimate_props.MsgType}}" id="AnalystEstimate" name="AnalystEstimate" aria-describedby="AnalystEstimateHelp" placeholder="" readonly="true" disabled value="{{.AnalystEstimate}}"  data-mdb-input-mask="" step="{{.RoundTo}}"/>
+              <input type="number" class="form-control {{.AnalystEstimate_props.MsgType}}" id="AnalystEstimate" name="AnalystEstimate" aria-describedby="AnalystEstimateHelp" placeholder="" readonly="true" disabled value="{{.AnalystEstimate}}"  data-mdb-input-mask="" step="{{.RoundedTo}}"/>
               
               <label class="form-label" for="AnalystEstimate" readonly="true">Analyst Estimate</label>
               <div class="{{.AnalystEstimate_props.MsgFeedBackType}}">{{.AnalystEstimate_props.MsgMessage}}</div>
@@ -215,7 +215,19 @@
 
         <h4 class="text-muted">Estimation Breakdown</h4>
         
-       
+                       <div class="row mb-3 bg-light" readonly="true">
+                  <div class="col  text-muted text-center"><span class="fw-bolder">a</span></div>
+                  <div class="col  text-muted text-center"><span class="fw-bolder">b</span><br><small>{{.RequirementsPerc}}% of c</small></div>
+                  <div class="col  text-muted text-center"><span class="fw-bolder">c</span></div>
+                  <div class="col  text-muted text-center"><span class="fw-bolder">d</span><br>{{.AnalystTestPerc}}% of c</div>
+                  <div class="col  text-muted text-center"><span class="fw-bolder">e</span><br>{{.DocumentationPerc}}% of c</div>
+                  <div class="col  text-muted text-center"><span class="fw-bolder">f</span><br>{{.TrainingPerc}}% of c</div>
+                  <div class="col  text-muted text-center"><span class="fw-bolder">g</span><br>{{.UatSupportPerc}}% of c</div>
+                  <div class="col  text-muted text-center"><span class="fw-bolder">h</span><br>{{.MarketingPerc}}% of c</div>
+                  <div class="col  text-muted text-center"><span class="fw-bolder">i</span><br>{{.ManagementPerc}}% of b+c+d+e+f</div>
+                  <div class="col  text-muted text-center"><span class="fw-bolder">Total</span><br><small>a+b+c+d+e+f+g+h+i</small></div>
+                </div>
+
 
 
         <div class="row mb-3" readonly="true">
@@ -323,7 +335,7 @@
         
             <div class="form-outline">
               
-              <input type="number" class="form-control {{.TotalDefault_props.MsgType}}" id="TotalDefault" name="TotalDefault" aria-describedby="TotalDefaultHelp" placeholder="" readonly="true"  value="{{.TotalDefault}}"  data-mdb-input-mask="" step="{{.RoundTo}}"/>
+              <input type="number" class="form-control {{.TotalDefault_props.MsgType}}" id="TotalDefault" name="TotalDefault" aria-describedby="TotalDefaultHelp" placeholder="" readonly="true"  value="{{.TotalDefault}}"  data-mdb-input-mask="" step="{{.RoundedTo}}"/>
               
               <label class="form-label" for="TotalDefault" readonly="true">Total <small class="text-muted">Default</small></label>
               <div class="{{.TotalDefault_props.MsgFeedBackType}}">{{.TotalDefault_props.MsgMessage}}</div>
@@ -350,7 +362,7 @@
         
             <div class="form-outline">
               
-              <input type="number" class="form-control {{.EstimateEffort_props.MsgType}}" id="EstimateEffort" name="EstimateEffort" aria-describedby="EstimateEffortHelp" placeholder="" disabled  value="{{.EstimateEffort}}"  data-mdb-input-mask="" step="{{.RoundTo}}"/>
+              <input type="number" class="form-control {{.EstimateEffort_props.MsgType}}" id="EstimateEffort" name="EstimateEffort" aria-describedby="EstimateEffortHelp" placeholder="" disabled  value="{{.EstimateEffort}}"  data-mdb-input-mask="" step="{{.RoundedTo}}"/>
               
               <label class="form-label" for="EstimateEffort" >Estimation Effort</label>
               <div class="{{.EstimateEffort_props.MsgFeedBackType}}">{{.EstimateEffort_props.MsgMessage}}</div>
@@ -361,7 +373,7 @@
         
             <div class="form-outline">
               
-              <input type="number" class="form-control {{.Requirements_props.MsgType}}" id="Requirements" name="Requirements" aria-describedby="RequirementsHelp" placeholder="" disabled  value="{{.Requirements}}"  data-mdb-input-mask="" step="{{.RoundTo}}"/>
+              <input type="number" class="form-control {{.Requirements_props.MsgType}}" id="Requirements" name="Requirements" aria-describedby="RequirementsHelp" placeholder="" disabled  value="{{.Requirements}}"  data-mdb-input-mask="" step="{{.RoundedTo}}"/>
               
               <label class="form-label" for="Requirements" >Requirements</label>
               <div class="{{.Requirements_props.MsgFeedBackType}}">{{.Requirements_props.MsgMessage}}</div>
@@ -373,7 +385,7 @@
         
             <div class="form-outline">
               
-              <input type="number" class="form-control {{.DevelopmentFactored_props.MsgType}}" id="DevelopmentFactored" name="DevelopmentFactored" aria-describedby="DevelopmentFactoredHelp" disabled placeholder="" readonly="true"  value="{{.DevelopmentFactored}}"  data-mdb-input-mask="" step="{{.RoundTo}}"/>
+              <input type="number" class="form-control {{.DevelopmentFactored_props.MsgType}}" id="DevelopmentFactored" name="DevelopmentFactored" aria-describedby="DevelopmentFactoredHelp" disabled placeholder="" readonly="true"  value="{{.DevelopmentFactored}}"  data-mdb-input-mask="" step="{{.RoundedTo}}"/>
               
               <label class="form-label" for="DevelopmentFactored" readonly="true">Engineering</label>
               <div class="{{.DevelopmentFactored_props.MsgFeedBackType}}">{{.DevelopmentFactored_props.MsgMessage}}</div>
@@ -385,7 +397,7 @@
         
             <div class="form-outline">
               
-              <input type="number" class="form-control {{.AnalystTest_props.MsgType}}" id="AnalystTest" name="AnalystTest" aria-describedby="AnalystTestHelp" placeholder="" disabled  value="{{.AnalystTest}}"  data-mdb-input-mask="" step="{{.RoundTo}}"/>
+              <input type="number" class="form-control {{.AnalystTest_props.MsgType}}" id="AnalystTest" name="AnalystTest" aria-describedby="AnalystTestHelp" placeholder="" disabled  value="{{.AnalystTest}}"  data-mdb-input-mask="" step="{{.RoundedTo}}"/>
               
               <label class="form-label" for="AnalystTest" >Analyst & Test</label>
               <div class="{{.AnalystTest_props.MsgFeedBackType}}">{{.AnalystTest_props.MsgMessage}}</div>
@@ -397,7 +409,7 @@
         
             <div class="form-outline">
               
-              <input type="number" class="form-control {{.Documentation_props.MsgType}}" id="Documentation" name="Documentation" aria-describedby="DocumentationHelp" placeholder=""  disabled value="{{.Documentation}}"  data-mdb-input-mask="" step="{{.RoundTo}}"/>
+              <input type="number" class="form-control {{.Documentation_props.MsgType}}" id="Documentation" name="Documentation" aria-describedby="DocumentationHelp" placeholder=""  disabled value="{{.Documentation}}"  data-mdb-input-mask="" step="{{.RoundedTo}}"/>
               
               <label class="form-label" for="Documentation" >Documentation</label>
               <div class="{{.Documentation_props.MsgFeedBackType}}">{{.Documentation_props.MsgMessage}}</div>
@@ -409,7 +421,7 @@
         
             <div class="form-outline">
               
-              <input type="number" class="form-control {{.Training_props.MsgType}}" id="Training" name="Training" aria-describedby="TrainingHelp" placeholder=""  disabled value="{{.Training}}"  data-mdb-input-mask="" step="{{.RoundTo}}"/>
+              <input type="number" class="form-control {{.Training_props.MsgType}}" id="Training" name="Training" aria-describedby="TrainingHelp" placeholder=""  disabled value="{{.Training}}"  data-mdb-input-mask="" step="{{.RoundedTo}}"/>
               
               <label class="form-label" for="Training" >Training</label>
               <div class="{{.Training_props.MsgFeedBackType}}">{{.Training_props.MsgMessage}}</div>
@@ -421,7 +433,7 @@
         
             <div class="form-outline">
               
-              <input type="number" class="form-control {{.UatSupport_props.MsgType}}" id="UatSupport" name="UatSupport" aria-describedby="UatSupportHelp" placeholder="" disabled  value="{{.UatSupport}}"  data-mdb-input-mask="" step="{{.RoundTo}}" />
+              <input type="number" class="form-control {{.UatSupport_props.MsgType}}" id="UatSupport" name="UatSupport" aria-describedby="UatSupportHelp" placeholder="" disabled  value="{{.UatSupport}}"  data-mdb-input-mask="" step="{{.RoundedTo}}" />
               
               <label class="form-label" for="UatSupport" >UAT Support</label>
               <div class="{{.UatSupport_props.MsgFeedBackType}}">{{.UatSupport_props.MsgMessage}}</div>
@@ -433,7 +445,7 @@
         
             <div class="form-outline">
               
-              <input type="number" class="form-control {{.Marketing_props.MsgType}}" id="Marketing" name="Marketing" aria-describedby="MarketingHelp" placeholder=""  disabled value="{{.Marketing}}"  data-mdb-input-mask="" step="{{.RoundTo}}"/>
+              <input type="number" class="form-control {{.Marketing_props.MsgType}}" id="Marketing" name="Marketing" aria-describedby="MarketingHelp" placeholder=""  disabled value="{{.Marketing}}"  data-mdb-input-mask="" step="{{.RoundedTo}}"/>
               
               <label class="form-label" for="Marketing" >Marketing</label>
               <div class="{{.Marketing_props.MsgFeedBackType}}">{{.Marketing_props.MsgMessage}}</div>
@@ -445,7 +457,7 @@
         
             <div class="form-outline">
               
-              <input type="number" class="form-control {{.Management_props.MsgType}}" id="Management" name="Management" aria-describedby="ManagementHelp" placeholder=""  disabled value="{{.Management}}"  data-mdb-input-mask="" step="{{.RoundTo}}"/>
+              <input type="number" class="form-control {{.Management_props.MsgType}}" id="Management" name="Management" aria-describedby="ManagementHelp" placeholder=""  disabled value="{{.Management}}"  data-mdb-input-mask="" step="{{.RoundedTo}}"/>
               
               <label class="form-label" for="Management" >Management</label>
               <div class="{{.Management_props.MsgFeedBackType}}">{{.Management_props.MsgMessage}}</div>
@@ -457,7 +469,7 @@
         
             <div class="form-outline">
               
-              <input type="number" class="form-control {{.Total_props.MsgType}}" id="Total" name="Total" aria-describedby="TotalHelp" placeholder="" readonly="true"  value="{{.Total}}" disabled data-mdb-input-mask="" step="{{.RoundTo}}"/>
+              <input type="number" class="form-control {{.Total_props.MsgType}}" id="Total" name="Total" aria-describedby="TotalHelp" placeholder="" readonly="true"  value="{{.Total}}" disabled data-mdb-input-mask="" step="{{.RoundedTo}}"/>
               
               <label class="form-label" for="Total" readonly="true">Total</label>
               <div class="{{.Total_props.MsgFeedBackType}}">{{.Total_props.MsgMessage}}</div>
@@ -469,7 +481,7 @@
         
             <div class="form-outline">
               
-              <input type="number" class="form-control {{.Contingency_props.MsgType}}" id="Contingency" name="Contingency" aria-describedby="ContingencyHelp" placeholder=""   value="{{.Contingency}}"  data-mdb-input-mask="" step="{{.RoundTo}}"/>
+              <input type="number" class="form-control {{.Contingency_props.MsgType}}" id="Contingency" name="Contingency" aria-describedby="ContingencyHelp" placeholder=""   value="{{.Contingency}}"  data-mdb-input-mask="" step="{{.RoundedTo}}"/>
               
               <label class="form-label" for="Contingency" >Contingency</label>
               <div class="{{.Contingency_props.MsgFeedBackType}}">{{.Contingency_props.MsgMessage}}</div>
@@ -477,6 +489,9 @@
         
         </div></div>
        
+        <p class="small text-muted fw-lighter"><span class="text-primary">†</span> Default etimates are rounded up to the nearest {{.RoundedTo}} hours</p>
+        <div class="row"></div>
+
        <h4 class="text-muted">Approvals & Justifications</h4>
 
        
@@ -811,10 +826,10 @@
         
             <div class="form-outline">
               
-              <input type="text" class="form-control {{.RoundTo_props.MsgType}}" id="RoundTo" name="RoundTo" aria-describedby="RoundToHelp" placeholder="" readonly="true"  value="{{.RoundTo}}"  data-mdb-input-mask="" />
+              <input type="text" class="form-control {{.RoundedTo_props.MsgType}}" id="RoundedTo" name="RoundedTo" aria-describedby="RoundedToHelp" placeholder="" readonly="true"  value="{{.RoundedTo}}"  data-mdb-input-mask="" />
               
-              <label class="form-label" for="RoundTo" readonly="true">RoundTo</label>
-              <div class="{{.RoundTo_props.MsgFeedBackType}}">{{.RoundTo_props.MsgMessage}}</div>
+              <label class="form-label" for="RoundedTo" readonly="true">RoundedTo</label>
+              <div class="{{.RoundedTo_props.MsgFeedBackType}}">{{.RoundedTo_props.MsgMessage}}</div>
             </div>
         
         </div></div>

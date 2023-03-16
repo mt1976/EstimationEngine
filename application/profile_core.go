@@ -8,13 +8,14 @@ package application
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:29
+// Date & Time		    : 15/03/2023 at 19:24:49
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
 	
 	"net/http"
+	"strings"
 
 	core    "github.com/mt1976/ebEstimates/core"
 	dao     "github.com/mt1976/ebEstimates/dao"
@@ -23,11 +24,7 @@ import (
 )
 
 //Profile_Publish annouces the endpoints available for this object
-//Profile_Publish - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
 func Profile_Publish(mux http.ServeMux) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	mux.HandleFunc(dm.Profile_Path, Profile_Handler)
 	mux.HandleFunc(dm.Profile_PathList, Profile_HandlerList)
 	mux.HandleFunc(dm.Profile_PathView, Profile_HandlerView)
@@ -35,29 +32,18 @@ func Profile_Publish(mux http.ServeMux) {
 	mux.HandleFunc(dm.Profile_PathNew, Profile_HandlerNew)
 	mux.HandleFunc(dm.Profile_PathSave, Profile_HandlerSave)
 	mux.HandleFunc(dm.Profile_PathDelete, Profile_HandlerDelete)
-	logs.Publish("Application", dm.Profile_Title)
     core.API = core.API.AddRoute(dm.Profile_Title, dm.Profile_Path, "", dm.Profile_QueryString, "Application")
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
+	logs.Publish("Application", dm.Profile_Title)
 }
 
-
-//Profile_HandlerList is the handler for the list page
-//Allows Listing of Profile records
-//Profile_HandlerList - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+//Profile_HandlerList is the handler for the Profile list page
 func Profile_HandlerList(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	inUTL := r.URL.Path
 	w.Header().Set("Content-Type", "text/html")
 	core.ServiceMessage(inUTL)
@@ -66,7 +52,13 @@ func Profile_HandlerList(w http.ResponseWriter, r *http.Request) {
 
 	objectName := dao.Translate("ObjectName", "Profile")
 	reqField := "Base"
-	filter,_ := dao.Data_GetString(objectName, reqField, dm.Data_Category_FilterRule)
+	usage := "Defines a filter for the list of Profile records." + core.TEXTAREA_CR
+	usage = usage + "Fields can be any of those in the underlying DB table." + core.TEXTAREA_CR
+	usage = usage + "Examples Below:" + core.TEXTAREA_CR
+	usage = usage + "* datalength(_deleted) = 0 or " + core.TEXTAREA_CR 
+	usage = usage + "* class IN ('x','y','z')"
+	
+	filter,_ := dao.Data_GetString(objectName, reqField, dm.Data_Category_FilterRule,usage)
 	if filter == "" {
 		logs.Warning("No filter found : " + reqField + " for Object: " + objectName)
 	} 
@@ -81,34 +73,20 @@ func Profile_HandlerList(w http.ResponseWriter, r *http.Request) {
 		UserMenu:         UserMenu_Get(r),
 		UserRole:         Session_GetUserRole(r),
 	}
-	
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-	
+
 	nextTemplate :=  NextTemplate("Profile", "List", dm.Profile_TemplateList)
-
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
-
 }
 
-
-//Profile_HandlerView is the handler used to View a page
-//Allows Viewing for an existing Profile record
-//Profile_HandlerView - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Profile_HandlerView is the handler used to View a Profile database record
 func Profile_HandlerView(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -121,35 +99,23 @@ func Profile_HandlerView(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = profile_PopulatePage(rD , pageDetail) 
 
 	nextTemplate :=  NextTemplate("Profile", "View", dm.Profile_TemplateView)
+	nextTemplate = profile_URIQueryData(nextTemplate,rD,searchID)
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//Profile_HandlerEdit is the handler used generate the Edit page
-//Allows Editing for an existing Profile record and then allows the user to save the changes
-//Profile_HandlerEdit - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Profile_HandlerEdit is the handler used to Edit of an existing Profile database record
 func Profile_HandlerEdit(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -162,7 +128,6 @@ func Profile_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 	} else {
 		_, rD, _ = dao.Profile_GetByID(searchID)
 	}
-
 	
 	pageDetail := dm.Profile_Page{
 		Title:       CardTitle(dm.Profile_Title, core.Action_Edit),
@@ -170,36 +135,23 @@ func Profile_HandlerEdit(w http.ResponseWriter, r *http.Request) {
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = profile_PopulatePage(rD , pageDetail) 
 
-
 	nextTemplate :=  NextTemplate("Profile", "Edit", dm.Profile_TemplateEdit)
+	nextTemplate = profile_URIQueryData(nextTemplate,rD,searchID)
 
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//Profile_HandlerSave is the handler used process the saving of an Profile
-//It is called from the Edit and New pages
-//Profile_HandlerSave  - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Profile_HandlerSave is the handler used process the saving of an Profile database record, either new or existing, referenced by Edit & New Handlers.
 func Profile_HandlerSave(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// 
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	itemID := r.FormValue("ProfileID")
 	logs.Servicing(r.URL.Path+itemID)
@@ -209,33 +161,22 @@ func Profile_HandlerSave(w http.ResponseWriter, r *http.Request) {
 	item, errStore := dao.Profile_Store(item,r)
 	if errStore == nil {
 		nextTemplate :=  NextTemplate("Profile", "Save", dm.Profile_Redirect)
+		nextTemplate = profile_URIQueryData(nextTemplate,item,itemID)
 		http.Redirect(w, r, nextTemplate, http.StatusFound)
 	} else {
 		logs.Information(dm.Profile_Name, errStore.Error())
-		//http.Redirect(w, r, r.Referer(), http.StatusFound)
 		ExecuteRedirect(r.Referer(), w, r,dm.Profile_QueryString,itemID,item)
 	}
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
 
-
-//Profile_HandlerNew is the handler used process the creation of an Profile
-//It will create a new Profile and then redirect to the Edit page
-//Profile_HandlerNew  - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Profile_HandlerNew is the handler used process the creation of an new Profile database record, then redirect to Edit
 func Profile_HandlerNew(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
 	// Code Continues Below
-
 	w.Header().Set("Content-Type", "text/html")
 	logs.Servicing(r.URL.Path)
 
@@ -249,58 +190,39 @@ func Profile_HandlerNew(w http.ResponseWriter, r *http.Request) {
 		_, _, rD, _ = dao.Profile_New()
 	}
 
-
-
 	pageDetail := dm.Profile_Page{
 		Title:       CardTitle(dm.Profile_Title, core.Action_New),
 		PageTitle:   PageTitle(dm.Profile_Title, core.Action_New),
 		UserMenu:    UserMenu_Get(r),
 		UserRole:    Session_GetUserRole(r),
 	}
-
 	pageDetail.SessionInfo, _ = Session_GetSessionInfo(r)
-
 	pageDetail = profile_PopulatePage(rD , pageDetail) 
 
 	nextTemplate :=  NextTemplate("Profile", "New", dm.Profile_TemplateNew)
+	nextTemplate = profile_URIQueryData(nextTemplate,dm.Profile{},searchID)
+
 	ExecuteTemplate(nextTemplate, w, r, pageDetail)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }	
 
-
-//Profile_HandlerDelete is the handler used process the deletion of an Profile
-// It will delete the Profile and then redirect to the List page
-//Profile_HandlerDelete - Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//Profile_HandlerDelete is the handler used process the deletion of an Profile database record. May be Hard or SoftDelete.
 func Profile_HandlerDelete(w http.ResponseWriter, r *http.Request) {
-	// START
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	// Mandatory Security Validation
-	//
 	if !(Session_Validate(w, r)) {
 		core.Logout(w, r)
 		return
 	}
-	//
 	// Code Continues Below
-	//
 	logs.Servicing(r.URL.Path)
 	searchID := core.GetURLparam(r, dm.Profile_QueryString)
-
+	// DAO Call to Delete Profile Record, may be SoftDelete or HardDelete depending on the DAO implementation
 	dao.Profile_Delete(searchID)	
 
 	nextTemplate :=  NextTemplate("Profile", "Delete", dm.Profile_Redirect)
+	nextTemplate = profile_URIQueryData(nextTemplate,dm.Profile{},searchID)
 	http.Redirect(w, r, nextTemplate, http.StatusFound)
-	// 
-	// Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
 }
-
-
-//profile_PopulatePage Builds/Populates the Profile Page 
-//profile_PopulatePage Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+//profile_PopulatePage Builds/Populates the Profile Page from an instance of Profile from the Data Model
 func profile_PopulatePage(rD dm.Profile, pageDetail dm.Profile_Page) dm.Profile_Page {
 	// Real DB Fields
 	pageDetail.SYSId = rD.SYSId
@@ -336,8 +258,9 @@ func profile_PopulatePage(rD dm.Profile, pageDetail dm.Profile_Page) dm.Profile_
 	pageDetail.SYSDbVersion = rD.SYSDbVersion
 	pageDetail.Comments = rD.Comments
 	pageDetail.TrainingPerc = rD.TrainingPerc
-	// Add Pseudo/Extra Fields
-	// Enrichment Fields 
+	// Add Pseudo/Extra Fields, fields that are not in the DB but are used in the UI
+	// Enrichment content, content used provide lookups,lists etc
+	// Add the Properties for the Fields
 	pageDetail.SYSId_props = rD.SYSId_props
 	pageDetail.ProfileID_props = rD.ProfileID_props
 	pageDetail.Code_props = rD.Code_props
@@ -374,42 +297,69 @@ func profile_PopulatePage(rD dm.Profile, pageDetail dm.Profile_Page) dm.Profile_
 	return pageDetail
 }
 //profile_DataFromRequest is used process the content of an HTTP Request and return an instance of an Profile
-//profile_DataFromRequest Auto generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 func profile_DataFromRequest(r *http.Request) dm.Profile {
-
 	var item dm.Profile
-		item.SYSId = r.FormValue(dm.Profile_SYSId_scrn)
-		item.ProfileID = r.FormValue(dm.Profile_ProfileID_scrn)
-		item.Code = r.FormValue(dm.Profile_Code_scrn)
-		item.Name = r.FormValue(dm.Profile_Name_scrn)
-		item.StartDate = r.FormValue(dm.Profile_StartDate_scrn)
-		item.EndDate = r.FormValue(dm.Profile_EndDate_scrn)
-		item.DefaultReleases = r.FormValue(dm.Profile_DefaultReleases_scrn)
-		item.DefaultReleaseHours = r.FormValue(dm.Profile_DefaultReleaseHours_scrn)
-		item.BlendedRate = r.FormValue(dm.Profile_BlendedRate_scrn)
-		item.Rounding = r.FormValue(dm.Profile_Rounding_scrn)
-		item.HoursPerDay = r.FormValue(dm.Profile_HoursPerDay_scrn)
-		item.REQPerc = r.FormValue(dm.Profile_REQPerc_scrn)
-		item.ANAPerc = r.FormValue(dm.Profile_ANAPerc_scrn)
-		item.DOCPerc = r.FormValue(dm.Profile_DOCPerc_scrn)
-		item.PMPerc = r.FormValue(dm.Profile_PMPerc_scrn)
-		item.UATPerc = r.FormValue(dm.Profile_UATPerc_scrn)
-		item.GTMPerc = r.FormValue(dm.Profile_GTMPerc_scrn)
-		item.SupportUplift = r.FormValue(dm.Profile_SupportUplift_scrn)
-		item.ContigencyPerc = r.FormValue(dm.Profile_ContigencyPerc_scrn)
-		item.SYSCreated = r.FormValue(dm.Profile_SYSCreated_scrn)
-		item.SYSCreatedBy = r.FormValue(dm.Profile_SYSCreatedBy_scrn)
-		item.SYSCreatedHost = r.FormValue(dm.Profile_SYSCreatedHost_scrn)
-		item.SYSUpdated = r.FormValue(dm.Profile_SYSUpdated_scrn)
-		item.SYSUpdatedBy = r.FormValue(dm.Profile_SYSUpdatedBy_scrn)
-		item.SYSUpdatedHost = r.FormValue(dm.Profile_SYSUpdatedHost_scrn)
-		item.SYSDeleted = r.FormValue(dm.Profile_SYSDeleted_scrn)
-		item.SYSDeletedBy = r.FormValue(dm.Profile_SYSDeletedBy_scrn)
-		item.SYSDeletedHost = r.FormValue(dm.Profile_SYSDeletedHost_scrn)
-		item.SYSActivity = r.FormValue(dm.Profile_SYSActivity_scrn)
-		item.Notes = r.FormValue(dm.Profile_Notes_scrn)
-		item.SYSDbVersion = r.FormValue(dm.Profile_SYSDbVersion_scrn)
-		item.Comments = r.FormValue(dm.Profile_Comments_scrn)
-		item.TrainingPerc = r.FormValue(dm.Profile_TrainingPerc_scrn)
+	item.SYSId = r.FormValue(dm.Profile_SYSId_scrn)
+	item.ProfileID = r.FormValue(dm.Profile_ProfileID_scrn)
+	item.Code = r.FormValue(dm.Profile_Code_scrn)
+	item.Name = r.FormValue(dm.Profile_Name_scrn)
+	item.StartDate = r.FormValue(dm.Profile_StartDate_scrn)
+	item.EndDate = r.FormValue(dm.Profile_EndDate_scrn)
+	item.DefaultReleases = r.FormValue(dm.Profile_DefaultReleases_scrn)
+	item.DefaultReleaseHours = r.FormValue(dm.Profile_DefaultReleaseHours_scrn)
+	item.BlendedRate = r.FormValue(dm.Profile_BlendedRate_scrn)
+	item.Rounding = r.FormValue(dm.Profile_Rounding_scrn)
+	item.HoursPerDay = r.FormValue(dm.Profile_HoursPerDay_scrn)
+	item.REQPerc = r.FormValue(dm.Profile_REQPerc_scrn)
+	item.ANAPerc = r.FormValue(dm.Profile_ANAPerc_scrn)
+	item.DOCPerc = r.FormValue(dm.Profile_DOCPerc_scrn)
+	item.PMPerc = r.FormValue(dm.Profile_PMPerc_scrn)
+	item.UATPerc = r.FormValue(dm.Profile_UATPerc_scrn)
+	item.GTMPerc = r.FormValue(dm.Profile_GTMPerc_scrn)
+	item.SupportUplift = r.FormValue(dm.Profile_SupportUplift_scrn)
+	item.ContigencyPerc = r.FormValue(dm.Profile_ContigencyPerc_scrn)
+	item.SYSCreated = r.FormValue(dm.Profile_SYSCreated_scrn)
+	item.SYSCreatedBy = r.FormValue(dm.Profile_SYSCreatedBy_scrn)
+	item.SYSCreatedHost = r.FormValue(dm.Profile_SYSCreatedHost_scrn)
+	item.SYSUpdated = r.FormValue(dm.Profile_SYSUpdated_scrn)
+	item.SYSUpdatedBy = r.FormValue(dm.Profile_SYSUpdatedBy_scrn)
+	item.SYSUpdatedHost = r.FormValue(dm.Profile_SYSUpdatedHost_scrn)
+	item.SYSDeleted = r.FormValue(dm.Profile_SYSDeleted_scrn)
+	item.SYSDeletedBy = r.FormValue(dm.Profile_SYSDeletedBy_scrn)
+	item.SYSDeletedHost = r.FormValue(dm.Profile_SYSDeletedHost_scrn)
+	item.SYSActivity = r.FormValue(dm.Profile_SYSActivity_scrn)
+	item.Notes = r.FormValue(dm.Profile_Notes_scrn)
+	item.SYSDbVersion = r.FormValue(dm.Profile_SYSDbVersion_scrn)
+	item.Comments = r.FormValue(dm.Profile_Comments_scrn)
+	item.TrainingPerc = r.FormValue(dm.Profile_TrainingPerc_scrn)
 	return item
+}
+//profile_URIQueryData is used to replace the wildcards in the URI Query Path with the values from the Profile Data Model
+func profile_URIQueryData(queryPath string,item dm.Profile,itemID string) string {
+	if queryPath == "" {
+		return ""
+	}
+	queryPath = core.ReplaceWildcard(queryPath, strings.ToUpper("ID"), itemID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Profile_ProfileID_scrn), item.ProfileID)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Profile_Code_scrn), item.Code)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Profile_Name_scrn), item.Name)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Profile_StartDate_scrn), item.StartDate)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Profile_EndDate_scrn), item.EndDate)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Profile_DefaultReleases_scrn), item.DefaultReleases)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Profile_DefaultReleaseHours_scrn), item.DefaultReleaseHours)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Profile_BlendedRate_scrn), item.BlendedRate)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Profile_Rounding_scrn), item.Rounding)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Profile_HoursPerDay_scrn), item.HoursPerDay)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Profile_REQPerc_scrn), item.REQPerc)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Profile_ANAPerc_scrn), item.ANAPerc)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Profile_DOCPerc_scrn), item.DOCPerc)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Profile_PMPerc_scrn), item.PMPerc)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Profile_UATPerc_scrn), item.UATPerc)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Profile_GTMPerc_scrn), item.GTMPerc)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Profile_SupportUplift_scrn), item.SupportUplift)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Profile_ContigencyPerc_scrn), item.ContigencyPerc)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Profile_Notes_scrn), item.Notes)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Profile_Comments_scrn), item.Comments)
+	queryPath = core.ReplaceWildcard(queryPath, "!"+strings.ToUpper(dm.Profile_TrainingPerc_scrn), item.TrainingPerc)
+	return queryPath
 }

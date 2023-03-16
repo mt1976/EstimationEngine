@@ -46,7 +46,7 @@ func ssloader_Run_impl() (string, error) {
 	jobName := ssloader_Job().Name
 
 	//Get Path from Data to Spreadsheet
-	ssPath, err := dao.Data_Get(jobName, JOB_IN_PATH, dm.Data_Category_Path)
+	ssPath, err := dao.Data_Get(jobName, JOB_IN_PATH, dm.Data_Category_Path, "The path to the input file.")
 	if err != nil {
 		return "No Location Specified for " + jobName, err
 	}
@@ -55,7 +55,8 @@ func ssloader_Run_impl() (string, error) {
 	}
 
 	//Get Mode from Data
-	ssMode, err := dao.Data_Get(jobName, JOB_MODE, dm.Data_Category_State)
+	msg := "The mode of operation for the job." + core.TEXTAREA_CR + "Trial - No data is changed." + core.TEXTAREA_CR + "Live - Data is changed."
+	ssMode, err := dao.Data_Get(jobName, JOB_MODE, dm.Data_Category_State, msg)
 	if err != nil {
 		return "No Mode Specified for " + jobName, err
 	}
@@ -172,7 +173,7 @@ func newFeature(estim dm.EstimationSession, newRSC TrackerItem, proj dm.Project,
 	var feature dm.Feature
 	feature.FeatureID = dao.Feature_NewID(feature)
 	feature.EstimationSessionID = estim.EstimationSessionID
-	feature.ConfidenceCODE, _ = dao.Data_Get(ssloader_Job().Name, "Feature_Confidence", dm.Data_Category_Default)
+	feature.ConfidenceCODE, _ = dao.Data_Get(ssloader_Job().Name, "Feature_Confidence", dm.Data_Category_Default, "The default confidence for an imported feature")
 	feature.Name = newRSC.Desc
 	feature.DevelopmentEstimate = "0"
 	feature.DevelopmentFactored = "0"
@@ -186,7 +187,7 @@ func newFeature(estim dm.EstimationSession, newRSC TrackerItem, proj dm.Project,
 	feature.ProfileSelected = proj.ProfileID
 	feature.Activity = core.AddActivity_ForProcess(feature.Activity, core.DQuote(newRSC.Desc)+" loaded from Spreadsheet "+today, ssloader_Job().Name)
 	feature.Activity = core.AddActivity_ForProcess(feature.Activity, "Cost = "+newRSC.Value, ssloader_Job().Name)
-	feature.DeveloperResource, _ = dao.Data_Get(ssloader_Job().Name, "Feature_Engineer", dm.Data_Category_Default)
+	feature.DeveloperResource, _ = dao.Data_Get(ssloader_Job().Name, "Feature_Engineer", dm.Data_Category_Default, "The default engineer for an imported feature")
 	feature.ApproverResource = "--"
 	feature.ProductManagerResource = "--"
 	feature.ProjectManagerResource = "--"
@@ -200,7 +201,7 @@ func newEstimationSession(proj dm.Project, newRSC TrackerItem, today string, noW
 	estim.EstimationSessionID = dao.EstimationSession_NewID(estim)
 	estim.ProjectID = proj.ProjectID
 	estim.EstimationStateID = newRSC.Status
-	estim.ProjectProfileID, _ = dao.Data_Get(ssloader_Job().Name, "Project_Profile", dm.Data_Category_Default)
+	estim.ProjectProfileID, _ = dao.Data_Get(ssloader_Job().Name, "Project_Profile", dm.Data_Category_Default, "The default profile for an imported project")
 	estim.Activity = core.AddActivity_ForProcess(estim.Activity, core.DQuote(newRSC.Desc)+" loaded from Spreadsheet "+today, ssloader_Job().Name)
 	estim.Name = newRSC.Desc + " Estimate"
 	estim.Total = newRSC.Value

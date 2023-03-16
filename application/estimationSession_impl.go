@@ -457,7 +457,7 @@ func Estimationsession_Calculate(searchID string) dm.EstimationSession {
 // rtn Rounds a number to the nearest multiple of the RoundingFactor
 func rtn(number float64, RoundingFactor float64) (float64, error) {
 	// Round to the nearest multiple of the RoundingFactor
-	rtnVal, rtnErr := core.RoundToNearest(number, RoundingFactor)
+	rtnVal, rtnErr := core.RoundUpTo(number, RoundingFactor)
 	return rtnVal, rtnErr
 }
 

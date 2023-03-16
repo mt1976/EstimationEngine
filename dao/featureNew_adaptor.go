@@ -76,7 +76,7 @@ func FeatureNew_Update_impl(id string, rec dm.FeatureNew, usr string) error {
 	item.ProfileSelected = rec.ProfileSelected
 	item.ProfileDefault = rec.ProfileDefault
 
-	item = Feature_CalcDefaults(item, false)
+	item = Feature_CalcDefaults(item, false, usr)
 	//
 	// Dynamically generated 29/11/2022 by matttownsend (Matt Townsend) on silicon.local
 	// END

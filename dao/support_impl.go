@@ -26,7 +26,7 @@ type SQLData struct {
 func addData(d SQLData, f string, v string) SQLData {
 	if f != "_id" {
 		d.fields = append(d.fields, f)
-		d.values = append(d.values, sq(v))
+		d.values = append(d.values, sq(core.EscapeSQL(v)))
 	}
 	return d
 }
@@ -54,7 +54,7 @@ func get_String(t map[string]interface{}, v string, d string) string {
 	if i == nil {
 		return d
 	}
-	return i.(string)
+	return core.UnEscapeSQL(i.(string))
 }
 
 // Gets a time.Time from the interface map & default a value if not found
@@ -221,7 +221,8 @@ func SetFieldGood(fP dm.FieldProperties, msg string) dm.FieldProperties {
 
 func IsValidResource(iValue string, fP dm.FieldProperties) dm.FieldProperties {
 	return fP
-	emptyValue, _ := Data_GetString("System", "Empty_Resource", dm.Data_Category_StateRule)
+	usage := "Definition of a default 'empty'/'null' resource, when a resource is not specified"
+	emptyValue, _ := Data_GetString("System", "Empty_Resource", dm.Data_Category_StateRule, usage)
 	if emptyValue == "" {
 		logs.Warning("No Empty_Resource Rule Set - Assuming '--'")
 		emptyValue = "--"
@@ -248,4 +249,56 @@ func Financial_CCYtoSymbol(inCCY string) string {
 		}
 	}
 	return inCCY
+}
+
+func RoundingHours() (float64, error) {
+	defaultVal := core.StringToFloat(core.ApplicationProperties.Get_DBProperty("roundhoursto"))
+	usage := "Definition of the default rounding hours for time entries - Defaults to %v"
+	usage = fmt.Sprintf(usage, defaultVal)
+	systemValString, err := Data_GetString("System", "Round_Hours_To", dm.Data_Category_Setting, usage)
+	if err != nil {
+		return defaultVal, err
+	}
+	if systemValString == "" {
+		return defaultVal, nil
+	}
+	systemVal, err := Data_GetFloat("System", "Round_Hours_To", dm.Data_Category_Setting, usage)
+	if err != nil {
+		return defaultVal, err
+	}
+	return systemVal, nil
+}
+
+func RoundingHours_String() string {
+	hours, err := RoundingHours()
+	if err != nil {
+		return ""
+	}
+	return core.FloatToString(hours)
+}
+
+func RoundingDays() (float64, error) {
+	defaultVal := core.StringToFloat(core.ApplicationProperties.Get_DBProperty("rounddaysto"))
+	usage := "Definition of the default rounding hours for time entries - Defaults to %v"
+	usage = fmt.Sprintf(usage, defaultVal)
+	systemValString, err := Data_GetString("System", "Round_Days_To", dm.Data_Category_Setting, usage)
+	if err != nil {
+		return defaultVal, err
+	}
+	if systemValString == "" {
+		return defaultVal, nil
+	}
+	systemVal, err := Data_GetFloat("System", "Round_Days_To", dm.Data_Category_Setting, usage)
+	if err != nil {
+		return defaultVal, err
+	}
+	return systemVal, nil
+}
+
+func RoundingDays_String() string {
+	days, err := RoundingDays()
+	if err != nil {
+		return ""
+	}
+	return core.FloatToString(days)
 }

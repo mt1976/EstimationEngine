@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:25
+// Date & Time		    : 15/03/2023 at 19:24:47
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -63,12 +63,7 @@ func Catalog_GetByID(id string) (int, dm.Catalog, error) {
 }
 
 func Catalog_PostGet(catalogItem dm.Catalog, id string) dm.Catalog {
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	//
-	//
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
+
 	return catalogItem
 }
 
@@ -131,11 +126,13 @@ func Catalog_StoreProcess(r dm.Catalog, operator string) (dm.Catalog, error) {
 // Catalog_Validate() validates for saves/stores a Catalog record to the database
 func Catalog_Validate(r dm.Catalog) (dm.Catalog, error) {
 	var err error
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	//
-	//
 
+	// Cross Validation
+	var errVal error
+	r, _, errVal = Catalog_ObjectValidation_impl(PUT, r.ID, r)
+	if errVal != nil {
+		err = errVal
+	}
 	return r, err
 }
 
@@ -183,7 +180,7 @@ func catalog_Fetch(tsql string) (int, []dm.Catalog, dm.Catalog, error) {
 
 		rec := returnList[i]
 		// START
-		// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		//
 		recItem.ID = get_String(rec, dm.Catalog_ID_sql, "")
 		recItem.Endpoint = get_String(rec, dm.Catalog_Endpoint_sql, "")
@@ -193,7 +190,7 @@ func catalog_Fetch(tsql string) (int, []dm.Catalog, dm.Catalog, error) {
 
 		// If there are fields below, create the methods in dao\Catalog_adaptor.go
 		//
-		// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		// END
 		///
 		//Add to the list
@@ -218,11 +215,11 @@ func Catalog_New() (int, []dm.Catalog, dm.Catalog, error) {
 	var rList []dm.Catalog
 
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 
 	//
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

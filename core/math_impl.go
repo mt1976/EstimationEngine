@@ -8,17 +8,47 @@ import (
 )
 
 // rtn Rounds a number to the nearest multiple of the RoundingFactor
-func RoundToNearest(number float64, RoundingFactor float64) (float64, error) {
+func RoundUpTo(number float64, roundto float64) (float64, error) {
 	// Round to the nearest multiple of the RoundingFactor
-	if RoundingFactor == 0 {
+	if roundto == 0 {
 		return number, nil
 	}
 	//fmt.Printf("Number: %v\n", number)
 	//fmt.Printf("RoundingFactor: %v\n", RoundingFactor)
-	rtnVal := math.Round(number/RoundingFactor) * RoundingFactor
+	//rtnVal := math.Round(number/RoundingFactor) * RoundingFactor
+	rtnVal := math.Floor(number) + math.Ceil((number-math.Floor(number))/roundto)*roundto
+	//msg := fmt.Sprintf("Rounding %v to %v (%v)", number, rtnVal, RoundingFactor)
+	//logs.Information("RoundToNearest", msg)
+
 	//fmt.Printf("rtnVal: %v\n", rtnVal)
 	return rtnVal, nil
 }
+
+// func RoundMe(num float64, roundto float64) float64 {
+// 	fmt.Printf(">>> Round Up: %v to nearest %v\n", num, roundto)
+
+// 	//num = num + .0000001
+// 	//roundto = 1 / roundto
+// 	//ceilIn := num * roundto
+// 	//returnval := clng(ceilIn) / roundto
+
+// 	returnval := flr(num) + clng((num-flr(num))/roundto)*roundto
+// 	fmt.Printf(">>> Result : %v\n", returnval)
+
+// 	return returnval
+// }
+
+// func clng(num float64) float64 {
+// 	rtn := math.Ceil(num)
+// 	fmt.Printf("Result clng: %v from %v\n", rtn, num)
+// 	return rtn
+// }
+
+// func flr(num float64) float64 {
+// 	rtn := math.Floor(num)
+// 	fmt.Printf("Result flr: %v from %v\n", rtn, num)
+// 	return rtn
+// }
 
 func StringToFloat(in string) float64 {
 	if in == "" {

@@ -32,13 +32,18 @@ func Indexer_Put(KeyClass string, KeyField string, KeyID string, KeyValue string
 	iRec.KeyValue = KeyValue
 
 	prefix := ""
-	iRec.Link, _ = Data_Get(iRec.KeyClass, iRec.KeyName, dm.Data_Category_Indexer)
+	usage := "The path to the content for this index." + core.TEXTAREA_CR
+	usage = usage + "The path can contain wildcards: " + core.DQuote("{{ID}}") + " and " + core.DQuote("{{VALUE}}") + core.TEXTAREA_CR
+	usage = usage + "* The ID wildcard is replaced by the key to the object" + core.TEXTAREA_CR
+	usage = usage + "* The VALUE wildcard is replaced by the linkable key to the object used in the URI" + core.TEXTAREA_CR
+	usage = usage + "The path must be a relative path." + core.TEXTAREA_CR
+	iRec.Link, _ = Data_Get(iRec.KeyClass, iRec.KeyName, dm.Data_Category_Indexer, usage)
 	iRec.Link = prefix + iRec.Link
 
 	if iRec.Link == "" {
 		iRec.Link = "/{{VALUE}}"
 		logs.Warning("Indexer Content Not found " + core.DQuote(iRec.KeyClass) + " " + core.DQuote(iRec.KeyName) + " using " + core.DQuote(iRec.Link))
-		Data_Put(iRec.KeyClass, iRec.KeyName, dm.Data_Category_Indexer, iRec.Link)
+		Data_Put(iRec.KeyClass, iRec.KeyName, dm.Data_Category_Indexer, iRec.Link, usage)
 	}
 	//iRec.Link = fmt.Sprintf(iRec.Link, iRec.KeyID)
 

@@ -108,4 +108,6 @@ const (
 	FALSE = "false"
 
 	ExceptionHandlingPageSuffix = "Exception"
+
+	TEXTAREA_CR = "\n"
 )

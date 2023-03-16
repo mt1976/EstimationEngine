@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:30
+// Date & Time		    : 15/03/2023 at 19:24:49
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //ProjectState defines the datamodel for the ProjectState object
 type ProjectState struct {
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -65,7 +65,7 @@ type ProjectState struct {
 	}
 
 const (
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	ProjectState_Name      = "ProjectState"
 	ProjectState_Title       = "Project State"
@@ -143,7 +143,7 @@ const (
 
 //ProjectState_PageList provides the information for the template for a list of ProjectStates
 type ProjectState_PageList struct {
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -165,7 +165,7 @@ type ProjectState_PageList struct {
 
 //ProjectState_Page provides the information for the template for an individual ProjectState
 type ProjectState_Page struct {
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem

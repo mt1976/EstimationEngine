@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:25
+// Date & Time		    : 15/03/2023 at 19:24:47
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -57,12 +57,7 @@ func CredentialsAction_GetByID(id string) (int, dm.CredentialsAction, error) {
 }
 
 func CredentialsAction_PostGet(credentialsactionItem dm.CredentialsAction, id string) dm.CredentialsAction {
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	//
-	//
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
+
 	return credentialsactionItem
 }
 
@@ -125,11 +120,13 @@ func CredentialsAction_StoreProcess(r dm.CredentialsAction, operator string) (dm
 // CredentialsAction_Validate() validates for saves/stores a CredentialsAction record to the database
 func CredentialsAction_Validate(r dm.CredentialsAction) (dm.CredentialsAction, error) {
 	var err error
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	//
-	//
 
+	// Cross Validation
+	var errVal error
+	r, _, errVal = CredentialsAction_ObjectValidation_impl(PUT, r.ID, r)
+	if errVal != nil {
+		err = errVal
+	}
 	return r, err
 }
 
@@ -178,11 +175,11 @@ func CredentialsAction_New() (int, []dm.CredentialsAction, dm.CredentialsAction,
 	var rList []dm.CredentialsAction
 
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 
 	//
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

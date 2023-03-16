@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:26
+// Date & Time		    : 15/03/2023 at 19:24:47
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //DocType defines the datamodel for the DocType object
 type DocType struct {
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -61,7 +61,7 @@ type DocType struct {
 	}
 
 const (
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	DocType_Name      = "DocType"
 	DocType_Title       = "Document Types"
@@ -137,7 +137,7 @@ const (
 
 //DocType_PageList provides the information for the template for a list of DocTypes
 type DocType_PageList struct {
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -159,7 +159,7 @@ type DocType_PageList struct {
 
 //DocType_Page provides the information for the template for an individual DocType
 type DocType_Page struct {
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem

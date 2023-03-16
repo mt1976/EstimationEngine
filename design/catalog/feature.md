@@ -100,13 +100,21 @@ SQL Table Key | **featureID**
 |**EstimateEffortDefault**|String|false|true|false|true|||||NH|estimateEffortDefault||false|false|false|text||
 |**AnalystEstimate**|String|false|true|false|true|||||N|analystEstimate||false|true|false|number||
 |**TotalDefault**|String|false|true|false|true|||||N|totalDefault||false|false|false|number||
+|**RequirementsPerc**|String|false|true|false|true|||||NH|requirementsPerc||false|true|false|text||
+|**AnalystTestPerc**|String|false|true|false|true|||||NH|analystTestPerc||false|true|false|text||
+|**DocumentationPerc**|String|false|true|false|true|||||NH|documentationPerc||false|true|false|text||
+|**ManagementPerc**|String|false|true|false|true|||||NH|managementPerc||false|true|false|text||
+|**UatSupportPerc**|String|false|true|false|true|||||NH|uatSupportPerc||false|true|false|text||
+|**MarketingPerc**|String|false|true|false|true|||||NH|marketingPerc||false|true|false|text||
+|**ContingencyPerc**|String|false|true|false|true|||||NH|contingencyPerc||false|true|false|text||
+|**TrainingPerc**|String|false|true|false|true|||||NH|trainingPerc||false|true|false|text||
+|**RoundedTo**|String|false|true|false|true|||||NH|roundedTo||false|true|false|text||
 |**OriginName**|String|false|false|true|true|||||N|||false|true|false|text||
 |**ProjectName**|String|false|false|true|true|||||N|||false|true|false|text||
 |**OriginID**|String|false|false|true|true|||||N|||false|true|false|text||
 |**ProjectID**|String|false|false|true|true|||||N|||false|true|false|text||
 |**ProfileSelectedOld**|String|false|false|true|false|||||N|||false|true|false|text||
 |**CCY**|String|false|false|true|false|||||N|||false|true|false|text||
-|**RoundTo**|String|false|false|true|false|||||N|||false|true|false|text||
 |**OriginCode**|String|false|false|true|true|||||N|||false|true|false|text||
 |**EstimationSessionName**|String|false|false|true|true|||||N|||false|true|false|text||
 
@@ -131,7 +139,7 @@ SQL Table Key | **featureID**
 | Information  | Value |
 |---|---|
 Template Generator Version   | **Einsteinium [r5-23.01.23]**
-Date & Time		     | **13/03/2023** at **14:22:27**
+Date & Time		     | **15/03/2023** at **19:24:48**
 Who & Where		     | **matttownsend (Matt Townsend)** on **silicon.local**
 
 ---

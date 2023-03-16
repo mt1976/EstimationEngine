@@ -8,19 +8,19 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:27
+// Date & Time		    : 15/03/2023 at 19:24:48
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 import (
 	"fmt"
 	"net/http"
+	"errors"
 	core "github.com/mt1976/ebEstimates/core"
 	"github.com/google/uuid"
 	das  "github.com/mt1976/ebEstimates/das"
 	dm   "github.com/mt1976/ebEstimates/datamodel"
 	logs   "github.com/mt1976/ebEstimates/logs"
-	"github.com/pkg/errors"
 )
 
 var Feature_SQLbase string
@@ -64,7 +64,14 @@ func Feature_GetFilteredLookup(requestObject string,requestField string) []dm.Lo
 	var returnList []dm.Lookup_Item
 	objectName := Translate("ObjectName", requestObject)
 	reqField := requestField+"_Feature_Filter"
-	filter,_ := Data_GetString(objectName, reqField, dm.Data_Category_FilterRule)
+	
+	usage := "Defines a filter for a lookup list of Feature records, when requested by "+requestField+"." + core.TEXTAREA_CR
+	usage = usage + "Fields can be any of those in the underlying DB table." + core.TEXTAREA_CR
+	usage = usage + "Examples Below:" + core.TEXTAREA_CR
+	usage = usage + "* datalength(_deleted) = 0 or " + core.TEXTAREA_CR 
+	usage = usage + "* class IN ('x','y','z')"
+
+	filter,_ := Data_GetString(objectName, reqField, dm.Data_Category_FilterRule,usage)
 	if filter == "" {
 		logs.Warning("Feature_GetFilteredLookup() - No filter found : " + reqField + " for Object: " + objectName)
 	} 
@@ -92,9 +99,6 @@ func Feature_GetByID(id string) (int, dm.Feature, error) {
 }
 
 func Feature_PostGet(featureItem dm.Feature,id string) dm.Feature {
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	featureItem.FeatureID,featureItem.FeatureID_props = Feature_FeatureID_validate_impl (GET,id,featureItem.FeatureID,featureItem,featureItem.FeatureID_props)
 	featureItem.EstimationSessionID,featureItem.EstimationSessionID_props = Feature_EstimationSessionID_validate_impl (GET,id,featureItem.EstimationSessionID,featureItem,featureItem.EstimationSessionID_props)
 	featureItem.Name,featureItem.Name_props = Feature_Name_validate_impl (GET,id,featureItem.Name,featureItem,featureItem.Name_props)
@@ -118,18 +122,24 @@ func Feature_PostGet(featureItem dm.Feature,id string) dm.Feature {
 	featureItem.Training,featureItem.Training_props = Feature_Training_validate_impl (GET,id,featureItem.Training,featureItem,featureItem.Training_props)
 	featureItem.EstimateEffort,featureItem.EstimateEffort_props = Feature_EstimateEffort_validate_impl (GET,id,featureItem.EstimateEffort,featureItem,featureItem.EstimateEffort_props)
 	featureItem.AnalystEstimate,featureItem.AnalystEstimate_props = Feature_AnalystEstimate_validate_impl (GET,id,featureItem.AnalystEstimate,featureItem,featureItem.AnalystEstimate_props)
+	featureItem.RequirementsPerc,featureItem.RequirementsPerc_props = Feature_RequirementsPerc_validate_impl (GET,id,featureItem.RequirementsPerc,featureItem,featureItem.RequirementsPerc_props)
+	featureItem.AnalystTestPerc,featureItem.AnalystTestPerc_props = Feature_AnalystTestPerc_validate_impl (GET,id,featureItem.AnalystTestPerc,featureItem,featureItem.AnalystTestPerc_props)
+	featureItem.DocumentationPerc,featureItem.DocumentationPerc_props = Feature_DocumentationPerc_validate_impl (GET,id,featureItem.DocumentationPerc,featureItem,featureItem.DocumentationPerc_props)
+	featureItem.ManagementPerc,featureItem.ManagementPerc_props = Feature_ManagementPerc_validate_impl (GET,id,featureItem.ManagementPerc,featureItem,featureItem.ManagementPerc_props)
+	featureItem.UatSupportPerc,featureItem.UatSupportPerc_props = Feature_UatSupportPerc_validate_impl (GET,id,featureItem.UatSupportPerc,featureItem,featureItem.UatSupportPerc_props)
+	featureItem.MarketingPerc,featureItem.MarketingPerc_props = Feature_MarketingPerc_validate_impl (GET,id,featureItem.MarketingPerc,featureItem,featureItem.MarketingPerc_props)
+	featureItem.ContingencyPerc,featureItem.ContingencyPerc_props = Feature_ContingencyPerc_validate_impl (GET,id,featureItem.ContingencyPerc,featureItem,featureItem.ContingencyPerc_props)
+	featureItem.TrainingPerc,featureItem.TrainingPerc_props = Feature_TrainingPerc_validate_impl (GET,id,featureItem.TrainingPerc,featureItem,featureItem.TrainingPerc_props)
+	featureItem.RoundedTo,featureItem.RoundedTo_props = Feature_RoundedTo_validate_impl (GET,id,featureItem.RoundedTo,featureItem,featureItem.RoundedTo_props)
 	featureItem.OriginName,featureItem.OriginName_props = Feature_OriginName_validate_impl (GET,id,featureItem.OriginName,featureItem,featureItem.OriginName_props)
 	featureItem.ProjectName,featureItem.ProjectName_props = Feature_ProjectName_validate_impl (GET,id,featureItem.ProjectName,featureItem,featureItem.ProjectName_props)
 	featureItem.OriginID,featureItem.OriginID_props = Feature_OriginID_validate_impl (GET,id,featureItem.OriginID,featureItem,featureItem.OriginID_props)
 	featureItem.ProjectID,featureItem.ProjectID_props = Feature_ProjectID_validate_impl (GET,id,featureItem.ProjectID,featureItem,featureItem.ProjectID_props)
 	featureItem.ProfileSelectedOld,featureItem.ProfileSelectedOld_props = Feature_ProfileSelectedOld_validate_impl (GET,id,featureItem.ProfileSelectedOld,featureItem,featureItem.ProfileSelectedOld_props)
 	featureItem.CCY,featureItem.CCY_props = Feature_CCY_validate_impl (GET,id,featureItem.CCY,featureItem,featureItem.CCY_props)
-	featureItem.RoundTo,featureItem.RoundTo_props = Feature_RoundTo_validate_impl (GET,id,featureItem.RoundTo,featureItem,featureItem.RoundTo_props)
 	featureItem.OriginCode,featureItem.OriginCode_props = Feature_OriginCode_validate_impl (GET,id,featureItem.OriginCode,featureItem,featureItem.OriginCode_props)
 	featureItem.EstimationSessionName,featureItem.EstimationSessionName_props = Feature_EstimationSessionName_validate_impl (GET,id,featureItem.EstimationSessionName,featureItem,featureItem.EstimationSessionName_props)
-	// 
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	// END
+
 	return featureItem
 }
 
@@ -209,9 +219,6 @@ func Feature_StoreProcess(r dm.Feature, operator string) (dm.Feature,error) {
 // Feature_Validate() validates for saves/stores a Feature record to the database
 func Feature_Validate(r dm.Feature) (dm.Feature, error) {
 	var err error
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
-	//
 	r.FeatureID,r.FeatureID_props = Feature_FeatureID_validate_impl (PUT,r.FeatureID,r.FeatureID,r,r.FeatureID_props)
 	if r.FeatureID_props.MsgMessage != "" {
 		err = errors.New(r.FeatureID_props.MsgMessage)
@@ -304,6 +311,42 @@ func Feature_Validate(r dm.Feature) (dm.Feature, error) {
 	if r.AnalystEstimate_props.MsgMessage != "" {
 		err = errors.New(r.AnalystEstimate_props.MsgMessage)
 	}
+	r.RequirementsPerc,r.RequirementsPerc_props = Feature_RequirementsPerc_validate_impl (PUT,r.FeatureID,r.RequirementsPerc,r,r.RequirementsPerc_props)
+	if r.RequirementsPerc_props.MsgMessage != "" {
+		err = errors.New(r.RequirementsPerc_props.MsgMessage)
+	}
+	r.AnalystTestPerc,r.AnalystTestPerc_props = Feature_AnalystTestPerc_validate_impl (PUT,r.FeatureID,r.AnalystTestPerc,r,r.AnalystTestPerc_props)
+	if r.AnalystTestPerc_props.MsgMessage != "" {
+		err = errors.New(r.AnalystTestPerc_props.MsgMessage)
+	}
+	r.DocumentationPerc,r.DocumentationPerc_props = Feature_DocumentationPerc_validate_impl (PUT,r.FeatureID,r.DocumentationPerc,r,r.DocumentationPerc_props)
+	if r.DocumentationPerc_props.MsgMessage != "" {
+		err = errors.New(r.DocumentationPerc_props.MsgMessage)
+	}
+	r.ManagementPerc,r.ManagementPerc_props = Feature_ManagementPerc_validate_impl (PUT,r.FeatureID,r.ManagementPerc,r,r.ManagementPerc_props)
+	if r.ManagementPerc_props.MsgMessage != "" {
+		err = errors.New(r.ManagementPerc_props.MsgMessage)
+	}
+	r.UatSupportPerc,r.UatSupportPerc_props = Feature_UatSupportPerc_validate_impl (PUT,r.FeatureID,r.UatSupportPerc,r,r.UatSupportPerc_props)
+	if r.UatSupportPerc_props.MsgMessage != "" {
+		err = errors.New(r.UatSupportPerc_props.MsgMessage)
+	}
+	r.MarketingPerc,r.MarketingPerc_props = Feature_MarketingPerc_validate_impl (PUT,r.FeatureID,r.MarketingPerc,r,r.MarketingPerc_props)
+	if r.MarketingPerc_props.MsgMessage != "" {
+		err = errors.New(r.MarketingPerc_props.MsgMessage)
+	}
+	r.ContingencyPerc,r.ContingencyPerc_props = Feature_ContingencyPerc_validate_impl (PUT,r.FeatureID,r.ContingencyPerc,r,r.ContingencyPerc_props)
+	if r.ContingencyPerc_props.MsgMessage != "" {
+		err = errors.New(r.ContingencyPerc_props.MsgMessage)
+	}
+	r.TrainingPerc,r.TrainingPerc_props = Feature_TrainingPerc_validate_impl (PUT,r.FeatureID,r.TrainingPerc,r,r.TrainingPerc_props)
+	if r.TrainingPerc_props.MsgMessage != "" {
+		err = errors.New(r.TrainingPerc_props.MsgMessage)
+	}
+	r.RoundedTo,r.RoundedTo_props = Feature_RoundedTo_validate_impl (PUT,r.FeatureID,r.RoundedTo,r,r.RoundedTo_props)
+	if r.RoundedTo_props.MsgMessage != "" {
+		err = errors.New(r.RoundedTo_props.MsgMessage)
+	}
 	r.OriginName,r.OriginName_props = Feature_OriginName_validate_impl (PUT,r.FeatureID,r.OriginName,r,r.OriginName_props)
 	if r.OriginName_props.MsgMessage != "" {
 		err = errors.New(r.OriginName_props.MsgMessage)
@@ -328,10 +371,6 @@ func Feature_Validate(r dm.Feature) (dm.Feature, error) {
 	if r.CCY_props.MsgMessage != "" {
 		err = errors.New(r.CCY_props.MsgMessage)
 	}
-	r.RoundTo,r.RoundTo_props = Feature_RoundTo_validate_impl (PUT,r.FeatureID,r.RoundTo,r,r.RoundTo_props)
-	if r.RoundTo_props.MsgMessage != "" {
-		err = errors.New(r.RoundTo_props.MsgMessage)
-	}
 	r.OriginCode,r.OriginCode_props = Feature_OriginCode_validate_impl (PUT,r.FeatureID,r.OriginCode,r,r.OriginCode_props)
 	if r.OriginCode_props.MsgMessage != "" {
 		err = errors.New(r.OriginCode_props.MsgMessage)
@@ -340,17 +379,13 @@ func Feature_Validate(r dm.Feature) (dm.Feature, error) {
 	if r.EstimationSessionName_props.MsgMessage != "" {
 		err = errors.New(r.EstimationSessionName_props.MsgMessage)
 	}
-	// 
 
-	
 	// Cross Validation
 	var errVal error
 	r, _, errVal = Feature_ObjectValidation_impl(PUT, r.FeatureID, r)
 	if errVal != nil {
 		err = errVal
 	}
-	
-
 	return r,err
 }
 //
@@ -388,13 +423,21 @@ func feature_Save(r dm.Feature,usr string) error {
     r.Training,err = Feature_Training_OnStore_impl (r.Training,r,usr)
     r.EstimateEffort,err = Feature_EstimateEffort_OnStore_impl (r.EstimateEffort,r,usr)
     r.AnalystEstimate,err = Feature_AnalystEstimate_OnStore_impl (r.AnalystEstimate,r,usr)
+    r.RequirementsPerc,err = Feature_RequirementsPerc_OnStore_impl (r.RequirementsPerc,r,usr)
+    r.AnalystTestPerc,err = Feature_AnalystTestPerc_OnStore_impl (r.AnalystTestPerc,r,usr)
+    r.DocumentationPerc,err = Feature_DocumentationPerc_OnStore_impl (r.DocumentationPerc,r,usr)
+    r.ManagementPerc,err = Feature_ManagementPerc_OnStore_impl (r.ManagementPerc,r,usr)
+    r.UatSupportPerc,err = Feature_UatSupportPerc_OnStore_impl (r.UatSupportPerc,r,usr)
+    r.MarketingPerc,err = Feature_MarketingPerc_OnStore_impl (r.MarketingPerc,r,usr)
+    r.ContingencyPerc,err = Feature_ContingencyPerc_OnStore_impl (r.ContingencyPerc,r,usr)
+    r.TrainingPerc,err = Feature_TrainingPerc_OnStore_impl (r.TrainingPerc,r,usr)
+    r.RoundedTo,err = Feature_RoundedTo_OnStore_impl (r.RoundedTo,r,usr)
     r.OriginName,err = Feature_OriginName_OnStore_impl (r.OriginName,r,usr)
     r.ProjectName,err = Feature_ProjectName_OnStore_impl (r.ProjectName,r,usr)
     r.OriginID,err = Feature_OriginID_OnStore_impl (r.OriginID,r,usr)
     r.ProjectID,err = Feature_ProjectID_OnStore_impl (r.ProjectID,r,usr)
     r.ProfileSelectedOld,err = Feature_ProfileSelectedOld_OnStore_impl (r.ProfileSelectedOld,r,usr)
     r.CCY,err = Feature_CCY_OnStore_impl (r.CCY,r,usr)
-    r.RoundTo,err = Feature_RoundTo_OnStore_impl (r.RoundTo,r,usr)
     r.OriginCode,err = Feature_OriginCode_OnStore_impl (r.OriginCode,r,usr)
     r.EstimationSessionName,err = Feature_EstimationSessionName_OnStore_impl (r.EstimationSessionName,r,usr)
 
@@ -412,7 +455,7 @@ logs.Storing("Feature",fmt.Sprintf("%v", r))
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	ts = addData(ts, dm.Feature_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Feature_FeatureID_sql, r.FeatureID)
@@ -471,7 +514,15 @@ logs.Storing("Feature",fmt.Sprintf("%v", r))
 	ts = addData(ts, dm.Feature_EstimateEffortDefault_sql, r.EstimateEffortDefault)
 	ts = addData(ts, dm.Feature_AnalystEstimate_sql, r.AnalystEstimate)
 	ts = addData(ts, dm.Feature_TotalDefault_sql, r.TotalDefault)
-	
+	ts = addData(ts, dm.Feature_RequirementsPerc_sql, r.RequirementsPerc)
+	ts = addData(ts, dm.Feature_AnalystTestPerc_sql, r.AnalystTestPerc)
+	ts = addData(ts, dm.Feature_DocumentationPerc_sql, r.DocumentationPerc)
+	ts = addData(ts, dm.Feature_ManagementPerc_sql, r.ManagementPerc)
+	ts = addData(ts, dm.Feature_UatSupportPerc_sql, r.UatSupportPerc)
+	ts = addData(ts, dm.Feature_MarketingPerc_sql, r.MarketingPerc)
+	ts = addData(ts, dm.Feature_ContingencyPerc_sql, r.ContingencyPerc)
+	ts = addData(ts, dm.Feature_TrainingPerc_sql, r.TrainingPerc)
+	ts = addData(ts, dm.Feature_RoundedTo_sql, r.RoundedTo)
 	
 	
 	
@@ -482,7 +533,7 @@ logs.Storing("Feature",fmt.Sprintf("%v", r))
 	
 		
 	// 
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 
 	tsql := das.INSERT + das.INTO + Feature_QualifiedName
@@ -519,7 +570,7 @@ func feature_Fetch(tsql string) (int, []dm.Feature, dm.Feature, error) {
 
 		rec := returnList[i]
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	   recItem.SYSId  = get_Int(rec, dm.Feature_SYSId_sql, "0")
 	   recItem.FeatureID  = get_String(rec, dm.Feature_FeatureID_sql, "")
@@ -578,7 +629,15 @@ func feature_Fetch(tsql string) (int, []dm.Feature, dm.Feature, error) {
 	   recItem.EstimateEffortDefault  = get_String(rec, dm.Feature_EstimateEffortDefault_sql, "")
 	   recItem.AnalystEstimate  = get_String(rec, dm.Feature_AnalystEstimate_sql, "")
 	   recItem.TotalDefault  = get_String(rec, dm.Feature_TotalDefault_sql, "")
-	
+	   recItem.RequirementsPerc  = get_String(rec, dm.Feature_RequirementsPerc_sql, "")
+	   recItem.AnalystTestPerc  = get_String(rec, dm.Feature_AnalystTestPerc_sql, "")
+	   recItem.DocumentationPerc  = get_String(rec, dm.Feature_DocumentationPerc_sql, "")
+	   recItem.ManagementPerc  = get_String(rec, dm.Feature_ManagementPerc_sql, "")
+	   recItem.UatSupportPerc  = get_String(rec, dm.Feature_UatSupportPerc_sql, "")
+	   recItem.MarketingPerc  = get_String(rec, dm.Feature_MarketingPerc_sql, "")
+	   recItem.ContingencyPerc  = get_String(rec, dm.Feature_ContingencyPerc_sql, "")
+	   recItem.TrainingPerc  = get_String(rec, dm.Feature_TrainingPerc_sql, "")
+	   recItem.RoundedTo  = get_String(rec, dm.Feature_RoundedTo_sql, "")
 	
 	
 	
@@ -612,17 +671,25 @@ func feature_Fetch(tsql string) (int, []dm.Feature, dm.Feature, error) {
 	   recItem.Training  = Feature_Training_OnFetch_impl (recItem)
 	   recItem.EstimateEffort  = Feature_EstimateEffort_OnFetch_impl (recItem)
 	   recItem.AnalystEstimate  = Feature_AnalystEstimate_OnFetch_impl (recItem)
+	   recItem.RequirementsPerc  = Feature_RequirementsPerc_OnFetch_impl (recItem)
+	   recItem.AnalystTestPerc  = Feature_AnalystTestPerc_OnFetch_impl (recItem)
+	   recItem.DocumentationPerc  = Feature_DocumentationPerc_OnFetch_impl (recItem)
+	   recItem.ManagementPerc  = Feature_ManagementPerc_OnFetch_impl (recItem)
+	   recItem.UatSupportPerc  = Feature_UatSupportPerc_OnFetch_impl (recItem)
+	   recItem.MarketingPerc  = Feature_MarketingPerc_OnFetch_impl (recItem)
+	   recItem.ContingencyPerc  = Feature_ContingencyPerc_OnFetch_impl (recItem)
+	   recItem.TrainingPerc  = Feature_TrainingPerc_OnFetch_impl (recItem)
+	   recItem.RoundedTo  = Feature_RoundedTo_OnFetch_impl (recItem)
 	   recItem.OriginName  = Feature_OriginName_OnFetch_impl (recItem)
 	   recItem.ProjectName  = Feature_ProjectName_OnFetch_impl (recItem)
 	   recItem.OriginID  = Feature_OriginID_OnFetch_impl (recItem)
 	   recItem.ProjectID  = Feature_ProjectID_OnFetch_impl (recItem)
 	   recItem.ProfileSelectedOld  = Feature_ProfileSelectedOld_OnFetch_impl (recItem)
 	   recItem.CCY  = Feature_CCY_OnFetch_impl (recItem)
-	   recItem.RoundTo  = Feature_RoundTo_OnFetch_impl (recItem)
 	   recItem.OriginCode  = Feature_OriginCode_OnFetch_impl (recItem)
 	   recItem.EstimationSessionName  = Feature_EstimationSessionName_OnFetch_impl (recItem)
 	// 
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	///
 	//Add to the list
@@ -652,7 +719,7 @@ func Feature_New() (int, []dm.Feature, dm.Feature, error) {
 	
 
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	r.FeatureID,r.FeatureID_props = Feature_FeatureID_validate_impl (NEW,r.FeatureID,r.FeatureID,r,r.FeatureID_props)
 	r.EstimationSessionID,r.EstimationSessionID_props = Feature_EstimationSessionID_validate_impl (NEW,r.FeatureID,r.EstimationSessionID,r,r.EstimationSessionID_props)
@@ -677,18 +744,26 @@ func Feature_New() (int, []dm.Feature, dm.Feature, error) {
 	r.Training,r.Training_props = Feature_Training_validate_impl (NEW,r.FeatureID,r.Training,r,r.Training_props)
 	r.EstimateEffort,r.EstimateEffort_props = Feature_EstimateEffort_validate_impl (NEW,r.FeatureID,r.EstimateEffort,r,r.EstimateEffort_props)
 	r.AnalystEstimate,r.AnalystEstimate_props = Feature_AnalystEstimate_validate_impl (NEW,r.FeatureID,r.AnalystEstimate,r,r.AnalystEstimate_props)
+	r.RequirementsPerc,r.RequirementsPerc_props = Feature_RequirementsPerc_validate_impl (NEW,r.FeatureID,r.RequirementsPerc,r,r.RequirementsPerc_props)
+	r.AnalystTestPerc,r.AnalystTestPerc_props = Feature_AnalystTestPerc_validate_impl (NEW,r.FeatureID,r.AnalystTestPerc,r,r.AnalystTestPerc_props)
+	r.DocumentationPerc,r.DocumentationPerc_props = Feature_DocumentationPerc_validate_impl (NEW,r.FeatureID,r.DocumentationPerc,r,r.DocumentationPerc_props)
+	r.ManagementPerc,r.ManagementPerc_props = Feature_ManagementPerc_validate_impl (NEW,r.FeatureID,r.ManagementPerc,r,r.ManagementPerc_props)
+	r.UatSupportPerc,r.UatSupportPerc_props = Feature_UatSupportPerc_validate_impl (NEW,r.FeatureID,r.UatSupportPerc,r,r.UatSupportPerc_props)
+	r.MarketingPerc,r.MarketingPerc_props = Feature_MarketingPerc_validate_impl (NEW,r.FeatureID,r.MarketingPerc,r,r.MarketingPerc_props)
+	r.ContingencyPerc,r.ContingencyPerc_props = Feature_ContingencyPerc_validate_impl (NEW,r.FeatureID,r.ContingencyPerc,r,r.ContingencyPerc_props)
+	r.TrainingPerc,r.TrainingPerc_props = Feature_TrainingPerc_validate_impl (NEW,r.FeatureID,r.TrainingPerc,r,r.TrainingPerc_props)
+	r.RoundedTo,r.RoundedTo_props = Feature_RoundedTo_validate_impl (NEW,r.FeatureID,r.RoundedTo,r,r.RoundedTo_props)
 	r.OriginName,r.OriginName_props = Feature_OriginName_validate_impl (NEW,r.FeatureID,r.OriginName,r,r.OriginName_props)
 	r.ProjectName,r.ProjectName_props = Feature_ProjectName_validate_impl (NEW,r.FeatureID,r.ProjectName,r,r.ProjectName_props)
 	r.OriginID,r.OriginID_props = Feature_OriginID_validate_impl (NEW,r.FeatureID,r.OriginID,r,r.OriginID_props)
 	r.ProjectID,r.ProjectID_props = Feature_ProjectID_validate_impl (NEW,r.FeatureID,r.ProjectID,r,r.ProjectID_props)
 	r.ProfileSelectedOld,r.ProfileSelectedOld_props = Feature_ProfileSelectedOld_validate_impl (NEW,r.FeatureID,r.ProfileSelectedOld,r,r.ProfileSelectedOld_props)
 	r.CCY,r.CCY_props = Feature_CCY_validate_impl (NEW,r.FeatureID,r.CCY,r,r.CCY_props)
-	r.RoundTo,r.RoundTo_props = Feature_RoundTo_validate_impl (NEW,r.FeatureID,r.RoundTo,r,r.RoundTo_props)
 	r.OriginCode,r.OriginCode_props = Feature_OriginCode_validate_impl (NEW,r.FeatureID,r.OriginCode,r,r.OriginCode_props)
 	r.EstimationSessionName,r.EstimationSessionName_props = Feature_EstimationSessionName_validate_impl (NEW,r.FeatureID,r.EstimationSessionName,r,r.EstimationSessionName_props)
 	
 	// 
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

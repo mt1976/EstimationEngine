@@ -252,6 +252,20 @@
                 
                 </div>
             </div>
+             
+            <div class="row mb-3"  >
+                <div class="col">
+                
+                    <div class="form-outline">
+                        
+                            <textarea class="form-control" id="Usage" name="Usage" aria-describedby="UsageHelp" placeholder=""  disabled value="{{.Usage}}"  data-mdb-input-mask="" rows="4" maxlength="255">{{.Usage}}</textarea>
+                        
+                        <label class="form-label" for="Usage">Usage</label>
+                        
+                    </div>
+                
+                </div>
+            </div>
             
         </div>
         {{template "audit" .}}

@@ -2,21 +2,25 @@ package datamodel
 
 const (
 	//Define Constants for the Class
-	Data_Category_Setting    = "Setting"
-	Data_Category_Data       = "Data"
-	Data_Category_Database   = "Database"
-	Data_Category_User       = Data_Category_Setting + ".User"
-	Data_Category_FilterRule = Data_Category_Setting + ".Rule.Filter"
-	Data_Category_StateRule  = Data_Category_Setting + ".Rule.State"
-	Data_Category_Importer   = Data_Category_Setting + ".Importer"
-	Data_Category_Indexer    = Data_Category_Setting + ".Index.URI"
-	Data_Category_URI        = Data_Category_Setting + ".URI"
-	Data_Category_Path       = Data_Category_Setting + ".Path"
-	Data_Category_Default    = Data_Category_Setting + ".Default"
-	Data_Category_Info       = Data_Category_Data + ".Info"
-	Data_Category_Sequence   = Data_Category_Data + ".Sequence"
-	Data_Category_State      = Data_Category_Data + ".State"
-	Data_Category_NextAction = Data_Category_Setting + ".Next.Action"
+	Data_Category_Setting            = "Setting"
+	Data_Category_Data               = "Data"
+	Data_Category_Database           = "Database"
+	Data_Category_User               = Data_Category_Setting + ".User"
+	Data_Category_FilterRule         = Data_Category_Setting + ".Rule.Filter"
+	Data_Category_StateRule          = Data_Category_Setting + ".Rule.State"
+	Data_Category_Importer           = Data_Category_Setting + ".Importer"
+	Data_Category_Indexer            = Data_Category_Setting + ".Index.URI"
+	Data_Category_URI                = Data_Category_Setting + ".URI"
+	Data_Category_Path               = Data_Category_Setting + ".Path"
+	Data_Category_Default            = Data_Category_Setting + ".Default"
+	Data_Category_Period             = Data_Category_Setting + ".Period"
+	Data_Category_Info               = Data_Category_Data + ".Info"
+	Data_Category_Sequence           = Data_Category_Data + ".Sequence"
+	Data_Category_State              = Data_Category_Data + ".State"
+	Data_Category_NextAction         = Data_Category_Setting + ".Next.Action"
+	Data_Category_UserInfo           = Data_Category_Info + ".User"
+	Data_Category_LastSuccesfulLogin = Data_Category_UserInfo + ".LastSuccesfulLogin"
+	Data_Category_LastFailedLogin    = Data_Category_UserInfo + ".LastFailedLogin"
 )
 
 var Data_Category_List = []string{
@@ -35,4 +39,8 @@ var Data_Category_List = []string{
 	Data_Category_State,
 	Data_Category_NextAction,
 	Data_Category_Default,
+	Data_Category_UserInfo,
+	Data_Category_LastSuccesfulLogin,
+	Data_Category_LastFailedLogin,
+	Data_Category_Period,
 }

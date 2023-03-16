@@ -26,7 +26,8 @@ func CredentialsPassword_Run_impl() (string, error) {
 
 	message := ""
 	/// CONTENT STARTS
-	warningPeriod, err := dao.Data_GetInt(objectName, "Password_Expiry_Notification_Period", dm.Data_Category_Setting)
+	msg := "The notification period for passwords due to expire. In days."
+	warningPeriod, err := dao.Data_GetInt(objectName, "Password_Expiry_Notification_Period", dm.Data_Category_Setting, msg)
 	if err != nil {
 		return message, err
 	}

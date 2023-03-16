@@ -253,16 +253,17 @@ func Post(w string) {
 
 func Query(w string) {
 	//msg_info(w, v)
-	if CFG.VerboseMode {
-		//msg_raw(log_Query, w, Character_Query, colour.White)
-	}
+	//if CFG.VerboseMode {
+	msg_raw(log_Query, w, Character_Query, colour.GreenBackground)
+	//}
 }
 
 func Storing(t string, w string) {
 	//msg_info(w, v)Ac
 	if CFG.VerboseMode {
 
-		//msg_raw(log_Storing, t+" "+w, Character_Storing, colour.Yellow)
+		msg_raw(log_Storing, t+" "+w, Character_Storing, colour.YellowBackground)
+
 	}
 }
 
@@ -289,9 +290,9 @@ func Result(w string, r string) {
 
 func Database(w string, v string) {
 	//msg_info(w, v)
-	if CFG.VerboseMode {
-		msg_raw(log_Database, w, v, colour.RedBackground)
-	}
+	//if CFG.VerboseMode {
+	msg_raw(log_Database, w, v, colour.RedBackground)
+	//}
 
 }
 

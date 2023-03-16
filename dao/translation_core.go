@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 15:47:28
+// Date & Time		    : 15/03/2023 at 19:24:50
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -63,12 +63,7 @@ func Translation_GetByID(id string) (int, dm.Translation, error) {
 }
 
 func Translation_PostGet(translationItem dm.Translation, id string) dm.Translation {
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	//
-	//
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
+
 	return translationItem
 }
 
@@ -131,11 +126,13 @@ func Translation_StoreProcess(r dm.Translation, operator string) (dm.Translation
 // Translation_Validate() validates for saves/stores a Translation record to the database
 func Translation_Validate(r dm.Translation) (dm.Translation, error) {
 	var err error
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	//
-	//
 
+	// Cross Validation
+	var errVal error
+	r, _, errVal = Translation_ObjectValidation_impl(PUT, r.Id, r)
+	if errVal != nil {
+		err = errVal
+	}
 	return r, err
 }
 
@@ -166,7 +163,7 @@ func translation_Save(r dm.Translation, usr string) error {
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	ts = addData(ts, dm.Translation_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.Translation_Id_sql, r.Id)
@@ -186,7 +183,7 @@ func translation_Save(r dm.Translation, usr string) error {
 	ts = addData(ts, dm.Translation_Migrate_sql, r.Migrate)
 
 	//
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 	tsql := das.INSERT + das.INTO + Translation_QualifiedName
@@ -215,7 +212,7 @@ func translation_Fetch(tsql string) (int, []dm.Translation, dm.Translation, erro
 
 		rec := returnList[i]
 		// START
-		// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		//
 		recItem.SYSId = get_Int(rec, dm.Translation_SYSId_sql, "0")
 		recItem.Id = get_String(rec, dm.Translation_Id_sql, "")
@@ -236,7 +233,7 @@ func translation_Fetch(tsql string) (int, []dm.Translation, dm.Translation, erro
 
 		// If there are fields below, create the methods in dao\Translation_adaptor.go
 		//
-		// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		// END
 		///
 		//Add to the list
@@ -261,11 +258,11 @@ func Translation_New() (int, []dm.Translation, dm.Translation, error) {
 	var rList []dm.Translation
 
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 
 	//
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

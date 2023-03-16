@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:25
+// Date & Time		    : 15/03/2023 at 19:24:47
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Confidence defines the datamodel for the Confidence object
 type Confidence struct {
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -62,7 +62,7 @@ type Confidence struct {
 	}
 
 const (
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	Confidence_Name      = "Confidence"
 	Confidence_Title       = "Confidence"
@@ -140,7 +140,7 @@ const (
 
 //Confidence_PageList provides the information for the template for a list of Confidences
 type Confidence_PageList struct {
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -162,7 +162,7 @@ type Confidence_PageList struct {
 
 //Confidence_Page provides the information for the template for an individual Confidence
 type Confidence_Page struct {
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem

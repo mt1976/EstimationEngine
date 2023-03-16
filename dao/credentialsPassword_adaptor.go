@@ -57,8 +57,10 @@ func CredentialsPassword_Update_impl(id string, rec dm.CredentialsPassword, usr 
 	logs.Storing("CredentialsPassword", id+"-"+rec.UserName)
 	// This will update the relevant credentials, updateding the password, and the password expiry date
 	objectName := Translate("Credentials", "EstimationSession")
-
-	passwordLife, _ := Data_GetInt(objectName, "Life", dm.Data_Category_Setting)
+	usage := "The number of days a password is valid for." + core.TEXTAREA_CR
+	usage += "This is used to determine when a password needs to be changed."
+	usage += "The default is 30 days."
+	passwordLife, _ := Data_GetInt(objectName, "Life", dm.Data_Category_Setting, usage)
 	fmt.Printf("passwordLife: %v\n", passwordLife)
 	if passwordLife == 0 {
 		logs.Warning("CredentialsPassword - Unable to get Password Life from Data - Using 30 days")
@@ -102,8 +104,8 @@ func CredentialsPassword_Update_impl(id string, rec dm.CredentialsPassword, usr 
 		logs.Error("Unable to update credentials record for user: "+rec.ID, Sterr)
 		return Sterr
 	}
-
-	Data_Put("Password", cred.Username, "LastChanged", time.Now().Format(core.DATEMSG))
+	usage = "The date the users password was last changed."
+	Data_Put("Password", cred.Username, "LastChanged", time.Now().Format(core.DATEMSG), usage)
 
 	return nil
 }

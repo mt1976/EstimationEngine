@@ -23,6 +23,13 @@ import (
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
+var freshdeskUsageText = "Definition of the FreshDesk URI" + core.TEXTAREA_CR + "The FreshDesk URI is used to link to the FreshDesk ticket" + core.TEXTAREA_CR + "The {{ID}} wildcard is replaced with the FreshDesk ID, if present"
+var adoUsageText = "Definition of the Azure DevOps URI" + core.TEXTAREA_CR + "The Azure DevOps URI is used to link to the Azure DevOps ticket" + core.TEXTAREA_CR + "The {{ID}} wildcard is replaced with the Azure DevOps ID, if present"
+var issuedUsageText = "Defines the status to be used when a quote is issued."
+var acceptedUsageText = "Defines the status to be used when a quote is accepted."
+var expiredUsageText = "Defines the status to be used when a quote is expired."
+var assignRSCstatusUsageText = "Defines the status at which point when a RSC number is assigned to a estimate."
+
 func EstimationSession_ObjectValidation_impl(iAction string, iId string, iRec dm.EstimationSession) (dm.EstimationSession, string, error) {
 	logs.Callout("EstimationSession", "ObjectValidation", VAL+"-"+iAction, iId)
 	switch iAction {
@@ -305,7 +312,8 @@ func EstimationSession_FreshDeskURI_OnFetch_impl(rec dm.EstimationSession) strin
 
 	rtn := ""
 	if rec.FreshdeskID != "" {
-		stub, _ := Data_Get("System", "FreshDesk", dm.Data_Category_URI)
+
+		stub, _ := Data_Get("System", "FreshDesk", dm.Data_Category_URI, freshdeskUsageText)
 		rtn = core.ReplaceWildcard(stub, "ID", rec.FreshdeskID)
 	}
 
@@ -316,7 +324,7 @@ func EstimationSession_ADOURI_OnFetch_impl(rec dm.EstimationSession) string {
 
 	rtn := ""
 	if rec.AdoID != "" {
-		stub, _ := Data_Get("System", "ADO", dm.Data_Category_URI)
+		stub, _ := Data_Get("System", "ADO", dm.Data_Category_URI, adoUsageText)
 		rtn = core.ReplaceWildcard(stub, "ID", rec.AdoID)
 	}
 
@@ -372,7 +380,13 @@ func EstimationSession_TrackerID_validate_impl(iAction string, iId string, iValu
 // EstimationSession_Approver_impl provides validation/actions for Approver
 func EstimationSession_Approver_validate_impl(iAction string, iId string, iValue string, iRec dm.EstimationSession, fP dm.FieldProperties) (string, dm.FieldProperties) {
 	logs.Callout("EstimationSession", dm.EstimationSession_Approver_scrn, VAL+"-"+iAction, iId)
-	ReqApproverStatuses, _ := Data_GetArray(dm.EstimationSession_Name, "Requires_Approver_States", dm.Data_Category_State)
+	usage := "Defined the statuses of estimations that require an approver to be specified" + core.TEXTAREA_CR
+	usage += "The approver is the person who will approve the estimation" + core.TEXTAREA_CR + core.TEXTAREA_CR
+	usage = usage + "Fields can be any of those in the underlying DB table." + core.TEXTAREA_CR
+	usage = usage + "Examples Below:" + core.TEXTAREA_CR
+	usage = usage + "* datalength(_deleted) = 0 or " + core.TEXTAREA_CR
+	usage = usage + "* class IN ('x','y','z')"
+	ReqApproverStatuses, _ := Data_GetArray(dm.EstimationSession_Name, "Requires_Approver_States", dm.Data_Category_State, usage)
 	// fmt.Printf("ReqApproverStatuses: %v\n", ReqApproverStatuses)
 	// fmt.Printf("len(ReqApproverStatuses): %v\n", len(ReqApproverStatuses))
 	// fmt.Printf("iValue: %v\n", iValue)
@@ -541,7 +555,7 @@ func EstimationSession_FreshDeskURI_validate_impl(iAction string, iId string, iV
 	rtn := ""
 	//logs.Warning("Generate FreshDesk URI")
 	if iRec.FreshdeskID != "" {
-		stub, _ := Data_Get("System", "FreshDesk", dm.Data_Category_URI)
+		stub, _ := Data_Get("System", "FreshDesk", dm.Data_Category_URI, freshdeskUsageText)
 		rtn = core.ReplaceWildcard(stub, "ID", iRec.FreshdeskID)
 	}
 	return rtn, fP
@@ -553,7 +567,7 @@ func EstimationSession_ADOURI_validate_impl(iAction string, iId string, iValue s
 	//logs.Warning("Generate ADO URI")
 	rtn := ""
 	if iRec.AdoID != "" {
-		stub, _ := Data_Get("System", "ADO", dm.Data_Category_URI)
+		stub, _ := Data_Get("System", "ADO", dm.Data_Category_URI, adoUsageText)
 		rtn = core.ReplaceWildcard(stub, "ID", iRec.AdoID)
 	}
 	return rtn, fP
@@ -571,7 +585,7 @@ func EstimationSession_NoActiveFeatures_validate_impl(iAction string, iId string
 
 func EstimationSession_IssueDate_OnStore_impl(fieldval string, rec dm.EstimationSession, usr string) (string, error) {
 	logs.Callout("EstimationSession", dm.EstimationSession_IssueDate_scrn, PUT, rec.EstimationSessionID)
-	issuedState, _ := Data_GetString("Quote", "Issued", dm.Data_Category_StateRule)
+	issuedState, _ := Data_GetString("Quote", "Issued", dm.Data_Category_StateRule, issuedUsageText)
 	if fieldval == "" && rec.ExpiryDate == "" && rec.EstimationStateID == issuedState {
 		// Get Todays Date yyyy-mm-dd
 		today := time.Now().Format(core.DATEFORMAT)
@@ -595,8 +609,8 @@ func EstimationSession_IssueDate_impl(iAction string, iId string, iValue string,
 func EstimationSession_ExpiryDate_OnStore_impl(fieldval string, rec dm.EstimationSession, usr string) (string, error) {
 	logs.Callout("EstimationSession", dm.EstimationSession_ExpiryDate_scrn, PUT, rec.EstimationSessionID)
 
-	issuedState, _ := Data_GetString("Quote", "Issued", dm.Data_Category_StateRule)
-	expiredState, _ := Data_GetString("Quote", "Expired", dm.Data_Category_StateRule)
+	issuedState, _ := Data_GetString("Quote", "Issued", dm.Data_Category_StateRule, issuedUsageText)
+	expiredState, _ := Data_GetString("Quote", "Expired", dm.Data_Category_StateRule, expiredUsageText)
 
 	objectName := Translate("ObjectName", "EstimationSession")
 
@@ -604,7 +618,7 @@ func EstimationSession_ExpiryDate_OnStore_impl(fieldval string, rec dm.Estimatio
 	case issuedState:
 		// Get Expiroty Date 30 days from today
 		if fieldval == "" {
-			expPeriod, _ := Data_GetInt(objectName, "Quote_Expiry_Notification_Period", dm.Data_Category_Setting)
+			expPeriod, _ := Data_GetInt(objectName, "Quote_Expiry_Notification_Period", dm.Data_Category_Setting, "Defines the number of days before a quote expires.")
 			logs.Information("Expiry Period: ", strconv.Itoa(expPeriod))
 			expiry := time.Now().AddDate(0, 0, expPeriod).Format(core.DATEFORMAT)
 			return expiry, nil
@@ -741,7 +755,7 @@ func EstimationSession_TrackerID_OnStore_impl(fieldval string, rec dm.Estimation
 	//spew.Dump(rec)
 	state := rec.EstimationStateID
 	objectName := Translate("ObjectName", "EstimationSession")
-	assignRSCstatus, err := Data_GetArray(objectName, "Assign_RSC_No_OnState", dm.Data_Category_State)
+	assignRSCstatus, err := Data_GetArray(objectName, "Assign_RSC_No_OnState", dm.Data_Category_State, assignRSCstatusUsageText)
 	if err != nil {
 		//	logs.Information("Assign_RSC_States", err.Error())
 		assignRSCstatus = []string{"WRIT"}

@@ -9,7 +9,7 @@ package dao
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:32
+// Date & Time		    : 15/03/2023 at 19:24:50
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
@@ -65,7 +65,14 @@ func UserRole_GetFilteredLookup(requestObject string, requestField string) []dm.
 	var returnList []dm.Lookup_Item
 	objectName := Translate("ObjectName", requestObject)
 	reqField := requestField + "_UserRole_Filter"
-	filter, _ := Data_GetString(objectName, reqField, dm.Data_Category_FilterRule)
+
+	usage := "Defines a filter for a lookup list of UserRole records, when requested by " + requestField + "." + core.TEXTAREA_CR
+	usage = usage + "Fields can be any of those in the underlying DB table." + core.TEXTAREA_CR
+	usage = usage + "Examples Below:" + core.TEXTAREA_CR
+	usage = usage + "* datalength(_deleted) = 0 or " + core.TEXTAREA_CR
+	usage = usage + "* class IN ('x','y','z')"
+
+	filter, _ := Data_GetString(objectName, reqField, dm.Data_Category_FilterRule, usage)
 	if filter == "" {
 		logs.Warning("UserRole_GetFilteredLookup() - No filter found : " + reqField + " for Object: " + objectName)
 	}
@@ -89,12 +96,7 @@ func UserRole_GetByID(id string) (int, dm.UserRole, error) {
 }
 
 func UserRole_PostGet(userroleItem dm.UserRole, id string) dm.UserRole {
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	//
-	//
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	// END
+
 	return userroleItem
 }
 
@@ -157,11 +159,13 @@ func UserRole_StoreProcess(r dm.UserRole, operator string) (dm.UserRole, error) 
 // UserRole_Validate() validates for saves/stores a UserRole record to the database
 func UserRole_Validate(r dm.UserRole) (dm.UserRole, error) {
 	var err error
-	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
-	//
-	//
 
+	// Cross Validation
+	var errVal error
+	r, _, errVal = UserRole_ObjectValidation_impl(PUT, r.Id, r)
+	if errVal != nil {
+		err = errVal
+	}
 	return r, err
 }
 
@@ -192,7 +196,7 @@ func userrole_Save(r dm.UserRole, usr string) error {
 
 	ts := SQLData{}
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 	ts = addData(ts, dm.UserRole_SYSId_sql, r.SYSId)
 	ts = addData(ts, dm.UserRole_Id_sql, r.Id)
@@ -209,7 +213,7 @@ func userrole_Save(r dm.UserRole, usr string) error {
 	ts = addData(ts, dm.UserRole_SYSDbVersion_sql, r.SYSDbVersion)
 
 	//
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 
 	tsql := das.INSERT + das.INTO + UserRole_QualifiedName
@@ -238,7 +242,7 @@ func userrole_Fetch(tsql string) (int, []dm.UserRole, dm.UserRole, error) {
 
 		rec := returnList[i]
 		// START
-		// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		//
 		recItem.SYSId = get_Int(rec, dm.UserRole_SYSId_sql, "0")
 		recItem.Id = get_String(rec, dm.UserRole_Id_sql, "")
@@ -256,7 +260,7 @@ func userrole_Fetch(tsql string) (int, []dm.UserRole, dm.UserRole, error) {
 
 		// If there are fields below, create the methods in dao\UserRole_adaptor.go
 		//
-		// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+		// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 		// END
 		///
 		//Add to the list
@@ -281,11 +285,11 @@ func UserRole_New() (int, []dm.UserRole, dm.UserRole, error) {
 	var rList []dm.UserRole
 
 	// START
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	//
 
 	//
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local
 	// END
 	rList = append(rList, r)
 	return 1, rList, r, nil

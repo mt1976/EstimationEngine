@@ -16,7 +16,7 @@ import (
 	// For Project          : github.com/mt1976/ebEstimates/
 	// ----------------------------------------------------------------
 	// Template Generator   : Einsteinium [r5-23.01.23]
-	// Date & Time		    : 13/03/2023 at 14:22:27
+	// Date & Time		    : 15/03/2023 at 19:24:48
 	// Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 	// ----------------------------------------------------------------
 	// The following functions should be created in feature_impl.go
@@ -535,6 +535,204 @@ import (
 	// ----------------------------------------------------------------
 
 	// ----------------------------------------------------------------
+	// BEGIN Feature_RequirementsPerc
+	// BEGIN Feature_RequirementsPerc
+	// BEGIN Feature_RequirementsPerc
+	// ----------------------------------------------------------------
+	// Feature_RequirementsPerc_OnStore_impl provides the implementation for the callout
+	func Feature_RequirementsPerc_OnStore_impl (fieldval string,rec dm.Feature,usr string) (string,error)  {
+		logs.Callout("Feature", dm.Feature_RequirementsPerc_scrn, PUT, rec.FeatureID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// Feature_RequirementsPerc_OnFetch_impl provides the implementation for the callout	
+	func Feature_RequirementsPerc_OnFetch_impl (rec dm.Feature)(string) {
+		logs.Callout("Feature", dm.Feature_RequirementsPerc_scrn, GET, rec.FeatureID)
+		return rec.RequirementsPerc
+	}
+	// ----------------------------------------------------------------
+	// END   Feature_RequirementsPerc
+	// END   Feature_RequirementsPerc
+	// END   Feature_RequirementsPerc
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN Feature_AnalystTestPerc
+	// BEGIN Feature_AnalystTestPerc
+	// BEGIN Feature_AnalystTestPerc
+	// ----------------------------------------------------------------
+	// Feature_AnalystTestPerc_OnStore_impl provides the implementation for the callout
+	func Feature_AnalystTestPerc_OnStore_impl (fieldval string,rec dm.Feature,usr string) (string,error)  {
+		logs.Callout("Feature", dm.Feature_AnalystTestPerc_scrn, PUT, rec.FeatureID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// Feature_AnalystTestPerc_OnFetch_impl provides the implementation for the callout	
+	func Feature_AnalystTestPerc_OnFetch_impl (rec dm.Feature)(string) {
+		logs.Callout("Feature", dm.Feature_AnalystTestPerc_scrn, GET, rec.FeatureID)
+		return rec.AnalystTestPerc
+	}
+	// ----------------------------------------------------------------
+	// END   Feature_AnalystTestPerc
+	// END   Feature_AnalystTestPerc
+	// END   Feature_AnalystTestPerc
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN Feature_DocumentationPerc
+	// BEGIN Feature_DocumentationPerc
+	// BEGIN Feature_DocumentationPerc
+	// ----------------------------------------------------------------
+	// Feature_DocumentationPerc_OnStore_impl provides the implementation for the callout
+	func Feature_DocumentationPerc_OnStore_impl (fieldval string,rec dm.Feature,usr string) (string,error)  {
+		logs.Callout("Feature", dm.Feature_DocumentationPerc_scrn, PUT, rec.FeatureID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// Feature_DocumentationPerc_OnFetch_impl provides the implementation for the callout	
+	func Feature_DocumentationPerc_OnFetch_impl (rec dm.Feature)(string) {
+		logs.Callout("Feature", dm.Feature_DocumentationPerc_scrn, GET, rec.FeatureID)
+		return rec.DocumentationPerc
+	}
+	// ----------------------------------------------------------------
+	// END   Feature_DocumentationPerc
+	// END   Feature_DocumentationPerc
+	// END   Feature_DocumentationPerc
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN Feature_ManagementPerc
+	// BEGIN Feature_ManagementPerc
+	// BEGIN Feature_ManagementPerc
+	// ----------------------------------------------------------------
+	// Feature_ManagementPerc_OnStore_impl provides the implementation for the callout
+	func Feature_ManagementPerc_OnStore_impl (fieldval string,rec dm.Feature,usr string) (string,error)  {
+		logs.Callout("Feature", dm.Feature_ManagementPerc_scrn, PUT, rec.FeatureID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// Feature_ManagementPerc_OnFetch_impl provides the implementation for the callout	
+	func Feature_ManagementPerc_OnFetch_impl (rec dm.Feature)(string) {
+		logs.Callout("Feature", dm.Feature_ManagementPerc_scrn, GET, rec.FeatureID)
+		return rec.ManagementPerc
+	}
+	// ----------------------------------------------------------------
+	// END   Feature_ManagementPerc
+	// END   Feature_ManagementPerc
+	// END   Feature_ManagementPerc
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN Feature_UatSupportPerc
+	// BEGIN Feature_UatSupportPerc
+	// BEGIN Feature_UatSupportPerc
+	// ----------------------------------------------------------------
+	// Feature_UatSupportPerc_OnStore_impl provides the implementation for the callout
+	func Feature_UatSupportPerc_OnStore_impl (fieldval string,rec dm.Feature,usr string) (string,error)  {
+		logs.Callout("Feature", dm.Feature_UatSupportPerc_scrn, PUT, rec.FeatureID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// Feature_UatSupportPerc_OnFetch_impl provides the implementation for the callout	
+	func Feature_UatSupportPerc_OnFetch_impl (rec dm.Feature)(string) {
+		logs.Callout("Feature", dm.Feature_UatSupportPerc_scrn, GET, rec.FeatureID)
+		return rec.UatSupportPerc
+	}
+	// ----------------------------------------------------------------
+	// END   Feature_UatSupportPerc
+	// END   Feature_UatSupportPerc
+	// END   Feature_UatSupportPerc
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN Feature_MarketingPerc
+	// BEGIN Feature_MarketingPerc
+	// BEGIN Feature_MarketingPerc
+	// ----------------------------------------------------------------
+	// Feature_MarketingPerc_OnStore_impl provides the implementation for the callout
+	func Feature_MarketingPerc_OnStore_impl (fieldval string,rec dm.Feature,usr string) (string,error)  {
+		logs.Callout("Feature", dm.Feature_MarketingPerc_scrn, PUT, rec.FeatureID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// Feature_MarketingPerc_OnFetch_impl provides the implementation for the callout	
+	func Feature_MarketingPerc_OnFetch_impl (rec dm.Feature)(string) {
+		logs.Callout("Feature", dm.Feature_MarketingPerc_scrn, GET, rec.FeatureID)
+		return rec.MarketingPerc
+	}
+	// ----------------------------------------------------------------
+	// END   Feature_MarketingPerc
+	// END   Feature_MarketingPerc
+	// END   Feature_MarketingPerc
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN Feature_ContingencyPerc
+	// BEGIN Feature_ContingencyPerc
+	// BEGIN Feature_ContingencyPerc
+	// ----------------------------------------------------------------
+	// Feature_ContingencyPerc_OnStore_impl provides the implementation for the callout
+	func Feature_ContingencyPerc_OnStore_impl (fieldval string,rec dm.Feature,usr string) (string,error)  {
+		logs.Callout("Feature", dm.Feature_ContingencyPerc_scrn, PUT, rec.FeatureID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// Feature_ContingencyPerc_OnFetch_impl provides the implementation for the callout	
+	func Feature_ContingencyPerc_OnFetch_impl (rec dm.Feature)(string) {
+		logs.Callout("Feature", dm.Feature_ContingencyPerc_scrn, GET, rec.FeatureID)
+		return rec.ContingencyPerc
+	}
+	// ----------------------------------------------------------------
+	// END   Feature_ContingencyPerc
+	// END   Feature_ContingencyPerc
+	// END   Feature_ContingencyPerc
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN Feature_TrainingPerc
+	// BEGIN Feature_TrainingPerc
+	// BEGIN Feature_TrainingPerc
+	// ----------------------------------------------------------------
+	// Feature_TrainingPerc_OnStore_impl provides the implementation for the callout
+	func Feature_TrainingPerc_OnStore_impl (fieldval string,rec dm.Feature,usr string) (string,error)  {
+		logs.Callout("Feature", dm.Feature_TrainingPerc_scrn, PUT, rec.FeatureID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// Feature_TrainingPerc_OnFetch_impl provides the implementation for the callout	
+	func Feature_TrainingPerc_OnFetch_impl (rec dm.Feature)(string) {
+		logs.Callout("Feature", dm.Feature_TrainingPerc_scrn, GET, rec.FeatureID)
+		return rec.TrainingPerc
+	}
+	// ----------------------------------------------------------------
+	// END   Feature_TrainingPerc
+	// END   Feature_TrainingPerc
+	// END   Feature_TrainingPerc
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
+	// BEGIN Feature_RoundedTo
+	// BEGIN Feature_RoundedTo
+	// BEGIN Feature_RoundedTo
+	// ----------------------------------------------------------------
+	// Feature_RoundedTo_OnStore_impl provides the implementation for the callout
+	func Feature_RoundedTo_OnStore_impl (fieldval string,rec dm.Feature,usr string) (string,error)  {
+		logs.Callout("Feature", dm.Feature_RoundedTo_scrn, PUT, rec.FeatureID)
+		return fieldval,nil
+	}
+	// ----------------------------------------------------------------
+	// Feature_RoundedTo_OnFetch_impl provides the implementation for the callout	
+	func Feature_RoundedTo_OnFetch_impl (rec dm.Feature)(string) {
+		logs.Callout("Feature", dm.Feature_RoundedTo_scrn, GET, rec.FeatureID)
+		return rec.RoundedTo
+	}
+	// ----------------------------------------------------------------
+	// END   Feature_RoundedTo
+	// END   Feature_RoundedTo
+	// END   Feature_RoundedTo
+	// ----------------------------------------------------------------
+
+	// ----------------------------------------------------------------
 	// BEGIN Feature_OriginName
 	// BEGIN Feature_OriginName
 	// BEGIN Feature_OriginName
@@ -664,28 +862,6 @@ import (
 	// END   Feature_CCY
 	// END   Feature_CCY
 	// END   Feature_CCY
-	// ----------------------------------------------------------------
-
-	// ----------------------------------------------------------------
-	// BEGIN Feature_RoundTo
-	// BEGIN Feature_RoundTo
-	// BEGIN Feature_RoundTo
-	// ----------------------------------------------------------------
-	// Feature_RoundTo_OnStore_impl provides the implementation for the callout
-	func Feature_RoundTo_OnStore_impl (fieldval string,rec dm.Feature,usr string) (string,error)  {
-		logs.Callout("Feature", dm.Feature_RoundTo_scrn, PUT, rec.FeatureID)
-		return fieldval,nil
-	}
-	// ----------------------------------------------------------------
-	// Feature_RoundTo_OnFetch_impl provides the implementation for the callout	
-	func Feature_RoundTo_OnFetch_impl (rec dm.Feature)(string) {
-		logs.Callout("Feature", dm.Feature_RoundTo_scrn, GET, rec.FeatureID)
-		return rec.RoundTo
-	}
-	// ----------------------------------------------------------------
-	// END   Feature_RoundTo
-	// END   Feature_RoundTo
-	// END   Feature_RoundTo
 	// ----------------------------------------------------------------
 
 	// ----------------------------------------------------------------

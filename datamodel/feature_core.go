@@ -9,13 +9,13 @@ package datamodel
 // For Project          : github.com/mt1976/ebEstimates/
 // ----------------------------------------------------------------
 // Template Generator   : Einsteinium [r5-23.01.23]
-// Date & Time		    : 13/03/2023 at 14:22:27
+// Date & Time		    : 15/03/2023 at 19:24:48
 // Who & Where		    : matttownsend (Matt Townsend) on silicon.local
 // ----------------------------------------------------------------
 
 //Feature defines the datamodel for the Feature object
 type Feature struct {
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	//
 	// Field Definitions
 	//
@@ -76,13 +76,21 @@ type Feature struct {
 	EstimateEffortDefault       string
 	AnalystEstimate       string
 	TotalDefault       string
+	RequirementsPerc       string
+	AnalystTestPerc       string
+	DocumentationPerc       string
+	ManagementPerc       string
+	UatSupportPerc       string
+	MarketingPerc       string
+	ContingencyPerc       string
+	TrainingPerc       string
+	RoundedTo       string
 	OriginName       string
 	ProjectName       string
 	OriginID       string
 	ProjectID       string
 	ProfileSelectedOld       string
 	CCY       string
-	RoundTo       string
 	OriginCode       string
 	EstimationSessionName       string
 	//
@@ -145,13 +153,21 @@ type Feature struct {
 	EstimateEffortDefault_props FieldProperties
 	AnalystEstimate_props FieldProperties
 	TotalDefault_props FieldProperties
+	RequirementsPerc_props FieldProperties
+	AnalystTestPerc_props FieldProperties
+	DocumentationPerc_props FieldProperties
+	ManagementPerc_props FieldProperties
+	UatSupportPerc_props FieldProperties
+	MarketingPerc_props FieldProperties
+	ContingencyPerc_props FieldProperties
+	TrainingPerc_props FieldProperties
+	RoundedTo_props FieldProperties
 	OriginName_props FieldProperties
 	ProjectName_props FieldProperties
 	OriginID_props FieldProperties
 	ProjectID_props FieldProperties
 	ProfileSelectedOld_props FieldProperties
 	CCY_props FieldProperties
-	RoundTo_props FieldProperties
 	OriginCode_props FieldProperties
 	EstimationSessionName_props FieldProperties
 	//
@@ -170,7 +186,7 @@ type Feature struct {
 	}
 
 const (
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	Feature_Name      = "Feature"
 	Feature_Title       = "Feature"
@@ -263,13 +279,21 @@ const (
 	Feature_EstimateEffortDefault_sql   = "estimateEffortDefault" // EstimateEffortDefault is a String
 	Feature_AnalystEstimate_sql   = "analystEstimate" // AnalystEstimate is a String
 	Feature_TotalDefault_sql   = "totalDefault" // TotalDefault is a String
+	Feature_RequirementsPerc_sql   = "requirementsPerc" // RequirementsPerc is a String
+	Feature_AnalystTestPerc_sql   = "analystTestPerc" // AnalystTestPerc is a String
+	Feature_DocumentationPerc_sql   = "documentationPerc" // DocumentationPerc is a String
+	Feature_ManagementPerc_sql   = "managementPerc" // ManagementPerc is a String
+	Feature_UatSupportPerc_sql   = "uatSupportPerc" // UatSupportPerc is a String
+	Feature_MarketingPerc_sql   = "marketingPerc" // MarketingPerc is a String
+	Feature_ContingencyPerc_sql   = "contingencyPerc" // ContingencyPerc is a String
+	Feature_TrainingPerc_sql   = "trainingPerc" // TrainingPerc is a String
+	Feature_RoundedTo_sql   = "roundedTo" // RoundedTo is a String
 	Feature_OriginName_sql   = "OriginName" // OriginName is a String
 	Feature_ProjectName_sql   = "ProjectName" // ProjectName is a String
 	Feature_OriginID_sql   = "OriginID" // OriginID is a String
 	Feature_ProjectID_sql   = "ProjectID" // ProjectID is a String
 	Feature_ProfileSelectedOld_sql   = "ProfileSelectedOld" // ProfileSelectedOld is a String
 	Feature_CCY_sql   = "CCY" // CCY is a String
-	Feature_RoundTo_sql   = "RoundTo" // RoundTo is a String
 	Feature_OriginCode_sql   = "OriginCode" // OriginCode is a String
 	Feature_EstimationSessionName_sql   = "EstimationSessionName" // EstimationSessionName is a String
 ///
@@ -332,13 +356,21 @@ const (
 	Feature_EstimateEffortDefault_scrn   = "EstimateEffortDefault" // EstimateEffortDefault is a String
 	Feature_AnalystEstimate_scrn   = "AnalystEstimate" // AnalystEstimate is a String
 	Feature_TotalDefault_scrn   = "TotalDefault" // TotalDefault is a String
+	Feature_RequirementsPerc_scrn   = "RequirementsPerc" // RequirementsPerc is a String
+	Feature_AnalystTestPerc_scrn   = "AnalystTestPerc" // AnalystTestPerc is a String
+	Feature_DocumentationPerc_scrn   = "DocumentationPerc" // DocumentationPerc is a String
+	Feature_ManagementPerc_scrn   = "ManagementPerc" // ManagementPerc is a String
+	Feature_UatSupportPerc_scrn   = "UatSupportPerc" // UatSupportPerc is a String
+	Feature_MarketingPerc_scrn   = "MarketingPerc" // MarketingPerc is a String
+	Feature_ContingencyPerc_scrn   = "ContingencyPerc" // ContingencyPerc is a String
+	Feature_TrainingPerc_scrn   = "TrainingPerc" // TrainingPerc is a String
+	Feature_RoundedTo_scrn   = "RoundedTo" // RoundedTo is a String
 	Feature_OriginName_scrn   = "OriginName" // OriginName is a String
 	Feature_ProjectName_scrn   = "ProjectName" // ProjectName is a String
 	Feature_OriginID_scrn   = "OriginID" // OriginID is a String
 	Feature_ProjectID_scrn   = "ProjectID" // ProjectID is a String
 	Feature_ProfileSelectedOld_scrn   = "ProfileSelectedOld" // ProfileSelectedOld is a String
 	Feature_CCY_scrn   = "CCY" // CCY is a String
-	Feature_RoundTo_scrn   = "RoundTo" // RoundTo is a String
 	Feature_OriginCode_scrn   = "OriginCode" // OriginCode is a String
 	Feature_EstimationSessionName_scrn   = "EstimationSessionName" // EstimationSessionName is a String
 ///
@@ -346,7 +378,7 @@ const (
 
 //Feature_PageList provides the information for the template for a list of Features
 type Feature_PageList struct {
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu         AppMenuItem
@@ -368,7 +400,7 @@ type Feature_PageList struct {
 
 //Feature_Page provides the information for the template for an individual Feature
 type Feature_Page struct {
-	// Dynamically generated 13/03/2023 by matttownsend (Matt Townsend) on silicon.local 
+	// Dynamically generated 15/03/2023 by matttownsend (Matt Townsend) on silicon.local 
 	/// Page Infrastructure
 	SessionInfo      SessionInfo
 	UserMenu    	 AppMenuItem
@@ -441,13 +473,21 @@ type Feature_Page struct {
 	EstimateEffortDefault         string
 	AnalystEstimate         string
 	TotalDefault         string
+	RequirementsPerc         string
+	AnalystTestPerc         string
+	DocumentationPerc         string
+	ManagementPerc         string
+	UatSupportPerc         string
+	MarketingPerc         string
+	ContingencyPerc         string
+	TrainingPerc         string
+	RoundedTo         string
 	OriginName         string
 	ProjectName         string
 	OriginID         string
 	ProjectID         string
 	ProfileSelectedOld         string
 	CCY         string
-	RoundTo         string
 	OriginCode         string
 	EstimationSessionName         string
 	/// Field Properties
@@ -508,13 +548,21 @@ type Feature_Page struct {
 	EstimateEffortDefault_props     FieldProperties
 	AnalystEstimate_props     FieldProperties
 	TotalDefault_props     FieldProperties
+	RequirementsPerc_props     FieldProperties
+	AnalystTestPerc_props     FieldProperties
+	DocumentationPerc_props     FieldProperties
+	ManagementPerc_props     FieldProperties
+	UatSupportPerc_props     FieldProperties
+	MarketingPerc_props     FieldProperties
+	ContingencyPerc_props     FieldProperties
+	TrainingPerc_props     FieldProperties
+	RoundedTo_props     FieldProperties
 	OriginName_props     FieldProperties
 	ProjectName_props     FieldProperties
 	OriginID_props     FieldProperties
 	ProjectID_props     FieldProperties
 	ProfileSelectedOld_props     FieldProperties
 	CCY_props     FieldProperties
-	RoundTo_props     FieldProperties
 	OriginCode_props     FieldProperties
 	EstimationSessionName_props     FieldProperties
 	/// Lookups
